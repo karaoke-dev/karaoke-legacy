@@ -233,6 +233,10 @@
       <Project>{58f6c80c-1253-4a0e-a465-b8c85ebeadf3}</Project>
       <Name>osu.Game.Rulesets.Catch</Name>
     </ProjectReference>
+    <ProjectReference Include="..\osu.Game.Rulesets.Karaoke\osu.Game.Rulesets.Karaoke.csproj">
+      <Project>{7007a270-8fd7-4656-be74-bd6a84a35c46}</Project>
+      <Name>osu.Game.Rulesets.Karaoke</Name>
+    </ProjectReference>
     <ProjectReference Include="..\osu.Game.Rulesets.Mania\osu.Game.Rulesets.Mania.csproj">
       <Project>{48f4582b-7687-4621-9cbe-5c24197cb536}</Project>
       <Name>osu.Game.Rulesets.Mania</Name>
