@@ -101,12 +101,6 @@
     <Compile Include="Objects\TextObject.cs" />
     <Compile Include="Judgements\KaraokeJudgement.cs" />
     <Compile Include="KaraokeDifficulty\KraokeDifficultyCalculator.cs" />
-    <Compile Include="KaraokeDifficulty\Preprocessing\OsuDifficultyBeatmap.cs" />
-    <Compile Include="KaraokeDifficulty\Preprocessing\OsuDifficultyHitObject.cs" />
-    <Compile Include="KaraokeDifficulty\Skills\Aim.cs" />
-    <Compile Include="KaraokeDifficulty\Skills\Skill.cs" />
-    <Compile Include="KaraokeDifficulty\Skills\Speed.cs" />
-    <Compile Include="KaraokeDifficulty\Utils\History.cs" />
     <Compile Include="KaraokeInputManager.cs" />
     <Compile Include="Replays\KaraokeReplayInputHandler.cs" />
     <Compile Include="Tests\TestCaseKaraokeObject.cs" />
