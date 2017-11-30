@@ -10,7 +10,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Panel.Pieces
     /// inherit from osuButton
     /// Has tooltop
     /// </summary>
-    public class KaraokeButton : OsuButton, IHasTooltip
+    public class KaraokeButton : TriangleButton, IHasTooltip
     {
         public string TooltipText { get; set; }
     }

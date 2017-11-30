@@ -82,7 +82,7 @@ namespace osu.Game.Rulesets.Karaoke.UI
                     Clock = new FramedClock(new StopwatchClock(true)),
                     Children = new Drawable[]
                     {
-                        new OsuButton()
+                        new TriangleButton()
                         {
                             Origin = Anchor.Centre,
                             Anchor = Anchor.Centre,

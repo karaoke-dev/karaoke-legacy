@@ -30,7 +30,7 @@ namespace osu.Game.Rulesets.Karaoke.KaraokeDifficulty
             //    (h as Slider)?.Curve?.Calculate();
         }
 
-        public override double Calculate(Dictionary<string, string> categoryDifficulty = null)
+        public override double Calculate(Dictionary<string, double> categoryDifficulty = null)
         {
             //TODO : implement
             return 1.5;
