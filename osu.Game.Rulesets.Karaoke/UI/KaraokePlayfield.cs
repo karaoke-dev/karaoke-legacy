@@ -43,8 +43,8 @@ namespace osu.Game.Rulesets.Karaoke.UI
         private readonly SnowLayer snowVisualisationLayer;
 
         //public override bool ProvidingUserCursor => true;
+        
         public static readonly Vector2 BASE_SIZE = new Vector2(512, 384);
-
 
         public override Vector2 Size
         {
