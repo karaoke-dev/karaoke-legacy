@@ -52,11 +52,9 @@ namespace osu.Game.Rulesets.Karaoke.Replays
         /// Even means LMB will be used to click, odd means RMB will be used.
         /// This keeps track of the button previously used for alt/singletap logic.
         /// </summary>
-        private int buttonIndex;
 
         public override Replay Generate()
         {
-            buttonIndex = 0;
 
             AddFrameToReplay(new ReplayFrame(-100000, 256, 500, ReplayButtonState.None));
             AddFrameToReplay(new ReplayFrame(Beatmap.HitObjects[0].StartTime - 1500, 256, 500, ReplayButtonState.None));

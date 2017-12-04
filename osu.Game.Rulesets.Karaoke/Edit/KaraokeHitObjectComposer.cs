@@ -7,7 +7,6 @@ using osu.Game.Rulesets.Karaoke.Objects;
 
 namespace osu.Game.Rulesets.Karaoke.Edit
 {
-    
     public class KaraokeHitObjectComposer : HitObjectComposer
     {
         public KaraokeHitObjectComposer(Ruleset ruleset)
@@ -19,7 +18,9 @@ namespace osu.Game.Rulesets.Karaoke.Edit
 
         protected override IReadOnlyList<ICompositionTool> CompositionTools => new ICompositionTool[]
         {
-            new HitObjectCompositionTool<KaraokeObject>(),
+            new HitObjectCompositionTool<KaraokeObject>(),//karaoke object
+            new HitObjectCompositionTool<TextObject>(),//add subtext to karaoke Object 
+            new HitObjectCompositionTool<KaraokeTemplate>(),//add trahclate to KaraokeObject
         };
     }
     
