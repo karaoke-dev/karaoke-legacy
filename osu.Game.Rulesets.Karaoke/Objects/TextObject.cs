@@ -4,10 +4,11 @@
 using System;
 using osu.Game.Rulesets.Objects.Types;
 using OpenTK;
+using osu.Game.Rulesets.Objects;
 
 namespace osu.Game.Rulesets.Karaoke.Objects
 {
-    public class TextObject
+    public class TextObject : HitObject
     {
         // <inheritdoc />
         /// <summary>

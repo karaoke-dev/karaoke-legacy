@@ -12,7 +12,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects
     /// <summary>
     /// define the position of karaoke
     /// </summary>
-    public class KaraokeTemplate
+    public class KaraokeTemplate 
     {
         /// <summary>
         /// sub text
