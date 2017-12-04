@@ -15,6 +15,8 @@ using osu.Game.Rulesets.Karaoke.UI;
 using osu.Game.Rulesets.Mods;
 using osu.Game.Rulesets.UI;
 using osu.Game.Rulesets.Karaoke.Objects.Drawables.Pieces;
+using osu.Game.Rulesets.Edit;
+using osu.Game.Rulesets.Karaoke.Edit;
 
 namespace osu.Game.Rulesets.Karaoke
 {
@@ -142,7 +144,7 @@ namespace osu.Game.Rulesets.Karaoke
         public override SettingsSubsection CreateSettings() => new KaraokeSettings();
 
         //TODO : give it a id temporatory
-        //public override int LegacyID => 0;
+        public override int LegacyID => 0;
 
         public KaraokeRuleset(RulesetInfo rulesetInfo)
             : base(rulesetInfo)
