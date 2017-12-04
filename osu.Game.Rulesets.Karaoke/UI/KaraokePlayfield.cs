@@ -40,7 +40,6 @@ namespace osu.Game.Rulesets.Karaoke.UI
         private readonly Container judgementLayer;
         private readonly Container KaraokecontrolLayer;
         private readonly KaraokePanelOverlay karaokePanelOverlay;
-        private readonly SnowLayer snowVisualisationLayer;
 
         //public override bool ProvidingUserCursor => true;
         

@@ -135,6 +135,8 @@ namespace osu.Game.Rulesets.Karaoke
 
         public override DifficultyCalculator CreateDifficultyCalculator(Beatmap beatmap, Mod[] mods = null) => new KaraokeDifficultyCalculator(beatmap,mods);
 
+        public override HitObjectComposer CreateHitObjectComposer() => new KaraokeHitObjectComposer(this);
+
         public override string Description => "カラオケ!";
 
         public override SettingsSubsection CreateSettings() => new KaraokeSettings();
