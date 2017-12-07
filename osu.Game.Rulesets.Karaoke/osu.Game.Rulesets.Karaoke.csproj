@@ -51,6 +51,8 @@
     <Reference Include="System.Drawing" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Edit\Drawables\DrawableEditableKaraokeObject.cs" />
+    <Compile Include="Edit\Drawables\Pieces\EditableMainKaraokeText.cs" />
     <Compile Include="Edit\KaraokeEditPlayfield.cs" />
     <Compile Include="Edit\KaraokeEditRulesetContainer.cs" />
     <Compile Include="Edit\KaraokeHitObjectComposer.cs" />
@@ -62,6 +64,7 @@
     <Compile Include="Objects\Drawables\DrawableKaraokeObject.cs" />
     <Compile Include="Objects\Drawables\Pieces\ImagePicec.cs" />
     <Compile Include="Objects\Drawables\Pieces\KaraokeText.cs" />
+    <Compile Include="Objects\Drawables\Pieces\MainKaraokeText.cs" />
     <Compile Include="Objects\Drawables\Pieces\TextsAndMask.cs" />
     <Compile Include="Objects\KaraokeObject.cs" />
     <Compile Include="Objects\KaraokePosition.cs" />
@@ -73,6 +76,7 @@
     <Compile Include="KaraokeDifficulty\KraokeDifficultyCalculator.cs" />
     <Compile Include="KaraokeInputManager.cs" />
     <Compile Include="Replays\KaraokeReplayInputHandler.cs" />
+    <Compile Include="Tests\TestCaseEditableMainKaraokeText.cs" />
     <Compile Include="Tests\TestCaseKaraokeObject.cs" />
     <Compile Include="Tests\TestCaseKaraokeObjectBySlider.cs" />
     <Compile Include="Tests\TestCaseKaraokePanel.cs" />

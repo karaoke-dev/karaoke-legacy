@@ -86,7 +86,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables
         /// <summary>
         /// update view
         /// </summary>
-        protected void UpdateDrawable()
+        protected virtual void UpdateDrawable()
         {
             //Color
             Color4 textColor = Singer?.LytricColor ?? Color4.Blue;

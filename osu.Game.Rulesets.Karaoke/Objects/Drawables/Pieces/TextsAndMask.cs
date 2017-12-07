@@ -12,9 +12,9 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Pieces
 {
     public class TextsAndMask : Container
     {
-        protected SingleSideOfAndMask LeftSideText { get; set; } = new SingleSideOfAndMask();
+        protected virtual SingleSideOfAndMask LeftSideText { get; set; } = new SingleSideOfAndMask();
 
-        protected SingleSideOfAndMask RightSideText { get; set; } = new SingleSideOfAndMask();
+        protected virtual SingleSideOfAndMask RightSideText { get; set; } = new SingleSideOfAndMask();
 
         private float _maskWidth;
 
@@ -80,8 +80,6 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Pieces
             RightSideText.SetColor(Color4.White);
         }
 
-        
-
         protected class SingleSideOfAndMask : Container
         {
             private List<TextObject> _listText = new List<TextObject>();
@@ -90,7 +88,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Pieces
             public MainKaraokeText MainKaraokeText;
             private float _height;
 
-            public void AddMainText(TextObject textObject)
+            public virtual void AddMainText(TextObject textObject)
             {
                 _mainText = textObject;
                 UpdateChild();
