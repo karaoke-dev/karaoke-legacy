@@ -13,6 +13,12 @@ namespace osu.Game.Rulesets.Karaoke.Objects
 
         }
 
+        public KaraokeTranslateString(string langCode, string translateText)
+        {
+            LangCode = langCode;
+            Text = translateText;
+        }
+
         /// <summary>
         /// Lang code
         /// </summary>

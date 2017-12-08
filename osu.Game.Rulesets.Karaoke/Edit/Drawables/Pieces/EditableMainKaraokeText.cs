@@ -12,9 +12,12 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Pieces
 {
     public class EditableMainKaraokeText : MainKaraokeText
     {
-        public int? HoverIndex;
-        public int? StartSelectIndex;
-        public int? EndSelectIndex;
+        public int? HoverIndex { get; set; }
+        public int? StartSelectIndex { get; set; }
+        public int? EndSelectIndex { get; set; }
+
+        public Color4 HoverColor { get; set; } = Color4.Red;
+        public Color4 SelectColor { get; set; } = Color4.Purple;
         public EditableMainKaraokeText(TextObject textObject) : base(textObject)
         {
             
@@ -33,27 +36,35 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Pieces
             {
                 if (HoverIndex != null)
                 {
-                    Children[HoverIndex.Value].Colour = Color4.Red;
+                    Children[HoverIndex.Value].Colour = HoverColor;
                     Children[HoverIndex.Value].Alpha = 1;
                 }
 
-                if (StartSelectIndex != null && EndSelectIndex != null)
+                if (StartSelectIndex != null)
                 {
-                    if (StartSelectIndex <= EndSelectIndex)
+                    if (EndSelectIndex != null)
                     {
-                        for (int i = StartSelectIndex.Value; i <= EndSelectIndex; i++)
+                        if (StartSelectIndex <= EndSelectIndex)
                         {
-                            Children[i].Colour = Color4.Blue;
-                            Children[i].Alpha = 1;
+                            for (int i = StartSelectIndex.Value; i <= EndSelectIndex; i++)
+                            {
+                                Children[i].Colour = SelectColor;
+                                Children[i].Alpha = 1;
+                            }
+                        }
+                        else
+                        {
+                            for (int i = EndSelectIndex.Value; i <= StartSelectIndex; i++)
+                            {
+                                Children[i].Colour = SelectColor;
+                                Children[i].Alpha = 1;
+                            }
                         }
                     }
                     else
                     {
-                        for (int i = EndSelectIndex.Value; i <= StartSelectIndex; i++)
-                        {
-                            Children[i].Colour = Color4.Blue;
-                            Children[i].Alpha = 1;
-                        }
+                        Children[StartSelectIndex.Value].Colour = SelectColor;
+                        Children[StartSelectIndex.Value].Alpha = 1;
                     }
                 }
             }

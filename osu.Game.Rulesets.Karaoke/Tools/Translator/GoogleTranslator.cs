@@ -17,7 +17,7 @@ namespace osu.Game.Rulesets.Karaoke.Tools.Translator
 
         protected override int MaxThanslateSentenceAtTime => 70; //max is 73
 
-        protected override Dictionary<TranslateCode, string> LangToCodeDictionary
+        public override Dictionary<TranslateCode, string> LangToCodeDictionary
         {
             get
             {

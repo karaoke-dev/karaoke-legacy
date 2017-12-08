@@ -13,7 +13,7 @@ namespace osu.Game.Rulesets.Karaoke.Tools.Translator
     {
         protected abstract int MaxThanslateSentenceAtTime { get; }
 
-        protected abstract Dictionary<TranslateCode, string> LangToCodeDictionary { get; }
+        public abstract Dictionary<TranslateCode, string> LangToCodeDictionary { get; }
 
         //notified translate single string 
         public EventHandler<string> OnTranslateSuccess { get; set; }

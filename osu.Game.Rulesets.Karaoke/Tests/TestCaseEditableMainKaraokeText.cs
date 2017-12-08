@@ -32,7 +32,7 @@ namespace osu.Game.Rulesets.Karaoke.Tests
             {
                 Position = new Vector2(100, 100),
                 Template = new KaraokeTemplate(),
-                ProgressUpdateByTime = false,
+                //ProgressUpdateByTime = false,
             });
         }
     }

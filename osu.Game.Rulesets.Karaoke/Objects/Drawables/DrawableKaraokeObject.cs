@@ -203,7 +203,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables
             //Expire();
         }
 
-        public void AddTranslate(TranslateCode code, string translateResult)
+        public virtual void AddTranslate(TranslateCode code, string translateResult)
         {
             //Add and show translate in here
             TranslateText.Text = translateResult;

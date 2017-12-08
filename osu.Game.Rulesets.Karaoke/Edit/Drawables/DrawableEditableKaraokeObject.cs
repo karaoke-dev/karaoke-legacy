@@ -9,10 +9,17 @@ using osu.Framework.Input;
 using OpenTK.Graphics;
 using osu.Game.Rulesets.Karaoke.Edit.Drawables.Pieces;
 using osu.Framework.Graphics;
+using osu.Game.Rulesets.Karaoke.Tools.Translator;
+using osu.Game.Rulesets.Karaoke.Objects.Extension;
 
 namespace osu.Game.Rulesets.Karaoke.Edit.Drawables
 {
-    class DrawableEditableKaraokeObject : DrawableKaraokeObject
+    /// <summary>
+    /// Editable karaoke Drawable Object
+    /// Right click :
+    /// Translate >> Add
+    /// </summary>
+    public class DrawableEditableKaraokeObject : DrawableKaraokeObject
     {
         protected EditableMainKaraokeText EditableMainKaraokeText { get; set; } = new EditableMainKaraokeText(null);
         protected bool IsDrag = false;
@@ -28,6 +35,8 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables
             EditableMainKaraokeText.TextObject = Template?.MainText + KaraokeObject.MainText;
             EditableMainKaraokeText.Alpha = 1f;
         }
+
+#region Input
 
         //detect whith text is picked
         protected override bool OnMouseMove(InputState state)
@@ -64,10 +73,30 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables
             return base.OnMouseUp(state, args);
         }
 
+        protected override void OnHoverLost(InputState state)
+        {
+            base.OnHoverLost(state);
+            EditableMainKaraokeText.HoverIndex = null;
+        }
+
         protected int GetPointedText(InputState state)
         {
             var mousePosition = this.ToLocalSpace(state.Mouse.NativeState.Position);
             return EditableMainKaraokeText.GetIndexByPosition(mousePosition.X); ;
+        }
+
+#endregion
+
+
+
+        public override void AddTranslate(TranslateCode code, string translateResult)
+        {
+            //Add it into Karaoke object
+            string langCode;
+            new GoogleTranslator().LangToCodeDictionary.TryGetValue(code, out langCode);
+            KaraokeObject.AddNewTranslate(new KaraokeTranslateString(langCode, translateResult));
+            //base
+            base.AddTranslate(code, translateResult);
         }
     }
 }
