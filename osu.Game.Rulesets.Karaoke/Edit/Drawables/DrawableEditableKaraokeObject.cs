@@ -85,9 +85,12 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables
             return EditableMainKaraokeText.GetIndexByPosition(mousePosition.X); ;
         }
 
-#endregion
+        #endregion
 
+        public void AddPoint(ProgressPoint point)
+        {
 
+        }
 
         public override void AddTranslate(TranslateCode code, string translateResult)
         {

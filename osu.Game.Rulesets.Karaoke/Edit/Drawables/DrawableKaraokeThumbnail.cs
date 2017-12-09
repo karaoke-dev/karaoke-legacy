@@ -1,4 +1,6 @@
-﻿using osu.Game.Rulesets.Karaoke.Objects;
+﻿using osu.Framework.Graphics.Containers;
+using osu.Game.Rulesets.Karaoke.Edit.Drawables.Pieces;
+using osu.Game.Rulesets.Karaoke.Objects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,9 +17,41 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables
     {
         public KaraokeObject KaraokeObject { get; set; }
 
+        public FillFlowContainer<EditableProgressPoint> ListEditableProgressPoint { get; set; } = new FillFlowContainer<EditableProgressPoint>();
+
+        /// <summary>
+        /// update UI
+        /// </summary>
         public void UpdateView()
+        {
+            //1. show the whole bar with start time and end time
+
+            //2. show each point with text start and end time
+            ListEditableProgressPoint.Clear();
+            foreach (var single in KaraokeObject.ListProgressPoint)
+            {
+                var editableProgressPoint = new EditableProgressPoint(this);
+                editableProgressPoint.ProgressPoint = single;
+            }
+        }
+
+        /// <summary>
+        /// just update progresspoint's position and startEndPosition
+        /// </summary>
+        public void UpdatePosition()
         {
 
         }
+
+        /// <summary>
+        /// Delete single point
+        /// </summary>
+        public void DeletePoint(ProgressPoint point)
+        {
+            KaraokeObject.ListProgressPoint.Remove(point);
+            UpdateView();
+        }
+
+        
     }
 }
