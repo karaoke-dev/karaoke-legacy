@@ -29,7 +29,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables
         {
             DrawableKaraokeThumbnail = new DrawableKaraokeThumbnail(KaraokeObject)
             {
-                //Position=new OpenTK.Vector2(0,-50),
+                Position=new OpenTK.Vector2(0,-30),
                 Width = 300,
                 Height = 100,
             };

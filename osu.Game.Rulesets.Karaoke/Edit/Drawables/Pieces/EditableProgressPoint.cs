@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Linq;
 using osu.Framework.Graphics.Containers;
+using osu.Framework.Graphics.Shapes;
 
 namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Pieces
 {
@@ -23,6 +24,12 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Pieces
 
         //Drawable component
         protected OsuSpriteText ProgressDrawableText { get; set; }
+        protected Box Background { get; set; } = new Box() { Height=50,};
+        protected Box StartLine { get; set; } = new Box()
+        {
+            Width = 3,
+            Height = 50,
+        };
 
         //protected value
         protected bool IsFocus = false;
@@ -30,7 +37,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Pieces
         protected Color4 BackgroundIdolColor { get; set; } = Color4.White;
         protected Color4 BackgroundHoverColor { get; set; } = Color4.Purple;
         protected Color4 BackgroundPressColor { get; set; } = Color4.Blue;
-        protected float ratio = 0.001f;
+        protected float ratio = 0.3f;
 
         //protected culculater value
         public string ProgressText
@@ -78,22 +85,46 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Pieces
             {
                 RelativeToLastPointTime = value / RelativeToLastPointTime;
                 this.Width = ThisViewWidth;
+                
             }
         }
 
+        public override float Width
+        {
+            get => base.Width;
+            set
+            {
+                base.Width = value;
+                Background.Width = ThisViewWidth;
+            }
+        }
+
+        public override float Height
+        {
+            get => base.Height;
+            set
+            {
+                base.Height = value;
+                Background.Height = Height;
+                StartLine.Height = Height;
+            }
+        }
 
         public EditableProgressPoint(DrawableKaraokeThumbnail drawableKaraokeThumbnail, ProgressPoint progressPoin)
         {
             DrawableKaraokeThumbnail = drawableKaraokeThumbnail;
             ProgressPoint = progressPoin;
-            this.Colour = BackgroundIdolColor;
+            Background.Colour = BackgroundIdolColor;
+            StartLine.Colour = Color4.Pink;
             ProgressDrawableText = new OsuSpriteText()
             {
                 Text = ProgressText,
                 Position=new OpenTK.Vector2(5,5), 
             };
             this.Width = ThisViewWidth;
-            this.Height = 100;
+            this.Height = 30;
+            this.Add(Background);
+            this.Add(StartLine);
             this.Add(ProgressDrawableText);
         }
 
@@ -101,7 +132,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Pieces
 
         protected override bool OnMouseDown(InputState state, MouseDownEventArgs args)
         {
-            this.Colour = BackgroundPressColor;
+            Background.Colour = BackgroundPressColor;
             PressedPositionX = GetXPointPosition(state);
             return base.OnMouseDown(state, args);
         }
@@ -127,21 +158,21 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Pieces
         protected override bool OnMouseUp(InputState state, MouseUpEventArgs args)
         {
             PressedPositionX = null;
-            this.Colour = BackgroundHoverColor;
+            Background.Colour = BackgroundHoverColor;
             return base.OnMouseUp(state, args);
         }
 
         protected override bool OnHover(InputState state)
         {
             IsFocus = true;
-            this.Colour = BackgroundHoverColor;
+            Background.Colour = BackgroundHoverColor;
             return base.OnHover(state);
         }
 
         protected override void OnHoverLost(InputState state)
         {
             IsFocus = false;
-            this.Colour = BackgroundIdolColor;
+            Background.Colour = BackgroundIdolColor;
             base.OnHoverLost(state);
         }
 
