@@ -13,12 +13,22 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables
     /// Karaoke's Thumbnail
     /// will show the word's seperate word and seperate time
     /// </summary>
-    public class DrawableKaraokeThumbnail
+    public class DrawableKaraokeThumbnail : Container
     {
         public KaraokeObject KaraokeObject { get; set; }
 
-        public FillFlowContainer<EditableProgressPoint> ListEditableProgressPoint { get; set; } = new FillFlowContainer<EditableProgressPoint>();
+        public FillFlowContainer<EditableProgressPoint> ListEditableProgressPoint { get; set; } = new FillFlowContainer<EditableProgressPoint>()
+        {
+            Width=300,
+            Height=100,
+        };
 
+        public DrawableKaraokeThumbnail(KaraokeObject karaokeObject)
+        {
+            KaraokeObject = karaokeObject;
+            Add(ListEditableProgressPoint);
+            UpdateView();
+        }
         /// <summary>
         /// update UI
         /// </summary>
@@ -27,11 +37,12 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables
             //1. show the whole bar with start time and end time
 
             //2. show each point with text start and end time
+            ListEditableProgressPoint.Direction = FillDirection.Horizontal;
             ListEditableProgressPoint.Clear();
             foreach (var single in KaraokeObject.ListProgressPoint)
             {
-                var editableProgressPoint = new EditableProgressPoint(this);
-                editableProgressPoint.ProgressPoint = single;
+                var editableProgressPoint = new EditableProgressPoint(this, single);
+                ListEditableProgressPoint.Add(editableProgressPoint);
             }
         }
 

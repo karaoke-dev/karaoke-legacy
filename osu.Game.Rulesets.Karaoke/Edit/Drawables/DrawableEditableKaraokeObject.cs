@@ -21,12 +21,20 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables
     /// </summary>
     public class DrawableEditableKaraokeObject : DrawableKaraokeObject
     {
+        protected DrawableKaraokeThumbnail DrawableKaraokeThumbnail { get; set; }
         protected EditableMainKaraokeText EditableMainKaraokeText { get; set; } = new EditableMainKaraokeText(null);
         protected bool IsDrag = false;
 
         public DrawableEditableKaraokeObject(KaraokeObject hitObject) : base(hitObject)
         {
+            DrawableKaraokeThumbnail = new DrawableKaraokeThumbnail(KaraokeObject)
+            {
+                //Position=new OpenTK.Vector2(0,-50),
+                Width = 300,
+                Height = 100,
+            };
             Add(EditableMainKaraokeText);
+            Add(DrawableKaraokeThumbnail);
         }
 
         protected override void UpdateDrawable()

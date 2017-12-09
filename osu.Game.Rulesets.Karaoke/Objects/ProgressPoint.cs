@@ -8,7 +8,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects
     /// <summary>
     /// record what time the 
     /// </summary>
-    public class ProgressPoint : HitObject
+    public class ProgressPoint
     {
         public ProgressPoint()
         {

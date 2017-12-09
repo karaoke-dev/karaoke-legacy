@@ -20,7 +20,6 @@ namespace osu.Game.Rulesets.Karaoke.Edit
         {
             new HitObjectCompositionTool<KaraokeObject>(),//karaoke object
             new HitObjectCompositionTool<TextObject>(),//add subtext to karaoke Object
-            new HitObjectCompositionTool<ProgressPoint>(),//add subtext to karaoke Object 
             new HitObjectCompositionTool<KaraokeTranslateString>(),//add translate to KaraokeObject
         };
     }

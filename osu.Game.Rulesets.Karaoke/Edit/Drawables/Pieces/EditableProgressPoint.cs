@@ -6,19 +6,23 @@ using osu.Game.Rulesets.Karaoke.Objects;
 using osu.Game.Rulesets.Karaoke.Objects.Drawables.Pieces;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Linq;
+using osu.Framework.Graphics.Containers;
 
 namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Pieces
 {
-    public class EditableProgressPoint : Drawable
+    public class EditableProgressPoint : Container
     {
         //public 
         public ProgressPoint ProgressPoint { get; set; }
         public DrawableKaraokeThumbnail DrawableKaraokeThumbnail { get; set; }//Parent
+        public int IndexOfObject => DrawableKaraokeThumbnail.KaraokeObject.ListProgressPoint.IndexOf(ProgressPoint);
+
+        //Drawable component
+        protected OsuSpriteText ProgressDrawableText { get; set; }
 
         //protected value
         protected bool IsFocus = false;
@@ -26,31 +30,70 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Pieces
         protected Color4 BackgroundIdolColor { get; set; } = Color4.White;
         protected Color4 BackgroundHoverColor { get; set; } = Color4.Purple;
         protected Color4 BackgroundPressColor { get; set; } = Color4.Blue;
+        protected float ratio = 0.001f;
+
         //protected culculater value
         public string ProgressText
         {
             get
             {
-                int nowIndex = DrawableKaraokeThumbnail.KaraokeObject.ListProgressPoint.IndexOf(ProgressPoint);
-                if (nowIndex == 0)
-                    return DrawableKaraokeThumbnail.KaraokeObject.MainText.Text.Substring(ProgressPoint.CharIndex, 3);
+                if (IndexOfObject == 0)
+                    return DrawableKaraokeThumbnail.KaraokeObject.MainText.Text.Substring(0, ProgressPoint.CharIndex + 1);
                 else
-                    return "";
+                {
+                    var thisCharIndex = ProgressPoint.CharIndex;
+                    var lastTime = DrawableKaraokeThumbnail.KaraokeObject.ListProgressPoint[IndexOfObject - 1].CharIndex;
+                    return DrawableKaraokeThumbnail.KaraokeObject.MainText.Text.Substring(lastTime + 1, thisCharIndex- lastTime);
+                }
             }
         }
         public double RelativeToLastPointTime
         {
-            get;
-            set;
+            get
+            {
+                if (IndexOfObject == 0)
+                    return DrawableKaraokeThumbnail.KaraokeObject.ListProgressPoint[IndexOfObject].RelativeTime;
+                else
+                {
+                    var thisTime = DrawableKaraokeThumbnail.KaraokeObject.ListProgressPoint[IndexOfObject].RelativeTime;
+                    var lastTime = DrawableKaraokeThumbnail.KaraokeObject.ListProgressPoint[IndexOfObject - 1].RelativeTime;
+                    return thisTime - lastTime;
+                } 
+            }
+            set
+            {
+                if (IndexOfObject == 0)
+                    DrawableKaraokeThumbnail.KaraokeObject.ListProgressPoint[IndexOfObject].RelativeTime = value;
+                else
+                {
+                    var lastTime = DrawableKaraokeThumbnail.KaraokeObject.ListProgressPoint[IndexOfObject - 1].RelativeTime;
+                    DrawableKaraokeThumbnail.KaraokeObject.ListProgressPoint[IndexOfObject].RelativeTime = lastTime + value;
+                }
+            }
         }
-        //Drawable component
-        protected OsuSpriteText ProgressDrawableText { get; set; }
-        
+        protected float ThisViewWidth
+        {
+            get => (float)RelativeToLastPointTime * ratio;
+            set
+            {
+                RelativeToLastPointTime = value / RelativeToLastPointTime;
+                this.Width = ThisViewWidth;
+            }
+        }
 
-        public EditableProgressPoint(DrawableKaraokeThumbnail drawableKaraokeThumbnail)
+
+        public EditableProgressPoint(DrawableKaraokeThumbnail drawableKaraokeThumbnail, ProgressPoint progressPoin)
         {
             DrawableKaraokeThumbnail = drawableKaraokeThumbnail;
+            ProgressPoint = progressPoin;
             this.Colour = BackgroundIdolColor;
+            ProgressDrawableText = new OsuSpriteText()
+            {
+                Text = ProgressText,
+                Position=new OpenTK.Vector2(5,5), 
+            };
+            this.Width = ThisViewWidth;
+            this.Add(ProgressDrawableText);
         }
 
         #region Input
