@@ -36,7 +36,16 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables
             EditableMainKaraokeText.Alpha = 1f;
         }
 
-#region Input
+        #region Input
+
+        protected override bool OnMouseDown(InputState state, MouseDownEventArgs args)
+        {
+            IsDrag = true;
+            int index = GetPointedText(state);
+            EditableMainKaraokeText.StartSelectIndex = index;
+
+            return base.OnMouseDown(state, args);
+        }
 
         //detect whith text is picked
         protected override bool OnMouseMove(InputState state)
@@ -52,15 +61,6 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables
                 EditableMainKaraokeText.EndSelectIndex = index;
             }
             return base.OnMouseMove(state);
-        }
-
-        protected override bool OnMouseDown(InputState state, MouseDownEventArgs args)
-        {
-            IsDrag = true;
-            int index = GetPointedText(state);
-            EditableMainKaraokeText.StartSelectIndex = index;
-
-            return base.OnMouseDown(state, args);
         }
 
         protected override bool OnMouseUp(InputState state, MouseUpEventArgs args)
