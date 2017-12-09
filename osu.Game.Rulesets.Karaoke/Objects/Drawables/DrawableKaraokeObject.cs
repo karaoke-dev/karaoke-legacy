@@ -20,7 +20,6 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables
         //Private
         private KaraokeTemplate _template;
         private KaraokeSinger _singer;
-        private double _preemptiveTime = 600;
 
         //Const
         public const float TIME_FADEIN = 100;
@@ -51,10 +50,10 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables
 
         public double PreemptiveTime
         {
-            get => _preemptiveTime;
+            get => KaraokeObject.PreemptiveTime??600;
             set
             {
-                _preemptiveTime = value;
+                KaraokeObject.PreemptiveTime = value;
                 UpdateDrawable();
             }
         }

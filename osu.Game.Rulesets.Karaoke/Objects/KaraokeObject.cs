@@ -121,6 +121,6 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         /// <summary>
         /// if value is null ,use automatically generated preemptive time;
         /// </summary>
-        public double? PreemptiveTime { get; set; }
+        public double? PreemptiveTime { get; set; } = 600;
     }
 }

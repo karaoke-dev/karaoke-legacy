@@ -93,6 +93,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Pieces
                 Position=new OpenTK.Vector2(5,5), 
             };
             this.Width = ThisViewWidth;
+            this.Height = 100;
             this.Add(ProgressDrawableText);
         }
 

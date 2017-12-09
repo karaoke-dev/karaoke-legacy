@@ -29,44 +29,17 @@ namespace osu.Game.Rulesets.Karaoke.UI
     /// <summary>
     /// Karaoke PlayField
     /// </summary>
-    public class KaraokePlayfield : Playfield, IAmKaraokeField
+    public class KaraokePlayfield : KaraokeBasePlayfield
     {
-        public Ruleset Ruleset { get; set; }
-        public WorkingBeatmap WorkingBeatmap { get; set; }
-        public KaraokeRulesetContainer KaraokeRulesetContainer { get; set; }
-        public KaraokeFieldTool KaraokeFieldTool { get; }=new KaraokeFieldTool();
-        public List<IAmDrawableKaraokeObject> ListDrawableKaraokeObject { get; set; }=new List<IAmDrawableKaraokeObject>();
-
         private readonly Container judgementLayer;
         private readonly Container KaraokecontrolLayer;
         private readonly KaraokePanelOverlay karaokePanelOverlay;
 
         //public override bool ProvidingUserCursor => true;
-        
-        public static readonly Vector2 BASE_SIZE = new Vector2(512, 384);
-
-        public override Vector2 Size
-        {
-            get
-            {
-                var parentSize = Parent.DrawSize;
-                var aspectSize = parentSize.X * 0.75f < parentSize.Y ? new Vector2(parentSize.X, parentSize.X * 0.75f) : new Vector2(parentSize.Y * 4f / 3f, parentSize.Y);
-
-                return new Vector2(aspectSize.X / parentSize.X, aspectSize.Y / parentSize.Y) * base.Size;
-            }
-        }
-
 
         public KaraokePlayfield(Ruleset ruleset, WorkingBeatmap beatmap, KaraokeRulesetContainer container)
-            : base(BASE_SIZE.X)
+            : base(ruleset, beatmap, container)
         {
-            Ruleset = ruleset;
-            WorkingBeatmap = beatmap;
-            KaraokeRulesetContainer = container;
-
-            Anchor = Anchor.Centre;
-            Origin = Anchor.Centre;
-
             AddRange(new Drawable[]
             {
                 judgementLayer = new Container
@@ -139,23 +112,11 @@ namespace osu.Game.Rulesets.Karaoke.UI
 
         public override void Add(DrawableHitObject h)
         {
-            h.Depth = (float)h.HitObject.StartTime;
-
-            //update template
-            this.UpdateObjectTemplate(h as DrawableKaraokeObject);
-
-            //update position
-            this.UpdateObjectAutomaticallyPosition(h as DrawableKaraokeObject);
-
-            //add to list
-            ListDrawableKaraokeObject.Add(h as DrawableKaraokeObject);
-
             base.Add(h);
         }
 
         public override void PostProcess()
         {
-
             bool needTranslate = true;
             if (needTranslate)
             {

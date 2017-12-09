@@ -11,7 +11,7 @@ using osu.Game.Rulesets.Objects.Drawables;
 
 namespace osu.Game.Rulesets.Karaoke.Edit
 {
-    public class KaraokeEditPlayfield : KaraokePlayfield
+    public class KaraokeEditPlayfield : KaraokeBasePlayfield
     {
         public int NowSelectedIndex { get; set; }
 

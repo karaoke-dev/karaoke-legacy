@@ -91,6 +91,7 @@
     <Compile Include="UI\Extension\PlayFieldExtension.cs" />
     <Compile Include="UI\Extension\PlayFieldObjectExtension.cs" />
     <Compile Include="UI\Interface\IAmKaraokeField.cs" />
+    <Compile Include="UI\KaraokeBasePlayfield.cs" />
     <Compile Include="UI\Layer\ShowEffect\SnowLayer.cs" />
     <Compile Include="UI\Panel\KaraokeHotkeyPanel.cs" />
     <Compile Include="UI\Panel\KaraokePanelOverlay.cs" />
