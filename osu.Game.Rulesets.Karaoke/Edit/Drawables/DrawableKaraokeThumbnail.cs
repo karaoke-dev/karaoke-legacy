@@ -59,7 +59,10 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables
         /// </summary>
         public void DeletePoint(ProgressPoint point)
         {
-            KaraokeObject.ListProgressPoint.Remove(point);
+            if (KaraokeObject.ListProgressPoint.Count > 1)
+            {
+                KaraokeObject.ListProgressPoint.Remove(point);
+            }
             UpdateView();
         }
 

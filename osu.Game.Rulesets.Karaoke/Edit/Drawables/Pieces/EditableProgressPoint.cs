@@ -33,7 +33,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Pieces
 
         //protected value
         protected bool IsFocus = false;
-        protected float? PressedPositionX;
+        protected float? PressedRelativePositionX;
         protected Color4 BackgroundIdolColor { get; set; } = Color4.White;
         protected Color4 BackgroundHoverColor { get; set; } = Color4.Purple;
         protected Color4 BackgroundPressColor { get; set; } = Color4.Blue;
@@ -85,7 +85,6 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Pieces
             {
                 RelativeToLastPointTime = value / RelativeToLastPointTime;
                 this.Width = ThisViewWidth;
-                
             }
         }
 
@@ -95,7 +94,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Pieces
             set
             {
                 base.Width = value;
-                Background.Width = ThisViewWidth;
+                Background.Width = Width;
             }
         }
 
@@ -121,8 +120,8 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Pieces
                 Text = ProgressText,
                 Position=new OpenTK.Vector2(5,5), 
             };
-            this.Width = ThisViewWidth;
             this.Height = 30;
+            UpdatePosition();
             this.Add(Background);
             this.Add(StartLine);
             this.Add(ProgressDrawableText);
@@ -132,8 +131,8 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Pieces
 
         protected override bool OnMouseDown(InputState state, MouseDownEventArgs args)
         {
+            PressedRelativePositionX = this.Width - GetXPointPosition(state);
             Background.Colour = BackgroundPressColor;
-            PressedPositionX = GetXPointPosition(state);
             return base.OnMouseDown(state, args);
         }
 
@@ -146,18 +145,24 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Pieces
         {
             if (state.Mouse.HasAnyButtonPressed)
             {
-                //TODO : 1. Adjust position
+                try
+                {
+                    //TODO : 1. Adjust position
+                    this.Width = PressedRelativePositionX.Value + GetXPointPosition(state);
+                    //TODO : 2. update DrawableEditableKaraokeObject
+                }
+                catch
+                {
 
-                //TODO : 2. update DrawableEditableKaraokeObject
+                }
             }
-            //TODO : Change background color
 
             return base.OnMouseMove(state);
         }
 
         protected override bool OnMouseUp(InputState state, MouseUpEventArgs args)
         {
-            PressedPositionX = null;
+            PressedRelativePositionX = null;
             Background.Colour = BackgroundHoverColor;
             return base.OnMouseUp(state, args);
         }
@@ -182,10 +187,6 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Pieces
             return mousePosition.X;
         }
 
-        #endregion
-
-
-
         protected override bool OnKeyDown(InputState state, KeyDownEventArgs args)
         {
             if (IsFocus)
@@ -198,13 +199,14 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Pieces
             }
             return base.OnKeyDown(state, args);
         }
+        #endregion
 
         /// <summary>
         /// adjust position
         /// </summary>
         public void UpdatePosition()
         {
-
+            this.Width = ThisViewWidth;
         }
     }
 }
