@@ -84,28 +84,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Pieces
             set
             {
                 RelativeToLastPointTime = value / RelativeToLastPointTime;
-                this.Width = ThisViewWidth;
-            }
-        }
-
-        public override float Width
-        {
-            get => base.Width;
-            set
-            {
-                base.Width = value;
-                Background.Width = Width;
-            }
-        }
-
-        public override float Height
-        {
-            get => base.Height;
-            set
-            {
-                base.Height = value;
-                Background.Height = Height;
-                StartLine.Height = Height;
+                this.Width = value;
             }
         }
 
@@ -148,7 +127,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Pieces
                 try
                 {
                     //TODO : 1. Adjust position
-                    this.Width = PressedRelativePositionX.Value + GetXPointPosition(state);
+                    this.ThisViewWidth = PressedRelativePositionX.Value + GetXPointPosition(state);
                     //TODO : 2. update DrawableEditableKaraokeObject
                 }
                 catch
@@ -198,6 +177,30 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Pieces
                 }
             }
             return base.OnKeyDown(state, args);
+        }
+        #endregion
+
+        #region Override
+        //will update view
+        public override float Width
+        {
+            get => base.Width;
+            set
+            {
+                base.Width = value;
+                Background.Width = Width;
+            }
+        }
+
+        public override float Height
+        {
+            get => base.Height;
+            set
+            {
+                base.Height = value;
+                Background.Height = Height;
+                StartLine.Height = Height;
+            }
         }
         #endregion
 

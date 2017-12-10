@@ -20,7 +20,8 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Extension
         {
             if (karaokeObject.IsInTime(nowRelativeTime) && karaokeObject.ListProgressPoint.Count > 0)
             {
-                return karaokeObject.ListProgressPoint.Find(x => x.RelativeTime > nowRelativeTime);
+                var point = karaokeObject.ListProgressPoint.Find(x => x.RelativeTime > nowRelativeTime);
+                return point?? karaokeObject.ListProgressPoint.Last();
             }
 
             return null;
