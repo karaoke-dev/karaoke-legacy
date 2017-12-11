@@ -141,6 +141,8 @@ namespace osu.Game.Rulesets.Karaoke
 
         public override string Description => "カラオケ!";
 
+        public override string ShortName => "karaoke";
+
         public override SettingsSubsection CreateSettings() => new KaraokeSettings();
 
         //TODO : give it a id temporatory
