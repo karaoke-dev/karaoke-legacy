@@ -6,6 +6,7 @@ using osu.Framework.Graphics;
 using osu.Game.Graphics.Sprites;
 using osu.Game.Graphics.UserInterface;
 using OpenTK;
+using osu.Framework.Input;
 
 namespace osu.Game.Rulesets.Karaoke.UI.Panel.Pieces
 {
@@ -81,6 +82,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Panel.Pieces
 
         public double CurrentTime
         {
+            get => CurrentNumber.Value;
             set
             {
                 CurrentNumber.Value = value;
@@ -114,6 +116,17 @@ namespace osu.Game.Rulesets.Karaoke.UI.Panel.Pieces
         protected string GetTimeFormat(int second)
         {
             return (second / 60).ToString("D2") + ":" + (second % 60).ToString("D2");
+        }
+
+        protected override bool OnWheel(InputState state)
+        {
+            if (state.Mouse.WheelDelta!=0)
+            {
+                CurrentTime = CurrentTime + state.Mouse.WheelDelta * 500;
+            }
+            //eat this event and not pass to next
+            return true;
+            //return base.OnWheel(state);
         }
     }
 }
