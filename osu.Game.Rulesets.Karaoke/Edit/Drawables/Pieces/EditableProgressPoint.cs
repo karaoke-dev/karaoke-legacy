@@ -34,7 +34,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Pieces
         //protected value
         protected bool IsFocus = false;
         protected float? PressedRelativePositionX;
-        protected Color4 BackgroundIdolColor { get; set; } = Color4.White;
+        protected Color4 BackgroundIdolColor { get; set; } = Color4.Black;
         protected Color4 BackgroundHoverColor { get; set; } = Color4.Purple;
         protected Color4 BackgroundPressColor { get; set; } = Color4.Blue;
         protected float ratio = 0.3f;
@@ -83,8 +83,14 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Pieces
             get => (float)RelativeToLastPointTime * ratio;
             set
             {
+                //value cannot <50
+                if (value <= 50)
+                    return;
+
                 RelativeToLastPointTime = value / RelativeToLastPointTime;
                 this.Width = value;
+
+                //update last object
             }
         }
 

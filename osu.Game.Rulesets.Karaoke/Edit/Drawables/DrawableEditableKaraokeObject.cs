@@ -75,6 +75,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables
         {
             IsDrag = false;
             int index = GetPointedText(state);
+            AddPoint(index);
             EditableMainKaraokeText.StartSelectIndex = null;
             EditableMainKaraokeText.EndSelectIndex = null;
 
@@ -95,9 +96,14 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables
 
         #endregion
 
-        public void AddPoint(ProgressPoint point)
+        public void AddPoint(int index)
         {
-
+            ProgressPoint previousPoint = KaraokeObject.GetFirstProgressPointByIndex(index);
+            ProgressPoint nextPoint = KaraokeObject.GetLastProgressPointByIndex(index);
+            double deltaTime = ((previousPoint?.RelativeTime ?? 0) + (nextPoint?.RelativeTime ?? (previousPoint.RelativeTime + 500))) / 2;
+            ProgressPoint point = new ProgressPoint(deltaTime,index);
+            KaraokeObject.AddProgressPoint(point);
+            DrawableKaraokeThumbnail.UpdateView();
         }
 
         public override void AddTranslate(TranslateCode code, string translateResult)

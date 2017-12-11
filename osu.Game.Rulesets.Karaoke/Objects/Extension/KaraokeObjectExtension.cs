@@ -27,6 +27,22 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Extension
             return null;
         }
 
+        public static ProgressPoint GetFirstProgressPointByIndex(this KaraokeObject karaokeObject, int charIndex)
+        {
+            var index = karaokeObject.ListProgressPoint.FindIndex(x => x.CharIndex > charIndex);
+            if (index == 0)
+                return new ProgressPoint(0, -1);
+
+            //if -1 , means last
+            return index > 0 ? karaokeObject.ListProgressPoint[index - 1] : (karaokeObject.ListProgressPoint.LastOrDefault() ?? new ProgressPoint(0, -1));
+        }
+
+        public static ProgressPoint GetLastProgressPointByIndex(this KaraokeObject karaokeObject, int charIndex)
+        {
+            var point = karaokeObject.ListProgressPoint.Find(x => x.CharIndex > charIndex);
+            return point;//?? karaokeObject.ListProgressPoint.Last();
+        }
+
         /// <summary>
         /// Times the is in time.
         /// </summary>
@@ -76,6 +92,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Extension
         {
             // from small to large
             karaokeObject.ListProgressPoint = karaokeObject.ListProgressPoint.OrderBy(x => x.RelativeTime).ToList();
+            karaokeObject.ListProgressPoint = karaokeObject.ListProgressPoint.OrderBy(x => x.CharIndex).ToList();
         }
     }
 }
