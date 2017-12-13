@@ -78,7 +78,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables
                 var progressPoint = single.ProgressPoint;
                 single.Width = ((float)progressPoint.RelativeTime- totalRelativeTime) * Ratio * Zoon;
                 single.Height = 30;
-                totalRelativeTime = totalRelativeTime + (float)progressPoint.RelativeTime;
+                totalRelativeTime = (float)progressPoint.RelativeTime;
             }
         }
 
@@ -122,6 +122,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables
             //filter invalid time
             var startIndex = GetObjectIndex(StartSelectedPoint);
             var endIndex = GetObjectIndex(EndSelectedPoint);
+            /*
             double time = 0;
             for (int i = 0; i < ListEditableProgressPoint.Count; i++)
             {
@@ -129,12 +130,12 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables
                     return;
 
                 if (i >= startIndex && i <= endIndex)
-                    time = time + ListEditableProgressPoint[i].ProgressPoint.RelativeTime + deltaPosition;
+                    time = ListEditableProgressPoint[i].ProgressPoint.RelativeTime + deltaPosition;
                 else
-                    time = time + ListEditableProgressPoint[i].ProgressPoint.RelativeTime;
+                    time = ListEditableProgressPoint[i].ProgressPoint.RelativeTime;
             }
+            */
 
-            time = 0;
             //update time
             for (int i = 0; i < ListEditableProgressPoint.Count; i++)
             {
@@ -143,8 +144,6 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables
                     //not out of range
                     ListEditableProgressPoint[i].ProgressPoint.RelativeTime = ListEditableProgressPoint[i].ProgressPoint.RelativeTime + deltaPosition;
                 }
-
-                time = time + ListEditableProgressPoint[i].ProgressPoint.RelativeTime;
             }
 
             KaraokeObject.ListProgressPoint.FixTime();
@@ -257,8 +256,8 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables
             //not selecting point,means moving
             if (!IsSelectKeyPressed(state) && IsDraging)
             {
-                //TODO : 1. Adjust position
-                UpdateTime(state.Mouse.Delta.X);
+                //Adjust position
+                UpdateTime(state.Mouse.Delta.X*2);
                 UpdatePosition();
             }
 

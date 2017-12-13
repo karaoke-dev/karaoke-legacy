@@ -54,30 +54,6 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Pieces
                 }
             }
         }
-        public double RelativeToLastPointTime
-        {
-            get
-            {
-                if (IndexOfObject == 0)
-                    return DrawableKaraokeThumbnail.KaraokeObject.ListProgressPoint[IndexOfObject].RelativeTime;
-                else
-                {
-                    var thisTime = DrawableKaraokeThumbnail.KaraokeObject.ListProgressPoint[IndexOfObject].RelativeTime;
-                    var lastTime = DrawableKaraokeThumbnail.KaraokeObject.ListProgressPoint[IndexOfObject - 1].RelativeTime;
-                    return thisTime - lastTime;
-                } 
-            }
-            set
-            {
-                if (IndexOfObject == 0)
-                    DrawableKaraokeThumbnail.KaraokeObject.ListProgressPoint[IndexOfObject].RelativeTime = value;
-                else
-                {
-                    var lastTime = DrawableKaraokeThumbnail.KaraokeObject.ListProgressPoint[IndexOfObject - 1].RelativeTime;
-                    DrawableKaraokeThumbnail.KaraokeObject.ListProgressPoint[IndexOfObject].RelativeTime = lastTime + value;
-                }
-            }
-        }
         public bool Hover
         {
             get => false;
@@ -104,21 +80,6 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Pieces
         {
             Hover = false;
             Selected = false;
-        }
-        protected float ThisViewWidth
-        {
-            get => (float)RelativeToLastPointTime * ratio;
-            set
-            {
-                //value cannot <50
-                if (value <= 50)
-                    return;
-
-                RelativeToLastPointTime = value / RelativeToLastPointTime;
-                this.Width = value;
-
-                //update last object
-            }
         }
 
         public EditableProgressPoint(DrawableKaraokeThumbnail drawableKaraokeThumbnail, ProgressPoint progressPoin)

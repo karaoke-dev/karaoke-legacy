@@ -55,6 +55,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects
 
             this.Add(point);
             this.SortProgressPoint();
+            this.FixTime();
             return true;
         }
 
@@ -85,7 +86,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects
                 {
                     single.RelativeTime = time + MinimumTime;
                 }
-                time = time + single.RelativeTime;
+                time = single.RelativeTime;
             }
         }
     }
