@@ -87,7 +87,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         /// <summary>
         /// record list time where position goes
         /// </summary>
-        public List<ProgressPoint> ListProgressPoint { get; set; } = new List<ProgressPoint>()
+        public ListProgressPoint ListProgressPoint { get; set; } = new ListProgressPoint()
         {
             
         };

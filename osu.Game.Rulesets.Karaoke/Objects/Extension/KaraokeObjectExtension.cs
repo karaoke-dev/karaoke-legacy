@@ -66,33 +66,5 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Extension
         {
             return false;
         }
-
-        /// <summary>
-        /// will check if this progress point is valid
-        /// </summary>
-        /// <returns><c>true</c>, if progress point was added, <c>false</c> otherwise.</returns>
-        /// <param name="karaokeObject">Karaoke object.</param>
-        public static bool AddProgressPoint(this KaraokeObject karaokeObject, ProgressPoint point)
-        {
-            //TODO : filter
-            if (karaokeObject.ListProgressPoint.Any(x => x.CharIndex == point.CharIndex))
-                return false;
-            if (karaokeObject.ListProgressPoint.Any(x => x.RelativeTime == point.RelativeTime))
-                return false;
-
-            karaokeObject.ListProgressPoint.Add(point);
-            karaokeObject.SortProgressPoint();
-            return true;
-        }
-
-        /// <summary>
-        /// sorting by position and time should be higher
-        /// </summary>
-        public static void SortProgressPoint(this KaraokeObject karaokeObject)
-        {
-            // from small to large
-            karaokeObject.ListProgressPoint = karaokeObject.ListProgressPoint.OrderBy(x => x.RelativeTime).ToList();
-            karaokeObject.ListProgressPoint = karaokeObject.ListProgressPoint.OrderBy(x => x.CharIndex).ToList();
-        }
     }
 }

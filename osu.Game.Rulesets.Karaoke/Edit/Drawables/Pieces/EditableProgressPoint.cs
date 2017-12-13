@@ -50,7 +50,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Pieces
                 {
                     var thisCharIndex = ProgressPoint.CharIndex;
                     var lastTime = DrawableKaraokeThumbnail.KaraokeObject.ListProgressPoint[IndexOfObject - 1].CharIndex;
-                    return DrawableKaraokeThumbnail.KaraokeObject.MainText.Text.Substring(lastTime + 1, thisCharIndex- lastTime);
+                    return DrawableKaraokeThumbnail.KaraokeObject.MainText.Text.Substring(lastTime + 1, thisCharIndex - lastTime);
                 }
             }
         }
@@ -78,6 +78,33 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Pieces
                 }
             }
         }
+        public bool Hover
+        {
+            get => false;
+            set
+            {
+                if(value)
+                    Background.Colour = BackgroundHoverColor;
+                else
+                    Background.Colour = BackgroundIdolColor;
+            }
+        }
+        public bool Selected
+        {
+            get => false;
+            set
+            {
+                if (value)
+                    Background.Colour = BackgroundPressColor;
+                else
+                    Background.Colour = BackgroundIdolColor;
+            }
+        }
+        public void ResetColor()
+        {
+            Hover = false;
+            Selected = false;
+        }
         protected float ThisViewWidth
         {
             get => (float)RelativeToLastPointTime * ratio;
@@ -98,15 +125,11 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Pieces
         {
             DrawableKaraokeThumbnail = drawableKaraokeThumbnail;
             ProgressPoint = progressPoin;
-            Background.Colour = BackgroundIdolColor;
-            StartLine.Colour = Color4.Pink;
             ProgressDrawableText = new OsuSpriteText()
             {
                 Text = ProgressText,
                 Position=new OpenTK.Vector2(5,5), 
             };
-            this.Height = 30;
-            UpdatePosition();
             this.Add(Background);
             this.Add(StartLine);
             this.Add(ProgressDrawableText);
@@ -114,62 +137,21 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Pieces
 
         #region Input
 
-        protected override bool OnMouseDown(InputState state, MouseDownEventArgs args)
-        {
-            PressedRelativePositionX = this.Width - GetXPointPosition(state);
-            Background.Colour = BackgroundPressColor;
-            return base.OnMouseDown(state, args);
-        }
-
-        /// <summary>
-        /// moving
-        /// </summary>
-        /// <param name="state"></param>
-        /// <returns></returns>
-        protected override bool OnMouseMove(InputState state)
-        {
-            if (state.Mouse.HasAnyButtonPressed)
-            {
-                try
-                {
-                    //TODO : 1. Adjust position
-                    this.ThisViewWidth = PressedRelativePositionX.Value + GetXPointPosition(state);
-                    //TODO : 2. update DrawableEditableKaraokeObject
-                }
-                catch
-                {
-
-                }
-            }
-
-            return base.OnMouseMove(state);
-        }
-
-        protected override bool OnMouseUp(InputState state, MouseUpEventArgs args)
-        {
-            PressedRelativePositionX = null;
-            Background.Colour = BackgroundHoverColor;
-            return base.OnMouseUp(state, args);
-        }
-
         protected override bool OnHover(InputState state)
         {
             IsFocus = true;
-            Background.Colour = BackgroundHoverColor;
+            DrawableKaraokeThumbnail.HoverSelectedPoint = this;
+            DrawableKaraokeThumbnail.UpdateColor();
             return base.OnHover(state);
         }
 
         protected override void OnHoverLost(InputState state)
         {
             IsFocus = false;
-            Background.Colour = BackgroundIdolColor;
+            if (DrawableKaraokeThumbnail.HoverSelectedPoint == this)
+                DrawableKaraokeThumbnail.HoverSelectedPoint = null;
+            DrawableKaraokeThumbnail.UpdateColor();
             base.OnHoverLost(state);
-        }
-
-        protected float GetXPointPosition(InputState state)
-        {
-            var mousePosition = this.ToLocalSpace(state.Mouse.NativeState.Position);
-            return mousePosition.X;
         }
 
         protected override bool OnKeyDown(InputState state, KeyDownEventArgs args)
@@ -209,13 +191,5 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Pieces
             }
         }
         #endregion
-
-        /// <summary>
-        /// adjust position
-        /// </summary>
-        public void UpdatePosition()
-        {
-            this.Width = ThisViewWidth;
-        }
     }
 }

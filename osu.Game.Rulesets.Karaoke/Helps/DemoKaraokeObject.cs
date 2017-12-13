@@ -53,11 +53,11 @@ namespace osu.Game.Rulesets.Karaoke.Helps
                 X=200,
             });
 
-            karaokeObject.AddProgressPoint(new ProgressPoint(0, 0));
+            karaokeObject.ListProgressPoint.AddProgressPoint(new ProgressPoint(0, 0));
 
-            karaokeObject.AddProgressPoint(new ProgressPoint(500, 1));
-            karaokeObject.AddProgressPoint(new ProgressPoint(1000, 5));
-            karaokeObject.AddProgressPoint(new ProgressPoint(1500, 11));
+            karaokeObject.ListProgressPoint.AddProgressPoint(new ProgressPoint(500, 1));
+            karaokeObject.ListProgressPoint.AddProgressPoint(new ProgressPoint(1000, 5));
+            karaokeObject.ListProgressPoint.AddProgressPoint(new ProgressPoint(1500, 11));
 
             karaokeObject.Duration = 1500;
 
@@ -82,9 +82,9 @@ namespace osu.Game.Rulesets.Karaoke.Helps
             karaokeObject.StartTime = startTime;
             karaokeObject.Duration = duration;
 
-            karaokeObject.AddProgressPoint(new ProgressPoint(duration/5, 0));
-            karaokeObject.AddProgressPoint(new ProgressPoint(duration/4, 10));
-            karaokeObject.AddProgressPoint(new ProgressPoint(duration, 11));
+            karaokeObject.ListProgressPoint.AddProgressPoint(new ProgressPoint(duration/5, 0));
+            karaokeObject.ListProgressPoint.AddProgressPoint(new ProgressPoint(duration/4, 10));
+            karaokeObject.ListProgressPoint.AddProgressPoint(new ProgressPoint(duration, 11));
 
             return karaokeObject;
         }

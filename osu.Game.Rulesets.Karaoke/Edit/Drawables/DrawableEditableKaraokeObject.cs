@@ -102,7 +102,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables
             ProgressPoint nextPoint = KaraokeObject.GetLastProgressPointByIndex(index);
             double deltaTime = ((previousPoint?.RelativeTime ?? 0) + (nextPoint?.RelativeTime ?? (previousPoint.RelativeTime + 500))) / 2;
             ProgressPoint point = new ProgressPoint(deltaTime,index);
-            KaraokeObject.AddProgressPoint(point);
+            KaraokeObject.ListProgressPoint.AddProgressPoint(point);
             DrawableKaraokeThumbnail.UpdateView();
         }
 
