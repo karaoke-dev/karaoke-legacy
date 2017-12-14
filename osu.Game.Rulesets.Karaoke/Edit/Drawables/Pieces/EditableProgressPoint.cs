@@ -12,11 +12,19 @@ using System.Threading.Tasks;
 using System.Linq;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Shapes;
+using osu.Game.Graphics.UserInterface;
+using osu.Framework.Graphics.UserInterface;
+using osu.Framework.Graphics.Cursor;
 
 namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Pieces
 {
-    public class EditableProgressPoint : Container
+    public class EditableProgressPoint : Container, IHasContextMenu
     {
+        public MenuItem[] ContextMenuItems => new MenuItem[]
+          {
+                new OsuMenuItem(@"Delete", MenuItemType.Highlighted),
+          };
+
         //public 
         public ProgressPoint ProgressPoint { get; set; }
         public DrawableKaraokeThumbnail DrawableKaraokeThumbnail { get; set; }//Parent

@@ -11,8 +11,11 @@ using osu.Framework.Graphics.Visualisation;
 using osu.Framework;
 using osu.Framework.Graphics;
 
-namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Pieces
-{
+namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Dialog
+{ 
+    /// <summary>
+    /// windows type
+    /// </summary>
     public enum TreeContainerStatus
     {
         Onscreen,
@@ -20,10 +23,10 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Pieces
     }
 
     /// <summary>
-    /// can be use as windows
+    /// use as windows type dialog
     /// refrence : osu.Framework.Graphics.Visualisation
     /// </summary>
-    public class WindowsContainer : Container, IStateful<TreeContainerStatus>
+    public class DialogContainer : Container, IStateful<TreeContainerStatus>
     {
         private readonly ScrollContainer scroll;
         private readonly SpriteText waitingText;
@@ -67,7 +70,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Pieces
             }
         }
 
-        public WindowsContainer()
+        public DialogContainer()
         {
             Masking = true;
             CornerRadius = 5;

@@ -11,6 +11,9 @@ using osu.Game.Rulesets.Karaoke.Edit.Drawables.Pieces;
 using osu.Framework.Graphics;
 using osu.Game.Rulesets.Karaoke.Tools.Translator;
 using osu.Game.Rulesets.Karaoke.Objects.Extension;
+using osu.Framework.Graphics.Cursor;
+using osu.Framework.Graphics.UserInterface;
+using osu.Game.Graphics.UserInterface;
 
 namespace osu.Game.Rulesets.Karaoke.Edit.Drawables
 {
@@ -19,11 +22,22 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables
     /// Right click :
     /// Translate >> Add
     /// </summary>
-    public class DrawableEditableKaraokeObject : DrawableKaraokeObject
+    public class DrawableEditableKaraokeObject : DrawableKaraokeObject, IHasContextMenu
     {
         protected DrawableKaraokeThumbnail DrawableKaraokeThumbnail { get; set; }
         protected EditableMainKaraokeText EditableMainKaraokeText { get; set; } = new EditableMainKaraokeText(null);
         protected bool IsDrag = false;
+
+        public MenuItem[] ContextMenuItems => new MenuItem[]
+           {
+                new OsuMenuItem(@"Some option"),
+                new OsuMenuItem(@"Highlighted option", MenuItemType.Highlighted),
+                new OsuMenuItem(@"Another option"),
+                new OsuMenuItem(@"Choose me please"),
+                new OsuMenuItem(@"And me too"),
+                new OsuMenuItem(@"Trying to fill"),
+                new OsuMenuItem(@"Destructive option", MenuItemType.Destructive),
+           };
 
         public DrawableEditableKaraokeObject(KaraokeObject hitObject) : base(hitObject)
         {

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using osu.Game.Rulesets.Karaoke.Edit.Drawables.Pieces;
+using osu.Game.Rulesets.Karaoke.Edit.Drawables.Dialog;
 using osu.Game.Tests.Visual;
 
 namespace osu.Game.Rulesets.Karaoke.Tests
@@ -19,7 +19,7 @@ namespace osu.Game.Rulesets.Karaoke.Tests
     {
         public TestCaseWindows()
         {
-            WindowsContainer WindowsContainer = new WindowsContainer();
+            DialogContainer WindowsContainer = new DialogContainer();
             this.Add(WindowsContainer);
         }
     }
