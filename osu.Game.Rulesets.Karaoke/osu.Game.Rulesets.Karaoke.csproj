@@ -55,6 +55,7 @@
     <Compile Include="Edit\Drawables\DrawableKaraokeThumbnail.cs" />
     <Compile Include="Edit\Drawables\Pieces\EditableMainKaraokeText.cs" />
     <Compile Include="Edit\Drawables\Pieces\EditableProgressPoint.cs" />
+    <Compile Include="Edit\Drawables\Pieces\WindowsContainer.cs" />
     <Compile Include="Edit\KaraokeEditPlayfield.cs" />
     <Compile Include="Edit\KaraokeEditRulesetContainer.cs" />
     <Compile Include="Edit\KaraokeHitObjectComposer.cs" />
@@ -83,6 +84,7 @@
     <Compile Include="Tests\TestCaseKaraokeObjectBySlider.cs" />
     <Compile Include="Tests\TestCaseKaraokePanel.cs" />
     <Compile Include="Tests\TestCaseTranslate.cs" />
+    <Compile Include="Tests\TestCaseWindows.cs" />
     <Compile Include="Tools\Translator\TranslateCode.cs" />
     <Compile Include="Tools\Translator\GoogleTranslator.cs" />
     <Compile Include="Tools\Translator\TranslateorBase.cs" />

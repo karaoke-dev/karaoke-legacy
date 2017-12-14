@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using osu.Game.Rulesets.Objects;
 using osu.Game.Rulesets.Objects.Types;
 using OpenTK;
+using System.Linq;
 
 namespace osu.Game.Rulesets.Karaoke.Objects
 {
@@ -12,7 +13,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects
     /// base karaoke object
     /// contain single sentence , a main text and several additional text
     /// </summary>
-    public class KaraokeObject : HitObject, IHasPosition ,IHasCombo, IHasEndTime
+    public class KaraokeObject : HitObject, IHasPosition, IHasCombo, IHasEndTime
     {
         /// <summary>
         /// template Index
@@ -89,7 +90,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         /// </summary>
         public ListProgressPoint ListProgressPoint { get; set; } = new ListProgressPoint()
         {
-            
+
         };
 
         /// <summary>
@@ -101,12 +102,12 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         /// <summary>
         /// The time at which the HitObject ends.
         /// </summary>
-        public double EndTime => StartTime + Duration;
+        public double EndTime => StartTime + Duration + (EndPreemptiveTime??0);
 
         /// <summary>
         /// The duration of the HitObject.
         /// </summary>
-        public double Duration { get; set; }
+        public double Duration => ListProgressPoint.Last()?.RelativeTime??0;
 
         /// <summary>
         /// new combo
@@ -122,5 +123,10 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         /// if value is null ,use automatically generated preemptive time;
         /// </summary>
         public double? PreemptiveTime { get; set; } = 600;
+
+        /// <summary>
+        /// End preemptive time
+        /// </summary>
+        public double? EndPreemptiveTime { get; set; } = 600;
     }
 }

@@ -59,8 +59,6 @@ namespace osu.Game.Rulesets.Karaoke.Helps
             karaokeObject.ListProgressPoint.AddProgressPoint(new ProgressPoint(1000, 5));
             karaokeObject.ListProgressPoint.AddProgressPoint(new ProgressPoint(1500, 11));
 
-            karaokeObject.Duration = 1500;
-
             return karaokeObject;
         }
 
@@ -80,7 +78,6 @@ namespace osu.Game.Rulesets.Karaoke.Helps
                 X=200,
             });
             karaokeObject.StartTime = startTime;
-            karaokeObject.Duration = duration;
 
             karaokeObject.ListProgressPoint.AddProgressPoint(new ProgressPoint(duration/5, 0));
             karaokeObject.ListProgressPoint.AddProgressPoint(new ProgressPoint(duration/4, 10));

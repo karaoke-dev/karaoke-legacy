@@ -51,7 +51,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Extension
         /// <param name="nowRelativeTime">Now time.</param>
         public static bool IsInTime(this KaraokeObject karaokeObject, double nowRelativeTime)
         {
-            if (nowRelativeTime > - karaokeObject.PreemptiveTime && nowRelativeTime <= karaokeObject.Duration)
+            if (nowRelativeTime > - karaokeObject.PreemptiveTime && nowRelativeTime <= karaokeObject.Duration + karaokeObject.EndPreemptiveTime)
             {
                 return true;
             }
