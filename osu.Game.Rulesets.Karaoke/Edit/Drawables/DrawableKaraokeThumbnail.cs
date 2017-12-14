@@ -80,6 +80,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables
                 single.Height = 30;
                 totalRelativeTime = (float)progressPoint.RelativeTime;
             }
+            this.Width= totalRelativeTime * Ratio * Zoon;
         }
 
         /// <summary>
@@ -257,7 +258,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables
             if (!IsSelectKeyPressed(state) && IsDraging)
             {
                 //Adjust position
-                UpdateTime(state.Mouse.Delta.X*2);
+                UpdateTime(state.Mouse.Delta.X*3);
                 UpdatePosition();
             }
 
