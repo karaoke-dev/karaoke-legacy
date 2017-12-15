@@ -7,12 +7,19 @@ using System.Threading.Tasks;
 namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Dialog
 {
     /// <summary>
-    /// Add new karaoke object
-    /// Lyric, starTime and endTime
+    /// list karaoke lytrics
+    /// click the unlock can edit it
     /// </summary>
-    public class EditKaraokeMainTextDialog : DialogContainer
+    class ListKaraokeLyricsDialog : DialogContainer
     {
+        public class LyricsViewCell
+        {
 
-        
+        }
+
+        public class LyricsEditCell
+        {
+
+        }
     }
 }

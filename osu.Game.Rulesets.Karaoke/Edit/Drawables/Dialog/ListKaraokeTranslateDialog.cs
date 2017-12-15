@@ -6,7 +6,17 @@ using System.Threading.Tasks;
 
 namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Dialog
 {
-    public class EditKaraokeTranslateDialog : DialogContainer
+    class ListKaraokeTranslateDialog : DialogContainer
     {
+
+        public class TranslateViewCell
+        {
+
+        }
+
+        public class TranslateEditCell
+        {
+
+        }
     }
 }

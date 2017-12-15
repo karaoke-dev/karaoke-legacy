@@ -52,12 +52,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Edit\Drawables\Dialog\EditKaraokeTemplateDialog.cs" />
+    <Compile Include="Edit\Drawables\Dialog\ListKaraokeLyricsDialog.cs" />
+    <Compile Include="Edit\Drawables\Dialog\ListKaraokeTranslateDialog.cs" />
     <Compile Include="Edit\Drawables\DrawableEditableKaraokeObject.cs" />
     <Compile Include="Edit\Drawables\DrawableKaraokeThumbnail.cs" />
     <Compile Include="Edit\Drawables\Pieces\EditableMainKaraokeText.cs" />
     <Compile Include="Edit\Drawables\Pieces\EditableProgressPoint.cs" />
     <Compile Include="Edit\Drawables\Dialog\EditKaraokeMainTextDialog.cs" />
-    <Compile Include="Edit\Drawables\Dialog\EditKaraokeTranslateDialog.cs" />
     <Compile Include="Edit\Drawables\Dialog\DialogContainer.cs" />
     <Compile Include="Edit\KaraokeEditPlayfield.cs" />
     <Compile Include="Edit\KaraokeEditRulesetContainer.cs" />
