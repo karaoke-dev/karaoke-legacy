@@ -28,22 +28,18 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Dialog
     /// </summary>
     public class DialogContainer : Container, IStateful<TreeContainerStatus>
     {
-        private readonly ScrollContainer scroll;
-        private readonly SpriteText waitingText;
-
-        public Action ChooseTarget;
-        public Action GoUpOneParent;
-        public Action ToggleProperties;
-
+        //Title
+        public String Title { get; set; }
+        //Context
         protected override Container<Drawable> Content => scroll;
-
-        private readonly Container titleBar;
-
+        public readonly ScrollContainer scroll;
+        //Width
         private const float width = 400;
+        //Height
         private const float height = 600;
 
+        private readonly Container titleBar;
         private TreeContainerStatus state;
-
         public event Action<TreeContainerStatus> StateChanged;
 
         public TreeContainerStatus State
@@ -81,9 +77,6 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Dialog
 
             Color4 buttonBackground = new Color4(50, 50, 50, 255);
             Color4 buttonBackgroundHighlighted = new Color4(80, 80, 80, 255);
-            const float button_width = width / 3 - 1;
-
-            Button propertyButton;
 
             AddRangeInternal(new Drawable[]
             {
@@ -115,55 +108,10 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Dialog
                                 {
                                     Anchor = Anchor.Centre,
                                     Origin = Anchor.Centre,
-                                    Text = "draw visualiser (Ctrl+F1 to toggle)",
+                                    Text = Title,
                                     Alpha = 0.8f,
                                 },
                             }
-                        },
-                        new Container //toolbar
-                        {
-                            RelativeSizeAxes = Axes.X,
-                            Size = new Vector2(1, 40),
-                            Children = new Drawable[]
-                            {
-                                new Box
-                                {
-                                    Colour = new Color4(20, 20, 20, 255),
-                                    RelativeSizeAxes = Axes.Both,
-                                },
-                                new FillFlowContainer
-                                {
-                                    RelativeSizeAxes = Axes.Both,
-                                    Spacing = new Vector2(1),
-                                    Children = new Drawable[]
-                                    {
-                                        new Button
-                                        {
-                                            BackgroundColour = buttonBackground,
-                                            Size = new Vector2(button_width, 1),
-                                            RelativeSizeAxes = Axes.Y,
-                                            Text = @"choose target",
-                                            Action = delegate { ChooseTarget?.Invoke(); }
-                                        },
-                                        new Button
-                                        {
-                                            BackgroundColour = buttonBackground,
-                                            Size = new Vector2(button_width, 1),
-                                            RelativeSizeAxes = Axes.Y,
-                                            Text = @"up one parent",
-                                            Action = delegate { GoUpOneParent?.Invoke(); },
-                                        },
-                                        propertyButton = new Button
-                                        {
-                                            BackgroundColour = buttonBackground,
-                                            Size = new Vector2(button_width, 1),
-                                            RelativeSizeAxes = Axes.Y,
-                                            Text = @"view properties",
-                                            Action = delegate { ToggleProperties?.Invoke(); },
-                                        },
-                                    },
-                                },
-                            },
                         },
                     },
                 },
@@ -183,18 +131,11 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Dialog
                         },
                     }
                 },
-                waitingText = new SpriteText
-                {
-                    Text = @"Waiting for target selection...",
-                    Anchor = Anchor.Centre,
-                    Origin = Anchor.Centre,
-                }
             });
         }
 
         protected override void Update()
         {
-            waitingText.Alpha = scroll.Children.Any() ? 0 : 1;
             base.Update();
         }
 

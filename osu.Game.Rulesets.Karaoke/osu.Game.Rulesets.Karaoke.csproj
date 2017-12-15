@@ -72,6 +72,7 @@
     <Compile Include="Objects\Drawables\Pieces\KaraokeText.cs" />
     <Compile Include="Objects\Drawables\Pieces\MainKaraokeText.cs" />
     <Compile Include="Objects\Drawables\Pieces\TextsAndMask.cs" />
+    <Compile Include="Objects\KaraokeInfo.cs" />
     <Compile Include="Objects\KaraokeObject.cs" />
     <Compile Include="Objects\KaraokePosition.cs" />
     <Compile Include="Objects\KaraokeSinger.cs" />
