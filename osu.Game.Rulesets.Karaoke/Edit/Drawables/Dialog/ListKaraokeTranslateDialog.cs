@@ -8,6 +8,10 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Dialog
 {
     class ListKaraokeTranslateDialog : DialogContainer
     {
+        public ListKaraokeTranslateDialog(KaraokeEditPlayfield playField)
+        {
+
+        }
 
         public class TranslateViewCell
         {

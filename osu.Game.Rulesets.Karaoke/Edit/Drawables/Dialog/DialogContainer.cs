@@ -30,11 +30,11 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Dialog
     /// </summary>
     public class DialogContainer : Container, IStateful<DialogContainerStatus>
     {
-        
+        public Action CloseAction;
+
         //Title
-        public virtual String Title { get; set; }
-        //Context
-        protected override Container<Drawable> Content => MainContext;
+        public virtual String Title { get; set; } = "Dialog";
+        
         //content of dialog should be write in here
         public virtual Container MainContext { get; set; } = new Container()
         {
@@ -51,6 +51,9 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Dialog
                 },
             }
         };
+
+        //Context
+        protected override Container<Drawable> Content => MainContext;
 
         //Width
         public override float Width
@@ -97,17 +100,16 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Dialog
 
         public DialogContainer()
         {
+            //can be override
             Width = 600;
             Height = 300;
-
-            Masking = true;
-            CornerRadius = 5;
+            Title = "Dialog";
             Position = new Vector2(100, 100);
 
+            //suggest not to modified this
+            Masking = true;
+            CornerRadius = 5;
             AutoSizeAxes = Axes.X;
-
-            Color4 buttonBackground = new Color4(50, 50, 50, 255);
-            Color4 buttonBackgroundHighlighted = new Color4(80, 80, 80, 255);
 
             AddRangeInternal(new Drawable[]
             {
@@ -150,6 +152,10 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Dialog
                                     Height=20,
                                     Text="X",
                                     Position=new Vector2(-20,0),
+                                    Action = ()=>
+                                    {
+                                        CloseAction?.Invoke();
+                                    },
                                 }
                             }
                         },

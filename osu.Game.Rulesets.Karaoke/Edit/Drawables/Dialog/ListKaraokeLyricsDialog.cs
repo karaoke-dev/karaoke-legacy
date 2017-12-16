@@ -12,6 +12,11 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Dialog
     /// </summary>
     class ListKaraokeLyricsDialog : DialogContainer
     {
+        public ListKaraokeLyricsDialog(KaraokeEditPlayfield playField)
+        {
+
+        }
+
         public class LyricsViewCell
         {
 

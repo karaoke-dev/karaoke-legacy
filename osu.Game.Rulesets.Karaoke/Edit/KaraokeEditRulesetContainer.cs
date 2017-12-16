@@ -19,6 +19,11 @@ namespace osu.Game.Rulesets.Karaoke.Edit
 
         }
 
+        /// <summary>
+        /// create editable HitObject
+        /// </summary>
+        /// <param name="h"></param>
+        /// <returns></returns>
         protected override DrawableHitObject<KaraokeObject> GetVisualRepresentation(KaraokeObject h)
         {
             if (h is KaraokeObject karaokeObject)
