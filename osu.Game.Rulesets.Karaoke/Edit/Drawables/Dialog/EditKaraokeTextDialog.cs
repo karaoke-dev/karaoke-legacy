@@ -10,7 +10,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Dialog
     /// Add new karaoke object
     /// Lyric, starTime and endTime
     /// </summary>
-    public class EditKaraokeMainTextDialog : DialogContainer
+    public class EditKaraokeTextDialog : DialogContainer
     {
 
         

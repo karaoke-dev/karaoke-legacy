@@ -10,39 +10,68 @@ using osu.Framework.Graphics.Shapes;
 using osu.Framework.Graphics.Visualisation;
 using osu.Framework;
 using osu.Framework.Graphics;
+using osu.Game.Graphics.UserInterface;
 
 namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Dialog
-{ 
+{
     /// <summary>
     /// windows type
     /// </summary>
-    public enum TreeContainerStatus
+    public enum DialogContainerStatus
     {
-        Onscreen,
-        Offscreen
+        Onscreen,//using this Dialog
+        Offscreen,//mouse does not focus on this Dialoh
+        Lock,//Cannot use this Dialog until other Dialog Closed
     }
 
     /// <summary>
     /// use as windows type dialog
     /// refrence : osu.Framework.Graphics.Visualisation
     /// </summary>
-    public class DialogContainer : Container, IStateful<TreeContainerStatus>
+    public class DialogContainer : Container, IStateful<DialogContainerStatus>
     {
+        
         //Title
-        public String Title { get; set; }
+        public virtual String Title { get; set; }
         //Context
-        protected override Container<Drawable> Content => scroll;
-        public readonly ScrollContainer scroll;
+        protected override Container<Drawable> Content => MainContext;
+        //content of dialog should be write in here
+        public virtual Container MainContext { get; set; } = new Container()
+        {
+            Padding = new MarginPadding(0),
+            RelativeSizeAxes = Axes.Y,
+            //Width = this.Width,
+            Children = new Drawable[]
+            {
+                new ScrollContainer
+                {
+                    Padding = new MarginPadding(10),
+                    RelativeSizeAxes = Axes.Y,
+                    //Width = this.Width
+                },
+            }
+        };
+
         //Width
-        private const float width = 400;
+        public override float Width
+        {
+            get => base.Width;
+            set
+            {
+                base.Width = value;
+                MainContext.Width = base.Width;
+            }
+        }
         //Height
-        private const float height = 600;
+        public override float Height { get => base.Height; set => base.Height = value; }
 
-        private readonly Container titleBar;
-        private TreeContainerStatus state;
-        public event Action<TreeContainerStatus> StateChanged;
 
-        public TreeContainerStatus State
+        protected readonly Container titleBar;
+
+        private DialogContainerStatus state;
+        public event Action<DialogContainerStatus> StateChanged;
+
+        public DialogContainerStatus State
         {
             get { return state; }
 
@@ -54,10 +83,10 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Dialog
 
                 switch (state)
                 {
-                    case TreeContainerStatus.Offscreen:
+                    case DialogContainerStatus.Offscreen:
                         this.Delay(500).FadeTo(0.7f, 300);
                         break;
-                    case TreeContainerStatus.Onscreen:
+                    case DialogContainerStatus.Onscreen:
                         this.FadeIn(300, Easing.OutQuint);
                         break;
                 }
@@ -68,12 +97,14 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Dialog
 
         public DialogContainer()
         {
+            Width = 600;
+            Height = 300;
+
             Masking = true;
             CornerRadius = 5;
             Position = new Vector2(100, 100);
 
             AutoSizeAxes = Axes.X;
-            Height = height;
 
             Color4 buttonBackground = new Color4(50, 50, 50, 255);
             Color4 buttonBackgroundHighlighted = new Color4(80, 80, 80, 255);
@@ -111,6 +142,15 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Dialog
                                     Text = Title,
                                     Alpha = 0.8f,
                                 },
+                                new TriangleButton
+                                {
+                                    Anchor = Anchor.CentreRight,
+                                    Origin = Anchor.Centre,
+                                    Width=20,
+                                    Height=20,
+                                    Text="X",
+                                    Position=new Vector2(-20,0),
+                                }
                             }
                         },
                     },
@@ -120,18 +160,28 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Dialog
                     RelativeSizeAxes = Axes.Y,
                     AutoSizeAxes = Axes.X,
                     Direction = FillDirection.Horizontal,
-                    Padding = new MarginPadding { Top = 65 },
+                    Padding = new MarginPadding { Top = 25 },
                     Children = new Drawable[]
                     {
-                        scroll = new ScrollContainer
-                        {
-                            Padding = new MarginPadding(10),
-                            RelativeSizeAxes = Axes.Y,
-                            Width = width
-                        },
+                        MainContext,
                     }
                 },
             });
+        }
+
+        /// <summary>
+        /// Show Dialog
+        /// </summary>
+        public virtual void Show()
+        {
+            //TODO : Adding Dialog effect in here
+        }
+
+        protected override void Dispose(bool isDisposing)
+        {
+            //before close, do some effect in here
+
+            base.Dispose(isDisposing);
         }
 
         protected override void Update()
@@ -139,15 +189,17 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Dialog
             base.Update();
         }
 
+#region Input
+
         protected override bool OnHover(InputState state)
         {
-            State = TreeContainerStatus.Onscreen;
+            State = DialogContainerStatus.Onscreen;
             return true;
         }
 
         protected override void OnHoverLost(InputState state)
         {
-            State = TreeContainerStatus.Offscreen;
+            State = DialogContainerStatus.Offscreen;
             base.OnHoverLost(state);
         }
 
@@ -163,10 +215,12 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Dialog
 
         protected override bool OnClick(InputState state) => true;
 
+#endregion
+
         protected override void LoadComplete()
         {
             base.LoadComplete();
-            State = TreeContainerStatus.Offscreen;
+            State = DialogContainerStatus.Offscreen;
         }
     }
 }

@@ -58,7 +58,7 @@
     <Compile Include="Edit\Drawables\DrawableKaraokeThumbnail.cs" />
     <Compile Include="Edit\Drawables\Pieces\EditableMainKaraokeText.cs" />
     <Compile Include="Edit\Drawables\Pieces\EditableProgressPoint.cs" />
-    <Compile Include="Edit\Drawables\Dialog\EditKaraokeMainTextDialog.cs" />
+    <Compile Include="Edit\Drawables\Dialog\EditKaraokeTextDialog.cs" />
     <Compile Include="Edit\Drawables\Dialog\DialogContainer.cs" />
     <Compile Include="Edit\KaraokeEditPlayfield.cs" />
     <Compile Include="Edit\KaraokeEditRulesetContainer.cs" />
