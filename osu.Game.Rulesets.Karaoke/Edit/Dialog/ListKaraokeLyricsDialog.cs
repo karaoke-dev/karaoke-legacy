@@ -77,12 +77,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Dialog
 
     public class LyricsCell : DrawableItems<KaraokeObject>
     {
-        public LyricsCell(KaraokeObject beatmapSetInfo) : base(beatmapSetInfo)
-        {
-
-        }
-
-        public LyricsCell() : base(null)
+        public LyricsCell() 
         {
 
         }

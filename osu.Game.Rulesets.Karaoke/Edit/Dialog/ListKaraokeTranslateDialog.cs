@@ -42,12 +42,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Dialog
 
     public class TranslateCell : DrawableItems<KaraokeObject>
     {
-        public TranslateCell(KaraokeObject beatmapSetInfo) : base(beatmapSetInfo)
-        {
-
-        }
-
-        public TranslateCell() : base(null)
+        public TranslateCell() 
         {
 
         }

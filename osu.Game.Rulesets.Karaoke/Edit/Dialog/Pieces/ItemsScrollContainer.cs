@@ -68,13 +68,6 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
 
         public virtual void AddBeatmapSet(TItem beatmapSet)
         {
-            /*
-            items.Add(new TDrawable(beatmapSet)
-            {
-                OnSelect = set => OnSelect?.Invoke(set),
-                Depth = items.Count
-            });
-             */
             items.Add(new TDrawable()
             {
                 BeatmapSetInfo= beatmapSet,
@@ -207,10 +200,6 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
 
             items.ChangeChildDepth(draggedItem, dstIndex);
         }
-
-        
-
-        
     }
 
     /// <summary>
@@ -244,15 +233,31 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
 
     /// <summary>
     /// drawable Item
+    /// From : osu.Game.Overlays.Music : PlaylistItem.cs
     /// </summary>
     public class DrawableItems<TItem> : Container, IFilterable, IDraggable where TItem : IHasPrimaryKey
     {
         private const float fade_duration = 100;
         public TItem BeatmapSetInfo { get; set; }
-        public DrawableItems(TItem beatmapSetInfo)
+
+
+        public DrawableItems()
         {
+            Height = 20;
             RelativeSizeAxes = Axes.X;
-            BeatmapSetInfo = beatmapSetInfo;
+            InitialView();
+        }
+
+        protected virtual void InitialView()
+        {
+
+            Children = new Drawable[]
+            {
+                handle = new PlaylistItemHandle
+                {
+                    Colour = OsuColour.FromHex(@"999"),
+                },
+            };
         }
 
         private bool matching = true;
@@ -278,6 +283,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
                 selected = value;
 
                 FinishTransforms(true);
+
                 /*
                 foreach (SpriteText s in titleSprites)
                     s.FadeColour(Selected ? hoverColour : Color4.White, fade_duration);
@@ -299,29 +305,11 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
         {
             hoverColour = colours.Yellow;
             artistColour = colours.Gray9;
-
-            Height = 20;
-
-            Children = new Drawable[]
-            {
-                    handle = new PlaylistItemHandle
-                    {
-                        Colour = colours.Gray5
-                    },
-                    new SpriteText
-                    {
-                        Anchor = Anchor.Centre,
-                        Origin = Anchor.Centre,
-                        Text = "Test",
-                        Alpha = 0.8f,
-                    },
-            };
         }
 
         protected override bool OnHover(InputState state)
         {
             handle.FadeIn(fade_duration);
-
             return base.OnHover(state);
         }
 
@@ -338,7 +326,6 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
 
         private class PlaylistItemHandle : SpriteIcon
         {
-
             public PlaylistItemHandle()
             {
                 Anchor = Anchor.TopLeft;
