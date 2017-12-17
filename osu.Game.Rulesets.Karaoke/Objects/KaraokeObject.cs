@@ -6,6 +6,7 @@ using osu.Game.Rulesets.Objects;
 using osu.Game.Rulesets.Objects.Types;
 using OpenTK;
 using System.Linq;
+using osu.Game.Database;
 
 namespace osu.Game.Rulesets.Karaoke.Objects
 {
@@ -13,8 +14,13 @@ namespace osu.Game.Rulesets.Karaoke.Objects
     /// base karaoke object
     /// contain single sentence , a main text and several additional text
     /// </summary>
-    public class KaraokeObject : HitObject, IHasPosition, IHasCombo, IHasEndTime
+    public class KaraokeObject : HitObject, IHasPosition, IHasCombo, IHasEndTime , IHasPrimaryKey
     {
+        /// <summary>
+        /// ID
+        /// </summary>
+        public int ID { get; set; }
+
         /// <summary>
         /// template Index
         /// if null , will use all the 
