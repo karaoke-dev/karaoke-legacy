@@ -222,6 +222,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
             {
                 LayoutDuration = 200;
                 LayoutEasing = Easing.OutQuint;
+                Direction = FillDirection.Vertical;
             }
         }
 
@@ -234,6 +235,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
             public IHasPrimaryKey BeatmapSetInfo { get; set; }
             public DrawableItems(IHasPrimaryKey beatmapSetInfo)
             {
+                RelativeSizeAxes = Axes.X;
                 BeatmapSetInfo = beatmapSetInfo;
             }
 
@@ -270,7 +272,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
             private SpriteIcon handle;
             public bool IsDraggable => handle.IsHovered;
 
-            public IEnumerable<string> FilterTerms { get; private set; }
+            public IEnumerable<string> FilterTerms { get; private set; } = new List<string>() { "add" };
             public Action<IHasPrimaryKey> OnSelect;
 
             private Color4 hoverColour;
@@ -282,12 +284,20 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
                 hoverColour = colours.Yellow;
                 artistColour = colours.Gray9;
 
+                Height = 50;
 
                 Children = new Drawable[]
                 {
                     handle = new PlaylistItemHandle
                     {
                         Colour = colours.Gray5
+                    },
+                    new SpriteText
+                    {
+                        Anchor = Anchor.Centre,
+                        Origin = Anchor.Centre,
+                        Text = "Test",
+                        Alpha = 0.8f,
                     },
                 };
             }
