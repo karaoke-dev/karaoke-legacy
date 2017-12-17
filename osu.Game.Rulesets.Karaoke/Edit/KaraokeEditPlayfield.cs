@@ -21,18 +21,10 @@ namespace osu.Game.Rulesets.Karaoke.Edit
         /// </summary>
         public DrawableEditableKaraokeObject NowSelectedKaraokeObject { get; set; }
 
-        /// <summary>
-        /// Dialog Layer
-        /// </summary>
-        private readonly Container dialogLayer;
 
-        public KaraokeEditPlayfield(Ruleset ruleset, WorkingBeatmap beatmap, KaraokeEditPlayfield container) : base(ruleset, beatmap, container)
+        public KaraokeEditPlayfield(Ruleset ruleset, WorkingBeatmap beatmap, KaraokeEditRulesetContainer container) : base(ruleset, beatmap, container)
         {
-            Add(dialogLayer = new Container
-            {
-                RelativeSizeAxes = Axes.Both,
-                Depth = -10,
-            });
+            
         }
 
         /// <summary>
@@ -60,7 +52,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit
         {
             foreach (var single in state.Keyboard.Keys)
             {
-                if (single == OpenTK.Input.Key.A)
+                if (single == OpenTK.Input.Key.L)
                 {
                     //Open Lyrics dialog
                     OpenListKaraokeLyricsDialog();
@@ -73,31 +65,28 @@ namespace osu.Game.Rulesets.Karaoke.Edit
                     break;
                 }
             }
-
             return base.OnKeyDown(state, args);
         }
+
+#region Dialog
 
         public void OpenListKaraokeLyricsDialog()
         {
             if (!dialogLayer.Children.OfType<ListKaraokeLyricsDialog>().Any())
             {
-                var dialog = new ListKaraokeLyricsDialog(this)
-                {
-                    
-                };
-                dialog.CloseAction = () =>
-                {
-                    dialogLayer.Remove(dialog);
-                };
-                dialogLayer.Add(dialog);
+                dialogLayer.Add(new ListKaraokeLyricsDialog(this));
             }
            
         }
 
         public void OpenListKaraokeTranslateDialog()
         {
-            dialogLayer.Add(new ListKaraokeTranslateDialog(this));
+            if (!dialogLayer.Children.OfType<ListKaraokeLyricsDialog>().Any())
+            {
+                dialogLayer.Add(new ListKaraokeTranslateDialog(this));
+            }
         }
 
+#endregion
     }
 }

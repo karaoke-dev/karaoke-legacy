@@ -33,14 +33,14 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Dialog
         public Action CloseAction;
 
         //Title
-        public virtual String Title { get; set; } = "Dialog";
+        public virtual String Title { get; set; }
         
         //content of dialog should be write in here
         public virtual Container MainContext { get; set; } = new Container()
         {
             Padding = new MarginPadding(0),
             RelativeSizeAxes = Axes.Y,
-            //Width = this.Width,
+            Width = 600,
             Children = new Drawable[]
             {
                 new ScrollContainer
@@ -53,23 +53,10 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Dialog
         };
 
         //Context
-        protected override Container<Drawable> Content => MainContext;
-
-        //Width
-        public override float Width
-        {
-            get => base.Width;
-            set
-            {
-                base.Width = value;
-                MainContext.Width = base.Width;
-            }
-        }
-        //Height
-        public override float Height { get => base.Height; set => base.Height = value; }
+        protected override Container<Drawable> Content => this;
 
 
-        protected readonly Container titleBar;
+        protected Container titleBar;
 
         private DialogContainerStatus state;
         public event Action<DialogContainerStatus> StateChanged;
@@ -100,10 +87,9 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Dialog
 
         public DialogContainer()
         {
-            //can be override
+            //can be modified
             Width = 600;
             Height = 300;
-            Title = "Dialog";
             Position = new Vector2(100, 100);
 
             //suggest not to modified this
@@ -111,6 +97,14 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Dialog
             CornerRadius = 5;
             AutoSizeAxes = Axes.X;
 
+            InitialDialog();
+        }
+
+        /// <summary>
+        /// Dialog will be initialize in here
+        /// </summary>
+        public virtual void InitialDialog()
+        {
             AddRangeInternal(new Drawable[]
             {
                 new Box
@@ -148,12 +142,16 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Dialog
                                 {
                                     Anchor = Anchor.CentreRight,
                                     Origin = Anchor.Centre,
-                                    Width=20,
-                                    Height=20,
+                                    Width=16,
+                                    Height=16,
                                     Text="X",
-                                    Position=new Vector2(-20,0),
+                                    Position=new Vector2(-15,0),
                                     Action = ()=>
                                     {
+                                        if(this.Parent is Container container)
+                                        {
+                                            container.Remove(this);
+                                        }
                                         CloseAction?.Invoke();
                                     },
                                 }

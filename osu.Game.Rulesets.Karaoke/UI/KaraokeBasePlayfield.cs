@@ -12,6 +12,10 @@ using OpenTK;
 using osu.Game.Rulesets.Objects.Drawables;
 using osu.Game.Rulesets.Karaoke.UI.Extension;
 using osu.Framework.Graphics;
+using osu.Framework.Input;
+using osu.Framework.Graphics.Containers;
+using osu.Game.Rulesets.Karaoke.Edit.Drawables.Dialog;
+using osu.Framework.Timing;
 
 namespace osu.Game.Rulesets.Karaoke.UI
 {
@@ -24,6 +28,11 @@ namespace osu.Game.Rulesets.Karaoke.UI
         public List<IAmDrawableKaraokeObject> ListDrawableKaraokeObject { get; set; } = new List<IAmDrawableKaraokeObject>();
 
         public static readonly Vector2 BASE_SIZE = new Vector2(512, 384);
+
+        /// <summary>
+        /// Dialog Layer
+        /// </summary>
+        protected readonly Container dialogLayer;
 
         public override Vector2 Size
         {
@@ -45,6 +54,13 @@ namespace osu.Game.Rulesets.Karaoke.UI
 
             Anchor = Anchor.Centre;
             Origin = Anchor.Centre;
+
+            Add(dialogLayer = new Container
+            {
+                Clock = new FramedClock(new StopwatchClock(true)),
+                RelativeSizeAxes = Axes.Both,
+                Depth = -10,
+            });
         }
 
         public override void Add(DrawableHitObject h)
@@ -62,5 +78,29 @@ namespace osu.Game.Rulesets.Karaoke.UI
 
             base.Add(h);
         }
+
+        #region Input
+        protected override bool OnKeyDown(InputState state, KeyDownEventArgs args)
+        {
+            foreach (var single in state.Keyboard.Keys)
+            {
+                if (single == OpenTK.Input.Key.S)
+                {
+                    OpenLoadSaveDialog();
+                }
+            }
+            return base.OnKeyDown(state, args);
+        }
+        #endregion
+
+        #region Dialog
+        public void OpenLoadSaveDialog()
+        {
+            if (!dialogLayer.Children.OfType<LoadSaveDialog>().Any())
+            {
+                dialogLayer.Add(new LoadSaveDialog(this));
+            }
+        }
+        #endregion
     }
 }

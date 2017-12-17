@@ -183,7 +183,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables
         protected bool IsSelectKeyPressed(InputState state)
         {
             //if press control,return true
-            return state.Keyboard.Keys.Contains(OpenTK.Input.Key.LControl);
+            return state.Keyboard.Keys.Contains(OpenTK.Input.Key.LShift);
         }
 
         //add s single point
