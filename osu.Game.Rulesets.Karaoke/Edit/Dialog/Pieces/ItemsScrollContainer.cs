@@ -4,6 +4,7 @@ using osu.Framework.Allocation;
 using osu.Framework.Extensions.IEnumerableExtensions;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
+using osu.Framework.Graphics.Sprites;
 using osu.Framework.Input;
 using osu.Framework.Localisation;
 using osu.Game.Beatmaps;
@@ -26,7 +27,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
         public Action<BeatmapSetInfo> OnSelect;
 
         private readonly SearchContainer search;
-        private readonly FillFlowContainer<PlaylistItem> items;
+        private readonly FillFlowContainer<DrawableItems> items;
 
         public ItemsScrollContainer()
         {
@@ -66,7 +67,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
 
         public virtual void AddBeatmapSet(BeatmapSetInfo beatmapSet)
         {
-            items.Add(new PlaylistItem(beatmapSet)
+            items.Add(new DrawableItems(beatmapSet)
             {
                 OnSelect = set => OnSelect?.Invoke(set),
                 Depth = items.Count
@@ -85,7 +86,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
             get { return items.FirstOrDefault(i => i.Selected)?.BeatmapSetInfo; }
             set
             {
-                foreach (PlaylistItem s in items.Children)
+                foreach (DrawableItems s in items.Children)
                     s.Selected = s.BeatmapSetInfo.ID == value?.ID;
             }
         }
@@ -95,7 +96,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
         public BeatmapSetInfo PreviousSet => (items.TakeWhile(i => !i.Selected).LastOrDefault() ?? items.LastOrDefault())?.BeatmapSetInfo;
 
         private Vector2 nativeDragPosition;
-        private PlaylistItem draggedItem;
+        private DrawableItems draggedItem;
 
         protected override bool OnDragStart(InputState state)
         {
@@ -198,7 +199,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
         /// <summary>
         /// searchable container
         /// </summary>
-        public class ItemSearchContainer : FillFlowContainer<PlaylistItem>, IHasFilterableChildren
+        public class ItemSearchContainer : FillFlowContainer<DrawableItems>, IHasFilterableChildren
         {
             public IEnumerable<string> FilterTerms => new string[] { };
 
@@ -228,6 +229,13 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
         /// </summary>
         public class DrawableItems : Container, IFilterable, IDraggable
         {
+            private const float fade_duration = 100;
+            public BeatmapSetInfo BeatmapSetInfo { get; set; }
+            public DrawableItems(BeatmapSetInfo beatmapSetInfo)
+            {
+                BeatmapSetInfo = beatmapSetInfo;
+            }
+
             private bool matching = true;
 
             public bool MatchingFilter
@@ -241,10 +249,28 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
                 }
             }
 
+            private bool selected;
+            public bool Selected
+            {
+                get { return selected; }
+                set
+                {
+                    if (value == selected) return;
+                    selected = value;
+
+                    FinishTransforms(true);
+                    /*
+                    foreach (SpriteText s in titleSprites)
+                        s.FadeColour(Selected ? hoverColour : Color4.White, fade_duration);
+                        */
+                }
+            }
+
             private SpriteIcon handle;
             public bool IsDraggable => handle.IsHovered;
 
             public IEnumerable<string> FilterTerms { get; private set; }
+            public Action<BeatmapSetInfo> OnSelect;
 
             private Color4 hoverColour;
             private Color4 artistColour;
@@ -263,6 +289,24 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
                         Colour = colours.Gray5
                     },
                 };
+            }
+
+            protected override bool OnHover(InputState state)
+            {
+                handle.FadeIn(fade_duration);
+
+                return base.OnHover(state);
+            }
+
+            protected override void OnHoverLost(InputState state)
+            {
+                handle.FadeOut(fade_duration);
+            }
+
+            protected override bool OnClick(InputState state)
+            {
+                OnSelect?.Invoke(BeatmapSetInfo);
+                return true;
             }
 
             private class PlaylistItemHandle : SpriteIcon
