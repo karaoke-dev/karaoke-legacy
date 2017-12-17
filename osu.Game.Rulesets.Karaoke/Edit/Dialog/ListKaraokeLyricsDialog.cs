@@ -1,5 +1,8 @@
 ﻿using osu.Framework.Graphics;
+using osu.Framework.Graphics.Containers;
 using osu.Game.Database;
+using osu.Game.Graphics.Sprites;
+using osu.Game.Graphics.UserInterface;
 using osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces;
 using osu.Game.Rulesets.Karaoke.Objects;
 using System;
@@ -17,12 +20,16 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Dialog
     /// </summary>
     class ListKaraokeLyricsDialog : DialogContainer
     {
+        protected KaraokeEditPlayfield PlayField;
         protected ListLyricsScrollContainer ItemsScrollContainer { get; set; }
         public FilterTextBox Search;
 
         public ListKaraokeLyricsDialog(KaraokeEditPlayfield playField)
         {
+            PlayField = playField;
 
+            //initial karaoke objects to set
+            InitialItemsScrollContainerItems();
         }
 
         public override void InitialDialog()
@@ -44,9 +51,10 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Dialog
 
             MainContext.Add(ItemsScrollContainer = new ListLyricsScrollContainer()
             {
-                Position=new OpenTK.Vector2(0,40),
-                Width=550,
-                Height=300,
+                Position = new OpenTK.Vector2(0, 40),
+                Width = 600,
+                Height = 300,
+                
                 Sets=new List<KaraokeObject>()
                 {
                     new KaraokeObject(){ ID=0},
@@ -61,13 +69,26 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Dialog
                     new KaraokeObject(){ ID=9},
                     new KaraokeObject(){ ID=10},
                 }
+                
             });
             
             base.InitialDialog();
+
+            
+        }
+
+        void InitialItemsScrollContainerItems()
+        {
+            var listObjects = PlayField?.ListDrawableKaraokeObject?? new List<Objects.Drawables.IAmDrawableKaraokeObject>();
+            var listKaraokeObjects = new List<KaraokeObject>();
+            foreach (var single in listObjects)
+                listKaraokeObjects.Add(single.KaraokeObject);
+
+            ItemsScrollContainer.Sets = listKaraokeObjects;
         }
     }
 
-    public class ListLyricsScrollContainer : ItemsScrollContainer<KaraokeObject, TranslateCell>
+    public class ListLyricsScrollContainer : ItemsScrollContainer<KaraokeObject, LyricsCell>
     {
         public ListLyricsScrollContainer()
         {
@@ -77,9 +98,63 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Dialog
 
     public class LyricsCell : DrawableItems<KaraokeObject>
     {
+        public OsuTextBox LyricsTextbox { get; set; }
+        public OsuTextBox StartTimeTextbox { get; set; }
+        public OsuSpriteText ToLabel { get; set; }
+        public OsuTextBox EndTimeTextbox { get; set; }
+
+        public FillFlowContainer<Drawable> FillFlowContainer { get; set; }
+
+        //TODO : Get or set the value
+        public override KaraokeObject BeatmapSetInfo
+        {
+            get => base.BeatmapSetInfo;
+            set
+            {
+                base.BeatmapSetInfo = value;
+                LyricsTextbox.Text = BeatmapSetInfo?.MainText?.Text;
+            }
+        }
+
         public LyricsCell() 
         {
-
+            Height = 40;
+            
+        }
+        protected override void InitialView()
+        {
+            //Initial view
+            base.InitialView();
+            //add
+            this.Add(FillFlowContainer = new FillFlowContainer<Drawable>()
+            {
+                Direction = FillDirection.Horizontal,
+                Position = new OpenTK.Vector2(20, 0),
+                Spacing = new OpenTK.Vector2(10, 0),
+                Children = new Drawable[]
+                {
+                    LyricsTextbox=new FocusedTextBox()
+                    {
+                        Width=350,
+                        Height=35,
+                    },
+                    StartTimeTextbox=new TimeTextBox()
+                    {
+                        Width=70,
+                        Height=35,
+                    },
+                    ToLabel=new OsuSpriteText()
+                    {
+                        //Width=10,
+                        Text=" ~ "
+                    },
+                    EndTimeTextbox=new TimeTextBox()
+                    {
+                        Width=70,
+                        Height=35,
+                    },
+                }
+            });
         }
     }
 }

@@ -238,7 +238,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
     public class DrawableItems<TItem> : Container, IFilterable, IDraggable where TItem : IHasPrimaryKey
     {
         private const float fade_duration = 100;
-        public TItem BeatmapSetInfo { get; set; }
+        public virtual TItem BeatmapSetInfo { get; set; }
 
 
         public DrawableItems()

@@ -109,7 +109,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Dialog
             {
                 new Box
                 {
-                    Colour = new Color4(15, 15, 15, 255),
+                    Colour = new Color4(50, 50, 50, 255),//Colour = new Color4(15, 15, 15, 255),
                     RelativeSizeAxes = Axes.Both,
                     Depth = 0
                 },
