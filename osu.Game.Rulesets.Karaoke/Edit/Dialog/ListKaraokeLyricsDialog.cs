@@ -17,7 +17,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Dialog
     /// </summary>
     class ListKaraokeLyricsDialog : DialogContainer
     {
-        protected ItemsScrollContainer ItemsScrollContainer { get; set; }
+        protected ListLyricsScrollContainer ItemsScrollContainer { get; set; }
         public FilterTextBox Search;
 
         public ListKaraokeLyricsDialog(KaraokeEditPlayfield playField)
@@ -42,7 +42,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Dialog
                   ItemsScrollContainer.SearchTerm = newString;
               };
 
-            MainContext.Add(ItemsScrollContainer = new ItemsScrollContainer()
+            MainContext.Add(ItemsScrollContainer = new ListLyricsScrollContainer()
             {
                 Position=new OpenTK.Vector2(0,40),
                 Width=550,
@@ -65,13 +65,24 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Dialog
             
             base.InitialDialog();
         }
+    }
 
-        public class LyricsViewCell
+    public class ListLyricsScrollContainer : ItemsScrollContainer<KaraokeObject, TranslateCell>
+    {
+        public ListLyricsScrollContainer()
+        {
+
+        }
+    }
+
+    public class LyricsCell : DrawableItems<KaraokeObject>
+    {
+        public LyricsCell(KaraokeObject beatmapSetInfo) : base(beatmapSetInfo)
         {
 
         }
 
-        public class LyricsEditCell
+        public LyricsCell() : base(null)
         {
 
         }

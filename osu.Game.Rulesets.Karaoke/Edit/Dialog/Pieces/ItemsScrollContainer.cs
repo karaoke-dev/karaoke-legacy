@@ -23,12 +23,12 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
     /// <summary>
     /// Dragable item source container
     /// </summary>
-    public class ItemsScrollContainer : OsuScrollContainer
+    public class ItemsScrollContainer<TItem,TDrawable> : OsuScrollContainer where TItem : class,IHasPrimaryKey where TDrawable : DrawableItems<TItem>,new()
     {
-        public Action<IHasPrimaryKey> OnSelect;
+        public Action<TItem> OnSelect;
 
         private readonly SearchContainer search;
-        private readonly FillFlowContainer<DrawableItems> items;
+        private readonly FillFlowContainer<TDrawable> items;
 
         public ItemsScrollContainer()
         {
@@ -40,7 +40,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
                     AutoSizeAxes = Axes.Y,
                     Children = new Drawable[]
                     {
-                        items = new ItemSearchContainer
+                        items = new ItemSearchContainer<TItem,TDrawable>
                         {
                             RelativeSizeAxes = Axes.X,
                             AutoSizeAxes = Axes.Y,
@@ -50,7 +50,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
             };
         }
 
-        public IEnumerable<IHasPrimaryKey> Sets
+        public IEnumerable<TItem> Sets
         {
             get { return items.Select(x => x.BeatmapSetInfo).ToList(); }
             set
@@ -66,38 +66,49 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
             set { search.SearchTerm = value; }
         }
 
-        public virtual void AddBeatmapSet(IHasPrimaryKey beatmapSet)
+        public virtual void AddBeatmapSet(TItem beatmapSet)
         {
-            items.Add(new DrawableItems(beatmapSet)
+            /*
+            items.Add(new TDrawable(beatmapSet)
             {
+                OnSelect = set => OnSelect?.Invoke(set),
+                Depth = items.Count
+            });
+             */
+            items.Add(new TDrawable()
+            {
+                BeatmapSetInfo= beatmapSet,
                 OnSelect = set => OnSelect?.Invoke(set),
                 Depth = items.Count
             });
         }
 
-        public virtual void RemoveBeatmapSet(IHasPrimaryKey beatmapSet)
+        public virtual void RemoveBeatmapSet(TItem beatmapSet)
         {
             var itemToRemove = items.FirstOrDefault(i => i.BeatmapSetInfo.ID == beatmapSet.ID);
             if (itemToRemove != null)
                 items.Remove(itemToRemove);
         }
 
-        public IHasPrimaryKey SelectedSet
+        public TItem SelectedSet
         {
-            get { return items.FirstOrDefault(i => i.Selected)?.BeatmapSetInfo; }
+            get
+            {
+                return items.FirstOrDefault(i => i.Selected)?.BeatmapSetInfo ;
+            }
             set
             {
-                foreach (DrawableItems s in items.Children)
+                foreach (TDrawable s in items.Children)
                     s.Selected = s.BeatmapSetInfo.ID == value?.ID;
             }
         }
 
-        public IHasPrimaryKey FirstVisibleSet => items.FirstOrDefault(i => i.MatchingFilter)?.BeatmapSetInfo;
-        public IHasPrimaryKey NextSet => (items.SkipWhile(i => !i.Selected).Skip(1).FirstOrDefault() ?? items.FirstOrDefault())?.BeatmapSetInfo;
-        public IHasPrimaryKey PreviousSet => (items.TakeWhile(i => !i.Selected).LastOrDefault() ?? items.LastOrDefault())?.BeatmapSetInfo;
+        public TItem FirstVisibleSet => items.FirstOrDefault(i => i.MatchingFilter)?.BeatmapSetInfo;
+        public TItem NextSet => (items.SkipWhile(i => !i.Selected).Skip(1).FirstOrDefault() ?? items.FirstOrDefault())?.BeatmapSetInfo;
+        public TItem PreviousSet => (items.TakeWhile(i => !i.Selected).LastOrDefault() ?? items.LastOrDefault())?.BeatmapSetInfo;
 
         private Vector2 nativeDragPosition;
-        private DrawableItems draggedItem;
+        private TDrawable draggedItem;
 
         protected override bool OnDragStart(InputState state)
         {
@@ -197,97 +208,102 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
             items.ChangeChildDepth(draggedItem, dstIndex);
         }
 
-        /// <summary>
-        /// searchable container
-        /// </summary>
-        public class ItemSearchContainer : FillFlowContainer<DrawableItems>, IHasFilterableChildren
+        
+
+        
+    }
+
+    /// <summary>
+    /// searchable container
+    /// </summary>
+    public class ItemSearchContainer<TItem, TDrawable> : FillFlowContainer<TDrawable>, IHasFilterableChildren where TDrawable : DrawableItems<TItem> where TItem : IHasPrimaryKey
+    {
+        public IEnumerable<string> FilterTerms => new string[] { };
+
+        public bool MatchingFilter
         {
-            public IEnumerable<string> FilterTerms => new string[] { };
-
-            public bool MatchingFilter
+            set
             {
-                set
-                {
-                    if (value)
-                        InvalidateLayout();
-                }
-            }
-
-            // Compare with reversed ChildID and Depth
-            protected override int Compare(Drawable x, Drawable y) => base.Compare(y, x);
-
-            public IEnumerable<IFilterable> FilterableChildren => Children;
-
-            public ItemSearchContainer()
-            {
-                LayoutDuration = 200;
-                LayoutEasing = Easing.OutQuint;
-                Direction = FillDirection.Vertical;
+                if (value)
+                    InvalidateLayout();
             }
         }
 
-        /// <summary>
-        /// drawable Item
-        /// </summary>
-        public class DrawableItems : Container, IFilterable, IDraggable
+        // Compare with reversed ChildID and Depth
+        protected override int Compare(Drawable x, Drawable y) => base.Compare(y, x);
+
+        public IEnumerable<IFilterable> FilterableChildren => Children;
+
+        public ItemSearchContainer()
         {
-            private const float fade_duration = 100;
-            public IHasPrimaryKey BeatmapSetInfo { get; set; }
-            public DrawableItems(IHasPrimaryKey beatmapSetInfo)
+            LayoutDuration = 200;
+            LayoutEasing = Easing.OutQuint;
+            Direction = FillDirection.Vertical;
+        }
+    }
+
+    /// <summary>
+    /// drawable Item
+    /// </summary>
+    public class DrawableItems<TItem> : Container, IFilterable, IDraggable where TItem : IHasPrimaryKey
+    {
+        private const float fade_duration = 100;
+        public TItem BeatmapSetInfo { get; set; }
+        public DrawableItems(TItem beatmapSetInfo)
+        {
+            RelativeSizeAxes = Axes.X;
+            BeatmapSetInfo = beatmapSetInfo;
+        }
+
+        private bool matching = true;
+
+        public bool MatchingFilter
+        {
+            get { return matching; }
+            set
             {
-                RelativeSizeAxes = Axes.X;
-                BeatmapSetInfo = beatmapSetInfo;
+                if (matching == value) return;
+                matching = value;
+                this.FadeTo(matching ? 1 : 0, 200);
             }
+        }
 
-            private bool matching = true;
-
-            public bool MatchingFilter
+        private bool selected;
+        public bool Selected
+        {
+            get { return selected; }
+            set
             {
-                get { return matching; }
-                set
-                {
-                    if (matching == value) return;
-                    matching = value;
-                    this.FadeTo(matching ? 1 : 0, 200);
-                }
+                if (value == selected) return;
+                selected = value;
+
+                FinishTransforms(true);
+                /*
+                foreach (SpriteText s in titleSprites)
+                    s.FadeColour(Selected ? hoverColour : Color4.White, fade_duration);
+                    */
             }
+        }
 
-            private bool selected;
-            public bool Selected
+        private SpriteIcon handle;
+        public bool IsDraggable => handle.IsHovered;
+
+        public IEnumerable<string> FilterTerms { get; private set; } = new List<string>() { "add" };
+        public Action<TItem> OnSelect;
+
+        private Color4 hoverColour;
+        private Color4 artistColour;
+
+        [BackgroundDependencyLoader]
+        private void load(OsuColour colours, LocalisationEngine localisation)
+        {
+            hoverColour = colours.Yellow;
+            artistColour = colours.Gray9;
+
+            Height = 20;
+
+            Children = new Drawable[]
             {
-                get { return selected; }
-                set
-                {
-                    if (value == selected) return;
-                    selected = value;
-
-                    FinishTransforms(true);
-                    /*
-                    foreach (SpriteText s in titleSprites)
-                        s.FadeColour(Selected ? hoverColour : Color4.White, fade_duration);
-                        */
-                }
-            }
-
-            private SpriteIcon handle;
-            public bool IsDraggable => handle.IsHovered;
-
-            public IEnumerable<string> FilterTerms { get; private set; } = new List<string>() { "add" };
-            public Action<IHasPrimaryKey> OnSelect;
-
-            private Color4 hoverColour;
-            private Color4 artistColour;
-
-            [BackgroundDependencyLoader]
-            private void load(OsuColour colours, LocalisationEngine localisation)
-            {
-                hoverColour = colours.Yellow;
-                artistColour = colours.Gray9;
-
-                Height = 50;
-
-                Children = new Drawable[]
-                {
                     handle = new PlaylistItemHandle
                     {
                         Colour = colours.Gray5
@@ -299,39 +315,38 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
                         Text = "Test",
                         Alpha = 0.8f,
                     },
-                };
-            }
+            };
+        }
 
-            protected override bool OnHover(InputState state)
+        protected override bool OnHover(InputState state)
+        {
+            handle.FadeIn(fade_duration);
+
+            return base.OnHover(state);
+        }
+
+        protected override void OnHoverLost(InputState state)
+        {
+            handle.FadeOut(fade_duration);
+        }
+
+        protected override bool OnClick(InputState state)
+        {
+            OnSelect?.Invoke(BeatmapSetInfo);
+            return true;
+        }
+
+        private class PlaylistItemHandle : SpriteIcon
+        {
+
+            public PlaylistItemHandle()
             {
-                handle.FadeIn(fade_duration);
-
-                return base.OnHover(state);
-            }
-
-            protected override void OnHoverLost(InputState state)
-            {
-                handle.FadeOut(fade_duration);
-            }
-
-            protected override bool OnClick(InputState state)
-            {
-                OnSelect?.Invoke(BeatmapSetInfo);
-                return true;
-            }
-
-            private class PlaylistItemHandle : SpriteIcon
-            {
-
-                public PlaylistItemHandle()
-                {
-                    Anchor = Anchor.TopLeft;
-                    Origin = Anchor.TopLeft;
-                    Size = new Vector2(12);
-                    Icon = FontAwesome.fa_bars;
-                    Alpha = 0f;
-                    Margin = new MarginPadding { Left = 5, Top = 2 };
-                }
+                Anchor = Anchor.TopLeft;
+                Origin = Anchor.TopLeft;
+                Size = new Vector2(12);
+                Icon = FontAwesome.fa_bars;
+                Alpha = 0f;
+                Margin = new MarginPadding { Left = 5, Top = 2 };
             }
         }
     }
