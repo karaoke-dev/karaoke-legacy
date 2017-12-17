@@ -8,6 +8,7 @@ using osu.Framework.Graphics.Sprites;
 using osu.Framework.Input;
 using osu.Framework.Localisation;
 using osu.Game.Beatmaps;
+using osu.Game.Database;
 using osu.Game.Graphics;
 using osu.Game.Graphics.Containers;
 using osu.Game.Overlays.Music;
@@ -24,7 +25,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
     /// </summary>
     public class ItemsScrollContainer : OsuScrollContainer
     {
-        public Action<BeatmapSetInfo> OnSelect;
+        public Action<IHasPrimaryKey> OnSelect;
 
         private readonly SearchContainer search;
         private readonly FillFlowContainer<DrawableItems> items;
@@ -49,7 +50,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
             };
         }
 
-        public IEnumerable<BeatmapSetInfo> Sets
+        public IEnumerable<IHasPrimaryKey> Sets
         {
             get { return items.Select(x => x.BeatmapSetInfo).ToList(); }
             set
@@ -65,7 +66,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
             set { search.SearchTerm = value; }
         }
 
-        public virtual void AddBeatmapSet(BeatmapSetInfo beatmapSet)
+        public virtual void AddBeatmapSet(IHasPrimaryKey beatmapSet)
         {
             items.Add(new DrawableItems(beatmapSet)
             {
@@ -74,14 +75,14 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
             });
         }
 
-        public virtual void RemoveBeatmapSet(BeatmapSetInfo beatmapSet)
+        public virtual void RemoveBeatmapSet(IHasPrimaryKey beatmapSet)
         {
             var itemToRemove = items.FirstOrDefault(i => i.BeatmapSetInfo.ID == beatmapSet.ID);
             if (itemToRemove != null)
                 items.Remove(itemToRemove);
         }
 
-        public BeatmapSetInfo SelectedSet
+        public IHasPrimaryKey SelectedSet
         {
             get { return items.FirstOrDefault(i => i.Selected)?.BeatmapSetInfo; }
             set
@@ -91,9 +92,9 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
             }
         }
 
-        public BeatmapSetInfo FirstVisibleSet => items.FirstOrDefault(i => i.MatchingFilter)?.BeatmapSetInfo;
-        public BeatmapSetInfo NextSet => (items.SkipWhile(i => !i.Selected).Skip(1).FirstOrDefault() ?? items.FirstOrDefault())?.BeatmapSetInfo;
-        public BeatmapSetInfo PreviousSet => (items.TakeWhile(i => !i.Selected).LastOrDefault() ?? items.LastOrDefault())?.BeatmapSetInfo;
+        public IHasPrimaryKey FirstVisibleSet => items.FirstOrDefault(i => i.MatchingFilter)?.BeatmapSetInfo;
+        public IHasPrimaryKey NextSet => (items.SkipWhile(i => !i.Selected).Skip(1).FirstOrDefault() ?? items.FirstOrDefault())?.BeatmapSetInfo;
+        public IHasPrimaryKey PreviousSet => (items.TakeWhile(i => !i.Selected).LastOrDefault() ?? items.LastOrDefault())?.BeatmapSetInfo;
 
         private Vector2 nativeDragPosition;
         private DrawableItems draggedItem;
@@ -230,8 +231,8 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
         public class DrawableItems : Container, IFilterable, IDraggable
         {
             private const float fade_duration = 100;
-            public BeatmapSetInfo BeatmapSetInfo { get; set; }
-            public DrawableItems(BeatmapSetInfo beatmapSetInfo)
+            public IHasPrimaryKey BeatmapSetInfo { get; set; }
+            public DrawableItems(IHasPrimaryKey beatmapSetInfo)
             {
                 BeatmapSetInfo = beatmapSetInfo;
             }
@@ -270,7 +271,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
             public bool IsDraggable => handle.IsHovered;
 
             public IEnumerable<string> FilterTerms { get; private set; }
-            public Action<BeatmapSetInfo> OnSelect;
+            public Action<IHasPrimaryKey> OnSelect;
 
             private Color4 hoverColour;
             private Color4 artistColour;
