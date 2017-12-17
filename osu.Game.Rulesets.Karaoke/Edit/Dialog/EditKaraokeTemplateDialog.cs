@@ -17,7 +17,6 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Dialog
         public class DrawableKaraokeTemplate
         {
 
-
         }
 
     }

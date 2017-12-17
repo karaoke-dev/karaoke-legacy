@@ -51,16 +51,18 @@
     <Reference Include="System.Drawing" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Edit\Drawables\Dialog\EditKaraokeTemplateDialog.cs" />
-    <Compile Include="Edit\Drawables\Dialog\ListKaraokeLyricsDialog.cs" />
-    <Compile Include="Edit\Drawables\Dialog\ListKaraokeTranslateDialog.cs" />
-    <Compile Include="Edit\Drawables\Dialog\LoadSaveDialog.cs" />
+    <Compile Include="Edit\Dialog\EditKaraokeTemplateDialog.cs" />
+    <Compile Include="Edit\Dialog\ListKaraokeLyricsDialog.cs" />
+    <Compile Include="Edit\Dialog\ListKaraokeTranslateDialog.cs" />
+    <Compile Include="Edit\Dialog\LoadSaveDialog.cs" />
+    <Compile Include="Edit\Dialog\Pieces\ItemsScrollContainer.cs" />
+    <Compile Include="Edit\Dialog\Pieces\LockPiece.cs" />
     <Compile Include="Edit\Drawables\DrawableEditableKaraokeObject.cs" />
     <Compile Include="Edit\Drawables\DrawableKaraokeThumbnail.cs" />
     <Compile Include="Edit\Drawables\Pieces\EditableMainKaraokeText.cs" />
     <Compile Include="Edit\Drawables\Pieces\EditableProgressPoint.cs" />
-    <Compile Include="Edit\Drawables\Dialog\EditKaraokeTextDialog.cs" />
-    <Compile Include="Edit\Drawables\Dialog\DialogContainer.cs" />
+    <Compile Include="Edit\Dialog\EditKaraokeTextDialog.cs" />
+    <Compile Include="Edit\Dialog\DialogContainer.cs" />
     <Compile Include="Edit\KaraokeEditPlayfield.cs" />
     <Compile Include="Edit\KaraokeEditRulesetContainer.cs" />
     <Compile Include="Edit\KaraokeHitObjectComposer.cs" />
