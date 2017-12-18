@@ -53,7 +53,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Dialog
             {
                 Position = new OpenTK.Vector2(0, 40),
                 Width = 600,
-                Height = 300,
+                Height = 260,
                 
                 Sets=new List<KaraokeObject>()
                 {
