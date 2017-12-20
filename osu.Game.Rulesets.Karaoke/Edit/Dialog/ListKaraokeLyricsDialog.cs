@@ -99,9 +99,9 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Dialog
     public class LyricsCell : DrawableItems<KaraokeObject>
     {
         public OsuTextBox LyricsTextbox { get; set; }
-        public OsuTextBox StartTimeTextbox { get; set; }
+        public TimeTextBox StartTimeTextbox { get; set; }
         public OsuSpriteText ToLabel { get; set; }
-        public OsuTextBox EndTimeTextbox { get; set; }
+        public TimeTextBox EndTimeTextbox { get; set; }
 
         public FillFlowContainer<Drawable> FillFlowContainer { get; set; }
 
@@ -113,6 +113,8 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Dialog
             {
                 base.BeatmapSetInfo = value;
                 LyricsTextbox.Text = BeatmapSetInfo?.MainText?.Text;
+                StartTimeTextbox.TimeValue = BeatmapSetInfo?.StartTime ?? 0;
+                EndTimeTextbox.TimeValue = BeatmapSetInfo?.EndTime ?? 0;
             }
         }
 
@@ -140,7 +142,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Dialog
                     },
                     StartTimeTextbox=new TimeTextBox()
                     {
-                        Width=70,
+                        Width=80,
                         Height=35,
                     },
                     ToLabel=new OsuSpriteText()
@@ -150,7 +152,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Dialog
                     },
                     EndTimeTextbox=new TimeTextBox()
                     {
-                        Width=70,
+                        Width=80,
                         Height=35,
                     },
                 }
