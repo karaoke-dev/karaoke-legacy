@@ -23,14 +23,14 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
     /// <summary>
     /// Dragable item source container
     /// </summary>
-    public class ItemsScrollContainer<TItem,TDrawable> : OsuScrollContainer where TItem : class,IHasPrimaryKey where TDrawable : DrawableItems<TItem>,new()
+    public class TableView<TItem,TDrawable> : OsuScrollContainer where TItem : class,IHasPrimaryKey where TDrawable : TableViewCell<TItem>,new()
     {
         public Action<TItem> OnSelect;
 
         private readonly SearchContainer search;
         private readonly FillFlowContainer<TDrawable> items;
 
-        public ItemsScrollContainer()
+        public TableView()
         {
             Children = new Drawable[]
             {
@@ -40,7 +40,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
                     AutoSizeAxes = Axes.Y,
                     Children = new Drawable[]
                     {
-                        items = new ItemSearchContainer<TItem,TDrawable>
+                        items = new TableViewContainer<TItem,TDrawable>
                         {
                             RelativeSizeAxes = Axes.X,
                             AutoSizeAxes = Axes.Y,
@@ -200,48 +200,48 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
 
             items.ChangeChildDepth(draggedItem, dstIndex);
         }
-    }
 
-    /// <summary>
-    /// searchable container
-    /// </summary>
-    public class ItemSearchContainer<TItem, TDrawable> : FillFlowContainer<TDrawable>, IHasFilterableChildren where TDrawable : DrawableItems<TItem> where TItem : IHasPrimaryKey
-    {
-        public IEnumerable<string> FilterTerms => new string[] { };
-
-        public bool MatchingFilter
+        /// <summary>
+        /// searchable container
+        /// </summary>
+        public class TableViewContainer<T_Item, T_Drawable> : FillFlowContainer<TDrawable>, IHasFilterableChildren where T_Drawable : TableViewCell<TItem> where T_Item : IHasPrimaryKey
         {
-            set
+            public IEnumerable<string> FilterTerms => new string[] { };
+
+            public bool MatchingFilter
             {
-                if (value)
-                    InvalidateLayout();
+                set
+                {
+                    if (value)
+                        InvalidateLayout();
+                }
+            }
+
+            // Compare with reversed ChildID and Depth
+            protected override int Compare(Drawable x, Drawable y) => base.Compare(y, x);
+
+            public IEnumerable<IFilterable> FilterableChildren => Children;
+
+            public TableViewContainer()
+            {
+                LayoutDuration = 200;
+                LayoutEasing = Easing.OutQuint;
+                Direction = FillDirection.Vertical;
             }
         }
-
-        // Compare with reversed ChildID and Depth
-        protected override int Compare(Drawable x, Drawable y) => base.Compare(y, x);
-
-        public IEnumerable<IFilterable> FilterableChildren => Children;
-
-        public ItemSearchContainer()
-        {
-            LayoutDuration = 200;
-            LayoutEasing = Easing.OutQuint;
-            Direction = FillDirection.Vertical;
-        }
-    }
+    } 
 
     /// <summary>
     /// drawable Item
     /// From : osu.Game.Overlays.Music : PlaylistItem.cs
     /// </summary>
-    public class DrawableItems<TItem> : Container, IFilterable, IDraggable where TItem : IHasPrimaryKey
+    public class TableViewCell<TItem> : Container, IFilterable, IDraggable where TItem : IHasPrimaryKey
     {
         private const float fade_duration = 100;
         public virtual TItem BeatmapSetInfo { get; set; }
 
 
-        public DrawableItems()
+        public TableViewCell()
         {
             Height = 20;
             RelativeSizeAxes = Axes.X;
@@ -297,14 +297,14 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
         public IEnumerable<string> FilterTerms { get; private set; } = new List<string>() { "add" };
         public Action<TItem> OnSelect;
 
-        private Color4 hoverColour;
-        private Color4 artistColour;
+        protected Color4 HoverColour;
+        protected Color4 ArtistColour;
 
         [BackgroundDependencyLoader]
         private void load(OsuColour colours, LocalisationEngine localisation)
         {
-            hoverColour = colours.Yellow;
-            artistColour = colours.Gray9;
+            HoverColour = colours.Yellow;
+            ArtistColour = colours.Gray9;
         }
 
         protected override bool OnHover(InputState state)

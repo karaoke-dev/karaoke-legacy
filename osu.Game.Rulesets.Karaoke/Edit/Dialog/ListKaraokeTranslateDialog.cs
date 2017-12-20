@@ -96,7 +96,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Dialog
         }
     }
 
-    public class ListTranslateScrollContainer : ItemsScrollContainer<KaraokeObject, TranslateCell>
+    public class ListTranslateScrollContainer : TableView<KaraokeObject, TranslateCell>
     {
         public ListTranslateScrollContainer()
         {
@@ -111,7 +111,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Dialog
         }
     }
 
-    public class TranslateCell : DrawableItems<KaraokeObject>
+    public class TranslateCell : KaraokeBaseTableViewCell<KaraokeObject>
     {
         public OsuTextBox LyricsTextbox { get; set; }//Lyric
         public OsuTextBox TranslateTextbox { get; set; }//Translate
@@ -145,7 +145,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Dialog
                 Spacing = new OpenTK.Vector2(10, 0),
                 Children = new Drawable[]
                 {
-                    LyricsTextbox=new FocusedTextBox()
+                    LyricsTextbox=new OsuTextBox()
                     {
                         Width=310,
                         Height=35,

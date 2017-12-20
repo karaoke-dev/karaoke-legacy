@@ -56,7 +56,8 @@
     <Compile Include="Edit\Dialog\ListKaraokeTranslateDialog.cs" />
     <Compile Include="Edit\Dialog\LoadSaveDialog.cs" />
     <Compile Include="Edit\Dialog\Pieces\EnumDropdown.cs" />
-    <Compile Include="Edit\Dialog\Pieces\ItemsScrollContainer.cs" />
+    <Compile Include="Edit\Dialog\Pieces\KaraokeBaseTableViewCell.cs" />
+    <Compile Include="Edit\Dialog\Pieces\TableView.cs" />
     <Compile Include="Edit\Dialog\Pieces\LockPiece.cs" />
     <Compile Include="Edit\Dialog\Pieces\TimeTextBox.cs" />
     <Compile Include="Edit\Drawables\DrawableEditableKaraokeObject.cs" />
