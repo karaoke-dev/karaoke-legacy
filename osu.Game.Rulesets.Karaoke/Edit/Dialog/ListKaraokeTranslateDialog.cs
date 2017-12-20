@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static osu.Game.Overlays.Music.FilterControl;
 
 namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Dialog
 {
@@ -16,6 +17,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Dialog
     {
         protected KaraokeEditPlayfield PlayField;
         protected ListTranslateScrollContainer ItemsScrollContainer { get; set; }
+        public FilterTextBox Search;
         protected EnumDropdown<TranslateCode> Dropdown { get; set; }
 
         public ListKaraokeTranslateDialog(KaraokeEditPlayfield playField)
@@ -28,23 +30,33 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Dialog
 
         public override void InitialDialog()
         {
-
-            MainContext.Add(Dropdown = new EnumDropdown<TranslateCode>()
+            //add search bar and language selector
+            MainContext.Add(new FillFlowContainer()
             {
-                Position = new OpenTK.Vector2(20, 10),
-                Width = 200,
-                Scale=new OpenTK.Vector2(0.6f),
-                Depth=-10,
-                //RelativeSizeAxes = Axes.Y,
-                //MaximumSize=new OpenTK.Vector2(200,200)
-                
+                RelativeSizeAxes = Axes.X,
+                Height=40,
+                Direction= FillDirection.Horizontal,
+                Spacing=new OpenTK.Vector2(10,0),
+                Depth = -10,
+                Children = new Drawable[]
+                {
+                    Search = new FilterTextBox
+                    {
+                        //RelativeSizeAxes = Axes.X,
+                        Width=400,
+                        Height = 40,
+                    },
+                    Dropdown = new EnumDropdown<TranslateCode>()
+                    {
+                        Position = new OpenTK.Vector2(20, 10),
+                        Width = 200,
+                        Scale=new OpenTK.Vector2(0.8f),
+                        
+                        //MaximumSize=new OpenTK.Vector2(200,200)
+                        Margin=new MarginPadding(5)
+                    }
+                }
             });
-            Dropdown.DropdownContainer.MaxHeight = 250;
-            Dropdown.Current.ValueChanged += (translateCode) =>
-              {
-                  //TODO : value changed
-                  ItemsScrollContainer.SetCurrentLanguage(translateCode);
-              };
 
             //
             MainContext.Add(ItemsScrollContainer = new ListTranslateScrollContainer()
@@ -53,6 +65,22 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Dialog
                 Width = 600,
                 Height = 260,
             });
+
+            //if search new word
+            Search.Current.ValueChanged += (newString) =>
+            {
+                ItemsScrollContainer.SearchTerm = newString;
+            };
+            //
+            Dropdown.DropdownContainer.MaxHeight = 250;
+            //
+            Dropdown.Current.ValueChanged += (translateCode) =>
+            {
+                //TODO : value changed
+                ItemsScrollContainer.SetCurrentLanguage(translateCode);
+            };
+
+           
 
             base.InitialDialog();
         }
@@ -122,7 +150,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Dialog
                         Width=310,
                         Height=35,
                     },
-                    TranslateTextbox=new TimeTextBox()
+                    TranslateTextbox=new OsuTextBox()
                     {
                         Width=250,
                         Height=35,

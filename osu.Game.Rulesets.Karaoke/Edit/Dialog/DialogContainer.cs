@@ -95,7 +95,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Dialog
             //suggest not to modified this
             Masking = true;
             CornerRadius = 5;
-            AutoSizeAxes = Axes.X;
+            //AutoSizeAxes = Axes.X;
 
             InitialDialog();
         }

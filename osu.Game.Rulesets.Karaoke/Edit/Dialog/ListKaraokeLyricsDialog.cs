@@ -28,6 +28,9 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Dialog
         {
             PlayField = playField;
 
+            Width = 600;
+            Height = 400;
+
             //initial karaoke objects to set
             InitialItemsScrollContainerItems();
         }
@@ -53,7 +56,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Dialog
             {
                 Position = new OpenTK.Vector2(0, 40),
                 Width = 600,
-                Height = 260,
+                Height = 300,
                 
                 Sets=new List<KaraokeObject>()
                 {
