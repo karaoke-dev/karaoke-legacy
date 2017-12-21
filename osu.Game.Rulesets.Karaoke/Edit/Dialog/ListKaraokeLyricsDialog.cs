@@ -106,6 +106,8 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Dialog
         public OsuSpriteText ToLabel { get; set; }
         public TimeTextBox EndTimeTextbox { get; set; }
 
+        //加上isCombo 和 singer dropdownbox
+
         public FillFlowContainer<Drawable> FillFlowContainer { get; set; }
 
         //TODO : Get or set the value
