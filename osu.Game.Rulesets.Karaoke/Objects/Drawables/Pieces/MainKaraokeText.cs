@@ -58,8 +58,25 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Pieces
             }
             catch
             {
+                return GetTextEndPosition();
+            }
+        }
+
+        public float GetTextEndPosition()
+        {
+            try
+            {
+                if (ListCharEndPosition.Count == 0)
+                    return 700;
+
                 return ListCharEndPosition.Last();
             }
+            catch
+            {
+                //if private void load(FontStore store) not loaded,will run in here
+                return 700;
+            }
+            
         }
 
         public int GetIndexByPosition(float position)

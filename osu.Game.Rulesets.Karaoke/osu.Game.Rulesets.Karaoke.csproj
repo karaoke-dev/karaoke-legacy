@@ -55,6 +55,7 @@
     <Compile Include="Edit\Dialog\ListKaraokeLyricsDialog.cs" />
     <Compile Include="Edit\Dialog\ListKaraokeTranslateDialog.cs" />
     <Compile Include="Edit\Dialog\LoadSaveDialog.cs" />
+    <Compile Include="Edit\Dialog\Pieces\DrawableKaraokeTemplate.cs" />
     <Compile Include="Edit\Dialog\Pieces\EnumDropdown.cs" />
     <Compile Include="Edit\Dialog\Pieces\KaraokeBaseTableViewCell.cs" />
     <Compile Include="Edit\Dialog\Pieces\TableView.cs" />
@@ -78,6 +79,7 @@
     <Compile Include="Objects\Drawables\Pieces\ImagePicec.cs" />
     <Compile Include="Objects\Drawables\Pieces\KaraokeText.cs" />
     <Compile Include="Objects\Drawables\Pieces\MainKaraokeText.cs" />
+    <Compile Include="Edit\Dialog\Pieces\RevertableTextbox.cs" />
     <Compile Include="Objects\Drawables\Pieces\TextsAndMask.cs" />
     <Compile Include="Objects\KaraokeInfo.cs" />
     <Compile Include="Objects\KaraokeObject.cs" />

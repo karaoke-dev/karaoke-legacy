@@ -12,7 +12,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
     /// set the rule to change the input time format to --:--.--
     /// osu.Game.Screens.Edit.Components : TimeInfoContainer.cs
     /// </summary>
-    public class TimeTextBox : OsuTextBox
+    public class TimeTextBox : RevertableTextbox<double>
     {
         public double _timeValue;
         public double TimeValue

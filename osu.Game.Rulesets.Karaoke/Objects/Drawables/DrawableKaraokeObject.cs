@@ -106,22 +106,28 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables
             TranslateText.TextObject = Template?.TranslateText;
             TranslateText.Colour = Template?.TranslateTextColor ?? Color4.White;
 
-            float width = KaraokeObject.Width ?? (Template?.Width ?? 700);
-            float height = KaraokeObject.Height ?? (Template?.Height ?? 100);
-            SetWidth(width);
-            SetHeight(height);
+            Width = TextsAndMaskPiece.MainKaraokeText.GetTextEndPosition();//KaraokeObject.Width ?? (Template?.Width ?? 700);
+            Height = KaraokeObject.Height ?? (Template?.Height ?? 100);
         }
 
-        public void SetWidth(float width)
+        public override float Width
         {
-            TextsAndMaskPiece.SetWidth(width);
-            Width = width;
+            get => base.Width;
+            set
+            {
+                base.Width = value;
+                TextsAndMaskPiece.SetWidth(base.Width);
+            }
         }
 
-        public void SetHeight(float height)
+        public override float Height
         {
-            TextsAndMaskPiece.SetHeight(height);
-            Height = height;
+            get => base.Height;
+            set
+            {
+                base.Height = value;
+                TextsAndMaskPiece.SetHeight(base.Height);
+            }
         }
 
         protected override void Update()

@@ -11,13 +11,12 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Dialog
     /// </summary>
     class EditKaraokeTemplateDialog : DialogContainer
     {
-        /// <summary>
-        /// Karaoke edit template
-        /// </summary>
-        public class DrawableKaraokeTemplate
+        public EditKaraokeTemplateDialog(KaraokeEditPlayfield editPlayField)
         {
 
         }
+
+       
 
     }
 }
