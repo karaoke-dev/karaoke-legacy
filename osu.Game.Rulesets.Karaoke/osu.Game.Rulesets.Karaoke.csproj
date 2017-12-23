@@ -91,6 +91,7 @@
     <Compile Include="Judgements\KaraokeJudgement.cs" />
     <Compile Include="KaraokeDifficulty\KraokeDifficultyCalculator.cs" />
     <Compile Include="KaraokeInputManager.cs" />
+    <Compile Include="Objects\Types\ITextObject.cs" />
     <Compile Include="Replays\KaraokeReplayInputHandler.cs" />
     <Compile Include="Tests\TestCaseEditableMainKaraokeText.cs" />
     <Compile Include="Tests\TestCaseKaraokeObject.cs" />

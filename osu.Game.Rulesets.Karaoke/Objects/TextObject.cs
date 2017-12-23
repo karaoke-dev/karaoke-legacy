@@ -5,10 +5,11 @@ using System;
 using osu.Game.Rulesets.Objects.Types;
 using OpenTK;
 using osu.Game.Rulesets.Objects;
+using osu.Game.Rulesets.Karaoke.Objects.Types;
 
 namespace osu.Game.Rulesets.Karaoke.Objects
 {
-    public class TextObject : HitObject
+    public class TextObject : HitObject ,ITextObject
     {
         // <inheritdoc />
         /// <summary>
@@ -46,8 +47,6 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         /// size of the font
         /// </summary>
         public virtual int? FontSize { get; set; }
-
-
 
         public static TextObject operator +(TextObject object1, TextObject object2)
         {
