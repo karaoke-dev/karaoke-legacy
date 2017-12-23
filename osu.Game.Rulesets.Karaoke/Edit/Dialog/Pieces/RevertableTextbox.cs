@@ -1,5 +1,6 @@
 ﻿using OpenTK.Graphics;
 using osu.Framework.Allocation;
+using osu.Framework.Extensions.Color4Extensions;
 using osu.Game.Graphics;
 using osu.Game.Graphics.UserInterface;
 using System;
@@ -33,6 +34,10 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
     /// </summary>
     public class RevertableTextbox<T> : OsuTextBox
     {
+        protected override Color4 BackgroundUnfocused => HasEdited? Color4.Red.Opacity(0.1f): Color4.Black.Opacity(0.5f);
+        protected override Color4 BackgroundFocused => HasEdited ? Color4.Red.Opacity(0.3f) : OsuColour.Gray(0.3f).Opacity(0.8f);
+        protected override Color4 BackgroundCommit => HasEdited ? Color4.Red.Opacity(0.5f) : (Color4)BorderColour;
+
         /// <summary>
         /// OldValue
         /// </summary>
