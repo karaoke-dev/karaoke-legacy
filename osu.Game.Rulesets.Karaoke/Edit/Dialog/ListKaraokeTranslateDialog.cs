@@ -18,10 +18,12 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Dialog
         protected KaraokeEditPlayfield PlayField;
         protected ListTranslateScrollContainer ItemsScrollContainer { get; set; }
         public FilterTextBox Search;
-        protected EnumDropdown<TranslateCode> Dropdown { get; set; }
+        protected EnumDropdown<TranslateCode> Dropdown;
+        public TriangleButton AutoTranslateButton;
 
         public ListKaraokeTranslateDialog(KaraokeEditPlayfield playField)
         {
+            Title = "Translate";
             PlayField = playField;
 
             //initial karaoke objects to set
@@ -34,26 +36,37 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Dialog
             MainContext.Add(new FillFlowContainer()
             {
                 RelativeSizeAxes = Axes.X,
-                Height=40,
-                Direction= FillDirection.Horizontal,
-                Spacing=new OpenTK.Vector2(10,0),
+                Height = 40,
+                Direction = FillDirection.Horizontal,
+                Spacing = new OpenTK.Vector2(0, 0),
                 Depth = -10,
                 Children = new Drawable[]
                 {
                     Search = new FilterTextBox
                     {
                         //RelativeSizeAxes = Axes.X,
-                        Width=400,
+                        Width = 360,
                         Height = 40,
                     },
                     Dropdown = new EnumDropdown<TranslateCode>()
                     {
                         Position = new OpenTK.Vector2(20, 10),
-                        Width = 200,
+                        Width = 150,
                         Scale=new OpenTK.Vector2(0.8f),
                         
                         //MaximumSize=new OpenTK.Vector2(200,200)
                         Margin=new MarginPadding(5)
+                    },
+                    AutoTranslateButton = new TriangleButton
+                    {
+                        Width = 100,
+                        Height = 30,
+                        Text="Auto Translate",
+                        Margin=new MarginPadding(5),
+                        Action=()=>
+                        {
+                            //TODO : auto translate and call update each cell
+                        }
                     }
                 }
             });
@@ -79,7 +92,6 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Dialog
                 //TODO : value changed
                 ItemsScrollContainer.SetCurrentLanguage(translateCode);
             };
-
            
 
             base.InitialDialog();
@@ -106,8 +118,12 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Dialog
         public void SetCurrentLanguage(TranslateCode code)
         {
             //1. change lang to string
-
+            string LangCode = "";
             //2. change show translage type
+            foreach (var single in items)
+            {
+                single.ChangeLanguage(LangCode);
+            }
         }
     }
 
@@ -125,13 +141,22 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Dialog
             {
                 base.BeatmapSetInfo = value;
                 LyricsTextbox.OldValue = BeatmapSetInfo?.MainText?.Text;
-                TranslateTextbox.OldValue = BeatmapSetInfo?.ListTranslate.FirstOrDefault()?.Text;
             }
         }
 
+        //change language code
         public void ChangeLanguage(string langCode)
         {
-
+            if (BeatmapSetInfo != null)
+            {
+                foreach (var single in BeatmapSetInfo.ListTranslate)
+                {
+                    if (single.LangCode == langCode)
+                    {
+                        TranslateTextbox.OldValue = single.Text;
+                    }
+                }
+            }
         }
 
         public TranslateCell() 

@@ -27,8 +27,8 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
     {
         public Action<TItem> OnSelect;
 
-        private readonly SearchContainer search;
-        private readonly FillFlowContainer<TDrawable> items;
+        protected readonly SearchContainer search;
+        protected readonly FillFlowContainer<TDrawable> items;
 
         public TableView()
         {

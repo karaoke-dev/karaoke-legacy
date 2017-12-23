@@ -26,6 +26,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Dialog
 
         public ListKaraokeLyricsDialog(KaraokeEditPlayfield playField)
         {
+            Title = "Lyrics";
             PlayField = playField;
 
             Width = 600;
