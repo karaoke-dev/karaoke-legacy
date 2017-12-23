@@ -118,8 +118,8 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Dialog
             {
                 base.BeatmapSetInfo = value;
                 LyricsTextbox.OldValue = BeatmapSetInfo?.MainText?.Text;
-                StartTimeTextbox.TimeValue = BeatmapSetInfo?.StartTime ?? 0;
-                EndTimeTextbox.TimeValue = BeatmapSetInfo?.EndTime ?? 0;
+                StartTimeTextbox.OldValue = BeatmapSetInfo?.StartTime ?? 0;
+                EndTimeTextbox.OldValue = BeatmapSetInfo?.EndTime ?? 0;
             }
         }
 

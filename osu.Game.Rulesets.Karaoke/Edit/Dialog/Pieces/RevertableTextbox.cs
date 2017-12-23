@@ -41,15 +41,25 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
         /// <summary>
         /// OldValue
         /// </summary>
+        protected bool _isSettingLodValue;
         protected T _oldValue;
         public virtual T OldValue
         {
             get => _oldValue;
             set
             {
+                //set old value
+                _isSettingLodValue = true;
+
+                //revert
+                Revert();
+                //set old value
                 _oldValue = value;
+                //set it to text
                 ConvertOldValueToText();
-                HasEdited = false;
+
+                //end set old value;
+                _isSettingLodValue = false;
             }
         }
 
@@ -82,6 +92,11 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
         public virtual Color4 HasEditBorderColor { get; set; } = Color4.Red;
         private Color4 DefauleColor;
 
+        public RevertableTextbox()
+        {
+
+        }
+
         /// <summary>
         /// new value will be null and 
         /// </summary>
@@ -101,7 +116,9 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
             set
             {
                 base.Text = value;
-                ConvertTextToNewValue();
+
+                if (!_isSettingLodValue)
+                    ConvertTextToNewValue();
             }
         }
 

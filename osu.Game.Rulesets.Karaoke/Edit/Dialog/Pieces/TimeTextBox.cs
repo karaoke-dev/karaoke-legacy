@@ -14,17 +14,21 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
     /// </summary>
     public class TimeTextBox : RevertableTextbox<double>
     {
-        public double _timeValue;
-        public double TimeValue
+        public override double OldValue
         {
-            get => _timeValue;
+            get => base.OldValue;
             set
             {
-                if (value != _timeValue)
-                {
-                    _timeValue = value;
-                    this.Text = DoubleToString(_timeValue);
-                }
+                base.OldValue = value;
+            }
+        }
+
+        public override double NewValue
+        {
+            get => base.NewValue;
+            set
+            {
+                base.NewValue = value;
             }
         }
 
@@ -33,47 +37,66 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
             LengthLimit = 9;
             PlaceholderText = "00:00:000";
             Placeholder.FixedWidth = true;
-            Current.ValueChanged += (newString) =>
-              {
-                  if (Text.Length == 2 || Text.Length == 5)
-                  {
-                      var text = Text + ":";
-                      Text = text;
-                  }
-              };
+
+            //update string to new format
+            OnCommit += (a, isNewText) =>
+            {
+                UpdateTextToFormat();
+            };
         }
 
-        public override string Text
+        //start edit
+        protected override void OnFocus(InputState state)
         {
-            get => base.Text;
-            set
+            //disable update new value
+            _isSettingLodValue = true;
+
+            //Convert double to text
+            Text = HasEdited ? (NewValue / 1000).ToString() : (OldValue / 1000).ToString();
+
+            base.OnFocus(state);
+        }
+
+        //EndEdit
+        protected override void OnFocusLost(InputState state)
+        {
+            base.OnFocusLost(state);
+            UpdateTextToFormat();
+        }
+
+        public override void ConvertOldValueToText()
+        {
+            UpdateTextToFormat();
+            base.ConvertOldValueToText();
+        }
+
+        public override void ConvertTextToNewValue()
+        {
+            base.ConvertTextToNewValue();
+            try
             {
-                base.Text = value;
+                NewValue = double.Parse(Text);
+                NewValue = NewValue * 1000;
+            }
+            catch
+            {
 
-                /*
-                
-                    
-
-                /*
-                if (base.Text.EndsWith(".") || base.Text.EndsWith(":"))
-                    return;
-
-                */
-                //convert double to value
-                //if(Text.Length>5)
-                //    TimeValue = StringToDouble(base.Text);
             }
         }
 
         protected override bool OnKeyDown(InputState state, KeyDownEventArgs args)
         {
+            _isSettingLodValue = false;
             return base.OnKeyDown(state, args);
         }
 
-
-        protected  bool HandlePendingText(InputState state)
+        #region Function
+        //end edit
+        protected void UpdateTextToFormat()
         {
-            return base.HandlePendingText(state);
+            _isSettingLodValue = true;
+
+            Text = DoubleToString(HasEdited ? NewValue : OldValue);
         }
 
         protected string DoubleToString(double time)
@@ -88,5 +111,6 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
             double milliSecond = time.TotalMilliseconds/60;
             return milliSecond;
         }
+        #endregion
     }
 }
