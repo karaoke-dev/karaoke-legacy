@@ -58,22 +58,6 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Dialog
                 Position = new OpenTK.Vector2(0, 40),
                 Width = 600,
                 Height = 300,
-                
-                Sets=new List<KaraokeObject>()
-                {
-                    new KaraokeObject(){ ID=0},
-                    new KaraokeObject(){ ID=1},
-                    new KaraokeObject(){ ID=2},
-                    new KaraokeObject(){ ID=3},
-                    new KaraokeObject(){ ID=4},
-                    new KaraokeObject(){ ID=5},
-                    new KaraokeObject(){ ID=6},
-                    new KaraokeObject(){ ID=7},
-                    new KaraokeObject(){ ID=8},
-                    new KaraokeObject(){ ID=9},
-                    new KaraokeObject(){ ID=10},
-                }
-                
             });
             
             base.InitialDialog();
