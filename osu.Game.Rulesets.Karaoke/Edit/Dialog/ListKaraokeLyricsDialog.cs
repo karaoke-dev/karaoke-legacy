@@ -101,7 +101,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Dialog
 
     public class LyricsCell : KaraokeBaseTableViewCell<KaraokeObject>
     {
-        public OsuTextBox LyricsTextbox { get; set; }
+        public RevertableTextbox LyricsTextbox { get; set; }
         public TimeTextBox StartTimeTextbox { get; set; }
         public OsuSpriteText ToLabel { get; set; }
         public TimeTextBox EndTimeTextbox { get; set; }
@@ -117,7 +117,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Dialog
             set
             {
                 base.BeatmapSetInfo = value;
-                LyricsTextbox.Text = BeatmapSetInfo?.MainText?.Text;
+                LyricsTextbox.OldValue = BeatmapSetInfo?.MainText?.Text;
                 StartTimeTextbox.TimeValue = BeatmapSetInfo?.StartTime ?? 0;
                 EndTimeTextbox.TimeValue = BeatmapSetInfo?.EndTime ?? 0;
             }
@@ -126,8 +126,8 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Dialog
         public LyricsCell() 
         {
             Height = 40;
-            
         }
+
         protected override void InitialView()
         {
             //Initial view
@@ -140,7 +140,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Dialog
                 Spacing = new OpenTK.Vector2(10, 0),
                 Children = new Drawable[]
                 {
-                    LyricsTextbox=new OsuTextBox()
+                    LyricsTextbox=new RevertableTextbox()
                     {
                         Width=350,
                         Height=35,

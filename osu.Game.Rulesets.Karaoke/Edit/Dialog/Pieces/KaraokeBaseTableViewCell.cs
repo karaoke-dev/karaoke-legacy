@@ -25,6 +25,17 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
 
         }
 
+        //call to revert value
+        public virtual void Revert()
+        {
+
+        }
+
+        public virtual void Save()
+        {
+
+        }
+
         public CellTyle CellTyle { get; set; }
     }
 

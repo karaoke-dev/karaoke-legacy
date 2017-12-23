@@ -113,8 +113,8 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Dialog
 
     public class TranslateCell : KaraokeBaseTableViewCell<KaraokeObject>
     {
-        public OsuTextBox LyricsTextbox { get; set; }//Lyric
-        public OsuTextBox TranslateTextbox { get; set; }//Translate
+        public RevertableTextbox LyricsTextbox { get; set; }//Lyric
+        public RevertableTextbox TranslateTextbox { get; set; }//Translate
 
         public FillFlowContainer<Drawable> FillFlowContainer { get; set; }
 
@@ -124,8 +124,14 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Dialog
             set
             {
                 base.BeatmapSetInfo = value;
-                LyricsTextbox.Text = BeatmapSetInfo?.MainText?.Text;
+                LyricsTextbox.OldValue = BeatmapSetInfo?.MainText?.Text;
+                TranslateTextbox.OldValue = BeatmapSetInfo?.ListTranslate.FirstOrDefault()?.Text;
             }
+        }
+
+        public void ChangeLanguage(string langCode)
+        {
+
         }
 
         public TranslateCell() 
@@ -145,12 +151,12 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Dialog
                 Spacing = new OpenTK.Vector2(10, 0),
                 Children = new Drawable[]
                 {
-                    LyricsTextbox=new OsuTextBox()
+                    LyricsTextbox=new RevertableTextbox()
                     {
                         Width=310,
                         Height=35,
                     },
-                    TranslateTextbox=new OsuTextBox()
+                    TranslateTextbox=new RevertableTextbox()
                     {
                         Width=250,
                         Height=35,

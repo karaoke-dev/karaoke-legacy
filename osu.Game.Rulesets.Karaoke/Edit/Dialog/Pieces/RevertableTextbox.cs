@@ -41,7 +41,17 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
         /// <summary>
         /// OldValue
         /// </summary>
-        public virtual T OldValue { get; set; }
+        protected T _oldValue;
+        public virtual T OldValue
+        {
+            get => _oldValue;
+            set
+            {
+                _oldValue = value;
+                ConvertOldValueToText();
+                HasEdited = false;
+            }
+        }
 
         /// <summary>
         /// New value
@@ -58,9 +68,14 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
             {
                 _hasEdit = value;
                 if (_hasEdit)
+                {
+                    //this.Background.Colour = BackgroundUnfocused;
                     this.BorderColour = HasEditBorderColor;
+                }
                 else
+                {
                     this.BorderColour = DefauleColor;
+                }
             }
         }
 
@@ -85,14 +100,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
             get => base.Text;
             set
             {
-                if (base.Text != value)
-                {
-                    HasEdited = true;
-                }
-                    
-
                 base.Text = value;
-
                 ConvertTextToNewValue();
             }
         }
@@ -110,7 +118,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
         /// </summary>
         public virtual void ConvertTextToNewValue()
         {
-
+            HasEdited = true;
         }
 
         [BackgroundDependencyLoader]
