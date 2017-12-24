@@ -62,6 +62,7 @@
     <Compile Include="Edit\Dialog\Pieces\TableView.cs" />
     <Compile Include="Edit\Dialog\Pieces\LockPiece.cs" />
     <Compile Include="Edit\Dialog\Pieces\TimeTextBox.cs" />
+    <Compile Include="Edit\Dialog\Pieces\UpDownValueIndicator.cs" />
     <Compile Include="Edit\Drawables\DrawableEditableKaraokeObject.cs" />
     <Compile Include="Edit\Drawables\DrawableKaraokeThumbnail.cs" />
     <Compile Include="Edit\Drawables\Pieces\EditableMainKaraokeText.cs" />
