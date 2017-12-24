@@ -1,6 +1,9 @@
 ﻿// Copyright (c) 2007-2017 ppy Pty Ltd <contact@ppy.sh>.
 // Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu-framework/master/LICENCE
 
+using System.Collections.Generic;
+using System.Linq;
+
 namespace osu.Game.Rulesets.Karaoke.Objects
 {
     /// <summary>
@@ -24,5 +27,23 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         /// </summary>
         public string LangCode { get; set; }
 
+    }
+
+    /// <summary>
+    /// list Progress point
+    /// </summary>
+    public class ListKaraokeTranslateString : List<KaraokeTranslateString>
+    {
+        /// <summary>
+        /// if add ,check this lang code is added already ?
+        /// </summary>
+        /// <param name="translateString"></param>
+        public new void Add(KaraokeTranslateString translateString)
+        {
+            if (this.Any(x => x.LangCode == translateString.LangCode))
+                this.FindLast(x => x.LangCode == translateString.LangCode).Text = translateString.Text;
+            else
+                base.Add(translateString);
+        }
     }
 }

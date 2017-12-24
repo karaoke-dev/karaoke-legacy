@@ -7,6 +7,8 @@ using osu.Game.Rulesets.Objects.Types;
 using OpenTK;
 using System.Linq;
 using osu.Game.Database;
+using osu.Game.Rulesets.Karaoke.Objects.Types;
+using Newtonsoft.Json;
 
 namespace osu.Game.Rulesets.Karaoke.Objects
 {
@@ -14,7 +16,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects
     /// base karaoke object
     /// contain single sentence , a main text and several additional text
     /// </summary>
-    public class KaraokeObject : HitObject, IHasPosition, IHasCombo, IHasEndTime , IHasPrimaryKey
+    public class KaraokeObject : HitObject , IHasKaraokeComponent , IHasPosition, IHasCombo, IHasEndTime, IHasPrimaryKey
     {
         /// <summary>
         /// ID
@@ -51,6 +53,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         /// <summary>
         /// X position
         /// </summary>
+        [JsonIgnore]
         public float X
         {
             get => Position.X;
@@ -61,6 +64,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         /// <summary>
         /// Y position
         /// </summary>
+        [JsonIgnore]
         public float Y
         {
             get => Position.Y;
@@ -70,21 +74,19 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         /// <summary>
         /// width
         /// </summary>
+        [JsonIgnore]
         public float? Width { get; set; }
 
         /// <summary>
         /// height
         /// </summary>
+        [JsonIgnore]
         public float? Height { get; set; }
 
         /// <summary>
         /// Main text
         /// </summary>
-        public TextObject MainText { get; set; } = new TextObject()
-        {
-            //FontSize = 50, //default Main text Size is 70
-            //Position = new Vector2(0, 30), //default position
-        };
+        public TextObject MainText { get; set; } = new TextObject();
 
         /// <summary>
         /// List little aid text,like japanese's text
@@ -94,25 +96,24 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         /// <summary>
         /// record list time where position goes
         /// </summary>
-        public ListProgressPoint ListProgressPoint { get; set; } = new ListProgressPoint()
-        {
-
-        };
+        public ListProgressPoint ListProgressPoint { get; set; } = new ListProgressPoint();
 
         /// <summary>
         /// all the translate for a single language
         /// </summary>
         /// <value>The list trans late.</value>
-        public List<KaraokeTranslateString> ListTranslate { get; set; } = new List<KaraokeTranslateString>();
+        public ListKaraokeTranslateString ListTranslate { get; set; } = new ListKaraokeTranslateString();
 
         /// <summary>
         /// The time at which the HitObject ends.
         /// </summary>
+        [JsonIgnore]
         public double EndTime => StartTime + Duration + (EndPreemptiveTime??0);
 
         /// <summary>
         /// The duration of the HitObject.
         /// </summary>
+        [JsonIgnore]
         public double Duration => ListProgressPoint.LastOrDefault()?.RelativeTime??0;
 
         /// <summary>

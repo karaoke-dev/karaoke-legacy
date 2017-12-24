@@ -9,7 +9,7 @@ using osu.Game.Rulesets.Karaoke.Objects.Types;
 
 namespace osu.Game.Rulesets.Karaoke.Objects
 {
-    public class TextObject : HitObject ,ITextObject
+    public class TextObject
     {
         // <inheritdoc />
         /// <summary>
