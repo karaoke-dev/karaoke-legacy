@@ -9,6 +9,8 @@ using osu.Game.Rulesets.Karaoke.Objects.Extension;
 using osu.Game.Rulesets.Karaoke.Tools.Translator;
 using osu.Game.Rulesets.Objects.Drawables;
 using OpenTK.Graphics;
+using osu.Framework.Allocation;
+using osu.Framework.IO.Stores;
 
 namespace osu.Game.Rulesets.Karaoke.Objects.Drawables
 {
@@ -72,8 +74,6 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables
         {
             Alpha = 0;
 
-            UpdateDrawable();
-
             Children = new Drawable[]
             {
                 TextsAndMaskPiece,
@@ -96,10 +96,16 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables
             TextsAndMaskPiece.ClearAllText();
             //main text
             TextsAndMaskPiece.AddMainText(Template?.MainText + KaraokeObject.MainText);
+
             //subtext
             foreach (var singleText in KaraokeObject.ListSubTextObject)
             {
-                TextsAndMaskPiece.AddText(Template?.SubText + singleText);
+                //1. recalculate position
+                var startPosition = TextsAndMaskPiece.MainKaraokeText.GetEndPositionByIndex(singleText.CharIndex-1);
+                var endPosition = TextsAndMaskPiece.MainKaraokeText.GetEndPositionByIndex(singleText.CharIndex);
+                singleText.X = (startPosition + endPosition) / 2;
+                //2. update to subtext
+                TextsAndMaskPiece.AddSubText(Template?.SubText + singleText);
             }
 
             //translate text
@@ -108,6 +114,12 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables
 
             Width = TextsAndMaskPiece.MainKaraokeText.GetTextEndPosition();//KaraokeObject.Width ?? (Template?.Width ?? 700);
             Height = KaraokeObject.Height ?? (Template?.Height ?? 100);
+        }
+
+        [BackgroundDependencyLoader]
+        private void load(FontStore store)
+        {
+            UpdateDrawable();
         }
 
         public override float Width

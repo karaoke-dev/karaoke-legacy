@@ -37,7 +37,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Pieces
             RightSideText.AddMainText(textObject);
         }
 
-        public void AddText(TextObject textObject)
+        public void AddSubText(TextObject textObject)
         {
             LeftSideText.AddText(textObject);
             RightSideText.AddText(textObject);
@@ -122,7 +122,10 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Pieces
                 }
                 foreach (var singleText in _listText)
                 {
-                    _listDrawableText.Add(new KaraokeText(singleText));
+                    _listDrawableText.Add(new KaraokeText(singleText)
+                    {
+                        Origin= Anchor.Centre,
+                    });
                 }
                 Children = _listDrawableText.ToArray();
                 Masking = true;

@@ -21,7 +21,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         public TextObject SubText { get; set; } = new TextObject()
         {
             FontSize = 20, //default Main text Size is 50
-            Position = new Vector2(0, 20), //default position
+            Position = new Vector2(0, 30), //default position
         };
 
         /// <summary>

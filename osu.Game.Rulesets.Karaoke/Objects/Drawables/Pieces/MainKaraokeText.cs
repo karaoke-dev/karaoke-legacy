@@ -51,6 +51,9 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Pieces
         {
             try
             {
+                if (ListCharEndPosition.Count == 0)
+                    return 0;
+
                 if (index < 0)
                     return 0;
 

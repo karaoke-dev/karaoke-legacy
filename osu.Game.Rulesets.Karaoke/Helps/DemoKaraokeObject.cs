@@ -19,15 +19,15 @@ namespace osu.Game.Rulesets.Karaoke.Helps
             var karaokeObject = new KaraokeObject();
             karaokeObject.MainText.Text = "終わるまでは終わらないよ";
             karaokeObject.Position = new Vector2(300, 150);
-            karaokeObject.ListSubTextObject.Add(new TextObject
+            karaokeObject.ListSubTextObject.Add(new SubTextObject
             {
                 Text = "お",
-                X=10,
+                CharIndex = 0,
             });
-            karaokeObject.ListSubTextObject.Add(new TextObject
+            karaokeObject.ListSubTextObject.Add(new SubTextObject
             {
                 Text = "お",
-                X=200,
+                CharIndex = 6,
             });
 
             return karaokeObject;
@@ -42,15 +42,15 @@ namespace osu.Game.Rulesets.Karaoke.Helps
             var karaokeObject = new KaraokeObject();
             karaokeObject.MainText.Text = "終わるまでは終わらないよ";
             karaokeObject.Position = new Vector2(300, 150);
-            karaokeObject.ListSubTextObject.Add(new TextObject
+            karaokeObject.ListSubTextObject.Add(new SubTextObject
             {
                 Text = "お",
-                X=10,
+                CharIndex = 0,
             });
-            karaokeObject.ListSubTextObject.Add(new TextObject
+            karaokeObject.ListSubTextObject.Add(new SubTextObject
             {
                 Text = "お",
-                X=200,
+                CharIndex = 6,
             });
 
             karaokeObject.ListProgressPoint.AddProgressPoint(new ProgressPoint(0, 0));
@@ -67,15 +67,15 @@ namespace osu.Game.Rulesets.Karaoke.Helps
             var karaokeObject = new KaraokeObject();
             karaokeObject.MainText.Text = "終わるまでは終わらないよ";
             karaokeObject.Position = new Vector2(300, 150);
-            karaokeObject.ListSubTextObject.Add(new TextObject
+            karaokeObject.ListSubTextObject.Add(new SubTextObject
             {
                 Text = "お",
-                X=10,
+                CharIndex = 0,
             });
-            karaokeObject.ListSubTextObject.Add(new TextObject
+            karaokeObject.ListSubTextObject.Add(new SubTextObject
             {
                 Text = "お",
-                X=200,
+                CharIndex = 6,
             });
             karaokeObject.StartTime = startTime;
 

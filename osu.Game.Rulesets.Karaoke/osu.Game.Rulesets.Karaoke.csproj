@@ -97,6 +97,7 @@
     <Compile Include="Objects\Types\IHasEndPreemptiveTime.cs" />
     <Compile Include="Objects\Types\IHasKaraokeComponent.cs" />
     <Compile Include="Objects\Types\IHasPreemptiveTime.cs" />
+    <Compile Include="Objects\Types\IHasRelativePosition.cs" />
     <Compile Include="Replays\KaraokeReplayInputHandler.cs" />
     <Compile Include="Tests\TestCaseEditableMainKaraokeText.cs" />
     <Compile Include="Tests\TestCaseKaraokeObject.cs" />

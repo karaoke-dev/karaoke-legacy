@@ -15,7 +15,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Types
     {
         TextObject MainText { get; set; }
 
-        List<TextObject> ListSubTextObject { get; set; }
+        List<SubTextObject> ListSubTextObject { get; set; }
 
         ListProgressPoint ListProgressPoint { get; set; }
 
