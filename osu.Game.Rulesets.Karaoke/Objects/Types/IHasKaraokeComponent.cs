@@ -20,5 +20,9 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Types
         ListProgressPoint ListProgressPoint { get; set; }
 
         ListKaraokeTranslateString ListTranslate { get; set; }
+
+        int? TemplateIndex { get; set; }
+
+        int? SingerIndex { get; set; }
     }
 }

@@ -40,7 +40,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         /// Default is singler1;
         /// Each singer has different Text color
         /// </summary>
-        public int SingerIndex { get; set; } = 0;
+        public int? SingerIndex { get; set; } = 0;
 
         /// <inheritdoc />
         /// <summary>
