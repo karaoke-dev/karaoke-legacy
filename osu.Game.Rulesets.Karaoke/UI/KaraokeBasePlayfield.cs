@@ -19,6 +19,9 @@ using osu.Framework.Timing;
 
 namespace osu.Game.Rulesets.Karaoke.UI
 {
+    /// <summary>
+    /// Karaoke base panel
+    /// </summary>
     public class KaraokeBasePlayfield : Playfield, IAmKaraokeField
     {
         public Ruleset Ruleset { get; set; }
@@ -77,6 +80,16 @@ namespace osu.Game.Rulesets.Karaoke.UI
             ListDrawableKaraokeObject.Add(h as DrawableKaraokeObject);
 
             base.Add(h);
+        }
+
+        //post process
+        public override void PostProcess()
+        {
+            // foreach to update Template
+
+            // foreach to update position
+
+            base.PostProcess();
         }
 
         #region Input

@@ -7,12 +7,11 @@ using System.Threading.Tasks;
 namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Dialog
 {
     /// <summary>
-    /// Add new karaoke object
-    /// Lyric, starTime and endTime
+    /// right click karaoke and select add/Edit subText object, will pop-up this dialog
+    /// show a textbox and Add/Edit Button
     /// </summary>
-    public class EditKaraokeTextDialog : DialogContainer
+    public class EditKaraokeSubTextDialog : DialogContainer
     {
-
         
     }
 }
