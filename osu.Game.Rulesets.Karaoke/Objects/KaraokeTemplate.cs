@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using osu.Framework.Graphics;
 using OpenTK;
 using OpenTK.Graphics;
+using Newtonsoft.Json;
 
 namespace osu.Game.Rulesets.Karaoke.Objects
 {
@@ -49,11 +50,13 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         /// <summary>
         /// width
         /// </summary>
+        [JsonIgnore]
         public float Width { get; set; } = 700;
 
         /// <summary>
         /// height
         /// </summary>
+        [JsonIgnore]
         public float Height { get; set; } = 100;
     }
 }

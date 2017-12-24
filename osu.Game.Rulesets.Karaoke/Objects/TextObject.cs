@@ -48,6 +48,12 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         /// </summary>
         public virtual int? FontSize { get; set; }
 
+        /// <summary>
+        /// operator
+        /// </summary>
+        /// <param name="object1"></param>
+        /// <param name="object2"></param>
+        /// <returns></returns>
         public static TextObject operator +(TextObject object1, TextObject object2)
         {
             if (object1 == null && object2 == null)
@@ -66,7 +72,5 @@ namespace osu.Game.Rulesets.Karaoke.Objects
                 FontSize= object2?.FontSize?? object1.FontSize,
             };
         }
-
-        
     }
 }

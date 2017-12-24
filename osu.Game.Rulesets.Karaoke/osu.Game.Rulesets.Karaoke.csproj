@@ -54,6 +54,7 @@
     <Compile Include="Edit\Dialog\EditKaraokeTemplateDialog.cs" />
     <Compile Include="Edit\Dialog\ListKaraokeLyricsDialog.cs" />
     <Compile Include="Edit\Dialog\ListKaraokeTranslateDialog.cs" />
+    <Compile Include="Edit\Dialog\ListSingerDialog.cs" />
     <Compile Include="Edit\Dialog\LoadSaveDialog.cs" />
     <Compile Include="Edit\Dialog\Pieces\DrawableKaraokeTemplate.cs" />
     <Compile Include="Edit\Dialog\Pieces\EnumDropdown.cs" />
