@@ -123,8 +123,6 @@
     <Compile Include="UI\KaraokePlayfield.cs" />
     <Compile Include="KaraokeRuleset.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Replays\KaraokeAutoGenerator.cs" />
-    <Compile Include="Replays\KaraokeAutoGeneratorBase.cs" />
     <Compile Include="Objects\KaraokeTranslateString.cs" />
     <Compile Include="UI\Panel\Pieces\KaraokeButton.cs" />
     <Compile Include="UI\Panel\Pieces\KaraokeIntroduceText.cs" />
