@@ -5,11 +5,17 @@ using System.Text;
 using System.Threading.Tasks;
 using OpenTK;
 using OpenTK.Graphics;
+using osu.Game.Database;
 
 namespace osu.Game.Rulesets.Karaoke.Objects
 {
-    public class KaraokeSinger
+    public class KaraokeSinger : IHasPrimaryKey
     {
+        /// <summary>
+        /// ID
+        /// </summary>
+        public int ID { get; set; }
+
         /// <summary>
         /// the color of lytic color
         /// </summary>

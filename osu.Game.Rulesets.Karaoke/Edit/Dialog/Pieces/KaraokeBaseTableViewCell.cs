@@ -1,4 +1,5 @@
-﻿using osu.Game.Rulesets.Karaoke.Objects;
+﻿using osu.Game.Database;
+using osu.Game.Rulesets.Karaoke.Objects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +19,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
     /// 2. double click is edit
     /// </summary>
     /// <typeparam name="TItem"></typeparam>
-    public class KaraokeBaseTableViewCell<TItem> : TableViewCell<TItem> where TItem : KaraokeObject
+    public class KaraokeBaseTableViewCell<TItem> : TableViewCell<TItem> where TItem : IHasPrimaryKey
     {
         public KaraokeBaseTableViewCell()
         {

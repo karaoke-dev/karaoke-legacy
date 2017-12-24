@@ -156,8 +156,10 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables
             }
             else
             {
-                //this.Hide();
-                //Alpha = 0;
+                
+                this.Hide();
+                Alpha = 0;
+                
             }
         }
 
@@ -202,8 +204,8 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables
             if (!ProgressUpdateByTime)
                 return;
 
-            //delay
-            var sequence = this.Delay(HitObject.Duration).FadeOut(TIME_FADEOUT).Expire();
+            //wse Update() to jujgement show / hide instead
+            //var sequence = this.Delay(HitObject.Duration).FadeOut(TIME_FADEOUT).Expire();
 
             //Expire();
         }
