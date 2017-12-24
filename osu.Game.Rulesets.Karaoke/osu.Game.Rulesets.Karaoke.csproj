@@ -103,6 +103,7 @@
     <Compile Include="Tests\TestCaseKaraokeObject.cs" />
     <Compile Include="Tests\TestCaseKaraokeObjectBySlider.cs" />
     <Compile Include="Tests\TestCaseKaraokePanel.cs" />
+    <Compile Include="Tests\TestCaseLineRenderer.cs" />
     <Compile Include="Tests\TestCaseTranslate.cs" />
     <Compile Include="Tests\TestCaseWindows.cs" />
     <Compile Include="Tools\Translator\TranslateCode.cs" />
