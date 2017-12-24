@@ -5,13 +5,14 @@ using Newtonsoft.Json;
 using osu.Game.Rulesets.Objects;
 using System.Collections.Generic;
 using System.Linq;
+using osu.Game.Rulesets.Karaoke.Objects.Types;
 
 namespace osu.Game.Rulesets.Karaoke.Objects
 {
     /// <summary>
     /// record what time the 
     /// </summary>
-    public class ProgressPoint
+    public class ProgressPoint : IHasCharIndex
     {
         public ProgressPoint()
         {

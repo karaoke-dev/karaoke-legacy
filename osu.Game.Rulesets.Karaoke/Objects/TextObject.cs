@@ -6,6 +6,7 @@ using osu.Game.Rulesets.Objects.Types;
 using OpenTK;
 using osu.Game.Rulesets.Objects;
 using osu.Game.Rulesets.Karaoke.Objects.Types;
+using Newtonsoft.Json;
 
 namespace osu.Game.Rulesets.Karaoke.Objects
 {
@@ -22,12 +23,13 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         /// <summary>
         /// X position
         /// </summary>
+        [JsonIgnore]
         public float X
         {
             get => Position.X;
             set => Position = new Vector2(value, Y);
         }
-
+        [JsonIgnore]
         /// <inheritdoc />
         /// <summary>
         /// Y position

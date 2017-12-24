@@ -88,10 +88,12 @@
     <Compile Include="Objects\KaraokeSinger.cs" />
     <Compile Include="Objects\KaraokeTemplate.cs" />
     <Compile Include="Objects\ProgressPoint.cs" />
+    <Compile Include="Objects\SubTextObject.cs" />
     <Compile Include="Objects\TextObject.cs" />
     <Compile Include="Judgements\KaraokeJudgement.cs" />
     <Compile Include="KaraokeDifficulty\KraokeDifficultyCalculator.cs" />
     <Compile Include="KaraokeInputManager.cs" />
+    <Compile Include="Objects\Types\IHasCharIndex.cs" />
     <Compile Include="Objects\Types\IHasEndPreemptiveTime.cs" />
     <Compile Include="Objects\Types\IHasKaraokeComponent.cs" />
     <Compile Include="Objects\Types\IHasPreemptiveTime.cs" />
