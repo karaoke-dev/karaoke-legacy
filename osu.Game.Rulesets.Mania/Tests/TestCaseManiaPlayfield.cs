@@ -87,7 +87,7 @@ namespace osu.Game.Rulesets.Mania.Tests
             {
                 Anchor = Anchor.Centre,
                 Origin = Anchor.Centre,
-                SpecialColumnPosition = specialPos
+                //SpecialColumnPosition = specialPos
             });
 
             playfield.Inverted.Value = inverted;
