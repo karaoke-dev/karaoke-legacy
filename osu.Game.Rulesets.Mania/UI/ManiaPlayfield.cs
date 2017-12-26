@@ -57,7 +57,7 @@ namespace osu.Game.Rulesets.Mania.UI
 
         private readonly int columnCount;
 
-        public ManiaPlayfield(int columnCount)
+        public ManiaPlayfield(int columnCount,bool coop)
             : base(Axes.Y)
         {
             this.columnCount = columnCount;

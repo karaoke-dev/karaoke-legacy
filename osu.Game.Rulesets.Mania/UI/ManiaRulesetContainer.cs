@@ -24,6 +24,7 @@ using osu.Game.Rulesets.Replays;
 using osu.Game.Rulesets.Scoring;
 using osu.Game.Rulesets.Timing;
 using osu.Game.Rulesets.UI;
+using osu.Game.Rulesets.Mania.Mods;
 
 namespace osu.Game.Rulesets.Mania.UI
 {
@@ -34,6 +35,11 @@ namespace osu.Game.Rulesets.Mania.UI
         /// the beatmap converter will attempt to convert beatmaps to use.
         /// </summary>
         public int AvailableColumns { get; private set; }
+
+        /// <summary>
+        /// Co-op
+        /// </summary>
+        public bool Coop { get; set; } = false;
 
         public IEnumerable<DrawableBarLine> BarLines;
 
@@ -74,7 +80,7 @@ namespace osu.Game.Rulesets.Mania.UI
             BarLines.ForEach(Playfield.Add);
         }
 
-        protected sealed override Playfield CreatePlayfield() => new ManiaPlayfield(AvailableColumns)
+        protected sealed override Playfield CreatePlayfield() => new ManiaPlayfield(AvailableColumns, Coop)
         {
             Anchor = Anchor.Centre,
             Origin = Anchor.Centre,
@@ -99,6 +105,19 @@ namespace osu.Game.Rulesets.Mania.UI
                     AvailableColumns = Math.Round(WorkingBeatmap.BeatmapInfo.BaseDifficulty.OverallDifficulty) > 4 ? 5 : 4;
                 else
                     AvailableColumns = Math.Max(4, Math.Min((int)Math.Round(WorkingBeatmap.BeatmapInfo.BaseDifficulty.OverallDifficulty) + 1, 7));
+            }
+
+            //get mods to change column and coop
+            foreach (var single in this.WorkingBeatmap.Mods.Value)
+            {
+                if (single is ManiaKeyMod maniaKeyMod)
+                {
+                    AvailableColumns = maniaKeyMod.KeyCount;
+                }
+                if (single is ManiaModKeyCoop)
+                {
+                    Coop = true;
+                }
             }
 
             return new ManiaBeatmapConverter(IsForCurrentRuleset, AvailableColumns);

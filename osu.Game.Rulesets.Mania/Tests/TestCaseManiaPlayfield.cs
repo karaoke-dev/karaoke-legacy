@@ -83,7 +83,7 @@ namespace osu.Game.Rulesets.Mania.Tests
             Add(inputManager);
 
             ManiaPlayfield playfield;
-            inputManager.Add(playfield = new ManiaPlayfield(cols)
+            inputManager.Add(playfield = new ManiaPlayfield(cols, false)
             {
                 Anchor = Anchor.Centre,
                 Origin = Anchor.Centre,
@@ -105,7 +105,7 @@ namespace osu.Game.Rulesets.Mania.Tests
             Add(inputManager);
 
             ManiaPlayfield playfield;
-            inputManager.Add(playfield = new ManiaPlayfield(4)
+            inputManager.Add(playfield = new ManiaPlayfield(4,false)
             {
                 Anchor = Anchor.Centre,
                 Origin = Anchor.Centre,
