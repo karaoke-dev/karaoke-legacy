@@ -55,11 +55,6 @@ namespace osu.Game.Rulesets.Mania.UI
             if (columnCount <= 0)
                 throw new ArgumentException("Can't have zero or fewer columns.");
 
-            //get actual column count
-            int actualcolumn = columnCount;
-            if (coop)
-                actualcolumn = actualcolumn * 2;
-
             Inverted.Value = true;
 
             if (coop)
@@ -69,12 +64,12 @@ namespace osu.Game.Rulesets.Mania.UI
                 InternalChildren = new Drawable[]
                 {
                     //Left
-                    leftPart=new FallDownControlContainer(columnCount)
+                    leftPart=new FallDownControlContainer(columnCount/2)
                     {
                         Position=new OpenTK.Vector2(-200,0),
                     },
                     //Right
-                    rightPart=new FallDownControlContainer(columnCount)
+                    rightPart=new FallDownControlContainer(columnCount/2)
                     {
                         Position=new OpenTK.Vector2(200,0),
                     },
@@ -99,7 +94,7 @@ namespace osu.Game.Rulesets.Mania.UI
             }
 
             var currentAction = ManiaAction.Key1;
-            for (int i = 0; i < actualcolumn; i++)
+            for (int i = 0; i < columnCount; i++)
             {
                 var c = new Column();
                 c.VisibleTimeRange.BindTo(VisibleTimeRange);
@@ -168,7 +163,7 @@ namespace osu.Game.Rulesets.Mania.UI
             foreach (var single in ListFallDownControlContainer)
             {
                 sum = sum + single.ColumnCount;
-                if (sum >= actualColumn)
+                if (sum > actualColumn)
                 {
                     return single;
                 }

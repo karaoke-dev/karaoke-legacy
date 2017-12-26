@@ -117,6 +117,7 @@ namespace osu.Game.Rulesets.Mania.UI
                 if (single is ManiaModKeyCoop)
                 {
                     Coop = true;
+                    AvailableColumns = AvailableColumns * 2;
                 }
             }
 
