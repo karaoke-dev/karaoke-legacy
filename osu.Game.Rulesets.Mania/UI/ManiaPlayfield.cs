@@ -114,6 +114,11 @@ namespace osu.Game.Rulesets.Mania.UI
             Inverted.TriggerChange();
         }
 
+        void InitialBarLines()
+        {
+
+        }
+
         private void invertedChanged(bool newValue)
         {
             Scale = new Vector2(1, newValue ? -1 : 1);
@@ -124,8 +129,6 @@ namespace osu.Game.Rulesets.Mania.UI
                 single.Judgements.Scale = Scale;
             }
         }
-
-        
 
         public override void OnJudgement(DrawableHitObject judgedObject, Judgement judgement)
         {
@@ -150,11 +153,18 @@ namespace osu.Game.Rulesets.Mania.UI
 
         public void Add(DrawableBarLine barline) => HitObjects.Add(barline);
 
+        protected override Container<Drawable> Content => ListFallDownControlContainer.FirstOrDefault()?.FallDownControlContainerContent;
         protected override void Update()
         {
             // Due to masking differences, it is not possible to get the width of the columns container automatically
             // While masking on effectively only the Y-axis, so we need to set the width of the bar line container manually
-            //content.Width = columns.Width;
+            Content.Width = ListFallDownControlContainer.FirstOrDefault().Columns.Width;
+
+
+            foreach (var single in ListFallDownControlContainer)
+            {
+                single.FallDownControlContainerContent.Width = single.Columns.Width;
+            }
         }
 
         private FallDownControlContainer getFallDownControlContainerByActualColumn(int actualColumn)

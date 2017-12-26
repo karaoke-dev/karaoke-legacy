@@ -13,13 +13,14 @@ using System.Threading.Tasks;
 using osu.Game.Graphics;
 using osu.Framework.Allocation;
 using osu.Game.Rulesets.Judgements;
+using osu.Game.Rulesets.UI;
 
 namespace osu.Game.Rulesets.Mania.UI
 {
     /// <summary>
     /// controls that from up to down
     /// </summary>
-    internal class FallDownControlContainer : Container
+    internal class FallDownControlContainer : Container//ScrollingPlayfield
     {
         public const float HIT_TARGET_POSITION = 50;
 
@@ -55,7 +56,7 @@ namespace osu.Game.Rulesets.Mania.UI
 
         public int ColumnCount { get; protected set; }
 
-        public FallDownControlContainer(int columnCount)
+        public FallDownControlContainer(int columnCount) //: base(Axes.Y)
         {
             ColumnCount = columnCount;
             //Shear= new Vector2(0,0.05f),
@@ -190,6 +191,14 @@ namespace osu.Game.Rulesets.Mania.UI
             }
         }
 
-        
+        /*
+        protected override void Update()
+        {
+            // Due to masking differences, it is not possible to get the width of the columns container automatically
+            // While masking on effectively only the Y-axis, so we need to set the width of the bar line container manually
+            Content.Width = Columns.Width;
+        }
+        */
+
     }
 }
