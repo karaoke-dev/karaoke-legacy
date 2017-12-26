@@ -90,6 +90,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
                     }
                 }
             });
+            
 
             UpdateText();
         }

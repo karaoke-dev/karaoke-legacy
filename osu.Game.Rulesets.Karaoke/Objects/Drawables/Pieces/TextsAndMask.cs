@@ -7,10 +7,11 @@ using osu.Framework.Graphics.Containers;
 using osu.Game.Graphics.Sprites;
 using OpenTK;
 using OpenTK.Graphics;
+using OpenTK.Graphics.ES30;
 
 namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Pieces
 {
-    public class TextsAndMask : Container
+    public class TextsAndMask : Container//BufferedContainer
     {
         protected virtual SingleSideOfAndMask LeftSideText { get; set; } = new SingleSideOfAndMask();
 
@@ -24,11 +25,17 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Pieces
 
         public TextsAndMask()
         {
+            //CacheDrawnFrameBuffer = true;
+            //this.Attach(RenderbufferInternalFormat.DepthComponent16);
+            //Width = 700;
+            //Height = 100;
+
             Children = new Drawable[]
             {
                 RightSideText,
                 LeftSideText,
             };
+            
         }
 
         public void AddMainText(TextObject textObject)
