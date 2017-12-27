@@ -41,7 +41,7 @@ namespace osu.Game.Rulesets.Mania.UI
         /// </summary>
         public bool Coop { get; set; } = false;
 
-        public IEnumerable<DrawableBarLine> BarLines;
+        public IEnumerable<BarLine> BarLines;
 
         public ManiaRulesetContainer(Ruleset ruleset, WorkingBeatmap beatmap, bool isForCurrentRuleset)
             : base(ruleset, beatmap, isForCurrentRuleset)
@@ -50,7 +50,7 @@ namespace osu.Game.Rulesets.Mania.UI
             double lastObjectTime = (Objects.LastOrDefault() as IHasEndTime)?.EndTime ?? Objects.LastOrDefault()?.StartTime ?? double.MaxValue;
 
             var timingPoints = Beatmap.ControlPointInfo.TimingPoints;
-            var barLines = new List<DrawableBarLine>();
+            var barLines = new List<BarLine>();
 
             for (int i = 0; i < timingPoints.Count; i++)
             {
@@ -62,12 +62,12 @@ namespace osu.Game.Rulesets.Mania.UI
                 int index = 0;
                 for (double t = timingPoints[i].Time; Precision.DefinitelyBigger(endTime, t); t += point.BeatLength, index++)
                 {
-                    barLines.Add(new DrawableBarLine(new BarLine
+                    barLines.Add(new BarLine
                     {
                         StartTime = t,
                         ControlPoint = point,
                         BeatIndex = index
-                    }));
+                    });
                 }
             }
 
