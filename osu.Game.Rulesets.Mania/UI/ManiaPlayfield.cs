@@ -27,12 +27,14 @@ namespace osu.Game.Rulesets.Mania.UI
 {
     public class ManiaPlayfield : ScrollingPlayfield
     {
+
+        //protected override Container<Drawable> Content => ListFallDownControlContainer__;
         /// <summary>
         /// list fall down mania group
         /// </summary>
-        //List<FallDownControlContainer> 
+        List<FallDownControlContainer> ListFallDownControlContainer = new List<FallDownControlContainer>();
 
-        FillFlowContainer<FallDownControlContainer> ListFallDownControlContainer { get; set; } = new FillFlowContainer<FallDownControlContainer>();
+        FillFlowContainer<Drawable> ListFallDownControlContainer__ { get; set; } = new FillFlowContainer<Drawable>();
         /// <summary>
         /// Whether this playfield should be inverted. This flips everything inside the playfield.
         /// </summary>
@@ -70,7 +72,7 @@ namespace osu.Game.Rulesets.Mania.UI
                 FallDownControlContainer rightPart = null;
                 InternalChildren = new Drawable[]
                 {
-                    ListFallDownControlContainer=new FillFlowContainer<FallDownControlContainer>()
+                    ListFallDownControlContainer__=new FillFlowContainer<Drawable>()
                     {
                         Direction= FillDirection.Horizontal,
                         RelativeSizeAxes = Axes.Y,
@@ -93,6 +95,8 @@ namespace osu.Game.Rulesets.Mania.UI
                     //Width = 400,
                 };
                 rightPart.VisibleTimeRange.BindTo(this.VisibleTimeRange);
+                ListFallDownControlContainer__.Add(leftPart);
+                ListFallDownControlContainer__.Add(rightPart);
                 ListFallDownControlContainer.Add(leftPart);
                 ListFallDownControlContainer.Add(rightPart);
                 AddNested(leftPart);
@@ -103,7 +107,7 @@ namespace osu.Game.Rulesets.Mania.UI
                 FallDownControlContainer centerPart = null;
                 InternalChildren = new Drawable[]
                 {
-                     ListFallDownControlContainer=new FillFlowContainer<FallDownControlContainer>()
+                     ListFallDownControlContainer__=new FillFlowContainer<Drawable>()
                     {
                          //Position=new Vector2(1000,0),
                          Direction= FillDirection.Horizontal,
@@ -127,6 +131,7 @@ namespace osu.Game.Rulesets.Mania.UI
                 centerPart.VisibleTimeRange.BindTo(this.VisibleTimeRange);
                 //ListFallDownControlContainer.Clear();
                 ListFallDownControlContainer.Add(centerPart);
+                ListFallDownControlContainer__.Add(centerPart);
                 AddNested(centerPart);
             }
 
@@ -202,7 +207,7 @@ namespace osu.Game.Rulesets.Mania.UI
         private FallDownControlContainer getFallDownControlContainerByActualColumn(int actualColumn)
         {
             int sum = 0;
-            foreach (var single in ListFallDownControlContainer.Children)
+            foreach (var single in ListFallDownControlContainer)
             {
                 sum = sum + single.ColumnCount;
                 if (sum > actualColumn)
