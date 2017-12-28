@@ -53,6 +53,11 @@ namespace osu.Game.Screens.Select
 
         public override bool HandleInput => AllowSelection;
 
+        /// <summary>
+        /// Used to avoid firing null selections before the initial beatmaps have been loaded via <see cref="BeatmapSets"/>.
+        /// </summary>
+        private bool initialLoadComplete;
+
         private IEnumerable<CarouselBeatmapSet> beatmapSets => root.Children.OfType<CarouselBeatmapSet>();
 
         public IEnumerable<BeatmapSetInfo> BeatmapSets
@@ -76,7 +81,11 @@ namespace osu.Game.Screens.Select
                     itemsCache.Invalidate();
                     scrollPositionCache.Invalidate();
 
-                    Schedule(() => BeatmapSetsChanged?.Invoke());
+                    Schedule(() =>
+                    {
+                        BeatmapSetsChanged?.Invoke();
+                        initialLoadComplete = true;
+                    });
                 }));
             }
         }
@@ -185,7 +194,14 @@ namespace osu.Game.Screens.Select
             if (!Items.Any())
                 return;
 
-            int originalIndex = Items.IndexOf(selectedBeatmap?.Drawables.First());
+            DrawableCarouselItem drawable = null;
+
+            if (selectedBeatmap != null && (drawable = selectedBeatmap.Drawables.FirstOrDefault()) == null)
+                // if the selected beatmap isn't present yet, we can't correctly change selection.
+                // we can fix this by changing this method to not reference drawables / Items in the first place.
+                return;
+
+            int originalIndex = Items.IndexOf(drawable);
             int currentIndex = originalIndex;
 
             // local function to increment the index in the required direction, wrapping over extremities.
@@ -513,7 +529,7 @@ namespace osu.Game.Screens.Select
             currentY += DrawHeight / 2;
             scrollableContent.Height = currentY;
 
-            if (selectedBeatmapSet == null || selectedBeatmap == null || selectedBeatmapSet.State.Value != CarouselItemState.Selected)
+            if (initialLoadComplete && (selectedBeatmapSet == null || selectedBeatmap == null || selectedBeatmapSet.State.Value != CarouselItemState.Selected))
             {
                 selectedBeatmapSet = null;
                 SelectionChanged?.Invoke(null);
