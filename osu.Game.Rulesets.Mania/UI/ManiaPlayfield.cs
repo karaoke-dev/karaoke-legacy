@@ -28,26 +28,22 @@ namespace osu.Game.Rulesets.Mania.UI
     public class ManiaPlayfield : ScrollingPlayfield
     {
 
-        //protected override Container<Drawable> Content => ListFallDownControlContainer__;
         /// <summary>
-        /// list fall down mania group
+        /// list mania column group
         /// </summary>
-        List<FallDownControlContainer> ListFallDownControlContainer = new List<FallDownControlContainer>();
+        FillFlowContainer<ManiaColumnGroup> ListColumnGroup = new FillFlowContainer<ManiaColumnGroup>();
 
-        FillFlowContainer<Drawable> ListFallDownControlContainer__ { get; set; } = new FillFlowContainer<Drawable>();
         /// <summary>
         /// Whether this playfield should be inverted. This flips everything inside the playfield.
         /// </summary>
         public readonly Bindable<bool> Inverted = new Bindable<bool>(true);
-
-        //protected override Container<Drawable> Content => this.ListFallDownControlContainer?.FirstOrDefault()?.FallDownControlContainerContent;
 
         public List<Column> Columns
         {
             get
             {
                 var list = new List<Column>();
-                foreach (var single in ListFallDownControlContainer)
+                foreach (var single in ListColumnGroup)
                 {
                     list.AddRange(single.Columns);
                 }
@@ -66,80 +62,42 @@ namespace osu.Game.Rulesets.Mania.UI
 
             Inverted.Value = true;
 
+            InternalChildren = new Drawable[]
+            {
+                ListColumnGroup=new FillFlowContainer<ManiaColumnGroup>()
+                {
+                    Direction= FillDirection.Horizontal,
+                    RelativeSizeAxes = Axes.Y,
+                    Anchor= Anchor.Centre,
+                    Origin= Anchor.Centre,
+                    Spacing=new Vector2(400),
+                }
+            };
+
+            int numberOfGroup = 1;
             if (coop)
+                numberOfGroup = 2;
+
+            for (int i = 0; i < numberOfGroup; i ++)
             {
-                FallDownControlContainer leftPart = null;
-                FallDownControlContainer rightPart = null;
-                InternalChildren = new Drawable[]
+                var group = new ManiaColumnGroup(columnCount / numberOfGroup)
                 {
-                    ListFallDownControlContainer__=new FillFlowContainer<Drawable>()
-                    {
-                        Direction= FillDirection.Horizontal,
-                        RelativeSizeAxes = Axes.Y,
-                        Anchor= Anchor.Centre,
-                        Origin= Anchor.Centre,
-                        Spacing=new Vector2(400),
-                    }
-                    
+                   
                 };
-                //ListFallDownControlContainer.Clear();
-                leftPart = new FallDownControlContainer(columnCount/2)
-                {
-                    //Position=new OpenTK.Vector2(-400,0),
-                    //Width = 400,
-                };
-                leftPart.VisibleTimeRange.BindTo(this.VisibleTimeRange);
-                rightPart = new FallDownControlContainer(columnCount/2)
-                {
-                    //Position=new OpenTK.Vector2(-400,0),
-                    //Width = 400,
-                };
-                rightPart.VisibleTimeRange.BindTo(this.VisibleTimeRange);
-                ListFallDownControlContainer__.Add(leftPart);
-                ListFallDownControlContainer__.Add(rightPart);
-                ListFallDownControlContainer.Add(leftPart);
-                ListFallDownControlContainer.Add(rightPart);
-                AddNested(leftPart);
-                AddNested(rightPart);
+                ListColumnGroup.Add(group);
             }
-            else
+
+
+            foreach (var single in ListColumnGroup)
             {
-                FallDownControlContainer centerPart = null;
-                InternalChildren = new Drawable[]
-                {
-                     ListFallDownControlContainer__=new FillFlowContainer<Drawable>()
-                    {
-                         //Position=new Vector2(1000,0),
-                         Direction= FillDirection.Horizontal,
-                         RelativeSizeAxes = Axes.Y,
-                         Anchor= Anchor.Centre,
-                         Origin= Anchor.Centre,
-                    }
-                    /*
-                    //Left
-                    centerPart=new FallDownControlContainer(columnCount)
-                    {
-                        //Position=new OpenTK.Vector2(-400,0),
-                    },
-                    */
-                };
-                centerPart = new FallDownControlContainer(columnCount)
-                {
-                    //Position=new OpenTK.Vector2(-400,0),
-                    //Width = 400,
-                };
-                centerPart.VisibleTimeRange.BindTo(this.VisibleTimeRange);
-                //ListFallDownControlContainer.Clear();
-                ListFallDownControlContainer.Add(centerPart);
-                ListFallDownControlContainer__.Add(centerPart);
-                AddNested(centerPart);
+                single.VisibleTimeRange.BindTo(this.VisibleTimeRange);
+                AddNested(single);
             }
 
             var currentAction = ManiaAction.Key1;
             for (int i = 0; i < columnCount; i++)
             {
                 var c = new Column();
-                //c.VisibleTimeRange.BindTo(VisibleTimeRange);
                 //c.Action = c.IsSpecial ? ManiaAction.Special : currentAction++;
                 c.Action = currentAction++;
 
@@ -162,7 +120,7 @@ namespace osu.Game.Rulesets.Mania.UI
             Scale = new Vector2(1, newValue ? -1 : 1);
 
             //judgements.Scale = Scale;
-            foreach (var single in ListFallDownControlContainer)
+            foreach (var single in ListColumnGroup)
             {
                 single.Judgements.Scale = Scale;
             }
@@ -182,32 +140,16 @@ namespace osu.Game.Rulesets.Mania.UI
         public void Add(BarLine barline)
         {
             //HitObjects.Add(new DrawableBarLine(barline));
-            foreach (var single in ListFallDownControlContainer)
+            foreach (var single in ListColumnGroup)
             {
                 single.HitObjects.Add(new DrawableBarLine(barline));
             }
         } 
 
-        //protected override Container<Drawable> Content => ListFallDownControlContainer.FirstOrDefault()?.FallDownControlContainerContent;
-        protected override void Update()
-        {
-            /*
-            // Due to masking differences, it is not possible to get the width of the columns container automatically
-            // While masking on effectively only the Y-axis, so we need to set the width of the bar line container manually
-            Content.Width = ListFallDownControlContainer.FirstOrDefault().Columns.Width;
-
-
-            foreach (var single in ListFallDownControlContainer)
-            {
-                single.FallDownControlContainerContent.Width = single.Columns.Width;
-            }
-            */
-        }
-
-        private FallDownControlContainer getFallDownControlContainerByActualColumn(int actualColumn)
+        private ManiaColumnGroup getFallDownControlContainerByActualColumn(int actualColumn)
         {
             int sum = 0;
-            foreach (var single in ListFallDownControlContainer)
+            foreach (var single in ListColumnGroup)
             {
                 sum = sum + single.ColumnCount;
                 if (sum > actualColumn)

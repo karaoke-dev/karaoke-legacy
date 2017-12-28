@@ -21,11 +21,12 @@ namespace osu.Game.Rulesets.Mania.UI
     /// <summary>
     /// controls that from up to down
     /// </summary>
-    internal class FallDownControlContainer : ScrollingPlayfield
+    internal class ManiaColumnGroup : ScrollingPlayfield
     {
         public const float HIT_TARGET_POSITION = 50;
 
         private SpecialColumnPosition specialColumnPosition;
+
         /// <summary>
         /// The style to use for the special column.
         /// </summary>
@@ -46,7 +47,7 @@ namespace osu.Game.Rulesets.Mania.UI
         protected override Container<Drawable> Content => content;
         private readonly Container<Drawable> content;
 
-        private readonly Container<DrawableManiaJudgement> judgements;
+        private readonly Container<DrawableManiaJudgement> judgements;  
         public Container<DrawableManiaJudgement> Judgements => judgements;
 
         private readonly Container topLevelContainer;
@@ -57,7 +58,7 @@ namespace osu.Game.Rulesets.Mania.UI
 
         public int ColumnCount { get; protected set; }
 
-        public FallDownControlContainer(int columnCount) : base(Axes.Y)
+        public ManiaColumnGroup(int columnCount) : base(Axes.Y)
         {
             ColumnCount = columnCount;
             Name = "Playfield elements";
@@ -75,58 +76,58 @@ namespace osu.Game.Rulesets.Mania.UI
                     AutoSizeAxes = Axes.X,
                     Children = new Drawable[]
                     {
-                    new Container
-                    {
-                        Name = "Columns mask",
-                        RelativeSizeAxes = Axes.Y,
-                        AutoSizeAxes = Axes.X,
-                        Masking = true,
-                        Children = new Drawable[]
+                        new Container
                         {
-                            new Box
+                            Name = "Columns mask",
+                            RelativeSizeAxes = Axes.Y,
+                            AutoSizeAxes = Axes.X,
+                            Masking = true,
+                            Children = new Drawable[]
                             {
-                                Name = "Background",
-                                RelativeSizeAxes = Axes.Both,
-                                Colour = new Color4(0,0,0,0.8f)
-                            },
-                            columns = new FillFlowContainer<Column>
-                            {
-                                Name = "Columns",
-                                RelativeSizeAxes = Axes.Y,
-                                AutoSizeAxes = Axes.X,
-                                Direction = FillDirection.Horizontal,
-                                Padding = new MarginPadding { Left = 1, Right = 1 },
-                                Spacing = new Vector2(1, 0)
-                            },
-                        }
-                    },
-                    new Container
-                    {
-                        Name = "Barlines mask",
-                        Anchor = Anchor.TopCentre,
-                        Origin = Anchor.TopCentre,
-                        RelativeSizeAxes = Axes.Y,
-                        Width = 1366, // Bar lines should only be masked on the vertical axis
-                        BypassAutoSizeAxes = Axes.Both,
-                        Masking = true,
-                        Child = content = new Container
+                                new Box
+                                {
+                                    Name = "Background",
+                                    RelativeSizeAxes = Axes.Both,
+                                    Colour = new Color4(0,0,0,0.8f)
+                                },
+                                columns = new FillFlowContainer<Column>
+                                {
+                                    Name = "Columns",
+                                    RelativeSizeAxes = Axes.Y,
+                                    AutoSizeAxes = Axes.X,
+                                    Direction = FillDirection.Horizontal,
+                                    Padding = new MarginPadding { Left = 1, Right = 1 },
+                                    Spacing = new Vector2(1, 0)
+                                },
+                            }
+                        },
+                        new Container
                         {
-                            Name = "Bar lines",
+                            Name = "Barlines mask",
                             Anchor = Anchor.TopCentre,
                             Origin = Anchor.TopCentre,
                             RelativeSizeAxes = Axes.Y,
-                            Padding = new MarginPadding { Top = HIT_TARGET_POSITION }
-                        }
-                    },
-                    judgements = new Container<DrawableManiaJudgement>
-                    {
-                        Anchor = Anchor.TopCentre,
-                        Origin = Anchor.Centre,
-                        AutoSizeAxes = Axes.Both,
-                        Y = HIT_TARGET_POSITION + 150,
-                        BypassAutoSizeAxes = Axes.Both
-                    },
-                    topLevelContainer = new Container { RelativeSizeAxes = Axes.Both }
+                            Width = 1366, // Bar lines should only be masked on the vertical axis
+                            BypassAutoSizeAxes = Axes.Both,
+                            Masking = true,
+                            Child = content = new Container
+                            {
+                                Name = "Bar lines",
+                                Anchor = Anchor.TopCentre,
+                                Origin = Anchor.TopCentre,
+                                RelativeSizeAxes = Axes.Y,
+                                Padding = new MarginPadding { Top = HIT_TARGET_POSITION }
+                            }
+                        },
+                        judgements = new Container<DrawableManiaJudgement>
+                        {
+                            Anchor = Anchor.TopCentre,
+                            Origin = Anchor.Centre,
+                            AutoSizeAxes = Axes.Both,
+                            Y = HIT_TARGET_POSITION + 150,
+                            BypassAutoSizeAxes = Axes.Both
+                        },
+                        topLevelContainer = new Container { RelativeSizeAxes = Axes.Both }
                     }
                 }
 
@@ -207,12 +208,6 @@ namespace osu.Game.Rulesets.Mania.UI
             // Due to masking differences, it is not possible to get the width of the columns container automatically
             // While masking on effectively only the Y-axis, so we need to set the width of the bar line container manually
             content.Width = columns.Width;
-            //this.Width = columns.Width;
-            //if(HitObjects.SpeedAdjustments is Container<SpeedAdjustmentContainer> container)
-            //    container.Children[0].Width= columns.Width;
         }
-
-
-
     }
 }
