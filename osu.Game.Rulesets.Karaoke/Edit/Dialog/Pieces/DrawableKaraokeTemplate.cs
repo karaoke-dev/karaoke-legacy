@@ -1,10 +1,8 @@
-﻿using osu.Game.Rulesets.Karaoke.Objects.Drawables;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿// Copyright (c) 2007-2017 ppy Pty Ltd <contact@ppy.sh>.
+// Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu-framework/master/LICENCE
+
 using osu.Game.Rulesets.Karaoke.Objects;
+using osu.Game.Rulesets.Karaoke.Objects.Drawables;
 
 namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
 {
@@ -13,7 +11,8 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
     /// </summary>
     public class DrawableKaraokeTemplate : DrawableKaraokeObject
     {
-        public DrawableKaraokeTemplate(KaraokeObject hitObject,KaraokeTemplate template) : base(hitObject)
+        public DrawableKaraokeTemplate(KaraokeObject hitObject, KaraokeTemplate template)
+            : base(hitObject)
         {
             Template = template;
         }

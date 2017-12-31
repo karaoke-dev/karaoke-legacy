@@ -1,10 +1,8 @@
-﻿using NUnit.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using osu.Game.Rulesets.Karaoke.Edit.Drawables.Dialog;
+﻿// Copyright (c) 2007-2017 ppy Pty Ltd <contact@ppy.sh>.
+// Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu-framework/master/LICENCE
+
+using NUnit.Framework;
+using osu.Game.Rulesets.Karaoke.Edit.Dialog;
 using osu.Game.Tests.Visual;
 
 namespace osu.Game.Rulesets.Karaoke.Tests
@@ -20,7 +18,7 @@ namespace osu.Game.Rulesets.Karaoke.Tests
         public TestCaseWindows()
         {
             DialogContainer WindowsContainer = new DialogContainer();
-            this.Add(WindowsContainer);
+            Add(WindowsContainer);
         }
     }
 }

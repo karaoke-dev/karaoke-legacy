@@ -1,13 +1,11 @@
-﻿using OpenTK;
-using osu.Framework.Graphics.Containers;
-using osu.Game.Rulesets.Karaoke.UI.Panel.Pieces;
+﻿// Copyright (c) 2007-2017 ppy Pty Ltd <contact@ppy.sh>.
+// Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu-framework/master/LICENCE
+
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using osu.Framework.Graphics;
+using osu.Framework.Graphics.Containers;
 using osu.Game.Graphics.Sprites;
+using osu.Game.Rulesets.Karaoke.UI.Panel.Pieces;
 
 namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
 {
@@ -50,11 +48,11 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
             {
                 Children = new Drawable[]
                 {
-                    OsuSpriteText=new OsuSpriteText()
+                    OsuSpriteText = new OsuSpriteText()
                     {
                         Origin = Anchor.CentreRight,
                         Anchor = Anchor.CentreLeft,
-                        Width=70,
+                        Width = 70,
                     },
                     DecreaseButton = new KaraokeButton()
                     {
@@ -90,7 +88,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
                     }
                 }
             });
-            
+
 
             UpdateText();
         }

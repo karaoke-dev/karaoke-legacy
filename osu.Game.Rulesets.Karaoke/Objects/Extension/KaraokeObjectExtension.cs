@@ -1,4 +1,6 @@
-﻿using System;
+﻿// Copyright (c) 2007-2017 ppy Pty Ltd <contact@ppy.sh>.
+// Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu-framework/master/LICENCE
+
 using System.Linq;
 
 namespace osu.Game.Rulesets.Karaoke.Objects.Extension
@@ -21,7 +23,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Extension
             if (karaokeObject.IsInTime(nowRelativeTime) && karaokeObject.ListProgressPoint.Count > 0)
             {
                 var point = karaokeObject.ListProgressPoint.Find(x => x.RelativeTime > nowRelativeTime);
-                return point?? karaokeObject.ListProgressPoint.Last();
+                return point ?? karaokeObject.ListProgressPoint.Last();
             }
 
             return null;
@@ -40,7 +42,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Extension
         public static ProgressPoint GetLastProgressPointByIndex(this KaraokeObject karaokeObject, int charIndex)
         {
             var point = karaokeObject.ListProgressPoint.Find(x => x.CharIndex > charIndex);
-            return point;//?? karaokeObject.ListProgressPoint.Last();
+            return point; //?? karaokeObject.ListProgressPoint.Last();
         }
 
         /// <summary>
@@ -51,7 +53,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Extension
         /// <param name="nowRelativeTime">Now time.</param>
         public static bool IsInTime(this KaraokeObject karaokeObject, double nowRelativeTime)
         {
-            if (nowRelativeTime > - karaokeObject.PreemptiveTime && nowRelativeTime <= karaokeObject.Duration + karaokeObject.EndPreemptiveTime)
+            if (nowRelativeTime > -karaokeObject.PreemptiveTime && nowRelativeTime <= karaokeObject.Duration + karaokeObject.EndPreemptiveTime)
             {
                 return true;
             }
@@ -62,7 +64,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Extension
         /// will filter if has same languate
         /// </summary>
         /// <param name="karaokeObject">Karaoke object.</param>
-        public static bool AddNewTranslate(this KaraokeObject karaokeObject,KaraokeTranslateString translateString)
+        public static bool AddNewTranslate(this KaraokeObject karaokeObject, KaraokeTranslateString translateString)
         {
             return false;
         }

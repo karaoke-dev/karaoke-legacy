@@ -2,13 +2,13 @@
 // Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu-framework/master/LICENCE
 
 using System.Collections.Generic;
+using System.Linq;
+using Newtonsoft.Json;
+using osu.Game.Database;
+using osu.Game.Rulesets.Karaoke.Objects.Types;
 using osu.Game.Rulesets.Objects;
 using osu.Game.Rulesets.Objects.Types;
 using OpenTK;
-using System.Linq;
-using osu.Game.Database;
-using osu.Game.Rulesets.Karaoke.Objects.Types;
-using Newtonsoft.Json;
 
 namespace osu.Game.Rulesets.Karaoke.Objects
 {
@@ -16,7 +16,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects
     /// base karaoke object
     /// contain single sentence , a main text and several additional text
     /// </summary>
-    public class KaraokeObject : HitObject , IHasKaraokeComponent , IHasPosition, IHasCombo, IHasEndTime, IHasPrimaryKey
+    public class KaraokeObject : HitObject, IHasKaraokeComponent, IHasPosition, IHasCombo, IHasEndTime, IHasPrimaryKey
     {
         /// <summary>
         /// ID
@@ -108,13 +108,13 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         /// The time at which the HitObject ends.
         /// </summary>
         [JsonIgnore]
-        public double EndTime => StartTime + Duration + (EndPreemptiveTime??0);
+        public double EndTime => StartTime + Duration + (EndPreemptiveTime ?? 0);
 
         /// <summary>
         /// The duration of the HitObject.
         /// </summary>
         [JsonIgnore]
-        public double Duration => ListProgressPoint.LastOrDefault()?.RelativeTime??0;
+        public double Duration => ListProgressPoint.LastOrDefault()?.RelativeTime ?? 0;
 
         /// <summary>
         /// new combo
