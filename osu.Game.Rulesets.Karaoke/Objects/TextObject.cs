@@ -71,5 +71,17 @@ namespace osu.Game.Rulesets.Karaoke.Objects
                 FontSize = object2?.FontSize ?? object1.FontSize,
             };
         }
+
+        /// <summary>
+        /// cast
+        /// </summary>
+        /// <param name="textObject"></param>
+        public static explicit operator TextObject(string textObject)
+        {
+            return new TextObject()
+            {
+                Text = textObject,
+            };
+        }
     }
 }

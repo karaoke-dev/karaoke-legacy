@@ -31,7 +31,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables
         //Object
         public KaraokeObject KaraokeObject => HitObject;
 
-        public KaraokeTemplate Template
+        public KaraokeTemplate Template 
         {
             get => _template;
             set
@@ -61,7 +61,18 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables
             }
         }
 
-        public bool ProgressUpdateByTime { get; set; } = true;
+        private TranslateCode _translateCode;
+        public TranslateCode TranslateCode
+        {
+            get => _translateCode;
+            set
+            {
+                _translateCode = value;
+                UpdateDrawable();
+            }
+        }
+
+        public virtual bool ProgressUpdateByTime { get; set; } = true;
 
         //Drawable
         public TextsAndMask TextsAndMaskPiece { get; set; } = new TextsAndMask();
@@ -74,6 +85,8 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables
             : base(hitObject)
         {
             Alpha = 0;
+
+            Template = new KaraokeTemplate();
 
             Children = new Drawable[]
             {
@@ -114,6 +127,9 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables
 
             Width = TextsAndMaskPiece.MainKaraokeText.GetTextEndPosition(); //KaraokeObject.Width ?? (Template?.Width ?? 700);
             Height = KaraokeObject.Height ?? (Template?.Height ?? 100);
+
+            //update progress
+            Progress = Progress;
         }
 
         [BackgroundDependencyLoader]

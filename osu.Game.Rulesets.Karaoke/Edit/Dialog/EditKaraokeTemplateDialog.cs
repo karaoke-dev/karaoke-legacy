@@ -1,15 +1,56 @@
 ﻿// Copyright (c) 2007-2017 ppy Pty Ltd <contact@ppy.sh>.
 // Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu-framework/master/LICENCE
 
+using System.Collections.Generic;
+using osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces;
+using osu.Game.Rulesets.Karaoke.Objects;
+using OpenTK;
+
 namespace osu.Game.Rulesets.Karaoke.Edit.Dialog
 {
     /// <summary>
     /// edit karaoke termplate
     /// </summary>
-    class EditKaraokeTemplateDialog : DialogContainer
+    public class EditKaraokeTemplateDialog : DialogContainer
     {
-        public EditKaraokeTemplateDialog(KaraokeEditPlayfield editPlayField)
+        public KaraokeTemplate KarokeTemplate { get; set; }=new KaraokeTemplate();
+
+        public KaraokeObject KaraokeObject { get; set; } = new KaraokeObject()
         {
+            MainText= (TextObject)"カラオケ",
+            ListSubTextObject = new List<SubTextObject>()
+            {
+                new SubTextObject(){Text = "か"},
+                new SubTextObject(){Text = "ら",CharIndex = 1},
+                new SubTextObject(){Text = "お", CharIndex = 2},
+                new SubTextObject(){Text = "け" , CharIndex = 3},
+            },
+            ListTranslate = new ListKaraokeTranslateString()
+            {
+                new KaraokeTranslateString("eg","Karaoke")
+            }
+        };
+
+        protected DrawableKaraokeTemplate DrawableKaraokeTemplate;
+
+        public EditKaraokeTemplateDialog(KaraokeEditPlayfield editPlayField,KaraokeObject demoKaraokeText)
+        {
+            //KarokeTemplate =
+
+            if (demoKaraokeText != null)
+                KaraokeObject = demoKaraokeText;
+
+        }
+
+        public override void InitialDialog()
+        {
+            //create drawable
+            MainContext.Add(DrawableKaraokeTemplate = new DrawableKaraokeTemplate(KaraokeObject, KarokeTemplate)
+            {
+                Position=new Vector2(100,50)
+            });
+
+            base.InitialDialog();
         }
     }
 }

@@ -11,6 +11,9 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
     /// </summary>
     public class DrawableKaraokeTemplate : DrawableKaraokeObject
     {
+        //don't update by time
+        public override bool ProgressUpdateByTime => false;
+
         public DrawableKaraokeTemplate(KaraokeObject hitObject, KaraokeTemplate template)
             : base(hitObject)
         {
