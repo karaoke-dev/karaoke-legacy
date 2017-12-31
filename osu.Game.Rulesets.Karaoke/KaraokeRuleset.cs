@@ -8,15 +8,15 @@ using osu.Framework.Input.Bindings;
 using osu.Game.Beatmaps;
 using osu.Game.Graphics;
 using osu.Game.Overlays.Settings;
+using osu.Game.Rulesets.Edit;
+using osu.Game.Rulesets.Karaoke.Edit;
 using osu.Game.Rulesets.Karaoke.KaraokeDifficulty;
 using osu.Game.Rulesets.Karaoke.Mods;
 using osu.Game.Rulesets.Karaoke.Objects;
+using osu.Game.Rulesets.Karaoke.Objects.Drawables.Pieces;
 using osu.Game.Rulesets.Karaoke.UI;
 using osu.Game.Rulesets.Mods;
 using osu.Game.Rulesets.UI;
-using osu.Game.Rulesets.Karaoke.Objects.Drawables.Pieces;
-using osu.Game.Rulesets.Edit;
-using osu.Game.Rulesets.Karaoke.Edit;
 
 namespace osu.Game.Rulesets.Karaoke
 {
@@ -78,7 +78,7 @@ namespace osu.Game.Rulesets.Karaoke
         {
             switch (type)
             {
-                case ModType.DifficultyReduction://general setting of karaoke
+                case ModType.DifficultyReduction: //general setting of karaoke
                     return new Mod[]
                     {
                         new KaraokeTutorial(),
@@ -108,7 +108,7 @@ namespace osu.Game.Rulesets.Karaoke
                         },
                     };
 
-                case ModType.DifficultyIncrease:// pecial setting or effect
+                case ModType.DifficultyIncrease: // pecial setting or effect
                     return new Mod[]
                     {
                         new KaraokeHidden(),
@@ -122,10 +122,10 @@ namespace osu.Game.Rulesets.Karaoke
                         },
                     };
 
-                case ModType.Special://only event mod
+                case ModType.Special: //only event mod
                     return new Mod[]
                     {
-                        new ChristmasMod(),//sing the song when christmas
+                        new ChristmasMod(), //sing the song when christmas
                     };
 
                 default:
@@ -135,7 +135,7 @@ namespace osu.Game.Rulesets.Karaoke
 
         public override Drawable CreateIcon() => new ImagePicec(@"Icon/Icon");
 
-        public override DifficultyCalculator CreateDifficultyCalculator(Beatmap beatmap, Mod[] mods = null) => new KaraokeDifficultyCalculator(beatmap,mods);
+        public override DifficultyCalculator CreateDifficultyCalculator(Beatmap beatmap, Mod[] mods = null) => new KaraokeDifficultyCalculator(beatmap, mods);
 
         public override HitObjectComposer CreateHitObjectComposer() => new KaraokeHitObjectComposer(this);
 

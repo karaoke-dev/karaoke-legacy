@@ -1,36 +1,31 @@
-﻿using OpenTK;
-using OpenTK.Graphics;
+﻿// Copyright (c) 2007-2017 ppy Pty Ltd <contact@ppy.sh>.
+// Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu-framework/master/LICENCE
+
+using System;
+using System.Linq;
+using osu.Framework.Allocation;
 using osu.Framework.Graphics;
+using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Sprites;
 using osu.Framework.Graphics.Textures;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using osu.Framework.Timing;
-using osu.Framework.Allocation;
-using osu.Game.Configuration;
-using osu.Framework.Graphics.Containers;
-using osu.Framework.MathUtils;
-using osu.Framework.Graphics.Shapes;
+using OpenTK;
+using OpenTK.Graphics;
 
 namespace osu.Game.Rulesets.Karaoke.UI.Layer.ShowEffect
 {
-
     /// <summary>
     /// show Visualisation layer
     /// </summary>
     public class SnowLayer : Container
     {
-        public int SnowGenerateParSecond { get; set; } = 5;//max can have 1000 snow at the scene
-        public bool EnableNewSnow { get; set; } = true;//if disable ,will stop snow
-        public int SnowExpireTime { get; set; } = 6000;//snow will appear
-        public bool Enabled { get; set; } = true;//if disable ,will pause and no show will fall down
+        public int SnowGenerateParSecond { get; set; } = 5; //max can have 1000 snow at the scene
+        public bool EnableNewSnow { get; set; } = true; //if disable ,will stop snow
+        public int SnowExpireTime { get; set; } = 6000; //snow will appear
+        public bool Enabled { get; set; } = true; //if disable ,will pause and no show will fall down
         public float Speed { get; set; } = 1; //snow speed
         public float WingAffection { get; set; } = 3; //as wing speed
         public float SnowSize { get; set; } = 0.3f; //snow size
-        public String TexturePath { get; set; } = @"Play/Karaoke/Layer/Snow/Snow";
+        public string TexturePath { get; set; } = @"Play/Karaoke/Layer/Snow/Snow";
 
         private TextureStore texture;
         private Container snowContainer = new Container();
@@ -44,7 +39,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layer.ShowEffect
             Width = 512;
             Height = 450;
 
-            this.Children = new Drawable[]
+            Children = new Drawable[]
             {
                 snowContainer,
             };
@@ -72,9 +67,9 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layer.ShowEffect
 
             base.Update();
 
-            double currentTime = this.Time.Current;
+            double currentTime = Time.Current;
 
-            bool isCreateShow = !snowContainer.Children.Any() || (snowContainer.Children.LastOrDefault() as SnowSpitie).CreateTime + (1000 / SnowGenerateParSecond) < currentTime;
+            bool isCreateShow = !snowContainer.Children.Any() || (snowContainer.Children.LastOrDefault() as SnowSpitie).CreateTime + 1000 / SnowGenerateParSecond < currentTime;
 
             //if can generate new snow
             if (isCreateShow && EnableNewSnow)
@@ -110,7 +105,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layer.ShowEffect
                         snowContainer.Children.ToList().Remove(snow);
                     }
                 }
-            }   
+            }
         }
 
         [BackgroundDependencyLoader]

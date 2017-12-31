@@ -1,13 +1,11 @@
-﻿using OpenTK.Graphics;
+﻿// Copyright (c) 2007-2017 ppy Pty Ltd <contact@ppy.sh>.
+// Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu-framework/master/LICENCE
+
 using osu.Framework.Allocation;
 using osu.Framework.Extensions.Color4Extensions;
 using osu.Game.Graphics;
 using osu.Game.Graphics.UserInterface;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using OpenTK.Graphics;
 
 namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
 {
@@ -34,7 +32,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
     /// </summary>
     public class RevertableTextbox<T> : OsuTextBox
     {
-        protected override Color4 BackgroundUnfocused => HasEdited? Color4.Red.Opacity(0.1f): Color4.Black.Opacity(0.5f);
+        protected override Color4 BackgroundUnfocused => HasEdited ? Color4.Red.Opacity(0.1f) : Color4.Black.Opacity(0.5f);
         protected override Color4 BackgroundFocused => HasEdited ? Color4.Red.Opacity(0.3f) : OsuColour.Gray(0.3f).Opacity(0.8f);
         protected override Color4 BackgroundCommit => HasEdited ? Color4.Red.Opacity(0.5f) : (Color4)BorderColour;
 
@@ -42,7 +40,9 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
         /// OldValue
         /// </summary>
         protected bool _isSettingLodValue;
+
         protected T _oldValue;
+
         public virtual T OldValue
         {
             get => _oldValue;
@@ -72,7 +72,9 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
         /// Has edited
         /// </summary>
         private bool _hasEdit;
-        public virtual bool HasEdited {
+
+        public virtual bool HasEdited
+        {
             get => _hasEdit;
             set
             {
@@ -80,11 +82,11 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
                 if (_hasEdit)
                 {
                     //this.Background.Colour = BackgroundUnfocused;
-                    this.BorderColour = HasEditBorderColor;
+                    BorderColour = HasEditBorderColor;
                 }
                 else
                 {
-                    this.BorderColour = DefauleColor;
+                    BorderColour = DefauleColor;
                 }
             }
         }
@@ -94,7 +96,6 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
 
         public RevertableTextbox()
         {
-
         }
 
         /// <summary>

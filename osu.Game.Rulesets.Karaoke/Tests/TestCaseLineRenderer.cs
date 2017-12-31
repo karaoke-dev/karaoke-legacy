@@ -1,18 +1,18 @@
-﻿using NUnit.Framework;
-using OpenTK;
-using osu.Framework.Allocation;
-using osu.Framework.Graphics.Containers;
-using osu.Framework.Graphics.Lines;
-using osu.Game.Tests.Visual;
+﻿// Copyright (c) 2007-2017 ppy Pty Ltd <contact@ppy.sh>.
+// Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu-framework/master/LICENCE
+
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using NUnit.Framework;
+using osu.Framework.Allocation;
 using osu.Framework.Graphics;
-using osu.Framework.Graphics.Textures;
+using osu.Framework.Graphics.Containers;
+using osu.Framework.Graphics.Lines;
 using osu.Framework.Graphics.OpenGL.Textures;
-using OpenTK.Graphics;
+using osu.Framework.Graphics.Textures;
+using osu.Game.Rulesets.Objects;
+using osu.Game.Tests.Visual;
+using OpenTK;
 using OpenTK.Graphics.ES30;
 
 namespace osu.Game.Rulesets.Karaoke.Tests
@@ -54,22 +54,22 @@ namespace osu.Game.Rulesets.Karaoke.Tests
                     container = new BufferedContainer
                     {
                         CacheDrawnFrameBuffer = true,
-                        Width=400,
-                        Height=400,
-                        Position=new Vector2(-400,-600),
-                        Scale=new Vector2(2),
+                        Width = 400,
+                        Height = 400,
+                        Position = new Vector2(-400, -600),
+                        Scale = new Vector2(2),
                         Children = new Drawable[]
                         {
                             path2 = new Path
                             {
-                                Name="Path1",
+                                Name = "Path1",
                                 Blending = BlendingMode.None,
                             },
                         }
                     },
                     path = new Path
                     {
-                        Name="Path2",
+                        Name = "Path2",
                         Origin = Anchor.Centre,
                         PathWidth = 25,
                     },
@@ -86,17 +86,17 @@ namespace osu.Game.Rulesets.Karaoke.Tests
         void InitialPath()
         {
             points = new List<Vector2>
-                {
-                    new Vector2(0, 120),
-                    new Vector2(200, 300),
-                    new Vector2(500, 0)
-                };
+            {
+                new Vector2(0, 120),
+                new Vector2(200, 300),
+                new Vector2(500, 0)
+            };
 
             path.ClearVertices();
             path2.ClearVertices();
             //if (points.Count >= 3)
             //{
-            var ps = new osu.Game.Rulesets.Objects.BezierApproximator(points).CreateBezier();
+            var ps = new BezierApproximator(points).CreateBezier();
             foreach (var point in ps)
                 path2.AddVertex(point);
             //}
@@ -110,7 +110,6 @@ namespace osu.Game.Rulesets.Karaoke.Tests
 
         void InitialTexture()
         {
-            
             int textureWidth = (int)path.PathWidth * 2;
 
             var texture = new Texture(textureWidth, 1);
@@ -124,7 +123,7 @@ namespace osu.Game.Rulesets.Karaoke.Tests
 
             for (int i = 0; i < textureWidth; i++)
             {
-                float progress = (float)i / (textureWidth);
+                float progress = (float)i / textureWidth;
 
                 if (progress <= border_portion)
                 {
@@ -146,7 +145,7 @@ namespace osu.Game.Rulesets.Karaoke.Tests
             texture.SetData(upload);
             path.Texture = texture;
             path2.Texture = texture;
-            
+
 
             /*
             Color4 AccentColour = Color4.White;
@@ -226,6 +225,4 @@ namespace osu.Game.Rulesets.Karaoke.Tests
             */
         }
     }
-
-    
 }

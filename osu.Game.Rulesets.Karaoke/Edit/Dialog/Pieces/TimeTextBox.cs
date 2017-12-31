@@ -1,9 +1,7 @@
-﻿using osu.Game.Graphics.UserInterface;
+﻿// Copyright (c) 2007-2017 ppy Pty Ltd <contact@ppy.sh>.
+// Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu-framework/master/LICENCE
+
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using osu.Framework.Input;
 
 namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
@@ -17,19 +15,13 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
         public override double OldValue
         {
             get => base.OldValue;
-            set
-            {
-                base.OldValue = value;
-            }
+            set { base.OldValue = value; }
         }
 
         public override double NewValue
         {
             get => base.NewValue;
-            set
-            {
-                base.NewValue = value;
-            }
+            set { base.NewValue = value; }
         }
 
         public TimeTextBox()
@@ -39,10 +31,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
             Placeholder.FixedWidth = true;
 
             //update string to new format
-            OnCommit += (a, isNewText) =>
-            {
-                UpdateTextToFormat();
-            };
+            OnCommit += (a, isNewText) => { UpdateTextToFormat(); };
         }
 
         //start edit
@@ -80,7 +69,6 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
             }
             catch
             {
-
             }
         }
 
@@ -91,6 +79,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
         }
 
         #region Function
+
         //end edit
         protected void UpdateTextToFormat()
         {
@@ -107,10 +96,11 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
         protected double StringToDouble(string stringTime)
         {
             TimeSpan time;
-            TimeSpan.TryParse(stringTime,out time);
-            double milliSecond = time.TotalMilliseconds/60;
+            TimeSpan.TryParse(stringTime, out time);
+            double milliSecond = time.TotalMilliseconds / 60;
             return milliSecond;
         }
+
         #endregion
     }
 }

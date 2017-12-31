@@ -1,38 +1,38 @@
-﻿using OpenTK.Graphics;
-using osu.Framework.Graphics;
+﻿// Copyright (c) 2007-2017 ppy Pty Ltd <contact@ppy.sh>.
+// Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu-framework/master/LICENCE
+
+using osu.Framework.Graphics.Containers;
+using osu.Framework.Graphics.Cursor;
+using osu.Framework.Graphics.Shapes;
+using osu.Framework.Graphics.UserInterface;
 using osu.Framework.Input;
 using osu.Game.Graphics.Sprites;
-using osu.Game.Rulesets.Karaoke.Objects;
-using osu.Game.Rulesets.Karaoke.Objects.Drawables.Pieces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Linq;
-using osu.Framework.Graphics.Containers;
-using osu.Framework.Graphics.Shapes;
 using osu.Game.Graphics.UserInterface;
-using osu.Framework.Graphics.UserInterface;
-using osu.Framework.Graphics.Cursor;
+using osu.Game.Rulesets.Karaoke.Objects;
+using OpenTK;
+using OpenTK.Graphics;
+using OpenTK.Input;
 
 namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Pieces
 {
     public class EditableProgressPoint : Container, IHasContextMenu
     {
         public MenuItem[] ContextMenuItems => new MenuItem[]
-          {
-                new OsuMenuItem(@"Delete", MenuItemType.Highlighted),
-          };
+        {
+            new OsuMenuItem(@"Delete", MenuItemType.Highlighted),
+        };
 
         //public 
         public ProgressPoint ProgressPoint { get; set; }
-        public DrawableKaraokeThumbnail DrawableKaraokeThumbnail { get; set; }//Parent
+
+        public DrawableKaraokeThumbnail DrawableKaraokeThumbnail { get; set; } //Parent
         public int IndexOfObject => DrawableKaraokeThumbnail.KaraokeObject.ListProgressPoint.IndexOf(ProgressPoint);
 
         //Drawable component
         protected OsuSpriteText ProgressDrawableText { get; set; }
-        protected Box Background { get; set; } = new Box() { Height=50,};
+
+        protected Box Background { get; set; } = new Box() { Height = 50, };
+
         protected Box StartLine { get; set; } = new Box()
         {
             Width = 3,
@@ -41,6 +41,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Pieces
 
         //protected value
         protected bool IsFocus = false;
+
         protected float? PressedRelativePositionX;
         protected Color4 BackgroundIdolColor { get; set; } = Color4.Black;
         protected Color4 BackgroundHoverColor { get; set; } = Color4.Purple;
@@ -62,17 +63,19 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Pieces
                 }
             }
         }
+
         public bool Hover
         {
             get => false;
             set
             {
-                if(value)
+                if (value)
                     Background.Colour = BackgroundHoverColor;
                 else
                     Background.Colour = BackgroundIdolColor;
             }
         }
+
         public bool Selected
         {
             get => false;
@@ -84,6 +87,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Pieces
                     Background.Colour = BackgroundIdolColor;
             }
         }
+
         public void ResetColor()
         {
             Hover = false;
@@ -97,11 +101,11 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Pieces
             ProgressDrawableText = new OsuSpriteText()
             {
                 Text = ProgressText,
-                Position=new OpenTK.Vector2(5,5), 
+                Position = new Vector2(5, 5),
             };
-            this.Add(Background);
-            this.Add(StartLine);
-            this.Add(ProgressDrawableText);
+            Add(Background);
+            Add(StartLine);
+            Add(ProgressDrawableText);
         }
 
         #region Input
@@ -128,16 +132,18 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Pieces
             if (IsFocus)
             {
                 //delete itself
-                if (args.Key == OpenTK.Input.Key.Delete)
+                if (args.Key == Key.Delete)
                 {
                     DrawableKaraokeThumbnail.DeletePoint(ProgressPoint);
                 }
             }
             return base.OnKeyDown(state, args);
         }
+
         #endregion
 
         #region Override
+
         //will update view
         public override float Width
         {
@@ -159,6 +165,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Pieces
                 StartLine.Height = Height;
             }
         }
+
         #endregion
     }
 }

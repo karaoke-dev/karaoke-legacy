@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿// Copyright (c) 2007-2017 ppy Pty Ltd <contact@ppy.sh>.
+// Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu-framework/master/LICENCE
+
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
 {
@@ -12,6 +10,5 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
     /// </summary>
     public class LockPiece : Container
     {
-
     }
 }

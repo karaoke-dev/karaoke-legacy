@@ -6,12 +6,11 @@ using osu.Framework.Allocation;
 using osu.Framework.Configuration;
 using osu.Framework.Graphics;
 using osu.Game.Overlays.Settings;
+using osu.Game.Rulesets.Karaoke.Helps;
 using osu.Game.Rulesets.Karaoke.Objects;
 using osu.Game.Rulesets.Karaoke.Objects.Drawables;
 using osu.Game.Screens.Play.ReplaySettings;
 using osu.Game.Tests.Visual;
-using OpenTK;
-using osu.Game.Rulesets.Karaoke.Helps;
 
 namespace osu.Game.Rulesets.Karaoke.Tests
 {
@@ -52,7 +51,7 @@ namespace osu.Game.Rulesets.Karaoke.Tests
                     Default = 300,
                     Value = DrawableKaraokeObject.Progress,
                 },
-                Width=0.5f
+                Width = 0.5f
             };
             slider.Bindable.ValueChanged += (v) => { DrawableKaraokeObject.Progress = v; };
 

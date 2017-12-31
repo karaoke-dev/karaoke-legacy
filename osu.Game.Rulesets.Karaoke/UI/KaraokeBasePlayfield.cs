@@ -1,21 +1,22 @@
-﻿using osu.Game.Rulesets.Karaoke.UI.Interface;
-using osu.Game.Rulesets.UI;
-using System;
+﻿// Copyright (c) 2007-2017 ppy Pty Ltd <contact@ppy.sh>.
+// Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu-framework/master/LICENCE
+
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using osu.Game.Beatmaps;
-using osu.Game.Rulesets.Karaoke.Objects.Drawables;
-using osu.Game.Rulesets.Karaoke.UI.Tool;
-using OpenTK;
-using osu.Game.Rulesets.Objects.Drawables;
-using osu.Game.Rulesets.Karaoke.UI.Extension;
 using osu.Framework.Graphics;
-using osu.Framework.Input;
 using osu.Framework.Graphics.Containers;
-using osu.Game.Rulesets.Karaoke.Edit.Drawables.Dialog;
+using osu.Framework.Input;
 using osu.Framework.Timing;
+using osu.Game.Beatmaps;
+using osu.Game.Rulesets.Karaoke.Edit.Dialog;
+using osu.Game.Rulesets.Karaoke.Objects.Drawables;
+using osu.Game.Rulesets.Karaoke.UI.Extension;
+using osu.Game.Rulesets.Karaoke.UI.Interface;
+using osu.Game.Rulesets.Karaoke.UI.Tool;
+using osu.Game.Rulesets.Objects.Drawables;
+using osu.Game.Rulesets.UI;
+using OpenTK;
+using OpenTK.Input;
 
 namespace osu.Game.Rulesets.Karaoke.UI
 {
@@ -93,20 +94,23 @@ namespace osu.Game.Rulesets.Karaoke.UI
         }
 
         #region Input
+
         protected override bool OnKeyDown(InputState state, KeyDownEventArgs args)
         {
             foreach (var single in state.Keyboard.Keys)
             {
-                if (single == OpenTK.Input.Key.S)
+                if (single == Key.S)
                 {
                     OpenLoadSaveDialog();
                 }
             }
             return base.OnKeyDown(state, args);
         }
+
         #endregion
 
         #region Dialog
+
         public void OpenLoadSaveDialog()
         {
             if (!dialogLayer.Children.OfType<LoadSaveDialog>().Any())
@@ -114,6 +118,7 @@ namespace osu.Game.Rulesets.Karaoke.UI
                 dialogLayer.Add(new LoadSaveDialog(this));
             }
         }
+
         #endregion
     }
 }

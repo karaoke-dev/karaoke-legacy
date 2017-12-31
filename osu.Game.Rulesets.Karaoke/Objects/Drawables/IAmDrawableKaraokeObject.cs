@@ -1,6 +1,6 @@
-﻿
-using System;
-using osu.Game.Graphics.Sprites;
+﻿// Copyright (c) 2007-2017 ppy Pty Ltd <contact@ppy.sh>.
+// Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu-framework/master/LICENCE
+
 using osu.Game.Rulesets.Karaoke.Objects.Drawables.Pieces;
 using osu.Game.Rulesets.Karaoke.Tools.Translator;
 
@@ -44,9 +44,5 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables
         /// <param name="code"></param>
         /// <param name="translateResult"></param>
         void AddTranslate(TranslateCode code, string translateResult);
-
-       
-
-        
     }
 }

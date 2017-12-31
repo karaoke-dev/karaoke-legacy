@@ -1,26 +1,22 @@
-﻿using osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces;
-using osu.Game.Rulesets.Karaoke.Objects;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿// Copyright (c) 2007-2017 ppy Pty Ltd <contact@ppy.sh>.
+// Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu-framework/master/LICENCE
 
-namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Dialog
+using osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces;
+using osu.Game.Rulesets.Karaoke.Objects;
+
+namespace osu.Game.Rulesets.Karaoke.Edit.Dialog
 {
     /// <summary>
     /// show list singer
     /// </summary>
     public class ListSingerDialog : DialogContainer
     {
-
     }
 
     public class ListSingerScrollContainer : TableView<KaraokeSinger, SingerCell>
     {
         public ListSingerScrollContainer()
         {
-
         }
     }
 

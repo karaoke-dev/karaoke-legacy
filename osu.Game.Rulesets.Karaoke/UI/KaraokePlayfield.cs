@@ -2,7 +2,6 @@
 // Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu-framework/master/LICENCE
 
 using System.Collections.Generic;
-using NUnit.Framework;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Timing;
@@ -10,19 +9,11 @@ using osu.Game.Beatmaps;
 using osu.Game.Graphics.UserInterface;
 using osu.Game.Rulesets.Judgements;
 using osu.Game.Rulesets.Karaoke.Judgements;
-using osu.Game.Rulesets.Karaoke.Objects;
-using osu.Game.Rulesets.Karaoke.UI.Interface;
+using osu.Game.Rulesets.Karaoke.Mods;
+using osu.Game.Rulesets.Karaoke.Tools.Translator;
 using osu.Game.Rulesets.Karaoke.UI.Panel;
 using osu.Game.Rulesets.Objects.Drawables;
-using osu.Game.Rulesets.UI;
 using OpenTK;
-using osu.Game.Rulesets.Karaoke.UI.Extension;
-using osu.Game.Rulesets.Karaoke.Objects.Drawables;
-using osu.Game.Rulesets.Karaoke.Tools.Translator;
-using osu.Game.Rulesets.Karaoke.UI.Tool;
-using osu.Game.Rulesets.Karaoke.UI.Layer.ShowEffect;
-using System.Linq;
-using osu.Game.Rulesets.Karaoke.Mods;
 
 namespace osu.Game.Rulesets.Karaoke.UI
 {
@@ -90,7 +81,7 @@ namespace osu.Game.Rulesets.Karaoke.UI
             {
                 if (singleMod is IHasLayer iHasLayer)
                 {
-                    this.Add(iHasLayer.CreateNewLayer());
+                    Add(iHasLayer.CreateNewLayer());
                     break;
                 }
             }

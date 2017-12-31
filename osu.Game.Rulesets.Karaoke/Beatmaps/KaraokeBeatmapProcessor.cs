@@ -1,10 +1,8 @@
 ﻿// Copyright (c) 2007-2017 ppy Pty Ltd <contact@ppy.sh>.
 // Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu-framework/master/LICENCE
 
-using osu.Framework.Graphics;
 using osu.Game.Beatmaps;
 using osu.Game.Rulesets.Karaoke.Objects;
-using osu.Game.Rulesets.Objects.Types;
 
 namespace osu.Game.Rulesets.Karaoke.Beatmaps
 {
@@ -33,7 +31,7 @@ namespace osu.Game.Rulesets.Karaoke.Beatmaps
             }
         }
 
-        
+
         //private void applyStacking(Beatmap<KaraokeObject> beatmap)
         //{
         //    const int stack_distance = 3;
@@ -178,6 +176,5 @@ namespace osu.Game.Rulesets.Karaoke.Beatmaps
         //        }
         //    }
         //}
-   
     }
 }

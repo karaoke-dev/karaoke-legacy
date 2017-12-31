@@ -1,16 +1,14 @@
-﻿using osu.Game.Rulesets.Karaoke.UI;
-using System;
-using System.Collections.Generic;
+﻿// Copyright (c) 2007-2017 ppy Pty Ltd <contact@ppy.sh>.
+// Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu-framework/master/LICENCE
+
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using osu.Game.Beatmaps;
-using osu.Framework.Graphics;
-using osu.Game.Rulesets.Karaoke.Edit.Drawables;
-using osu.Game.Rulesets.Objects.Drawables;
 using osu.Framework.Input;
-using osu.Game.Rulesets.Karaoke.Edit.Drawables.Dialog;
-using osu.Framework.Graphics.Containers;
+using osu.Game.Beatmaps;
+using osu.Game.Rulesets.Karaoke.Edit.Dialog;
+using osu.Game.Rulesets.Karaoke.Edit.Drawables;
+using osu.Game.Rulesets.Karaoke.UI;
+using osu.Game.Rulesets.Objects.Drawables;
+using OpenTK.Input;
 
 namespace osu.Game.Rulesets.Karaoke.Edit
 {
@@ -22,9 +20,9 @@ namespace osu.Game.Rulesets.Karaoke.Edit
         public DrawableEditableKaraokeObject NowSelectedKaraokeObject { get; set; }
 
 
-        public KaraokeEditPlayfield(Ruleset ruleset, WorkingBeatmap beatmap, KaraokeEditRulesetContainer container) : base(ruleset, beatmap, container)
+        public KaraokeEditPlayfield(Ruleset ruleset, WorkingBeatmap beatmap, KaraokeEditRulesetContainer container)
+            : base(ruleset, beatmap, container)
         {
-            
         }
 
         /// <summary>
@@ -34,9 +32,8 @@ namespace osu.Game.Rulesets.Karaoke.Edit
         /// <param name="drawable"></param>
         public override void Add(DrawableHitObject h)
         {
-            if(h is DrawableEditableKaraokeObject drawableEditableKaraokeObject)
+            if (h is DrawableEditableKaraokeObject drawableEditableKaraokeObject)
             {
-
             }
 
             base.Add(h);
@@ -52,13 +49,13 @@ namespace osu.Game.Rulesets.Karaoke.Edit
         {
             foreach (var single in state.Keyboard.Keys)
             {
-                if (single == OpenTK.Input.Key.L)
+                if (single == Key.L)
                 {
                     //Open Lyrics dialog
                     OpenListKaraokeLyricsDialog();
                     break;
                 }
-                else if (single == OpenTK.Input.Key.T)
+                else if (single == Key.T)
                 {
                     //Open Translate dialog
                     OpenListKaraokeTranslateDialog();
@@ -68,7 +65,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit
             return base.OnKeyDown(state, args);
         }
 
-#region Dialog
+        #region Dialog
 
         public void OpenListKaraokeLyricsDialog()
         {
@@ -76,7 +73,6 @@ namespace osu.Game.Rulesets.Karaoke.Edit
             {
                 dialogLayer.Add(new ListKaraokeLyricsDialog(this));
             }
-           
         }
 
         public void OpenListKaraokeTranslateDialog()
@@ -87,6 +83,6 @@ namespace osu.Game.Rulesets.Karaoke.Edit
             }
         }
 
-#endregion
+        #endregion
     }
 }

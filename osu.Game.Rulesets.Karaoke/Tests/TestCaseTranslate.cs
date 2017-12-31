@@ -1,18 +1,12 @@
-﻿
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-using osu.Game.Tests.Visual;
-using osu.Game.Graphics.Sprites;
+﻿// Copyright (c) 2007-2017 ppy Pty Ltd <contact@ppy.sh>.
+// Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu-framework/master/LICENCE
+
 using NUnit.Framework;
 using osu.Framework.Graphics;
-using System.Net;
-using Newtonsoft.Json;
+using osu.Game.Graphics.Sprites;
 using osu.Game.Rulesets.Karaoke.Tools.Translator;
+using osu.Game.Tests.Visual;
+using OpenTK;
 
 namespace osu.Game.Rulesets.Karaoke.Tests
 {
@@ -41,7 +35,7 @@ namespace osu.Game.Rulesets.Karaoke.Tests
                     TextSize = 20,
                     Alpha = 1,
                     //ShadowColour = _textColor,
-                    Position = new OpenTK.Vector2(100, 100),
+                    Position = new Vector2(100, 100),
                     //BorderColour = _textColor,
                 });
             };
@@ -57,16 +51,14 @@ namespace osu.Game.Rulesets.Karaoke.Tests
                     TextSize = 20,
                     Alpha = 1,
                     //ShadowColour = _textColor,
-                    Position = new OpenTK.Vector2(100, 100),
+                    Position = new Vector2(100, 100),
                     //BorderColour = _textColor,
                 });
             };
 
             googleTranslator.Translate(TranslateCode.English, TranslateCode.Chinese_Traditional, "倪好 world!===");
-
         }
-       
-        
+
 
         /*
         private async void Run()

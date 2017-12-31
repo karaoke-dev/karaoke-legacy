@@ -1,17 +1,14 @@
-﻿using osu.Game.Database;
-using osu.Game.Rulesets.Objects.Types;
-using System;
+﻿// Copyright (c) 2007-2017 ppy Pty Ltd <contact@ppy.sh>.
+// Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu-framework/master/LICENCE
+
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace osu.Game.Rulesets.Karaoke.Objects.Types
 {
     /// <summary>
     /// define the basic class of karaoke object
     /// </summary>
-    public interface IHasKaraokeComponent 
+    public interface IHasKaraokeComponent
     {
         TextObject MainText { get; set; }
 

@@ -1,23 +1,24 @@
-﻿using osu.Framework.Graphics;
+﻿// Copyright (c) 2007-2017 ppy Pty Ltd <contact@ppy.sh>.
+// Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu-framework/master/LICENCE
+
+using System.Collections.Generic;
+using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Game.Graphics.UserInterface;
+using osu.Game.Overlays.Music;
 using osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces;
 using osu.Game.Rulesets.Karaoke.Objects;
+using osu.Game.Rulesets.Karaoke.Objects.Drawables;
 using osu.Game.Rulesets.Karaoke.Tools.Translator;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static osu.Game.Overlays.Music.FilterControl;
+using OpenTK;
 
-namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Dialog
+namespace osu.Game.Rulesets.Karaoke.Edit.Dialog
 {
     class ListKaraokeTranslateDialog : DialogContainer
     {
         protected KaraokeEditPlayfield PlayField;
         protected ListTranslateScrollContainer ItemsScrollContainer { get; set; }
-        public FilterTextBox Search;
+        public FilterControl.FilterTextBox Search;
         protected EnumDropdown<TranslateCode> Dropdown;
         public TriangleButton AutoTranslateButton;
 
@@ -38,11 +39,11 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Dialog
                 RelativeSizeAxes = Axes.X,
                 Height = 40,
                 Direction = FillDirection.Horizontal,
-                Spacing = new OpenTK.Vector2(0, 0),
+                Spacing = new Vector2(0, 0),
                 Depth = -10,
                 Children = new Drawable[]
                 {
-                    Search = new FilterTextBox
+                    Search = new FilterControl.FilterTextBox
                     {
                         //RelativeSizeAxes = Axes.X,
                         Width = 360,
@@ -50,20 +51,20 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Dialog
                     },
                     Dropdown = new EnumDropdown<TranslateCode>()
                     {
-                        Position = new OpenTK.Vector2(20, 10),
+                        Position = new Vector2(20, 10),
                         Width = 150,
-                        Scale=new OpenTK.Vector2(0.8f),
-                        
+                        Scale = new Vector2(0.8f),
+
                         //MaximumSize=new OpenTK.Vector2(200,200)
-                        Margin=new MarginPadding(5)
+                        Margin = new MarginPadding(5)
                     },
                     AutoTranslateButton = new TriangleButton
                     {
                         Width = 100,
                         Height = 30,
-                        Text="Auto Translate",
-                        Margin=new MarginPadding(5),
-                        Action=()=>
+                        Text = "Auto Translate",
+                        Margin = new MarginPadding(5),
+                        Action = () =>
                         {
                             //TODO : auto translate and call update each cell
                         }
@@ -74,16 +75,13 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Dialog
             //
             MainContext.Add(ItemsScrollContainer = new ListTranslateScrollContainer()
             {
-                Position = new OpenTK.Vector2(0, 40),
+                Position = new Vector2(0, 40),
                 Width = 600,
                 Height = 260,
             });
 
             //if search new word
-            Search.Current.ValueChanged += (newString) =>
-            {
-                ItemsScrollContainer.SearchTerm = newString;
-            };
+            Search.Current.ValueChanged += (newString) => { ItemsScrollContainer.SearchTerm = newString; };
             //
             Dropdown.DropdownContainer.MaxHeight = 250;
             //
@@ -92,14 +90,14 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Dialog
                 //TODO : value changed
                 ItemsScrollContainer.SetCurrentLanguage(translateCode);
             };
-           
+
 
             base.InitialDialog();
         }
 
         void InitialItemsScrollContainerItems()
         {
-            var listObjects = PlayField?.ListDrawableKaraokeObject ?? new List<Objects.Drawables.IAmDrawableKaraokeObject>();
+            var listObjects = PlayField?.ListDrawableKaraokeObject ?? new List<IAmDrawableKaraokeObject>();
             var listKaraokeObjects = new List<KaraokeObject>();
             foreach (var single in listObjects)
                 listKaraokeObjects.Add(single.KaraokeObject);
@@ -112,7 +110,6 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Dialog
     {
         public ListTranslateScrollContainer()
         {
-
         }
 
         public void SetCurrentLanguage(TranslateCode code)
@@ -129,8 +126,8 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Dialog
 
     public class TranslateCell : KaraokeBaseTableViewCell<KaraokeObject>
     {
-        public RevertableTextbox LyricsTextbox { get; set; }//Lyric
-        public RevertableTextbox TranslateTextbox { get; set; }//Translate
+        public RevertableTextbox LyricsTextbox { get; set; } //Lyric
+        public RevertableTextbox TranslateTextbox { get; set; } //Translate
 
         public FillFlowContainer<Drawable> FillFlowContainer { get; set; }
 
@@ -159,7 +156,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Dialog
             }
         }
 
-        public TranslateCell() 
+        public TranslateCell()
         {
             Height = 40;
         }
@@ -169,22 +166,22 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Dialog
             //Initial view
             base.InitialView();
             //add
-            this.Add(FillFlowContainer = new FillFlowContainer<Drawable>()
+            Add(FillFlowContainer = new FillFlowContainer<Drawable>()
             {
                 Direction = FillDirection.Horizontal,
-                Position = new OpenTK.Vector2(20, 0),
-                Spacing = new OpenTK.Vector2(10, 0),
+                Position = new Vector2(20, 0),
+                Spacing = new Vector2(10, 0),
                 Children = new Drawable[]
                 {
-                    LyricsTextbox=new RevertableTextbox()
+                    LyricsTextbox = new RevertableTextbox()
                     {
-                        Width=310,
-                        Height=35,
+                        Width = 310,
+                        Height = 35,
                     },
-                    TranslateTextbox=new RevertableTextbox()
+                    TranslateTextbox = new RevertableTextbox()
                     {
-                        Width=250,
-                        Height=35,
+                        Width = 250,
+                        Height = 35,
                     },
                 }
             });

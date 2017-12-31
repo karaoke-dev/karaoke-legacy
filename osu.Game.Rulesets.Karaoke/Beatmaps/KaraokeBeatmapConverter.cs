@@ -4,10 +4,10 @@
 using System;
 using System.Collections.Generic;
 using osu.Game.Beatmaps;
+using osu.Game.Rulesets.Karaoke.Helps;
 using osu.Game.Rulesets.Karaoke.Objects;
 using osu.Game.Rulesets.Objects;
 using osu.Game.Rulesets.Objects.Types;
-using osu.Game.Rulesets.Karaoke.Helps;
 
 namespace osu.Game.Rulesets.Karaoke.Beatmaps
 {
@@ -15,7 +15,7 @@ namespace osu.Game.Rulesets.Karaoke.Beatmaps
     {
         protected override IEnumerable<Type> ValidConversionTypes { get; } = new[] { typeof(IHasPosition) };
 
-        
+
         protected override IEnumerable<KaraokeObject> ConvertHitObject(HitObject original, Beatmap beatmap)
         {
             var curveData = original as IHasCurve;
@@ -66,7 +66,7 @@ namespace osu.Game.Rulesets.Karaoke.Beatmaps
             
             */
         }
-        
+
 
         /// <summary>
         /// Performs the conversion of a Beatmap using this Beatmap Converter.
@@ -90,9 +90,9 @@ namespace osu.Game.Rulesets.Karaoke.Beatmaps
         {
             List<KaraokeObject> listRerturn = new List<KaraokeObject>();
 
-            for (int i= 0;i<originalHitOjects.Count;i++)
+            for (int i = 0; i < originalHitOjects.Count; i++)
             {
-                if (i%5==4)
+                if (i % 5 == 4)
                 {
                     double duration = originalHitOjects[i].StartTime - originalHitOjects[i - 4].StartTime;
                     var karaokeObject = DemoKaraokeObject.GenerateWithStartAndDuration(originalHitOjects[i].StartTime, duration);

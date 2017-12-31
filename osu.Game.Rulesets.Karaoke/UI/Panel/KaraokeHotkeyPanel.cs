@@ -74,7 +74,8 @@ namespace osu.Game.Rulesets.Karaoke.UI.Panel
                     break;
 
                 case KaraokeAction.OpenPanel:
-                    KaraokePanelOverlay.ToggleVisibility(); ;
+                    KaraokePanelOverlay.ToggleVisibility();
+                    ;
                     break;
             }
 

@@ -20,13 +20,12 @@ namespace osu.Game.Rulesets.Karaoke.KaraokeDifficulty
         }
 
         public KaraokeDifficultyCalculator(Beatmap beatmap)
-          : base(beatmap)
+            : base(beatmap)
         {
         }
 
         protected override void PreprocessHitObjects()
         {
-           
         }
 
         public override double Calculate(Dictionary<string, double> categoryDifficulty = null)

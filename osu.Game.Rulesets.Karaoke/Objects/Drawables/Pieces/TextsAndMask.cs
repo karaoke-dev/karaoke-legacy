@@ -4,14 +4,12 @@
 using System.Collections.Generic;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
-using osu.Game.Graphics.Sprites;
 using OpenTK;
 using OpenTK.Graphics;
-using OpenTK.Graphics.ES30;
 
 namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Pieces
 {
-    public class TextsAndMask : Container//BufferedContainer
+    public class TextsAndMask : Container //BufferedContainer
     {
         protected virtual SingleSideOfAndMask LeftSideText { get; set; } = new SingleSideOfAndMask();
 
@@ -35,7 +33,6 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Pieces
                 RightSideText,
                 LeftSideText,
             };
-            
         }
 
         public void AddMainText(TextObject textObject)
@@ -80,7 +77,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Pieces
             RightSideText.SetMaskStartAndEndPosition(newValue, _maskWidth);
         }
 
-        public void SetColor(Color4 color,Color4 backgroundColor)
+        public void SetColor(Color4 color, Color4 backgroundColor)
         {
             LeftSideText.SetColor(color);
             //Right side is white
@@ -131,7 +128,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Pieces
                 {
                     _listDrawableText.Add(new KaraokeText(singleText)
                     {
-                        Origin= Anchor.Centre,
+                        Origin = Anchor.Centre,
                     });
                 }
                 Children = _listDrawableText.ToArray();
@@ -156,7 +153,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Pieces
                     }
                     else
                     {
-                        Children[i].Position = _listText[i-1].Position - Position;
+                        Children[i].Position = _listText[i - 1].Position - Position;
                     }
                 }
                 Width = endPositionX - startPositionX;

@@ -1,19 +1,16 @@
-﻿using osu.Game.Rulesets.Karaoke.Objects.Drawables;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using osu.Game.Rulesets.Karaoke.Objects;
-using osu.Framework.Input;
-using OpenTK.Graphics;
-using osu.Game.Rulesets.Karaoke.Edit.Drawables.Pieces;
-using osu.Framework.Graphics;
-using osu.Game.Rulesets.Karaoke.Tools.Translator;
-using osu.Game.Rulesets.Karaoke.Objects.Extension;
+﻿// Copyright (c) 2007-2017 ppy Pty Ltd <contact@ppy.sh>.
+// Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu-framework/master/LICENCE
+
 using osu.Framework.Graphics.Cursor;
 using osu.Framework.Graphics.UserInterface;
+using osu.Framework.Input;
 using osu.Game.Graphics.UserInterface;
+using osu.Game.Rulesets.Karaoke.Edit.Drawables.Pieces;
+using osu.Game.Rulesets.Karaoke.Objects;
+using osu.Game.Rulesets.Karaoke.Objects.Drawables;
+using osu.Game.Rulesets.Karaoke.Objects.Extension;
+using osu.Game.Rulesets.Karaoke.Tools.Translator;
+using OpenTK;
 
 namespace osu.Game.Rulesets.Karaoke.Edit.Drawables
 {
@@ -29,21 +26,22 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables
         protected bool IsDrag = false;
 
         public MenuItem[] ContextMenuItems => new MenuItem[]
-           {
-                new OsuMenuItem(@"Some option"),
-                new OsuMenuItem(@"Highlighted option", MenuItemType.Highlighted),
-                new OsuMenuItem(@"Another option"),
-                new OsuMenuItem(@"Choose me please"),
-                new OsuMenuItem(@"And me too"),
-                new OsuMenuItem(@"Trying to fill"),
-                new OsuMenuItem(@"Destructive option", MenuItemType.Destructive),
-           };
+        {
+            new OsuMenuItem(@"Some option"),
+            new OsuMenuItem(@"Highlighted option", MenuItemType.Highlighted),
+            new OsuMenuItem(@"Another option"),
+            new OsuMenuItem(@"Choose me please"),
+            new OsuMenuItem(@"And me too"),
+            new OsuMenuItem(@"Trying to fill"),
+            new OsuMenuItem(@"Destructive option", MenuItemType.Destructive),
+        };
 
-        public DrawableEditableKaraokeObject(KaraokeObject hitObject) : base(hitObject)
+        public DrawableEditableKaraokeObject(KaraokeObject hitObject)
+            : base(hitObject)
         {
             DrawableKaraokeThumbnail = new DrawableKaraokeThumbnail(KaraokeObject)
             {
-                Position=new OpenTK.Vector2(0,-30),
+                Position = new Vector2(0, -30),
                 Width = 300,
                 Height = 100,
             };
@@ -104,8 +102,9 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables
 
         protected int GetPointedText(InputState state)
         {
-            var mousePosition = this.ToLocalSpace(state.Mouse.NativeState.Position);
-            return EditableMainKaraokeText.GetIndexByPosition(mousePosition.X); ;
+            var mousePosition = ToLocalSpace(state.Mouse.NativeState.Position);
+            return EditableMainKaraokeText.GetIndexByPosition(mousePosition.X);
+            ;
         }
 
         #endregion
@@ -114,8 +113,8 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables
         {
             ProgressPoint previousPoint = KaraokeObject.GetFirstProgressPointByIndex(index);
             ProgressPoint nextPoint = KaraokeObject.GetLastProgressPointByIndex(index);
-            double deltaTime = ((previousPoint?.RelativeTime ?? 0) + (nextPoint?.RelativeTime ?? (previousPoint.RelativeTime + 500))) / 2;
-            ProgressPoint point = new ProgressPoint(deltaTime,index);
+            double deltaTime = ((previousPoint?.RelativeTime ?? 0) + (nextPoint?.RelativeTime ?? previousPoint.RelativeTime + 500)) / 2;
+            ProgressPoint point = new ProgressPoint(deltaTime, index);
             KaraokeObject.ListProgressPoint.AddProgressPoint(point);
             DrawableKaraokeThumbnail.UpdateView();
         }

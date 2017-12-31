@@ -1,13 +1,11 @@
-﻿using osu.Game.Rulesets.Karaoke.Objects;
+﻿// Copyright (c) 2007-2017 ppy Pty Ltd <contact@ppy.sh>.
+// Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu-framework/master/LICENCE
+
+using System.Collections.Generic;
+using osu.Framework.Graphics;
+using osu.Game.Rulesets.Karaoke.Objects;
 using osu.Game.Rulesets.Karaoke.Objects.Drawables;
 using osu.Game.Rulesets.Karaoke.UI.Interface;
-using System;
-using System.Collections.Generic;
-using System.Drawing.Printing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using osu.Framework.Graphics;
 using osu.Game.Rulesets.Objects;
 using OpenTK;
 
@@ -25,7 +23,6 @@ namespace osu.Game.Rulesets.Karaoke.UI.Extension
         /// <param name="karaokeObject"></param>
         public static void UpdateObjectCombo(this IAmKaraokeField karaokeField, KaraokeObject karaokeObject)
         {
-
         }
 
         public static void UpdateObjectTemplate(this IAmKaraokeField karaokeField, DrawableKaraokeObject drawableKaraokeObject)
@@ -55,9 +52,9 @@ namespace osu.Game.Rulesets.Karaoke.UI.Extension
             KaraokePosition position = null;
             int index = karaokeField.GetListKaraokeObjects().IndexOf(drawableKaraokeObject.HitObject);
             if (index % 2 == 0)
-                drawableKaraokeObject.KaraokeObject.PositionIndex=0;
+                drawableKaraokeObject.KaraokeObject.PositionIndex = 0;
             else
-                drawableKaraokeObject.KaraokeObject.PositionIndex=1;
+                drawableKaraokeObject.KaraokeObject.PositionIndex = 1;
 
             if (drawableKaraokeObject.KaraokeObject.PositionIndex != null)
             {
@@ -74,7 +71,6 @@ namespace osu.Game.Rulesets.Karaoke.UI.Extension
         /// <param name="karaokeObject"></param>
         public static void UpdateObjectPreemptiveTime(this IAmKaraokeField karaokeField, DrawableKaraokeObject karaokeObject)
         {
-
         }
 
         /// <summary>

@@ -1,29 +1,28 @@
-﻿using OpenTK;
-using OpenTK.Graphics;
+﻿// Copyright (c) 2007-2017 ppy Pty Ltd <contact@ppy.sh>.
+// Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu-framework/master/LICENCE
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using osu.Framework.Allocation;
 using osu.Framework.Extensions.IEnumerableExtensions;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
-using osu.Framework.Graphics.Sprites;
 using osu.Framework.Input;
 using osu.Framework.Localisation;
-using osu.Game.Beatmaps;
 using osu.Game.Database;
 using osu.Game.Graphics;
 using osu.Game.Graphics.Containers;
 using osu.Game.Overlays.Music;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using OpenTK;
+using OpenTK.Graphics;
 
 namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
 {
     /// <summary>
     /// Dragable item source container
     /// </summary>
-    public class TableView<TItem,TDrawable> : OsuScrollContainer where TItem : class,IHasPrimaryKey where TDrawable : TableViewCell<TItem>,new()
+    public class TableView<TItem, TDrawable> : OsuScrollContainer where TItem : class, IHasPrimaryKey where TDrawable : TableViewCell<TItem>, new()
     {
         public Action<TItem> OnSelect;
 
@@ -40,7 +39,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
                     AutoSizeAxes = Axes.Y,
                     Children = new Drawable[]
                     {
-                        items = new TableViewContainer<TItem,TDrawable>
+                        items = new TableViewContainer<TItem, TDrawable>
                         {
                             RelativeSizeAxes = Axes.X,
                             AutoSizeAxes = Axes.Y,
@@ -70,7 +69,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
         {
             items.Add(new TDrawable()
             {
-                BeatmapSetInfo= beatmapSet,
+                BeatmapSetInfo = beatmapSet,
                 OnSelect = set => OnSelect?.Invoke(set),
                 Depth = items.Count
             });
@@ -85,10 +84,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
 
         public TItem SelectedSet
         {
-            get
-            {
-                return items.FirstOrDefault(i => i.Selected)?.BeatmapSetInfo ;
-            }
+            get { return items.FirstOrDefault(i => i.Selected)?.BeatmapSetInfo; }
             set
             {
                 foreach (TDrawable s in items.Children)
@@ -229,7 +225,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
                 Direction = FillDirection.Vertical;
             }
         }
-    } 
+    }
 
     /// <summary>
     /// drawable Item
@@ -250,7 +246,6 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
 
         protected virtual void InitialView()
         {
-
             Children = new Drawable[]
             {
                 handle = new PlaylistItemHandle
@@ -274,6 +269,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
         }
 
         private bool selected;
+
         public bool Selected
         {
             get { return selected; }

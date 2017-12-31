@@ -1,13 +1,12 @@
-﻿using OpenTK;
+﻿// Copyright (c) 2007-2017 ppy Pty Ltd <contact@ppy.sh>.
+// Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu-framework/master/LICENCE
+
+using System.Linq;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Input;
 using osu.Game.Rulesets.Karaoke.Edit.Drawables.Pieces;
 using osu.Game.Rulesets.Karaoke.Objects;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using OpenTK.Input;
 
 namespace osu.Game.Rulesets.Karaoke.Edit.Drawables
 {
@@ -18,14 +17,17 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables
     public class DrawableKaraokeThumbnail : Container
     {
         public KaraokeObject KaraokeObject { get; set; }
+
         //if change zoon,call this
         public float Ratio = 0.3f;
+
         public float Zoon = 1;
 
         protected float PointYPosition = 30;
 
         //Start and end selected point
         public EditableProgressPoint HoverSelectedPoint { get; set; }
+
         protected EditableProgressPoint StartSelectedPoint { get; set; }
         protected EditableProgressPoint EndSelectedPoint { get; set; }
         protected bool IsDraging { get; set; }
@@ -39,6 +41,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables
             Add(ListEditableProgressPoint);
             UpdateView();
         }
+
         /// <summary>
         /// update UI
         /// </summary>
@@ -76,11 +79,11 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables
             {
                 //update position
                 var progressPoint = single.ProgressPoint;
-                single.Width = ((float)progressPoint.RelativeTime- totalRelativeTime) * Ratio * Zoon;
+                single.Width = ((float)progressPoint.RelativeTime - totalRelativeTime) * Ratio * Zoon;
                 single.Height = 30;
                 totalRelativeTime = (float)progressPoint.RelativeTime;
             }
-            this.Width= totalRelativeTime * Ratio * Zoon;
+            Width = totalRelativeTime * Ratio * Zoon;
         }
 
         /// <summary>
@@ -164,7 +167,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables
 
         public EditableProgressPoint GetPointedObjectByPosition(InputState state)
         {
-            var mousePosition = this.ToLocalSpace(state.Mouse.NativeState.Position);
+            var mousePosition = ToLocalSpace(state.Mouse.NativeState.Position);
 
             foreach (var single in ListEditableProgressPoint)
             {
@@ -176,14 +179,14 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables
 
         protected float GetXPointPosition(InputState state)
         {
-            var mousePosition = this.ToLocalSpace(state.Mouse.NativeState.Position);
+            var mousePosition = ToLocalSpace(state.Mouse.NativeState.Position);
             return mousePosition.X;
         }
 
         protected bool IsSelectKeyPressed(InputState state)
         {
             //if press control,return true
-            return state.Keyboard.Keys.Contains(OpenTK.Input.Key.LShift);
+            return state.Keyboard.Keys.Contains(Key.LShift);
         }
 
         //add s single point
@@ -219,8 +222,9 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables
 
         protected int GetObjectIndex(EditableProgressPoint point)
         {
-            return point!=null? ListEditableProgressPoint.IndexOf(point):-1;
+            return point != null ? ListEditableProgressPoint.IndexOf(point) : -1;
         }
+
         #region Input
 
         protected override bool OnMouseDown(InputState state, MouseDownEventArgs args)
@@ -258,7 +262,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables
             if (!IsSelectKeyPressed(state) && IsDraging)
             {
                 //Adjust position
-                UpdateTime(state.Mouse.Delta.X*3);
+                UpdateTime(state.Mouse.Delta.X * 3);
                 UpdatePosition();
             }
 
@@ -294,6 +298,5 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables
         }
 
         #endregion
-
     }
 }

@@ -2,29 +2,30 @@
 // Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu-framework/master/LICENCE
 
 using System.Linq;
+using osu.Framework.Allocation;
 using osu.Framework.Graphics;
-using osu.Framework.Graphics.Colour;
+using osu.Framework.IO.Stores;
 using osu.Game.Rulesets.Karaoke.Objects.Drawables.Pieces;
 using osu.Game.Rulesets.Karaoke.Objects.Extension;
 using osu.Game.Rulesets.Karaoke.Tools.Translator;
 using osu.Game.Rulesets.Objects.Drawables;
 using OpenTK.Graphics;
-using osu.Framework.Allocation;
-using osu.Framework.IO.Stores;
 
 namespace osu.Game.Rulesets.Karaoke.Objects.Drawables
 {
     /// <summary>
     /// Karaoke Text
     /// </summary>
-    public class DrawableKaraokeObject : DrawableHitObject<KaraokeObject> , IAmDrawableKaraokeObject
+    public class DrawableKaraokeObject : DrawableHitObject<KaraokeObject>, IAmDrawableKaraokeObject
     {
         //Private
         private KaraokeTemplate _template;
+
         private KaraokeSinger _singer;
 
         //Const
         public const float TIME_FADEIN = 100;
+
         public const float TIME_FADEOUT = 100;
 
         //Object
@@ -52,7 +53,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables
 
         public double PreemptiveTime
         {
-            get => KaraokeObject.PreemptiveTime??600;
+            get => KaraokeObject.PreemptiveTime ?? 600;
             set
             {
                 KaraokeObject.PreemptiveTime = value;
@@ -79,7 +80,6 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables
                 TextsAndMaskPiece,
                 TranslateText,
             };
-
         }
 
         /// <summary>
@@ -92,7 +92,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables
             Color4 backgroundColor = Singer?.LytricBackgroundColor ?? Color4.White;
             TextsAndMaskPiece.SetColor(textColor, backgroundColor);
 
-            
+
             TextsAndMaskPiece.ClearAllText();
             //main text
             TextsAndMaskPiece.AddMainText(Template?.MainText + KaraokeObject.MainText);
@@ -101,7 +101,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables
             foreach (var singleText in KaraokeObject.ListSubTextObject)
             {
                 //1. recalculate position
-                var startPosition = TextsAndMaskPiece.MainKaraokeText.GetEndPositionByIndex(singleText.CharIndex-1);
+                var startPosition = TextsAndMaskPiece.MainKaraokeText.GetEndPositionByIndex(singleText.CharIndex - 1);
                 var endPosition = TextsAndMaskPiece.MainKaraokeText.GetEndPositionByIndex(singleText.CharIndex);
                 singleText.X = (startPosition + endPosition) / 2;
                 //2. update to subtext
@@ -112,7 +112,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables
             TranslateText.TextObject = Template?.TranslateText;
             TranslateText.Colour = Template?.TranslateTextColor ?? Color4.White;
 
-            Width = TextsAndMaskPiece.MainKaraokeText.GetTextEndPosition();//KaraokeObject.Width ?? (Template?.Width ?? 700);
+            Width = TextsAndMaskPiece.MainKaraokeText.GetTextEndPosition(); //KaraokeObject.Width ?? (Template?.Width ?? 700);
             Height = KaraokeObject.Height ?? (Template?.Height ?? 100);
         }
 
@@ -150,28 +150,26 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables
                 return;
 
             double currentRelativeTime = Time.Current - HitObject.StartTime;
-            if(HitObject.IsInTime(currentRelativeTime))
+            if (HitObject.IsInTime(currentRelativeTime))
             {
                 //TODO : get progress point
                 var startProgressPoint = HitObject.GetFirstProgressPointByTime(currentRelativeTime);
                 var endProgressPoint = HitObject.GetLastProgressPointByTime(currentRelativeTime);
 
-                var startPosition= TextsAndMaskPiece.MainKaraokeText.GetEndPositionByIndex(startProgressPoint.CharIndex);
+                var startPosition = TextsAndMaskPiece.MainKaraokeText.GetEndPositionByIndex(startProgressPoint.CharIndex);
                 var endPosition = TextsAndMaskPiece.MainKaraokeText.GetEndPositionByIndex(endProgressPoint.CharIndex);
 
                 var relativeTime = currentRelativeTime - startProgressPoint.RelativeTime;
                 //Update progress
                 Progress = startPosition + (endPosition - startPosition) / (float)(endProgressPoint.RelativeTime - startProgressPoint.RelativeTime) * (float)relativeTime;
 
-                this.Show();
+                Show();
                 Alpha = 1;
             }
             else
             {
-                
-                this.Hide();
+                Hide();
                 Alpha = 0;
-                
             }
         }
 
@@ -191,11 +189,10 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables
 
         protected sealed override void UpdateState(ArmedState state)
         {
-
             double transformTime = HitObject.StartTime - PreemptiveTime;
 
-            base.ApplyTransformsAt(transformTime, true);
-            base.ClearTransformsAfter(transformTime, true);
+            ApplyTransformsAt(transformTime, true);
+            ClearTransformsAfter(transformTime, true);
 
             using (BeginAbsoluteSequence(transformTime, true))
             {
@@ -226,8 +223,6 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables
         {
             //Add and show translate in here
             TranslateText.Text = translateResult;
-            
         }
-
     }
 }

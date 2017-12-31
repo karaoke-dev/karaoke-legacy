@@ -1,12 +1,8 @@
 ﻿// Copyright (c) 2007-2017 ppy Pty Ltd <contact@ppy.sh>.
 // Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu-framework/master/LICENCE
 
-using System;
-using osu.Game.Rulesets.Objects.Types;
-using OpenTK;
-using osu.Game.Rulesets.Objects;
-using osu.Game.Rulesets.Karaoke.Objects.Types;
 using Newtonsoft.Json;
+using OpenTK;
 
 namespace osu.Game.Rulesets.Karaoke.Objects
 {
@@ -29,6 +25,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects
             get => Position.X;
             set => Position = new Vector2(value, Y);
         }
+
         [JsonIgnore]
         /// <inheritdoc />
         /// <summary>
@@ -70,8 +67,8 @@ namespace osu.Game.Rulesets.Karaoke.Objects
             return new TextObject()
             {
                 Position = object1.Position + object2.Position,
-                Text= object1.Text + object2.Text,
-                FontSize= object2?.FontSize?? object1.FontSize,
+                Text = object1.Text + object2.Text,
+                FontSize = object2?.FontSize ?? object1.FontSize,
             };
         }
     }

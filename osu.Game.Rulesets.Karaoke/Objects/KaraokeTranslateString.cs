@@ -13,7 +13,6 @@ namespace osu.Game.Rulesets.Karaoke.Objects
     {
         public KaraokeTranslateString()
         {
-
         }
 
         public KaraokeTranslateString(string langCode, string translateText)
@@ -26,7 +25,6 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         /// Lang code
         /// </summary>
         public string LangCode { get; set; }
-
     }
 
     /// <summary>
@@ -41,7 +39,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         public new void Add(KaraokeTranslateString translateString)
         {
             if (this.Any(x => x.LangCode == translateString.LangCode))
-                this.FindLast(x => x.LangCode == translateString.LangCode).Text = translateString.Text;
+                FindLast(x => x.LangCode == translateString.LangCode).Text = translateString.Text;
             else
                 base.Add(translateString);
         }

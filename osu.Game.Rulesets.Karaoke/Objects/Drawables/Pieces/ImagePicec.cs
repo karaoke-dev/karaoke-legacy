@@ -1,18 +1,16 @@
-﻿using OpenTK;
+﻿// Copyright (c) 2007-2017 ppy Pty Ltd <contact@ppy.sh>.
+// Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu-framework/master/LICENCE
+
 using osu.Framework.Allocation;
 using osu.Framework.Graphics.Sprites;
 using osu.Framework.Graphics.Textures;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Pieces
 {
     public class ImagePicec : Sprite
     {
         private string _resource;
+
         public ImagePicec(string resource)
         {
             _resource = resource;
@@ -21,7 +19,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Pieces
         [BackgroundDependencyLoader]
         private void load(TextureStore textures)
         {
-            this.Texture = textures.Get(_resource);
+            Texture = textures.Get(_resource);
         }
     }
 }

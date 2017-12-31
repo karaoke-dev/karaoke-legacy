@@ -1,13 +1,13 @@
 ﻿// Copyright (c) 2007-2017 ppy Pty Ltd <contact@ppy.sh>.
 // Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu-framework/master/LICENCE
 
-using OpenTK;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Timing;
 using osu.Game.Graphics;
 using osu.Game.Rulesets.Karaoke.UI.Layer.ShowEffect;
 using osu.Game.Rulesets.Mods;
+using OpenTK;
 
 namespace osu.Game.Rulesets.Karaoke.Mods
 {
@@ -65,6 +65,7 @@ namespace osu.Game.Rulesets.Karaoke.Mods
         public override string Description => "just make defult song speed slower.";
         public override FontAwesome Icon => FontAwesome.fa_osu_mod_halftime;
         public override bool Ranked => true;
+
         public override void ApplyToClock(IAdjustableClock clock)
         {
             clock.Rate = 0.75;
@@ -82,6 +83,7 @@ namespace osu.Game.Rulesets.Karaoke.Mods
         public override string Description => "just make defult song speed faster.";
         public override FontAwesome Icon => FontAwesome.fa_osu_mod_doubletime;
         public override bool Ranked => true;
+
         public override void ApplyToClock(IAdjustableClock clock)
         {
             clock.Rate = 1.25;
@@ -176,7 +178,4 @@ namespace osu.Game.Rulesets.Karaoke.Mods
             };
         }
     }
-
-
-
 }

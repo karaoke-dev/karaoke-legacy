@@ -1,10 +1,9 @@
 ﻿// Copyright (c) 2007-2017 ppy Pty Ltd <contact@ppy.sh>.
 // Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu-framework/master/LICENCE
 
-using Newtonsoft.Json;
-using osu.Game.Rulesets.Objects;
 using System.Collections.Generic;
 using System.Linq;
+using Newtonsoft.Json;
 using osu.Game.Rulesets.Karaoke.Objects.Types;
 
 namespace osu.Game.Rulesets.Karaoke.Objects
@@ -16,7 +15,6 @@ namespace osu.Game.Rulesets.Karaoke.Objects
     {
         public ProgressPoint()
         {
-            
         }
 
         public ProgressPoint(double time, int charIndex)
@@ -24,6 +22,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects
             RelativeTime = time;
             CharIndex = charIndex;
         }
+
         /// <summary>
         /// relative to word's strt time
         /// </summary>
@@ -56,9 +55,9 @@ namespace osu.Game.Rulesets.Karaoke.Objects
             if (this.Any(x => x.RelativeTime == point.RelativeTime))
                 return false;
 
-            this.Add(point);
-            this.SortProgressPoint();
-            this.FixTime();
+            Add(point);
+            SortProgressPoint();
+            FixTime();
             return true;
         }
 
@@ -69,12 +68,12 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         {
             // from small to large
             var orderByRelativeTimeList = this.OrderBy(x => x.RelativeTime).ToList();
-            this.Clear();
-            this.AddRange(orderByRelativeTimeList);
+            Clear();
+            AddRange(orderByRelativeTimeList);
             //sort
-            var orderByCharList=this.OrderBy(x => x.CharIndex).ToList();
-            this.Clear();
-            this.AddRange(orderByCharList);
+            var orderByCharList = this.OrderBy(x => x.CharIndex).ToList();
+            Clear();
+            AddRange(orderByCharList);
         }
 
         /// <summary>
@@ -83,7 +82,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         public void FixTime()
         {
             double time = 0;
-            foreach(var single in this)
+            foreach (var single in this)
             {
                 if (single.RelativeTime < time + MinimumTime)
                 {

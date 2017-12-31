@@ -1,9 +1,12 @@
-﻿using System.Collections.Generic;
+﻿// Copyright (c) 2007-2017 ppy Pty Ltd <contact@ppy.sh>.
+// Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu-framework/master/LICENCE
+
+using System.Collections.Generic;
 using osu.Game.Beatmaps;
 using osu.Game.Rulesets.Edit;
 using osu.Game.Rulesets.Edit.Tools;
-using osu.Game.Rulesets.UI;
 using osu.Game.Rulesets.Karaoke.Objects;
+using osu.Game.Rulesets.UI;
 
 namespace osu.Game.Rulesets.Karaoke.Edit
 {
@@ -18,10 +21,9 @@ namespace osu.Game.Rulesets.Karaoke.Edit
 
         protected override IReadOnlyList<ICompositionTool> CompositionTools => new ICompositionTool[]
         {
-            new HitObjectCompositionTool<KaraokeObject>(),//karaoke object
+            new HitObjectCompositionTool<KaraokeObject>(), //karaoke object
             //new HitObjectCompositionTool<TextObject>(),//add subtext to karaoke Object
             //new HitObjectCompositionTool<KaraokeTranslateString>(),//add translate to KaraokeObject
         };
     }
-    
 }

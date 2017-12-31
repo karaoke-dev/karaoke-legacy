@@ -1,27 +1,27 @@
-﻿using System;
-using System.Linq;
-using osu.Framework.Graphics.Containers;
-using osu.Framework.Graphics.Sprites;
-using osu.Framework.Graphics.UserInterface;
-using osu.Framework.Input;
-using OpenTK;
-using OpenTK.Graphics;
-using osu.Framework.Graphics.Shapes;
-using osu.Framework.Graphics.Visualisation;
+﻿// Copyright (c) 2007-2017 ppy Pty Ltd <contact@ppy.sh>.
+// Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu-framework/master/LICENCE
+
+using System;
 using osu.Framework;
 using osu.Framework.Graphics;
+using osu.Framework.Graphics.Containers;
+using osu.Framework.Graphics.Shapes;
+using osu.Framework.Graphics.Sprites;
+using osu.Framework.Input;
 using osu.Game.Graphics.UserInterface;
+using OpenTK;
+using OpenTK.Graphics;
 
-namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Dialog
+namespace osu.Game.Rulesets.Karaoke.Edit.Dialog
 {
     /// <summary>
     /// windows type
     /// </summary>
     public enum DialogContainerStatus
     {
-        Onscreen,//using this Dialog
-        Offscreen,//mouse does not focus on this Dialoh
-        Lock,//Cannot use this Dialog until other Dialog Closed
+        Onscreen, //using this Dialog
+        Offscreen, //mouse does not focus on this Dialoh
+        Lock, //Cannot use this Dialog until other Dialog Closed
     }
 
     /// <summary>
@@ -33,8 +33,8 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Dialog
         public Action CloseAction;
 
         //Title
-        public virtual String Title { get; set; }
-        
+        public virtual string Title { get; set; }
+
         //content of dialog should be write in here
         public virtual Container MainContext { get; set; } = new Container()
         {
@@ -109,7 +109,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Dialog
             {
                 new Box
                 {
-                    Colour = new Color4(50, 50, 50, 255),//Colour = new Color4(15, 15, 15, 255),
+                    Colour = new Color4(50, 50, 50, 255), //Colour = new Color4(15, 15, 15, 255),
                     RelativeSizeAxes = Axes.Both,
                     Depth = 0
                 },
@@ -142,13 +142,13 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Dialog
                                 {
                                     Anchor = Anchor.CentreRight,
                                     Origin = Anchor.Centre,
-                                    Width=16,
-                                    Height=16,
-                                    Text="X",
-                                    Position=new Vector2(-15,0),
-                                    Action = ()=>
+                                    Width = 16,
+                                    Height = 16,
+                                    Text = "X",
+                                    Position = new Vector2(-15, 0),
+                                    Action = () =>
                                     {
-                                        if(this.Parent is Container container)
+                                        if (Parent is Container container)
                                         {
                                             container.Remove(this);
                                         }
@@ -193,7 +193,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Dialog
             base.Update();
         }
 
-#region Input
+        #region Input
 
         protected override bool OnHover(InputState state)
         {
@@ -219,7 +219,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Dialog
 
         protected override bool OnClick(InputState state) => true;
 
-#endregion
+        #endregion
 
         protected override void LoadComplete()
         {

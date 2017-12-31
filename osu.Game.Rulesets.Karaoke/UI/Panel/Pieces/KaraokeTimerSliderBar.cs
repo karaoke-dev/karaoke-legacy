@@ -3,10 +3,10 @@
 
 using System;
 using osu.Framework.Graphics;
+using osu.Framework.Input;
 using osu.Game.Graphics.Sprites;
 using osu.Game.Graphics.UserInterface;
 using OpenTK;
-using osu.Framework.Input;
 
 namespace osu.Game.Rulesets.Karaoke.UI.Panel.Pieces
 {
@@ -120,7 +120,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Panel.Pieces
 
         protected override bool OnWheel(InputState state)
         {
-            if (state.Mouse.WheelDelta!=0)
+            if (state.Mouse.WheelDelta != 0)
             {
                 CurrentTime = CurrentTime + state.Mouse.WheelDelta * 500;
             }

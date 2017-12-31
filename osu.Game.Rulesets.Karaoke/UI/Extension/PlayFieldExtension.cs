@@ -1,13 +1,10 @@
 ﻿// Copyright (c) 2007-2017 ppy Pty Ltd <contact@ppy.sh>.
 // Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu-framework/master/LICENCE
 
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using osu.Framework.Audio;
 using osu.Game.Rulesets.Karaoke.Mods;
 using osu.Game.Rulesets.Karaoke.UI.Interface;
-using osu.Game.Rulesets.Mods;
 using osu.Game.Rulesets.Objects;
 using osu.Game.Rulesets.Objects.Types;
 
@@ -131,7 +128,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Extension
 
         public static double GetSpeed(this IAmKaraokeField karaokeField)
         {
-            return karaokeField?.WorkingBeatmap?.Track?.Rate??1;
+            return karaokeField?.WorkingBeatmap?.Track?.Rate ?? 1;
         }
 
         public static void AdjustTone(this IAmKaraokeField karaokeField, double value)
@@ -255,7 +252,6 @@ namespace osu.Game.Rulesets.Karaoke.UI.Extension
             return -1;
         }
 
-       
 
         /// <summary>
         /// if this beatmap need translate

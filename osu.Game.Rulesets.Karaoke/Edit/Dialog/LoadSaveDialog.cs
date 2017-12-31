@@ -1,19 +1,16 @@
-﻿using Newtonsoft.Json;
-using osu.Game.Beatmaps;
+﻿// Copyright (c) 2007-2017 ppy Pty Ltd <contact@ppy.sh>.
+// Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu-framework/master/LICENCE
+
+using System.Collections.Generic;
+using Newtonsoft.Json;
+using osu.Framework.Graphics;
+using osu.Framework.Graphics.Containers;
+using osu.Game.Graphics.UserInterface;
 using osu.Game.Rulesets.Karaoke.Objects;
 using osu.Game.Rulesets.Karaoke.UI;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using osu.Framework.Graphics.Containers;
-using osu.Framework.Graphics;
-using osu.Game.Graphics.UserInterface;
 using OpenTK.Graphics;
-using osu.Framework.Platform;
 
-namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Dialog
+namespace osu.Game.Rulesets.Karaoke.Edit.Dialog
 {
     /// <summary>
     /// before editor can save beatmap ,
@@ -27,6 +24,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Dialog
         protected FocusedTextBox LoadSaveTextbox { get; set; }
 
         protected KaraokeBasePlayfield KaraokeBasePlayfield;
+
         public LoadSaveDialog(KaraokeBasePlayfield karaokeBasePlayfield)
         {
             //Width = 600;
@@ -43,15 +41,15 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Dialog
                 Width = 600,
                 Children = new Drawable[]
                 {
-                    LoadSaveTextbox= new FocusedTextBox
+                    LoadSaveTextbox = new FocusedTextBox
                     {
                         //Position=new OpenTK.Vector2(100,100),
                         Padding = new MarginPadding(10),
                         //RelativeSizeAxes = Axes.Y,
-                        Width=500,
+                        Width = 500,
                         //Height=200,
-                        Text="Helloooooooooooooooooooooooooooooooooo!" + '\n' + "World",
-                        Colour=Color4.White,
+                        Text = "Helloooooooooooooooooooooooooooooooooo!" + '\n' + "World",
+                        Colour = Color4.White,
                     },
                 }
             };
@@ -76,7 +74,6 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Dialog
             //1. get result
             List<KaraokeObject> result = JsonConvert.DeserializeObject<List<KaraokeObject>>(textboxString);
             //2. update result to playFiled
-
         }
     }
 }

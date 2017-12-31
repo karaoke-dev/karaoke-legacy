@@ -1,10 +1,9 @@
-﻿using osu.Framework.Allocation;
-using osu.Framework.IO.Stores;
-using System;
-using System.Collections.Generic;
+﻿// Copyright (c) 2007-2017 ppy Pty Ltd <contact@ppy.sh>.
+// Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu-framework/master/LICENCE
+
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using osu.Framework.Allocation;
+using osu.Framework.IO.Stores;
 
 namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Pieces
 {
@@ -23,9 +22,9 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Pieces
             }
         }
 
-        public MainKaraokeText(TextObject textObject) : base(textObject)
+        public MainKaraokeText(TextObject textObject)
+            : base(textObject)
         {
-
         }
 
         protected void UpdateSingleCharacterEndPosition()
@@ -79,7 +78,6 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Pieces
                 //if private void load(FontStore store) not loaded,will run in here
                 return 700;
             }
-            
         }
 
         public int GetIndexByPosition(float position)

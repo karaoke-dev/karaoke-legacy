@@ -1,13 +1,9 @@
-﻿using System;
+﻿// Copyright (c) 2007-2017 ppy Pty Ltd <contact@ppy.sh>.
+// Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu-framework/master/LICENCE
+
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using osu.Framework.Graphics;
 using osu.Game.Graphics.Sprites;
-using osu.Framework.Allocation;
-using osu.Framework.IO.Stores;
-using osu.Framework.Input;
 
 namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Pieces
 {
@@ -17,7 +13,6 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Pieces
 
         public List<float> ListCharEndPosition { get; protected set; } = new List<float>();
 
-        
 
         public virtual TextObject TextObject
         {
@@ -44,5 +39,5 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Pieces
             Origin = Anchor.TopLeft;
             Alpha = 1;
         }
-    } 
+    }
 }

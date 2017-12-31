@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using osu.Game.Rulesets.Karaoke.Objects;
-using osu.Game.Rulesets.Mods;
-using osu.Game.Rulesets.UI;
+﻿// Copyright (c) 2007-2017 ppy Pty Ltd <contact@ppy.sh>.
+// Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu-framework/master/LICENCE
 
 namespace osu.Game.Rulesets.Karaoke.Mods
 {
@@ -21,6 +15,5 @@ namespace osu.Game.Rulesets.Karaoke.Mods
         public override string Description => "Singing karaoke at home and nobody give you a shit.";
 
         public override double ScoreMultiplier => 1;
-
     }
 }
