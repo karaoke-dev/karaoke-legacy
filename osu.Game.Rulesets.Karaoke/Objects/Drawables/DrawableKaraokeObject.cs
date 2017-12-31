@@ -87,6 +87,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables
             Alpha = 0;
 
             Template = new KaraokeTemplate();
+            TranslateCode = TranslateCode.English;
 
             Children = new Drawable[]
             {
@@ -122,7 +123,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables
             }
 
             //translate text
-            TranslateText.TextObject = Template?.TranslateText;
+            TranslateText.TextObject = Template?.TranslateText + KaraokeObject.ListTranslate.Where(x => x.LangCode == LangTagConvertor.GetCode(TranslateCode)).FirstOrDefault();
             TranslateText.Colour = Template?.TranslateTextColor ?? Color4.White;
 
             Width = TextsAndMaskPiece.MainKaraokeText.GetTextEndPosition(); //KaraokeObject.Width ?? (Template?.Width ?? 700);

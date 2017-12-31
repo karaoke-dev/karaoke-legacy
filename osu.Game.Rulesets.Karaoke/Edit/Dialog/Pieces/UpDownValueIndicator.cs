@@ -15,7 +15,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
     /// </summary>
     public class UpDownValueIndicator : Container
     {
-        public Action<float> OnValueChanged;
+        public Action<float> OnValueChanged { get; set; }
 
         /// <summary>
         /// Decrease Button
@@ -39,8 +39,8 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
         public float Value { get; set; }
         public float Step { get; set; } = 1;
 
-        public float PrefixText { get; set; }
-        public float PostfixText { get; set; }
+        public string PrefixText { get; set; }
+        public string PostfixText { get; set; }
 
         public UpDownValueIndicator()
         {
@@ -66,7 +66,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
                         Action = () =>
                         {
                             Value = Value - Step;
-                            UpdateText();
+                            updateText();
                             OnValueChanged?.Invoke(Value);
                         }
                     },
@@ -82,7 +82,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
                         Action = () =>
                         {
                             Value = Value + Step;
-                            UpdateText();
+                            updateText();
                             OnValueChanged?.Invoke(Value);
                         }
                     }
@@ -90,10 +90,10 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
             });
 
 
-            UpdateText();
+            updateText();
         }
 
-        void UpdateText()
+        private void updateText()
         {
             OsuSpriteText.Text = PrefixText + Value.ToString() + PostfixText;
         }

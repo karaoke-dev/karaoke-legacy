@@ -2,6 +2,7 @@
 // Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu-framework/master/LICENCE
 
 using System.Collections.Generic;
+using System.Linq;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using OpenTK;
@@ -20,6 +21,8 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Pieces
         private float _maskHeight;
 
         public MainKaraokeText MainKaraokeText => RightSideText.MainKaraokeText;
+
+        public KaraokeText SubKaraokeText => RightSideText.ListDrawableSubText.FirstOrDefault();
 
         public TextsAndMask()
         {
@@ -87,7 +90,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Pieces
         protected class SingleSideOfAndMask : Container
         {
             private List<TextObject> _listText = new List<TextObject>();
-            private List<KaraokeText> _listDrawableText = new List<KaraokeText>();
+            public List<KaraokeText> ListDrawableSubText = new List<KaraokeText>();
             private TextObject _mainText;
             public MainKaraokeText MainKaraokeText;
             private float _height;
@@ -118,20 +121,20 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Pieces
 
             protected void UpdateChild()
             {
-                _listDrawableText.Clear();
+                ListDrawableSubText.Clear();
                 if (_mainText != null)
                 {
                     MainKaraokeText = new MainKaraokeText(_mainText);
-                    _listDrawableText.Add(MainKaraokeText);
+                    ListDrawableSubText.Add(MainKaraokeText);
                 }
                 foreach (var singleText in _listText)
                 {
-                    _listDrawableText.Add(new KaraokeText(singleText)
+                    ListDrawableSubText.Add(new KaraokeText(singleText)
                     {
                         Origin = Anchor.Centre,
                     });
                 }
-                Children = _listDrawableText.ToArray();
+                Children = ListDrawableSubText.ToArray();
                 Masking = true;
             }
 

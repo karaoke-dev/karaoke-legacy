@@ -4,6 +4,7 @@
 using System.Collections.Generic;
 using osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces;
 using osu.Game.Rulesets.Karaoke.Objects;
+using osu.Game.Rulesets.Karaoke.Tools.Translator;
 using OpenTK;
 
 namespace osu.Game.Rulesets.Karaoke.Edit.Dialog
@@ -13,6 +14,8 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog
     /// </summary>
     public class EditKaraokeTemplateDialog : DialogContainer
     {
+        public override string Title => "Karaoke Template";
+
         public KaraokeTemplate KarokeTemplate { get; set; }=new KaraokeTemplate();
 
         public KaraokeObject KaraokeObject { get; set; } = new KaraokeObject()
@@ -27,7 +30,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog
             },
             ListTranslate = new ListKaraokeTranslateString()
             {
-                new KaraokeTranslateString("eg","Karaoke")
+                new KaraokeTranslateString(LangTagConvertor.GetCode(TranslateCode.English),"Karaoke")
             }
         };
 

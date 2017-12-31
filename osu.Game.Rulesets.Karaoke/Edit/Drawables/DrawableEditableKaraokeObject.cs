@@ -122,8 +122,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables
         public override void AddTranslate(TranslateCode code, string translateResult)
         {
             //Add it into Karaoke object
-            string langCode;
-            new GoogleTranslator().LangToCodeDictionary.TryGetValue(code, out langCode);
+            string langCode = LangTagConvertor.GetCode(code);
             KaraokeObject.AddNewTranslate(new KaraokeTranslateString(langCode, translateResult));
             //base
             base.AddTranslate(code, translateResult);
