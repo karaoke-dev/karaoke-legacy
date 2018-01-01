@@ -4,6 +4,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using osu.Framework.Graphics;
+using osu.Framework.Graphics.Animations;
 using osu.Framework.Graphics.Containers;
 using OpenTK;
 using OpenTK.Graphics;
@@ -46,11 +47,9 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Pieces
 
         public void AddSubText(TextObject textObject)
         {
-            LeftSideText.AddText(textObject);
-            RightSideText.AddText(textObject);
+            LeftSideText.AddSubText(textObject);
+            RightSideText.AddSubText(textObject);
         }
-
-
 
         public void ClearAllText()
         {
@@ -85,56 +84,43 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Pieces
 
         protected class SingleSideOfAndMask : Container
         {
-            private TextObject _mainText;
-            private List<TextObject> _listText = new List<TextObject>();
             public List<KaraokeText> ListDrawableSubText = new List<KaraokeText>();
             public MainKaraokeText MainKaraokeText;
             private float _height;
 
+            public SingleSideOfAndMask()
+            {
+                Masking = true;
+            }
+
             public virtual void AddMainText(TextObject textObject)
             {
-                _mainText = textObject;
-                UpdateChild();
+                if (MainKaraokeText == null)
+                {
+                    MainKaraokeText=new MainKaraokeText(textObject);
+                    Add(MainKaraokeText);
+                }
+                else
+                {
+                    MainKaraokeText.TextObject = textObject;
+                }
             }
 
-            public void AddText(TextObject textObject)
+            public void AddSubText(TextObject textObject)
             {
-                _listText.Add(textObject);
-                UpdateChild();
-            }
-
-            public void RemoveText(TextObject textObject)
-            {
-                _listText.Remove(textObject);
-                UpdateChild();
+                var subText = new KaraokeText(textObject)
+                {
+                    Origin = Anchor.BottomCentre,
+                };
+                ListDrawableSubText.Add(subText);
+                Add(subText);
             }
 
             public void ClearAllText()
             {
-                _listText.Clear();
-                //_mainText = null;
-                UpdateChild();
-            }
-
-            protected void UpdateChild()
-            {
                 ListDrawableSubText.Clear();
-                List<KaraokeText> list = new List<KaraokeText>();
-                if (_mainText != null)
-                {
-                    MainKaraokeText = new MainKaraokeText(_mainText);
-                    list.Add(MainKaraokeText);
-                }
-                foreach (var singleText in _listText)
-                {
-                    ListDrawableSubText.Add(new KaraokeText(singleText)
-                    {
-                        //Origin = Anchor.Centre,
-                    });
-                }
-                list.AddRange(ListDrawableSubText);
-                Children = list.ToArray();
-                Masking = true;
+                MainKaraokeText = null;
+                Children = new Drawable[]{};
             }
 
             public void SetHeight(float height)
@@ -151,11 +137,11 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Pieces
                 {
                     if (i == 0)
                     {
-                        Children[i].Position = _mainText.Position - Position;
+                        Children[i].Position = MainKaraokeText.TextObject.Position - Position;
                     }
                     else
                     {
-                        Children[i].Position = _listText[i - 1].Position - Position;
+                        Children[i].Position = ListDrawableSubText[i - 1].TextObject.Position - Position;
                     }
                 }
                 Width = endPositionX - startPositionX;
