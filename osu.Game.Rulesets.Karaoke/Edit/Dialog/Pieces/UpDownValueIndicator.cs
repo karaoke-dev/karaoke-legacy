@@ -38,11 +38,36 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
 
         protected int ButtonZixe = 25;
 
-        public float Value { get; set; }
+        private float _value;
+
+        public float Value
+        {
+            get => _value;
+            set
+            {
+                _value = value;
+                updateText();
+            }
+        }
         public float Step { get; set; } = 1;
 
-        public string PrefixText { get; set; }
-        public string PostfixText { get; set; }
+        private string _prefixText;
+        public string PrefixText { get=> _prefixText;
+            set
+            {
+                _prefixText = value;
+                updateText();
+            }
+        }
+
+        private string _postText;
+        public string PostfixText { get=> _postText;
+            set
+            {
+                _postText = value;
+                updateText();
+            }
+        }
 
         public UpDownValueIndicator()
         {

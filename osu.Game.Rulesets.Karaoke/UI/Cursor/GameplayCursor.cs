@@ -136,11 +136,13 @@ namespace osu.Game.Rulesets.Karaoke.UI.Cursor
         {
             switch (action)
             {
+                /*
                 case KaraokeAction.LeftButton:
                 case KaraokeAction.RightButton:
                     downCount++;
                     ActiveCursor.ScaleTo(1).ScaleTo(1.2f, 100, Easing.OutQuad);
                     break;
+                    */
             }
 
             return false;
@@ -150,11 +152,13 @@ namespace osu.Game.Rulesets.Karaoke.UI.Cursor
         {
             switch (action)
             {
+                /*
                 case KaraokeAction.LeftButton:
                 case KaraokeAction.RightButton:
                     if (--downCount == 0)
                         ActiveCursor.ScaleTo(1, 200, Easing.OutQuad);
                     break;
+                */
             }
 
             return false;

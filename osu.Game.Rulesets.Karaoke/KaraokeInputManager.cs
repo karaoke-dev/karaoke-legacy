@@ -17,12 +17,8 @@ namespace osu.Game.Rulesets.Karaoke
 
     public enum KaraokeAction
     {
-        //TODO : remove it from osu!
-        [Description("Left Button")] LeftButton,
-        [Description("Right Button")] RightButton,
-
-        //Karaoke
-        [Description("First Lyric")] FirstLyric, // 1 button
+        //KaraokeGamePlay
+        [Description("First Lyric")] FirstLyric, // 1 ,number_1
         [Description("Previous Lyric")] PreviousLyric, // left
         [Description("Next Lyric")] NextLyric, //right
         [Description("PlayAndPause")] PlayAndPause, //space
@@ -40,5 +36,11 @@ namespace osu.Game.Rulesets.Karaoke
         [Description("Reset Lyric Appear Time")] ResetLyricAppearTime, //C
 
         [Description("Panel key")] OpenPanel, //P
+
+        //open Dialog Hotkey
+        [Description("Template Dialog")] TemplateDialog, //T
+        [Description("Lyrics Dialog")] LyricsDialog, //L
+        [Description("Translate Dialog")] TranslateDialog,//R
+        [Description("Singer Dialog")] SingerDialog, //P
     }
 }
