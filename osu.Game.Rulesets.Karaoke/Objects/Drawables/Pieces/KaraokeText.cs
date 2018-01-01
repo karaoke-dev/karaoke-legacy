@@ -37,7 +37,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Pieces
 
             UseFullGlyphHeight = false;
             Anchor = Anchor.TopLeft;
-            Origin = Anchor.TopLeft;
+            Origin = Anchor.BottomLeft;
             Alpha = 1;
         }
     }

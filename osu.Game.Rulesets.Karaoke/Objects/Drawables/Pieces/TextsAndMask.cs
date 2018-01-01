@@ -133,7 +133,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Pieces
                 {
                     ListDrawableSubText.Add(new KaraokeText(singleText)
                     {
-                        Origin = Anchor.Centre,
+                        //Origin = Anchor.Centre,
                     });
                 }
                 list.AddRange(ListDrawableSubText);

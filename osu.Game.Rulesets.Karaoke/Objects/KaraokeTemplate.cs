@@ -18,7 +18,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         public TextObject SubText { get; set; } = new TextObject()
         {
             FontSize = 20, //default Main text Size is 50
-            Position = new Vector2(0, 30), //default position
+            Position = new Vector2(0, 15), //default position
         };
 
         /// <summary>
@@ -27,7 +27,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         public TextObject MainText { get; set; } = new TextObject()
         {
             FontSize = 50, //default Main text Size is 50
-            Position = new Vector2(0, 30), //default position
+            Position = new Vector2(0, 50), //default position
         };
 
         /// <summary>
@@ -36,7 +36,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         public TextObject TranslateText { get; set; } = new TextObject()
         {
             FontSize = 20, //default Main text Size is 50
-            Position = new Vector2(0, 75), //default position
+            Position = new Vector2(0, 65), //default position
         };
 
         /// <summary>

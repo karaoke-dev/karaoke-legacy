@@ -2,6 +2,7 @@
 // Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu-framework/master/LICENCE
 
 using System.Collections.Generic;
+using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Lines;
 using osu.Framework.Graphics.Primitives;
 using osu.Game.Rulesets.Karaoke.Objects;
@@ -21,7 +22,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
         protected UpDownValueIndicator MainTextToTranslateTextSegmentedControl;
         protected UpDownValueIndicator TranslateTextSegmentedControl;
 
-
+        protected Container SegmentedControlContainer = new Container();
         //don't update by time
         public override bool ProgressUpdateByTime => false;
 
@@ -29,7 +30,8 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
             : base(hitObject)
         {
             Template = template;
-           
+
+            Add(SegmentedControlContainer);
         }
 
         /// <summary>
@@ -80,6 +82,8 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
                 },
             };
 
+            SegmentedControlContainer.Clear();
+
             //Get all start Position
             Vector2 subTextSegmentedControlStartPosition =  TextsAndMaskPiece.SubKaraokeText.Position;
             Vector2 mainTextSegmentedControlStartPosition = TextsAndMaskPiece.MainKaraokeText.Position;
@@ -100,7 +104,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
             MainTextToTranslateTextSegmentedControl.Position = mainTextToTranslateTextSegmentedControlEndPosition;
             TranslateTextSegmentedControl.Position = translateTextSegmentedControlEndPosition;
             //3. draw line (Zero position,)
-            Add(new Path()
+            SegmentedControlContainer.Add(new Path()
             {
                 PathWidth =1,
                 Positions = new List<Vector2>()
@@ -108,7 +112,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
                     subTextSegmentedControlStartPosition, subTextSegmentedControlEndPosition
                 }
             });
-            Add(new Path()
+            SegmentedControlContainer.Add(new Path()
             {
                 PathWidth = 1,
                 Positions = new List<Vector2>()
@@ -116,7 +120,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
                     subTextToMainTextSegmentedControlStartPosition, subTextToMainTextSegmentedControlEndPosition
                 }
             });
-            Add(new Path()
+            SegmentedControlContainer.Add(new Path()
             {
                 PathWidth = 1,
                 Positions = new List<Vector2>()
@@ -124,7 +128,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
                     mainTextSegmentedControlStartPosition, mainTextSegmentedControlEndPosition
                 }
             });
-            Add(new Path()
+            SegmentedControlContainer.Add(new Path()
             {
                 PathWidth = 1,
                 Positions = new List<Vector2>()
@@ -132,7 +136,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
                     mainTextToTranslateTextSegmentedControlStartPosition, mainTextToTranslateTextSegmentedControlEndPosition
                 }
             });
-            Add(new Path()
+            SegmentedControlContainer.Add(new Path()
             {
                 PathWidth = 1,
                 Positions = new List<Vector2>()
@@ -141,11 +145,11 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
                 }
             });
             //4. add drawable
-            Add(SubTextSegmentedControl);
-            Add(SubTextToMainTextSegmentedControl);
-            Add(MainTextSegmentedControl);
-            Add(MainTextToTranslateTextSegmentedControl);
-            Add(TranslateTextSegmentedControl);
+            SegmentedControlContainer.Add(SubTextSegmentedControl);
+            SegmentedControlContainer.Add(SubTextToMainTextSegmentedControl);
+            SegmentedControlContainer.Add(MainTextSegmentedControl);
+            SegmentedControlContainer.Add(MainTextToTranslateTextSegmentedControl);
+            SegmentedControlContainer.Add(TranslateTextSegmentedControl);
         }
     }
 }
