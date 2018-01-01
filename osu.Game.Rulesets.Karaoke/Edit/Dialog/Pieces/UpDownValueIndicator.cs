@@ -46,19 +46,20 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
         {
             Add(FillFlowContainer = new FillFlowContainer<Drawable>()
             {
+                Direction = FillDirection.Horizontal,
                 Children = new Drawable[]
                 {
                     OsuSpriteText = new OsuSpriteText()
                     {
-                        Origin = Anchor.CentreRight,
-                        Anchor = Anchor.CentreLeft,
-                        Width = 70,
+                        Origin = Anchor.Centre,
+                        Anchor = Anchor.Centre,
+                        //Width = 70,
                     },
                     DecreaseButton = new KaraokeButton()
                     {
                         //Position = new Vector2(-10, 0),
-                        Origin = Anchor.CentreRight,
-                        Anchor = Anchor.CentreLeft,
+                        Origin = Anchor.Centre,
+                        Anchor = Anchor.Centre,
                         Width = ButtonZixe,
                         Height = ButtonZixe,
                         Text = "-",
@@ -73,8 +74,8 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
                     IncreaseButton = new KaraokeButton()
                     {
                         //Position = new Vector2(10, 0),
-                        Origin = Anchor.CentreLeft,
-                        Anchor = Anchor.CentreRight,
+                        Origin = Anchor.Centre,
+                        Anchor = Anchor.Centre,
                         Width = ButtonZixe,
                         Height = ButtonZixe,
                         Text = "+",

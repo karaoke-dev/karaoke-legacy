@@ -89,9 +89,9 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Pieces
 
         protected class SingleSideOfAndMask : Container
         {
+            private TextObject _mainText;
             private List<TextObject> _listText = new List<TextObject>();
             public List<KaraokeText> ListDrawableSubText = new List<KaraokeText>();
-            private TextObject _mainText;
             public MainKaraokeText MainKaraokeText;
             private float _height;
 
@@ -116,16 +116,18 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Pieces
             public void ClearAllText()
             {
                 _listText.Clear();
+                //_mainText = null;
                 UpdateChild();
             }
 
             protected void UpdateChild()
             {
                 ListDrawableSubText.Clear();
+                List<KaraokeText> list = new List<KaraokeText>();
                 if (_mainText != null)
                 {
                     MainKaraokeText = new MainKaraokeText(_mainText);
-                    ListDrawableSubText.Add(MainKaraokeText);
+                    list.Add(MainKaraokeText);
                 }
                 foreach (var singleText in _listText)
                 {
@@ -134,7 +136,8 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Pieces
                         Origin = Anchor.Centre,
                     });
                 }
-                Children = ListDrawableSubText.ToArray();
+                list.AddRange(ListDrawableSubText);
+                Children = list.ToArray();
                 Masking = true;
             }
 

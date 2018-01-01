@@ -87,7 +87,7 @@ namespace osu.Game.Rulesets.Karaoke.Tests
         {
             try
             {
-                EditKaraokeTemplateDialog dialog = new EditKaraokeTemplateDialog(null,null);
+                EditKaraokeTemplateDialog dialog = new EditKaraokeTemplateDialog(null, null);
                 Add(dialog);
             }
             catch (Exception ex)

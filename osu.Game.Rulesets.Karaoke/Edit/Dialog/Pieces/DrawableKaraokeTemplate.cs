@@ -1,6 +1,8 @@
 ﻿// Copyright (c) 2007-2017 ppy Pty Ltd <contact@ppy.sh>.
 // Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu-framework/master/LICENCE
 
+using System.Collections.Generic;
+using osu.Framework.Graphics.Lines;
 using osu.Framework.Graphics.Primitives;
 using osu.Game.Rulesets.Karaoke.Objects;
 using osu.Game.Rulesets.Karaoke.Objects.Drawables;
@@ -27,6 +29,16 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
             : base(hitObject)
         {
             Template = template;
+           
+        }
+
+        /// <summary>
+        /// update drawable
+        /// </summary>
+        protected override void UpdateDrawable()
+        {
+            base.UpdateDrawable();
+
             SubTextSegmentedControl = new UpDownValueIndicator()
             {
                 PostfixText = "px",
@@ -67,26 +79,20 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
                     UpdateDrawable();
                 },
             };
-        }
 
-        /// <summary>
-        /// update drawable
-        /// </summary>
-        protected override void UpdateDrawable()
-        {
-            base.UpdateDrawable();
             //Get all start Position
-            Vector2 subTextSegmentedControlStartPosition = TextsAndMaskPiece.SubKaraokeText.Position;
-            Vector2 subTextToMainTextSegmentedControlStartPosition = TextsAndMaskPiece.SubKaraokeText.Position;
-            Vector2 mainTextSegmentedControlStartPosition = TextsAndMaskPiece.SubKaraokeText.Position;
-            Vector2 mainTextToTranslateTextSegmentedControlStartPosition = TextsAndMaskPiece.SubKaraokeText.Position;
-            Vector2 translateTextSegmentedControlStartPosition = TextsAndMaskPiece.SubKaraokeText.Position;
+            Vector2 subTextSegmentedControlStartPosition =  TextsAndMaskPiece.SubKaraokeText.Position;
+            Vector2 mainTextSegmentedControlStartPosition = TextsAndMaskPiece.MainKaraokeText.Position;
+            Vector2 translateTextSegmentedControlStartPosition = TranslateText.Position;
+            Vector2 subTextToMainTextSegmentedControlStartPosition = (subTextSegmentedControlStartPosition + mainTextSegmentedControlStartPosition) /2;
+            Vector2 mainTextToTranslateTextSegmentedControlStartPosition = (mainTextSegmentedControlStartPosition + translateTextSegmentedControlStartPosition/2);
+            
             //1. get position (mainText and subText and translate text position)
-            Vector2 subTextSegmentedControlEndPosition = TextsAndMaskPiece.SubKaraokeText.Position + new Vector2(100, -50);
-            Vector2 subTextToMainTextSegmentedControlEndPosition = TextsAndMaskPiece.SubKaraokeText.Position + new Vector2(100, -50);
-            Vector2 mainTextSegmentedControlEndPosition = TextsAndMaskPiece.SubKaraokeText.Position + new Vector2(100, -50);
-            Vector2 mainTextToTranslateTextSegmentedControlEndPosition = TextsAndMaskPiece.SubKaraokeText.Position + new Vector2(100, -50);
-            Vector2 translateTextSegmentedControlEndPosition = TextsAndMaskPiece.SubKaraokeText.Position + new Vector2(100, -50);
+            Vector2 subTextSegmentedControlEndPosition = subTextSegmentedControlStartPosition + new Vector2(100, -50);
+            Vector2 subTextToMainTextSegmentedControlEndPosition = subTextToMainTextSegmentedControlStartPosition + new Vector2(100, -50);
+            Vector2 mainTextSegmentedControlEndPosition = mainTextSegmentedControlStartPosition + new Vector2(100, -50);
+            Vector2 mainTextToTranslateTextSegmentedControlEndPosition = mainTextToTranslateTextSegmentedControlStartPosition + new Vector2(100, -50);
+            Vector2 translateTextSegmentedControlEndPosition = translateTextSegmentedControlStartPosition + new Vector2(100, -50);
             //2. update position
             SubTextSegmentedControl.Position = subTextSegmentedControlEndPosition;
             SubTextToMainTextSegmentedControl.Position = subTextToMainTextSegmentedControlEndPosition;
@@ -94,7 +100,46 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
             MainTextToTranslateTextSegmentedControl.Position = mainTextToTranslateTextSegmentedControlEndPosition;
             TranslateTextSegmentedControl.Position = translateTextSegmentedControlEndPosition;
             //3. draw line (Zero position,)
-            Add(new Line());
+            Add(new Path()
+            {
+                PathWidth =1,
+                Positions = new List<Vector2>()
+                {
+                    subTextSegmentedControlStartPosition, subTextSegmentedControlEndPosition
+                }
+            });
+            Add(new Path()
+            {
+                PathWidth = 1,
+                Positions = new List<Vector2>()
+                {
+                    subTextToMainTextSegmentedControlStartPosition, subTextToMainTextSegmentedControlEndPosition
+                }
+            });
+            Add(new Path()
+            {
+                PathWidth = 1,
+                Positions = new List<Vector2>()
+                {
+                    mainTextSegmentedControlStartPosition, mainTextSegmentedControlEndPosition
+                }
+            });
+            Add(new Path()
+            {
+                PathWidth = 1,
+                Positions = new List<Vector2>()
+                {
+                    mainTextToTranslateTextSegmentedControlStartPosition, mainTextToTranslateTextSegmentedControlEndPosition
+                }
+            });
+            Add(new Path()
+            {
+                PathWidth = 1,
+                Positions = new List<Vector2>()
+                {
+                    translateTextSegmentedControlStartPosition, translateTextSegmentedControlEndPosition
+                }
+            });
             //4. add drawable
             Add(SubTextSegmentedControl);
             Add(SubTextToMainTextSegmentedControl);
