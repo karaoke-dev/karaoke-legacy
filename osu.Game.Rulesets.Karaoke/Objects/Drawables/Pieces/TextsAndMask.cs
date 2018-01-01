@@ -50,11 +50,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Pieces
             RightSideText.AddText(textObject);
         }
 
-        public void RemoveText(TextObject textObject)
-        {
-            LeftSideText.RemoveText(textObject);
-            RightSideText.RemoveText(textObject);
-        }
+
 
         public void ClearAllText()
         {

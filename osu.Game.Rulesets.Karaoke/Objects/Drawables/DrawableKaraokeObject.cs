@@ -101,12 +101,6 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables
         /// </summary>
         protected virtual void UpdateDrawable()
         {
-            //Color
-            Color4 textColor = Singer?.LytricColor ?? Color4.Blue;
-            Color4 backgroundColor = Singer?.LytricBackgroundColor ?? Color4.White;
-            TextsAndMaskPiece.SetColor(textColor, backgroundColor);
-
-
             TextsAndMaskPiece.ClearAllText();
             //main text
             TextsAndMaskPiece.AddMainText(Template?.MainText + KaraokeObject.MainText);
@@ -122,12 +116,22 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables
                 TextsAndMaskPiece.AddSubText(Template?.SubText + singleText);
             }
 
+            Width = TextsAndMaskPiece.MainKaraokeText.GetTextEndPosition(); //KaraokeObject.Width ?? (Template?.Width ?? 700);
+            Height = KaraokeObject.Height ?? (Template?.Height ?? 100);
+
+            UpdateValue();
+        }
+
+        protected virtual void UpdateValue()
+        {
+            //Color
+            Color4 textColor = Singer?.LytricColor ?? Color4.Blue;
+            Color4 backgroundColor = Singer?.LytricBackgroundColor ?? Color4.White;
+            TextsAndMaskPiece.SetColor(textColor, backgroundColor);
+
             //translate text
             TranslateText.TextObject = Template?.TranslateText + KaraokeObject.ListTranslate.Where(x => x.LangCode == LangTagConvertor.GetCode(TranslateCode)).FirstOrDefault();
             TranslateText.Colour = Template?.TranslateTextColor ?? Color4.White;
-
-            Width = TextsAndMaskPiece.MainKaraokeText.GetTextEndPosition(); //KaraokeObject.Width ?? (Template?.Width ?? 700);
-            Height = KaraokeObject.Height ?? (Template?.Height ?? 100);
 
             //update progress
             Progress = Progress;
