@@ -17,7 +17,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog
     /// list karaoke lytrics
     /// click the unlock can edit it
     /// </summary>
-    class ListKaraokeLyricsDialog : DialogContainer
+    public class ListKaraokeLyricsDialog : DialogContainer
     {
         protected KaraokeEditPlayfield PlayField;
         protected ListLyricsScrollContainer ItemsScrollContainer { get; set; }
@@ -32,7 +32,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog
             Height = 400;
 
             //initial karaoke objects to set
-            InitialItemsScrollContainerItems();
+            initialItemsScrollContainerItems();
         }
 
         public override void InitialDialog()
@@ -58,7 +58,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog
             base.InitialDialog();
         }
 
-        void InitialItemsScrollContainerItems()
+        private void initialItemsScrollContainerItems()
         {
             var listObjects = PlayField?.ListDrawableKaraokeObject ?? new List<IAmDrawableKaraokeObject>();
             var listKaraokeObjects = new List<KaraokeObject>();

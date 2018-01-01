@@ -6,13 +6,10 @@ using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Shapes;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using osu.Game.Graphics;
 using osu.Framework.Allocation;
 using osu.Game.Rulesets.Judgements;
 using osu.Game.Rulesets.UI;
-using osu.Game.Rulesets.Timing;
 
 namespace osu.Game.Rulesets.Mania.UI
 {

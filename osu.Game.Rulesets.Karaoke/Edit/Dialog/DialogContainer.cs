@@ -56,7 +56,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog
         protected override Container<Drawable> Content => this;
 
 
-        protected Container titleBar;
+        protected Container TitleBar;
 
         private DialogContainerStatus state;
         public event Action<DialogContainerStatus> StateChanged;
@@ -120,7 +120,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog
                     Direction = FillDirection.Vertical,
                     Children = new Drawable[]
                     {
-                        titleBar = new Container
+                        TitleBar = new Container
                         {
                             RelativeSizeAxes = Axes.X,
                             Size = new Vector2(1, 25),
@@ -207,7 +207,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog
             base.OnHoverLost(state);
         }
 
-        protected override bool OnDragStart(InputState state) => titleBar.ReceiveMouseInputAt(state.Mouse.NativeState.Position);
+        protected override bool OnDragStart(InputState state) => TitleBar.ReceiveMouseInputAt(state.Mouse.NativeState.Position);
 
         protected override bool OnDrag(InputState state)
         {

@@ -38,7 +38,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
         protected override void OnFocus(InputState state)
         {
             //disable update new value
-            _isSettingLodValue = true;
+            IsSettingLodValue = true;
 
             //Convert double to text
             Text = HasEdited ? (NewValue / 1000).ToString() : (OldValue / 1000).ToString();
@@ -74,7 +74,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
 
         protected override bool OnKeyDown(InputState state, KeyDownEventArgs args)
         {
-            _isSettingLodValue = false;
+            IsSettingLodValue = false;
             return base.OnKeyDown(state, args);
         }
 
@@ -83,7 +83,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
         //end edit
         protected void UpdateTextToFormat()
         {
-            _isSettingLodValue = true;
+            IsSettingLodValue = true;
 
             Text = DoubleToString(HasEdited ? NewValue : OldValue);
         }

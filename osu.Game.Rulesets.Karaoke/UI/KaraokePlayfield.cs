@@ -22,8 +22,7 @@ namespace osu.Game.Rulesets.Karaoke.UI
     /// </summary>
     public class KaraokePlayfield : KaraokeBasePlayfield
     {
-        private readonly Container judgementLayer;
-        private readonly Container KaraokecontrolLayer;
+        private readonly Container karaokecontrolLayer;
         private readonly KaraokePanelOverlay karaokePanelOverlay;
 
         //public override bool ProvidingUserCursor => true;
@@ -33,12 +32,7 @@ namespace osu.Game.Rulesets.Karaoke.UI
         {
             AddRange(new Drawable[]
             {
-                judgementLayer = new Container
-                {
-                    RelativeSizeAxes = Axes.Both,
-                    Depth = 1,
-                },
-                KaraokecontrolLayer = new Container
+                karaokecontrolLayer = new Container
                 {
                     RelativeSizeAxes = Axes.Both,
                     Depth = -2,
@@ -123,12 +117,10 @@ namespace osu.Game.Rulesets.Karaoke.UI
 
         public override void OnJudgement(DrawableHitObject judgedObject, Judgement judgement)
         {
-            var osuJudgement = (KaraokeJudgement)judgement;
+            var karaokeJudgement = (KaraokeJudgement)judgement;
 
             if (!judgedObject.DisplayJudgement)
                 return;
-
-            //judgementLayer.Add(explosion);
         }
     }
 }

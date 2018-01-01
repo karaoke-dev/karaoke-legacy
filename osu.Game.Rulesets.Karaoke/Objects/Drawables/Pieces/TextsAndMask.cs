@@ -4,7 +4,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using osu.Framework.Graphics;
-using osu.Framework.Graphics.Animations;
 using osu.Framework.Graphics.Containers;
 using OpenTK;
 using OpenTK.Graphics;

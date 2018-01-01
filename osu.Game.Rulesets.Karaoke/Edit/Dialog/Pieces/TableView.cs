@@ -26,20 +26,20 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
     {
         public Action<TItem> OnSelect;
 
-        protected readonly SearchContainer search;
-        protected readonly FillFlowContainer<TDrawable> items;
+        protected readonly SearchContainer Search;
+        protected readonly FillFlowContainer<TDrawable> Items;
 
         public TableView()
         {
             Children = new Drawable[]
             {
-                search = new SearchContainer
+                Search = new SearchContainer
                 {
                     RelativeSizeAxes = Axes.X,
                     AutoSizeAxes = Axes.Y,
                     Children = new Drawable[]
                     {
-                        items = new TableViewContainer<TItem, TDrawable>
+                        Items = new TableViewContainer<TItem, TDrawable>
                         {
                             RelativeSizeAxes = Axes.X,
                             AutoSizeAxes = Axes.Y,
@@ -51,50 +51,50 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
 
         public IEnumerable<TItem> Sets
         {
-            get { return items.Select(x => x.BeatmapSetInfo).ToList(); }
+            get { return Items.Select(x => x.BeatmapSetInfo).ToList(); }
             set
             {
-                items.Clear();
+                Items.Clear();
                 value.ForEach(AddBeatmapSet);
             }
         }
 
         public string SearchTerm
         {
-            get { return search.SearchTerm; }
-            set { search.SearchTerm = value; }
+            get { return Search.SearchTerm; }
+            set { Search.SearchTerm = value; }
         }
 
         public virtual void AddBeatmapSet(TItem beatmapSet)
         {
-            items.Add(new TDrawable()
+            Items.Add(new TDrawable()
             {
                 BeatmapSetInfo = beatmapSet,
                 OnSelect = set => OnSelect?.Invoke(set),
-                Depth = items.Count
+                Depth = Items.Count
             });
         }
 
         public virtual void RemoveBeatmapSet(TItem beatmapSet)
         {
-            var itemToRemove = items.FirstOrDefault(i => i.BeatmapSetInfo.ID == beatmapSet.ID);
+            var itemToRemove = Items.FirstOrDefault(i => i.BeatmapSetInfo.ID == beatmapSet.ID);
             if (itemToRemove != null)
-                items.Remove(itemToRemove);
+                Items.Remove(itemToRemove);
         }
 
         public TItem SelectedSet
         {
-            get { return items.FirstOrDefault(i => i.Selected)?.BeatmapSetInfo; }
+            get { return Items.FirstOrDefault(i => i.Selected)?.BeatmapSetInfo; }
             set
             {
-                foreach (TDrawable s in items.Children)
+                foreach (TDrawable s in Items.Children)
                     s.Selected = s.BeatmapSetInfo.ID == value?.ID;
             }
         }
 
-        public TItem FirstVisibleSet => items.FirstOrDefault(i => i.MatchingFilter)?.BeatmapSetInfo;
-        public TItem NextSet => (items.SkipWhile(i => !i.Selected).Skip(1).FirstOrDefault() ?? items.FirstOrDefault())?.BeatmapSetInfo;
-        public TItem PreviousSet => (items.TakeWhile(i => !i.Selected).LastOrDefault() ?? items.LastOrDefault())?.BeatmapSetInfo;
+        public TItem FirstVisibleSet => Items.FirstOrDefault(i => i.MatchingFilter)?.BeatmapSetInfo;
+        public TItem NextSet => (Items.SkipWhile(i => !i.Selected).Skip(1).FirstOrDefault() ?? Items.FirstOrDefault())?.BeatmapSetInfo;
+        public TItem PreviousSet => (Items.TakeWhile(i => !i.Selected).LastOrDefault() ?? Items.LastOrDefault())?.BeatmapSetInfo;
 
         private Vector2 nativeDragPosition;
         private TDrawable draggedItem;
@@ -102,7 +102,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
         protected override bool OnDragStart(InputState state)
         {
             nativeDragPosition = state.Mouse.NativeState.Position;
-            draggedItem = items.FirstOrDefault(d => d.IsDraggable);
+            draggedItem = Items.FirstOrDefault(d => d.IsDraggable);
             return draggedItem != null || base.OnDragStart(state);
         }
 
@@ -162,7 +162,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
 
         private void updateDragPosition()
         {
-            var itemsPos = items.ToLocalSpace(nativeDragPosition);
+            var itemsPos = Items.ToLocalSpace(nativeDragPosition);
 
             int srcIndex = (int)draggedItem.Depth;
 
@@ -170,15 +170,15 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
             // the item positions as they are being transformed
             float heightAccumulator = 0;
             int dstIndex = 0;
-            for (; dstIndex < items.Count; dstIndex++)
+            for (; dstIndex < Items.Count; dstIndex++)
             {
                 // Using BoundingBox here takes care of scale, paddings, etc...
-                heightAccumulator += items[dstIndex].BoundingBox.Height;
+                heightAccumulator += Items[dstIndex].BoundingBox.Height;
                 if (heightAccumulator > itemsPos.Y)
                     break;
             }
 
-            dstIndex = MathHelper.Clamp(dstIndex, 0, items.Count - 1);
+            dstIndex = MathHelper.Clamp(dstIndex, 0, Items.Count - 1);
 
             if (srcIndex == dstIndex)
                 return;
@@ -186,21 +186,21 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
             if (srcIndex < dstIndex)
             {
                 for (int i = srcIndex + 1; i <= dstIndex; i++)
-                    items.ChangeChildDepth(items[i], i - 1);
+                    Items.ChangeChildDepth(Items[i], i - 1);
             }
             else
             {
                 for (int i = dstIndex; i < srcIndex; i++)
-                    items.ChangeChildDepth(items[i], i + 1);
+                    Items.ChangeChildDepth(Items[i], i + 1);
             }
 
-            items.ChangeChildDepth(draggedItem, dstIndex);
+            Items.ChangeChildDepth(draggedItem, dstIndex);
         }
 
         /// <summary>
         /// searchable container
         /// </summary>
-        public class TableViewContainer<T_Item, T_Drawable> : FillFlowContainer<TDrawable>, IHasFilterableChildren where T_Drawable : TableViewCell<TItem> where T_Item : IHasPrimaryKey
+        public class TableViewContainer<TItem, TDrawable> : FillFlowContainer<TDrawable>, IHasFilterableChildren where TDrawable : TableViewCell<TItem> where TItem : IHasPrimaryKey
         {
             public IEnumerable<string> FilterTerms => new string[] { };
 

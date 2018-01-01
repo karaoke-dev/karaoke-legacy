@@ -46,7 +46,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Pieces
         protected Color4 BackgroundIdolColor { get; set; } = Color4.Black;
         protected Color4 BackgroundHoverColor { get; set; } = Color4.Purple;
         protected Color4 BackgroundPressColor { get; set; } = Color4.Blue;
-        protected float ratio = 0.3f;
+        protected float Ratio = 0.3f;
 
         //protected culculater value
         public string ProgressText

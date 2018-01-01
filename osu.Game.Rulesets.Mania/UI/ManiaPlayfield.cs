@@ -5,23 +5,14 @@ using osu.Framework.Graphics;
 using osu.Game.Rulesets.Mania.Objects;
 using osu.Game.Rulesets.UI;
 using OpenTK;
-using OpenTK.Graphics;
 using osu.Framework.Graphics.Containers;
 using System;
-using osu.Game.Graphics;
-using osu.Framework.Allocation;
 using System.Linq;
 using System.Collections.Generic;
 using osu.Framework.Configuration;
 using osu.Game.Rulesets.Objects.Drawables;
 using osu.Game.Rulesets.Mania.Objects.Drawables;
-using osu.Framework.Graphics.Shapes;
 using osu.Game.Rulesets.Judgements;
-using osu.Game.Beatmaps;
-using osu.Game.Rulesets.Objects.Types;
-using osu.Game.Beatmaps.ControlPoints;
-using osu.Framework.MathUtils;
-using osu.Framework.Extensions.IEnumerableExtensions;
 
 namespace osu.Game.Rulesets.Mania.UI
 {

@@ -76,14 +76,14 @@ namespace osu.Game.Rulesets.Karaoke.Tests
                 },
             });
 
-            InitialTexture();
+            initialTexture();
 
-            InitialPath();
+            initialPath();
 
             container.Attach(RenderbufferInternalFormat.DepthComponent16);
         }
 
-        void InitialPath()
+        private void initialPath()
         {
             points = new List<Vector2>
             {
@@ -108,7 +108,7 @@ namespace osu.Game.Rulesets.Karaoke.Tests
             //points.RemoveAt(0);
         }
 
-        void InitialTexture()
+        private void initialTexture()
         {
             int textureWidth = (int)path.PathWidth * 2;
 

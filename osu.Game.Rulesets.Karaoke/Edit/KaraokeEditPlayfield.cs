@@ -69,17 +69,17 @@ namespace osu.Game.Rulesets.Karaoke.Edit
 
         public void OpenListKaraokeLyricsDialog()
         {
-            if (!dialogLayer.Children.OfType<ListKaraokeLyricsDialog>().Any())
+            if (!DialogLayer.Children.OfType<ListKaraokeLyricsDialog>().Any())
             {
-                dialogLayer.Add(new ListKaraokeLyricsDialog(this));
+                DialogLayer.Add(new ListKaraokeLyricsDialog(this));
             }
         }
 
         public void OpenListKaraokeTranslateDialog()
         {
-            if (!dialogLayer.Children.OfType<ListKaraokeLyricsDialog>().Any())
+            if (!DialogLayer.Children.OfType<ListKaraokeLyricsDialog>().Any())
             {
-                dialogLayer.Add(new ListKaraokeTranslateDialog(this));
+                DialogLayer.Add(new ListKaraokeTranslateDialog(this));
             }
         }
 

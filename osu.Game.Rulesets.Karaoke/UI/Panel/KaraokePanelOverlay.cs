@@ -25,11 +25,11 @@ namespace osu.Game.Rulesets.Karaoke.UI.Panel
         private const float content_width = 0.8f;
 
         //define the position of object
-        private const int oneLayerYPosition = 30;
+        private const int one_layer_y_position = 30;
 
-        private const int twoLayerYPosition = 75;
-        private const int objectHeight = 30;
-        private const int startXPositin = -60;
+        private const int two_layer_y_position = 75;
+        private const int object_height = 30;
+        private const int start_x_positin = -60;
 
         //panel container
         private Container panelContainer;
@@ -115,7 +115,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Panel
                                 //"sentence" introduce text
                                 new KaraokeIntroduceText
                                 {
-                                    Position = new Vector2(startXPositin - 35, oneLayerYPosition),
+                                    Position = new Vector2(start_x_positin - 35, one_layer_y_position),
                                     Text = "Sentence",
                                     TooltipText = "Choose the sentence you want to sing."
                                 },
@@ -123,10 +123,10 @@ namespace osu.Game.Rulesets.Karaoke.UI.Panel
                                 //switch to first sentence
                                 FirstLyricButton = new KaraokeButton()
                                 {
-                                    Position = new Vector2(startXPositin + 40, oneLayerYPosition),
+                                    Position = new Vector2(start_x_positin + 40, one_layer_y_position),
                                     Origin = Anchor.CentreLeft,
-                                    Width = objectHeight,
-                                    Height = objectHeight,
+                                    Width = object_height,
+                                    Height = object_height,
                                     Text = "1",
                                     TooltipText = "Move to first sentence",
                                     Action = () => { playField?.NavigationToFirst(); }
@@ -135,10 +135,10 @@ namespace osu.Game.Rulesets.Karaoke.UI.Panel
                                 //switch to previous sentence
                                 PreviousLyricButton = new KaraokeButton()
                                 {
-                                    Position = new Vector2(startXPositin + 80, oneLayerYPosition),
+                                    Position = new Vector2(start_x_positin + 80, one_layer_y_position),
                                     Origin = Anchor.CentreLeft,
-                                    Width = objectHeight,
-                                    Height = objectHeight,
+                                    Width = object_height,
+                                    Height = object_height,
                                     Text = "<-",
                                     TooltipText = "Move to previous sentence",
                                     Action = () => { playField?.NavigationToPrevious(); }
@@ -147,10 +147,10 @@ namespace osu.Game.Rulesets.Karaoke.UI.Panel
                                 //switch to next sentence
                                 NextLyricButton = new KaraokeButton()
                                 {
-                                    Position = new Vector2(startXPositin + 120, oneLayerYPosition),
+                                    Position = new Vector2(start_x_positin + 120, one_layer_y_position),
                                     Origin = Anchor.CentreLeft,
-                                    Width = objectHeight,
-                                    Height = objectHeight,
+                                    Width = object_height,
+                                    Height = object_height,
                                     Text = "->",
                                     TooltipText = "Move to next sentence",
                                     Action = () => { playField?.NavigationToNext(); }
@@ -159,7 +159,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Panel
                                 //"play" introduce text
                                 new KaraokeIntroduceText
                                 {
-                                    Position = new Vector2(startXPositin + 160, oneLayerYPosition),
+                                    Position = new Vector2(start_x_positin + 160, one_layer_y_position),
                                     Text = "Play",
                                     TooltipText = "Pause,play the song and adjust time"
                                 },
@@ -167,10 +167,10 @@ namespace osu.Game.Rulesets.Karaoke.UI.Panel
                                 //Play and pause
                                 PlayPauseButton = new KaraokePlayPauseButton()
                                 {
-                                    Position = new Vector2(startXPositin + 200, oneLayerYPosition),
+                                    Position = new Vector2(start_x_positin + 200, one_layer_y_position),
                                     Origin = Anchor.CentreLeft,
-                                    Width = objectHeight,
-                                    Height = objectHeight,
+                                    Width = object_height,
+                                    Height = object_height,
                                     //Text="P",
                                     KaraokeShowingState = KaraokePlayState.Pause,
                                     Action = () =>
@@ -195,7 +195,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Panel
                                 //time slider
                                 TimeSlideBar = new KaraokeTimerSliderBar()
                                 {
-                                    Position = new Vector2(startXPositin + 280, oneLayerYPosition),
+                                    Position = new Vector2(start_x_positin + 280, one_layer_y_position),
                                     Origin = Anchor.CentreLeft,
                                     Width = 500,
                                     StartTime = playField != null ? (playField?.FirstObjectTime()).Value : 0,
@@ -206,7 +206,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Panel
                                 //"speed" introduce
                                 new KaraokeIntroduceText
                                 {
-                                    Position = new Vector2(startXPositin - 30, twoLayerYPosition),
+                                    Position = new Vector2(start_x_positin - 30, two_layer_y_position),
                                     Text = "Speed",
                                     TooltipText = "Adjust song speed."
                                 },
@@ -214,7 +214,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Panel
                                 //speed
                                 SpeedSlider = new WithUpAndDownButtonSlider()
                                 {
-                                    Position = new Vector2(startXPositin + 60, twoLayerYPosition),
+                                    Position = new Vector2(start_x_positin + 60, two_layer_y_position),
                                     Origin = Anchor.CentreLeft,
                                     Width = 150,
                                     MinValue = 0.5f,
@@ -228,7 +228,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Panel
                                 //"tone" introduce
                                 new KaraokeIntroduceText
                                 {
-                                    Position = new Vector2(startXPositin + 255, twoLayerYPosition),
+                                    Position = new Vector2(start_x_positin + 255, two_layer_y_position),
                                     Text = "Tone",
                                     TooltipText = "Adjust song tone."
                                 },
@@ -236,7 +236,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Panel
                                 //Tone
                                 ToneSlider = new WithUpAndDownButtonSlider()
                                 {
-                                    Position = new Vector2(startXPositin + 340, twoLayerYPosition),
+                                    Position = new Vector2(start_x_positin + 340, two_layer_y_position),
                                     Origin = Anchor.CentreLeft,
                                     Width = 150,
                                     MinValue = 0.5f,
@@ -250,7 +250,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Panel
                                 //"offset" introduce
                                 new KaraokeIntroduceText
                                 {
-                                    Position = new Vector2(startXPositin + 535, twoLayerYPosition),
+                                    Position = new Vector2(start_x_positin + 535, two_layer_y_position),
                                     Text = "Offset",
                                     TooltipText = "Adjust lyrics appear offset."
                                 },
@@ -258,7 +258,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Panel
                                 //offset
                                 LyricOffectSlider = new WithUpAndDownButtonSlider()
                                 {
-                                    Position = new Vector2(startXPositin + 630, twoLayerYPosition),
+                                    Position = new Vector2(start_x_positin + 630, two_layer_y_position),
                                     Origin = Anchor.CentreLeft,
                                     Width = 150,
                                     MinValue = -5.0f,

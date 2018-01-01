@@ -28,7 +28,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog
             PlayField = playField;
 
             //initial karaoke objects to set
-            InitialItemsScrollContainerItems();
+            initialItemsScrollContainerItems();
         }
 
         public override void InitialDialog()
@@ -95,7 +95,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog
             base.InitialDialog();
         }
 
-        void InitialItemsScrollContainerItems()
+        private void initialItemsScrollContainerItems()
         {
             var listObjects = PlayField?.ListDrawableKaraokeObject ?? new List<IAmDrawableKaraokeObject>();
             var listKaraokeObjects = new List<KaraokeObject>();
@@ -117,7 +117,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog
             //1. change lang to string
             string LangCode = "";
             //2. change show translage type
-            foreach (var single in items)
+            foreach (var single in Items)
             {
                 single.ChangeLanguage(LangCode);
             }

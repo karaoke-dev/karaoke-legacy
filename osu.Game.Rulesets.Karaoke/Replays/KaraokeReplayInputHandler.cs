@@ -19,8 +19,8 @@ namespace osu.Game.Rulesets.Karaoke.Replays
         {
             List<KaraokeAction> actions = new List<KaraokeAction>();
 
-            if (CurrentFrame?.MouseLeft ?? false) actions.Add(KaraokeAction.LeftButton);
-            if (CurrentFrame?.MouseRight ?? false) actions.Add(KaraokeAction.RightButton);
+            //if (CurrentFrame?.MouseLeft ?? false) actions.Add(KaraokeAction.LeftButton);
+            //if (CurrentFrame?.MouseRight ?? false) actions.Add(KaraokeAction.RightButton);
 
             return new List<InputState>
             {
