@@ -1,7 +1,6 @@
 ﻿// Copyright (c) 2007-2017 ppy Pty Ltd <contact@ppy.sh>.
 // Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu-framework/master/LICENCE
 
-using System.Collections.Generic;
 using osu.Framework.Graphics;
 using osu.Game.Graphics.Sprites;
 
@@ -10,8 +9,6 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Pieces
     public class KaraokeText : OsuSpriteText
     {
         private TextObject _textObject;
-
-        public List<float> ListCharEndPosition { get; protected set; } = new List<float>();
 
 
         public virtual TextObject TextObject

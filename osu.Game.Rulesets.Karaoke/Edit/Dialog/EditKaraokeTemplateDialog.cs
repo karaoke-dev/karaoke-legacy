@@ -50,7 +50,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog
             //create drawable
             MainContext.Add(DrawableKaraokeTemplate = new DrawableKaraokeTemplate(KaraokeObject, KarokeTemplate)
             {
-                Position=new Vector2(100,50)
+                Position=new Vector2(250,100)
             });
 
             base.InitialDialog();

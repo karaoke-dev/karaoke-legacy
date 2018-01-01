@@ -4,8 +4,10 @@
 using System;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
+using osu.Framework.Graphics.Shapes;
 using osu.Game.Graphics.Sprites;
 using osu.Game.Rulesets.Karaoke.UI.Panel.Pieces;
+using OpenTK.Graphics;
 
 namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
 {
@@ -44,9 +46,21 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
 
         public UpDownValueIndicator()
         {
+            Width = 100;
+            Height = 30;
+
+            Add(new Box()
+            {
+                RelativeSizeAxes = Axes.Both,
+                Colour = new Color4(0.0f, 0.0f, 0.0f, 0.5f)
+            });
+
+
             Add(FillFlowContainer = new FillFlowContainer<Drawable>()
             {
                 Direction = FillDirection.Horizontal,
+                Anchor = Anchor.Centre,
+                Origin = Anchor.Centre,
                 Children = new Drawable[]
                 {
                     OsuSpriteText = new OsuSpriteText()
@@ -89,7 +103,6 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
                     }
                 }
             });
-
 
             updateText();
         }

@@ -1,6 +1,7 @@
 ﻿// Copyright (c) 2007-2017 ppy Pty Ltd <contact@ppy.sh>.
 // Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu-framework/master/LICENCE
 
+using System.Collections.Generic;
 using System.Linq;
 using osu.Framework.Allocation;
 using osu.Framework.IO.Stores;
@@ -10,6 +11,10 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Pieces
     public class MainKaraokeText : KaraokeText
     {
         protected FontStore FontStore = null;
+
+        public float TotalWidth { get; protected set; } = 0;
+
+        public List<float> ListCharEndPosition { get; protected set; } = new List<float>();
 
         public override TextObject TextObject
         {
@@ -34,14 +39,14 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Pieces
 
             if (TextObject?.Text != null)
             {
-                float totalWidth = 0;
+                
                 ListCharEndPosition.Clear();
                 foreach (var single in TextObject.Text)
                 {
                     //get single char width
                     var singleCharWhdth = CreateCharacterDrawable(single).Width * TextSize;
-                    totalWidth += singleCharWhdth;
-                    ListCharEndPosition.Add(totalWidth);
+                    TotalWidth += singleCharWhdth;
+                    ListCharEndPosition.Add(TotalWidth);
                 }
             }
         }
