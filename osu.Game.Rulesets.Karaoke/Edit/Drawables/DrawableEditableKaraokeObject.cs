@@ -41,7 +41,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables
         {
             DrawableKaraokeThumbnail = new DrawableKaraokeThumbnail(KaraokeObject)
             {
-                Position = new Vector2(0, -30),
+                Position = new Vector2(0, -100),
                 Width = 300,
                 Height = 100,
             };
@@ -104,7 +104,6 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables
         {
             var mousePosition = ToLocalSpace(state.Mouse.NativeState.Position);
             return EditableMainKaraokeText.GetIndexByPosition(mousePosition.X);
-            ;
         }
 
         #endregion

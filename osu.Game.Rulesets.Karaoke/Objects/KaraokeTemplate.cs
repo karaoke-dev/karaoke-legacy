@@ -44,6 +44,8 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         /// </summary>
         public Color4 TranslateTextColor { get; set; } = Color4.White;
 
+        public float Scale { get; set; } = 1;
+
         /// <summary>
         /// width
         /// </summary>

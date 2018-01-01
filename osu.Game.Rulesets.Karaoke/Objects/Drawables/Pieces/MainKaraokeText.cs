@@ -41,6 +41,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Pieces
             {
                 
                 ListCharEndPosition.Clear();
+                TotalWidth = 0;
                 foreach (var single in TextObject.Text)
                 {
                     //get single char width

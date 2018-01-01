@@ -20,16 +20,22 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
     /// </summary>
     public class DrawableKaraokeTemplate : DrawableKaraokeObject
     {
+        //single part
         protected UpDownValueIndicator SubTextSegmentedControl;
         protected UpDownValueIndicator SubTextToMainTextSegmentedControl;
         protected UpDownValueIndicator MainTextSegmentedControl;
         protected UpDownValueIndicator MainTextToTranslateTextSegmentedControl;
         protected UpDownValueIndicator TranslateTextSegmentedControl;
+
+        //line
         protected Path SubTextPath;
         protected Path SubTextToMainTextPath;
         protected Path MainTextPath;
         protected Path MainTextToTranslateTextPath;
         protected Path TranslateTextPath;
+
+        //Scale
+        protected UpDownValueIndicator ScaleSegmentedControl;
 
         protected Container SegmentedControlContainer;
         //don't update by time
@@ -104,6 +110,19 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
                             UpdateDrawable();
                         },
                     },
+                    ScaleSegmentedControl= new UpDownValueIndicator()
+                    {
+                        Origin= Anchor.BottomCentre,
+                        Step = 0.1f,
+                        Position = new Vector2(50,150),
+                        Value = Template.Scale,
+                        PostfixText = "x",
+                        OnValueChanged = (newValue) =>
+                        {
+                            Template.Scale = newValue;
+                            UpdateDrawable();
+                        },
+                    },
                 }
             };
 
@@ -127,11 +146,11 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
             Vector2 mainTextToTranslateTextSegmentedControlStartPosition = new Vector2(-10, (mainTextSegmentedControlStartPosition.Y + translateTextSegmentedControlStartPosition.Y) / 2);
 
             //2. get all end position (s mainText and subText and translate text position)
-            Vector2 subTextSegmentedControlEndPosition = subTextSegmentedControlStartPosition + new Vector2(100, -50);
-            Vector2 subTextToMainTextSegmentedControlEndPosition = subTextToMainTextSegmentedControlStartPosition + new Vector2(-50, -50);
-            Vector2 mainTextSegmentedControlEndPosition = mainTextSegmentedControlStartPosition + new Vector2(100, -10);
-            Vector2 mainTextToTranslateTextSegmentedControlEndPosition = mainTextToTranslateTextSegmentedControlStartPosition + new Vector2(-50, 10);
-            Vector2 translateTextSegmentedControlEndPosition = translateTextSegmentedControlStartPosition + new Vector2(100, 30);
+            Vector2 subTextSegmentedControlEndPosition = subTextSegmentedControlStartPosition + new Vector2(100, -50) / Template.Scale;
+            Vector2 subTextToMainTextSegmentedControlEndPosition = subTextToMainTextSegmentedControlStartPosition + new Vector2(-50, -50) / Template.Scale;
+            Vector2 mainTextSegmentedControlEndPosition = mainTextSegmentedControlStartPosition + new Vector2(100, -10) / Template.Scale;
+            Vector2 mainTextToTranslateTextSegmentedControlEndPosition = mainTextToTranslateTextSegmentedControlStartPosition + new Vector2(-50, 10) / Template.Scale;
+            Vector2 translateTextSegmentedControlEndPosition = translateTextSegmentedControlStartPosition + new Vector2(100, 30) / Template.Scale;
 
             //3. update position
             SubTextSegmentedControl.Position = subTextSegmentedControlEndPosition;

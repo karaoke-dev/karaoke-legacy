@@ -9,6 +9,7 @@ using osu.Game.Rulesets.Karaoke.Objects.Drawables.Pieces;
 using osu.Game.Rulesets.Karaoke.Objects.Extension;
 using osu.Game.Rulesets.Karaoke.Tools.Translator;
 using osu.Game.Rulesets.Objects.Drawables;
+using OpenTK;
 using OpenTK.Graphics;
 
 namespace osu.Game.Rulesets.Karaoke.Objects.Drawables
@@ -132,6 +133,8 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables
             //translate text
             TranslateText.TextObject = Template?.TranslateText + KaraokeObject.ListTranslate.Where(x => x.LangCode == LangTagConvertor.GetCode(TranslateCode)).FirstOrDefault();
             TranslateText.Colour = Template?.TranslateTextColor ?? Color4.White;
+
+            this.Scale = new Vector2(Template?.Scale??1);
 
             //update progress
             Progress = Progress;
