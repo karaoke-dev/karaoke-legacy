@@ -7,7 +7,6 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using Newtonsoft.Json;
-using NUnit.Framework;
 
 namespace osu.Game.Rulesets.Karaoke.Tools.Translator
 {
@@ -51,7 +50,7 @@ namespace osu.Game.Rulesets.Karaoke.Tools.Translator
                 client.Encoding = Encoding.UTF8;
                 string json = client.DownloadString(url);
                 RootObject rootObject = JsonConvert.DeserializeObject<RootObject>(json);
-                string returnTranslateResult = rootObject?.data?.translations?.FirstOrDefault().translatedText;
+                string returnTranslateResult = rootObject?.Data?.Translations?.FirstOrDefault().TranslatedText;
                 OnTranslateSuccess?.Invoke(this, returnTranslateResult);
             }
             catch (Exception e)
@@ -93,11 +92,11 @@ namespace osu.Game.Rulesets.Karaoke.Tools.Translator
                     client.Encoding = Encoding.UTF8;
                     string json = client.DownloadString(url);
                     RootObject rootObject = JsonConvert.DeserializeObject<RootObject>(json);
-                    List<RootObject.Data.Translation> listTranslate = rootObject?.data?.translations;
+                    List<Data.Translation> listTranslate = rootObject?.Data?.Translations;
 
                     foreach (var single in listTranslate)
                     {
-                        returnString.Add(single.translatedText);
+                        returnString.Add(single.TranslatedText);
                     }
                 }
 
@@ -109,21 +108,19 @@ namespace osu.Game.Rulesets.Karaoke.Tools.Translator
             }
         }
 
-
-        [Ignore("getting CI working")]
         public class RootObject
         {
-            public Data data { get; set; }
+            public Data Data { get; set; }  
+        }
 
-            public class Data
+        public class Data
+        {
+            public List<Translation> Translations { get; set; }
+
+            public class Translation
             {
-                public List<Translation> translations { get; set; }
-
-                public class Translation
-                {
-                    public string translatedText { get; set; }
-                    public string detectedSourceLanguage { get; set; }
-                }
+                public string TranslatedText { get; set; }
+                public string DetectedSourceLanguage { get; set; }
             }
         }
     }

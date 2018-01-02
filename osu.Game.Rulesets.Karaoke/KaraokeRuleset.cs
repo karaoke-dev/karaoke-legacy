@@ -29,31 +29,57 @@ namespace osu.Game.Rulesets.Karaoke
     {
         public override RulesetContainer CreateRulesetContainerWith(WorkingBeatmap beatmap, bool isForCurrentRuleset) => new KaraokeRulesetContainer(this, beatmap, isForCurrentRuleset);
 
-        public override IEnumerable<KeyBinding> GetDefaultKeyBindings(int variant = 0) => new[]
+        public override IEnumerable<int> AvailableVariants => new[] { 0 , 1 };
+
+        public override IEnumerable<KeyBinding> GetDefaultKeyBindings(int variant = 0)
         {
-            new KeyBinding(InputKey.Number1, KaraokeAction.FirstLyric),
-            new KeyBinding(InputKey.Keypad1, KaraokeAction.FirstLyric),
+            if (variant == 0)
+            {
+                return new[]
+                {
+                    new KeyBinding(InputKey.Number1, KaraokeAction.FirstLyric),
+                    new KeyBinding(InputKey.Keypad1, KaraokeAction.FirstLyric),
 
-            new KeyBinding(InputKey.Left, KaraokeAction.PreviousLyric),
-            new KeyBinding(InputKey.Right, KaraokeAction.NextLyric),
+                    new KeyBinding(InputKey.Left, KaraokeAction.PreviousLyric),
+                    new KeyBinding(InputKey.Right, KaraokeAction.NextLyric),
 
-            new KeyBinding(InputKey.Enter, KaraokeAction.PlayAndPause),
-            new KeyBinding(InputKey.KeypadEnter, KaraokeAction.PlayAndPause),
+                    new KeyBinding(InputKey.Enter, KaraokeAction.PlayAndPause),
+                    new KeyBinding(InputKey.KeypadEnter, KaraokeAction.PlayAndPause),
 
-            new KeyBinding(InputKey.Q, KaraokeAction.IncreaseSpeed),
-            new KeyBinding(InputKey.A, KaraokeAction.DecreaseSpeed),
-            new KeyBinding(InputKey.Z, KaraokeAction.ResetSpeed),
+                    new KeyBinding(InputKey.Q, KaraokeAction.IncreaseSpeed),
+                    new KeyBinding(InputKey.A, KaraokeAction.DecreaseSpeed),
+                    new KeyBinding(InputKey.Z, KaraokeAction.ResetSpeed),
 
-            new KeyBinding(InputKey.W, KaraokeAction.IncreaseTone),
-            new KeyBinding(InputKey.S, KaraokeAction.DecreaseTone),
-            new KeyBinding(InputKey.X, KaraokeAction.ResetTone),
+                    new KeyBinding(InputKey.W, KaraokeAction.IncreaseTone),
+                    new KeyBinding(InputKey.S, KaraokeAction.DecreaseTone),
+                    new KeyBinding(InputKey.X, KaraokeAction.ResetTone),
 
-            new KeyBinding(InputKey.E, KaraokeAction.IncreaseLyricAppearTime),
-            new KeyBinding(InputKey.D, KaraokeAction.DecreaseLyricAppearTime),
-            new KeyBinding(InputKey.C, KaraokeAction.ResetLyricAppearTime),
+                    new KeyBinding(InputKey.E, KaraokeAction.IncreaseLyricAppearTime),
+                    new KeyBinding(InputKey.D, KaraokeAction.DecreaseLyricAppearTime),
+                    new KeyBinding(InputKey.C, KaraokeAction.ResetLyricAppearTime),
 
-            new KeyBinding(InputKey.P, KaraokeAction.OpenPanel),
-        };
+                    new KeyBinding(InputKey.P, KaraokeAction.OpenPanel),
+                };
+            }
+            else
+            {
+                return new[]
+                {
+                    new KeyBinding(InputKey.T, KaraokeAction.TemplateDialog),
+                    new KeyBinding(InputKey.L, KaraokeAction.LyricsDialog),
+                    new KeyBinding(InputKey.R, KaraokeAction.TranslateDialog),
+                    new KeyBinding(InputKey.G, KaraokeAction.SingerDialog),
+                };
+            }
+        }
+
+        public override string GetVariantName(int variant)
+        {
+            if (variant == 0)
+                return "Karaoke Key";
+            else
+                return "Dialog Hotkey";
+        }
 
         public override IEnumerable<BeatmapStatistic> GetBeatmapStatistics(WorkingBeatmap beatmap) => new[]
         {

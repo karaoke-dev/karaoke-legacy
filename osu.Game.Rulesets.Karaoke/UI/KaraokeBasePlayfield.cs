@@ -95,6 +95,7 @@ namespace osu.Game.Rulesets.Karaoke.UI
 
         #region Input
 
+        /*
         protected override bool OnKeyDown(InputState state, KeyDownEventArgs args)
         {
             foreach (var single in state.Keyboard.Keys)
@@ -106,6 +107,7 @@ namespace osu.Game.Rulesets.Karaoke.UI
             }
             return base.OnKeyDown(state, args);
         }
+        */
 
         #endregion
 
