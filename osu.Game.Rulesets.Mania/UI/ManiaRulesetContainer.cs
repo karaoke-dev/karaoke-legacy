@@ -1,7 +1,6 @@
-﻿// Copyright (c) 2007-2017 ppy Pty Ltd <contact@ppy.sh>.
+﻿// Copyright (c) 2007-2018 ppy Pty Ltd <contact@ppy.sh>.
 // Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
 
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using OpenTK;
@@ -30,11 +29,7 @@ namespace osu.Game.Rulesets.Mania.UI
 {
     public class ManiaRulesetContainer : ScrollingRulesetContainer<ManiaPlayfield, ManiaHitObject>
     {
-        /// <summary>
-        /// The number of columns which the <see cref="ManiaPlayfield"/> should display, and which
-        /// the beatmap converter will attempt to convert beatmaps to use.
-        /// </summary>
-        public int AvailableColumns { get; private set; }
+        public new ManiaBeatmap Beatmap => (ManiaBeatmap)base.Beatmap;
 
         /// <summary>
         /// Co-op
@@ -80,7 +75,11 @@ namespace osu.Game.Rulesets.Mania.UI
             BarLines.ForEach(Playfield.Add);
         }
 
+<<<<<<< HEAD
         protected sealed override Playfield CreatePlayfield() => new ManiaPlayfield(AvailableColumns, Coop)
+=======
+        protected sealed override Playfield CreatePlayfield() => new ManiaPlayfield(Beatmap.TotalColumns)
+>>>>>>> 35297f000c88954671783b269c9c442a83d92348
         {
             Anchor = Anchor.Centre,
             Origin = Anchor.Centre,
@@ -88,8 +87,9 @@ namespace osu.Game.Rulesets.Mania.UI
 
         public override ScoreProcessor CreateScoreProcessor() => new ManiaScoreProcessor(this);
 
-        public override PassThroughInputManager CreateInputManager() => new ManiaInputManager(Ruleset.RulesetInfo, AvailableColumns);
+        public override PassThroughInputManager CreateInputManager() => new ManiaInputManager(Ruleset.RulesetInfo, Beatmap.TotalColumns);
 
+<<<<<<< HEAD
         protected override BeatmapConverter<ManiaHitObject> CreateBeatmapConverter()
         {
             if (IsForCurrentRuleset)
@@ -123,6 +123,9 @@ namespace osu.Game.Rulesets.Mania.UI
 
             return new ManiaBeatmapConverter(IsForCurrentRuleset, AvailableColumns);
         }
+=======
+        protected override BeatmapConverter<ManiaHitObject> CreateBeatmapConverter() => new ManiaBeatmapConverter(IsForCurrentRuleset, WorkingBeatmap.Beatmap);
+>>>>>>> 35297f000c88954671783b269c9c442a83d92348
 
         protected override DrawableHitObject<ManiaHitObject> GetVisualRepresentation(ManiaHitObject h)
         {
