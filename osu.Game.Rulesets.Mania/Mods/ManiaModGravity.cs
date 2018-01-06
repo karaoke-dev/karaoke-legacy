@@ -9,6 +9,7 @@ using osu.Game.Rulesets.Mods;
 using osu.Game.Graphics;
 using osu.Game.Rulesets.Mania.Timing;
 using osu.Game.Rulesets.Timing;
+using osu.Game.Rulesets.Mania.Objects.Drawables;
 
 namespace osu.Game.Rulesets.Mania.Mods
 {
@@ -34,9 +35,9 @@ namespace osu.Game.Rulesets.Mania.Mods
             }
 
             // Like with hit objects, we need to generate one speed adjustment per bar line
-            foreach (BarLine barLine in rulesetContainer.BarLines)
+            foreach (DrawableBarLine barLine in rulesetContainer.BarLines)
             {
-                var controlPoint = rulesetContainer.CreateControlPointAt(barLine.StartTime);
+                var controlPoint = rulesetContainer.CreateControlPointAt(barLine.HitObject.StartTime);
                 // Beat length has too large of an effect for gravity, so we'll force it to a constant value for now
                 controlPoint.TimingPoint.BeatLength = 1000;
 

@@ -31,12 +31,7 @@ namespace osu.Game.Rulesets.Mania.UI
     {
         public new ManiaBeatmap Beatmap => (ManiaBeatmap)base.Beatmap;
 
-        /// <summary>
-        /// Co-op
-        /// </summary>
-        public bool Coop { get; set; } = false;
-
-        public IEnumerable<BarLine> BarLines;
+        public IEnumerable<DrawableBarLine> BarLines;
 
         public ManiaRulesetContainer(Ruleset ruleset, WorkingBeatmap beatmap, bool isForCurrentRuleset)
             : base(ruleset, beatmap, isForCurrentRuleset)
@@ -45,7 +40,7 @@ namespace osu.Game.Rulesets.Mania.UI
             double lastObjectTime = (Objects.LastOrDefault() as IHasEndTime)?.EndTime ?? Objects.LastOrDefault()?.StartTime ?? double.MaxValue;
 
             var timingPoints = Beatmap.ControlPointInfo.TimingPoints;
-            var barLines = new List<BarLine>();
+            var barLines = new List<DrawableBarLine>();
 
             for (int i = 0; i < timingPoints.Count; i++)
             {
@@ -57,12 +52,12 @@ namespace osu.Game.Rulesets.Mania.UI
                 int index = 0;
                 for (double t = timingPoints[i].Time; Precision.DefinitelyBigger(endTime, t); t += point.BeatLength, index++)
                 {
-                    barLines.Add(new BarLine
+                    barLines.Add(new DrawableBarLine(new BarLine
                     {
                         StartTime = t,
                         ControlPoint = point,
                         BeatIndex = index
-                    });
+                    }));
                 }
             }
 
@@ -75,11 +70,7 @@ namespace osu.Game.Rulesets.Mania.UI
             BarLines.ForEach(Playfield.Add);
         }
 
-<<<<<<< HEAD
-        protected sealed override Playfield CreatePlayfield() => new ManiaPlayfield(AvailableColumns, Coop)
-=======
         protected sealed override Playfield CreatePlayfield() => new ManiaPlayfield(Beatmap.TotalColumns)
->>>>>>> 35297f000c88954671783b269c9c442a83d92348
         {
             Anchor = Anchor.Centre,
             Origin = Anchor.Centre,
@@ -89,43 +80,7 @@ namespace osu.Game.Rulesets.Mania.UI
 
         public override PassThroughInputManager CreateInputManager() => new ManiaInputManager(Ruleset.RulesetInfo, Beatmap.TotalColumns);
 
-<<<<<<< HEAD
-        protected override BeatmapConverter<ManiaHitObject> CreateBeatmapConverter()
-        {
-            if (IsForCurrentRuleset)
-                AvailableColumns = (int)Math.Max(1, Math.Round(WorkingBeatmap.BeatmapInfo.BaseDifficulty.CircleSize));
-            else
-            {
-                float percentSliderOrSpinner = (float)WorkingBeatmap.Beatmap.HitObjects.Count(h => h is IHasEndTime) / WorkingBeatmap.Beatmap.HitObjects.Count;
-                if (percentSliderOrSpinner < 0.2)
-                    AvailableColumns = 7;
-                else if (percentSliderOrSpinner < 0.3 || Math.Round(WorkingBeatmap.BeatmapInfo.BaseDifficulty.CircleSize) >= 5)
-                    AvailableColumns = Math.Round(WorkingBeatmap.BeatmapInfo.BaseDifficulty.OverallDifficulty) > 5 ? 7 : 6;
-                else if (percentSliderOrSpinner > 0.6)
-                    AvailableColumns = Math.Round(WorkingBeatmap.BeatmapInfo.BaseDifficulty.OverallDifficulty) > 4 ? 5 : 4;
-                else
-                    AvailableColumns = Math.Max(4, Math.Min((int)Math.Round(WorkingBeatmap.BeatmapInfo.BaseDifficulty.OverallDifficulty) + 1, 7));
-            }
-
-            //get mods to change column and coop
-            foreach (var single in this.WorkingBeatmap.Mods.Value)
-            {
-                if (single is ManiaKeyMod maniaKeyMod)
-                {
-                    AvailableColumns = maniaKeyMod.KeyCount;
-                }
-                if (single is ManiaModKeyCoop)
-                {
-                    Coop = true;
-                    AvailableColumns = AvailableColumns * 2;
-                }
-            }
-
-            return new ManiaBeatmapConverter(IsForCurrentRuleset, AvailableColumns);
-        }
-=======
         protected override BeatmapConverter<ManiaHitObject> CreateBeatmapConverter() => new ManiaBeatmapConverter(IsForCurrentRuleset, WorkingBeatmap.Beatmap);
->>>>>>> 35297f000c88954671783b269c9c442a83d92348
 
         protected override DrawableHitObject<ManiaHitObject> GetVisualRepresentation(ManiaHitObject h)
         {

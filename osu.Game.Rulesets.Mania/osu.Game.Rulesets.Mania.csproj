@@ -21,6 +21,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <LangVersion>default</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -30,6 +31,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <LangVersion>default</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="nunit.framework, Version=3.8.1.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
@@ -94,7 +96,6 @@
     <Compile Include="Timing\ScrollingAlgorithm.cs" />
     <Compile Include="UI\Column.cs" />
     <Compile Include="UI\DrawableManiaJudgement.cs" />
-    <Compile Include="UI\ManiaColumnGroup.cs" />
     <Compile Include="UI\HitExplosion.cs" />
     <Compile Include="UI\ManiaRulesetContainer.cs" />
     <Compile Include="UI\ManiaPlayfield.cs" />
