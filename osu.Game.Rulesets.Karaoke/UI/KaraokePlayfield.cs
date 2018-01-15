@@ -22,8 +22,8 @@ namespace osu.Game.Rulesets.Karaoke.UI
     /// </summary>
     public class KaraokePlayfield : KaraokeBasePlayfield
     {
-        private readonly Container karaokecontrolLayer;
-        private readonly KaraokePanelOverlay karaokePanelOverlay;
+        private Container karaokecontrolLayer;
+        private KaraokePanelOverlay karaokePanelOverlay;
 
         //public override bool ProvidingUserCursor => true;
 
@@ -52,16 +52,6 @@ namespace osu.Game.Rulesets.Karaoke.UI
                         }
                     }
                 },
-                karaokePanelOverlay = new KaraokePanelOverlay(this)
-                {
-                    Clock = new FramedClock(new StopwatchClock(true)),
-                    RelativeSizeAxes = Axes.X,
-                    Origin = Anchor.BottomCentre,
-                    Anchor = Anchor.BottomCentre,
-                    Position = new Vector2(-100, -100),
-                    Scale = new Vector2(1.0f),
-                    Depth = -1.5f,
-                },
                 new KaraokeHotkeyPanel(karaokePanelOverlay)
                 {
                     RelativeSizeAxes = Axes.Both,
@@ -87,6 +77,21 @@ namespace osu.Game.Rulesets.Karaoke.UI
                     ListDrawableKaraokeObject[i].AddTranslate(TranslateCode.Chinese_Traditional, multiSting[i]);
                 }
             };
+        }
+
+        public override void InitialRulesetLayer()
+        {
+            base.InitialRulesetLayer();
+
+            KaraokeRulesetContainer.Add(karaokePanelOverlay = new KaraokePanelOverlay(this)
+            {
+                Clock = new FramedClock(new StopwatchClock(true)),
+                RelativeSizeAxes = Axes.X,
+                Origin = Anchor.BottomCentre,
+                Anchor = Anchor.BottomCentre,
+                Scale = new Vector2(1.0f),
+                Depth = 10f,
+            });
         }
 
         protected override void LoadComplete()

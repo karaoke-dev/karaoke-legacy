@@ -36,7 +36,7 @@ namespace osu.Game.Rulesets.Karaoke.UI
         /// <summary>
         /// Dialog Layer
         /// </summary>
-        protected readonly Container DialogLayer;
+        protected Container DialogLayer;
 
         public override Vector2 Size
         {
@@ -58,12 +58,22 @@ namespace osu.Game.Rulesets.Karaoke.UI
 
             Anchor = Anchor.Centre;
             Origin = Anchor.Centre;
+        }
 
-            Add(DialogLayer = new Container
+        protected override void LoadComplete()
+        {
+            base.LoadComplete();
+            InitialRulesetLayer();
+        }
+
+        public virtual void InitialRulesetLayer()
+        {
+            this.Add(DialogLayer = new Container
             {
+                Name= "DialogLayer",
                 Clock = new FramedClock(new StopwatchClock(true)),
                 RelativeSizeAxes = Axes.Both,
-                Depth = -10,
+                Depth = 10,
             });
         }
 
