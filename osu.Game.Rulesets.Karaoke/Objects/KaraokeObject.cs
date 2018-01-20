@@ -94,6 +94,11 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         public List<SubTextObject> ListSubTextObject { get; set; } = new List<SubTextObject>();
 
         /// <summary>
+        /// List little aid text,like japanese's text
+        /// </summary>
+        public List<RomajiTextObject> ListRomajiTextObject { get; set; } = new List<RomajiTextObject>();
+
+        /// <summary>
         /// record list time where position goes
         /// </summary>
         public ListProgressPoint ListProgressPoint { get; set; } = new ListProgressPoint();
