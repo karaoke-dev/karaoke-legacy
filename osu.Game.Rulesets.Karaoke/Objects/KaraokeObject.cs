@@ -96,7 +96,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         /// <summary>
         /// List little aid text,like japanese's text
         /// </summary>
-        public List<RomajiTextObject> ListRomajiTextObject { get; set; } = new List<RomajiTextObject>();
+        public ListRomajiTextObject ListRomajiTextObject { get; set; } = new ListRomajiTextObject();
 
         /// <summary>
         /// record list time where position goes
