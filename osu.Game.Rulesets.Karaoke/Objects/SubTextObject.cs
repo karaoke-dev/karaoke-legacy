@@ -5,11 +5,19 @@ using osu.Game.Rulesets.Karaoke.Objects.Types;
 
 namespace osu.Game.Rulesets.Karaoke.Objects
 {
-    public class SubTextObject : TextObject, IHasCharIndex
+    /// <summary>
+    /// sub text
+    /// </summary>
+    public class SubTextObject : TextObject, IHasCharIndex , IHasCharEndIndex
     {
         /// <summary>
         /// relativa to textIndex
         /// </summary>
         public int CharIndex { get; set; }
+
+        /// <summary>
+        /// relativa to textIndex
+        /// </summary>
+        public int? CharEndIndex { get; set; }
     }
 }

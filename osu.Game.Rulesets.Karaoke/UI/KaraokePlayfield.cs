@@ -120,7 +120,7 @@ namespace osu.Game.Rulesets.Karaoke.UI
             }
         }
 
-        public override void OnJudgement(DrawableHitObject judgedObject, Judgement judgement)
+        public void OnJudgement(DrawableHitObject judgedObject, Judgement judgement)
         {
             var karaokeJudgement = (KaraokeJudgement)judgement;
 

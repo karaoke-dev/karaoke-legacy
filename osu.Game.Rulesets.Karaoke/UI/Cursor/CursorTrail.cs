@@ -20,7 +20,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Cursor
 {
     internal class CursorTrail : Drawable
     {
-        public override bool HandleInput => true;
+        //public override bool HandleInput => true;
 
         private int currentIndex;
 

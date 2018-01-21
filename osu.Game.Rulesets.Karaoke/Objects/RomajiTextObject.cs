@@ -10,12 +10,17 @@ namespace osu.Game.Rulesets.Karaoke.Objects
     /// <summary>
     /// use to record romaji
     /// </summary>
-    public class RomajiTextObject : TextObject, IHasCharIndex
+    public class RomajiTextObject : TextObject, IHasCharIndex , IHasCharEndIndex
     {
         /// <summary>
         /// relativa to textIndex
         /// </summary>
         public int CharIndex { get; set; }
+
+        /// <summary>
+        /// relativa to textIndex
+        /// </summary>
+        public int? CharEndIndex { get; set; }
     }
 
     public class ListRomajiTextObject : List<RomajiTextObject>
