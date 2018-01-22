@@ -1,5 +1,5 @@
-﻿// Copyright (c) 2007-2017 ppy Pty Ltd <contact@ppy.sh>.
-// Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu-framework/master/LICENCE
+﻿// Copyright (c) 2007-2018 ppy Pty Ltd <contact@ppy.sh>.
+// Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
 
 using System.Linq;
 using osu.Framework.Allocation;
@@ -32,7 +32,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables
         //Object
         public KaraokeObject KaraokeObject => HitObject;
 
-        public KaraokeTemplate Template 
+        public KaraokeTemplate Template
         {
             get => _template;
             set
@@ -63,6 +63,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables
         }
 
         private TranslateCode _translateCode;
+
         public TranslateCode TranslateCode
         {
             get => _translateCode;
@@ -134,7 +135,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables
             TranslateText.TextObject = Template?.TranslateText + KaraokeObject.ListTranslate.Where(x => x.LangCode == LangTagConvertor.GetCode(TranslateCode)).FirstOrDefault();
             TranslateText.Colour = Template?.TranslateTextColor ?? Color4.White;
 
-            this.Scale = new Vector2(Template?.Scale??1);
+            Scale = new Vector2(Template?.Scale ?? 1);
 
             //update progress
             Progress = Progress;

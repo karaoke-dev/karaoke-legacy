@@ -1,11 +1,10 @@
-﻿// Copyright (c) 2007-2017 ppy Pty Ltd <contact@ppy.sh>.
-// Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu-framework/master/LICENCE
+﻿// Copyright (c) 2007-2018 ppy Pty Ltd <contact@ppy.sh>.
+// Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
 
 using System.Collections.Generic;
 using System.Linq;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
-using osu.Framework.Input;
 using osu.Framework.Timing;
 using osu.Game.Beatmaps;
 using osu.Game.Rulesets.Karaoke.Edit.Dialog;
@@ -16,7 +15,6 @@ using osu.Game.Rulesets.Karaoke.UI.Tool;
 using osu.Game.Rulesets.Objects.Drawables;
 using osu.Game.Rulesets.UI;
 using OpenTK;
-using OpenTK.Input;
 
 namespace osu.Game.Rulesets.Karaoke.UI
 {
@@ -68,9 +66,9 @@ namespace osu.Game.Rulesets.Karaoke.UI
 
         public virtual void InitialRulesetLayer()
         {
-            this.Add(DialogLayer = new Container
+            Add(DialogLayer = new Container
             {
-                Name= "DialogLayer",
+                Name = "DialogLayer",
                 Clock = new FramedClock(new StopwatchClock(true)),
                 RelativeSizeAxes = Axes.Both,
                 Depth = 10,

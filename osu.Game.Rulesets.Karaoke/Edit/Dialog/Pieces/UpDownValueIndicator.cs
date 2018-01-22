@@ -1,5 +1,5 @@
-﻿// Copyright (c) 2007-2017 ppy Pty Ltd <contact@ppy.sh>.
-// Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu-framework/master/LICENCE
+﻿// Copyright (c) 2007-2018 ppy Pty Ltd <contact@ppy.sh>.
+// Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
 
 using System;
 using osu.Framework.Graphics;
@@ -49,10 +49,14 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
                 updateText();
             }
         }
+
         public float Step { get; set; } = 1;
 
         private string _prefixText;
-        public string PrefixText { get=> _prefixText;
+
+        public string PrefixText
+        {
+            get => _prefixText;
             set
             {
                 _prefixText = value;
@@ -61,7 +65,10 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
         }
 
         private string _postText;
-        public string PostfixText { get=> _postText;
+
+        public string PostfixText
+        {
+            get => _postText;
             set
             {
                 _postText = value;

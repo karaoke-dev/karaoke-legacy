@@ -1,5 +1,5 @@
-﻿// Copyright (c) 2007-2017 ppy Pty Ltd <contact@ppy.sh>.
-// Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu-framework/master/LICENCE
+﻿// Copyright (c) 2007-2018 ppy Pty Ltd <contact@ppy.sh>.
+// Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
 
 using System;
 using System.Collections.Generic;
@@ -18,6 +18,7 @@ namespace osu.Game.Rulesets.Karaoke.Tools.Translator
         protected override int MaxThanslateSentenceAtTime => 70; //max is 73
 
         private Dictionary<TranslateCode, string> _langCode;
+
         public override Dictionary<TranslateCode, string> LangToCodeDictionary
         {
             get
@@ -110,7 +111,7 @@ namespace osu.Game.Rulesets.Karaoke.Tools.Translator
 
         public class RootObject
         {
-            public Data Data { get; set; }  
+            public Data Data { get; set; }
         }
 
         public class Data

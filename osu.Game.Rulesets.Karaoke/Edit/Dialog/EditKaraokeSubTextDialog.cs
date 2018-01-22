@@ -1,7 +1,7 @@
-﻿// Copyright (c) 2007-2017 ppy Pty Ltd <contact@ppy.sh>.
-// Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu-framework/master/LICENCE
-using osu.Game.Rulesets.Karaoke.Objects;
+﻿// Copyright (c) 2007-2018 ppy Pty Ltd <contact@ppy.sh>.
+// Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
 
+using osu.Game.Rulesets.Karaoke.Objects;
 
 namespace osu.Game.Rulesets.Karaoke.Edit.Dialog
 {
@@ -13,13 +13,13 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog
     {
         public override string Title => "SubText";
 
-        protected KaraokeObject KaraokeObject{get;set;}
-        
+        protected KaraokeObject KaraokeObject { get; set; }
+
         public EditKaraokeSubTextDialog(KaraokeObject karaokeObject)
         {
             KaraokeObject = karaokeObject;
-            Width =200;
-            Height=100;
+            Width = 200;
+            Height = 100;
         }
     }
 }

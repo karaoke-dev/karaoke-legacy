@@ -1,5 +1,5 @@
-﻿// Copyright (c) 2007-2017 ppy Pty Ltd <contact@ppy.sh>.
-// Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu-framework/master/LICENCE
+﻿// Copyright (c) 2007-2018 ppy Pty Ltd <contact@ppy.sh>.
+// Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
 
 using System.Collections.Generic;
 using osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces;
@@ -16,33 +16,32 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog
     {
         public override string Title => "Karaoke Template";
 
-        public KaraokeTemplate KarokeTemplate { get; set; }=new KaraokeTemplate();
+        public KaraokeTemplate KarokeTemplate { get; set; } = new KaraokeTemplate();
 
         public KaraokeObject KaraokeObject { get; set; } = new KaraokeObject()
         {
-            MainText= (TextObject)"カラオケ",
+            MainText = (TextObject)"カラオケ",
             ListSubTextObject = new List<SubTextObject>()
             {
-                new SubTextObject(){Text = "か"},
-                new SubTextObject(){Text = "ら",CharIndex = 1},
-                new SubTextObject(){Text = "お", CharIndex = 2},
-                new SubTextObject(){Text = "け" , CharIndex = 3},
+                new SubTextObject() { Text = "か" },
+                new SubTextObject() { Text = "ら", CharIndex = 1 },
+                new SubTextObject() { Text = "お", CharIndex = 2 },
+                new SubTextObject() { Text = "け", CharIndex = 3 },
             },
             ListTranslate = new ListKaraokeTranslateString()
             {
-                new KaraokeTranslateString(LangTagConvertor.GetCode(TranslateCode.English),"Karaoke")
+                new KaraokeTranslateString(LangTagConvertor.GetCode(TranslateCode.English), "Karaoke")
             }
         };
 
         protected DrawableKaraokeTemplate DrawableKaraokeTemplate;
 
-        public EditKaraokeTemplateDialog(KaraokeEditPlayfield editPlayField,KaraokeObject demoKaraokeText)
+        public EditKaraokeTemplateDialog(KaraokeEditPlayfield editPlayField, KaraokeObject demoKaraokeText)
         {
             //KarokeTemplate =
 
             if (demoKaraokeText != null)
                 KaraokeObject = demoKaraokeText;
-
         }
 
         public override void InitialDialog()
@@ -50,7 +49,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog
             //create drawable
             MainContext.Add(DrawableKaraokeTemplate = new DrawableKaraokeTemplate(KaraokeObject, KarokeTemplate)
             {
-                Position=new Vector2(250,100)
+                Position = new Vector2(250, 100)
             });
 
             base.InitialDialog();

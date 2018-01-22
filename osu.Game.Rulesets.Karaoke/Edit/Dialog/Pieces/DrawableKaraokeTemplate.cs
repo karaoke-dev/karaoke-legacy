@@ -1,5 +1,5 @@
-﻿// Copyright (c) 2007-2017 ppy Pty Ltd <contact@ppy.sh>.
-// Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu-framework/master/LICENCE
+﻿// Copyright (c) 2007-2018 ppy Pty Ltd <contact@ppy.sh>.
+// Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
 
 using System;
 using System.Collections.Generic;
@@ -20,6 +20,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
     {
         //single part
         protected UpDownValueIndicator SubTextSegmentedControl;
+
         protected UpDownValueIndicator SubTextToMainTextSegmentedControl;
         protected UpDownValueIndicator MainTextSegmentedControl;
         protected UpDownValueIndicator MainTextToTranslateTextSegmentedControl;
@@ -27,6 +28,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
 
         //line
         protected Path SubTextPath;
+
         protected Path SubTextToMainTextPath;
         protected Path MainTextPath;
         protected Path MainTextToTranslateTextPath;
@@ -36,6 +38,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
         protected UpDownValueIndicator ScaleSegmentedControl;
 
         protected Container SegmentedControlContainer;
+
         //don't update by time
         public override bool ProgressUpdateByTime => false;
 
@@ -43,20 +46,20 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
             : base(hitObject)
         {
             Template = template;
-            SegmentedControlContainer=new Container()
+            SegmentedControlContainer = new Container()
             {
-                Children=new Drawable[]
+                Children = new Drawable[]
                 {
-                    SubTextPath = new Path(){PathWidth = 1},
-                    SubTextToMainTextPath  = new Path(){PathWidth = 1},
-                    MainTextPath  = new Path(){PathWidth = 1},
-                    MainTextToTranslateTextPath = new Path(){PathWidth = 1},
-                    TranslateTextPath = new Path(){PathWidth = 1},
+                    SubTextPath = new Path() { PathWidth = 1 },
+                    SubTextToMainTextPath = new Path() { PathWidth = 1 },
+                    MainTextPath = new Path() { PathWidth = 1 },
+                    MainTextToTranslateTextPath = new Path() { PathWidth = 1 },
+                    TranslateTextPath = new Path() { PathWidth = 1 },
 
                     SubTextSegmentedControl = new UpDownValueIndicator()
                     {
-                        Origin= Anchor.BottomLeft,
-                        Value = Template.SubText.FontSize??0,
+                        Origin = Anchor.BottomLeft,
+                        Value = Template.SubText.FontSize ?? 0,
                         PostfixText = "px",
                         OnValueChanged = (newValue) =>
                         {
@@ -66,19 +69,19 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
                     },
                     SubTextToMainTextSegmentedControl = new UpDownValueIndicator()
                     {
-                        Origin= Anchor.BottomRight,
+                        Origin = Anchor.BottomRight,
                         Value = Template.SubText.Position.Y,
                         PostfixText = "px",
                         OnValueChanged = (newValue) =>
                         {
-                            Template.SubText.Position=new Vector2(0,newValue);
+                            Template.SubText.Position = new Vector2(0, newValue);
                             UpdateDrawable();
                         },
                     },
                     MainTextSegmentedControl = new UpDownValueIndicator()
                     {
-                        Origin= Anchor.BottomLeft,
-                        Value = Template.MainText.FontSize??0,
+                        Origin = Anchor.BottomLeft,
+                        Value = Template.MainText.FontSize ?? 0,
                         PostfixText = "px",
                         OnValueChanged = (newValue) =>
                         {
@@ -88,19 +91,19 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
                     },
                     MainTextToTranslateTextSegmentedControl = new UpDownValueIndicator()
                     {
-                        Origin= Anchor.BottomRight,
+                        Origin = Anchor.BottomRight,
                         Value = Template.TranslateText.Position.Y,
                         PostfixText = "px",
                         OnValueChanged = (newValue) =>
                         {
-                            Template.TranslateText.Position=new Vector2(0,newValue);
+                            Template.TranslateText.Position = new Vector2(0, newValue);
                             UpdateDrawable();
                         },
                     },
                     TranslateTextSegmentedControl = new UpDownValueIndicator()
                     {
-                        Origin= Anchor.BottomLeft,
-                        Value = Template.TranslateText.FontSize??0,
+                        Origin = Anchor.BottomLeft,
+                        Value = Template.TranslateText.FontSize ?? 0,
                         PostfixText = "px",
                         OnValueChanged = (newValue) =>
                         {
@@ -108,11 +111,11 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
                             UpdateDrawable();
                         },
                     },
-                    ScaleSegmentedControl= new UpDownValueIndicator()
+                    ScaleSegmentedControl = new UpDownValueIndicator()
                     {
-                        Origin= Anchor.BottomCentre,
+                        Origin = Anchor.BottomCentre,
                         Step = 0.1f,
-                        Position = new Vector2(50,150),
+                        Position = new Vector2(50, 150),
                         Value = Template.Scale,
                         PostfixText = "x",
                         OnValueChanged = (newValue) =>
@@ -133,13 +136,13 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
         {
             base.UpdateValue();
 
-            if(SubTextSegmentedControl==null)
+            if (SubTextSegmentedControl == null)
                 return;
 
             //1. Get all start Position
             Vector2 subTextSegmentedControlStartPosition = new Vector2(TextsAndMaskPiece.SubKaraokeTexts.Last().Position.X + 20, TextsAndMaskPiece.SubKaraokeText.Position.Y);
-            Vector2 mainTextSegmentedControlStartPosition = new Vector2(TextsAndMaskPiece.MainKaraokeText.TotalWidth,TextsAndMaskPiece.MainKaraokeText.Position.Y);
-            Vector2 translateTextSegmentedControlStartPosition = new Vector2(TranslateText.Width, TranslateText.Position.Y); 
+            Vector2 mainTextSegmentedControlStartPosition = new Vector2(TextsAndMaskPiece.MainKaraokeText.TotalWidth, TextsAndMaskPiece.MainKaraokeText.Position.Y);
+            Vector2 translateTextSegmentedControlStartPosition = new Vector2(TranslateText.Width, TranslateText.Position.Y);
             Vector2 subTextToMainTextSegmentedControlStartPosition = new Vector2(-10, (subTextSegmentedControlStartPosition.Y + mainTextSegmentedControlStartPosition.Y) / 2);
             Vector2 mainTextToTranslateTextSegmentedControlStartPosition = new Vector2(-10, (mainTextSegmentedControlStartPosition.Y + translateTextSegmentedControlStartPosition.Y) / 2);
 
@@ -172,11 +175,9 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
                 line.Positions = new List<Vector2>()
                 {
                     new Vector2(),
-                    path2-path1,
+                    path2 - path1,
                 };
             }
         }
-
-        
     }
 }

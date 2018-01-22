@@ -1,5 +1,5 @@
-﻿// Copyright (c) 2007-2017 ppy Pty Ltd <contact@ppy.sh>.
-// Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu-framework/master/LICENCE
+﻿// Copyright (c) 2007-2018 ppy Pty Ltd <contact@ppy.sh>.
+// Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
 
 using System.Collections.Generic;
 using System.Linq;
@@ -29,7 +29,7 @@ namespace osu.Game.Rulesets.Karaoke
     {
         public override RulesetContainer CreateRulesetContainerWith(WorkingBeatmap beatmap, bool isForCurrentRuleset) => new KaraokeRulesetContainer(this, beatmap, isForCurrentRuleset);
 
-        public override IEnumerable<int> AvailableVariants => new[] { 0 , 1 };
+        public override IEnumerable<int> AvailableVariants => new[] { 0, 1 };
 
         public override IEnumerable<KeyBinding> GetDefaultKeyBindings(int variant = 0)
         {

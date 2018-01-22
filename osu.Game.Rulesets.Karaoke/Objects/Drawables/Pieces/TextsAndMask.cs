@@ -1,5 +1,5 @@
-﻿// Copyright (c) 2007-2017 ppy Pty Ltd <contact@ppy.sh>.
-// Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu-framework/master/LICENCE
+﻿// Copyright (c) 2007-2018 ppy Pty Ltd <contact@ppy.sh>.
+// Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
 
 using System.Collections.Generic;
 using System.Linq;
@@ -98,7 +98,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Pieces
             {
                 if (MainKaraokeText == null)
                 {
-                    MainKaraokeText=new MainKaraokeText(textObject);
+                    MainKaraokeText = new MainKaraokeText(textObject);
                     Add(MainKaraokeText);
                 }
                 else
@@ -121,7 +121,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Pieces
             {
                 ListDrawableSubText.Clear();
                 MainKaraokeText = null;
-                Children = new Drawable[]{};
+                Children = new Drawable[] { };
             }
 
             public void SetHeight(float height)
