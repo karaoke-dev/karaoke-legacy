@@ -111,6 +111,8 @@
     <Compile Include="Tests\TestCaseLineRenderer.cs" />
     <Compile Include="Tests\TestCaseTranslate.cs" />
     <Compile Include="Tests\TestCaseWindows.cs" />
+    <Compile Include="Tools\Romaji\JpRomajiTranslator.cs" />
+    <Compile Include="Tools\Romaji\RomajiTranslator.cs" />
     <Compile Include="Tools\Translator\TranslateCode.cs" />
     <Compile Include="Tools\Translator\GoogleTranslator.cs" />
     <Compile Include="Tools\Translator\TranslateorBase.cs" />
