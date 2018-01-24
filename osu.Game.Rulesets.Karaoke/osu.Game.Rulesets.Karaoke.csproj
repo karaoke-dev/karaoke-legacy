@@ -80,6 +80,7 @@
     <Compile Include="Mods\KaraokeMod2017.cs" />
     <Compile Include="Mods\ModInterface.cs" />
     <Compile Include="Objects\Drawables\DrawableKaraokeObject.cs" />
+    <Compile Include="Objects\Drawables\KarakokeTextAssignment.cs" />
     <Compile Include="Objects\Drawables\Pieces\ImagePicec.cs" />
     <Compile Include="Objects\Drawables\Pieces\KaraokeText.cs" />
     <Compile Include="Objects\Drawables\Pieces\MainKaraokeText.cs" />
