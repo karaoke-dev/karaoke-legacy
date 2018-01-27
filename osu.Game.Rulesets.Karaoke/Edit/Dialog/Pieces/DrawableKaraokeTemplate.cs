@@ -140,8 +140,8 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
                 return;
 
             //1. Get all start Position
-            Vector2 subTextSegmentedControlStartPosition = new Vector2(TextsAndMaskPiece.SubKaraokeTexts.Last().Position.X + 20, TextsAndMaskPiece.SubKaraokeText.Position.Y);
-            Vector2 mainTextSegmentedControlStartPosition = new Vector2(TextsAndMaskPiece.MainKaraokeText.TotalWidth, TextsAndMaskPiece.MainKaraokeText.Position.Y);
+            Vector2 subTextSegmentedControlStartPosition = new Vector2(TextsAndMaskPiece.SubTexts.Last().Position.X + 20, TextsAndMaskPiece.SubText.Position.Y);
+            Vector2 mainTextSegmentedControlStartPosition = new Vector2(TextsAndMaskPiece.MainText.TotalWidth, TextsAndMaskPiece.MainText.Position.Y);
             Vector2 translateTextSegmentedControlStartPosition = new Vector2(TranslateText.Width, TranslateText.Position.Y);
             Vector2 subTextToMainTextSegmentedControlStartPosition = new Vector2(-10, (subTextSegmentedControlStartPosition.Y + mainTextSegmentedControlStartPosition.Y) / 2);
             Vector2 mainTextToTranslateTextSegmentedControlStartPosition = new Vector2(-10, (mainTextSegmentedControlStartPosition.Y + translateTextSegmentedControlStartPosition.Y) / 2);

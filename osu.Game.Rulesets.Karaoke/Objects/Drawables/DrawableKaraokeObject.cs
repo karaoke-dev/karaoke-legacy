@@ -111,14 +111,14 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables
             foreach (var singleText in KaraokeObject.ListSubTextObject)
             {
                 //1. recalculate position
-                var startPosition = TextsAndMaskPiece.MainKaraokeText.GetEndPositionByIndex(singleText.CharIndex - 1);
-                var endPosition = TextsAndMaskPiece.MainKaraokeText.GetEndPositionByIndex(singleText.CharIndex);
+                var startPosition = TextsAndMaskPiece.MainText.GetEndPositionByIndex(singleText.CharIndex - 1);
+                var endPosition = TextsAndMaskPiece.MainText.GetEndPositionByIndex(singleText.CharIndex);
                 singleText.X = (startPosition + endPosition) / 2;
                 //2. update to subtext
                 TextsAndMaskPiece.AddSubText(Template?.SubText + singleText);
             }
 
-            Width = TextsAndMaskPiece.MainKaraokeText.GetTextEndPosition(); //KaraokeObject.Width ?? (Template?.Width ?? 700);
+            Width = TextsAndMaskPiece.MainText.GetTextEndPosition(); //KaraokeObject.Width ?? (Template?.Width ?? 700);
             Height = KaraokeObject.Height ?? (Template?.Height ?? 100);
 
             UpdateValue();
@@ -181,8 +181,8 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables
                 var startProgressPoint = HitObject.GetFirstProgressPointByTime(currentRelativeTime);
                 var endProgressPoint = HitObject.GetLastProgressPointByTime(currentRelativeTime);
 
-                var startPosition = TextsAndMaskPiece.MainKaraokeText.GetEndPositionByIndex(startProgressPoint.CharIndex);
-                var endPosition = TextsAndMaskPiece.MainKaraokeText.GetEndPositionByIndex(endProgressPoint.CharIndex);
+                var startPosition = TextsAndMaskPiece.MainText.GetEndPositionByIndex(startProgressPoint.CharIndex);
+                var endPosition = TextsAndMaskPiece.MainText.GetEndPositionByIndex(endProgressPoint.CharIndex);
 
                 var relativeTime = currentRelativeTime - startProgressPoint.RelativeTime;
                 //Update progress

@@ -20,19 +20,20 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Pieces
 
         private float _maskHeight;
 
-        public MainKaraokeText MainKaraokeText => RightSideText.MainKaraokeText;
+        //MainText
+        public MainKaraokeText MainText => RightSideText.MainKaraokeText;
 
-        public KaraokeText SubKaraokeText => SubKaraokeTexts?.FirstOrDefault();
+        //SubText
+        public KaraokeText SubText => SubTexts?.FirstOrDefault();
+        public List<KaraokeText> SubTexts => RightSideText.ListDrawableSubText;
 
-        public List<KaraokeText> SubKaraokeTexts => RightSideText.ListDrawableSubText;
+        //BottomText
+        public KaraokeText BottomText => BottomTexts?.FirstOrDefault();
+        public List<KaraokeText> BottomTexts => RightSideText.ListDrawableBottomText;
+
 
         public TextsAndMask()
         {
-            //CacheDrawnFrameBuffer = true;
-            //this.Attach(RenderbufferInternalFormat.DepthComponent16);
-            //Width = 700;
-            //Height = 100;
-
             Children = new Drawable[]
             {
                 RightSideText,
@@ -50,6 +51,12 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Pieces
         {
             LeftSideText.AddSubText(textObject);
             RightSideText.AddSubText(textObject);
+        }
+
+        public void AddBottomText(TextObject textObject)
+        {
+            LeftSideText.AddBottomText(textObject);
+            RightSideText.AddBottomText(textObject);
         }
 
         public void ClearAllText()
@@ -86,6 +93,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Pieces
         protected class SingleSideOfAndMask : Container
         {
             public List<KaraokeText> ListDrawableSubText = new List<KaraokeText>();
+            public List<KaraokeText> ListDrawableBottomText = new List<KaraokeText>();
             public MainKaraokeText MainKaraokeText;
             private float _height;
 
@@ -117,9 +125,20 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Pieces
                 Add(subText);
             }
 
+            public void AddBottomText(TextObject textObject)
+            {
+                var bottomText = new KaraokeText(textObject)
+                {
+                    Origin = Anchor.BottomCentre,
+                };
+                ListDrawableBottomText.Add(bottomText);
+                Add(bottomText);
+            }
+
             public void ClearAllText()
             {
                 ListDrawableSubText.Clear();
+                ListDrawableBottomText.Clear();
                 MainKaraokeText = null;
                 Children = new Drawable[] { };
             }
