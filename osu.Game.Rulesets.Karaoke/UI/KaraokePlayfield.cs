@@ -58,6 +58,12 @@ namespace osu.Game.Rulesets.Karaoke.UI
                     Depth = -2,
                     Clock = new FramedClock(new StopwatchClock(true)),
                 },
+
+                //layer
+                KaraokeLyricPlayField= new PlayField.KaraokeLyricPlayField()
+                {
+                    KaraokeRulesetContainer = this.KaraokeRulesetContainer
+                }
             });
 
             //create all layer if contains in mod

@@ -15,6 +15,7 @@ using osu.Game.Rulesets.Karaoke.UI.Tool;
 using osu.Game.Rulesets.Objects.Drawables;
 using osu.Game.Rulesets.UI;
 using OpenTK;
+using osu.Game.Rulesets.Karaoke.UI.PlayField;
 
 namespace osu.Game.Rulesets.Karaoke.UI
 {
@@ -23,13 +24,21 @@ namespace osu.Game.Rulesets.Karaoke.UI
     /// </summary>
     public class KaraokeBasePlayfield : Playfield, IAmKaraokeField
     {
+        /// <summary>
+        /// karaoke tools
+        /// </summary>
+        public KaraokeTool KaraokeFieldTool { get; } = new KaraokeTool();
+
         public Ruleset Ruleset { get; set; }
         public WorkingBeatmap WorkingBeatmap { get; set; }
         public KaraokeRulesetContainer KaraokeRulesetContainer { get; set; }
-        public KaraokeFieldTool KaraokeFieldTool { get; } = new KaraokeFieldTool();
+
+        public KaraokeLyricPlayField KaraokeLyricPlayField;
+
         public List<IAmDrawableKaraokeObject> ListDrawableKaraokeObject { get; set; } = new List<IAmDrawableKaraokeObject>();
 
         public static readonly Vector2 BASE_SIZE = new Vector2(512, 384);
+
 
         /// <summary>
         /// Dialog Layer
@@ -77,18 +86,8 @@ namespace osu.Game.Rulesets.Karaoke.UI
 
         public override void Add(DrawableHitObject h)
         {
-            h.Depth = (float)h.HitObject.StartTime;
-
-            //update template
-            this.UpdateObjectTemplate(h as DrawableKaraokeObject);
-
-            //update position
-            this.UpdateObjectAutomaticallyPosition(h as DrawableKaraokeObject);
-
-            //add to list
+            KaraokeLyricPlayField.Add(h);
             ListDrawableKaraokeObject.Add(h as DrawableKaraokeObject);
-
-            base.Add(h);
         }
 
         //post process

@@ -7,6 +7,7 @@ using osu.Game.Rulesets.Karaoke.Mods;
 using osu.Game.Rulesets.Karaoke.UI.Interface;
 using osu.Game.Rulesets.Objects;
 using osu.Game.Rulesets.Objects.Types;
+using System.Collections.Generic;
 
 namespace osu.Game.Rulesets.Karaoke.UI.Extension
 {
@@ -282,6 +283,16 @@ namespace osu.Game.Rulesets.Karaoke.UI.Extension
         public static bool ShowPanelAtBeginning(this IAmKaraokeField karaokeField)
         {
             return false;
+        }
+
+        /// <summary>
+        /// get list HitObjects
+        /// </summary>
+        /// <param name="karaokeField"></param>
+        /// <returns></returns>
+        public static List<HitObject> GetListHitObjects(this IAmKaraokeField karaokeField)
+        {
+            return karaokeField.WorkingBeatmap.Beatmap.HitObjects;
         }
     }
 }

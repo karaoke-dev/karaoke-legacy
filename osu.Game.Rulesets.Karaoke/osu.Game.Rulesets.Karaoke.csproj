@@ -120,7 +120,6 @@
     <Compile Include="UI\Cursor\CursorTrail.cs" />
     <Compile Include="UI\Cursor\GameplayCursor.cs" />
     <Compile Include="UI\Extension\PlayFieldExtension.cs" />
-    <Compile Include="UI\Extension\PlayFieldObjectExtension.cs" />
     <Compile Include="UI\Interface\IAmKaraokeField.cs" />
     <Compile Include="UI\KaraokeBasePlayfield.cs" />
     <Compile Include="UI\Layer\ShowEffect\SnowLayer.cs" />
@@ -145,7 +144,7 @@
     <Compile Include="Objects\Extension\KaraokeObjectExtension.cs" />
     <Compile Include="UI\PlayField\KaraokeLyricPlayField.cs" />
     <Compile Include="UI\PlayField\KaraokeTonePlayfield.cs" />
-    <Compile Include="UI\Tool\KaraokeFieldTool.cs" />
+    <Compile Include="UI\Tool\KaraokeTool.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\osu.licenseheader">

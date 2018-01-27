@@ -31,7 +31,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Interface
         /// <summary>
         /// some userful tools will be define in here
         /// </summary>
-        KaraokeFieldTool KaraokeFieldTool { get; }
+        KaraokeTool KaraokeFieldTool { get; }
 
         /// <summary>
         /// list drawable Object

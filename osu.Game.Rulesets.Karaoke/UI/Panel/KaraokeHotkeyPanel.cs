@@ -28,53 +28,53 @@ namespace osu.Game.Rulesets.Karaoke.UI.Panel
             switch (action)
             {
                 case KaraokeAction.FirstLyric:
-                    KaraokePanelOverlay.FirstLyricButton.Action?.Invoke();
+                    KaraokePanelOverlay?.FirstLyricButton.Action?.Invoke();
                     break;
                 case KaraokeAction.PreviousLyric:
-                    KaraokePanelOverlay.PreviousLyricButton.Action?.Invoke();
+                    KaraokePanelOverlay?.PreviousLyricButton.Action?.Invoke();
                     break;
                 case KaraokeAction.NextLyric:
-                    KaraokePanelOverlay.NextLyricButton.Action?.Invoke();
+                    KaraokePanelOverlay?.NextLyricButton.Action?.Invoke();
                     break;
                 case KaraokeAction.PlayAndPause:
-                    KaraokePanelOverlay.PlayPauseButton.Action?.Invoke();
+                    KaraokePanelOverlay?.PlayPauseButton.Action?.Invoke();
                     break;
 
                 case KaraokeAction.IncreaseSpeed:
-                    KaraokePanelOverlay.SpeedSlider.IncreaseButton.Action?.Invoke();
+                    KaraokePanelOverlay?.SpeedSlider.IncreaseButton.Action?.Invoke();
                     break;
                 case KaraokeAction.DecreaseSpeed:
-                    KaraokePanelOverlay.SpeedSlider.DecreaseButton.Action?.Invoke();
+                    KaraokePanelOverlay?.SpeedSlider.DecreaseButton.Action?.Invoke();
                     break;
                 case KaraokeAction.ResetSpeed:
-                    KaraokePanelOverlay.SpeedSlider.ResetToDefauleValue();
+                    KaraokePanelOverlay?.SpeedSlider.ResetToDefauleValue();
                     break;
 
 
                 case KaraokeAction.IncreaseTone:
-                    KaraokePanelOverlay.ToneSlider.IncreaseButton.Action?.Invoke();
+                    KaraokePanelOverlay?.ToneSlider.IncreaseButton.Action?.Invoke();
                     break;
                 case KaraokeAction.DecreaseTone:
-                    KaraokePanelOverlay.ToneSlider.DecreaseButton.Action?.Invoke();
+                    KaraokePanelOverlay?.ToneSlider.DecreaseButton.Action?.Invoke();
                     break;
                 case KaraokeAction.ResetTone:
-                    KaraokePanelOverlay.ToneSlider.ResetToDefauleValue();
+                    KaraokePanelOverlay?.ToneSlider.ResetToDefauleValue();
                     break;
 
 
                 case KaraokeAction.IncreaseLyricAppearTime:
-                    KaraokePanelOverlay.LyricOffectSlider.IncreaseButton.Action?.Invoke();
+                    KaraokePanelOverlay?.LyricOffectSlider.IncreaseButton.Action?.Invoke();
                     break;
                 case KaraokeAction.DecreaseLyricAppearTime:
-                    KaraokePanelOverlay.LyricOffectSlider.DecreaseButton.Action?.Invoke();
+                    KaraokePanelOverlay?.LyricOffectSlider.DecreaseButton.Action?.Invoke();
                     break;
 
                 case KaraokeAction.ResetLyricAppearTime:
-                    KaraokePanelOverlay.LyricOffectSlider.ResetToDefauleValue();
+                    KaraokePanelOverlay?.LyricOffectSlider.ResetToDefauleValue();
                     break;
 
                 case KaraokeAction.OpenPanel:
-                    KaraokePanelOverlay.ToggleVisibility();
+                    KaraokePanelOverlay?.ToggleVisibility();
                     ;
                     break;
             }
