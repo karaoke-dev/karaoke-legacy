@@ -75,11 +75,10 @@ namespace osu.Game.Rulesets.Karaoke.UI.Panel
 
                 case KaraokeAction.OpenPanel:
                     KaraokePanelOverlay?.ToggleVisibility();
-                    ;
                     break;
             }
 
-            return false;
+            return true;
         }
 
         public bool OnReleased(KaraokeAction action) => true;
