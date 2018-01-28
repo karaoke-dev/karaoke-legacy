@@ -25,6 +25,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "osu.Desktop", "osu.Desktop\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "osu.Game.Rulesets.Karaoke", "osu.Game.Rulesets.Karaoke\osu.Game.Rulesets.Karaoke.csproj", "{7007A270-8FD7-4656-BE74-BD6A84A35C46}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Symcol.Core", "Symcol.Core\Symcol.Core.csproj", "{F34AC16C-E590-4D70-A069-A748326852BF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Symcol.Rulesets.Core", "Symcol.Rulesets.Core\Symcol.Rulesets.Core.csproj", "{552B5940-C647-4060-AA4D-61BAAC415C72}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -95,6 +99,18 @@ Global
 		{7007A270-8FD7-4656-BE74-BD6A84A35C46}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7007A270-8FD7-4656-BE74-BD6A84A35C46}.VisualTests|Any CPU.ActiveCfg = Release|Any CPU
 		{7007A270-8FD7-4656-BE74-BD6A84A35C46}.VisualTests|Any CPU.Build.0 = Release|Any CPU
+		{F34AC16C-E590-4D70-A069-A748326852BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F34AC16C-E590-4D70-A069-A748326852BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F34AC16C-E590-4D70-A069-A748326852BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F34AC16C-E590-4D70-A069-A748326852BF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F34AC16C-E590-4D70-A069-A748326852BF}.VisualTests|Any CPU.ActiveCfg = Release|Any CPU
+		{F34AC16C-E590-4D70-A069-A748326852BF}.VisualTests|Any CPU.Build.0 = Release|Any CPU
+		{552B5940-C647-4060-AA4D-61BAAC415C72}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{552B5940-C647-4060-AA4D-61BAAC415C72}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{552B5940-C647-4060-AA4D-61BAAC415C72}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{552B5940-C647-4060-AA4D-61BAAC415C72}.Release|Any CPU.Build.0 = Release|Any CPU
+		{552B5940-C647-4060-AA4D-61BAAC415C72}.VisualTests|Any CPU.ActiveCfg = Release|Any CPU
+		{552B5940-C647-4060-AA4D-61BAAC415C72}.VisualTests|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
