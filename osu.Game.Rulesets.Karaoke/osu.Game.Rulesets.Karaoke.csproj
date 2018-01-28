@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Beatmaps\KaraokeBeatmap.cs" />
+    <Compile Include="Configuration\KaraokeConfigManager.cs" />
     <Compile Include="Edit\Dialog\EditKaraokeTemplateDialog.cs" />
     <Compile Include="Edit\Dialog\ListKaraokeLyricsDialog.cs" />
     <Compile Include="Edit\Dialog\ListKaraokeTranslateDialog.cs" />
@@ -112,6 +113,7 @@
     <Compile Include="Tests\TestCaseLineRenderer.cs" />
     <Compile Include="Tests\TestCaseTranslate.cs" />
     <Compile Include="Tests\TestCaseWindows.cs" />
+    <Compile Include="Textures\KaraokeTextureStore.cs" />
     <Compile Include="Tools\Romaji\JpRomajiTranslator.cs" />
     <Compile Include="Tools\Romaji\RomajiTranslator.cs" />
     <Compile Include="Tools\Translator\TranslateCode.cs" />
@@ -145,6 +147,8 @@
     <Compile Include="UI\PlayField\KaraokeLyricPlayField.cs" />
     <Compile Include="UI\PlayField\KaraokeTonePlayfield.cs" />
     <Compile Include="UI\Tool\KaraokeTool.cs" />
+    <Compile Include="Wiki\KaraokeWikiHeader.cs" />
+    <Compile Include="Wiki\KaraokeWikiOverlay.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\osu.licenseheader">
@@ -164,6 +168,10 @@
       <Project>{2a66dd92-adb1-4994-89e2-c94e04acda0d}</Project>
       <Name>osu.Game</Name>
       <Private>True</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\Symcol.Rulesets.Core\Symcol.Rulesets.Core.csproj">
+      <Project>{552B5940-C647-4060-AA4D-61BAAC415C72}</Project>
+      <Name>Symcol.Rulesets.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

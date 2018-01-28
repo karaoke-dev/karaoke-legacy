@@ -17,6 +17,7 @@ using osu.Game.Rulesets.Karaoke.Objects.Drawables.Pieces;
 using osu.Game.Rulesets.Karaoke.UI;
 using osu.Game.Rulesets.Mods;
 using osu.Game.Rulesets.UI;
+using osu.Game.Rulesets.Karaoke.Textures;
 
 namespace osu.Game.Rulesets.Karaoke
 {
@@ -177,6 +178,7 @@ namespace osu.Game.Rulesets.Karaoke
         public KaraokeRuleset(RulesetInfo rulesetInfo)
             : base(rulesetInfo)
         {
+            var karaokeTextureStore = new KaraokeTextureStore();
         }
     }
 }

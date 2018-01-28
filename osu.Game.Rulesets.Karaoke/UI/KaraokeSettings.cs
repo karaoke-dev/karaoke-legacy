@@ -5,13 +5,22 @@ using osu.Framework.Allocation;
 using osu.Framework.Graphics;
 using osu.Game.Configuration;
 using osu.Game.Overlays.Settings;
+using osu.Game.Rulesets.Karaoke.Configuration;
 using osu.Game.Rulesets.Karaoke.Tools.Translator;
+using osu.Game.Rulesets.Karaoke.Wiki;
+using Symcol.Rulesets.Core;
+using Symcol.Rulesets.Core.Wiki;
 
 namespace osu.Game.Rulesets.Karaoke.UI
 {
-    public class KaraokeSettings : SettingsSubsection
+    public class KaraokeSettings : SymcolSettingsSubsection
     {
         protected override string Header => "Karaoke!";
+
+        public override WikiOverlay Wiki => karaokeWiki;
+        private readonly KaraokeWikiOverlay karaokeWiki = new KaraokeWikiOverlay();
+
+        public static KaraokeConfigManager KaraokeConfigManager;
 
         [BackgroundDependencyLoader]
         private void load(OsuConfigManager config)
@@ -42,6 +51,11 @@ namespace osu.Game.Rulesets.Karaoke.UI
                 {
                     LabelText = "Enable HotKey",
                     //Bindable = config.GetBindable<bool>(OsuSetting.SnakingOutSliders)
+                },
+                new SettingsButton
+                {
+                    Text = "Open In-game Wiki",
+                    Action = karaokeWiki.Show
                 },
             };
         }
