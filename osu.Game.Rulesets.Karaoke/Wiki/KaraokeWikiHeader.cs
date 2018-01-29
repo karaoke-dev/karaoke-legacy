@@ -17,13 +17,13 @@ namespace osu.Game.Rulesets.Karaoke.Wiki
         protected override string RulesetName => "Karaoke(カラオケ)";
 
         protected override string RulesetDescription => "Karaoke! is a 3rd party ruleset developed for osu!lazer. \n"+
-            "It is a project that can let everyone make the karaoke songs and share it on osu!.";
+            "It is a project that can let everyone make their karaoke songs and share it on osu!.";
 
         protected override string RulesetUrl => $@"https://github.com/osu-Karaoke/osu-Karaoke";
 
         protected override User Creator => new User
         {
-            Username = "Andy840119",
+            Username = "andy840119",
             Id = 1030492
         };
 

@@ -149,6 +149,10 @@
     <Compile Include="UI\Tool\KaraokeTool.cs" />
     <Compile Include="Wiki\KaraokeWikiHeader.cs" />
     <Compile Include="Wiki\KaraokeWikiOverlay.cs" />
+    <Compile Include="Wiki\Sections\DevelopmentHistory.cs" />
+    <Compile Include="Wiki\Sections\GameplaySection.cs" />
+    <Compile Include="Wiki\Sections\SettingSection.cs" />
+    <Compile Include="Wiki\Sections\TextStyleSection.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\osu.licenseheader">
