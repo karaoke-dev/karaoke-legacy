@@ -142,6 +142,5 @@ namespace Symcol.Rulesets.Core.Wiki
                 }
             }
         }
-
     }
 }

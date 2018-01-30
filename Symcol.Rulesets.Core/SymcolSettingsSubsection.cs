@@ -2,12 +2,15 @@
 using osu.Game;
 using osu.Game.Overlays.Settings;
 using Symcol.Rulesets.Core.Wiki;
+using osu.Framework.Graphics.Containers;
+using osu.Framework.Graphics;
+using System.Threading.Tasks;
 
 namespace Symcol.Rulesets.Core
 {
-    public abstract class SymcolSettingsSubsection : SettingsSubsection
+    public abstract class SymcolSettingsSubsection<T> : SettingsSubsection where T : WikiOverlay , new()
     {
-        public virtual WikiOverlay Wiki => null;
+        public T Wiki { get; set; }
 
         private OsuGame osu;
 
@@ -17,12 +20,32 @@ namespace Symcol.Rulesets.Core
             this.osu = osu;
         }
 
-        protected override void LoadComplete()
+        protected void ShowWiki()
         {
-            base.LoadComplete();
+            Wiki = new T();
+            Wiki.StateChanged += (state) =>
+              {
+                  if (state == Visibility.Hidden)
+                  {
+                      DisplseWiki();
+                  }
+              };
+            Wiki.OnLoadComplete += (a) =>
+              {
+                  Wiki.Show();
+              };
+            osu.Add(Wiki);
+        }
 
-            if (Wiki != null)
-                osu.Add(Wiki);
+        protected void DisplseWiki()
+        {
+            Task.Run(async () =>
+            {
+                await Task.Delay(1000);
+                osu.Remove(Wiki);
+                Wiki.Dispose();
+            });
+            
         }
     }
 }

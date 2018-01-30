@@ -17,5 +17,21 @@ namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
     class MicrophoneSection : WikiSection
     {
         public override string Title => "Microphone";
+
+        public MicrophoneSection()
+        {
+            Content.Add(new WikiTextSection("TODO : Introduce about V2 system"));
+
+            //TODO : show panel
+
+            Content.Add(new WikiSubSectionHeader("BeforeSetting"));
+            //TODO : noeified press button to open microphone
+
+            Content.Add(new WikiSubSectionHeader("Device"));
+            //TODO : show settingTemplate
+
+            Content.Add(new WikiSubSectionHeader("Volumn"));
+            //TODO : show singer
+        }
     }
 }

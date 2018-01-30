@@ -1,4 +1,5 @@
-﻿using osu.Game.Rulesets.Karaoke.Wiki.Sections;
+﻿
+using osu.Game.Rulesets.Karaoke.Wiki.Sections;
 using Symcol.Rulesets.Core.Wiki;
 using System;
 using System.Collections.Generic;

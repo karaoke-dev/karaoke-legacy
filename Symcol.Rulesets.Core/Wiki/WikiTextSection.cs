@@ -11,6 +11,8 @@ namespace Symcol.Rulesets.Core.Wiki
 {
     public class WikiTextSection : Container
     {
+        OsuTextFlowContainer texContainer;
+
         public WikiTextSection(string text)
         {
             Anchor = Anchor.TopCentre;
@@ -20,7 +22,7 @@ namespace Symcol.Rulesets.Core.Wiki
 
             Children = new Drawable[]
             {
-                new OsuTextFlowContainer(t => { t.TextSize = 20; })
+                texContainer = new OsuTextFlowContainer(t => { t.TextSize = 20; })
                 {
                     Anchor = Anchor.TopCentre,
                     Origin = Anchor.TopCentre,
@@ -29,6 +31,11 @@ namespace Symcol.Rulesets.Core.Wiki
                     Text = text,
                 }
             };
+        }
+
+        public string Text
+        {
+            set { texContainer.Text = value; }
         }
     }
 }

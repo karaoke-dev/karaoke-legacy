@@ -10,15 +10,13 @@ using osu.Game.Rulesets.Karaoke.Tools.Translator;
 using osu.Game.Rulesets.Karaoke.Wiki;
 using Symcol.Rulesets.Core;
 using Symcol.Rulesets.Core.Wiki;
+using System;
 
 namespace osu.Game.Rulesets.Karaoke.UI
 {
-    public class KaraokeSettings : SymcolSettingsSubsection
+    public class KaraokeSettings : SymcolSettingsSubsection<KaraokeWikiOverlay>
     {
         protected override string Header => "Karaoke!";
-
-        public override WikiOverlay Wiki => karaokeWiki;
-        private readonly KaraokeWikiOverlay karaokeWiki = new KaraokeWikiOverlay();
 
         public static KaraokeConfigManager KaraokeConfigManager;
 
@@ -55,7 +53,10 @@ namespace osu.Game.Rulesets.Karaoke.UI
                 new SettingsButton
                 {
                     Text = "Open In-game Wiki",
-                    Action = karaokeWiki.Show
+                    Action = ()=>
+                    {
+                        ShowWiki();
+                    },
                 },
             };
         }

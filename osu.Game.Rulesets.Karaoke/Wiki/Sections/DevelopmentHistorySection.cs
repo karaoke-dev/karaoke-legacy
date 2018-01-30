@@ -14,5 +14,12 @@ namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
     class DevelopmentHistorySection : WikiSection
     {
         public override string Title => "Development History";
+
+        public DevelopmentHistorySection()
+        {
+            Content.Add(new WikiTextSection("TODO : Introduce"));
+
+            //TODO : MarkdownContainer
+        }
     }
 }

@@ -14,5 +14,15 @@ namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
     class PanelSection : WikiSection
     {
         public override string Title => "Panel";
+
+        public PanelSection()
+        {
+            Content.Add(new WikiTextSection("TODO : Introduce"));
+
+            //TODO : show panel
+
+            Content.Add(new WikiSubSectionHeader("Panel"));
+            //TODO : setting
+        }
     }
 }

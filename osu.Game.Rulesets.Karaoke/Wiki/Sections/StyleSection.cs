@@ -15,5 +15,18 @@ namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
     class StyleSection : WikiSection
     {
         public override string Title => "Style";
+
+        public StyleSection()
+        {
+            Content.Add(new WikiTextSection("TODO : Introduce"));
+
+            //TODO : show panel
+
+            Content.Add(new WikiSubSectionHeader("Template"));
+            //TODO : show settingTemplate
+
+            Content.Add(new WikiSubSectionHeader("Singer"));
+            //TODO : show singer
+        }
     }
 }

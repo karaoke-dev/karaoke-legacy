@@ -14,5 +14,10 @@ namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
     class EditorSection : WikiSection
     {
         public override string Title => "Editor";
+
+        public EditorSection()
+        {
+            Content.Add(new WikiTextSection("TODO : Introduce"));
+        }
     }
 }

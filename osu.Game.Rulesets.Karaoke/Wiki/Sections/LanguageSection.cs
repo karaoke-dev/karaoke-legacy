@@ -100,6 +100,10 @@ namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
                     }
                 }
             });
+
+
+            Content.Add(new WikiSubSectionHeader("Romaji"));
+            //TODO : show romaji and style
         }
     }
 }
