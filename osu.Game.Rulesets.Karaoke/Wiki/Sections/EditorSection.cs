@@ -1,0 +1,18 @@
+﻿using Symcol.Rulesets.Core.Wiki;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
+{
+    /// <summary>
+    /// [5] introduce editor
+    ///     5.1 : TODO : if has any setting , add in here
+    /// </summary>
+    class EditorSection : WikiSection
+    {
+        public override string Title => "Editor";
+    }
+}

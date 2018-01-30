@@ -32,9 +32,25 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
 
     public enum KaraokeSetting
     {
-        TranslateEngine,
+        //language
+        TranslateEngine,//use which api to translate
         DefaultTranslateLanguage,
+        RomajiEngine,//use which api to get romaji
+
+        //karaoke
         ShowKarokePanel,
-        EnableHotKay
+        EnableHotKay,
+
+        //Style
+        Template,
+        Singer,
+
+        //Microphone (V2 system)
+        Microphone,//select microphone device
+        MicrophoneVolumn,//Volumn
+        Echo,//Echo
+        Tone,//Future work ,adjust how voice microphone sounds like
+
+
     }
 }
