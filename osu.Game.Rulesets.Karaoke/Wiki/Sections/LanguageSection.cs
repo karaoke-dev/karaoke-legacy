@@ -15,7 +15,7 @@ namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
     /// <summary>
     /// [1] introduce about translate and romaji
     ///     1.1 : select language translate API (default is google)
-    ///     1.2 : select romaji translate engine and arrangement
+    ///     1.2 : select romaji translator
     /// </summary>
     class LanguageSection : WikiSection
     {
@@ -103,7 +103,42 @@ namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
 
 
             Content.Add(new WikiSubSectionHeader("Romaji"));
-            //TODO : show romaji and style
+            //romaji engine
+            Content.Add(new Container
+            {
+                Anchor = Anchor.TopCentre,
+                Origin = Anchor.TopCentre,
+                AutoSizeAxes = Axes.Y,
+                RelativeSizeAxes = Axes.X,
+                Masking = true,
+
+                Children = new Drawable[]
+                {
+                    new Container
+                    {
+                        Position = new Vector2(-10, 0),
+                        Anchor = Anchor.TopLeft,
+                        Origin = Anchor.TopLeft,
+                        AutoSizeAxes = Axes.Y,
+                        Width = 200,
+
+                        Child = new SettingsEnumDropdown<TranslateCode>
+                        {
+                            //Bindable = selectedGamemode
+                        }
+                    },
+                    new Container
+                    {
+                        Anchor = Anchor.TopRight,
+                        Origin = Anchor.TopRight,
+                        Width = 400,
+                        AutoSizeAxes = Axes.Y,
+                        AutoSizeDuration = 100,
+                        AutoSizeEasing = Easing.OutQuint,
+                        Child = new WikiTextSection("Select which language you want to translate : )")
+                    }
+                }
+            });
         }
     }
 }

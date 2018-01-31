@@ -20,7 +20,7 @@ namespace osu.Game.Rulesets.Karaoke.Wiki
 
             //[1] introduce about translate and romaji
             //     1.1 : select language translate API (default is google)
-            //     1.2 : select romaji translate engine and arrangement
+            //     1.2 : select romaji translator
             new LanguageSection(),
 
             //[2]introduce panel(app the panel, contain normal panel and microphone panel)
