@@ -35,6 +35,8 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
         //language
         TranslateEngine,//use which api to translate
         DefaultTranslateLanguage,
+
+        //Romaji
         RomajiEngine,//use which api to get romaji
 
         //karaoke
@@ -42,7 +44,11 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
         EnableHotKay,
 
         //Style
-        Template,
+        Template,//[object]
+        SubTextVislbility,//[bool]
+        RomajiVislbility,//[bool]
+        RomajiFirst,//[bool]
+
         Singer,
 
         //Microphone (V2 system)
