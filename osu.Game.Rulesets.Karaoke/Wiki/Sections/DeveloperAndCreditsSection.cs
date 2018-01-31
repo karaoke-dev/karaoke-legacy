@@ -22,7 +22,8 @@ namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
             Content.Add(new WikiTextSection("andy84019"));
 
             Content.Add(new WikiSubSectionHeader("Credit"));
-            Content.Add(new WikiTextSection("TODO : Introduce"));
+            Content.Add(new WikiTextSection("Shawdooow\n    if no Shawdooow, no this fuxking awsome page.\n    I love this <3"));
+            Content.Add(new WikiTextSection(@"赫蘿\n  赫蘿的屁屁讚啦\ODO/"));
         }
     }
 }
