@@ -44,8 +44,8 @@ namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
         public StyleSection()
         {
             Content.Add(new WikiTextSection("Setting karaoke Text and other."));
+            Content.Add(new WikiTextSection(" \n\n"));
 
-            
 
             Content.Add(new WikiSubSectionHeader("Template"));
             //show settingTemplate
@@ -60,43 +60,85 @@ namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
                 Children = new Drawable[]
                 {
                     //Karaoke Text Template
-                    new DrawableKaraokeTemplate(KaraokeObject, KarokeTemplate),
-                    //Romaji and subtext setting
                     new Container
                     {
                         Position = new Vector2(-10, 0),
                         Anchor = Anchor.TopLeft,
                         Origin = Anchor.TopLeft,
-                        AutoSizeAxes = Axes.Y,
-                        Width = 200,
-                        Children=new Drawable[]
+                        Width = 400,
+                        Height = 250,
+                        Children = new Drawable[]
                         {
-                            //SubText Vislbility(default is true)
-                            new SettingsCheckbox
+                            new DrawableKaraokeTemplate(KaraokeObject, KarokeTemplate)
                             {
-                                LabelText = "SubText Vislbility",
-                                //Bindable = config.GetBindable<bool>(DebugSetting.BypassCaching)
+                                Position=new Vector2(100,-5),
+                                Anchor = Anchor.Centre,
+                                Origin = Anchor.Centre,
                             },
-                            //Romaji Wislbility(default is true)
-                            new SettingsCheckbox
-                            {
-                                LabelText = "Romaji Wislbility",
-                                //Bindable = config.GetBindable<bool>(DebugSetting.BypassCaching)
-                            },
-                            //Romaji Wislbility(default is false)
-                            new SettingsCheckbox
-                            {
-                                LabelText = "Bypass caching",
-                                //Bindable = config.GetBindable<bool>(DebugSetting.BypassCaching)
-                            },
+                        }
+                    },
+                    
+                    //Romaji and subtext setting
+                    new Container
+                    {
+                        Position = new Vector2(-10, 0),
+                        Anchor = Anchor.TopRight,
+                        Origin = Anchor.TopRight,
+                        Width = 400,
+                        AutoSizeAxes = Axes.Y,
+                        AutoSizeDuration = 100,
+                        AutoSizeEasing = Easing.OutQuint,
+                        Child= new RomajiMenuSettings
+                        {
+                           
                         }
                     },
                 }
             });
-            
+            Content.Add(new WikiTextSection(" \n\n"));
 
             Content.Add(new WikiSubSectionHeader("Singer"));
             //TODO : show singer
+
+            Content.Add(new WikiTextSection(" \n\n"));
+        }
+    }
+
+    public class RomajiMenuSettings : SettingsSubsection
+    {
+        protected override string Header => "Main Menu";
+
+        /*
+        [BackgroundDependencyLoader]
+        private void load(OsuConfigManager config)
+        {
+            
+        }
+        */
+
+        public RomajiMenuSettings()
+        {
+            Children = new Drawable[]
+            {
+                //SubText Vislbility(default is true)
+                new SettingsCheckbox
+                {
+                    LabelText = "SubText Vislbility",
+                    //Bindable = config.GetBindable<bool>(DebugSetting.BypassCaching)
+                },
+                //Romaji Wislbility(default is true)
+                new SettingsCheckbox
+                {
+                    LabelText = "Romaji Wislbility",
+                    //Bindable = config.GetBindable<bool>(DebugSetting.BypassCaching)
+                },
+                //Romaji Wislbility(default is false)
+                new SettingsCheckbox
+                {
+                    LabelText = "Bypass caching",
+                    //Bindable = config.GetBindable<bool>(DebugSetting.BypassCaching)
+                },
+            };
         }
     }
 }

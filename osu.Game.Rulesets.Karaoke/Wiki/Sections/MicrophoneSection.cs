@@ -47,7 +47,7 @@ namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
         public MicrophoneSection()
         {
             Content.Add(new WikiTextSection("TODO : Introduce about V2 system"));
-            
+            Content.Add(new WikiTextSection(" \n\n"));
 
             Content.Add(new WikiSubSectionHeader("BeforeSetting"));
             //
@@ -89,6 +89,8 @@ namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
                     }
                 }
             });
+            Content.Add(new WikiTextSection(" \n\n"));
+
 
             Content.Add(new WikiSubSectionHeader("Device"));
             //list microphone device
@@ -127,6 +129,8 @@ namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
                     }
                 }
             });
+            Content.Add(new WikiTextSection(" \n\n"));
+
 
             Content.Add(new WikiSubSectionHeader("Volumn"));
             //list microphone device
@@ -150,7 +154,13 @@ namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
 
                         Child = new SettingsSlider<double>
                         {
-
+                            Bindable=new Framework.Configuration.BindableDouble()
+                            {
+                                MinValue=0,
+                                MaxValue=1,
+                                Value=1,
+                            },
+                            KeyboardStep = 0.1f,
                         }
                     },
                     new Container
@@ -165,10 +175,13 @@ namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
                     }
                 }
             });
+            Content.Add(new WikiTextSection(" \n\n"));
+
 
             Content.Add(new WikiSubSectionHeader("Other Setting"));
             //TODO
             Content.Add(new WikiTextSection("Waiting to implement"));
+            Content.Add(new WikiTextSection(" \n\n"));
 
             IsMicrophoneOpen = false;
         }

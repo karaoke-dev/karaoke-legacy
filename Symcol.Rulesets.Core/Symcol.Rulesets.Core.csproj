@@ -45,6 +45,7 @@
     <Compile Include="Skinning\SkinElement.cs" />
     <Compile Include="SymcolRuleset.cs" />
     <Compile Include="SymcolSettingsSubsection.cs" />
+    <Compile Include="Wiki\WikiLinkTextSection.cs" />
     <Compile Include="Wiki\WikiSubSectionHeader.cs" />
     <Compile Include="Wiki\WikiOverlay.cs" />
     <Compile Include="Wiki\WikiHeader.cs" />

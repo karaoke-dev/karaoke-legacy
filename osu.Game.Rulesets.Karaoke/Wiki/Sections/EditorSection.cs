@@ -18,10 +18,13 @@ namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
         public EditorSection()
         {
             Content.Add(new WikiTextSection("TODO : Introduce"));
+            Content.Add(new WikiTextSection(" \n\n"));
+
 
             Content.Add(new WikiSubSectionHeader("Editor"));
             //TODO
             Content.Add(new WikiTextSection("Waiting to implement"));
+            Content.Add(new WikiTextSection(" \n\n"));
         }
     }
 }

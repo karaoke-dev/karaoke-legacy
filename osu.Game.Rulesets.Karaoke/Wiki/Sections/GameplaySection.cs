@@ -22,6 +22,8 @@ namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
             Content.Add(new WikiTextSection("osu!Karaoke \n"+
                 "Hmm.... is Karaoke ?\n" +
                 "I don't know how to introduce it."));
+
+            Content.Add(new WikiTextSection(" \n\n"));
         }
     }
 }

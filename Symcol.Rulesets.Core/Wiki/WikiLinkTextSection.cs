@@ -6,14 +6,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using OpenTK;
 
 namespace Symcol.Rulesets.Core.Wiki
 {
-    public class WikiTextSection : Container
+    public class WikiLinkTextSection : Container
     {
-        OsuTextFlowContainer texContainer;
+        LinkText texContainer;
 
-        public WikiTextSection(string text)
+        public WikiLinkTextSection(string text)
         {
             Anchor = Anchor.TopCentre;
             Origin = Anchor.TopCentre;
@@ -22,21 +23,38 @@ namespace Symcol.Rulesets.Core.Wiki
 
             Children = new Drawable[]
             {
-                texContainer = new OsuTextFlowContainer(t => { t.TextSize = 20; })
+                texContainer = new LinkText
                 {
                     Anchor = Anchor.TopCentre,
                     Origin = Anchor.TopCentre,
-                    RelativeSizeAxes = Axes.X,
-                    AutoSizeAxes = Axes.Y,
-                }
+                    //AutoSizeAxes = Axes.Y,
+                    //RelativeSizeAxes = Axes.X,
+                    
+                    TextSize = 20
+                },
             };
 
             Text = text;
+
+            texContainer.AutoSizeAxes = Axes.None;
+            texContainer.RelativeSizeAxes = Axes.None;
+            texContainer.AutoSizeAxes = Axes.Y;
+            texContainer.RelativeSizeAxes = Axes.X;
         }
 
         public string Text
         {
             set { texContainer.Text = value; }
+        }
+
+        public string URL
+        {
+            set { texContainer.Url = value; }
+        }
+
+        public string TooltipText
+        {
+            set { texContainer.TooltipText = value; }
         }
     }
 }

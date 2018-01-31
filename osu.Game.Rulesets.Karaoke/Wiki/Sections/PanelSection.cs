@@ -18,11 +18,14 @@ namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
         public PanelSection()
         {
             Content.Add(new WikiTextSection("TODO : Introduce"));
+            Content.Add(new WikiTextSection(" \n\n"));
 
             //TODO : show panel
 
             Content.Add(new WikiSubSectionHeader("Panel"));
             //TODO : setting
+
+            Content.Add(new WikiTextSection(" \n\n"));
         }
     }
 }

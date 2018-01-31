@@ -24,9 +24,9 @@ namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
         public LanguageSection()
         {
             Content.Add(new WikiTextSection("Adjust which language you want to translate.\n" +
-                "And if you need Romaji , you can select in here"));
+                "And if you need Romaji , you can select in here.  \n\n"));
 
-            
+
             Content.Add(new WikiSubSectionHeader("Translate"));
             //translate language
             Content.Add(new Container
@@ -100,7 +100,7 @@ namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
                     }
                 }
             });
-
+            Content.Add(new WikiTextSection(" \n\n"));
 
             Content.Add(new WikiSubSectionHeader("Romaji"));
             //romaji engine
@@ -139,6 +139,7 @@ namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
                     }
                 }
             });
+            Content.Add(new WikiTextSection(" \n\n"));
         }
     }
 }

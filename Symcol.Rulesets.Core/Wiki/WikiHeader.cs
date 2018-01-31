@@ -114,38 +114,9 @@ namespace Symcol.Rulesets.Core.Wiki
             };
         }
 
-        private class LinkText : OsuSpriteText
+        private class ProfileLink : LinkText
         {
-            private readonly OsuHoverContainer content;
-
-            public override bool HandleKeyboardInput => content.Action != null;
-            public override bool HandleMouseInput => content.Action != null;
-
-            protected override Container<Drawable> Content => content ?? (Container<Drawable>)this;
-
-            protected override IEnumerable<Drawable> FlowingChildren => Children;
-
-            public string Url
-            {
-                set
-                {
-                    if (value != null)
-                        content.Action = () => Process.Start(value);
-                }
-            }
-
-            public LinkText()
-            {
-                AddInternal(content = new OsuHoverContainer
-                {
-                    AutoSizeAxes = Axes.Both,
-                });
-            }
-        }
-
-        private class ProfileLink : LinkText, IHasTooltip
-        {
-            public string TooltipText => "View Profile in Browser";
+            public override string TooltipText => "View Profile in Browser";
 
             public ProfileLink(User user, bool maintainer = false)
             {
@@ -158,6 +129,37 @@ namespace Symcol.Rulesets.Core.Wiki
                 Font = @"Exo2.0-RegularItalic";
                 TextSize = 20;
             }
+        }
+    }
+
+    public class LinkText : OsuSpriteText, IHasTooltip
+    {
+        private readonly OsuHoverContainer content;
+
+        public override bool HandleKeyboardInput => content.Action != null;
+        public override bool HandleMouseInput => content.Action != null;
+
+        protected override Container<Drawable> Content => content ?? (Container<Drawable>)this;
+
+        protected override IEnumerable<Drawable> FlowingChildren => Children;
+
+        public string Url
+        {
+            set
+            {
+                if (value != null)
+                    content.Action = () => Process.Start(value);
+            }
+        }
+
+        public virtual string TooltipText { get; set; }
+
+        public LinkText()
+        {
+            AddInternal(content = new OsuHoverContainer
+            {
+                AutoSizeAxes = Axes.Both,
+            });
         }
     }
 }

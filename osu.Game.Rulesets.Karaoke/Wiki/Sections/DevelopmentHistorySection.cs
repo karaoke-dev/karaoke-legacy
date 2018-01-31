@@ -17,11 +17,22 @@ namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
 
         public DevelopmentHistorySection()
         {
-            Content.Add(new WikiTextSection("TODO : Introduce"));
+            Content.Add(new WikiTextSection("History of development"));
+            Content.Add(new WikiLinkTextSection("And source code can be found in https://github.com/osu-Karaoke/osu-Karaoke")
+            {
+                URL= "https://github.com/osu-Karaoke/osu-Karaoke",
+                TooltipText = "https://github.com/osu-Karaoke/osu-Karaoke",
+            });
+            Content.Add(new WikiTextSection(" \n\n"));
 
             Content.Add(new WikiSubSectionHeader("History"));
             //TODO : MarkdownContainer
 
+
+
+
+
+            Content.Add(new WikiTextSection(" \n\n"));
         }
     }
 }
