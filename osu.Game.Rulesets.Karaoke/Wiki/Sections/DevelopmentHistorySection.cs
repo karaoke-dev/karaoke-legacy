@@ -19,7 +19,9 @@ namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
         {
             Content.Add(new WikiTextSection("TODO : Introduce"));
 
+            Content.Add(new WikiSubSectionHeader("History"));
             //TODO : MarkdownContainer
+
         }
     }
 }
