@@ -153,6 +153,7 @@
     <Compile Include="UI\Tool\KaraokeTool.cs" />
     <Compile Include="Wiki\KaraokeWikiHeader.cs" />
     <Compile Include="Wiki\KaraokeWikiOverlay.cs" />
+    <Compile Include="Wiki\Sections\CreditSection.cs" />
     <Compile Include="Wiki\Sections\DeveloperSection.cs" />
     <Compile Include="Wiki\Sections\DevelopmentHistorySection.cs" />
     <Compile Include="Wiki\Sections\EditorSection.cs" />

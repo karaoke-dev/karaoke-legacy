@@ -12,21 +12,15 @@ namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
     /// </summary>
     class DeveloperSection : WikiSection
     {
-        public override string Title => "Development And Credit";
+        public override string Title => "Development";
 
         public DeveloperSection()
         {
-            Content.Add(new WikiTextSection("This is karaoke developers and really wants to thanks to : )"));
+            Content.Add(new WikiTextSection("osu!karaoke developer"));
             Content.Add(new WikiTextSection(" \n\n"));
 
-            Content.Add(new WikiSubSectionHeader("Main Developer"));
-            Content.Add(new WikiTextSection("andy84019"));
-            Content.Add(new WikiTextSection(" \n\n"));
-
-            Content.Add(new WikiSubSectionHeader("Credit"));
-            Content.Add(new WikiTextSection("Shawdooow\n    if no Shawdooow, no this fuxking awsome page.\n    I love this <3"));
-            Content.Add(new WikiTextSection(" \n\n"));
-            Content.Add(new WikiTextSection("赫蘿\n    赫蘿的屁屁讚啦\\ODO/"));
+            Content.Add(new WikiSubSectionHeader("andy84019"));
+            Content.Add(new WikiTextSection("    Main Developer"));
             Content.Add(new WikiTextSection(" \n\n"));
         }
     }

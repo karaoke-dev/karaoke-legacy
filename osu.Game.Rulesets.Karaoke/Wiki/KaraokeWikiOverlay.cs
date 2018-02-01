@@ -46,8 +46,11 @@ namespace osu.Game.Rulesets.Karaoke.Wiki
             //[6] introduce develpopers
             new DeveloperSection(),
 
-            //[7]show the develpment progress
-            //     7.1 : TODO : will get the newest markdown style progress from github or gitbook
+            //[7] introduce credits
+            new CreditSection(),
+
+            //[8]show the develpment progress
+            //     8.1 : TODO : will get the newest markdown style progress from github or gitbook
             new DevelopmentHistorySection(),
             
         };
