@@ -9,7 +9,6 @@ using osu.Game.Overlays.Settings;
 using osu.Game.Rulesets.Karaoke.Helps;
 using osu.Game.Rulesets.Karaoke.Objects;
 using osu.Game.Rulesets.Karaoke.Objects.Drawables;
-using osu.Game.Screens.Play.ReplaySettings;
 using osu.Game.Tests.Visual;
 
 namespace osu.Game.Rulesets.Karaoke.Tests
@@ -29,8 +28,6 @@ namespace osu.Game.Rulesets.Karaoke.Tests
         [BackgroundDependencyLoader]
         private void load(RulesetStore rulesets)
         {
-            ExampleContainer container;
-
             KaraokeObject = DemoKaraokeObject.GenerateDemo001();
 
             DrawableKaraokeObject = new DrawableKaraokeObject(KaraokeObject)
@@ -38,8 +35,6 @@ namespace osu.Game.Rulesets.Karaoke.Tests
                 Position = KaraokeObject.Position,
                 ProgressUpdateByTime = false,
             };
-
-            Add(container = new ExampleContainer());
 
             var slider = new SettingsSlider<double>()
             {
@@ -61,11 +56,6 @@ namespace osu.Game.Rulesets.Karaoke.Tests
             };
 
             Add(DrawableKaraokeObject);
-        }
-
-        private class ExampleContainer : ReplayGroup
-        {
-            protected override string Title => @"example";
         }
     }
 }

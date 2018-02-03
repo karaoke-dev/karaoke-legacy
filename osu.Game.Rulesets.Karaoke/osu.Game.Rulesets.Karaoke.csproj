@@ -116,6 +116,7 @@
     <Compile Include="Tests\TestCaseKaraokePanel.cs" />
     <Compile Include="Tests\TestCaseLineRenderer.cs" />
     <Compile Include="Tests\TestCaseTranslate.cs" />
+    <Compile Include="Tests\TestCaseWiki.cs" />
     <Compile Include="Tests\TestCaseWindows.cs" />
     <Compile Include="Textures\KaraokeTextureStore.cs" />
     <Compile Include="Tools\Romaji\JpRomajiTranslator.cs" />
