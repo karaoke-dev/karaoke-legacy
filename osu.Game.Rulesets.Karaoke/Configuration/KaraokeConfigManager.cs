@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using osu.Game.Rulesets.Configuration;
 using osu.Game.Configuration;
+using osu.Game.Rulesets.Karaoke.Tools.Translator;
+using osu.Game.Rulesets.Karaoke.Objects;
 
 namespace osu.Game.Rulesets.Karaoke.Configuration
 {
@@ -17,44 +19,63 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
 
         protected override void InitialiseDefaults()
         {
-            base.InitialiseDefaults();
+            //language
+            Set(KaraokeSetting.TranslateEngine, -1);
+            Set(KaraokeSetting.DefaultTranslateLanguage, TranslateCode.English);
 
-            //Set(ManiaSetting.ScrollTime, 1500.0, 50.0, 10000.0, 50.0);
+            //Romaji
+            Set(KaraokeSetting.RomajiEngine, -1);
+
+            //karaoke
+            Set(KaraokeSetting.ShowKarokePanel, false);
+            Set(KaraokeSetting.DisableHotKay, false);
+
+            //Style
+            Set(KaraokeSetting.Template, new KaraokeTemplate());
+            Set(KaraokeSetting.SubTextVislbility, true);
+            Set(KaraokeSetting.RomajiVislbility, true);
+            Set(KaraokeSetting.RomajiFirst, false);
+
+            //singer
+            //Set(KaraokeSetting.Singer, new KaraokeTemplate());
+
+            //Style
+            Set(KaraokeSetting.Microphone, -1);
+            Set(KaraokeSetting.MicrophoneVolumn, 0.5);
+            Set(KaraokeSetting.Echo, 0.5);
+            Set(KaraokeSetting.Tone, 0);
+
+
         }
-
-        /*
-        public override TrackedSettings CreateTrackedSettings() => new TrackedSettings
-        {
-            new TrackedSetting<double>(ManiaSetting.ScrollTime, v => new SettingDescription(v, "Scroll Time", $"{v}ms"))
-        };
-        */
     }
 
     public enum KaraokeSetting
     {
         //language
-        TranslateEngine,//use which api to translate
-        DefaultTranslateLanguage,
+        TranslateEngine,//[int]use which api to translate
+        DefaultTranslateLanguage,//[enum]
 
         //Romaji
-        RomajiEngine,//use which api to get romaji
+        RomajiEngine,//[int]use which api to get romaji
 
         //karaoke
-        ShowKarokePanel,
-        EnableHotKay,
+        ShowKarokePanel,//[bool]show panel at the beginning
+        DisableHotKay,//[bool]enable hotkey
 
         //Style
         Template,//[object]
         SubTextVislbility,//[bool]
         RomajiVislbility,//[bool]
         RomajiFirst,//[bool]
+        TranslateLyric,//[bool]
 
-        Singer,
+        //singler
+        Singer,//[object]
 
         //Microphone (V2 system)
-        Microphone,//select microphone device
-        MicrophoneVolumn,//Volumn
-        Echo,//Echo
+        Microphone,//[int]select microphone device
+        MicrophoneVolumn,//[double]Volumn
+        Echo,//[double]Echo
         Tone,//Future work ,adjust how voice microphone sounds like
 
 

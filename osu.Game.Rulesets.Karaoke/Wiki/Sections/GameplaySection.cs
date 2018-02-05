@@ -20,8 +20,12 @@ namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
         public GameplaySection()
         {
             Content.Add(new WikiTextSection("osu!Karaoke \n"+
-                "Hmm.... is Karaoke ?\n" +
-                "I don't know how to introduce it."));
+                "It's a third-party ruleset that can let everyone make their karaoke songs and share it on osu! \n" +
+                "It has three special frature designed for foreign people \n" +
+                "   1. Romaji support \n" +
+                "   2. Lyric trsnslate support \n" +
+                "   3. Kanji support \n" +
+                "At early stage it is just support english and japanese karaoke songs, but it will support more language in the future."));
 
             Content.Add(new WikiTextSection(" \n\n"));
         }

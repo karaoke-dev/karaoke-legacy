@@ -78,7 +78,6 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables
 
         //Drawable
         public TextsAndMask TextsAndMaskPiece { get; set; } = new TextsAndMask();
-
         public KaraokeText TranslateText { get; set; } = new KaraokeText(null);
 
         private double _nowProgress;
