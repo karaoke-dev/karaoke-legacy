@@ -148,7 +148,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="OpenTK, Version=3.0.0.0, Culture=neutral, PublicKeyToken=bad199fe84eb3df4">
-      <HintPath>$(SolutionDir)\packages\ppy.OpenTK.3.0.11\lib\net45\OpenTK.dll</HintPath>
+      <HintPath>$(SolutionDir)\packages\ppy.OpenTK.3.0.13\lib\net45\OpenTK.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Remotion.Linq, Version=2.1.0.0, Culture=neutral, PublicKeyToken=fee00910d6e5f53b, processorArchitecture=MSIL">
@@ -339,6 +339,7 @@
     <Compile Include="Overlays\Social\SocialListPanel.cs" />
     <Compile Include="Overlays\Social\SocialPanel.cs" />
     <Compile Include="Rulesets\Mods\IApplicableToDrawableHitObject.cs" />
+    <Compile Include="Rulesets\Objects\HitWindows.cs" />
     <Compile Include="Screens\Play\PlayerSettings\VisualSettings.cs" />
     <Compile Include="Rulesets\Objects\CatmullApproximator.cs" />
     <Compile Include="Rulesets\UI\HitObjectContainer.cs" />
@@ -855,6 +856,7 @@
     <Compile Include="Storyboards\StoryboardSample.cs" />
     <Compile Include="Storyboards\StoryboardSprite.cs" />
     <Compile Include="Tests\Beatmaps\TestWorkingBeatmap.cs" />
+    <Compile Include="Tests\CleanRunHeadlessGameHost.cs" />
     <Compile Include="Tests\Platform\TestStorage.cs" />
     <Compile Include="Tests\Visual\OsuTestCase.cs" />
     <Compile Include="Tests\Visual\TestCasePerformancePoints.cs" />
