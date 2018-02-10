@@ -13,20 +13,20 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         /// if template !=null will relative to template's position
         /// else, will be absolute position
         /// </summary>
+        [JsonIgnore]
         public Vector2 Position { get; set; }
 
         /// <inheritdoc />
         /// <summary>
         /// X position
         /// </summary>
-        [JsonIgnore]
+        
         public float X
         {
             get => Position.X;
             set => Position = new Vector2(value, Y);
         }
 
-        [JsonIgnore]
         /// <inheritdoc />
         /// <summary>
         /// Y position

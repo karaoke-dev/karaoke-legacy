@@ -13,6 +13,9 @@ using osu.Game.Rulesets.Replays;
 using osu.Game.Rulesets.Scoring;
 using osu.Game.Rulesets.UI;
 using OpenTK;
+using osu.Game.Rulesets.Configuration;
+using osu.Game.Configuration;
+using osu.Game.Rulesets.Karaoke.Configuration;
 
 namespace osu.Game.Rulesets.Karaoke.UI
 {
@@ -46,5 +49,7 @@ namespace osu.Game.Rulesets.Karaoke.UI
         protected override FramedReplayInputHandler CreateReplayInputHandler(Replay replay) => new KaraokeReplayInputHandler(replay);
 
         protected override Vector2 GetPlayfieldAspectAdjust() => new Vector2(0.75f);
+
+        protected override IRulesetConfigManager CreateConfig(Ruleset ruleset, SettingsStore settings) => new KaraokeConfigManager(settings, Ruleset.RulesetInfo, Variant);
     }
 }

@@ -32,6 +32,17 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables
         //Object
         public KaraokeObject KaraokeObject => HitObject;
 
+        private KaraokeTextStyle _style;
+        public KaraokeTextStyle Style
+        {
+            get => _style;
+            set
+            {
+                _style = value;
+                UpdateDrawable();
+            }
+        }
+
         public KaraokeTemplate Template
         {
             get => _template;

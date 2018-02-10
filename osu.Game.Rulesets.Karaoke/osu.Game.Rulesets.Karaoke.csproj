@@ -96,6 +96,7 @@
     <Compile Include="Objects\KaraokePosition.cs" />
     <Compile Include="Objects\KaraokeSinger.cs" />
     <Compile Include="Objects\KaraokeTemplate.cs" />
+    <Compile Include="Objects\KaraokeTextStyle.cs" />
     <Compile Include="Objects\ProgressPoint.cs" />
     <Compile Include="Objects\RomajiTextObject.cs" />
     <Compile Include="Objects\SubTextObject.cs" />

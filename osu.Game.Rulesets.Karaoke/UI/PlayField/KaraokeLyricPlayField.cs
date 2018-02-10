@@ -9,6 +9,9 @@ using osu.Game.Rulesets.Objects.Drawables;
 using osu.Game.Rulesets.UI;
 using OpenTK;
 using osu.Framework.Graphics;
+using osu.Game.Rulesets.Karaoke.Configuration;
+using osu.Framework.Allocation;
+using Newtonsoft.Json;
 
 namespace osu.Game.Rulesets.Karaoke.UI.PlayField
 {
@@ -41,6 +44,10 @@ namespace osu.Game.Rulesets.Karaoke.UI.PlayField
         public KaraokeRulesetContainer KaraokeRulesetContainer { get; set; }
 
         public List<IAmDrawableKaraokeObject> ListDrawableKaraokeObject { get; set; } = new List<IAmDrawableKaraokeObject>();
+
+        protected KaraokeTextStyle Style { get; set; }
+        protected KaraokeTemplate Template { get; set; }
+        protected KaraokeSinger Singer { get; set; }
 
         public override void Add(DrawableHitObject h)
         {
@@ -151,6 +158,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.PlayField
         /// <param name="karaokeObject"></param>
         public static void UpdateObjectCombo(KaraokeObject karaokeObject)
         {
+
         }
 
         /// <summary>
@@ -160,6 +168,16 @@ namespace osu.Game.Rulesets.Karaoke.UI.PlayField
         /// <param name="karaokeObject"></param>
         public static void UpdateObjectPreemptiveTime(DrawableKaraokeObject karaokeObject)
         {
+
+        }
+
+        [BackgroundDependencyLoader]
+        private void load(KaraokeConfigManager maniaConfig)
+        {
+            var jsonString = maniaConfig.Get<string>(KaraokeSetting.LyricStyle);
+            //TODO : get property from setting
+            Style = JsonConvert.DeserializeObject<KaraokeTextStyle>(jsonString);
+            Template = JsonConvert.DeserializeObject<KaraokeTemplate>(maniaConfig.Get<string>(KaraokeSetting.Template));
         }
     }
 }
