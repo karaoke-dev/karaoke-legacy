@@ -11,7 +11,7 @@ using Newtonsoft.Json;
 
 namespace osu.Game.Rulesets.Karaoke.Configuration
 {
-    public class KaraokeConfigManager : RulesetConfigManager<KaraokeSetting>
+    public class KaraokeConfigManager : BaseKaraokeConfigManager<KaraokeSetting>
     {
         public KaraokeConfigManager(SettingsStore settings, RulesetInfo ruleset, int variant)
             : base(settings, ruleset, variant)
