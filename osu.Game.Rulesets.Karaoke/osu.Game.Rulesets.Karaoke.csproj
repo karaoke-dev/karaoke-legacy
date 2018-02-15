@@ -126,8 +126,6 @@
     <Compile Include="Tests\TestCaseWindows.cs" />
     <Compile Include="Textures\KaraokeTextureStore.cs" />
     <Compile Include="Tools\Romaji\Google\GoogleRomajiTranslator.cs" />
-    <Compile Include="Tools\Romaji\Google\Maps.cs" />
-    <Compile Include="Tools\Romaji\Google\Particles.cs" />
     <Compile Include="Tools\Romaji\Google\TextToken.cs" />
     <Compile Include="Tools\Romaji\Google\Unicode.cs" />
     <Compile Include="Tools\Romaji\RomajiTranslatorBase.cs" />

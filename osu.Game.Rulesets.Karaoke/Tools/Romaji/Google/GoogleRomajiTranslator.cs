@@ -40,17 +40,26 @@ namespace osu.Game.Rulesets.Karaoke.Tools.Romaji
             List<TextToken> textTokens = TextToken.GetTextTokens(inText);
 
             // Load maps and particles lists once
-            string hirakanjiMapPath = Path.Combine(Maps.DirectoryPath, Maps.HirakanjiLatn);
-            List<string> hirakanjiMaps = new List<string>(File.ReadAllLines(hirakanjiMapPath));
+            List<string> hirakanjiMaps = new List<string>()
+            {
+                " ̄ : ", "tsud:tsu"
+            };
 
-            string hirakanjiParticlesPath = Path.Combine(Particles.DirectoryPath, Particles.HirakanjiLatn);
-            List<string> hirakanjiParticles = new List<string>(File.ReadAllLines(hirakanjiParticlesPath));
+            List<string> hirakanjiParticles = new List<string>()
+            {
+                "ba","de","e","ga","ka","mo","na", "ne",  "ni", "no",
+                "o", "te",  "to", "wa",    "wo",   "ya",   "yo", "sa", "ze", "zo",
+            };
 
-            string kataMapPath = Path.Combine(Maps.DirectoryPath, Maps.KataEn);
-            List<string> kataMaps = new List<string>(File.ReadAllLines(kataMapPath));
+            List<string> kataMaps = new List<string>()
+            {
+                " ̄ : ","eye:ai","lung:rune"
+            };
 
-            string kataParticlesPath = Path.Combine(Particles.DirectoryPath, Particles.KataEn);
-            List<string> kataParticles = new List<string>(File.ReadAllLines(kataParticlesPath));
+            List<string> kataParticles = new List<string>()
+            {
+                ""
+            };
 
             // Translate each token and join them back together
             string outText = "";
