@@ -30,7 +30,7 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
 
             //Style
             SetObject(KaraokeSetting.Template, new KaraokeTemplate());
-            SetObject(KaraokeSetting.LyricStyle, new KaraokeTextStyle()
+            SetObject(KaraokeSetting.LyricStyle, new KaraokeLyricConfig()
             {
                 SubTextVislbility = true,
                 RomajiVislbility = true,

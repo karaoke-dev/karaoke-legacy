@@ -32,8 +32,8 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables
         //Object
         public KaraokeObject KaraokeObject => HitObject;
 
-        private KaraokeTextStyle _style;
-        public KaraokeTextStyle Style
+        private KaraokeLyricConfig _style;
+        public KaraokeLyricConfig Style
         {
             get => _style;
             set

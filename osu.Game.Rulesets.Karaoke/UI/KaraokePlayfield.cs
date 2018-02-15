@@ -149,7 +149,7 @@ namespace osu.Game.Rulesets.Karaoke.UI
         {
             /*
             //get property from setting
-            KaraokeLyricPlayField.Style = karaokeConfig.GetObject<KaraokeTextStyle>(KaraokeSetting.LyricStyle);
+            KaraokeLyricPlayField.Style = karaokeConfig.GetObject<KaraokeLyricConfig>(KaraokeSetting.LyricStyle);
             KaraokeLyricPlayField.Template = karaokeConfig.GetObject<KaraokeTemplate>(KaraokeSetting.Template);
             */
 

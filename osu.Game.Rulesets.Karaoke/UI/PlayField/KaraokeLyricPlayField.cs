@@ -45,7 +45,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.PlayField
 
         public List<IAmDrawableKaraokeObject> ListDrawableKaraokeObject { get; set; } = new List<IAmDrawableKaraokeObject>();
 
-        public KaraokeTextStyle Style { get; set; }
+        public KaraokeLyricConfig Style { get; set; }
         public KaraokeTemplate Template { get; set; }
         public KaraokeSinger Singer { get; set; }
 
