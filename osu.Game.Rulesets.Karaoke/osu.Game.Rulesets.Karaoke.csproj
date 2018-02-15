@@ -35,6 +35,9 @@
     <LangVersion>Default</LangVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="HtmlAgilityPack, Version=1.6.17.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
+      <HintPath>..\packages\HtmlAgilityPack.1.6.17\lib\Net45\HtmlAgilityPack.dll</HintPath>
+    </Reference>
     <Reference Include="JetBrains.Annotations, Version=11.1.0.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325, processorArchitecture=MSIL">
       <HintPath>$(SolutionDir)\packages\JetBrains.Annotations.11.1.0\lib\net20\JetBrains.Annotations.dll</HintPath>
       <Private>True</Private>
@@ -121,8 +124,12 @@
     <Compile Include="Tests\TestCaseWiki.cs" />
     <Compile Include="Tests\TestCaseWindows.cs" />
     <Compile Include="Textures\KaraokeTextureStore.cs" />
-    <Compile Include="Tools\Romaji\JpRomajiTranslator.cs" />
-    <Compile Include="Tools\Romaji\RomajiTranslator.cs" />
+    <Compile Include="Tools\Romaji\Google\GoogleRomajiTranslator.cs" />
+    <Compile Include="Tools\Romaji\Google\Maps.cs" />
+    <Compile Include="Tools\Romaji\Google\Particles.cs" />
+    <Compile Include="Tools\Romaji\Google\TextToken.cs" />
+    <Compile Include="Tools\Romaji\Google\Unicode.cs" />
+    <Compile Include="Tools\Romaji\RomajiTranslatorBase.cs" />
     <Compile Include="Tools\Translator\TranslateCode.cs" />
     <Compile Include="Tools\Translator\GoogleTranslator.cs" />
     <Compile Include="Tools\Translator\TranslateorBase.cs" />

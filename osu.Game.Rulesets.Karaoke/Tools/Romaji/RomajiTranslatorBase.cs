@@ -7,10 +7,16 @@ using System.Threading.Tasks;
 namespace osu.Game.Rulesets.Karaoke.Tools.Romaji
 {
     /// <summary>
-    /// tranlate japanese to romaji
+    /// can translate any langlage to romaji
     /// </summary>
-    public class JpRomajiTranslator : RomajiTranslator
+    public class RomajiTranslatorBase
     {
+        /// <summary>
+        /// translate a sentence once
+        /// </summary>
+        public virtual void Translate()
+        {
 
+        }
     }
 }
