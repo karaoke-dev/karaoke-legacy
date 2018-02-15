@@ -56,6 +56,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Beatmaps\KaraokeBeatmap.cs" />
+    <Compile Include="Configuration\BaseKaraokeConfigManager.cs" />
     <Compile Include="Configuration\KaraokeConfigManager.cs" />
     <Compile Include="Edit\Dialog\EditKaraokeTemplateDialog.cs" />
     <Compile Include="Edit\Dialog\ListKaraokeLyricsDialog.cs" />
