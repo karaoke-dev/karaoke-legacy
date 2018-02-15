@@ -49,12 +49,11 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
 
         }
 
-        /*
-        public override TrackedSettings CreateTrackedSettings()
+        public override TrackedSettings CreateTrackedSettings() => new TrackedSettings
         {
-            return base.CreateTrackedSettings();
-        }
-        */
+
+        };
+
     }
 
     public enum KaraokeSetting
