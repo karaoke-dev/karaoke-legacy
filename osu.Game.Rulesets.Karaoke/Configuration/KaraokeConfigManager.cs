@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using osu.Game.Rulesets.Configuration;
+﻿using osu.Framework.Configuration.Tracking;
 using osu.Game.Configuration;
 using osu.Game.Rulesets.Karaoke.Tools.Translator;
 using osu.Game.Rulesets.Karaoke.Objects;
-using Newtonsoft.Json;
 
 namespace osu.Game.Rulesets.Karaoke.Configuration
 {
@@ -20,6 +14,8 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
 
         protected override void InitialiseDefaults()
         {
+            base.InitialiseDefaults();
+
             //language
             Set(KaraokeSetting.TranslateEngine, -1);
             Set(KaraokeSetting.DefaultTranslateLanguage, TranslateCode.English);
@@ -32,15 +28,14 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
             Set(KaraokeSetting.ShowKarokePanel, false);
             Set(KaraokeSetting.DisableHotKay, false);
 
-            string jsonString = JsonConvert.SerializeObject(new KaraokeTemplate());
             //Style
-            Set(KaraokeSetting.Template, jsonString);
-            Set(KaraokeSetting.LyricStyle, JsonConvert.SerializeObject(new KaraokeTextStyle()
+            SetObject(KaraokeSetting.Template, new KaraokeTemplate());
+            SetObject(KaraokeSetting.LyricStyle, new KaraokeTextStyle()
             {
                 SubTextVislbility = true,
                 RomajiVislbility = true,
                 RomajiFirst = false,
-            }));
+            });
 
             //singer
             //Set(KaraokeSetting.Singer, new KaraokeTemplate());
@@ -53,6 +48,13 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
 
 
         }
+
+        /*
+        public override TrackedSettings CreateTrackedSettings()
+        {
+            return base.CreateTrackedSettings();
+        }
+        */
     }
 
     public enum KaraokeSetting

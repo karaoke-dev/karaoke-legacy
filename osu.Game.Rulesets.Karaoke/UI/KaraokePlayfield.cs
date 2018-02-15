@@ -2,14 +2,17 @@
 // Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
 
 using System.Collections.Generic;
+using osu.Framework.Allocation;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Timing;
 using osu.Game.Beatmaps;
 using osu.Game.Graphics.UserInterface;
 using osu.Game.Rulesets.Judgements;
+using osu.Game.Rulesets.Karaoke.Configuration;
 using osu.Game.Rulesets.Karaoke.Judgements;
 using osu.Game.Rulesets.Karaoke.Mods;
+using osu.Game.Rulesets.Karaoke.Objects;
 using osu.Game.Rulesets.Karaoke.Tools.Translator;
 using osu.Game.Rulesets.Karaoke.UI.Panel;
 using osu.Game.Rulesets.Objects.Drawables;
@@ -24,8 +27,6 @@ namespace osu.Game.Rulesets.Karaoke.UI
     {
         private Container karaokecontrolLayer;
         private KaraokePanelOverlay karaokePanelOverlay;
-
-        //public override bool ProvidingUserCursor => true;
 
         public KaraokePlayfield(Ruleset ruleset, WorkingBeatmap beatmap, KaraokeRulesetContainer container)
             : base(ruleset, beatmap, container)
@@ -85,6 +86,15 @@ namespace osu.Game.Rulesets.Karaoke.UI
             };
         }
 
+        /*
+        protected override void Dispose(bool isDisposing)
+        {
+            base.Dispose(isDisposing);
+            KaraokeLyricPlayField.Dispose();
+
+        }
+        */
+
         public override void InitialRulesetLayer()
         {
             base.InitialRulesetLayer();
@@ -132,6 +142,18 @@ namespace osu.Game.Rulesets.Karaoke.UI
 
             if (!judgedObject.DisplayJudgement)
                 return;
+        }
+
+        [BackgroundDependencyLoader]
+        private void load(KaraokeConfigManager karaokeConfig)
+        {
+            /*
+            //get property from setting
+            KaraokeLyricPlayField.Style = karaokeConfig.GetObject<KaraokeTextStyle>(KaraokeSetting.LyricStyle);
+            KaraokeLyricPlayField.Template = karaokeConfig.GetObject<KaraokeTemplate>(KaraokeSetting.Template);
+            */
+
+            //TODO : Apply property
         }
     }
 }

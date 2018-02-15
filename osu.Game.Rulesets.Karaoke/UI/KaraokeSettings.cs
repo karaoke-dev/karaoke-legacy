@@ -18,7 +18,7 @@ namespace osu.Game.Rulesets.Karaoke.UI
     {
         protected override string Header => "Karaoke!";
 
-        public static KaraokeConfigManager KaraokeConfigManager;
+        //public static KaraokeConfigManager KaraokeConfigManager;
 
         [BackgroundDependencyLoader]
         private void load(OsuConfigManager config)
