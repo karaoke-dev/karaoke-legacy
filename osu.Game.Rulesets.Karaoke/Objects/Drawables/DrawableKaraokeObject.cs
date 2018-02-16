@@ -19,17 +19,26 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables
     /// </summary>
     public class DrawableKaraokeObject : DrawableHitObject<KaraokeObject>, IAmDrawableKaraokeObject
     {
-        //Private
-        private KaraokeLyricConfig _config;
-        private KaraokeTemplate _template;
-        private KaraokeSinger _singer;
-
-
         //Const
         public const float TIME_FADEIN = 100;
         public const float TIME_FADEOUT = 100;
 
-        //Object
+
+        private double _nowProgress;
+
+        #region Field
+
+        //Private
+        private KaraokeLyricConfig _config;
+        private KaraokeTemplate _template;
+        private KaraokeSinger _singer;
+        private TranslateCode _translateCode;
+
+
+        /// <summary>
+        /// Gets the karaoke object.
+        /// </summary>
+        /// <value>The karaoke object.</value>
         public KaraokeObject KaraokeObject => HitObject;
 
         /// <summary>
@@ -74,18 +83,10 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables
             }
         }
 
-        public double PreemptiveTime
-        {
-            get => KaraokeObject.PreemptiveTime ?? 600;
-            set
-            {
-                KaraokeObject.PreemptiveTime = value;
-                UpdateDrawable();
-            }
-        }
-
-        private TranslateCode _translateCode;
-
+        /// <summary>
+        /// Gets or sets the translate code.
+        /// </summary>
+        /// <value>The translate code.</value>
         public TranslateCode TranslateCode
         {
             get => _translateCode;
@@ -96,13 +97,35 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables
             }
         }
 
+        #endregion
+
+        /// <summary>
+        /// Gets or sets the preemptive time.
+        /// </summary>
+        /// <value>The preemptive time.</value>
+        public double PreemptiveTime
+        {
+            get => KaraokeObject.PreemptiveTime ?? 600;
+            set
+            {
+                KaraokeObject.PreemptiveTime = value;
+                UpdateDrawable();
+            }
+        }
+
+
+        /// <summary>
+        /// Gets or sets a value indicating whether this
+        /// <see cref="T:osu.Game.Rulesets.Karaoke.Objects.Drawables.DrawableKaraokeObject"/> progress update by time.
+        /// </summary>
+        /// <value><c>true</c> if progress update by time; otherwise, <c>false</c>.</value>
         public virtual bool ProgressUpdateByTime { get; set; } = true;
 
         //Drawable
         public TextsAndMask TextsAndMaskPiece { get; set; } = new TextsAndMask();
         public KaraokeText TranslateText { get; set; } = new KaraokeText(null);
 
-        private double _nowProgress;
+
 
         public DrawableKaraokeObject(KaraokeObject hitObject)
             : base(hitObject)
