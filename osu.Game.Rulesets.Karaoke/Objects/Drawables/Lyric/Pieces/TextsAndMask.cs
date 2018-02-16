@@ -12,9 +12,10 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Pieces
 {
     public class TextsAndMask : Container //BufferedContainer
     {
-        protected virtual SingleSideOfAndMask LeftSideText { get; set; } = new SingleSideOfAndMask();
+        
+        protected virtual TextSets LeftSideText { get; set; } = new TextSets();
 
-        protected virtual SingleSideOfAndMask RightSideText { get; set; } = new SingleSideOfAndMask();
+        protected virtual TextSets RightSideText { get; set; } = new TextSets();
 
         private float _maskWidth;
 
@@ -88,89 +89,6 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Pieces
             LeftSideText.SetColor(color);
             //Right side is white
             RightSideText.SetColor(Color4.White);
-        }
-
-        protected class SingleSideOfAndMask : Container
-        {
-            public List<KaraokeText> ListDrawableSubText = new List<KaraokeText>();
-            public List<KaraokeText> ListDrawableBottomText = new List<KaraokeText>();
-            public MainKaraokeText MainKaraokeText;
-            private float _height;
-
-            public SingleSideOfAndMask()
-            {
-                Masking = true;
-            }
-
-            public virtual void AddMainText(TextObject textObject)
-            {
-                if (MainKaraokeText == null)
-                {
-                    MainKaraokeText = new MainKaraokeText(textObject);
-                    Add(MainKaraokeText);
-                }
-                else
-                {
-                    MainKaraokeText.TextObject = textObject;
-                }
-            }
-
-            public void AddSubText(TextObject textObject)
-            {
-                var subText = new KaraokeText(textObject)
-                {
-                    Origin = Anchor.BottomCentre,
-                };
-                ListDrawableSubText.Add(subText);
-                Add(subText);
-            }
-
-            public void AddBottomText(TextObject textObject)
-            {
-                var bottomText = new KaraokeText(textObject)
-                {
-                    Origin = Anchor.BottomCentre,
-                };
-                ListDrawableBottomText.Add(bottomText);
-                Add(bottomText);
-            }
-
-            public void ClearAllText()
-            {
-                ListDrawableSubText.Clear();
-                ListDrawableBottomText.Clear();
-                MainKaraokeText = null;
-                Children = new Drawable[] { };
-            }
-
-            public void SetHeight(float height)
-            {
-                _height = height;
-                Height = _height;
-            }
-
-            public void SetMaskStartAndEndPosition(float startPositionX, float endPositionX)
-            {
-                Position = new Vector2(startPositionX, 0);
-
-                for (int i = 0; i < Children.Count; i++)
-                {
-                    if (i == 0)
-                    {
-                        Children[i].Position = MainKaraokeText.TextObject.Position - Position;
-                    }
-                    else
-                    {
-                        Children[i].Position = ListDrawableSubText[i - 1].TextObject.Position - Position;
-                    }
-                }
-                Width = endPositionX - startPositionX;
-            }
-
-            public void SetColor(Color4 color)
-            {
-                Colour = color;
-            }
         }
     }
 }
