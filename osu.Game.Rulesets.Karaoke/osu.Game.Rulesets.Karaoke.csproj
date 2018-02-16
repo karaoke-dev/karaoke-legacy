@@ -165,6 +165,7 @@
     <Compile Include="Wiki\Sections\MicrophoneSection.cs" />
     <Compile Include="Wiki\Sections\PanelSection.cs" />
     <Compile Include="Wiki\Sections\StyleSection.cs" />
+    <Compile Include="Configuration\KaraokeNoteConfig.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\osu.licenseheader">
