@@ -140,5 +140,15 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         /// End preemptive time
         /// </summary>
         public double? EndPreemptiveTime { get; set; } = 600;
+
+        /// <summary>
+        /// Splits the by progress point.
+        /// </summary>
+        /// <returns>The by progress point.</returns>
+        public List<KaraokeObject> SplitByProgressPoint()
+        {
+            //TODO : implement
+            return null;
+        }
     }
 }

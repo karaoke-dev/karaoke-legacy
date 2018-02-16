@@ -11,6 +11,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note
     {
         public DrawableKaraokeNote()
         {
+            //TODO : implement it until mania editor complete
         }
     }
 }
