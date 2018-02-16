@@ -167,7 +167,7 @@
     <Compile Include="Objects\Drawables\Lyric\IAmDrawableKaraokeObject.cs" />
     <Compile Include="Objects\Drawables\Lyric\KarakokeTextAssignment.cs" />
     <Compile Include="Objects\Drawables\Note\DrawableKaraokeNote.cs" />
-    <Compile Include="Objects\Drawables\Pieces\TextSets.cs" />
+    <Compile Include="Objects\Drawables\Common\Pieces\TextSets.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\osu.licenseheader">
@@ -204,7 +204,8 @@
     <Folder Include="Objects\Drawables\Lyric\" />
     <Folder Include="Objects\Drawables\Lyric\Pieces\" />
     <Folder Include="Objects\Drawables\Note\" />
-    <Folder Include="Objects\Drawables\Pieces\" />
+    <Folder Include="Objects\Drawables\Common\" />
+    <Folder Include="Objects\Drawables\Common\Pieces\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
