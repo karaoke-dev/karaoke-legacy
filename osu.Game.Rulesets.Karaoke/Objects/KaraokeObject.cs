@@ -9,6 +9,7 @@ using osu.Game.Rulesets.Karaoke.Objects.Types;
 using osu.Game.Rulesets.Objects;
 using osu.Game.Rulesets.Objects.Types;
 using OpenTK;
+using osu.Game.Rulesets.Karaoke.Tools.Translator;
 
 namespace osu.Game.Rulesets.Karaoke.Objects
 {
@@ -42,7 +43,6 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         /// </summary>
         public int? SingerIndex { get; set; } = 0;
 
-        /// <inheritdoc />
         /// <summary>
         /// if template !=null will relative to template's position
         /// else, will be absolute position
@@ -84,19 +84,40 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         public float? Height { get; set; }
 
         /// <summary>
-        /// Main text
+        /// Gets or sets the main text.
         /// </summary>
-        public TextObject MainText { get; set; } = new TextObject();
+        /// <value>The main text.</value>
+        // TODO : [set] if change the value here , will generate the list
+        // TODO : [get] get the value is combine from list
+        public string MainText { get; set; }
+
+        /// <summary>
+        /// Main text 
+        /// </summary>
+        // TODO : list format
+        [JsonIgnore]
+        public List<TextObject> MainTexts { get; private set; } = new List<TextObject>();
+
+        /// <summary>
+        /// romaji text
+        /// </summary>
+        /// <value>The romaji text.</value>
+        // TODO : [set] cannot set here
+        // TODO : [get] get the value is combine from list
+        [JsonIgnore]
+        public string RomajiText { get; }
+
+        /// <summary>
+        /// list romaji text
+        /// </summary>
+        public ListRomajiTextObject ListRomajiTexts { get; set; } = new ListRomajiTextObject();
+
 
         /// <summary>
         /// List little aid text,like japanese's text
         /// </summary>
         public List<SubTextObject> ListSubTextObject { get; set; } = new List<SubTextObject>();
 
-        /// <summary>
-        /// List little aid text,like japanese's text
-        /// </summary>
-        public ListRomajiTextObject ListRomajiTextObject { get; set; } = new ListRomajiTextObject();
 
         /// <summary>
         /// record list time where position goes
@@ -140,6 +161,12 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         /// End preemptive time
         /// </summary>
         public double? EndPreemptiveTime { get; set; } = 600;
+
+        /// <summary>
+        /// get translate code
+        /// </summary>
+        /// <value>The translate code.</value>
+        public TranslateCode TranslateCode { get; set; }
 
         /// <summary>
         /// Splits the by progress point.
