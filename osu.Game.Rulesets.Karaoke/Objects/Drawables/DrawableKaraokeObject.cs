@@ -20,29 +20,36 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables
     public class DrawableKaraokeObject : DrawableHitObject<KaraokeObject>, IAmDrawableKaraokeObject
     {
         //Private
+        private KaraokeLyricConfig _config;
         private KaraokeTemplate _template;
-
         private KaraokeSinger _singer;
+
 
         //Const
         public const float TIME_FADEIN = 100;
-
         public const float TIME_FADEOUT = 100;
 
         //Object
         public KaraokeObject KaraokeObject => HitObject;
 
-        private KaraokeLyricConfig _style;
-        public KaraokeLyricConfig Style
+        /// <summary>
+        /// Gets or sets the config.
+        /// </summary>
+        /// <value>The config.</value>
+        public KaraokeLyricConfig Config
         {
-            get => _style;
+            get => _config;
             set
             {
-                _style = value;
+                _config = value;
                 UpdateDrawable();
             }
         }
 
+        /// <summary>
+        /// Gets or sets the template.
+        /// </summary>
+        /// <value>The template.</value>
         public KaraokeTemplate Template
         {
             get => _template;
@@ -53,6 +60,10 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables
             }
         }
 
+        /// <summary>
+        /// Gets or sets the singer.
+        /// </summary>
+        /// <value>The singer.</value>
         public KaraokeSinger Singer
         {
             get => _singer;
