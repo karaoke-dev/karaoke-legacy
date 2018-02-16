@@ -85,13 +85,7 @@
     <Compile Include="Beatmaps\KaraokeBeatmapProcessor.cs" />
     <Compile Include="Mods\KaraokeMod2017.cs" />
     <Compile Include="Mods\ModInterface.cs" />
-    <Compile Include="Objects\Drawables\DrawableKaraokeObject.cs" />
-    <Compile Include="Objects\Drawables\KarakokeTextAssignment.cs" />
-    <Compile Include="Objects\Drawables\Pieces\ImagePicec.cs" />
-    <Compile Include="Objects\Drawables\Pieces\KaraokeText.cs" />
-    <Compile Include="Objects\Drawables\Pieces\MainKaraokeText.cs" />
     <Compile Include="Edit\Dialog\Pieces\RevertableTextbox.cs" />
-    <Compile Include="Objects\Drawables\Pieces\TextsAndMask.cs" />
     <Compile Include="Objects\KaraokeInfo.cs" />
     <Compile Include="Objects\KaraokeObject.cs" />
     <Compile Include="Objects\KaraokePosition.cs" />
@@ -146,10 +140,7 @@
     <Compile Include="UI\Panel\Pieces\KaraokePlayPauseButton.cs" />
     <Compile Include="UI\Panel\Pieces\KaraokeTimerSliderBar.cs" />
     <Compile Include="UI\Panel\Pieces\WithUpAndDownButtonSlider.cs" />
-    <Compile Include="Objects\Drawables\Pieces\TranslateString.cs" />
     <Compile Include="Mods\KaraokeMod.cs" />
-    <Compile Include="Objects\Drawables\Pieces\ProgressPointBar.cs" />
-    <Compile Include="Objects\Drawables\IAmDrawableKaraokeObject.cs" />
     <Compile Include="Objects\Extension\KaraokeObjectExtension.cs" />
     <Compile Include="UI\PlayField\KaraokeLyricPlayField.cs" />
     <Compile Include="UI\PlayField\KaraokeTonePlayfield.cs" />
@@ -166,6 +157,16 @@
     <Compile Include="Wiki\Sections\PanelSection.cs" />
     <Compile Include="Wiki\Sections\StyleSection.cs" />
     <Compile Include="Configuration\KaraokeNoteConfig.cs" />
+    <Compile Include="Objects\Drawables\Lyric\Pieces\ImagePicec.cs" />
+    <Compile Include="Objects\Drawables\Lyric\Pieces\KaraokeText.cs" />
+    <Compile Include="Objects\Drawables\Lyric\Pieces\MainKaraokeText.cs" />
+    <Compile Include="Objects\Drawables\Lyric\Pieces\ProgressPointBar.cs" />
+    <Compile Include="Objects\Drawables\Lyric\Pieces\TextsAndMask.cs" />
+    <Compile Include="Objects\Drawables\Lyric\Pieces\TranslateString.cs" />
+    <Compile Include="Objects\Drawables\Lyric\DrawableKaraokeObject.cs" />
+    <Compile Include="Objects\Drawables\Lyric\IAmDrawableKaraokeObject.cs" />
+    <Compile Include="Objects\Drawables\Lyric\KarakokeTextAssignment.cs" />
+    <Compile Include="Objects\Drawables\Note\DrawableKaraokeNote.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\osu.licenseheader">
@@ -197,6 +198,11 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Textures\Icon\Icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Objects\Drawables\Lyric\" />
+    <Folder Include="Objects\Drawables\Lyric\Pieces\" />
+    <Folder Include="Objects\Drawables\Note\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
