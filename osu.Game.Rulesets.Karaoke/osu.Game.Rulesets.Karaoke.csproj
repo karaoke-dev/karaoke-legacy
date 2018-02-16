@@ -168,6 +168,7 @@
     <Compile Include="Objects\Drawables\Lyric\KarakokeTextAssignment.cs" />
     <Compile Include="Objects\Drawables\Note\DrawableKaraokeNote.cs" />
     <Compile Include="Objects\Drawables\Common\Pieces\TextSets.cs" />
+    <Compile Include="Objects\Types\IHasText.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\osu.licenseheader">

@@ -3,24 +3,28 @@
 
 using Newtonsoft.Json;
 using OpenTK;
+using osu.Game.Rulesets.Karaoke.Objects.Types;
+using osu.Game.Rulesets.Objects.Types;
 
 namespace osu.Game.Rulesets.Karaoke.Objects
 {
-    public class TextObject
+    /// <summary>
+    /// Text objects
+    /// </summary>
+    public class TextObject : IHasText , IHasPosition
     {
         // <inheritdoc />
         /// <summary>
         /// if template !=null will relative to template's position
         /// else, will be absolute position
         /// </summary>
-        [JsonIgnore]
         public Vector2 Position { get; set; }
 
         /// <inheritdoc />
         /// <summary>
         /// X position
         /// </summary>
-        
+        [JsonIgnore]
         public float X
         {
             get => Position.X;
@@ -31,6 +35,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         /// <summary>
         /// Y position
         /// </summary>
+        [JsonIgnore]
         public float Y
         {
             get => Position.Y;
@@ -73,7 +78,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         }
 
         /// <summary>
-        /// cast
+        /// cast from string to TextObject
         /// </summary>
         /// <param name="textObject"></param>
         public static explicit operator TextObject(string textObject)
