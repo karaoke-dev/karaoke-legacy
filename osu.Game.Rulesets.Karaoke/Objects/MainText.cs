@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace osu.Game.Rulesets.Karaoke.Objects
 {
-    public class MainText
+    public class MainText : TextComponent
     {
+
     }
 }

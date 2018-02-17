@@ -8,7 +8,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects
     /// <summary>
     /// sub text
     /// </summary>
-    public class SubText : FormattedText, IHasCharIndex, IHasCharEndIndex
+    public class SubText : TextComponent, IHasCharIndex, IHasCharEndIndex
     {
         /// <summary>
         /// relativa to textIndex
