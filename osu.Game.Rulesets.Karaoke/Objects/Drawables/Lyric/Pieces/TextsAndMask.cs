@@ -24,7 +24,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Pieces
         //MainText
         public MainKaraokeText MainText => RightSideText.MainKaraokeText;
 
-        //SubText
+        //TopText
         public KaraokeText SubText => SubTexts?.FirstOrDefault();
         public List<KaraokeText> SubTexts => RightSideText.ListDrawableSubText;
 

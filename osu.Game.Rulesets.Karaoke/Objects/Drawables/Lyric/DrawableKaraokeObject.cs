@@ -160,14 +160,14 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables
 
                 var positionX = (startPosition + endPosition) / 2;
                 //2. update to subtext
-                TextsAndMaskPiece.AddSubText(Template?.SubText + singleText + new FormattedText()
+                TextsAndMaskPiece.AddSubText(Template?.TopText + singleText + new FormattedText()
                 {
                     X = positionX,
                 });
             }
 
             Width = TextsAndMaskPiece.MainText.GetTextEndPosition(); //Lyric.Width ?? (Template?.Width ?? 700);
-            Height = Lyric.Height ?? (Template?.Height ?? 100);
+            Height = Lyric.Height ?? 100;
 
             UpdateValue();
         }

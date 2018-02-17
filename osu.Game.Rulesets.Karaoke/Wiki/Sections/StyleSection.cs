@@ -120,10 +120,10 @@ namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
         {
             Children = new Drawable[]
             {
-                //SubText Vislbility(default is true)
+                //TopText Vislbility(default is true)
                 new SettingsCheckbox
                 {
-                    LabelText = "SubText Vislbility",
+                    LabelText = "TopText Vislbility",
                     //Bindable = config.GetBindable<bool>(DebugSetting.BypassCaching)
                 },
                 //Romaji Wislbility(default is true)
