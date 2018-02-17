@@ -9,10 +9,10 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Extension
     {
         public static LyricProgressPoint GetFirstProgressPointByTime(this Lyric lyric, double nowRelativeTime)
         {
-            if (lyric.IsInTime(nowRelativeTime) && lyric.ListLyricProgressPoint.Count > 0)
+            if (lyric.IsInTime(nowRelativeTime) && lyric.ProgressPoints.Count > 0)
             {
-                var index = lyric.ListLyricProgressPoint.FindIndex(x => x.RelativeTime > nowRelativeTime);
-                return index > 0 ? lyric.ListLyricProgressPoint[index - 1] : new LyricProgressPoint(0, -1);
+                var index = lyric.ProgressPoints.FindIndex(x => x.RelativeTime > nowRelativeTime);
+                return index > 0 ? lyric.ProgressPoints[index - 1] : new LyricProgressPoint(0, -1);
             }
 
             return new LyricProgressPoint(0, -1);
@@ -20,10 +20,10 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Extension
 
         public static LyricProgressPoint GetLastProgressPointByTime(this Lyric lyric, double nowRelativeTime)
         {
-            if (lyric.IsInTime(nowRelativeTime) && lyric.ListLyricProgressPoint.Count > 0)
+            if (lyric.IsInTime(nowRelativeTime) && lyric.ProgressPoints.Count > 0)
             {
-                var point = lyric.ListLyricProgressPoint.Find(x => x.RelativeTime > nowRelativeTime);
-                return point ?? lyric.ListLyricProgressPoint.Last();
+                var point = lyric.ProgressPoints.Find(x => x.RelativeTime > nowRelativeTime);
+                return point ?? lyric.ProgressPoints.Last();
             }
 
             return null;
@@ -31,18 +31,18 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Extension
 
         public static LyricProgressPoint GetFirstProgressPointByIndex(this Lyric lyric, int charIndex)
         {
-            var index = lyric.ListLyricProgressPoint.FindIndex(x => x.CharIndex > charIndex);
+            var index = lyric.ProgressPoints.FindIndex(x => x.CharIndex > charIndex);
             if (index == 0)
                 return new LyricProgressPoint(0, -1);
 
             //if -1 , means last
-            return index > 0 ? lyric.ListLyricProgressPoint[index - 1] : (lyric.ListLyricProgressPoint.LastOrDefault() ?? new LyricProgressPoint(0, -1));
+            return index > 0 ? lyric.ProgressPoints[index - 1] : (lyric.ProgressPoints.LastOrDefault() ?? new LyricProgressPoint(0, -1));
         }
 
         public static LyricProgressPoint GetLastProgressPointByIndex(this Lyric lyric, int charIndex)
         {
-            var point = lyric.ListLyricProgressPoint.Find(x => x.CharIndex > charIndex);
-            return point; //?? lyric.ListLyricProgressPoint.Last();
+            var point = lyric.ProgressPoints.Find(x => x.CharIndex > charIndex);
+            return point; //?? lyric.ProgressPoints.Last();
         }
 
         /// <summary>

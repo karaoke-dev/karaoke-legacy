@@ -149,10 +149,10 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables
         {
             TextsAndMaskPiece.ClearAllText();
             //main text
-            TextsAndMaskPiece.AddMainText(Template?.MainText + Lyric.MainText);
+            TextsAndMaskPiece.AddMainText(Template?.MainText , Lyric.MainText);
 
             //subtext
-            foreach (var singleText in Lyric.ListSubTextObject)
+            foreach (var singleText in Lyric.SubTexts)
             {
                 //1. recalculate position
                 var startPosition = TextsAndMaskPiece.MainText.GetEndPositionByIndex(singleText.CharIndex - 1);
@@ -180,7 +180,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables
             TextsAndMaskPiece.SetColor(textColor, backgroundColor);
 
             //translate text
-            TranslateText.TextObject = Template?.TranslateText + Lyric.ListTranslate.Where(x => x.LangCode == LangTagConvertor.GetCode(TranslateCode)).FirstOrDefault();
+            TranslateText.TextObject = Template?.TranslateText + Lyric.Translates.Where(x => x.LangCode == LangTagConvertor.GetCode(TranslateCode)).FirstOrDefault();
             TranslateText.Colour = Template?.TranslateTextColor ?? Color4.White;
 
             Scale = new Vector2(Template?.Scale ?? 1);

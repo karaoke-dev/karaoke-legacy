@@ -22,7 +22,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables
     public class DrawableEditableKaraokeObject : DrawableKaraokeObject, IHasContextMenu
     {
         protected DrawableKaraokeThumbnail DrawableKaraokeThumbnail { get; set; }
-        protected EditableMainKaraokeText EditableMainKaraokeText { get; set; } = new EditableMainKaraokeText(null);
+        protected EditableMainKaraokeText EditableMainKaraokeText { get; set; } = new EditableMainKaraokeText(null,null);
         protected bool IsDrag = false;
 
         public MenuItem[] ContextMenuItems => new MenuItem[]
@@ -52,7 +52,8 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables
         protected override void UpdateDrawable()
         {
             base.UpdateDrawable();
-            EditableMainKaraokeText.TextObject = Template?.MainText + Lyric.MainText;
+            EditableMainKaraokeText.MainTextObject = Lyric.MainText;
+            EditableMainKaraokeText.TextObject = Template?.MainText;
             EditableMainKaraokeText.Alpha = 1f;
         }
 
@@ -114,7 +115,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables
             LyricProgressPoint nextPoint = Lyric.GetLastProgressPointByIndex(index);
             double deltaTime = ((previousPoint?.RelativeTime ?? 0) + (nextPoint?.RelativeTime ?? previousPoint.RelativeTime + 500)) / 2;
             LyricProgressPoint point = new LyricProgressPoint(deltaTime, index);
-            Lyric.ListLyricProgressPoint.AddProgressPoint(point);
+            Lyric.ProgressPoints.AddProgressPoint(point);
             DrawableKaraokeThumbnail.UpdateView();
         }
 

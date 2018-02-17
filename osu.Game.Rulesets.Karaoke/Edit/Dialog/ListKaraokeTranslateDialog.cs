@@ -146,7 +146,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog
         {
             if (BeatmapSetInfo != null)
             {
-                foreach (var single in BeatmapSetInfo.ListTranslate)
+                foreach (var single in BeatmapSetInfo.Translates)
                 {
                     if (single.LangCode == langCode)
                     {

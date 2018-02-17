@@ -50,12 +50,12 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables
             //1. show the whole bar with start time and end time
 
             //2. fix time
-            Lyric.ListLyricProgressPoint.FixTime();
+            Lyric.ProgressPoints.FixTime();
 
             //3. show each point with text start and end time
             ListEditableProgressPoint.Direction = FillDirection.Horizontal;
             ListEditableProgressPoint.Clear();
-            foreach (var single in Lyric.ListLyricProgressPoint)
+            foreach (var single in Lyric.ProgressPoints)
             {
                 var editableProgressPoint = new EditableProgressPoint(this, single);
                 ListEditableProgressPoint.Add(editableProgressPoint);
@@ -119,7 +119,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables
         /// </summary>
         public void UpdateTime(float deltaPosition)
         {
-            var minimumTime = Lyric.ListLyricProgressPoint.MinimumTime;
+            var minimumTime = Lyric.ProgressPoints.MinimumTime;
 
             double deltaTime = deltaPosition / Ratio / Zoon;
 
@@ -150,7 +150,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables
                 }
             }
 
-            Lyric.ListLyricProgressPoint.FixTime();
+            Lyric.ProgressPoints.FixTime();
         }
 
         /// <summary>
@@ -158,9 +158,9 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables
         /// </summary>
         public void DeletePoint(LyricProgressPoint point)
         {
-            if (Lyric.ListLyricProgressPoint.Count > 1)
+            if (Lyric.ProgressPoints.Count > 1)
             {
-                Lyric.ListLyricProgressPoint.Remove(point);
+                Lyric.ProgressPoints.Remove(point);
             }
             UpdateView();
         }

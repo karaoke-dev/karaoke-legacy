@@ -5,31 +5,44 @@ using System.Collections.Generic;
 using System.Linq;
 using osu.Framework.Allocation;
 using osu.Framework.IO.Stores;
+using osu.Game.Graphics.Sprites;
 
 namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Pieces
 {
     public class MainKaraokeText : KaraokeText
     {
+        private MainTextList _mainTextObject;
+
         protected FontStore FontStore = null;
 
         public float TotalWidth { get; protected set; } = 0;
 
         public List<float> ListCharEndPosition { get; protected set; } = new List<float>();
 
-        public override FormattedText TextObject
+        public MainTextList MainTextObject
         {
-            get => base.TextObject;
+            get => _mainTextObject;
             set
             {
-                base.TextObject = value;
+                _mainTextObject = value;
+                //set text
+                UpdateText();
+
+                Position = TextObject.Position;
+
                 //update each text's end position
                 UpdateSingleCharacterEndPosition();
             }
         }
 
-        public MainKaraokeText(FormattedText textObject)
-            : base(textObject)
+        protected override void UpdateText()
         {
+            Text = MainTextObject?.Text;
+        }
+
+        public MainKaraokeText(FormattedText formattedText,MainTextList textObject) : base(formattedText)
+        {
+            MainTextObject = textObject;
         }
 
         protected void UpdateSingleCharacterEndPosition()
@@ -37,18 +50,31 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Pieces
             if (FontStore == null)
                 return;
 
-            if (TextObject?.Text != null)
+            if (MainTextObject != null && MainTextObject.Count > 0)
             {
                 ListCharEndPosition.Clear();
                 TotalWidth = 0;
-                foreach (var single in TextObject.Text)
+                foreach (var single in MainTextObject)
                 {
                     //get single char width
-                    var singleCharWhdth = CreateCharacterDrawable(single).Width * TextSize;
+                    var singleCharWhdth = GetStringWidth(single.Text);
                     TotalWidth += singleCharWhdth;
                     ListCharEndPosition.Add(TotalWidth);
                 }
             }
+        }
+
+        protected float GetStringWidth(string str)
+        {
+            float totalWidth = 0;
+            foreach (var single in str)
+            {
+                //get single char width
+                var singleCharWhdth = CreateCharacterDrawable(single).Width * TextSize;
+                totalWidth += singleCharWhdth;
+                
+            }
+            return totalWidth;
         }
 
         public float GetEndPositionByIndex(int index)

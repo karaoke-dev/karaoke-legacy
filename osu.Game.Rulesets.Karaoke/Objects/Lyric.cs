@@ -84,52 +84,38 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         public float? Height { get; set; }
 
         /// <summary>
-        /// Gets or sets the main text.
-        /// </summary>
-        /// <value>The main text.</value>
-        //
-        public string MainText__ { get; set; }
-
-        /// <summary>
         /// Main text 
         /// </summary>
         // TODO : list format
         //TODO : [set] if change the value here, will generate the list
         // TODO : [get] get the value is combine from list
         [JsonIgnore]
-        public MainText MainText { get; set; } = new MainText(); //public List<MainText> MainText { get; set; } = new List<MainText>();
-
-        /// <summary>
-        /// romaji text
-        /// </summary>
-        /// <value>The romaji text.</value>
-        // TODO : [set] cannot set here
-        // TODO : [get] get the value is combine from list
-        [JsonIgnore]
-        public string RomajiText { get; }
+        public MainTextList MainText { get; set; } = new MainTextList();
 
         /// <summary>
         /// list romaji text
         /// </summary>
+        // TODO : [set] cannot set here
+        // TODO : [get] get the value is combine from list
         public RomajiTextList RomajiTextListRomajiTexts { get; set; } = new RomajiTextList();
 
 
         /// <summary>
         /// List little aid text,like japanese's text
         /// </summary>
-        public List<SubText> ListSubTextObject { get; set; } = new List<SubText>();
+        public List<SubText> SubTexts { get; set; } = new List<SubText>();
 
 
         /// <summary>
         /// record list time where position goes
         /// </summary>
-        public LyricProgressPointList ListLyricProgressPoint { get; set; } = new LyricProgressPointList();
+        public LyricProgressPointList ProgressPoints { get; set; } = new LyricProgressPointList();
 
         /// <summary>
         /// all the translate for a single language
         /// </summary>
         /// <value>The list trans late.</value>
-        public ListKaraokeTranslateString ListTranslate { get; set; } = new ListKaraokeTranslateString();
+        public ListKaraokeTranslateString Translates { get; set; } = new ListKaraokeTranslateString();
 
         /// <summary>
         /// The time at which the HitObject ends.
@@ -141,7 +127,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         /// The duration of the HitObject.
         /// </summary>
         [JsonIgnore]
-        public double Duration => ListLyricProgressPoint.LastOrDefault()?.RelativeTime ?? 0;
+        public double Duration => ProgressPoints.LastOrDefault()?.RelativeTime ?? 0;
 
         /// <summary>
         /// new combo

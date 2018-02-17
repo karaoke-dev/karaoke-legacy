@@ -37,16 +37,17 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Pieces
             Masking = true;
         }
 
-        public virtual void AddMainText(FormattedText textObject)
+        public virtual void AddMainText(FormattedText formattedText, MainTextList textObject)
         {
             if (MainKaraokeText == null)
             {
-                MainKaraokeText = new MainKaraokeText(textObject);
+                MainKaraokeText = new MainKaraokeText(formattedText,textObject);
                 Add(MainKaraokeText);
             }
             else
             {
-                MainKaraokeText.TextObject = textObject;
+                MainKaraokeText.TextObject = formattedText;
+                MainKaraokeText.MainTextObject = textObject;
             }
         }
 
@@ -92,7 +93,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Pieces
             {
                 if (i == 0)
                 {
-                    Children[i].Position = MainKaraokeText.TextObject.Position - Position;
+                    Children[i].Position = -Position;//MainKaraokeText.TextObject.Position - Position;
                 }
                 else
                 {

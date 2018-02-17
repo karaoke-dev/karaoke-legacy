@@ -27,15 +27,15 @@ namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
 
         public Lyric Lyric { get; set; } = new Lyric()
         {
-            MainText = new MainText(){ Text = "カラオケ" },
-            ListSubTextObject = new List<SubText>()
+            MainText = MainTextList.SetJapaneseLyric("カラオケ"),
+            SubTexts = new List<SubText>()
             {
                 new SubText() { Text = "か" },
                 new SubText() { Text = "ら", CharIndex = 1 },
                 new SubText() { Text = "お", CharIndex = 2 },
                 new SubText() { Text = "け", CharIndex = 3 },
             },
-            ListTranslate = new ListKaraokeTranslateString()
+            Translates = new ListKaraokeTranslateString()
             {
                 new LyricTranslate(LangTagConvertor.GetCode(TranslateCode.English), "Karaoke")
             }
