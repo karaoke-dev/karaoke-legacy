@@ -33,6 +33,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects
                     CharIndex = startCharIndex,
                     Text = singleCharacter.ToString(),
                 });
+                startCharIndex++;
             }
 
             return returnList;

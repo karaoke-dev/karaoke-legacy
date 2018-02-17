@@ -17,7 +17,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Common.Pieces
 
         public float TotalWidth { get; protected set; } = 0;
 
-        public List<float> ListCharEndPosition { get; protected set; } = new List<float>();
+        public Dictionary<int,float> ListCharEndPosition { get; protected set; } = new Dictionary<int,float>();
 
         public List<TextComponent> MainTextObject
         {
@@ -61,22 +61,9 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Common.Pieces
                     //get single char width
                     var singleCharWhdth = GetStringWidth(single.Text);
                     TotalWidth += singleCharWhdth;
-                    ListCharEndPosition.Add(TotalWidth);
+                    ListCharEndPosition.Add(((IHasCharIndex)single).CharIndex,TotalWidth);
                 }
             }
-        }
-
-        protected float GetStringWidth(string str)
-        {
-            float totalWidth = 0;
-            foreach (var single in str)
-            {
-                //get single char width
-                var singleCharWhdth = CreateCharacterDrawable(single).Width * TextSize;
-                totalWidth += singleCharWhdth;
-                
-            }
-            return totalWidth;
         }
 
         public float GetEndPositionByIndex(int index)
@@ -104,7 +91,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Common.Pieces
                 if (ListCharEndPosition.Count == 0)
                     return 700;
 
-                return ListCharEndPosition.Last();
+                return ListCharEndPosition.Last().Value;
             }
             catch
             {
@@ -115,7 +102,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Common.Pieces
 
         public int GetIndexByPosition(float position)
         {
-            return ListCharEndPosition.FindIndex(x => x > position);
+            return ListCharEndPosition.Where(x => x.Value > position).FirstOrDefault().Key;
         }
 
         [BackgroundDependencyLoader]
@@ -124,5 +111,20 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Common.Pieces
             FontStore = store;
             UpdateSingleCharacterEndPosition();
         }
+
+        #region Function
+        protected float GetStringWidth(string str)
+        {
+            float totalWidth = 0;
+            foreach (var single in str)
+            {
+                //get single char width
+                var singleCharWhdth = CreateCharacterDrawable(single).Width * TextSize;
+                totalWidth += singleCharWhdth;
+
+            }
+            return totalWidth;
+        }
+        #endregion
     }
 }
