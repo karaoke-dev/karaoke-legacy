@@ -90,7 +90,7 @@
     <Compile Include="Objects\Lyric.cs" />
     <Compile Include="Objects\MainText.cs" />
     <Compile Include="Objects\RomajiTextList.cs" />
-    <Compile Include="Objects\Text.cs" />
+    <Compile Include="Objects\TextComponent.cs" />
     <Compile Include="UI\PlayField\Lyric\KaraokePosition.cs" />
     <Compile Include="Objects\Singer.cs" />
     <Compile Include="Objects\LyricTemplate.cs" />

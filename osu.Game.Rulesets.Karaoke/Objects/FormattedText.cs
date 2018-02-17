@@ -11,7 +11,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects
     /// <summary>
     /// Text objects
     /// </summary>
-    public class FormattedText : Text, IHasPosition
+    public class FormattedText : TextComponent, IHasPosition
     {
         // <inheritdoc />
         /// <summary>
@@ -83,6 +83,22 @@ namespace osu.Game.Rulesets.Karaoke.Objects
             return new FormattedText()
             {
                 Text = textObject,
+            };
+        }
+
+        public static FormattedText FromText(string textObject)
+        {
+            return new FormattedText()
+            {
+                Text = textObject,
+            };
+        }
+
+        public static FormattedText FromText(TextComponent textObject)
+        {
+            return new FormattedText()
+            {
+                Text = textObject?.Text,
             };
         }
     }

@@ -7,7 +7,7 @@ using osu.Game.Rulesets.Karaoke.Objects.Types;
 
 namespace osu.Game.Rulesets.Karaoke.Objects
 {
-    public class Text : IHasText
+    public abstract class TextComponent : IHasText
     {
         /// <summary>
         /// text
