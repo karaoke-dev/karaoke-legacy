@@ -87,16 +87,17 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         /// Gets or sets the main text.
         /// </summary>
         /// <value>The main text.</value>
-        // TODO : [set] if change the value here , will generate the list
-        // TODO : [get] get the value is combine from list
-        public string MainText { get; set; }
+        //
+        public string MainText__ { get; set; }
 
         /// <summary>
         /// Main text 
         /// </summary>
         // TODO : list format
+        //TODO : [set] if change the value here, will generate the list
+        // TODO : [get] get the value is combine from list
         [JsonIgnore]
-        public List<FormattedText> MainTexts { get; private set; } = new List<FormattedText>();
+        public List<MainText> MainText { get; set; } = new List<MainText>();
 
         /// <summary>
         /// romaji text
