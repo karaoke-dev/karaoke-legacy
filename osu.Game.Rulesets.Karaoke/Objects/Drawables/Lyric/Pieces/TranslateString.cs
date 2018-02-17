@@ -3,7 +3,7 @@
 
 using osu.Game.Graphics.Sprites;
 
-namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Pieces
+namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric.Pieces
 {
     /// <summary>
     /// show the translate string 

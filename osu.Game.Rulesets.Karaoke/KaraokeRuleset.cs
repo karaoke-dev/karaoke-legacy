@@ -13,7 +13,6 @@ using osu.Game.Rulesets.Karaoke.Edit;
 using osu.Game.Rulesets.Karaoke.KaraokeDifficulty;
 using osu.Game.Rulesets.Karaoke.Mods;
 using osu.Game.Rulesets.Karaoke.Objects;
-using osu.Game.Rulesets.Karaoke.Objects.Drawables.Pieces;
 using osu.Game.Rulesets.Karaoke.UI;
 using osu.Game.Rulesets.Mods;
 using osu.Game.Rulesets.UI;
@@ -21,6 +20,7 @@ using osu.Game.Rulesets.Karaoke.Textures;
 using osu.Game.Rulesets.Configuration;
 using osu.Game.Configuration;
 using osu.Game.Rulesets.Karaoke.Configuration;
+using osu.Game.Rulesets.Karaoke.Objects.Drawables.Common.Pieces;
 
 namespace osu.Game.Rulesets.Karaoke
 {

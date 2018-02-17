@@ -9,6 +9,7 @@ using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Lines;
 using osu.Game.Rulesets.Karaoke.Objects;
 using osu.Game.Rulesets.Karaoke.Objects.Drawables;
+using osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric;
 using OpenTK;
 
 namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces

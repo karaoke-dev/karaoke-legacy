@@ -4,7 +4,7 @@
 using osu.Framework.Graphics;
 using osu.Game.Graphics.Sprites;
 
-namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Pieces
+namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Common.Pieces
 {
     public class KaraokeText : OsuSpriteText
     {

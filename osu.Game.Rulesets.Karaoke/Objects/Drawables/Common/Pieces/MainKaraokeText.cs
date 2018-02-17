@@ -5,9 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using osu.Framework.Allocation;
 using osu.Framework.IO.Stores;
-using osu.Game.Graphics.Sprites;
 
-namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Pieces
+namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Common.Pieces
 {
     public class MainKaraokeText : KaraokeText
     {

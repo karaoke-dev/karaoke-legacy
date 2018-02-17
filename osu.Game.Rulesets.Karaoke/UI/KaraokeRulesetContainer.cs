@@ -16,6 +16,7 @@ using OpenTK;
 using osu.Game.Rulesets.Configuration;
 using osu.Game.Configuration;
 using osu.Game.Rulesets.Karaoke.Configuration;
+using osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric;
 
 namespace osu.Game.Rulesets.Karaoke.UI
 {

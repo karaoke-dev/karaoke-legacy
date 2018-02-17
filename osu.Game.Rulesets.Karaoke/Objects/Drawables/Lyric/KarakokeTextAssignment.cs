@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace osu.Game.Rulesets.Karaoke.Objects.Drawables
+﻿namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
 {
     /// <summary>
     /// use to assign text in which place

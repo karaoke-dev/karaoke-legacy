@@ -48,7 +48,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         };
 
         /// <summary>
-        /// translate terxt color
+        /// translate text color
         /// </summary>
         public Color4 TranslateTextColor { get; set; } = Color4.White;
 

@@ -5,10 +5,10 @@ using System.Collections.Generic;
 using System.Linq;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
-using OpenTK;
+using osu.Game.Rulesets.Karaoke.Objects.Drawables.Common.Pieces;
 using OpenTK.Graphics;
 
-namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Pieces
+namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric.Pieces
 {
     public class TextsAndMask : Container //BufferedContainer
     {

@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using osu.Game.Rulesets.UI.Scrolling;
+﻿using osu.Game.Rulesets.UI.Scrolling;
 
-namespace osu.Game.Rulesets.Karaoke.UI.PlayField
+namespace osu.Game.Rulesets.Karaoke.UI.PlayField.Note
 {
     /// <summary>
     /// use to show karaoke tone Playfield

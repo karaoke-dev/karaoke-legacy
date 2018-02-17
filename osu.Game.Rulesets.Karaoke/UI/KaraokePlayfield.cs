@@ -15,6 +15,7 @@ using osu.Game.Rulesets.Karaoke.Mods;
 using osu.Game.Rulesets.Karaoke.Objects;
 using osu.Game.Rulesets.Karaoke.Tools.Translator;
 using osu.Game.Rulesets.Karaoke.UI.Panel;
+using osu.Game.Rulesets.Karaoke.UI.PlayField.Lyric;
 using osu.Game.Rulesets.Objects.Drawables;
 using OpenTK;
 
@@ -61,7 +62,7 @@ namespace osu.Game.Rulesets.Karaoke.UI
                 },
 
                 //layer
-                KaraokeLyricPlayField= new PlayField.KaraokeLyricPlayField()
+                KaraokeLyricPlayField= new KaraokeLyricPlayField()
                 {
                     KaraokeRulesetContainer = this.KaraokeRulesetContainer
                 }

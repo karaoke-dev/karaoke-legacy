@@ -1,11 +1,10 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using OpenTK;
 using OpenTK.Graphics;
 
-namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Pieces
+namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Common.Pieces
 {
     /// <summary>
     /// this class contains 

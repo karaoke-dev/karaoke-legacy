@@ -2,7 +2,7 @@
 // Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
 
 using osu.Game.Rulesets.Karaoke.Objects;
-using osu.Game.Rulesets.Karaoke.Objects.Drawables.Pieces;
+using osu.Game.Rulesets.Karaoke.Objects.Drawables.Common.Pieces;
 using OpenTK.Graphics;
 
 namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Pieces
