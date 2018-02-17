@@ -91,15 +91,14 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Common.Pieces
         {
             Position = new Vector2(startPositionX, 0);
 
-            for (int i = 0; i < Children.Count; i++)
+            if (startPositionX != 0)
             {
-                if (i == 0)
+                foreach (var singleText in Children)
                 {
-                    Children[i].Position = MainKaraokeText.TextObject.Position - Position;
-                }
-                else
-                {
-                    Children[i].Position = ListDrawableSubText[i - 1].TextObject.Position - Position;
+                    if (singleText is KaraokeText terxtObject)
+                    {
+                        terxtObject.Position = terxtObject.TextObject.Position - Position;
+                    }
                 }
             }
 
