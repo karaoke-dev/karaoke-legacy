@@ -5,14 +5,13 @@ using System.Collections.Generic;
 using System.Linq;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
-using OpenTK;
+using osu.Game.Rulesets.Karaoke.Objects.Drawables.Common.Pieces;
 using OpenTK.Graphics;
 
-namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Pieces
+namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric.Pieces
 {
     public class TextsAndMask : Container //BufferedContainer
     {
-        
         protected virtual TextSets LeftSideText { get; set; } = new TextSets();
 
         protected virtual TextSets RightSideText { get; set; } = new TextSets();
@@ -24,7 +23,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Pieces
         //MainText
         public MainKaraokeText MainText => RightSideText.MainKaraokeText;
 
-        //SubText
+        //TopText
         public KaraokeText SubText => SubTexts?.FirstOrDefault();
         public List<KaraokeText> SubTexts => RightSideText.ListDrawableSubText;
 
@@ -42,10 +41,10 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Pieces
             };
         }
 
-        public void AddMainText(FormattedText textObject)
+        public void AddMainText(FormattedText formattedText, Dictionary<int, TextComponent> textObject)
         {
-            LeftSideText.AddMainText(textObject);
-            RightSideText.AddMainText(textObject);
+            LeftSideText.AddMainText(formattedText, textObject);
+            RightSideText.AddMainText(formattedText, textObject);
         }
 
         public void AddSubText(FormattedText textObject)

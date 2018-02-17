@@ -93,6 +93,7 @@
     <Compile Include="Objects\LyricProgressPointList.cs" />
     <Compile Include="Objects\Lyric.cs" />
     <Compile Include="Objects\MainText.cs" />
+    <Compile Include="Objects\MainTextList.cs" />
     <Compile Include="Objects\RomajiTextList.cs" />
     <Compile Include="Objects\TextComponent.cs" />
     <Compile Include="UI\PlayField\Lyric\KaraokePosition.cs" />
@@ -167,9 +168,9 @@
     <Compile Include="Wiki\Sections\PanelSection.cs" />
     <Compile Include="Wiki\Sections\StyleSection.cs" />
     <Compile Include="Configuration\KaraokeNoteConfig.cs" />
-    <Compile Include="Objects\Drawables\Lyric\Pieces\ImagePicec.cs" />
-    <Compile Include="Objects\Drawables\Lyric\Pieces\KaraokeText.cs" />
-    <Compile Include="Objects\Drawables\Lyric\Pieces\MainKaraokeText.cs" />
+    <Compile Include="Objects\Drawables\Common\Pieces\ImagePicec.cs" />
+    <Compile Include="Objects\Drawables\Common\Pieces\KaraokeText.cs" />
+    <Compile Include="Objects\Drawables\Common\Pieces\MainKaraokeText.cs" />
     <Compile Include="Objects\Drawables\Lyric\Pieces\ProgressPointBar.cs" />
     <Compile Include="Objects\Drawables\Lyric\Pieces\TextsAndMask.cs" />
     <Compile Include="Objects\Drawables\Lyric\Pieces\TranslateString.cs" />

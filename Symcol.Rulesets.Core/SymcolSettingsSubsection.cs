@@ -3,7 +3,6 @@ using osu.Game;
 using osu.Game.Overlays.Settings;
 using Symcol.Rulesets.Core.Wiki;
 using osu.Framework.Graphics.Containers;
-using osu.Framework.Graphics;
 using System.Threading.Tasks;
 
 namespace Symcol.Rulesets.Core

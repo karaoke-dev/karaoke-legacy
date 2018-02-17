@@ -14,12 +14,12 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Types
         /// <summary>
         /// Main Text list 
         /// </summary>
-        MainText MainText { get; set; }//List<MainText> MainText { get; set; }
+        MainTextList MainText { get; set; }
 
         /// <summary>
         /// subText list
         /// </summary>
-        List<SubText> ListSubTextObject { get; set; }
+        Dictionary<int, SubText> SubTexts { get; set; }
 
         /// <summary>
         /// romaji text list
@@ -29,12 +29,12 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Types
         /// <summary>
         /// list progress point
         /// </summary>
-        LyricProgressPointList ListLyricProgressPoint { get; set; }
+        LyricProgressPointList ProgressPoints { get; set; }
 
         /// <summary>
         /// list translate
         /// </summary>
-        ListKaraokeTranslateString ListTranslate { get; set; }
+        ListKaraokeTranslateString Translates { get; set; }
 
 
         /// <summary>

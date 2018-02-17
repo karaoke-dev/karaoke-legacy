@@ -1,19 +1,16 @@
-﻿using System;
+﻿// Copyright (c) 2007-2018 ppy Pty Ltd <contact@ppy.sh>.
+// Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
+
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using osu.Framework.Graphics;
+using osu.Game.Rulesets.Karaoke.Configuration;
 using osu.Game.Rulesets.Karaoke.Objects;
-using osu.Game.Rulesets.Karaoke.Objects.Drawables;
+using osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric;
 using osu.Game.Rulesets.Objects.Drawables;
 using osu.Game.Rulesets.UI;
 using OpenTK;
-using osu.Framework.Graphics;
-using osu.Game.Rulesets.Karaoke.Configuration;
-using osu.Framework.Allocation;
-using Newtonsoft.Json;
 
-namespace osu.Game.Rulesets.Karaoke.UI.PlayField
+namespace osu.Game.Rulesets.Karaoke.UI.PlayField.Lyric
 {
     /// <summary>
     /// use to manage karaoke lyric's position arrangement
@@ -54,10 +51,10 @@ namespace osu.Game.Rulesets.Karaoke.UI.PlayField
             h.Depth = (float)h.HitObject.StartTime;
 
             //update template
-            this.UpdateObjectTemplate(h as DrawableKaraokeObject);
+            UpdateObjectTemplate(h as DrawableKaraokeObject);
 
             //update position
-            this.UpdateObjectAutomaticallyPosition(h as DrawableKaraokeObject);
+            UpdateObjectAutomaticallyPosition(h as DrawableKaraokeObject);
 
             //add to list
             ListDrawableKaraokeObject.Add(h as DrawableKaraokeObject);
@@ -71,7 +68,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.PlayField
             LyricTemplate template = null;
             if (drawableKaraokeObject.Lyric.TemplateIndex != null)
             {
-                template = this.GetListKaraokeTemplate()[drawableKaraokeObject.Lyric.TemplateIndex.Value];
+                template = GetListKaraokeTemplate()[drawableKaraokeObject.Lyric.TemplateIndex.Value];
             }
 
             //setting drawable by template
@@ -123,7 +120,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.PlayField
         /// </summary>
         /// <param name="karaokeField"></param>
         /// <returns></returns>
-        public List<Lyric> GetListKaraokeObjects()
+        public List<Objects.Lyric> GetListKaraokeObjects()
         {
             return KaraokeRulesetContainer.Beatmap.HitObjects;
         }
@@ -156,9 +153,8 @@ namespace osu.Game.Rulesets.Karaoke.UI.PlayField
         /// </summary>
         /// <param name="karaokeField"></param>
         /// <param name="lyric"></param>
-        public static void UpdateObjectCombo(Lyric lyric)
+        public static void UpdateObjectCombo(Objects.Lyric lyric)
         {
-
         }
 
         /// <summary>
@@ -168,7 +164,6 @@ namespace osu.Game.Rulesets.Karaoke.UI.PlayField
         /// <param name="karaokeObject"></param>
         public static void UpdateObjectPreemptiveTime(DrawableKaraokeObject karaokeObject)
         {
-
         }
     }
 }

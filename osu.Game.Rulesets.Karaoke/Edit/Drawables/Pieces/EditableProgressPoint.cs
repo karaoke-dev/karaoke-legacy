@@ -26,7 +26,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Pieces
         public LyricProgressPoint LyricProgressPoint { get; set; }
 
         public DrawableKaraokeThumbnail DrawableKaraokeThumbnail { get; set; } //Parent
-        public int IndexOfObject => DrawableKaraokeThumbnail.Lyric.ListLyricProgressPoint.IndexOf(LyricProgressPoint);
+        public int IndexOfObject => DrawableKaraokeThumbnail.Lyric.ProgressPoints.IndexOf(LyricProgressPoint);
 
         //Drawable component
         protected OsuSpriteText ProgressDrawableText { get; set; }
@@ -58,7 +58,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Pieces
                 else
                 {
                     var thisCharIndex = LyricProgressPoint.CharIndex;
-                    var lastTime = DrawableKaraokeThumbnail.Lyric.ListLyricProgressPoint[IndexOfObject - 1].CharIndex;
+                    var lastTime = DrawableKaraokeThumbnail.Lyric.ProgressPoints[IndexOfObject - 1].CharIndex;
                     return DrawableKaraokeThumbnail.Lyric.MainText.Text.Substring(lastTime + 1, thisCharIndex - lastTime);
                 }
             }
@@ -137,6 +137,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Pieces
                     DrawableKaraokeThumbnail.DeletePoint(LyricProgressPoint);
                 }
             }
+
             return base.OnKeyDown(state, args);
         }
 

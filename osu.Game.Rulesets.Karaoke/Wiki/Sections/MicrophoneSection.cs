@@ -1,13 +1,12 @@
-﻿using OpenTK;
+﻿// Copyright (c) 2007-2018 ppy Pty Ltd <contact@ppy.sh>.
+// Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
+
+using osu.Framework.Configuration;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Game.Overlays.Settings;
+using OpenTK;
 using Symcol.Rulesets.Core.Wiki;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
 {
@@ -25,6 +24,7 @@ namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
         public SettingsButton OpenMicrophoneButton;
 
         private bool _microphoneOpen;
+
         public bool IsMicrophoneOpen
         {
             get => _microphoneOpen;
@@ -71,10 +71,7 @@ namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
 
                         Child = OpenMicrophoneButton = new SettingsButton
                         {
-                            Action=()=>
-                            {
-                                IsMicrophoneOpen = !IsMicrophoneOpen;
-                            },
+                            Action = () => { IsMicrophoneOpen = !IsMicrophoneOpen; },
                         }
                     },
                     new Container
@@ -114,7 +111,6 @@ namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
 
                         Child = new SettingsDropdown<int>
                         {
-                            
                         }
                     },
                     new Container
@@ -154,11 +150,11 @@ namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
 
                         Child = new SettingsSlider<double>
                         {
-                            Bindable=new Framework.Configuration.BindableDouble()
+                            Bindable = new BindableDouble()
                             {
-                                MinValue=0,
-                                MaxValue=1,
-                                Value=1,
+                                MinValue = 0,
+                                MaxValue = 1,
+                                Value = 1,
                             },
                             KeyboardStep = 0.1f,
                         }
@@ -188,12 +184,10 @@ namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
 
         protected void OpenMicrophone()
         {
-
         }
 
         protected void CloseMicrophone()
         {
-
         }
     }
 }

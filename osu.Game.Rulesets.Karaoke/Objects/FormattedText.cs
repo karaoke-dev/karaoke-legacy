@@ -2,9 +2,8 @@
 // Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
 
 using Newtonsoft.Json;
-using OpenTK;
-using osu.Game.Rulesets.Karaoke.Objects.Types;
 using osu.Game.Rulesets.Objects.Types;
+using OpenTK;
 
 namespace osu.Game.Rulesets.Karaoke.Objects
 {
@@ -25,7 +24,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         /// <summary>
         /// X position
         /// </summary>
-        
+
         public float X
         {
             get => Position.X;
@@ -42,7 +41,6 @@ namespace osu.Game.Rulesets.Karaoke.Objects
             set => Position = new Vector2(X, value);
         }
 
-       
 
         /// <summary>
         /// size of the font
@@ -82,7 +80,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         /// <returns></returns>
         public static FormattedText operator +(TextComponent object1, FormattedText object2)
         {
-            return object2 + FormattedText.FromText(object1);
+            return object2 + FromText(object1);
         }
 
         /// <summary>
@@ -93,7 +91,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         /// <returns></returns>
         public static FormattedText operator +(FormattedText object1, TextComponent object2)
         {
-            return object1 + FormattedText.FromText(object2);
+            return object1 + FromText(object2);
         }
 
         /// <summary>

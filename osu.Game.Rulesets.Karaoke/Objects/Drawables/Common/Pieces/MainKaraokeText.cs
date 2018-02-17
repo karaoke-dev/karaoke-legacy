@@ -6,30 +6,45 @@ using System.Linq;
 using osu.Framework.Allocation;
 using osu.Framework.IO.Stores;
 
-namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Pieces
+namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Common.Pieces
 {
     public class MainKaraokeText : KaraokeText
     {
+        private Dictionary<int, TextComponent> _mainTextObject;
+
         protected FontStore FontStore = null;
 
         public float TotalWidth { get; protected set; } = 0;
 
-        public List<float> ListCharEndPosition { get; protected set; } = new List<float>();
+        public Dictionary<int, float> ListCharEndPosition { get; protected set; } = new Dictionary<int, float>();
 
-        public override FormattedText TextObject
+        public Dictionary<int, TextComponent> MainTextObject
         {
-            get => base.TextObject;
+            get => _mainTextObject;
             set
             {
-                base.TextObject = value;
+                _mainTextObject = value;
+                //set text
+                UpdateText();
+
+                Position = TextObject.Position;
+
                 //update each text's end position
                 UpdateSingleCharacterEndPosition();
             }
         }
 
-        public MainKaraokeText(FormattedText textObject)
-            : base(textObject)
+        public string Delimiter { get; set; } = "";
+
+        protected override void UpdateText()
         {
+            Text = MainTextObject?.Select(i => i.Value.Text).Aggregate((i, j) => i + Delimiter + j);
+        }
+
+        public MainKaraokeText(FormattedText formattedText, Dictionary<int, TextComponent> textObject)
+            : base(formattedText)
+        {
+            MainTextObject = textObject;
         }
 
         protected void UpdateSingleCharacterEndPosition()
@@ -37,16 +52,16 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Pieces
             if (FontStore == null)
                 return;
 
-            if (TextObject?.Text != null)
+            if (MainTextObject != null && MainTextObject.Count > 0)
             {
                 ListCharEndPosition.Clear();
                 TotalWidth = 0;
-                foreach (var single in TextObject.Text)
+                foreach (var single in MainTextObject)
                 {
                     //get single char width
-                    var singleCharWhdth = CreateCharacterDrawable(single).Width * TextSize;
+                    var singleCharWhdth = GetStringWidth(single.Value.Text);
                     TotalWidth += singleCharWhdth;
-                    ListCharEndPosition.Add(TotalWidth);
+                    ListCharEndPosition.Add(single.Key, TotalWidth);
                 }
             }
         }
@@ -76,7 +91,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Pieces
                 if (ListCharEndPosition.Count == 0)
                     return 700;
 
-                return ListCharEndPosition.Last();
+                return ListCharEndPosition.Last().Value;
             }
             catch
             {
@@ -87,7 +102,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Pieces
 
         public int GetIndexByPosition(float position)
         {
-            return ListCharEndPosition.FindIndex(x => x > position);
+            return ListCharEndPosition.Where(x => x.Value > position).FirstOrDefault().Key;
         }
 
         [BackgroundDependencyLoader]
@@ -96,5 +111,22 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Pieces
             FontStore = store;
             UpdateSingleCharacterEndPosition();
         }
+
+        #region Function
+
+        protected float GetStringWidth(string str)
+        {
+            float totalWidth = 0;
+            foreach (var single in str)
+            {
+                //get single char width
+                var singleCharWhdth = CreateCharacterDrawable(single).Width * TextSize;
+                totalWidth += singleCharWhdth;
+            }
+
+            return totalWidth;
+        }
+
+        #endregion
     }
 }

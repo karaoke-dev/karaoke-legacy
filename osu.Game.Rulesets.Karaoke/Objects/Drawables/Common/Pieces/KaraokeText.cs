@@ -4,12 +4,11 @@
 using osu.Framework.Graphics;
 using osu.Game.Graphics.Sprites;
 
-namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Pieces
+namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Common.Pieces
 {
     public class KaraokeText : OsuSpriteText
     {
         private FormattedText _textObject;
-
 
         public virtual FormattedText TextObject
         {
@@ -20,17 +19,22 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Pieces
                 if (_textObject == null)
                     return;
                 //set text
-                Text = _textObject.Text;
+                UpdateText();
+
+                //update position and size
                 Position = _textObject.Position;
-                if (_textObject.FontSize != null)
-                    TextSize = _textObject.FontSize.Value;
+                TextSize = _textObject.FontSize ?? 18;
             }
+        }
+
+        protected virtual void UpdateText()
+        {
+            Text = TextObject.Text;
         }
 
         public KaraokeText(FormattedText textObject)
         {
             TextObject = textObject;
-
             UseFullGlyphHeight = false;
             Anchor = Anchor.TopLeft;
             Origin = Anchor.BottomLeft;

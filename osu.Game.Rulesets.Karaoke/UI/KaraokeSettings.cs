@@ -5,12 +5,9 @@ using osu.Framework.Allocation;
 using osu.Framework.Graphics;
 using osu.Game.Configuration;
 using osu.Game.Overlays.Settings;
-using osu.Game.Rulesets.Karaoke.Configuration;
 using osu.Game.Rulesets.Karaoke.Tools.Translator;
 using osu.Game.Rulesets.Karaoke.Wiki;
 using Symcol.Rulesets.Core;
-using Symcol.Rulesets.Core.Wiki;
-using System;
 
 namespace osu.Game.Rulesets.Karaoke.UI
 {
@@ -53,10 +50,7 @@ namespace osu.Game.Rulesets.Karaoke.UI
                 new SettingsButton
                 {
                     Text = "Open In-game Wiki",
-                    Action = ()=>
-                    {
-                        ShowWiki();
-                    },
+                    Action = () => { ShowWiki(); },
                 },
             };
         }

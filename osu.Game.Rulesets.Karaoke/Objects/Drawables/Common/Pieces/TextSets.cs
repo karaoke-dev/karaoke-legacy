@@ -1,11 +1,13 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿// Copyright (c) 2007-2018 ppy Pty Ltd <contact@ppy.sh>.
+// Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
+
+using System.Collections.Generic;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using OpenTK;
 using OpenTK.Graphics;
 
-namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Pieces
+namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Common.Pieces
 {
     /// <summary>
     /// this class contains 
@@ -37,16 +39,17 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Pieces
             Masking = true;
         }
 
-        public virtual void AddMainText(FormattedText textObject)
+        public virtual void AddMainText(FormattedText formattedText, Dictionary<int, TextComponent> textObject)
         {
             if (MainKaraokeText == null)
             {
-                MainKaraokeText = new MainKaraokeText(textObject);
+                MainKaraokeText = new MainKaraokeText(formattedText, textObject);
                 Add(MainKaraokeText);
             }
             else
             {
-                MainKaraokeText.TextObject = textObject;
+                MainKaraokeText.TextObject = formattedText;
+                MainKaraokeText.MainTextObject = textObject;
             }
         }
 
@@ -99,6 +102,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Pieces
                     Children[i].Position = ListDrawableSubText[i - 1].TextObject.Position - Position;
                 }
             }
+
             Width = endPositionX - startPositionX;
         }
 

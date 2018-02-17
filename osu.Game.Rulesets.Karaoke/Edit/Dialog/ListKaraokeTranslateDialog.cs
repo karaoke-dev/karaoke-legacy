@@ -8,7 +8,7 @@ using osu.Game.Graphics.UserInterface;
 using osu.Game.Overlays.Music;
 using osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces;
 using osu.Game.Rulesets.Karaoke.Objects;
-using osu.Game.Rulesets.Karaoke.Objects.Drawables;
+using osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric;
 using osu.Game.Rulesets.Karaoke.Tools.Translator;
 using OpenTK;
 
@@ -146,7 +146,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog
         {
             if (BeatmapSetInfo != null)
             {
-                foreach (var single in BeatmapSetInfo.ListTranslate)
+                foreach (var single in BeatmapSetInfo.Translates)
                 {
                     if (single.LangCode == langCode)
                     {

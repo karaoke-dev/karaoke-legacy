@@ -29,6 +29,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit
             {
                 return new DrawableEditableKaraokeObject(karaokeObject);
             }
+
             return null;
         }
 

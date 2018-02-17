@@ -20,15 +20,15 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog
 
         public Lyric Lyric { get; set; } = new Lyric()
         {
-            MainText = new MainText() { Text = "カラオケ" },
-            ListSubTextObject = new List<SubText>()
+            MainText = MainTextList.SetJapaneseLyric("カラオケ"),
+            SubTexts = new Dictionary<int, SubText>()
             {
-                new SubText() { Text = "か" },
-                new SubText() { Text = "ら", CharIndex = 1 },
-                new SubText() { Text = "お", CharIndex = 2 },
-                new SubText() { Text = "け", CharIndex = 3 },
+                { 0, new SubText() { Text = "か" } },
+                { 1, new SubText() { Text = "ら" } },
+                { 2, new SubText() { Text = "お" } },
+                { 3, new SubText() { Text = "け" } },
             },
-            ListTranslate = new ListKaraokeTranslateString()
+            Translates = new ListKaraokeTranslateString()
             {
                 new LyricTranslate(LangTagConvertor.GetCode(TranslateCode.English), "Karaoke")
             }

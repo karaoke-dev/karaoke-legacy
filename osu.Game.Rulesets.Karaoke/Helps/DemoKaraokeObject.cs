@@ -14,17 +14,15 @@ namespace osu.Game.Rulesets.Karaoke.Helps
         public static Lyric WithoutProgressPoint()
         {
             var karaokeObject = new Lyric();
-            karaokeObject.MainText.Text = "終わるまでは終わらないよ";
+            karaokeObject.MainText = MainTextList.SetJapaneseLyric("終わるまでは終わらないよ");
             karaokeObject.Position = new Vector2(300, 150);
-            karaokeObject.ListSubTextObject.Add(new SubText
+            karaokeObject.SubTexts.Add(0, new SubText
             {
                 Text = "お",
-                CharIndex = 0,
             });
-            karaokeObject.ListSubTextObject.Add(new SubText
+            karaokeObject.SubTexts.Add(6, new SubText
             {
                 Text = "お",
-                CharIndex = 6,
             });
 
             return karaokeObject;
@@ -37,24 +35,22 @@ namespace osu.Game.Rulesets.Karaoke.Helps
         public static Lyric GenerateDemo001()
         {
             var karaokeObject = new Lyric();
-            karaokeObject.MainText.Text = "終わるまでは終わらないよ";
+            karaokeObject.MainText = MainTextList.SetJapaneseLyric("終わるまでは終わらないよ");
             karaokeObject.Position = new Vector2(300, 150);
-            karaokeObject.ListSubTextObject.Add(new SubText
+            karaokeObject.SubTexts.Add(0, new SubText
             {
                 Text = "お",
-                CharIndex = 0,
             });
-            karaokeObject.ListSubTextObject.Add(new SubText
+            karaokeObject.SubTexts.Add(6, new SubText
             {
                 Text = "お",
-                CharIndex = 6,
             });
 
-            karaokeObject.ListLyricProgressPoint.AddProgressPoint(new LyricProgressPoint(0, 0));
+            karaokeObject.ProgressPoints.AddProgressPoint(new LyricProgressPoint(0, 0));
 
-            karaokeObject.ListLyricProgressPoint.AddProgressPoint(new LyricProgressPoint(500, 1));
-            karaokeObject.ListLyricProgressPoint.AddProgressPoint(new LyricProgressPoint(1000, 5));
-            karaokeObject.ListLyricProgressPoint.AddProgressPoint(new LyricProgressPoint(1500, 11));
+            karaokeObject.ProgressPoints.AddProgressPoint(new LyricProgressPoint(500, 1));
+            karaokeObject.ProgressPoints.AddProgressPoint(new LyricProgressPoint(1000, 5));
+            karaokeObject.ProgressPoints.AddProgressPoint(new LyricProgressPoint(1500, 11));
 
             return karaokeObject;
         }
@@ -62,23 +58,21 @@ namespace osu.Game.Rulesets.Karaoke.Helps
         public static Lyric GenerateWithStartAndDuration(double startTime, double duration)
         {
             var karaokeObject = new Lyric();
-            karaokeObject.MainText.Text = "終わるまでは終わらないよ";
+            karaokeObject.MainText = MainTextList.SetJapaneseLyric("終わるまでは終わらないよ");
             karaokeObject.Position = new Vector2(300, 150);
-            karaokeObject.ListSubTextObject.Add(new SubText
+            karaokeObject.SubTexts.Add(0, new SubText
             {
                 Text = "お",
-                CharIndex = 0,
             });
-            karaokeObject.ListSubTextObject.Add(new SubText
+            karaokeObject.SubTexts.Add(6, new SubText
             {
                 Text = "お",
-                CharIndex = 6,
             });
             karaokeObject.StartTime = startTime;
 
-            karaokeObject.ListLyricProgressPoint.AddProgressPoint(new LyricProgressPoint(duration / 5, 0));
-            karaokeObject.ListLyricProgressPoint.AddProgressPoint(new LyricProgressPoint(duration / 4, 10));
-            karaokeObject.ListLyricProgressPoint.AddProgressPoint(new LyricProgressPoint(duration, 11));
+            karaokeObject.ProgressPoints.AddProgressPoint(new LyricProgressPoint(duration / 5, 0));
+            karaokeObject.ProgressPoints.AddProgressPoint(new LyricProgressPoint(duration / 4, 10));
+            karaokeObject.ProgressPoints.AddProgressPoint(new LyricProgressPoint(duration, 11));
 
             return karaokeObject;
         }

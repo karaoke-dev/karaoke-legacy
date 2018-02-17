@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
+﻿// Copyright (c) 2007-2018 ppy Pty Ltd <contact@ppy.sh>.
+// Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
+
 using Newtonsoft.Json;
 using osu.Framework.Configuration;
-using System.Text;
 using osu.Game.Configuration;
 using osu.Game.Rulesets.Configuration;
 
@@ -17,7 +13,6 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
         public BaseKaraokeConfigManager(SettingsStore settings, RulesetInfo ruleset, int variant)
             : base(settings, ruleset, variant)
         {
-
         }
 
         /// <summary>
@@ -44,6 +39,5 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
             var jsonString = Get<string>(lookup);
             return JsonConvert.DeserializeObject<U>(jsonString);
         }
-
     }
 }

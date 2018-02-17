@@ -1,17 +1,18 @@
 ﻿// Copyright (c) 2007-2018 ppy Pty Ltd <contact@ppy.sh>.
 // Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
 
-using osu.Game.Rulesets.Karaoke.Objects.Drawables.Pieces;
+using osu.Game.Rulesets.Karaoke.Objects.Drawables.Common.Pieces;
+using osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric.Pieces;
 using osu.Game.Rulesets.Karaoke.Tools.Translator;
 
-namespace osu.Game.Rulesets.Karaoke.Objects.Drawables
+namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
 {
     public interface IAmDrawableKaraokeObject
     {
         /// <summary>
         /// Object
         /// </summary>
-        Lyric Lyric { get; }
+        Objects.Lyric Lyric { get; }
 
         /// <summary>
         /// Template

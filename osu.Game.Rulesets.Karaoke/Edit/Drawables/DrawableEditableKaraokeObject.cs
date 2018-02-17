@@ -1,13 +1,14 @@
 ﻿// Copyright (c) 2007-2018 ppy Pty Ltd <contact@ppy.sh>.
 // Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
 
+using System.Linq;
 using osu.Framework.Graphics.Cursor;
 using osu.Framework.Graphics.UserInterface;
 using osu.Framework.Input;
 using osu.Game.Graphics.UserInterface;
 using osu.Game.Rulesets.Karaoke.Edit.Drawables.Pieces;
 using osu.Game.Rulesets.Karaoke.Objects;
-using osu.Game.Rulesets.Karaoke.Objects.Drawables;
+using osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric;
 using osu.Game.Rulesets.Karaoke.Objects.Extension;
 using osu.Game.Rulesets.Karaoke.Tools.Translator;
 using OpenTK;
@@ -22,7 +23,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables
     public class DrawableEditableKaraokeObject : DrawableKaraokeObject, IHasContextMenu
     {
         protected DrawableKaraokeThumbnail DrawableKaraokeThumbnail { get; set; }
-        protected EditableMainKaraokeText EditableMainKaraokeText { get; set; } = new EditableMainKaraokeText(null);
+        protected EditableMainKaraokeText EditableMainKaraokeText { get; set; } = new EditableMainKaraokeText(null, null);
         protected bool IsDrag = false;
 
         public MenuItem[] ContextMenuItems => new MenuItem[]
@@ -52,7 +53,8 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables
         protected override void UpdateDrawable()
         {
             base.UpdateDrawable();
-            EditableMainKaraokeText.TextObject = Template?.MainText + Lyric.MainText;
+            EditableMainKaraokeText.MainTextObject = Lyric.MainText.ToDictionary(k => k.Key, v => (TextComponent)v.Value);
+            EditableMainKaraokeText.TextObject = Template?.MainText;
             EditableMainKaraokeText.Alpha = 1f;
         }
 
@@ -80,6 +82,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables
                 int index = GetPointedText(state);
                 EditableMainKaraokeText.EndSelectIndex = index;
             }
+
             return base.OnMouseMove(state);
         }
 
@@ -114,7 +117,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables
             LyricProgressPoint nextPoint = Lyric.GetLastProgressPointByIndex(index);
             double deltaTime = ((previousPoint?.RelativeTime ?? 0) + (nextPoint?.RelativeTime ?? previousPoint.RelativeTime + 500)) / 2;
             LyricProgressPoint point = new LyricProgressPoint(deltaTime, index);
-            Lyric.ListLyricProgressPoint.AddProgressPoint(point);
+            Lyric.ProgressPoints.AddProgressPoint(point);
             DrawableKaraokeThumbnail.UpdateView();
         }
 
