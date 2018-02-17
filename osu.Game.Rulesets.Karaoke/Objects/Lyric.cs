@@ -17,7 +17,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects
     /// base karaoke object
     /// contain single sentence , a main text and several additional text
     /// </summary>
-    public class Lyric : HitObject, IHasKaraokeComponent, IHasPosition, IHasCombo, IHasEndTime, IHasPrimaryKey
+    public class Lyric : HitObject, IHasLyricComponent, IHasPosition, IHasCombo, IHasEndTime, IHasPrimaryKey
     {
         /// <summary>
         /// ID

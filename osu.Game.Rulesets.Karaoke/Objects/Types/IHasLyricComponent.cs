@@ -8,7 +8,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Types
     /// <summary>
     /// define the basic class of karaoke object
     /// </summary>
-    public interface IHasKaraokeComponent
+    public interface IHasLyricComponent
     {
         FormattedText MainText { get; set; }
 
