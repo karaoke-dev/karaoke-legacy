@@ -13,11 +13,11 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog
     {
         public override string Title => "SubText";
 
-        protected KaraokeObject KaraokeObject { get; set; }
+        protected Lyric Lyric { get; set; }
 
-        public EditKaraokeSubTextDialog(KaraokeObject karaokeObject)
+        public EditKaraokeSubTextDialog(Lyric lyric)
         {
-            KaraokeObject = karaokeObject;
+            Lyric = lyric;
             Width = 200;
             Height = 100;
         }

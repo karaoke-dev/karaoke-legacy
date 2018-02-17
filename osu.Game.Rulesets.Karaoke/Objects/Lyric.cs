@@ -9,6 +9,7 @@ using osu.Game.Rulesets.Karaoke.Objects.Types;
 using osu.Game.Rulesets.Objects;
 using osu.Game.Rulesets.Objects.Types;
 using OpenTK;
+using osu.Game.Rulesets.Karaoke.Tools.Translator;
 
 namespace osu.Game.Rulesets.Karaoke.Objects
 {
@@ -16,7 +17,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects
     /// base karaoke object
     /// contain single sentence , a main text and several additional text
     /// </summary>
-    public class KaraokeObject : HitObject, IHasKaraokeComponent, IHasPosition, IHasCombo, IHasEndTime, IHasPrimaryKey
+    public class Lyric : HitObject, IHasLyricComponent, IHasPosition, IHasCombo, IHasEndTime, IHasPrimaryKey
     {
         /// <summary>
         /// ID
@@ -42,7 +43,6 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         /// </summary>
         public int? SingerIndex { get; set; } = 0;
 
-        /// <inheritdoc />
         /// <summary>
         /// if template !=null will relative to template's position
         /// else, will be absolute position
@@ -84,24 +84,46 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         public float? Height { get; set; }
 
         /// <summary>
-        /// Main text
+        /// Gets or sets the main text.
         /// </summary>
-        public TextObject MainText { get; set; } = new TextObject();
+        /// <value>The main text.</value>
+        //
+        public string MainText__ { get; set; }
+
+        /// <summary>
+        /// Main text 
+        /// </summary>
+        // TODO : list format
+        //TODO : [set] if change the value here, will generate the list
+        // TODO : [get] get the value is combine from list
+        [JsonIgnore]
+        public MainText MainText { get; set; } = new MainText(); //public List<MainText> MainText { get; set; } = new List<MainText>();
+
+        /// <summary>
+        /// romaji text
+        /// </summary>
+        /// <value>The romaji text.</value>
+        // TODO : [set] cannot set here
+        // TODO : [get] get the value is combine from list
+        [JsonIgnore]
+        public string RomajiText { get; }
+
+        /// <summary>
+        /// list romaji text
+        /// </summary>
+        public RomajiTextList RomajiTextListRomajiTexts { get; set; } = new RomajiTextList();
+
 
         /// <summary>
         /// List little aid text,like japanese's text
         /// </summary>
-        public List<SubTextObject> ListSubTextObject { get; set; } = new List<SubTextObject>();
+        public List<SubText> ListSubTextObject { get; set; } = new List<SubText>();
 
-        /// <summary>
-        /// List little aid text,like japanese's text
-        /// </summary>
-        public ListRomajiTextObject ListRomajiTextObject { get; set; } = new ListRomajiTextObject();
 
         /// <summary>
         /// record list time where position goes
         /// </summary>
-        public ListProgressPoint ListProgressPoint { get; set; } = new ListProgressPoint();
+        public LyricProgressPointList ListLyricProgressPoint { get; set; } = new LyricProgressPointList();
 
         /// <summary>
         /// all the translate for a single language
@@ -119,7 +141,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         /// The duration of the HitObject.
         /// </summary>
         [JsonIgnore]
-        public double Duration => ListProgressPoint.LastOrDefault()?.RelativeTime ?? 0;
+        public double Duration => ListLyricProgressPoint.LastOrDefault()?.RelativeTime ?? 0;
 
         /// <summary>
         /// new combo
@@ -140,5 +162,21 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         /// End preemptive time
         /// </summary>
         public double? EndPreemptiveTime { get; set; } = 600;
+
+        /// <summary>
+        /// get translate code
+        /// </summary>
+        /// <value>The translate code.</value>
+        public TranslateCode TranslateCode { get; set; }
+
+        /// <summary>
+        /// Splits the by progress point.
+        /// </summary>
+        /// <returns>The by progress point.</returns>
+        public List<Lyric> SplitByProgressPoint()
+        {
+            //TODO : implement
+            return null;
+        }
     }
 }

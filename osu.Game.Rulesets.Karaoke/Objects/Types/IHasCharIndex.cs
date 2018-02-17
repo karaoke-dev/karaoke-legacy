@@ -8,6 +8,10 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Types
     /// </summary>
     public interface IHasCharIndex
     {
+        /// <summary>
+        /// char start index
+        /// </summary>
+        /// <value>The index of the char.</value>
         int CharIndex { get; set; }
     }
 }

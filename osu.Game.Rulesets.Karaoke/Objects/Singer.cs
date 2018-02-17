@@ -6,7 +6,7 @@ using OpenTK.Graphics;
 
 namespace osu.Game.Rulesets.Karaoke.Objects
 {
-    public class KaraokeSinger : IHasPrimaryKey
+    public class Singer : IHasPrimaryKey
     {
         /// <summary>
         /// ID

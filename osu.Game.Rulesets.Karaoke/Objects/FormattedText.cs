@@ -3,10 +3,15 @@
 
 using Newtonsoft.Json;
 using OpenTK;
+using osu.Game.Rulesets.Karaoke.Objects.Types;
+using osu.Game.Rulesets.Objects.Types;
 
 namespace osu.Game.Rulesets.Karaoke.Objects
 {
-    public class TextObject
+    /// <summary>
+    /// Text objects
+    /// </summary>
+    public class FormattedText : TextComponent, IHasPosition
     {
         // <inheritdoc />
         /// <summary>
@@ -37,10 +42,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects
             set => Position = new Vector2(X, value);
         }
 
-        /// <summary>
-        /// text
-        /// </summary>
-        public virtual string Text { get; set; }
+       
 
         /// <summary>
         /// size of the font
@@ -53,7 +55,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         /// <param name="object1"></param>
         /// <param name="object2"></param>
         /// <returns></returns>
-        public static TextObject operator +(TextObject object1, TextObject object2)
+        public static FormattedText operator +(FormattedText object1, FormattedText object2)
         {
             if (object1 == null && object2 == null)
                 return null;
@@ -64,7 +66,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects
             if (object2 == null)
                 return object1;
 
-            return new TextObject()
+            return new FormattedText()
             {
                 Position = object1.Position + object2.Position,
                 Text = object1.Text + object2.Text,
@@ -73,14 +75,52 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         }
 
         /// <summary>
-        /// cast
+        /// operator
+        /// </summary>
+        /// <param name="object1"></param>
+        /// <param name="object2"></param>
+        /// <returns></returns>
+        public static FormattedText operator +(TextComponent object1, FormattedText object2)
+        {
+            return object2 + FormattedText.FromText(object1);
+        }
+
+        /// <summary>
+        /// operator
+        /// </summary>
+        /// <param name="object1"></param>
+        /// <param name="object2"></param>
+        /// <returns></returns>
+        public static FormattedText operator +(FormattedText object1, TextComponent object2)
+        {
+            return object1 + FormattedText.FromText(object2);
+        }
+
+        /// <summary>
+        /// cast from string to FormattedText
         /// </summary>
         /// <param name="textObject"></param>
-        public static explicit operator TextObject(string textObject)
+        public static explicit operator FormattedText(string textObject)
         {
-            return new TextObject()
+            return new FormattedText()
             {
                 Text = textObject,
+            };
+        }
+
+        public static FormattedText FromText(string textObject)
+        {
+            return new FormattedText()
+            {
+                Text = textObject,
+            };
+        }
+
+        public static FormattedText FromText(TextComponent textObject)
+        {
+            return new FormattedText()
+            {
+                Text = textObject?.Text,
             };
         }
     }

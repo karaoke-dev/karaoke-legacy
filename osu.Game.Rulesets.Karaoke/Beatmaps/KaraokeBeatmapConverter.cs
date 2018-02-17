@@ -11,12 +11,12 @@ using osu.Game.Rulesets.Objects.Types;
 
 namespace osu.Game.Rulesets.Karaoke.Beatmaps
 {
-    internal class KaraokeBeatmapConverter : BeatmapConverter<KaraokeObject>
+    internal class KaraokeBeatmapConverter : BeatmapConverter<Lyric>
     {
         protected override IEnumerable<Type> ValidConversionTypes { get; } = new[] { typeof(IHasPosition) };
 
 
-        protected override IEnumerable<KaraokeObject> ConvertHitObject(HitObject original, Beatmap beatmap)
+        protected override IEnumerable<Lyric> ConvertHitObject(HitObject original, Beatmap beatmap)
         {
             var curveData = original as IHasCurve;
             var endTimeData = original as IHasEndTime;
@@ -24,7 +24,7 @@ namespace osu.Game.Rulesets.Karaoke.Beatmaps
             var comboData = original as IHasCombo;
 
 
-            yield return (KaraokeObject)original;
+            yield return (Lyric)original;
 
             /*
             if (curveData != null)
@@ -73,10 +73,10 @@ namespace osu.Game.Rulesets.Karaoke.Beatmaps
         /// </summary>
         /// <param name="original">The un-converted Beatmap.</param>
         /// <returns>The converted Beatmap.</returns>
-        protected override Beatmap<KaraokeObject> ConvertBeatmap(Beatmap original)
+        protected override Beatmap<Lyric> ConvertBeatmap(Beatmap original)
         {
             //TODO : ・ｽﾒ考Mania・ｽ・ｽ・ｽ・ｽ・ｽ・ｽ・ｽ
-            var newBratmaps = new Beatmap<KaraokeObject>()
+            var newBratmaps = new Beatmap<Lyric>()
             {
                 BeatmapInfo = original.BeatmapInfo,
                 ControlPointInfo = original.ControlPointInfo,
@@ -86,9 +86,9 @@ namespace osu.Game.Rulesets.Karaoke.Beatmaps
             return newBratmaps;
         }
 
-        protected List<KaraokeObject> Convert(List<HitObject> originalHitOjects)
+        protected List<Lyric> Convert(List<HitObject> originalHitOjects)
         {
-            List<KaraokeObject> listRerturn = new List<KaraokeObject>();
+            List<Lyric> listRerturn = new List<Lyric>();
 
             for (int i = 0; i < originalHitOjects.Count; i++)
             {

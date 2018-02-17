@@ -23,21 +23,21 @@ namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
     {
         public override string Title => "Style";
 
-        public KaraokeTemplate KarokeTemplate { get; set; } = new KaraokeTemplate();
+        public LyricTemplate KarokeTemplate { get; set; } = new LyricTemplate();
 
-        public KaraokeObject KaraokeObject { get; set; } = new KaraokeObject()
+        public Lyric Lyric { get; set; } = new Lyric()
         {
-            MainText = (TextObject)"カラオケ",
-            ListSubTextObject = new List<SubTextObject>()
+            MainText = new MainText(){ Text = "カラオケ" },
+            ListSubTextObject = new List<SubText>()
             {
-                new SubTextObject() { Text = "か" },
-                new SubTextObject() { Text = "ら", CharIndex = 1 },
-                new SubTextObject() { Text = "お", CharIndex = 2 },
-                new SubTextObject() { Text = "け", CharIndex = 3 },
+                new SubText() { Text = "か" },
+                new SubText() { Text = "ら", CharIndex = 1 },
+                new SubText() { Text = "お", CharIndex = 2 },
+                new SubText() { Text = "け", CharIndex = 3 },
             },
             ListTranslate = new ListKaraokeTranslateString()
             {
-                new KaraokeTranslateString(LangTagConvertor.GetCode(TranslateCode.English), "Karaoke")
+                new LyricTranslate(LangTagConvertor.GetCode(TranslateCode.English), "Karaoke")
             }
         };
 
@@ -69,7 +69,7 @@ namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
                         Height = 250,
                         Children = new Drawable[]
                         {
-                            new DrawableKaraokeTemplate(KaraokeObject, KarokeTemplate)
+                            new DrawableKaraokeTemplate(Lyric, KarokeTemplate)
                             {
                                 Position=new Vector2(100,-5),
                                 Anchor = Anchor.Centre,

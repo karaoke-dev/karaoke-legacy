@@ -129,7 +129,7 @@ namespace osu.Game.Rulesets.Karaoke.UI
                 var listTranslateString = new List<string>();
                 foreach (var singleKaraokeObject in ListDrawableKaraokeObject)
                 {
-                    listTranslateString.Add(singleKaraokeObject.KaraokeObject.MainText.Text);
+                    listTranslateString.Add(singleKaraokeObject.Lyric.MainText.Text);
                 }
                 //translate list string 
                 KaraokeFieldTool.Translateor.Translate(TranslateCode.Default, TranslateCode.Chinese_Traditional, listTranslateString);
@@ -150,7 +150,7 @@ namespace osu.Game.Rulesets.Karaoke.UI
             /*
             //get property from setting
             KaraokeLyricPlayField.Style = karaokeConfig.GetObject<KaraokeLyricConfig>(KaraokeSetting.LyricStyle);
-            KaraokeLyricPlayField.Template = karaokeConfig.GetObject<KaraokeTemplate>(KaraokeSetting.Template);
+            KaraokeLyricPlayField.Template = karaokeConfig.GetObject<LyricTemplate>(KaraokeSetting.Template);
             */
 
             //TODO : Apply property

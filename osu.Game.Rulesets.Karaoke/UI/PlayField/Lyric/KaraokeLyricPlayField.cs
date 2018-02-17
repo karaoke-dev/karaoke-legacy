@@ -46,8 +46,8 @@ namespace osu.Game.Rulesets.Karaoke.UI.PlayField
         public List<IAmDrawableKaraokeObject> ListDrawableKaraokeObject { get; set; } = new List<IAmDrawableKaraokeObject>();
 
         public KaraokeLyricConfig Style { get; set; }
-        public KaraokeTemplate Template { get; set; }
-        public KaraokeSinger Singer { get; set; }
+        public LyricTemplate Template { get; set; }
+        public Singer Singer { get; set; }
 
         public override void Add(DrawableHitObject h)
         {
@@ -68,10 +68,10 @@ namespace osu.Game.Rulesets.Karaoke.UI.PlayField
         public void UpdateObjectTemplate(DrawableKaraokeObject drawableKaraokeObject)
         {
             //get template 
-            KaraokeTemplate template = null;
-            if (drawableKaraokeObject.KaraokeObject.TemplateIndex != null)
+            LyricTemplate template = null;
+            if (drawableKaraokeObject.Lyric.TemplateIndex != null)
             {
-                template = this.GetListKaraokeTemplate()[drawableKaraokeObject.KaraokeObject.TemplateIndex.Value];
+                template = this.GetListKaraokeTemplate()[drawableKaraokeObject.Lyric.TemplateIndex.Value];
             }
 
             //setting drawable by template
@@ -86,11 +86,11 @@ namespace osu.Game.Rulesets.Karaoke.UI.PlayField
         /// </summary>
         /// <param name="karaokeField"></param>
         /// <returns></returns>
-        public List<KaraokeTemplate> GetListKaraokeTemplate()
+        public List<LyricTemplate> GetListKaraokeTemplate()
         {
-            List<KaraokeTemplate> listTemplates = new List<KaraokeTemplate>
+            List<LyricTemplate> listTemplates = new List<LyricTemplate>
             {
-                new KaraokeTemplate()
+                new LyricTemplate()
             };
             return listTemplates;
         }
@@ -106,13 +106,13 @@ namespace osu.Game.Rulesets.Karaoke.UI.PlayField
             KaraokePosition position = null;
             int index = GetListKaraokeObjects().IndexOf(drawableKaraokeObject.HitObject);
             if (index % 2 == 0)
-                drawableKaraokeObject.KaraokeObject.PositionIndex = 0;
+                drawableKaraokeObject.Lyric.PositionIndex = 0;
             else
-                drawableKaraokeObject.KaraokeObject.PositionIndex = 1;
+                drawableKaraokeObject.Lyric.PositionIndex = 1;
 
-            if (drawableKaraokeObject.KaraokeObject.PositionIndex != null)
+            if (drawableKaraokeObject.Lyric.PositionIndex != null)
             {
-                position = GetListKaraokePosition()[drawableKaraokeObject.KaraokeObject.PositionIndex.Value];
+                position = GetListKaraokePosition()[drawableKaraokeObject.Lyric.PositionIndex.Value];
 
                 drawableKaraokeObject.Position = position.Position;
             }
@@ -123,7 +123,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.PlayField
         /// </summary>
         /// <param name="karaokeField"></param>
         /// <returns></returns>
-        public List<KaraokeObject> GetListKaraokeObjects()
+        public List<Lyric> GetListKaraokeObjects()
         {
             return KaraokeRulesetContainer.Beatmap.HitObjects;
         }
@@ -155,8 +155,8 @@ namespace osu.Game.Rulesets.Karaoke.UI.PlayField
         /// update combo by last object
         /// </summary>
         /// <param name="karaokeField"></param>
-        /// <param name="karaokeObject"></param>
-        public static void UpdateObjectCombo(KaraokeObject karaokeObject)
+        /// <param name="lyric"></param>
+        public static void UpdateObjectCombo(Lyric lyric)
         {
 
         }

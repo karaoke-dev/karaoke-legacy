@@ -18,33 +18,49 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables
     /// <summary>
     /// Karaoke Text
     /// </summary>
-    public class DrawableKaraokeObject : DrawableHitObject<KaraokeObject>, IAmDrawableKaraokeObject
+    public class DrawableKaraokeObject : DrawableHitObject<Lyric>, IAmDrawableKaraokeObject
     {
-        //Private
-        private KaraokeTemplate _template;
-
-        private KaraokeSinger _singer;
-
         //Const
         public const float TIME_FADEIN = 100;
-
         public const float TIME_FADEOUT = 100;
 
-        //Object
-        public KaraokeObject KaraokeObject => HitObject;
 
-        private KaraokeLyricConfig _style;
-        public KaraokeLyricConfig Style
+        private double _nowProgress;
+
+        #region Field
+
+        //Private
+        private KaraokeLyricConfig _config;
+        private LyricTemplate _template;
+        private Singer _singer;
+        private TranslateCode _translateCode;
+
+
+        /// <summary>
+        /// Gets the karaoke object.
+        /// </summary>
+        /// <value>The karaoke object.</value>
+        public Lyric Lyric => HitObject;
+
+        /// <summary>
+        /// Gets or sets the config.
+        /// </summary>
+        /// <value>The config.</value>
+        public KaraokeLyricConfig Config
         {
-            get => _style;
+            get => _config;
             set
             {
-                _style = value;
+                _config = value;
                 UpdateDrawable();
             }
         }
 
-        public KaraokeTemplate Template
+        /// <summary>
+        /// Gets or sets the template.
+        /// </summary>
+        /// <value>The template.</value>
+        public LyricTemplate Template
         {
             get => _template;
             set
@@ -54,7 +70,11 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables
             }
         }
 
-        public KaraokeSinger Singer
+        /// <summary>
+        /// Gets or sets the singer.
+        /// </summary>
+        /// <value>The singer.</value>
+        public Singer Singer
         {
             get => _singer;
             set
@@ -64,18 +84,10 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables
             }
         }
 
-        public double PreemptiveTime
-        {
-            get => KaraokeObject.PreemptiveTime ?? 600;
-            set
-            {
-                KaraokeObject.PreemptiveTime = value;
-                UpdateDrawable();
-            }
-        }
-
-        private TranslateCode _translateCode;
-
+        /// <summary>
+        /// Gets or sets the translate code.
+        /// </summary>
+        /// <value>The translate code.</value>
         public TranslateCode TranslateCode
         {
             get => _translateCode;
@@ -86,20 +98,42 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables
             }
         }
 
+        #endregion
+
+        /// <summary>
+        /// Gets or sets the preemptive time.
+        /// </summary>
+        /// <value>The preemptive time.</value>
+        public double PreemptiveTime
+        {
+            get => Lyric.PreemptiveTime ?? 600;
+            set
+            {
+                Lyric.PreemptiveTime = value;
+                UpdateDrawable();
+            }
+        }
+
+
+        /// <summary>
+        /// Gets or sets a value indicating whether this
+        /// <see cref="T:osu.Game.Rulesets.Karaoke.Objects.Drawables.DrawableKaraokeObject"/> progress update by time.
+        /// </summary>
+        /// <value><c>true</c> if progress update by time; otherwise, <c>false</c>.</value>
         public virtual bool ProgressUpdateByTime { get; set; } = true;
 
         //Drawable
         public TextsAndMask TextsAndMaskPiece { get; set; } = new TextsAndMask();
         public KaraokeText TranslateText { get; set; } = new KaraokeText(null);
 
-        private double _nowProgress;
 
-        public DrawableKaraokeObject(KaraokeObject hitObject)
+
+        public DrawableKaraokeObject(Lyric hitObject)
             : base(hitObject)
         {
             Alpha = 0;
 
-            Template = new KaraokeTemplate();
+            Template = new LyricTemplate();
             TranslateCode = TranslateCode.English;
 
             Children = new Drawable[]
@@ -116,21 +150,25 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables
         {
             TextsAndMaskPiece.ClearAllText();
             //main text
-            TextsAndMaskPiece.AddMainText(Template?.MainText + KaraokeObject.MainText);
+            TextsAndMaskPiece.AddMainText(Template?.MainText + Lyric.MainText);
 
             //subtext
-            foreach (var singleText in KaraokeObject.ListSubTextObject)
+            foreach (var singleText in Lyric.ListSubTextObject)
             {
                 //1. recalculate position
                 var startPosition = TextsAndMaskPiece.MainText.GetEndPositionByIndex(singleText.CharIndex - 1);
                 var endPosition = TextsAndMaskPiece.MainText.GetEndPositionByIndex(singleText.CharIndex);
-                singleText.X = (startPosition + endPosition) / 2;
+
+                var positionX = (startPosition + endPosition) / 2;
                 //2. update to subtext
-                TextsAndMaskPiece.AddSubText(Template?.SubText + singleText);
+                TextsAndMaskPiece.AddSubText(Template?.SubText + singleText + new FormattedText()
+                {
+                    X = positionX,
+                });
             }
 
-            Width = TextsAndMaskPiece.MainText.GetTextEndPosition(); //KaraokeObject.Width ?? (Template?.Width ?? 700);
-            Height = KaraokeObject.Height ?? (Template?.Height ?? 100);
+            Width = TextsAndMaskPiece.MainText.GetTextEndPosition(); //Lyric.Width ?? (Template?.Width ?? 700);
+            Height = Lyric.Height ?? (Template?.Height ?? 100);
 
             UpdateValue();
         }
@@ -143,7 +181,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables
             TextsAndMaskPiece.SetColor(textColor, backgroundColor);
 
             //translate text
-            TranslateText.TextObject = Template?.TranslateText + KaraokeObject.ListTranslate.Where(x => x.LangCode == LangTagConvertor.GetCode(TranslateCode)).FirstOrDefault();
+            TranslateText.TextObject = Template?.TranslateText + Lyric.ListTranslate.Where(x => x.LangCode == LangTagConvertor.GetCode(TranslateCode)).FirstOrDefault();
             TranslateText.Colour = Template?.TranslateTextColor ?? Color4.White;
 
             Scale = new Vector2(Template?.Scale ?? 1);

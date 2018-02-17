@@ -11,17 +11,17 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables
         /// <summary>
         /// Object
         /// </summary>
-        KaraokeObject KaraokeObject { get; }
+        Lyric Lyric { get; }
 
         /// <summary>
         /// Template
         /// </summary>
-        KaraokeTemplate Template { get; set; }
+        LyricTemplate Template { get; set; }
 
         /// <summary>
         /// singer
         /// </summary>
-        KaraokeSinger Singer { get; set; }
+        Singer Singer { get; set; }
 
         /// <summary>
         /// set preemptive time

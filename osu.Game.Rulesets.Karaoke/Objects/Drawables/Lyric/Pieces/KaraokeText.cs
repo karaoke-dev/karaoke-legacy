@@ -8,10 +8,10 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Pieces
 {
     public class KaraokeText : OsuSpriteText
     {
-        private TextObject _textObject;
+        private FormattedText _textObject;
 
 
-        public virtual TextObject TextObject
+        public virtual FormattedText TextObject
         {
             get => _textObject;
             set
@@ -27,7 +27,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Pieces
             }
         }
 
-        public KaraokeText(TextObject textObject)
+        public KaraokeText(FormattedText textObject)
         {
             TextObject = textObject;
 

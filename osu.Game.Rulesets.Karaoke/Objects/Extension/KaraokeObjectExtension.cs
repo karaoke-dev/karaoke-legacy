@@ -7,53 +7,53 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Extension
 {
     public static class KaraokeObjectExtension
     {
-        public static ProgressPoint GetFirstProgressPointByTime(this KaraokeObject karaokeObject, double nowRelativeTime)
+        public static LyricProgressPoint GetFirstProgressPointByTime(this Lyric lyric, double nowRelativeTime)
         {
-            if (karaokeObject.IsInTime(nowRelativeTime) && karaokeObject.ListProgressPoint.Count > 0)
+            if (lyric.IsInTime(nowRelativeTime) && lyric.ListLyricProgressPoint.Count > 0)
             {
-                var index = karaokeObject.ListProgressPoint.FindIndex(x => x.RelativeTime > nowRelativeTime);
-                return index > 0 ? karaokeObject.ListProgressPoint[index - 1] : new ProgressPoint(0, -1);
+                var index = lyric.ListLyricProgressPoint.FindIndex(x => x.RelativeTime > nowRelativeTime);
+                return index > 0 ? lyric.ListLyricProgressPoint[index - 1] : new LyricProgressPoint(0, -1);
             }
 
-            return new ProgressPoint(0, -1);
+            return new LyricProgressPoint(0, -1);
         }
 
-        public static ProgressPoint GetLastProgressPointByTime(this KaraokeObject karaokeObject, double nowRelativeTime)
+        public static LyricProgressPoint GetLastProgressPointByTime(this Lyric lyric, double nowRelativeTime)
         {
-            if (karaokeObject.IsInTime(nowRelativeTime) && karaokeObject.ListProgressPoint.Count > 0)
+            if (lyric.IsInTime(nowRelativeTime) && lyric.ListLyricProgressPoint.Count > 0)
             {
-                var point = karaokeObject.ListProgressPoint.Find(x => x.RelativeTime > nowRelativeTime);
-                return point ?? karaokeObject.ListProgressPoint.Last();
+                var point = lyric.ListLyricProgressPoint.Find(x => x.RelativeTime > nowRelativeTime);
+                return point ?? lyric.ListLyricProgressPoint.Last();
             }
 
             return null;
         }
 
-        public static ProgressPoint GetFirstProgressPointByIndex(this KaraokeObject karaokeObject, int charIndex)
+        public static LyricProgressPoint GetFirstProgressPointByIndex(this Lyric lyric, int charIndex)
         {
-            var index = karaokeObject.ListProgressPoint.FindIndex(x => x.CharIndex > charIndex);
+            var index = lyric.ListLyricProgressPoint.FindIndex(x => x.CharIndex > charIndex);
             if (index == 0)
-                return new ProgressPoint(0, -1);
+                return new LyricProgressPoint(0, -1);
 
             //if -1 , means last
-            return index > 0 ? karaokeObject.ListProgressPoint[index - 1] : (karaokeObject.ListProgressPoint.LastOrDefault() ?? new ProgressPoint(0, -1));
+            return index > 0 ? lyric.ListLyricProgressPoint[index - 1] : (lyric.ListLyricProgressPoint.LastOrDefault() ?? new LyricProgressPoint(0, -1));
         }
 
-        public static ProgressPoint GetLastProgressPointByIndex(this KaraokeObject karaokeObject, int charIndex)
+        public static LyricProgressPoint GetLastProgressPointByIndex(this Lyric lyric, int charIndex)
         {
-            var point = karaokeObject.ListProgressPoint.Find(x => x.CharIndex > charIndex);
-            return point; //?? karaokeObject.ListProgressPoint.Last();
+            var point = lyric.ListLyricProgressPoint.Find(x => x.CharIndex > charIndex);
+            return point; //?? lyric.ListLyricProgressPoint.Last();
         }
 
         /// <summary>
         /// Times the is in time.
         /// </summary>
         /// <returns><c>true</c>, if is in time was timed, <c>false</c> otherwise.</returns>
-        /// <param name="karaokeObject">Karaoke object.</param>
+        /// <param name="lyric">Karaoke object.</param>
         /// <param name="nowRelativeTime">Now time.</param>
-        public static bool IsInTime(this KaraokeObject karaokeObject, double nowRelativeTime)
+        public static bool IsInTime(this Lyric lyric, double nowRelativeTime)
         {
-            if (nowRelativeTime > -karaokeObject.PreemptiveTime && nowRelativeTime <= karaokeObject.Duration + karaokeObject.EndPreemptiveTime)
+            if (nowRelativeTime > -lyric.PreemptiveTime && nowRelativeTime <= lyric.Duration + lyric.EndPreemptiveTime)
             {
                 return true;
             }
@@ -63,8 +63,8 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Extension
         /// <summary>
         /// will filter if has same languate
         /// </summary>
-        /// <param name="karaokeObject">Karaoke object.</param>
-        public static bool AddNewTranslate(this KaraokeObject karaokeObject, KaraokeTranslateString translateString)
+        /// <param name="lyric">Karaoke object.</param>
+        public static bool AddNewTranslate(this Lyric lyric, LyricTranslate translate)
         {
             return false;
         }
