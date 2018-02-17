@@ -12,9 +12,9 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Types
     public interface IHasLyricComponent
     {
         /// <summary>
-        /// Main Text list
+        /// Main Text list 
         /// </summary>
-        List<MainText> MainText { get; set; }
+        MainText MainText { get; set; }//List<MainText> MainText { get; set; }
 
         /// <summary>
         /// subText list

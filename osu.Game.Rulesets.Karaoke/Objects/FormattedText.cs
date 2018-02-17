@@ -18,13 +18,14 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         /// if template !=null will relative to template's position
         /// else, will be absolute position
         /// </summary>
+        [JsonIgnore]
         public Vector2 Position { get; set; }
 
         /// <inheritdoc />
         /// <summary>
         /// X position
         /// </summary>
-        [JsonIgnore]
+        
         public float X
         {
             get => Position.X;
@@ -35,7 +36,6 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         /// <summary>
         /// Y position
         /// </summary>
-        [JsonIgnore]
         public float Y
         {
             get => Position.Y;
@@ -72,6 +72,28 @@ namespace osu.Game.Rulesets.Karaoke.Objects
                 Text = object1.Text + object2.Text,
                 FontSize = object2?.FontSize ?? object1.FontSize,
             };
+        }
+
+        /// <summary>
+        /// operator
+        /// </summary>
+        /// <param name="object1"></param>
+        /// <param name="object2"></param>
+        /// <returns></returns>
+        public static FormattedText operator +(TextComponent object1, FormattedText object2)
+        {
+            return object2 + FormattedText.FromText(object1);
+        }
+
+        /// <summary>
+        /// operator
+        /// </summary>
+        /// <param name="object1"></param>
+        /// <param name="object2"></param>
+        /// <returns></returns>
+        public static FormattedText operator +(FormattedText object1, TextComponent object2)
+        {
+            return object1 + FormattedText.FromText(object2);
         }
 
         /// <summary>

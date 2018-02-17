@@ -97,7 +97,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         //TODO : [set] if change the value here, will generate the list
         // TODO : [get] get the value is combine from list
         [JsonIgnore]
-        public List<MainText> MainText { get; set; } = new List<MainText>();
+        public MainText MainText { get; set; } = new MainText(); //public List<MainText> MainText { get; set; } = new List<MainText>();
 
         /// <summary>
         /// romaji text

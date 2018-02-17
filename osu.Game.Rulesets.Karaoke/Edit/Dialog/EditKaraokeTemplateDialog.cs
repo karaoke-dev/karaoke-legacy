@@ -20,7 +20,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog
 
         public Lyric Lyric { get; set; } = new Lyric()
         {
-            MainText = (FormattedText)"カラオケ",
+            MainText = new MainText() { Text = "カラオケ" },
             ListSubTextObject = new List<SubText>()
             {
                 new SubText() { Text = "か" },
