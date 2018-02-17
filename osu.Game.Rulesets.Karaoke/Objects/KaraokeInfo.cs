@@ -8,6 +8,6 @@ namespace osu.Game.Rulesets.Karaoke.Objects
     /// </summary>
     public class KaraokeInfo
     {
-        public KaraokeTemplate KaraokeTemplate { get; set; } = new KaraokeTemplate();
+        public LyricTemplate LyricTemplate { get; set; } = new LyricTemplate();
     }
 }

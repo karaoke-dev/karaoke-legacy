@@ -29,7 +29,7 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
             Set(KaraokeSetting.DisableHotKay, false);
 
             //Style
-            SetObject(KaraokeSetting.Template, new KaraokeTemplate());
+            SetObject(KaraokeSetting.Template, new LyricTemplate());
             SetObject(KaraokeSetting.LyricStyle, new KaraokeLyricConfig()
             {
                 SubTextVislbility = true,
@@ -38,7 +38,7 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
             });
 
             //singer
-            //Set(KaraokeSetting.Singer, new KaraokeTemplate());
+            //Set(KaraokeSetting.Singer, new LyricTemplate());
 
             //Style
             Set(KaraokeSetting.Microphone, -1);

@@ -46,7 +46,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.PlayField
         public List<IAmDrawableKaraokeObject> ListDrawableKaraokeObject { get; set; } = new List<IAmDrawableKaraokeObject>();
 
         public KaraokeLyricConfig Style { get; set; }
-        public KaraokeTemplate Template { get; set; }
+        public LyricTemplate Template { get; set; }
         public Singer Singer { get; set; }
 
         public override void Add(DrawableHitObject h)
@@ -68,7 +68,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.PlayField
         public void UpdateObjectTemplate(DrawableKaraokeObject drawableKaraokeObject)
         {
             //get template 
-            KaraokeTemplate template = null;
+            LyricTemplate template = null;
             if (drawableKaraokeObject.Lyric.TemplateIndex != null)
             {
                 template = this.GetListKaraokeTemplate()[drawableKaraokeObject.Lyric.TemplateIndex.Value];
@@ -86,11 +86,11 @@ namespace osu.Game.Rulesets.Karaoke.UI.PlayField
         /// </summary>
         /// <param name="karaokeField"></param>
         /// <returns></returns>
-        public List<KaraokeTemplate> GetListKaraokeTemplate()
+        public List<LyricTemplate> GetListKaraokeTemplate()
         {
-            List<KaraokeTemplate> listTemplates = new List<KaraokeTemplate>
+            List<LyricTemplate> listTemplates = new List<LyricTemplate>
             {
-                new KaraokeTemplate()
+                new LyricTemplate()
             };
             return listTemplates;
         }

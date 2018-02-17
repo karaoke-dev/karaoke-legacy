@@ -30,7 +30,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables
 
         //Private
         private KaraokeLyricConfig _config;
-        private KaraokeTemplate _template;
+        private LyricTemplate _template;
         private Singer _singer;
         private TranslateCode _translateCode;
 
@@ -59,7 +59,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables
         /// Gets or sets the template.
         /// </summary>
         /// <value>The template.</value>
-        public KaraokeTemplate Template
+        public LyricTemplate Template
         {
             get => _template;
             set
@@ -132,7 +132,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables
         {
             Alpha = 0;
 
-            Template = new KaraokeTemplate();
+            Template = new LyricTemplate();
             TranslateCode = TranslateCode.English;
 
             Children = new Drawable[]

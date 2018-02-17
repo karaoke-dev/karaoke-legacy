@@ -23,7 +23,7 @@ namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
     {
         public override string Title => "Style";
 
-        public KaraokeTemplate KarokeTemplate { get; set; } = new KaraokeTemplate();
+        public LyricTemplate KarokeTemplate { get; set; } = new LyricTemplate();
 
         public Lyric Lyric { get; set; } = new Lyric()
         {

@@ -16,7 +16,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog
     {
         public override string Title => "Karaoke Template";
 
-        public KaraokeTemplate KarokeTemplate { get; set; } = new KaraokeTemplate();
+        public LyricTemplate KarokeTemplate { get; set; } = new LyricTemplate();
 
         public Lyric Lyric { get; set; } = new Lyric()
         {

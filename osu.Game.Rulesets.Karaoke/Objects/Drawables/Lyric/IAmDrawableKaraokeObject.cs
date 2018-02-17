@@ -16,7 +16,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables
         /// <summary>
         /// Template
         /// </summary>
-        KaraokeTemplate Template { get; set; }
+        LyricTemplate Template { get; set; }
 
         /// <summary>
         /// singer
