@@ -8,16 +8,13 @@ using osu.Framework.Graphics.Containers;
 using osu.Framework.Timing;
 using osu.Game.Beatmaps;
 using osu.Game.Rulesets.Karaoke.Edit.Dialog;
-using osu.Game.Rulesets.Karaoke.Objects.Drawables;
 using osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric;
-using osu.Game.Rulesets.Karaoke.UI.Extension;
 using osu.Game.Rulesets.Karaoke.UI.Interface;
+using osu.Game.Rulesets.Karaoke.UI.PlayField.Lyric;
 using osu.Game.Rulesets.Karaoke.UI.Tool;
 using osu.Game.Rulesets.Objects.Drawables;
 using osu.Game.Rulesets.UI;
 using OpenTK;
-using osu.Game.Rulesets.Karaoke.UI.PlayField;
-using osu.Game.Rulesets.Karaoke.UI.PlayField.Lyric;
 
 namespace osu.Game.Rulesets.Karaoke.UI
 {

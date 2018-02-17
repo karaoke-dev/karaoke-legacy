@@ -12,8 +12,8 @@ namespace osu.Game.Rulesets.Karaoke.Beatmaps
     /// </summary>
     public class KaraokeBeatmap
     {
-
         #region SongInfo
+
         /// <summary>
         /// song name
         /// </summary>
@@ -33,6 +33,7 @@ namespace osu.Game.Rulesets.Karaoke.Beatmaps
         /// song languages
         /// </summary>
         public List<string> SongLanguages { get; set; } = new List<string>();
+
         #endregion
 
         #region Language

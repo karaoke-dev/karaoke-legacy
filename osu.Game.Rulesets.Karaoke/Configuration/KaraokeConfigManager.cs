@@ -1,7 +1,10 @@
-﻿using osu.Framework.Configuration.Tracking;
+﻿// Copyright (c) 2007-2018 ppy Pty Ltd <contact@ppy.sh>.
+// Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
+
+using osu.Framework.Configuration.Tracking;
 using osu.Game.Configuration;
-using osu.Game.Rulesets.Karaoke.Tools.Translator;
 using osu.Game.Rulesets.Karaoke.Objects;
+using osu.Game.Rulesets.Karaoke.Tools.Translator;
 
 namespace osu.Game.Rulesets.Karaoke.Configuration
 {
@@ -45,44 +48,38 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
             Set(KaraokeSetting.MicrophoneVolumn, 0.5);
             Set(KaraokeSetting.Echo, 0.5);
             Set(KaraokeSetting.Tone, 0);
-
-
         }
 
         public override TrackedSettings CreateTrackedSettings() => new TrackedSettings
         {
-
         };
-
     }
 
     public enum KaraokeSetting
     {
         //language
-        TranslateEngine,//[int]use which api to translate
-        DefaultTranslateLanguage,//[enum]
-        NeedTranslate,//[bool]false
+        TranslateEngine, //[int]use which api to translate
+        DefaultTranslateLanguage, //[enum]
+        NeedTranslate, //[bool]false
 
         //Romaji
-        RomajiEngine,//[int]use which api to get romaji
+        RomajiEngine, //[int]use which api to get romaji
 
         //karaoke
-        ShowKarokePanel,//[bool]show panel at the beginning
-        DisableHotKay,//[bool]enable hotkey
+        ShowKarokePanel, //[bool]show panel at the beginning
+        DisableHotKay, //[bool]enable hotkey
 
         //Style
-        Template,//[object]
-        LyricStyle,//[Object]
+        Template, //[object]
+        LyricStyle, //[Object]
 
         //singler
-        Singer,//[object]
+        Singer, //[object]
 
         //Microphone (V2 system)
-        Microphone,//[int]select microphone device
-        MicrophoneVolumn,//[double]Volumn
-        Echo,//[double]Echo
-        Tone,//Future work ,adjust how voice microphone sounds like
-
-
+        Microphone, //[int]select microphone device
+        MicrophoneVolumn, //[double]Volumn
+        Echo, //[double]Echo
+        Tone, //Future work ,adjust how voice microphone sounds like
     }
 }

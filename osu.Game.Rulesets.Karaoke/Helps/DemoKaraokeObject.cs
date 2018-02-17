@@ -16,11 +16,11 @@ namespace osu.Game.Rulesets.Karaoke.Helps
             var karaokeObject = new Lyric();
             karaokeObject.MainText = MainTextList.SetJapaneseLyric("終わるまでは終わらないよ");
             karaokeObject.Position = new Vector2(300, 150);
-            karaokeObject.SubTexts.Add(0,new SubText
+            karaokeObject.SubTexts.Add(0, new SubText
             {
                 Text = "お",
             });
-            karaokeObject.SubTexts.Add(6,new SubText
+            karaokeObject.SubTexts.Add(6, new SubText
             {
                 Text = "お",
             });

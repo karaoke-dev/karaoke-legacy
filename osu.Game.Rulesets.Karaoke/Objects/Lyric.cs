@@ -6,10 +6,10 @@ using System.Linq;
 using Newtonsoft.Json;
 using osu.Game.Database;
 using osu.Game.Rulesets.Karaoke.Objects.Types;
+using osu.Game.Rulesets.Karaoke.Tools.Translator;
 using osu.Game.Rulesets.Objects;
 using osu.Game.Rulesets.Objects.Types;
 using OpenTK;
-using osu.Game.Rulesets.Karaoke.Tools.Translator;
 
 namespace osu.Game.Rulesets.Karaoke.Objects
 {
@@ -103,7 +103,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         /// <summary>
         /// List little aid text,like japanese's text
         /// </summary>
-        public Dictionary<int,SubText> SubTexts { get; set; } = new Dictionary<int, SubText>();
+        public Dictionary<int, SubText> SubTexts { get; set; } = new Dictionary<int, SubText>();
 
 
         /// <summary>

@@ -13,14 +13,11 @@ using osu.Game.Rulesets.Karaoke.Edit;
 using osu.Game.Rulesets.Karaoke.KaraokeDifficulty;
 using osu.Game.Rulesets.Karaoke.Mods;
 using osu.Game.Rulesets.Karaoke.Objects;
+using osu.Game.Rulesets.Karaoke.Objects.Drawables.Common.Pieces;
+using osu.Game.Rulesets.Karaoke.Textures;
 using osu.Game.Rulesets.Karaoke.UI;
 using osu.Game.Rulesets.Mods;
 using osu.Game.Rulesets.UI;
-using osu.Game.Rulesets.Karaoke.Textures;
-using osu.Game.Rulesets.Configuration;
-using osu.Game.Configuration;
-using osu.Game.Rulesets.Karaoke.Configuration;
-using osu.Game.Rulesets.Karaoke.Objects.Drawables.Common.Pieces;
 
 namespace osu.Game.Rulesets.Karaoke
 {
@@ -37,7 +34,7 @@ namespace osu.Game.Rulesets.Karaoke
 
         public override IEnumerable<KeyBinding> GetDefaultKeyBindings(int variant = 0)
         {
-            if (variant == 0)//Main
+            if (variant == 0) //Main
             {
                 return new[]
                 {
@@ -65,7 +62,7 @@ namespace osu.Game.Rulesets.Karaoke
                     new KeyBinding(InputKey.P, KaraokeAction.OpenPanel),
                 };
             }
-            else//Editor
+            else //Editor
             {
                 return new[]
                 {

@@ -12,7 +12,6 @@ using osu.Game.Rulesets.Judgements;
 using osu.Game.Rulesets.Karaoke.Configuration;
 using osu.Game.Rulesets.Karaoke.Judgements;
 using osu.Game.Rulesets.Karaoke.Mods;
-using osu.Game.Rulesets.Karaoke.Objects;
 using osu.Game.Rulesets.Karaoke.Tools.Translator;
 using osu.Game.Rulesets.Karaoke.UI.Panel;
 using osu.Game.Rulesets.Karaoke.UI.PlayField.Lyric;
@@ -62,9 +61,9 @@ namespace osu.Game.Rulesets.Karaoke.UI
                 },
 
                 //layer
-                KaraokeLyricPlayField= new KaraokeLyricPlayField()
+                KaraokeLyricPlayField = new KaraokeLyricPlayField()
                 {
-                    KaraokeRulesetContainer = this.KaraokeRulesetContainer
+                    KaraokeRulesetContainer = KaraokeRulesetContainer
                 }
             });
 
@@ -132,6 +131,7 @@ namespace osu.Game.Rulesets.Karaoke.UI
                 {
                     listTranslateString.Add(singleKaraokeObject.Lyric.MainText.Text);
                 }
+
                 //translate list string 
                 KaraokeFieldTool.Translateor.Translate(TranslateCode.Default, TranslateCode.Chinese_Traditional, listTranslateString);
             }

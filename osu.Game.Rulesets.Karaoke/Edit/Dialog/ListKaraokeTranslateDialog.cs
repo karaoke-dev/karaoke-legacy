@@ -8,7 +8,6 @@ using osu.Game.Graphics.UserInterface;
 using osu.Game.Overlays.Music;
 using osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces;
 using osu.Game.Rulesets.Karaoke.Objects;
-using osu.Game.Rulesets.Karaoke.Objects.Drawables;
 using osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric;
 using osu.Game.Rulesets.Karaoke.Tools.Translator;
 using OpenTK;

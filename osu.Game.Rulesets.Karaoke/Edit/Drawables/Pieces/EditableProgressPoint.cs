@@ -137,6 +137,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Pieces
                     DrawableKaraokeThumbnail.DeletePoint(LyricProgressPoint);
                 }
             }
+
             return base.OnKeyDown(state, args);
         }
 

@@ -1,13 +1,13 @@
 ﻿// Copyright (c) 2007-2018 ppy Pty Ltd <contact@ppy.sh>.
 // Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
 
+using System.Collections.Generic;
 using System.Linq;
 using osu.Framework.Audio;
 using osu.Game.Rulesets.Karaoke.Mods;
 using osu.Game.Rulesets.Karaoke.UI.Interface;
 using osu.Game.Rulesets.Objects;
 using osu.Game.Rulesets.Objects.Types;
-using System.Collections.Generic;
 
 namespace osu.Game.Rulesets.Karaoke.UI.Extension
 {
@@ -148,6 +148,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Extension
             {
                 return pitchAdjustTrack.PitchAdjust;
             }
+
             return 1;
         }
 
@@ -225,9 +226,11 @@ namespace osu.Game.Rulesets.Karaoke.UI.Extension
                     {
                         return null;
                     }
+
                     return listObjects[i - 1];
                 }
             }
+
             return null;
         }
 

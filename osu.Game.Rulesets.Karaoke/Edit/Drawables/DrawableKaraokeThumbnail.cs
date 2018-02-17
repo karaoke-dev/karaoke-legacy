@@ -83,6 +83,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables
                 single.Height = 30;
                 totalRelativeTime = (float)progressPoint.RelativeTime;
             }
+
             Width = totalRelativeTime * Ratio * Zoon;
         }
 
@@ -162,6 +163,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables
             {
                 Lyric.ProgressPoints.Remove(point);
             }
+
             UpdateView();
         }
 
@@ -174,6 +176,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables
                 if (single.Position.X + single.Width > mousePosition.X)
                     return single;
             }
+
             return null;
         }
 
@@ -198,6 +201,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables
                 EndSelectedPoint = newPoint;
                 return;
             }
+
             var startIndex = GetObjectIndex(StartSelectedPoint);
             var endIndex = GetObjectIndex(EndSelectedPoint);
             if (GetObjectIndex(newPoint) < startIndex)
@@ -243,9 +247,11 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables
                     {
                         PlusSelectedPoint(selectedPoint);
                     }
+
                     IsDraging = true;
                 }
             }
+
             UpdateColor();
 
             return base.OnMouseDown(state, args);

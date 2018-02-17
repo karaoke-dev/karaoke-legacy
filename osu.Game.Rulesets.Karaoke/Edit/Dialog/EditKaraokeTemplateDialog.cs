@@ -23,10 +23,10 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog
             MainText = MainTextList.SetJapaneseLyric("カラオケ"),
             SubTexts = new Dictionary<int, SubText>()
             {
-                { 0, new SubText() { Text = "か" }},
-                { 1, new SubText() { Text = "ら" }},
-                { 2, new SubText() { Text = "お" }},
-                { 3, new SubText() { Text = "け" }},
+                { 0, new SubText() { Text = "か" } },
+                { 1, new SubText() { Text = "ら" } },
+                { 2, new SubText() { Text = "お" } },
+                { 3, new SubText() { Text = "け" } },
             },
             Translates = new ListKaraokeTranslateString()
             {

@@ -1,4 +1,7 @@
-﻿using System.Collections.Generic;
+﻿// Copyright (c) 2007-2018 ppy Pty Ltd <contact@ppy.sh>.
+// Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
+
+using System.Collections.Generic;
 using osu.Framework.Graphics;
 using osu.Game.Rulesets.Karaoke.Configuration;
 using osu.Game.Rulesets.Karaoke.Objects;
@@ -48,10 +51,10 @@ namespace osu.Game.Rulesets.Karaoke.UI.PlayField.Lyric
             h.Depth = (float)h.HitObject.StartTime;
 
             //update template
-            this.UpdateObjectTemplate(h as DrawableKaraokeObject);
+            UpdateObjectTemplate(h as DrawableKaraokeObject);
 
             //update position
-            this.UpdateObjectAutomaticallyPosition(h as DrawableKaraokeObject);
+            UpdateObjectAutomaticallyPosition(h as DrawableKaraokeObject);
 
             //add to list
             ListDrawableKaraokeObject.Add(h as DrawableKaraokeObject);
@@ -65,7 +68,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.PlayField.Lyric
             LyricTemplate template = null;
             if (drawableKaraokeObject.Lyric.TemplateIndex != null)
             {
-                template = this.GetListKaraokeTemplate()[drawableKaraokeObject.Lyric.TemplateIndex.Value];
+                template = GetListKaraokeTemplate()[drawableKaraokeObject.Lyric.TemplateIndex.Value];
             }
 
             //setting drawable by template
@@ -152,7 +155,6 @@ namespace osu.Game.Rulesets.Karaoke.UI.PlayField.Lyric
         /// <param name="lyric"></param>
         public static void UpdateObjectCombo(Objects.Lyric lyric)
         {
-
         }
 
         /// <summary>
@@ -162,7 +164,6 @@ namespace osu.Game.Rulesets.Karaoke.UI.PlayField.Lyric
         /// <param name="karaokeObject"></param>
         public static void UpdateObjectPreemptiveTime(DrawableKaraokeObject karaokeObject)
         {
-
         }
     }
 }

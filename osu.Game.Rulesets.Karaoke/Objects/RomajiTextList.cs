@@ -1,12 +1,12 @@
-﻿using System;
+﻿// Copyright (c) 2007-2018 ppy Pty Ltd <contact@ppy.sh>.
+// Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
+
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace osu.Game.Rulesets.Karaoke.Objects
 {
-    public class RomajiTextList : Dictionary<int,RomajiText>
+    public class RomajiTextList : Dictionary<int, RomajiText>
     {
         /// <summary>
         /// get romaji start position from main text's text index
@@ -53,10 +53,10 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         /// add new remaji
         /// </summary>
         /// <param name="value"></param>
-        public new void Add(int key,RomajiText value)
+        public new void Add(int key, RomajiText value)
         {
             //Add
-            base.Add(key,value);
+            base.Add(key, value);
         }
     }
 }

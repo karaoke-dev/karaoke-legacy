@@ -8,7 +8,6 @@ using osu.Framework.Input;
 using osu.Game.Graphics.UserInterface;
 using osu.Game.Rulesets.Karaoke.Edit.Drawables.Pieces;
 using osu.Game.Rulesets.Karaoke.Objects;
-using osu.Game.Rulesets.Karaoke.Objects.Drawables;
 using osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric;
 using osu.Game.Rulesets.Karaoke.Objects.Extension;
 using osu.Game.Rulesets.Karaoke.Tools.Translator;
@@ -24,7 +23,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables
     public class DrawableEditableKaraokeObject : DrawableKaraokeObject, IHasContextMenu
     {
         protected DrawableKaraokeThumbnail DrawableKaraokeThumbnail { get; set; }
-        protected EditableMainKaraokeText EditableMainKaraokeText { get; set; } = new EditableMainKaraokeText(null,null);
+        protected EditableMainKaraokeText EditableMainKaraokeText { get; set; } = new EditableMainKaraokeText(null, null);
         protected bool IsDrag = false;
 
         public MenuItem[] ContextMenuItems => new MenuItem[]
@@ -54,7 +53,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables
         protected override void UpdateDrawable()
         {
             base.UpdateDrawable();
-            EditableMainKaraokeText.MainTextObject = Lyric.MainText.ToDictionary(k=>k.Key,v=> (TextComponent)v.Value);
+            EditableMainKaraokeText.MainTextObject = Lyric.MainText.ToDictionary(k => k.Key, v => (TextComponent)v.Value);
             EditableMainKaraokeText.TextObject = Template?.MainText;
             EditableMainKaraokeText.Alpha = 1f;
         }
@@ -83,6 +82,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables
                 int index = GetPointedText(state);
                 EditableMainKaraokeText.EndSelectIndex = index;
             }
+
             return base.OnMouseMove(state);
         }
 

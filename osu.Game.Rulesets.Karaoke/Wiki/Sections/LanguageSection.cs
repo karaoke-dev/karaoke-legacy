@@ -1,14 +1,12 @@
-﻿using OpenTK;
+﻿// Copyright (c) 2007-2018 ppy Pty Ltd <contact@ppy.sh>.
+// Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
+
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Game.Overlays.Settings;
 using osu.Game.Rulesets.Karaoke.Tools.Translator;
+using OpenTK;
 using Symcol.Rulesets.Core.Wiki;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
 {
@@ -24,7 +22,7 @@ namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
         public LanguageSection()
         {
             Content.Add(new WikiTextSection("Adjust which language you want to translate.\n" +
-                "And if you need Romaji , you can select in here.  \n\n"));
+                                            "And if you need Romaji , you can select in here.  \n\n"));
 
 
             Content.Add(new WikiSubSectionHeader("Translate"));

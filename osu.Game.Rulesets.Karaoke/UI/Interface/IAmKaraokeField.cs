@@ -3,7 +3,6 @@
 
 using System.Collections.Generic;
 using osu.Game.Beatmaps;
-using osu.Game.Rulesets.Karaoke.Objects.Drawables;
 using osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric;
 using osu.Game.Rulesets.Karaoke.UI.Tool;
 

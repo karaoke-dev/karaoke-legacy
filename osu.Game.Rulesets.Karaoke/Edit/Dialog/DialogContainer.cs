@@ -152,6 +152,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog
                                         {
                                             container.Remove(this);
                                         }
+
                                         CloseAction?.Invoke();
                                     },
                                 }

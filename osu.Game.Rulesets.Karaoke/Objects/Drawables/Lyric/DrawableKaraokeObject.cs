@@ -128,7 +128,6 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
         public KaraokeText TranslateText { get; set; } = new KaraokeText(null);
 
 
-
         public DrawableKaraokeObject(Objects.Lyric hitObject)
             : base(hitObject)
         {
@@ -151,7 +150,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
         {
             TextsAndMaskPiece.ClearAllText();
             //main text
-            TextsAndMaskPiece.AddMainText(Template?.MainText , Lyric.MainText.ToDictionary(k => k.Key, v => (TextComponent)v.Value));
+            TextsAndMaskPiece.AddMainText(Template?.MainText, Lyric.MainText.ToDictionary(k => k.Key, v => (TextComponent)v.Value));
 
             //subtext
             foreach (var singleText in Lyric.SubTexts)

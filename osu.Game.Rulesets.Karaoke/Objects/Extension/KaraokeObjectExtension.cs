@@ -57,6 +57,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Extension
             {
                 return true;
             }
+
             return false;
         }
 

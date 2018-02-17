@@ -3,9 +3,12 @@
 
 using osu.Framework.Input;
 using osu.Game.Beatmaps;
+using osu.Game.Configuration;
+using osu.Game.Rulesets.Configuration;
 using osu.Game.Rulesets.Karaoke.Beatmaps;
+using osu.Game.Rulesets.Karaoke.Configuration;
 using osu.Game.Rulesets.Karaoke.Objects;
-using osu.Game.Rulesets.Karaoke.Objects.Drawables;
+using osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric;
 using osu.Game.Rulesets.Karaoke.Replays;
 using osu.Game.Rulesets.Karaoke.Scoring;
 using osu.Game.Rulesets.Objects.Drawables;
@@ -13,10 +16,6 @@ using osu.Game.Rulesets.Replays;
 using osu.Game.Rulesets.Scoring;
 using osu.Game.Rulesets.UI;
 using OpenTK;
-using osu.Game.Rulesets.Configuration;
-using osu.Game.Configuration;
-using osu.Game.Rulesets.Karaoke.Configuration;
-using osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric;
 
 namespace osu.Game.Rulesets.Karaoke.UI
 {
@@ -44,6 +43,7 @@ namespace osu.Game.Rulesets.Karaoke.UI
             {
                 return new DrawableKaraokeObject(karaokeObject);
             }
+
             return null;
         }
 

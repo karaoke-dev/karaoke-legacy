@@ -124,6 +124,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Panel.Pieces
             {
                 CurrentTime = CurrentTime + state.Mouse.WheelDelta * 500;
             }
+
             //eat this event and not pass to next
             return true;
             //return base.OnWheel(state);

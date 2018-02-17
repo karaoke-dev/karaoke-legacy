@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Linq;
 using osu.Framework.Allocation;
 using osu.Framework.IO.Stores;
-using osu.Game.Rulesets.Karaoke.Objects.Types;
 
 namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Common.Pieces
 {
@@ -17,7 +16,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Common.Pieces
 
         public float TotalWidth { get; protected set; } = 0;
 
-        public Dictionary<int,float> ListCharEndPosition { get; protected set; } = new Dictionary<int,float>();
+        public Dictionary<int, float> ListCharEndPosition { get; protected set; } = new Dictionary<int, float>();
 
         public Dictionary<int, TextComponent> MainTextObject
         {
@@ -42,7 +41,8 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Common.Pieces
             Text = MainTextObject?.Select(i => i.Value.Text).Aggregate((i, j) => i + Delimiter + j);
         }
 
-        public MainKaraokeText(FormattedText formattedText , Dictionary<int, TextComponent> textObject) : base(formattedText)
+        public MainKaraokeText(FormattedText formattedText, Dictionary<int, TextComponent> textObject)
+            : base(formattedText)
         {
             MainTextObject = textObject;
         }
@@ -113,6 +113,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Common.Pieces
         }
 
         #region Function
+
         protected float GetStringWidth(string str)
         {
             float totalWidth = 0;
@@ -121,10 +122,11 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Common.Pieces
                 //get single char width
                 var singleCharWhdth = CreateCharacterDrawable(single).Width * TextSize;
                 totalWidth += singleCharWhdth;
-
             }
+
             return totalWidth;
         }
+
         #endregion
     }
 }

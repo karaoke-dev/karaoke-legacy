@@ -1,10 +1,8 @@
-﻿using osu.Framework.Graphics.Textures;
+﻿// Copyright (c) 2007-2018 ppy Pty Ltd <contact@ppy.sh>.
+// Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
+
+using osu.Framework.Graphics.Textures;
 using osu.Framework.IO.Stores;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace osu.Game.Rulesets.Karaoke.Textures
 {
