@@ -41,9 +41,10 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Common.Pieces
             Text = MainTextObject?.Select(i => i.Value.Text).Aggregate((i, j) => i + Delimiter + j);
         }
 
-        public MainKaraokeText(FormattedText formattedText, Dictionary<int, TextComponent> textObject)
+        public MainKaraokeText(FormattedText formattedText, Dictionary<int, TextComponent> textObject,string delimiter)
             : base(formattedText)
         {
+            Delimiter = delimiter;
             MainTextObject = textObject;
         }
 
@@ -58,8 +59,9 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Common.Pieces
                 TotalWidth = 0;
                 foreach (var single in MainTextObject)
                 {
+                    string delimiter = (MainTextObject.Last().Key != single.Key ? Delimiter : string.Empty);
                     //get single char width
-                    var singleCharWhdth = GetStringWidth(single.Value.Text);
+                    var singleCharWhdth = GetStringWidth(single.Value.Text + delimiter);
                     TotalWidth += singleCharWhdth;
                     ListCharEndPosition.Add(single.Key, TotalWidth);
                 }

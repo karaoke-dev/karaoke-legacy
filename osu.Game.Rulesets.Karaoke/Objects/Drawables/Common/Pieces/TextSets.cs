@@ -39,11 +39,11 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Common.Pieces
             Masking = true;
         }
 
-        public virtual void AddMainText(FormattedText formattedText, Dictionary<int, TextComponent> textObject)
+        public virtual void AddMainText(FormattedText formattedText, Dictionary<int, TextComponent> textObject, string delimiter)
         {
             if (MainKaraokeText == null)
             {
-                MainKaraokeText = new MainKaraokeText(formattedText, textObject);
+                MainKaraokeText = new MainKaraokeText(formattedText, textObject, delimiter);
                 Add(MainKaraokeText);
             }
             else
@@ -55,6 +55,12 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Common.Pieces
 
         public void AddSubText(List<FormattedText> textObjectsList)
         {
+            if (textObjectsList == null)
+                textObjectsList = new List<FormattedText>()
+                {
+                    new FormattedText(),
+                };
+
             foreach (var textObject in textObjectsList)
             {
                 var subText = new KaraokeText(textObject)
@@ -68,6 +74,12 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Common.Pieces
 
         public void AddBottomText(List<FormattedText> textObjectsList)
         {
+            if (textObjectsList == null)
+                textObjectsList = new List<FormattedText>()
+                {
+                    new FormattedText(),
+                };
+
             foreach (var textObject in textObjectsList)
             {
                 var subText = new KaraokeText(textObject)

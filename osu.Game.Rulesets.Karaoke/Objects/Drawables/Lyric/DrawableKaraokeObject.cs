@@ -153,6 +153,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
 
             if (Config != null)
             {
+                string mainTextDelimiter = "";
                 Dictionary<int, TextComponent> mainText = null;
                 Dictionary<int, FormattedText> bottomTexts = null;
                 Dictionary<int, FormattedText> subTexts = null;
@@ -160,13 +161,14 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
                 if (Config.RomajiFirst)
                 {
                     mainText = Lyric.RomajiTextListRomajiTexts.ToDictionary(k => k.Key, v => (TextComponent) v.Value );
+                    mainTextDelimiter = " ";
                 }
                 else
                 {
                     mainText = Lyric.MainText.ToDictionary(k => k.Key, v => (TextComponent)v.Value);
                 }
                 //main text
-                TextsAndMaskPiece.AddMainText(Template?.MainText, mainText.ToDictionary(k => k.Key, v => (TextComponent)v.Value));
+                TextsAndMaskPiece.AddMainText(Template?.MainText, mainText.ToDictionary(k => k.Key, v => (TextComponent)v.Value), mainTextDelimiter);
 
                 //show romaji text
                 if (Config.RomajiVislbility)
@@ -197,10 +199,10 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
                 }
 
                 //show sub text
-                TextsAndMaskPiece.AddSubText(subTexts.Select(x => x.Value).ToList());
+                TextsAndMaskPiece.AddSubText(subTexts?.Select(x => x.Value).ToList());
 
                 //show sub text
-                TextsAndMaskPiece.AddBottomText(bottomTexts.Select(x => x.Value).ToList());
+                TextsAndMaskPiece.AddBottomText(bottomTexts?.Select(x => x.Value).ToList());
 
                 Width = TextsAndMaskPiece.MainText.GetTextEndPosition();
                 Height = Lyric.Height ?? 100;
