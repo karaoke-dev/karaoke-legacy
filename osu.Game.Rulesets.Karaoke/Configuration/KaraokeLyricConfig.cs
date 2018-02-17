@@ -11,16 +11,16 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
         /// <summary>
         /// show subText
         /// </summary>
-        public bool SubTextVislbility { get; set; }
+        public bool SubTextVislbility { get; set; } = true;
 
         /// <summary>
         /// show romaji
         /// </summary>
-        public bool RomajiVislbility { get; set; }
+        public bool RomajiVislbility { get; set; } = true;
 
         /// <summary>
         /// romaji first
         /// </summary>
-        public bool RomajiFirst { get; set; }
+        public bool RomajiFirst { get; set; } = false;
     }
 }

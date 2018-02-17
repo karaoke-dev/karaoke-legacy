@@ -170,8 +170,7 @@
     <Compile Include="Objects\Drawables\Lyric\Pieces\TextsAndMask.cs" />
     <Compile Include="Objects\Drawables\Lyric\Pieces\TranslateString.cs" />
     <Compile Include="Objects\Drawables\Lyric\DrawableKaraokeObject.cs" />
-    <Compile Include="Objects\Drawables\Lyric\IAmDrawableKaraokeObject.cs" />
-    <Compile Include="Objects\Drawables\Lyric\KarakokeTextAssignment.cs" />
+    <Compile Include="Objects\Drawables\Lyric\Types\IAmDrawableKaraokeObject.cs" />
     <Compile Include="Objects\Drawables\Note\DrawableKaraokeNote.cs" />
     <Compile Include="Objects\Drawables\Common\Pieces\TextSets.cs" />
     <Compile Include="Objects\Types\IHasText.cs" />

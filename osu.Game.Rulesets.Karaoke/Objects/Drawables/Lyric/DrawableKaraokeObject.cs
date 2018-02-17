@@ -1,6 +1,7 @@
 ﻿// Copyright (c) 2007-2018 ppy Pty Ltd <contact@ppy.sh>.
 // Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
 
+using System.Collections.Generic;
 using System.Linq;
 using osu.Framework.Allocation;
 using osu.Framework.Graphics;
@@ -49,7 +50,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
         /// <value>The config.</value>
         public KaraokeLyricConfig Config
         {
-            get => _config;
+            get => _config ?? (_config = new KaraokeLyricConfig());
             set
             {
                 _config = value;
@@ -149,28 +150,54 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
         protected virtual void UpdateDrawable()
         {
             TextsAndMaskPiece.ClearAllText();
-            //main text
-            TextsAndMaskPiece.AddMainText(Template?.MainText, Lyric.MainText.ToDictionary(k => k.Key, v => (TextComponent)v.Value));
 
-            //subtext
-            foreach (var singleText in Lyric.SubTexts)
+            if (Config != null)
             {
-                //1. recalculate position
-                var startPosition = TextsAndMaskPiece.MainText.GetEndPositionByIndex(singleText.Key - 1);
-                var endPosition = TextsAndMaskPiece.MainText.GetEndPositionByIndex(singleText.Key);
+                Dictionary<int, TextComponent> mainText = Lyric.MainText.ToDictionary(k => k.Key, v => (TextComponent)v.Value);
+                Dictionary<int,TextComponent> bottomTexts = null;
 
-                var positionX = (startPosition + endPosition) / 2;
-                //2. update to subtext
-                TextsAndMaskPiece.AddSubText(Template?.TopText + singleText.Value + new FormattedText()
+                //show romaji text
+                if (Config.RomajiVislbility)
                 {
-                    X = positionX,
-                });
+                    bottomTexts = Lyric.RomajiTextListRomajiTexts.ToDictionary(k => k.Key, v => (TextComponent)v.Value);
+
+                    //if show romaji and romaji first
+                    if (Config.RomajiVislbility && Config.RomajiFirst)
+                    {
+                        //switch mainText and romaji text
+                        var temp = mainText;
+                        mainText = bottomTexts;
+                        bottomTexts = temp;
+                    }
+                }
+
+                //main text
+                TextsAndMaskPiece.AddMainText(Template?.MainText, mainText);
+
+                //show sub text
+                if (Config.SubTextVislbility)
+                {
+                    //subtext
+                    foreach (var singleText in Lyric.SubTexts)
+                    {
+                        //1. recalculate position
+                        var startPosition = TextsAndMaskPiece.MainText.GetEndPositionByIndex(singleText.Key - 1);
+                        var endPosition = TextsAndMaskPiece.MainText.GetEndPositionByIndex(singleText.Key);
+
+                        var positionX = (startPosition + endPosition) / 2;
+                        //2. update to subtext
+                        TextsAndMaskPiece.AddSubText(Template?.TopText + singleText.Value + new FormattedText()
+                        {
+                            X = positionX,
+                        });
+                    }
+                }
+
+                Width = TextsAndMaskPiece.MainText.GetTextEndPosition(); //Lyric.Width ?? (Template?.Width ?? 700);
+                Height = Lyric.Height ?? 100;
+
+                UpdateValue();
             }
-
-            Width = TextsAndMaskPiece.MainText.GetTextEndPosition(); //Lyric.Width ?? (Template?.Width ?? 700);
-            Height = Lyric.Height ?? 100;
-
-            UpdateValue();
         }
 
         protected virtual void UpdateValue()
