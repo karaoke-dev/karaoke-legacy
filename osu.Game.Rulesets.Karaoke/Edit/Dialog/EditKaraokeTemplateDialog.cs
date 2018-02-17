@@ -3,6 +3,7 @@
 
 using System.Collections.Generic;
 using osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces;
+using osu.Game.Rulesets.Karaoke.Helps;
 using osu.Game.Rulesets.Karaoke.Objects;
 using osu.Game.Rulesets.Karaoke.Tools.Translator;
 using OpenTK;
@@ -18,21 +19,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog
 
         public LyricTemplate KarokeTemplate { get; set; } = new LyricTemplate();
 
-        public Lyric Lyric { get; set; } = new Lyric()
-        {
-            MainText = MainTextList.SetJapaneseLyric("カラオケ"),
-            SubTexts = new Dictionary<int, SubText>()
-            {
-                { 0, new SubText() { Text = "か" } },
-                { 1, new SubText() { Text = "ら" } },
-                { 2, new SubText() { Text = "お" } },
-                { 3, new SubText() { Text = "け" } },
-            },
-            Translates = new ListKaraokeTranslateString()
-            {
-                new LyricTranslate(LangTagConvertor.GetCode(TranslateCode.English), "Karaoke")
-            }
-        };
+        public Lyric Lyric { get; set; } = DemoKaraokeObject.GenerateDeomKaraokeLyric();
 
         protected DrawableKaraokeTemplate DrawableKaraokeTemplate;
 

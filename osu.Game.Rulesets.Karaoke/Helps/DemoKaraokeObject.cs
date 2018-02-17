@@ -1,7 +1,9 @@
 ﻿// Copyright (c) 2007-2018 ppy Pty Ltd <contact@ppy.sh>.
 // Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
 
+using System.Collections.Generic;
 using osu.Game.Rulesets.Karaoke.Objects;
+using osu.Game.Rulesets.Karaoke.Tools.Translator;
 using OpenTK;
 
 namespace osu.Game.Rulesets.Karaoke.Helps
@@ -75,6 +77,32 @@ namespace osu.Game.Rulesets.Karaoke.Helps
             karaokeObject.ProgressPoints.AddProgressPoint(new LyricProgressPoint(duration, 11));
 
             return karaokeObject;
+        }
+
+        public static Lyric GenerateDeomKaraokeLyric()
+        {
+            return new Lyric()
+            {
+                MainText = MainTextList.SetJapaneseLyric("カラオケ"),
+                SubTexts = new Dictionary<int, SubText>()
+                {
+                    { 0, new SubText() { Text = "か" } },
+                    { 1, new SubText() { Text = "ら" } },
+                    { 2, new SubText() { Text = "お" } },
+                    { 3, new SubText() { Text = "け" } },
+                },
+                RomajiTextListRomajiTexts = new RomajiTextList()
+                {
+                    { 0, new RomajiText() { Text = "ka" } },
+                    { 1, new RomajiText() { Text = "ra" } },
+                    { 2, new RomajiText() { Text = "o" } },
+                    { 3, new RomajiText() { Text = "ke" } },
+                },
+                Translates = new ListKaraokeTranslateString()
+                {
+                    new LyricTranslate(LangTagConvertor.GetCode(TranslateCode.English), "Karaoke")
+                }
+            };
         }
     }
 }
