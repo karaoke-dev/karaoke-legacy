@@ -88,12 +88,13 @@
     <Compile Include="Edit\Dialog\Pieces\RevertableTextbox.cs" />
     <Compile Include="Objects\KaraokeInfo.cs" />
     <Compile Include="Objects\Lyric.cs" />
+    <Compile Include="Objects\RomajiTextList.cs" />
     <Compile Include="UI\PlayField\Lyric\KaraokePosition.cs" />
     <Compile Include="Objects\Singer.cs" />
     <Compile Include="Objects\LyricTemplate.cs" />
     <Compile Include="Configuration\KaraokeLyricConfig.cs" />
     <Compile Include="Objects\ProgressPoint.cs" />
-    <Compile Include="Objects\RomajiTextObject.cs" />
+    <Compile Include="Objects\RomajiText.cs" />
     <Compile Include="Objects\SubTextObject.cs" />
     <Compile Include="Objects\TextObject.cs" />
     <Compile Include="Judgements\KaraokeJudgement.cs" />

@@ -1,29 +1,12 @@
-﻿// Copyright (c) 2007-2018 ppy Pty Ltd <contact@ppy.sh>.
-// Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
-
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using osu.Game.Rulesets.Karaoke.Objects.Types;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace osu.Game.Rulesets.Karaoke.Objects
 {
-    /// <summary>
-    /// use to record romaji
-    /// </summary>
-    public class RomajiTextObject : TextObject, IHasCharIndex, IHasCharEndIndex
-    {
-        /// <summary>
-        /// relativa to textIndex
-        /// </summary>
-        public int CharIndex { get; set; }
-
-        /// <summary>
-        /// relativa to textIndex
-        /// </summary>
-        public int? CharEndIndex { get; set; }
-    }
-
-    public class ListRomajiTextObject : List<RomajiTextObject>
+    public class RomajiTextList : List<RomajiText>
     {
         /// <summary>
         /// get romaji start position from main text's text index
@@ -70,7 +53,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         /// add new remaji
         /// </summary>
         /// <param name="value"></param>
-        public new void Add(RomajiTextObject value)
+        public new void Add(RomajiText value)
         {
             //Add
             base.Add(value);

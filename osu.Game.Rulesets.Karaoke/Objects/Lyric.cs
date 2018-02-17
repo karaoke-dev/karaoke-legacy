@@ -110,7 +110,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         /// <summary>
         /// list romaji text
         /// </summary>
-        public ListRomajiTextObject ListRomajiTexts { get; set; } = new ListRomajiTextObject();
+        public RomajiTextList RomajiTextListRomajiTexts { get; set; } = new RomajiTextList();
 
 
         /// <summary>
