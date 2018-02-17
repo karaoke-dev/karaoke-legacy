@@ -88,6 +88,7 @@
     <Compile Include="Edit\Dialog\Pieces\RevertableTextbox.cs" />
     <Compile Include="Beatmaps\KaraokeInfo.cs" />
     <Compile Include="Objects\Lyric.cs" />
+    <Compile Include="Objects\MainText.cs" />
     <Compile Include="Objects\RomajiTextList.cs" />
     <Compile Include="UI\PlayField\Lyric\KaraokePosition.cs" />
     <Compile Include="Objects\Singer.cs" />
