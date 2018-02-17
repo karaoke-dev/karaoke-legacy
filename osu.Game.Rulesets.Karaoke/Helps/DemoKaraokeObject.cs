@@ -50,11 +50,11 @@ namespace osu.Game.Rulesets.Karaoke.Helps
                 CharIndex = 6,
             });
 
-            karaokeObject.ListProgressPoint.AddProgressPoint(new LyricProgressPoint(0, 0));
+            karaokeObject.ListLyricProgressPoint.AddProgressPoint(new LyricProgressPoint(0, 0));
 
-            karaokeObject.ListProgressPoint.AddProgressPoint(new LyricProgressPoint(500, 1));
-            karaokeObject.ListProgressPoint.AddProgressPoint(new LyricProgressPoint(1000, 5));
-            karaokeObject.ListProgressPoint.AddProgressPoint(new LyricProgressPoint(1500, 11));
+            karaokeObject.ListLyricProgressPoint.AddProgressPoint(new LyricProgressPoint(500, 1));
+            karaokeObject.ListLyricProgressPoint.AddProgressPoint(new LyricProgressPoint(1000, 5));
+            karaokeObject.ListLyricProgressPoint.AddProgressPoint(new LyricProgressPoint(1500, 11));
 
             return karaokeObject;
         }
@@ -76,9 +76,9 @@ namespace osu.Game.Rulesets.Karaoke.Helps
             });
             karaokeObject.StartTime = startTime;
 
-            karaokeObject.ListProgressPoint.AddProgressPoint(new LyricProgressPoint(duration / 5, 0));
-            karaokeObject.ListProgressPoint.AddProgressPoint(new LyricProgressPoint(duration / 4, 10));
-            karaokeObject.ListProgressPoint.AddProgressPoint(new LyricProgressPoint(duration, 11));
+            karaokeObject.ListLyricProgressPoint.AddProgressPoint(new LyricProgressPoint(duration / 5, 0));
+            karaokeObject.ListLyricProgressPoint.AddProgressPoint(new LyricProgressPoint(duration / 4, 10));
+            karaokeObject.ListLyricProgressPoint.AddProgressPoint(new LyricProgressPoint(duration, 11));
 
             return karaokeObject;
         }

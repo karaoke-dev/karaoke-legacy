@@ -14,7 +14,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Types
 
         List<SubText> ListSubTextObject { get; set; }
 
-        ListProgressPoint ListProgressPoint { get; set; }
+        LyricProgressPointList ListLyricProgressPoint { get; set; }
 
         ListKaraokeTranslateString ListTranslate { get; set; }
 

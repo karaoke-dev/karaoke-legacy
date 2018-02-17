@@ -122,7 +122,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         /// <summary>
         /// record list time where position goes
         /// </summary>
-        public ListProgressPoint ListProgressPoint { get; set; } = new ListProgressPoint();
+        public LyricProgressPointList ListLyricProgressPoint { get; set; } = new LyricProgressPointList();
 
         /// <summary>
         /// all the translate for a single language
@@ -140,7 +140,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         /// The duration of the HitObject.
         /// </summary>
         [JsonIgnore]
-        public double Duration => ListProgressPoint.LastOrDefault()?.RelativeTime ?? 0;
+        public double Duration => ListLyricProgressPoint.LastOrDefault()?.RelativeTime ?? 0;
 
         /// <summary>
         /// new combo
