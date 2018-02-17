@@ -87,7 +87,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         /// Main text 
         /// </summary>
         // TODO : list format
-        //TODO : [set] if change the value here, will generate the list
+        // TODO : [set] if change the value here, will generate the list
         // TODO : [get] get the value is combine from list
         [JsonIgnore]
         public MainTextList MainText { get; set; } = new MainTextList();

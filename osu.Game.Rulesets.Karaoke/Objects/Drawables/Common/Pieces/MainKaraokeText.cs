@@ -61,7 +61,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Common.Pieces
                     //get single char width
                     var singleCharWhdth = GetStringWidth(single.Value.Text);
                     TotalWidth += singleCharWhdth;
-                    ListCharEndPosition.Add(((IHasCharIndex)single.Value).CharIndex,TotalWidth);
+                    ListCharEndPosition.Add(single.Key, TotalWidth);
                 }
             }
         }

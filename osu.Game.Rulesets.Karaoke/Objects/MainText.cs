@@ -7,8 +7,8 @@ using osu.Game.Rulesets.Karaoke.Objects.Types;
 
 namespace osu.Game.Rulesets.Karaoke.Objects
 {
-    public class MainText : TextComponent, IHasCharIndex
+    public class MainText : TextComponent
     {
-        public int CharIndex { get; set; }
+
     }
 }

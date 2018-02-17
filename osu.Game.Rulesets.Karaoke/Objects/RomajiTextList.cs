@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace osu.Game.Rulesets.Karaoke.Objects
 {
-    public class RomajiTextList : List<RomajiText>
+    public class RomajiTextList : Dictionary<int,RomajiText>
     {
         /// <summary>
         /// get romaji start position from main text's text index
@@ -38,7 +38,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         {
             get
             {
-                var list = this.Select(x => x.Text);
+                var list = this.Select(x => x.Value.Text);
                 string result = string.Join(SeperateText, list);
                 return result;
             }
@@ -47,16 +47,16 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         /// <summary>
         /// collect list 
         /// </summary>
-        private List<int> listRomajiTextCount => this.Select(x => x.Text.Length).ToList();
+        private List<int> listRomajiTextCount => this.Select(x => x.Value.Text.Length).ToList();
 
         /// <summary>
         /// add new remaji
         /// </summary>
         /// <param name="value"></param>
-        public new void Add(RomajiText value)
+        public new void Add(int key,RomajiText value)
         {
             //Add
-            base.Add(value);
+            base.Add(key,value);
         }
     }
 }
