@@ -93,7 +93,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Pieces
             {
                 if (i == 0)
                 {
-                    Children[i].Position = -Position;//MainKaraokeText.TextObject.Position - Position;
+                    Children[i].Position = MainKaraokeText.TextObject.Position - Position;
                 }
                 else
                 {
