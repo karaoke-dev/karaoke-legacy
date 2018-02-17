@@ -8,7 +8,7 @@ using Newtonsoft.Json;
 
 namespace osu.Game.Rulesets.Karaoke.Objects
 {
-    public class MainTextList : List<MainText> , IHasText
+    public class MainTextList : Dictionary<int,MainText> , IHasText
     {
         [JsonIgnore]
         public string Delimiter = "";
@@ -17,7 +17,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         {
             get
             {
-                string result = this.Select(i => i.Text).Aggregate((i, j) => i + Delimiter + j);
+                string result = this.Select(i => i.Value.Text).Aggregate((i, j) => i + Delimiter + j);
                 return result;
             }
         }
@@ -28,7 +28,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects
             int startCharIndex = 0;
             foreach (var singleCharacter in str)
             {
-                returnList.Add(new MainText()
+                returnList.Add(startCharIndex,new MainText()
                 {
                     CharIndex = startCharIndex,
                     Text = singleCharacter.ToString(),

@@ -37,7 +37,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Common.Pieces
             Masking = true;
         }
 
-        public virtual void AddMainText(FormattedText formattedText, List<TextComponent> textObject)
+        public virtual void AddMainText(FormattedText formattedText, Dictionary<int, TextComponent> textObject)
         {
             if (MainKaraokeText == null)
             {

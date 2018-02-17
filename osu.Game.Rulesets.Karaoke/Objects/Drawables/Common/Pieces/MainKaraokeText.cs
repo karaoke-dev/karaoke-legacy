@@ -11,7 +11,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Common.Pieces
 {
     public class MainKaraokeText : KaraokeText
     {
-        private List<TextComponent> _mainTextObject;
+        private Dictionary<int, TextComponent> _mainTextObject;
 
         protected FontStore FontStore = null;
 
@@ -19,7 +19,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Common.Pieces
 
         public Dictionary<int,float> ListCharEndPosition { get; protected set; } = new Dictionary<int,float>();
 
-        public List<TextComponent> MainTextObject
+        public Dictionary<int, TextComponent> MainTextObject
         {
             get => _mainTextObject;
             set
@@ -39,10 +39,10 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Common.Pieces
 
         protected override void UpdateText()
         {
-            Text = MainTextObject?.Select(i => i.Text).Aggregate((i, j) => i + Delimiter + j);
+            Text = MainTextObject?.Select(i => i.Value.Text).Aggregate((i, j) => i + Delimiter + j);
         }
 
-        public MainKaraokeText(FormattedText formattedText , List<TextComponent> textObject) : base(formattedText)
+        public MainKaraokeText(FormattedText formattedText , Dictionary<int, TextComponent> textObject) : base(formattedText)
         {
             MainTextObject = textObject;
         }
@@ -59,9 +59,9 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Common.Pieces
                 foreach (var single in MainTextObject)
                 {
                     //get single char width
-                    var singleCharWhdth = GetStringWidth(single.Text);
+                    var singleCharWhdth = GetStringWidth(single.Value.Text);
                     TotalWidth += singleCharWhdth;
-                    ListCharEndPosition.Add(((IHasCharIndex)single).CharIndex,TotalWidth);
+                    ListCharEndPosition.Add(((IHasCharIndex)single.Value).CharIndex,TotalWidth);
                 }
             }
         }

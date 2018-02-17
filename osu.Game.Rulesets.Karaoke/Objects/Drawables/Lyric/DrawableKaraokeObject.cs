@@ -151,7 +151,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
         {
             TextsAndMaskPiece.ClearAllText();
             //main text
-            TextsAndMaskPiece.AddMainText(Template?.MainText , Lyric.MainText.ToList<TextComponent>());
+            TextsAndMaskPiece.AddMainText(Template?.MainText , Lyric.MainText.ToDictionary(k => k.Key, v => (TextComponent)v.Value));
 
             //subtext
             foreach (var singleText in Lyric.SubTexts)
