@@ -62,6 +62,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit
                     break;
                 }
             }
+
             return base.OnKeyDown(state, args);
         }
 

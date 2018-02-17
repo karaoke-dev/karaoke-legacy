@@ -8,7 +8,7 @@ using osu.Game.Graphics.UserInterface;
 using osu.Game.Overlays.Music;
 using osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces;
 using osu.Game.Rulesets.Karaoke.Objects;
-using osu.Game.Rulesets.Karaoke.Objects.Drawables;
+using osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric;
 using osu.Game.Rulesets.Karaoke.Tools.Translator;
 using OpenTK;
 
@@ -98,15 +98,15 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog
         private void initialItemsScrollContainerItems()
         {
             var listObjects = PlayField?.ListDrawableKaraokeObject ?? new List<IAmDrawableKaraokeObject>();
-            var listKaraokeObjects = new List<KaraokeObject>();
+            var listKaraokeObjects = new List<Lyric>();
             foreach (var single in listObjects)
-                listKaraokeObjects.Add(single.KaraokeObject);
+                listKaraokeObjects.Add(single.Lyric);
 
             ItemsScrollContainer.Sets = listKaraokeObjects;
         }
     }
 
-    public class ListTranslateScrollContainer : TableView<KaraokeObject, TranslateCell>
+    public class ListTranslateScrollContainer : TableView<Lyric, TranslateCell>
     {
         public ListTranslateScrollContainer()
         {
@@ -124,14 +124,14 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog
         }
     }
 
-    public class TranslateCell : KaraokeBaseTableViewCell<KaraokeObject>
+    public class TranslateCell : KaraokeBaseTableViewCell<Lyric>
     {
         public RevertableTextbox LyricsTextbox { get; set; } //Lyric
         public RevertableTextbox TranslateTextbox { get; set; } //Translate
 
         public FillFlowContainer<Drawable> FillFlowContainer { get; set; }
 
-        public override KaraokeObject BeatmapSetInfo
+        public override Lyric BeatmapSetInfo
         {
             get => base.BeatmapSetInfo;
             set
@@ -146,7 +146,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog
         {
             if (BeatmapSetInfo != null)
             {
-                foreach (var single in BeatmapSetInfo.ListTranslate)
+                foreach (var single in BeatmapSetInfo.Translates)
                 {
                     if (single.LangCode == langCode)
                     {

@@ -1,12 +1,5 @@
 ﻿using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
-using osu.Game.Graphics.Containers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using OpenTK;
 
 namespace Symcol.Rulesets.Core.Wiki
 {
@@ -47,7 +40,7 @@ namespace Symcol.Rulesets.Core.Wiki
             set { texContainer.Text = value; }
         }
 
-        public string URL
+        public string Url
         {
             set { texContainer.Url = value; }
         }

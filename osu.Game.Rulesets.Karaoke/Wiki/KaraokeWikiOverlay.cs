@@ -1,11 +1,8 @@
-﻿
+﻿// Copyright (c) 2007-2018 ppy Pty Ltd <contact@ppy.sh>.
+// Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
+
 using osu.Game.Rulesets.Karaoke.Wiki.Sections;
 using Symcol.Rulesets.Core.Wiki;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace osu.Game.Rulesets.Karaoke.Wiki
 {
@@ -52,7 +49,6 @@ namespace osu.Game.Rulesets.Karaoke.Wiki
             //[8]show the develpment progress
             //     8.1 : TODO : will get the newest markdown style progress from github or gitbook
             new DevelopmentHistorySection(),
-            
         };
     }
 }

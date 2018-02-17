@@ -8,7 +8,7 @@ using osu.Framework.Graphics.Containers;
 using osu.Framework.Timing;
 using osu.Game.Rulesets.Karaoke.Helps;
 using osu.Game.Rulesets.Karaoke.Objects;
-using osu.Game.Rulesets.Karaoke.Objects.Drawables;
+using osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric;
 using osu.Game.Tests.Visual;
 using OpenTK;
 
@@ -48,12 +48,12 @@ namespace osu.Game.Rulesets.Karaoke.Tests
             Add(clockAdjustContainer);
         }
 
-        private void loadHitobjects(KaraokeObject karaokeObject)
+        private void loadHitobjects(Lyric lyric)
         {
-            karaokeObject.StartTime = framedClock.CurrentTime + 160;
-            playfieldContainer.Add(new DrawableKaraokeObject(karaokeObject)
+            lyric.StartTime = framedClock.CurrentTime + 160;
+            playfieldContainer.Add(new DrawableKaraokeObject(lyric)
             {
-                Position = karaokeObject.Position + appearPosition,
+                Position = lyric.Position + appearPosition,
             });
 
             appearPosition = appearPosition + new Vector2(0, 100);

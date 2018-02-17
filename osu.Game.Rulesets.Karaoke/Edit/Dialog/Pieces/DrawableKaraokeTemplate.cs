@@ -8,7 +8,7 @@ using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Lines;
 using osu.Game.Rulesets.Karaoke.Objects;
-using osu.Game.Rulesets.Karaoke.Objects.Drawables;
+using osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric;
 using OpenTK;
 
 namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
@@ -42,7 +42,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
         //don't update by time
         public override bool ProgressUpdateByTime => false;
 
-        public DrawableKaraokeTemplate(KaraokeObject hitObject, KaraokeTemplate template)
+        public DrawableKaraokeTemplate(Lyric hitObject, LyricTemplate template)
             : base(hitObject)
         {
             Template = template;
@@ -59,22 +59,22 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
                     SubTextSegmentedControl = new UpDownValueIndicator()
                     {
                         Origin = Anchor.BottomLeft,
-                        Value = Template.SubText.FontSize ?? 0,
+                        Value = Template.TopText.FontSize ?? 0,
                         PostfixText = "px",
                         OnValueChanged = (newValue) =>
                         {
-                            Template.SubText.FontSize = (int)newValue;
+                            Template.TopText.FontSize = (int)newValue;
                             UpdateDrawable();
                         },
                     },
                     SubTextToMainTextSegmentedControl = new UpDownValueIndicator()
                     {
                         Origin = Anchor.BottomRight,
-                        Value = Template.SubText.Position.Y,
+                        Value = Template.TopText.Position.Y,
                         PostfixText = "px",
                         OnValueChanged = (newValue) =>
                         {
-                            Template.SubText.Position = new Vector2(0, newValue);
+                            Template.TopText.Position = new Vector2(0, newValue);
                             UpdateDrawable();
                         },
                     },

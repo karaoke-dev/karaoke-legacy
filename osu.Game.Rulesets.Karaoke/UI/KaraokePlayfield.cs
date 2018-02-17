@@ -2,16 +2,19 @@
 // Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
 
 using System.Collections.Generic;
+using osu.Framework.Allocation;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Timing;
 using osu.Game.Beatmaps;
 using osu.Game.Graphics.UserInterface;
 using osu.Game.Rulesets.Judgements;
+using osu.Game.Rulesets.Karaoke.Configuration;
 using osu.Game.Rulesets.Karaoke.Judgements;
 using osu.Game.Rulesets.Karaoke.Mods;
 using osu.Game.Rulesets.Karaoke.Tools.Translator;
 using osu.Game.Rulesets.Karaoke.UI.Panel;
+using osu.Game.Rulesets.Karaoke.UI.PlayField.Lyric;
 using osu.Game.Rulesets.Objects.Drawables;
 using OpenTK;
 
@@ -24,8 +27,6 @@ namespace osu.Game.Rulesets.Karaoke.UI
     {
         private Container karaokecontrolLayer;
         private KaraokePanelOverlay karaokePanelOverlay;
-
-        //public override bool ProvidingUserCursor => true;
 
         public KaraokePlayfield(Ruleset ruleset, WorkingBeatmap beatmap, KaraokeRulesetContainer container)
             : base(ruleset, beatmap, container)
@@ -60,9 +61,9 @@ namespace osu.Game.Rulesets.Karaoke.UI
                 },
 
                 //layer
-                KaraokeLyricPlayField= new PlayField.KaraokeLyricPlayField()
+                KaraokeLyricPlayField = new KaraokeLyricPlayField()
                 {
-                    KaraokeRulesetContainer = this.KaraokeRulesetContainer
+                    KaraokeRulesetContainer = KaraokeRulesetContainer
                 }
             });
 
@@ -84,6 +85,15 @@ namespace osu.Game.Rulesets.Karaoke.UI
                 }
             };
         }
+
+        /*
+        protected override void Dispose(bool isDisposing)
+        {
+            base.Dispose(isDisposing);
+            KaraokeLyricPlayField.Dispose();
+
+        }
+        */
 
         public override void InitialRulesetLayer()
         {
@@ -119,8 +129,9 @@ namespace osu.Game.Rulesets.Karaoke.UI
                 var listTranslateString = new List<string>();
                 foreach (var singleKaraokeObject in ListDrawableKaraokeObject)
                 {
-                    listTranslateString.Add(singleKaraokeObject.KaraokeObject.MainText.Text);
+                    listTranslateString.Add(singleKaraokeObject.Lyric.MainText.Text);
                 }
+
                 //translate list string 
                 KaraokeFieldTool.Translateor.Translate(TranslateCode.Default, TranslateCode.Chinese_Traditional, listTranslateString);
             }
@@ -132,6 +143,18 @@ namespace osu.Game.Rulesets.Karaoke.UI
 
             if (!judgedObject.DisplayJudgement)
                 return;
+        }
+
+        [BackgroundDependencyLoader]
+        private void load(KaraokeConfigManager karaokeConfig)
+        {
+            /*
+            //get property from setting
+            KaraokeLyricPlayField.Style = karaokeConfig.GetObject<KaraokeLyricConfig>(KaraokeSetting.LyricStyle);
+            KaraokeLyricPlayField.Template = karaokeConfig.GetObject<LyricTemplate>(KaraokeSetting.Template);
+            */
+
+            //TODO : Apply property
         }
     }
 }

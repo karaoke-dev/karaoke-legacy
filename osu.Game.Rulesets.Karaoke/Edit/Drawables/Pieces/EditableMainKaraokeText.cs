@@ -1,8 +1,9 @@
 ﻿// Copyright (c) 2007-2018 ppy Pty Ltd <contact@ppy.sh>.
 // Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
 
+using System.Collections.Generic;
 using osu.Game.Rulesets.Karaoke.Objects;
-using osu.Game.Rulesets.Karaoke.Objects.Drawables.Pieces;
+using osu.Game.Rulesets.Karaoke.Objects.Drawables.Common.Pieces;
 using OpenTK.Graphics;
 
 namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Pieces
@@ -16,8 +17,8 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Pieces
         public Color4 HoverColor { get; set; } = Color4.Red;
         public Color4 SelectColor { get; set; } = Color4.Purple;
 
-        public EditableMainKaraokeText(TextObject textObject)
-            : base(textObject)
+        public EditableMainKaraokeText(FormattedText textObject, Dictionary<int, TextComponent> mainText)
+            : base(textObject, mainText)
         {
         }
 

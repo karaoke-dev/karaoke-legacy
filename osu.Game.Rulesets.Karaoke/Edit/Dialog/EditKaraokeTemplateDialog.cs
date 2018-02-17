@@ -16,38 +16,38 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog
     {
         public override string Title => "Karaoke Template";
 
-        public KaraokeTemplate KarokeTemplate { get; set; } = new KaraokeTemplate();
+        public LyricTemplate KarokeTemplate { get; set; } = new LyricTemplate();
 
-        public KaraokeObject KaraokeObject { get; set; } = new KaraokeObject()
+        public Lyric Lyric { get; set; } = new Lyric()
         {
-            MainText = (TextObject)"カラオケ",
-            ListSubTextObject = new List<SubTextObject>()
+            MainText = MainTextList.SetJapaneseLyric("カラオケ"),
+            SubTexts = new Dictionary<int, SubText>()
             {
-                new SubTextObject() { Text = "か" },
-                new SubTextObject() { Text = "ら", CharIndex = 1 },
-                new SubTextObject() { Text = "お", CharIndex = 2 },
-                new SubTextObject() { Text = "け", CharIndex = 3 },
+                { 0, new SubText() { Text = "か" } },
+                { 1, new SubText() { Text = "ら" } },
+                { 2, new SubText() { Text = "お" } },
+                { 3, new SubText() { Text = "け" } },
             },
-            ListTranslate = new ListKaraokeTranslateString()
+            Translates = new ListKaraokeTranslateString()
             {
-                new KaraokeTranslateString(LangTagConvertor.GetCode(TranslateCode.English), "Karaoke")
+                new LyricTranslate(LangTagConvertor.GetCode(TranslateCode.English), "Karaoke")
             }
         };
 
         protected DrawableKaraokeTemplate DrawableKaraokeTemplate;
 
-        public EditKaraokeTemplateDialog(KaraokeEditPlayfield editPlayField, KaraokeObject demoKaraokeText)
+        public EditKaraokeTemplateDialog(KaraokeEditPlayfield editPlayField, Lyric demoKaraokeText)
         {
             //KarokeTemplate =
 
             if (demoKaraokeText != null)
-                KaraokeObject = demoKaraokeText;
+                Lyric = demoKaraokeText;
         }
 
         public override void InitialDialog()
         {
             //create drawable
-            MainContext.Add(DrawableKaraokeTemplate = new DrawableKaraokeTemplate(KaraokeObject, KarokeTemplate)
+            MainContext.Add(DrawableKaraokeTemplate = new DrawableKaraokeTemplate(Lyric, KarokeTemplate)
             {
                 Position = new Vector2(250, 100)
             });

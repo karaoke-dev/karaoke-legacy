@@ -3,9 +3,12 @@
 
 using osu.Framework.Input;
 using osu.Game.Beatmaps;
+using osu.Game.Configuration;
+using osu.Game.Rulesets.Configuration;
 using osu.Game.Rulesets.Karaoke.Beatmaps;
+using osu.Game.Rulesets.Karaoke.Configuration;
 using osu.Game.Rulesets.Karaoke.Objects;
-using osu.Game.Rulesets.Karaoke.Objects.Drawables;
+using osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric;
 using osu.Game.Rulesets.Karaoke.Replays;
 using osu.Game.Rulesets.Karaoke.Scoring;
 using osu.Game.Rulesets.Objects.Drawables;
@@ -16,7 +19,7 @@ using OpenTK;
 
 namespace osu.Game.Rulesets.Karaoke.UI
 {
-    public class KaraokeRulesetContainer : RulesetContainer<KaraokeObject>
+    public class KaraokeRulesetContainer : RulesetContainer<Lyric>
     {
         public KaraokeRulesetContainer(Ruleset ruleset, WorkingBeatmap beatmap, bool isForCurrentRuleset)
             : base(ruleset, beatmap, isForCurrentRuleset)
@@ -26,25 +29,28 @@ namespace osu.Game.Rulesets.Karaoke.UI
 
         public override ScoreProcessor CreateScoreProcessor() => new KaraokeScoreProcessor(this);
 
-        protected override BeatmapConverter<KaraokeObject> CreateBeatmapConverter() => new KaraokeBeatmapConverter();
+        protected override BeatmapConverter<Lyric> CreateBeatmapConverter() => new KaraokeBeatmapConverter();
 
-        protected override BeatmapProcessor<KaraokeObject> CreateBeatmapProcessor() => new KaraokeBeatmapProcessor();
+        protected override BeatmapProcessor<Lyric> CreateBeatmapProcessor() => new KaraokeBeatmapProcessor();
 
         protected override Playfield CreatePlayfield() => new KaraokePlayfield(Ruleset, WorkingBeatmap, this);
 
         public override PassThroughInputManager CreateInputManager() => new KaraokeInputManager(Ruleset.RulesetInfo);
 
-        protected override DrawableHitObject<KaraokeObject> GetVisualRepresentation(KaraokeObject h)
+        protected override DrawableHitObject<Lyric> GetVisualRepresentation(Lyric h)
         {
-            if (h is KaraokeObject karaokeObject)
+            if (h is Lyric karaokeObject)
             {
                 return new DrawableKaraokeObject(karaokeObject);
             }
+
             return null;
         }
 
         protected override FramedReplayInputHandler CreateReplayInputHandler(Replay replay) => new KaraokeReplayInputHandler(replay);
 
         protected override Vector2 GetPlayfieldAspectAdjust() => new Vector2(0.75f);
+
+        protected override IRulesetConfigManager CreateConfig(Ruleset ruleset, SettingsStore settings) => new KaraokeConfigManager(settings, Ruleset.RulesetInfo, Variant);
     }
 }

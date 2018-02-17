@@ -1,16 +1,15 @@
-﻿using Symcol.Rulesets.Core.Wiki;
-using System;
+﻿// Copyright (c) 2007-2018 ppy Pty Ltd <contact@ppy.sh>.
+// Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
+
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using osu.Framework.Graphics;
+using osu.Framework.Graphics.Containers;
+using osu.Game.Overlays.Settings;
 using osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces;
 using osu.Game.Rulesets.Karaoke.Objects;
 using osu.Game.Rulesets.Karaoke.Tools.Translator;
-using osu.Framework.Graphics;
-using osu.Framework.Graphics.Containers;
 using OpenTK;
-using osu.Game.Overlays.Settings;
+using Symcol.Rulesets.Core.Wiki;
 
 namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
 {
@@ -23,21 +22,21 @@ namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
     {
         public override string Title => "Style";
 
-        public KaraokeTemplate KarokeTemplate { get; set; } = new KaraokeTemplate();
+        public LyricTemplate KarokeTemplate { get; set; } = new LyricTemplate();
 
-        public KaraokeObject KaraokeObject { get; set; } = new KaraokeObject()
+        public Lyric Lyric { get; set; } = new Lyric()
         {
-            MainText = (TextObject)"カラオケ",
-            ListSubTextObject = new List<SubTextObject>()
+            MainText = MainTextList.SetJapaneseLyric("カラオケ"),
+            SubTexts = new Dictionary<int, SubText>()
             {
-                new SubTextObject() { Text = "か" },
-                new SubTextObject() { Text = "ら", CharIndex = 1 },
-                new SubTextObject() { Text = "お", CharIndex = 2 },
-                new SubTextObject() { Text = "け", CharIndex = 3 },
+                { 0, new SubText() { Text = "か" } },
+                { 1, new SubText() { Text = "ら" } },
+                { 2, new SubText() { Text = "お" } },
+                { 3, new SubText() { Text = "け" } },
             },
-            ListTranslate = new ListKaraokeTranslateString()
+            Translates = new ListKaraokeTranslateString()
             {
-                new KaraokeTranslateString(LangTagConvertor.GetCode(TranslateCode.English), "Karaoke")
+                new LyricTranslate(LangTagConvertor.GetCode(TranslateCode.English), "Karaoke")
             }
         };
 
@@ -69,15 +68,15 @@ namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
                         Height = 250,
                         Children = new Drawable[]
                         {
-                            new DrawableKaraokeTemplate(KaraokeObject, KarokeTemplate)
+                            new DrawableKaraokeTemplate(Lyric, KarokeTemplate)
                             {
-                                Position=new Vector2(100,-5),
+                                Position = new Vector2(100, -5),
                                 Anchor = Anchor.Centre,
                                 Origin = Anchor.Centre,
                             },
                         }
                     },
-                    
+
                     //Romaji and subtext setting
                     new Container
                     {
@@ -88,9 +87,8 @@ namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
                         AutoSizeAxes = Axes.Y,
                         AutoSizeDuration = 100,
                         AutoSizeEasing = Easing.OutQuint,
-                        Child= new RomajiMenuSettings
+                        Child = new RomajiMenuSettings
                         {
-                           
                         }
                     },
                 }
@@ -120,10 +118,10 @@ namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
         {
             Children = new Drawable[]
             {
-                //SubText Vislbility(default is true)
+                //TopText Vislbility(default is true)
                 new SettingsCheckbox
                 {
-                    LabelText = "SubText Vislbility",
+                    LabelText = "TopText Vislbility",
                     //Bindable = config.GetBindable<bool>(DebugSetting.BypassCaching)
                 },
                 //Romaji Wislbility(default is true)

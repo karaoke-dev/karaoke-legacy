@@ -16,7 +16,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables
     /// </summary>
     public class DrawableKaraokeThumbnail : Container
     {
-        public KaraokeObject KaraokeObject { get; set; }
+        public Lyric Lyric { get; set; }
 
         //if change zoon,call this
         public float Ratio = 0.3f;
@@ -35,9 +35,9 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables
 
         protected FillFlowContainer<EditableProgressPoint> ListEditableProgressPoint { get; set; } = new FillFlowContainer<EditableProgressPoint>();
 
-        public DrawableKaraokeThumbnail(KaraokeObject karaokeObject)
+        public DrawableKaraokeThumbnail(Lyric lyric)
         {
-            KaraokeObject = karaokeObject;
+            Lyric = lyric;
             Add(ListEditableProgressPoint);
             UpdateView();
         }
@@ -50,12 +50,12 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables
             //1. show the whole bar with start time and end time
 
             //2. fix time
-            KaraokeObject.ListProgressPoint.FixTime();
+            Lyric.ProgressPoints.FixTime();
 
             //3. show each point with text start and end time
             ListEditableProgressPoint.Direction = FillDirection.Horizontal;
             ListEditableProgressPoint.Clear();
-            foreach (var single in KaraokeObject.ListProgressPoint)
+            foreach (var single in Lyric.ProgressPoints)
             {
                 var editableProgressPoint = new EditableProgressPoint(this, single);
                 ListEditableProgressPoint.Add(editableProgressPoint);
@@ -78,11 +78,12 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables
             foreach (var single in ListEditableProgressPoint)
             {
                 //update position
-                var progressPoint = single.ProgressPoint;
+                var progressPoint = single.LyricProgressPoint;
                 single.Width = ((float)progressPoint.RelativeTime - totalRelativeTime) * Ratio * Zoon;
                 single.Height = 30;
                 totalRelativeTime = (float)progressPoint.RelativeTime;
             }
+
             Width = totalRelativeTime * Ratio * Zoon;
         }
 
@@ -119,7 +120,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables
         /// </summary>
         public void UpdateTime(float deltaPosition)
         {
-            var minimumTime = KaraokeObject.ListProgressPoint.MinimumTime;
+            var minimumTime = Lyric.ProgressPoints.MinimumTime;
 
             double deltaTime = deltaPosition / Ratio / Zoon;
 
@@ -130,13 +131,13 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables
             double time = 0;
             for (int i = 0; i < ListEditableProgressPoint.Count; i++)
             {
-                if (time + minimumTime > ListEditableProgressPoint[i].ProgressPoint.RelativeTime)
+                if (time + minimumTime > ListEditableProgressPoint[i].LyricProgressPoint.RelativeTime)
                     return;
 
                 if (i >= startIndex && i <= endIndex)
-                    time = ListEditableProgressPoint[i].ProgressPoint.RelativeTime + deltaPosition;
+                    time = ListEditableProgressPoint[i].LyricProgressPoint.RelativeTime + deltaPosition;
                 else
-                    time = ListEditableProgressPoint[i].ProgressPoint.RelativeTime;
+                    time = ListEditableProgressPoint[i].LyricProgressPoint.RelativeTime;
             }
             */
 
@@ -146,22 +147,23 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables
                 if (i >= startIndex && i <= endIndex)
                 {
                     //not out of range
-                    ListEditableProgressPoint[i].ProgressPoint.RelativeTime = ListEditableProgressPoint[i].ProgressPoint.RelativeTime + deltaPosition;
+                    ListEditableProgressPoint[i].LyricProgressPoint.RelativeTime = ListEditableProgressPoint[i].LyricProgressPoint.RelativeTime + deltaPosition;
                 }
             }
 
-            KaraokeObject.ListProgressPoint.FixTime();
+            Lyric.ProgressPoints.FixTime();
         }
 
         /// <summary>
         /// Delete single point
         /// </summary>
-        public void DeletePoint(ProgressPoint point)
+        public void DeletePoint(LyricProgressPoint point)
         {
-            if (KaraokeObject.ListProgressPoint.Count > 1)
+            if (Lyric.ProgressPoints.Count > 1)
             {
-                KaraokeObject.ListProgressPoint.Remove(point);
+                Lyric.ProgressPoints.Remove(point);
             }
+
             UpdateView();
         }
 
@@ -174,6 +176,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables
                 if (single.Position.X + single.Width > mousePosition.X)
                     return single;
             }
+
             return null;
         }
 
@@ -198,6 +201,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables
                 EndSelectedPoint = newPoint;
                 return;
             }
+
             var startIndex = GetObjectIndex(StartSelectedPoint);
             var endIndex = GetObjectIndex(EndSelectedPoint);
             if (GetObjectIndex(newPoint) < startIndex)
@@ -243,9 +247,11 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables
                     {
                         PlusSelectedPoint(selectedPoint);
                     }
+
                     IsDraging = true;
                 }
             }
+
             UpdateColor();
 
             return base.OnMouseDown(state, args);

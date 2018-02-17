@@ -15,9 +15,9 @@ namespace osu.Game.Rulesets.Karaoke.Scoring
     /// <summary>
     /// Karaoke does not have score i think
     /// </summary>
-    internal class KaraokeScoreProcessor : ScoreProcessor<KaraokeObject>
+    internal class KaraokeScoreProcessor : ScoreProcessor<Lyric>
     {
-        public KaraokeScoreProcessor(RulesetContainer<KaraokeObject> rulesetContainer)
+        public KaraokeScoreProcessor(RulesetContainer<Lyric> rulesetContainer)
             : base(rulesetContainer)
         {
         }
@@ -26,7 +26,7 @@ namespace osu.Game.Rulesets.Karaoke.Scoring
 
         private readonly Dictionary<HitResult, int> scoreResultCounts = new Dictionary<HitResult, int>();
 
-        protected override void SimulateAutoplay(Beatmap<KaraokeObject> beatmap)
+        protected override void SimulateAutoplay(Beatmap<Lyric> beatmap)
         {
             hpDrainRate = beatmap.BeatmapInfo.BaseDifficulty.DrainRate;
 

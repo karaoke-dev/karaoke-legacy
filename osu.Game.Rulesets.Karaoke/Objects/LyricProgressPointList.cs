@@ -4,40 +4,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json;
-using osu.Game.Rulesets.Karaoke.Objects.Types;
 
 namespace osu.Game.Rulesets.Karaoke.Objects
 {
     /// <summary>
-    /// record what time the 
-    /// </summary>
-    public class ProgressPoint : IHasCharIndex
-    {
-        public ProgressPoint()
-        {
-        }
-
-        public ProgressPoint(double time, int charIndex)
-        {
-            RelativeTime = time;
-            CharIndex = charIndex;
-        }
-
-        /// <summary>
-        /// relative to word's strt time
-        /// </summary>
-        public double RelativeTime { get; set; }
-
-        /// <summary>
-        /// position at that time
-        /// </summary>
-        public int CharIndex { get; set; }
-    }
-
-    /// <summary>
     /// list Progress point
     /// </summary>
-    public class ListProgressPoint : List<ProgressPoint>
+    public class LyricProgressPointList : List<LyricProgressPoint>
     {
         [JsonIgnore]
         public double MinimumTime { get; set; } = 100;
@@ -47,7 +20,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         /// </summary>
         /// <returns><c>true</c>, if progress point was added, <c>false</c> otherwise.</returns>
         /// <param name="karaokeObject">Karaoke object.</param>
-        public bool AddProgressPoint(ProgressPoint point)
+        public bool AddProgressPoint(LyricProgressPoint point)
         {
             //TODO : filter
             if (this.Any(x => x.CharIndex == point.CharIndex))
@@ -88,6 +61,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects
                 {
                     single.RelativeTime = time + MinimumTime;
                 }
+
                 time = single.RelativeTime;
             }
         }

@@ -13,11 +13,11 @@ using osu.Game.Rulesets.Karaoke.Edit;
 using osu.Game.Rulesets.Karaoke.KaraokeDifficulty;
 using osu.Game.Rulesets.Karaoke.Mods;
 using osu.Game.Rulesets.Karaoke.Objects;
-using osu.Game.Rulesets.Karaoke.Objects.Drawables.Pieces;
+using osu.Game.Rulesets.Karaoke.Objects.Drawables.Common.Pieces;
+using osu.Game.Rulesets.Karaoke.Textures;
 using osu.Game.Rulesets.Karaoke.UI;
 using osu.Game.Rulesets.Mods;
 using osu.Game.Rulesets.UI;
-using osu.Game.Rulesets.Karaoke.Textures;
 
 namespace osu.Game.Rulesets.Karaoke
 {
@@ -34,7 +34,7 @@ namespace osu.Game.Rulesets.Karaoke
 
         public override IEnumerable<KeyBinding> GetDefaultKeyBindings(int variant = 0)
         {
-            if (variant == 0)
+            if (variant == 0) //Main
             {
                 return new[]
                 {
@@ -62,7 +62,7 @@ namespace osu.Game.Rulesets.Karaoke
                     new KeyBinding(InputKey.P, KaraokeAction.OpenPanel),
                 };
             }
-            else
+            else //Editor
             {
                 return new[]
                 {
@@ -90,13 +90,13 @@ namespace osu.Game.Rulesets.Karaoke
             new BeatmapStatistic
             {
                 Name = @"Circle count",
-                Content = beatmap.Beatmap.HitObjects.Count(h => h is KaraokeObject).ToString(),
+                Content = beatmap.Beatmap.HitObjects.Count(h => h is Lyric).ToString(),
                 Icon = FontAwesome.fa_dot_circle_o
             },
             new BeatmapStatistic
             {
                 Name = @"Slider count",
-                Content = beatmap.Beatmap.HitObjects.Count(h => h is KaraokeObject).ToString(),
+                Content = beatmap.Beatmap.HitObjects.Count(h => h is Lyric).ToString(),
                 Icon = FontAwesome.fa_circle_o
             }
         };

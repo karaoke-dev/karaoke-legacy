@@ -2,31 +2,35 @@
 // Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
 
 using Newtonsoft.Json;
+using osu.Game.Rulesets.Objects.Types;
 using OpenTK;
 
 namespace osu.Game.Rulesets.Karaoke.Objects
 {
-    public class TextObject
+    /// <summary>
+    /// Text objects
+    /// </summary>
+    public class FormattedText : TextComponent, IHasPosition
     {
         // <inheritdoc />
         /// <summary>
         /// if template !=null will relative to template's position
         /// else, will be absolute position
         /// </summary>
+        [JsonIgnore]
         public Vector2 Position { get; set; }
 
         /// <inheritdoc />
         /// <summary>
         /// X position
         /// </summary>
-        [JsonIgnore]
+
         public float X
         {
             get => Position.X;
             set => Position = new Vector2(value, Y);
         }
 
-        [JsonIgnore]
         /// <inheritdoc />
         /// <summary>
         /// Y position
@@ -37,10 +41,6 @@ namespace osu.Game.Rulesets.Karaoke.Objects
             set => Position = new Vector2(X, value);
         }
 
-        /// <summary>
-        /// text
-        /// </summary>
-        public virtual string Text { get; set; }
 
         /// <summary>
         /// size of the font
@@ -53,7 +53,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         /// <param name="object1"></param>
         /// <param name="object2"></param>
         /// <returns></returns>
-        public static TextObject operator +(TextObject object1, TextObject object2)
+        public static FormattedText operator +(FormattedText object1, FormattedText object2)
         {
             if (object1 == null && object2 == null)
                 return null;
@@ -64,7 +64,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects
             if (object2 == null)
                 return object1;
 
-            return new TextObject()
+            return new FormattedText()
             {
                 Position = object1.Position + object2.Position,
                 Text = object1.Text + object2.Text,
@@ -73,14 +73,52 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         }
 
         /// <summary>
-        /// cast
+        /// operator
+        /// </summary>
+        /// <param name="object1"></param>
+        /// <param name="object2"></param>
+        /// <returns></returns>
+        public static FormattedText operator +(TextComponent object1, FormattedText object2)
+        {
+            return object2 + FromText(object1);
+        }
+
+        /// <summary>
+        /// operator
+        /// </summary>
+        /// <param name="object1"></param>
+        /// <param name="object2"></param>
+        /// <returns></returns>
+        public static FormattedText operator +(FormattedText object1, TextComponent object2)
+        {
+            return object1 + FromText(object2);
+        }
+
+        /// <summary>
+        /// cast from string to FormattedText
         /// </summary>
         /// <param name="textObject"></param>
-        public static explicit operator TextObject(string textObject)
+        public static explicit operator FormattedText(string textObject)
         {
-            return new TextObject()
+            return new FormattedText()
             {
                 Text = textObject,
+            };
+        }
+
+        public static FormattedText FromText(string textObject)
+        {
+            return new FormattedText()
+            {
+                Text = textObject,
+            };
+        }
+
+        public static FormattedText FromText(TextComponent textObject)
+        {
+            return new FormattedText()
+            {
+                Text = textObject?.Text,
             };
         }
     }

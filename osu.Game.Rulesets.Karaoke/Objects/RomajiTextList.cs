@@ -3,27 +3,10 @@
 
 using System.Collections.Generic;
 using System.Linq;
-using osu.Game.Rulesets.Karaoke.Objects.Types;
 
 namespace osu.Game.Rulesets.Karaoke.Objects
 {
-    /// <summary>
-    /// use to record romaji
-    /// </summary>
-    public class RomajiTextObject : TextObject, IHasCharIndex, IHasCharEndIndex
-    {
-        /// <summary>
-        /// relativa to textIndex
-        /// </summary>
-        public int CharIndex { get; set; }
-
-        /// <summary>
-        /// relativa to textIndex
-        /// </summary>
-        public int? CharEndIndex { get; set; }
-    }
-
-    public class ListRomajiTextObject : List<RomajiTextObject>
+    public class RomajiTextList : Dictionary<int, RomajiText>
     {
         /// <summary>
         /// get romaji start position from main text's text index
@@ -55,7 +38,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         {
             get
             {
-                var list = this.Select(x => x.Text);
+                var list = this.Select(x => x.Value.Text);
                 string result = string.Join(SeperateText, list);
                 return result;
             }
@@ -64,16 +47,16 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         /// <summary>
         /// collect list 
         /// </summary>
-        private List<int> listRomajiTextCount => this.Select(x => x.Text.Length).ToList();
+        private List<int> listRomajiTextCount => this.Select(x => x.Value.Text.Length).ToList();
 
         /// <summary>
         /// add new remaji
         /// </summary>
         /// <param name="value"></param>
-        public new void Add(RomajiTextObject value)
+        public new void Add(int key, RomajiText value)
         {
             //Add
-            base.Add(value);
+            base.Add(key, value);
         }
     }
 }

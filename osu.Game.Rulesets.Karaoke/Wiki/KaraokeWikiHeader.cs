@@ -1,12 +1,10 @@
-﻿using osu.Framework.Graphics.Textures;
+﻿// Copyright (c) 2007-2018 ppy Pty Ltd <contact@ppy.sh>.
+// Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
+
+using osu.Framework.Graphics.Textures;
 using osu.Game.Rulesets.Karaoke.Textures;
 using osu.Game.Users;
 using Symcol.Rulesets.Core.Wiki;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace osu.Game.Rulesets.Karaoke.Wiki
 {
@@ -16,8 +14,8 @@ namespace osu.Game.Rulesets.Karaoke.Wiki
 
         protected override string RulesetName => "Karaoke(カラオケ)";
 
-        protected override string RulesetDescription => "Karaoke! is a 3rd party ruleset developed for osu!lazer. \n"+
-            "It is a project that can let everyone make their karaoke songs and share it on osu!.";
+        protected override string RulesetDescription => "Karaoke! is a 3rd party ruleset developed for osu!lazer. \n" +
+                                                        "It is a project that can let everyone make their karaoke songs and share it on osu!.";
 
         protected override string RulesetUrl => $@"https://github.com/osu-Karaoke/osu-Karaoke";
 

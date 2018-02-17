@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using osu.Game.Rulesets.Configuration;
+﻿// Copyright (c) 2007-2018 ppy Pty Ltd <contact@ppy.sh>.
+// Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
+
+using osu.Framework.Configuration.Tracking;
 using osu.Game.Configuration;
-using osu.Game.Rulesets.Karaoke.Tools.Translator;
 using osu.Game.Rulesets.Karaoke.Objects;
+using osu.Game.Rulesets.Karaoke.Tools.Translator;
 
 namespace osu.Game.Rulesets.Karaoke.Configuration
 {
@@ -19,9 +17,12 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
 
         protected override void InitialiseDefaults()
         {
+            base.InitialiseDefaults();
+
             //language
             Set(KaraokeSetting.TranslateEngine, -1);
             Set(KaraokeSetting.DefaultTranslateLanguage, TranslateCode.English);
+            Set(KaraokeSetting.NeedTranslate, false);
 
             //Romaji
             Set(KaraokeSetting.RomajiEngine, -1);
@@ -31,53 +32,54 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
             Set(KaraokeSetting.DisableHotKay, false);
 
             //Style
-            Set(KaraokeSetting.Template, new KaraokeTemplate());
-            Set(KaraokeSetting.SubTextVislbility, true);
-            Set(KaraokeSetting.RomajiVislbility, true);
-            Set(KaraokeSetting.RomajiFirst, false);
+            SetObject(KaraokeSetting.Template, new LyricTemplate());
+            SetObject(KaraokeSetting.LyricStyle, new KaraokeLyricConfig()
+            {
+                SubTextVislbility = true,
+                RomajiVislbility = true,
+                RomajiFirst = false,
+            });
 
             //singer
-            //Set(KaraokeSetting.Singer, new KaraokeTemplate());
+            //Set(KaraokeSetting.Singer, new LyricTemplate());
 
             //Style
             Set(KaraokeSetting.Microphone, -1);
             Set(KaraokeSetting.MicrophoneVolumn, 0.5);
             Set(KaraokeSetting.Echo, 0.5);
             Set(KaraokeSetting.Tone, 0);
-
-
         }
+
+        public override TrackedSettings CreateTrackedSettings() => new TrackedSettings
+        {
+        };
     }
 
     public enum KaraokeSetting
     {
         //language
-        TranslateEngine,//[int]use which api to translate
-        DefaultTranslateLanguage,//[enum]
+        TranslateEngine, //[int]use which api to translate
+        DefaultTranslateLanguage, //[enum]
+        NeedTranslate, //[bool]false
 
         //Romaji
-        RomajiEngine,//[int]use which api to get romaji
+        RomajiEngine, //[int]use which api to get romaji
 
         //karaoke
-        ShowKarokePanel,//[bool]show panel at the beginning
-        DisableHotKay,//[bool]enable hotkey
+        ShowKarokePanel, //[bool]show panel at the beginning
+        DisableHotKay, //[bool]enable hotkey
 
         //Style
-        Template,//[object]
-        SubTextVislbility,//[bool]
-        RomajiVislbility,//[bool]
-        RomajiFirst,//[bool]
-        TranslateLyric,//[bool]
+        Template, //[object]
+        LyricStyle, //[Object]
 
         //singler
-        Singer,//[object]
+        Singer, //[object]
 
         //Microphone (V2 system)
-        Microphone,//[int]select microphone device
-        MicrophoneVolumn,//[double]Volumn
-        Echo,//[double]Echo
-        Tone,//Future work ,adjust how voice microphone sounds like
-
-
+        Microphone, //[int]select microphone device
+        MicrophoneVolumn, //[double]Volumn
+        Echo, //[double]Echo
+        Tone, //Future work ,adjust how voice microphone sounds like
     }
 }
