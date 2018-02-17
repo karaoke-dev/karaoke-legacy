@@ -83,6 +83,7 @@
     <Compile Include="Helps\DemoKaraokeObject.cs" />
     <Compile Include="Beatmaps\KaraokeBeatmapConverter.cs" />
     <Compile Include="Beatmaps\KaraokeBeatmapProcessor.cs" />
+    <Compile Include="Helps\DIctionaryHelper.cs" />
     <Compile Include="Mods\KaraokeMod2017.cs" />
     <Compile Include="Mods\ModInterface.cs" />
     <Compile Include="Edit\Dialog\Pieces\RevertableTextbox.cs" />
