@@ -86,7 +86,7 @@
     <Compile Include="Mods\KaraokeMod2017.cs" />
     <Compile Include="Mods\ModInterface.cs" />
     <Compile Include="Edit\Dialog\Pieces\RevertableTextbox.cs" />
-    <Compile Include="Objects\KaraokeInfo.cs" />
+    <Compile Include="Beatmaps\KaraokeInfo.cs" />
     <Compile Include="Objects\Lyric.cs" />
     <Compile Include="Objects\RomajiTextList.cs" />
     <Compile Include="UI\PlayField\Lyric\KaraokePosition.cs" />
