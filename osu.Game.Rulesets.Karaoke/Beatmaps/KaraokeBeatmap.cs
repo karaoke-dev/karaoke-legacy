@@ -27,7 +27,7 @@ namespace osu.Game.Rulesets.Karaoke.Beatmaps
         /// <summary>
         /// list singer
         /// </summary>
-        public List<KaraokeSinger> ListSinger { get; set; } = new List<KaraokeSinger>();
+        public List<Singer> ListSinger { get; set; } = new List<Singer>();
 
         /// <summary>
         /// song languages

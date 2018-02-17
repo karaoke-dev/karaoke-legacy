@@ -21,7 +21,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables
         /// <summary>
         /// singer
         /// </summary>
-        KaraokeSinger Singer { get; set; }
+        Singer Singer { get; set; }
 
         /// <summary>
         /// set preemptive time

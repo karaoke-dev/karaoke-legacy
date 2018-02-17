@@ -13,14 +13,14 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog
     {
     }
 
-    public class ListSingerScrollContainer : TableView<KaraokeSinger, SingerCell>
+    public class ListSingerScrollContainer : TableView<Singer, SingerCell>
     {
         public ListSingerScrollContainer()
         {
         }
     }
 
-    public class SingerCell : KaraokeBaseTableViewCell<KaraokeSinger>
+    public class SingerCell : KaraokeBaseTableViewCell<Singer>
     {
         public SingerCell()
         {

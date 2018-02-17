@@ -89,7 +89,7 @@
     <Compile Include="Objects\KaraokeInfo.cs" />
     <Compile Include="Objects\Lyric.cs" />
     <Compile Include="UI\PlayField\Lyric\KaraokePosition.cs" />
-    <Compile Include="Objects\KaraokeSinger.cs" />
+    <Compile Include="Objects\Singer.cs" />
     <Compile Include="Objects\KaraokeTemplate.cs" />
     <Compile Include="Configuration\KaraokeLyricConfig.cs" />
     <Compile Include="Objects\ProgressPoint.cs" />

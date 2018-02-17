@@ -31,7 +31,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables
         //Private
         private KaraokeLyricConfig _config;
         private KaraokeTemplate _template;
-        private KaraokeSinger _singer;
+        private Singer _singer;
         private TranslateCode _translateCode;
 
 
@@ -73,7 +73,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables
         /// Gets or sets the singer.
         /// </summary>
         /// <value>The singer.</value>
-        public KaraokeSinger Singer
+        public Singer Singer
         {
             get => _singer;
             set

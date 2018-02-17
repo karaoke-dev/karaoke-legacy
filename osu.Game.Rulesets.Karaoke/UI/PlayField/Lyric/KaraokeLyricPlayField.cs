@@ -47,7 +47,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.PlayField
 
         public KaraokeLyricConfig Style { get; set; }
         public KaraokeTemplate Template { get; set; }
-        public KaraokeSinger Singer { get; set; }
+        public Singer Singer { get; set; }
 
         public override void Add(DrawableHitObject h)
         {
