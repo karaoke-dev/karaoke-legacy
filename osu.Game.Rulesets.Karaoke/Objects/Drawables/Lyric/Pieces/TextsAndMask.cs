@@ -47,13 +47,13 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric.Pieces
             RightSideText.AddMainText(formattedText, textObject);
         }
 
-        public void AddSubText(FormattedText textObject)
+        public void AddSubText(List<FormattedText> textObject)
         {
             LeftSideText.AddSubText(textObject);
             RightSideText.AddSubText(textObject);
         }
 
-        public void AddBottomText(FormattedText textObject)
+        public void AddBottomText(List<FormattedText> textObject)
         {
             LeftSideText.AddBottomText(textObject);
             RightSideText.AddBottomText(textObject);

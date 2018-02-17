@@ -53,24 +53,30 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Common.Pieces
             }
         }
 
-        public void AddSubText(FormattedText textObject)
+        public void AddSubText(List<FormattedText> textObjectsList)
         {
-            var subText = new KaraokeText(textObject)
+            foreach (var textObject in textObjectsList)
             {
-                Origin = Anchor.BottomCentre,
-            };
-            ListDrawableSubText.Add(subText);
-            Add(subText);
+                var subText = new KaraokeText(textObject)
+                {
+                    Origin = Anchor.BottomCentre,
+                };
+                Add(subText);
+                ListDrawableSubText.Add(subText);
+            }
         }
 
-        public void AddBottomText(FormattedText textObject)
+        public void AddBottomText(List<FormattedText> textObjectsList)
         {
-            var bottomText = new KaraokeText(textObject)
+            foreach (var textObject in textObjectsList)
             {
-                Origin = Anchor.BottomCentre,
-            };
-            ListDrawableBottomText.Add(bottomText);
-            Add(bottomText);
+                var subText = new KaraokeText(textObject)
+                {
+                    Origin = Anchor.BottomCentre,
+                };
+                Add(subText);
+                ListDrawableBottomText.Add(subText);
+            }
         }
 
         public void ClearAllText()

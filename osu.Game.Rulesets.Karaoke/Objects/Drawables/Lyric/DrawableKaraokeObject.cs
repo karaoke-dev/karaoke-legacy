@@ -153,50 +153,69 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
 
             if (Config != null)
             {
-                Dictionary<int, TextComponent> mainText = Lyric.MainText.ToDictionary(k => k.Key, v => (TextComponent)v.Value);
-                Dictionary<int,TextComponent> bottomTexts = null;
+                Dictionary<int, TextComponent> mainText = null;
+                Dictionary<int, FormattedText> bottomTexts = null;
+                Dictionary<int, FormattedText> subTexts = null;
+
+                if (Config.RomajiFirst)
+                {
+                    mainText = Lyric.RomajiTextListRomajiTexts.ToDictionary(k => k.Key, v => (TextComponent) v.Value );
+                }
+                else
+                {
+                    mainText = Lyric.MainText.ToDictionary(k => k.Key, v => (TextComponent)v.Value);
+                }
+                //main text
+                TextsAndMaskPiece.AddMainText(Template?.MainText, mainText.ToDictionary(k => k.Key, v => (TextComponent)v.Value));
 
                 //show romaji text
                 if (Config.RomajiVislbility)
                 {
-                    bottomTexts = Lyric.RomajiTextListRomajiTexts.ToDictionary(k => k.Key, v => (TextComponent)v.Value);
-
-                    //if show romaji and romaji first
-                    if (Config.RomajiVislbility && Config.RomajiFirst)
+                    if (Config.RomajiFirst)
                     {
-                        //switch mainText and romaji text
-                        var temp = mainText;
-                        mainText = bottomTexts;
-                        bottomTexts = temp;
+                        bottomTexts = Lyric.MainText.ToDictionary(k => k.Key, v => (Template?.TopText + v.Value + new FormattedText()
+                        {
+                            X = getxPosition(v.Key),
+                        }));
+                    }
+                    else
+                    {
+                        bottomTexts = Lyric.RomajiTextListRomajiTexts.ToDictionary(k => k.Key, v => (Template?.TopText + v.Value + new FormattedText()
+                        {
+                            X = getxPosition(v.Key),
+                        }));
                     }
                 }
 
-                //main text
-                TextsAndMaskPiece.AddMainText(Template?.MainText, mainText);
-
-                //show sub text
+                //show subtext
                 if (Config.SubTextVislbility)
                 {
-                    //subtext
-                    foreach (var singleText in Lyric.SubTexts)
+                    subTexts = Lyric.SubTexts.ToDictionary(k=> k.Key, v => (Template?.TopText + v.Value + new FormattedText()
                     {
-                        //1. recalculate position
-                        var startPosition = TextsAndMaskPiece.MainText.GetEndPositionByIndex(singleText.Key - 1);
-                        var endPosition = TextsAndMaskPiece.MainText.GetEndPositionByIndex(singleText.Key);
-
-                        var positionX = (startPosition + endPosition) / 2;
-                        //2. update to subtext
-                        TextsAndMaskPiece.AddSubText(Template?.TopText + singleText.Value + new FormattedText()
-                        {
-                            X = positionX,
-                        });
-                    }
+                        X = getxPosition(v.Key),
+                    }));
                 }
 
-                Width = TextsAndMaskPiece.MainText.GetTextEndPosition(); //Lyric.Width ?? (Template?.Width ?? 700);
+                //show sub text
+                TextsAndMaskPiece.AddSubText(subTexts.Select(x => x.Value).ToList());
+
+                //show sub text
+                TextsAndMaskPiece.AddBottomText(bottomTexts.Select(x => x.Value).ToList());
+
+                Width = TextsAndMaskPiece.MainText.GetTextEndPosition();
                 Height = Lyric.Height ?? 100;
 
                 UpdateValue();
+            }
+
+            float getxPosition(int index)
+            {
+                var startPosition = TextsAndMaskPiece.MainText.GetEndPositionByIndex(index - 1);
+                var endPosition = TextsAndMaskPiece.MainText.GetEndPositionByIndex(index);
+
+                var positionX = (startPosition + endPosition) / 2;
+
+                return positionX;
             }
         }
 
