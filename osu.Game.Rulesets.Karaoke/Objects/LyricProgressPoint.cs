@@ -11,13 +11,13 @@ namespace osu.Game.Rulesets.Karaoke.Objects
     /// <summary>
     /// record what time the 
     /// </summary>
-    public class ProgressPoint : IHasCharIndex
+    public class LyricProgressPoint : IHasCharIndex
     {
-        public ProgressPoint()
+        public LyricProgressPoint()
         {
         }
 
-        public ProgressPoint(double time, int charIndex)
+        public LyricProgressPoint(double time, int charIndex)
         {
             RelativeTime = time;
             CharIndex = charIndex;
@@ -37,7 +37,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects
     /// <summary>
     /// list Progress point
     /// </summary>
-    public class ListProgressPoint : List<ProgressPoint>
+    public class ListProgressPoint : List<LyricProgressPoint>
     {
         [JsonIgnore]
         public double MinimumTime { get; set; } = 100;
@@ -47,7 +47,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         /// </summary>
         /// <returns><c>true</c>, if progress point was added, <c>false</c> otherwise.</returns>
         /// <param name="karaokeObject">Karaoke object.</param>
-        public bool AddProgressPoint(ProgressPoint point)
+        public bool AddProgressPoint(LyricProgressPoint point)
         {
             //TODO : filter
             if (this.Any(x => x.CharIndex == point.CharIndex))

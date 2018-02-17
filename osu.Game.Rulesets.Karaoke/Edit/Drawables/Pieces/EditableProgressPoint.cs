@@ -23,10 +23,10 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Pieces
         };
 
         //public 
-        public ProgressPoint ProgressPoint { get; set; }
+        public LyricProgressPoint LyricProgressPoint { get; set; }
 
         public DrawableKaraokeThumbnail DrawableKaraokeThumbnail { get; set; } //Parent
-        public int IndexOfObject => DrawableKaraokeThumbnail.Lyric.ListProgressPoint.IndexOf(ProgressPoint);
+        public int IndexOfObject => DrawableKaraokeThumbnail.Lyric.ListProgressPoint.IndexOf(LyricProgressPoint);
 
         //Drawable component
         protected OsuSpriteText ProgressDrawableText { get; set; }
@@ -54,10 +54,10 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Pieces
             get
             {
                 if (IndexOfObject == 0)
-                    return DrawableKaraokeThumbnail.Lyric.MainText.Text.Substring(0, ProgressPoint.CharIndex + 1);
+                    return DrawableKaraokeThumbnail.Lyric.MainText.Text.Substring(0, LyricProgressPoint.CharIndex + 1);
                 else
                 {
-                    var thisCharIndex = ProgressPoint.CharIndex;
+                    var thisCharIndex = LyricProgressPoint.CharIndex;
                     var lastTime = DrawableKaraokeThumbnail.Lyric.ListProgressPoint[IndexOfObject - 1].CharIndex;
                     return DrawableKaraokeThumbnail.Lyric.MainText.Text.Substring(lastTime + 1, thisCharIndex - lastTime);
                 }
@@ -94,10 +94,10 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Pieces
             Selected = false;
         }
 
-        public EditableProgressPoint(DrawableKaraokeThumbnail drawableKaraokeThumbnail, ProgressPoint progressPoin)
+        public EditableProgressPoint(DrawableKaraokeThumbnail drawableKaraokeThumbnail, LyricProgressPoint lyricProgressPoin)
         {
             DrawableKaraokeThumbnail = drawableKaraokeThumbnail;
-            ProgressPoint = progressPoin;
+            LyricProgressPoint = lyricProgressPoin;
             ProgressDrawableText = new OsuSpriteText()
             {
                 Text = ProgressText,
@@ -134,7 +134,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Pieces
                 //delete itself
                 if (args.Key == Key.Delete)
                 {
-                    DrawableKaraokeThumbnail.DeletePoint(ProgressPoint);
+                    DrawableKaraokeThumbnail.DeletePoint(LyricProgressPoint);
                 }
             }
             return base.OnKeyDown(state, args);

@@ -94,7 +94,7 @@
     <Compile Include="Objects\Singer.cs" />
     <Compile Include="Objects\LyricTemplate.cs" />
     <Compile Include="Configuration\KaraokeLyricConfig.cs" />
-    <Compile Include="Objects\ProgressPoint.cs" />
+    <Compile Include="Objects\LyricProgressPoint.cs" />
     <Compile Include="Objects\RomajiText.cs" />
     <Compile Include="Objects\SubText.cs" />
     <Compile Include="Objects\TextObject.cs" />

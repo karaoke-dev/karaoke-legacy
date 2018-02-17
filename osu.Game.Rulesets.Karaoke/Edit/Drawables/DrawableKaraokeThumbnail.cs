@@ -78,7 +78,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables
             foreach (var single in ListEditableProgressPoint)
             {
                 //update position
-                var progressPoint = single.ProgressPoint;
+                var progressPoint = single.LyricProgressPoint;
                 single.Width = ((float)progressPoint.RelativeTime - totalRelativeTime) * Ratio * Zoon;
                 single.Height = 30;
                 totalRelativeTime = (float)progressPoint.RelativeTime;
@@ -130,13 +130,13 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables
             double time = 0;
             for (int i = 0; i < ListEditableProgressPoint.Count; i++)
             {
-                if (time + minimumTime > ListEditableProgressPoint[i].ProgressPoint.RelativeTime)
+                if (time + minimumTime > ListEditableProgressPoint[i].LyricProgressPoint.RelativeTime)
                     return;
 
                 if (i >= startIndex && i <= endIndex)
-                    time = ListEditableProgressPoint[i].ProgressPoint.RelativeTime + deltaPosition;
+                    time = ListEditableProgressPoint[i].LyricProgressPoint.RelativeTime + deltaPosition;
                 else
-                    time = ListEditableProgressPoint[i].ProgressPoint.RelativeTime;
+                    time = ListEditableProgressPoint[i].LyricProgressPoint.RelativeTime;
             }
             */
 
@@ -146,7 +146,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables
                 if (i >= startIndex && i <= endIndex)
                 {
                     //not out of range
-                    ListEditableProgressPoint[i].ProgressPoint.RelativeTime = ListEditableProgressPoint[i].ProgressPoint.RelativeTime + deltaPosition;
+                    ListEditableProgressPoint[i].LyricProgressPoint.RelativeTime = ListEditableProgressPoint[i].LyricProgressPoint.RelativeTime + deltaPosition;
                 }
             }
 
@@ -156,7 +156,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables
         /// <summary>
         /// Delete single point
         /// </summary>
-        public void DeletePoint(ProgressPoint point)
+        public void DeletePoint(LyricProgressPoint point)
         {
             if (Lyric.ListProgressPoint.Count > 1)
             {
