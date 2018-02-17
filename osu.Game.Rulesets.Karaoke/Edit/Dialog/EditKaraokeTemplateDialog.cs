@@ -21,12 +21,12 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog
         public Lyric Lyric { get; set; } = new Lyric()
         {
             MainText = (TextObject)"カラオケ",
-            ListSubTextObject = new List<SubTextObject>()
+            ListSubTextObject = new List<SubText>()
             {
-                new SubTextObject() { Text = "か" },
-                new SubTextObject() { Text = "ら", CharIndex = 1 },
-                new SubTextObject() { Text = "お", CharIndex = 2 },
-                new SubTextObject() { Text = "け", CharIndex = 3 },
+                new SubText() { Text = "か" },
+                new SubText() { Text = "ら", CharIndex = 1 },
+                new SubText() { Text = "お", CharIndex = 2 },
+                new SubText() { Text = "け", CharIndex = 3 },
             },
             ListTranslate = new ListKaraokeTranslateString()
             {

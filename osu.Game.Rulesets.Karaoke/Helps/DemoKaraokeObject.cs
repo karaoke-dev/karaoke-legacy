@@ -16,12 +16,12 @@ namespace osu.Game.Rulesets.Karaoke.Helps
             var karaokeObject = new Lyric();
             karaokeObject.MainText.Text = "終わるまでは終わらないよ";
             karaokeObject.Position = new Vector2(300, 150);
-            karaokeObject.ListSubTextObject.Add(new SubTextObject
+            karaokeObject.ListSubTextObject.Add(new SubText
             {
                 Text = "お",
                 CharIndex = 0,
             });
-            karaokeObject.ListSubTextObject.Add(new SubTextObject
+            karaokeObject.ListSubTextObject.Add(new SubText
             {
                 Text = "お",
                 CharIndex = 6,
@@ -39,12 +39,12 @@ namespace osu.Game.Rulesets.Karaoke.Helps
             var karaokeObject = new Lyric();
             karaokeObject.MainText.Text = "終わるまでは終わらないよ";
             karaokeObject.Position = new Vector2(300, 150);
-            karaokeObject.ListSubTextObject.Add(new SubTextObject
+            karaokeObject.ListSubTextObject.Add(new SubText
             {
                 Text = "お",
                 CharIndex = 0,
             });
-            karaokeObject.ListSubTextObject.Add(new SubTextObject
+            karaokeObject.ListSubTextObject.Add(new SubText
             {
                 Text = "お",
                 CharIndex = 6,
@@ -64,12 +64,12 @@ namespace osu.Game.Rulesets.Karaoke.Helps
             var karaokeObject = new Lyric();
             karaokeObject.MainText.Text = "終わるまでは終わらないよ";
             karaokeObject.Position = new Vector2(300, 150);
-            karaokeObject.ListSubTextObject.Add(new SubTextObject
+            karaokeObject.ListSubTextObject.Add(new SubText
             {
                 Text = "お",
                 CharIndex = 0,
             });
-            karaokeObject.ListSubTextObject.Add(new SubTextObject
+            karaokeObject.ListSubTextObject.Add(new SubText
             {
                 Text = "お",
                 CharIndex = 6,

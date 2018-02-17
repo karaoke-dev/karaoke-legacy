@@ -116,7 +116,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         /// <summary>
         /// List little aid text,like japanese's text
         /// </summary>
-        public List<SubTextObject> ListSubTextObject { get; set; } = new List<SubTextObject>();
+        public List<SubText> ListSubTextObject { get; set; } = new List<SubText>();
 
 
         /// <summary>
