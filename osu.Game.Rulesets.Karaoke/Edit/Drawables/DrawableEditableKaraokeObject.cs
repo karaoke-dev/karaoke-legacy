@@ -122,7 +122,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables
         {
             //Add it into Karaoke object
             string langCode = LangTagConvertor.GetCode(code);
-            Lyric.AddNewTranslate(new KaraokeTranslateString(langCode, translateResult));
+            Lyric.AddNewTranslate(new LyricTranslate(langCode, translateResult));
             //base
             base.AddTranslate(code, translateResult);
         }

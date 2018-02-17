@@ -9,13 +9,13 @@ namespace osu.Game.Rulesets.Karaoke.Objects
     /// <summary>
     /// to record the string ,and which language
     /// </summary>
-    public class KaraokeTranslateString : TextObject
+    public class LyricTranslate : TextObject
     {
-        public KaraokeTranslateString()
+        public LyricTranslate()
         {
         }
 
-        public KaraokeTranslateString(string langCode, string translateText)
+        public LyricTranslate(string langCode, string translateText)
         {
             LangCode = langCode;
             Text = translateText;
@@ -30,18 +30,18 @@ namespace osu.Game.Rulesets.Karaoke.Objects
     /// <summary>
     /// list Progress point
     /// </summary>
-    public class ListKaraokeTranslateString : List<KaraokeTranslateString>
+    public class ListKaraokeTranslateString : List<LyricTranslate>
     {
         /// <summary>
         /// if add ,check this lang code is added already ?
         /// </summary>
-        /// <param name="translateString"></param>
-        public new void Add(KaraokeTranslateString translateString)
+        /// <param name="translate"></param>
+        public new void Add(LyricTranslate translate)
         {
-            if (this.Any(x => x.LangCode == translateString.LangCode))
-                FindLast(x => x.LangCode == translateString.LangCode).Text = translateString.Text;
+            if (this.Any(x => x.LangCode == translate.LangCode))
+                FindLast(x => x.LangCode == translate.LangCode).Text = translate.Text;
             else
-                base.Add(translateString);
+                base.Add(translate);
         }
     }
 }

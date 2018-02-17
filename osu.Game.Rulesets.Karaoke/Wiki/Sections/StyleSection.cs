@@ -37,7 +37,7 @@ namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
             },
             ListTranslate = new ListKaraokeTranslateString()
             {
-                new KaraokeTranslateString(LangTagConvertor.GetCode(TranslateCode.English), "Karaoke")
+                new LyricTranslate(LangTagConvertor.GetCode(TranslateCode.English), "Karaoke")
             }
         };
 

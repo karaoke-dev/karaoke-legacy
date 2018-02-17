@@ -23,7 +23,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit
         {
             new HitObjectCompositionTool<Lyric>(), //karaoke object
             //new HitObjectCompositionTool<TextObject>(),//add subtext to karaoke Object
-            //new HitObjectCompositionTool<KaraokeTranslateString>(),//add translate to Lyric
+            //new HitObjectCompositionTool<LyricTranslate>(),//add translate to Lyric
         };
     }
 }

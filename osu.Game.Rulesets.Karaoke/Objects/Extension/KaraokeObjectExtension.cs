@@ -64,7 +64,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Extension
         /// will filter if has same languate
         /// </summary>
         /// <param name="lyric">Karaoke object.</param>
-        public static bool AddNewTranslate(this Lyric lyric, KaraokeTranslateString translateString)
+        public static bool AddNewTranslate(this Lyric lyric, LyricTranslate translate)
         {
             return false;
         }

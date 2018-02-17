@@ -134,7 +134,7 @@
     <Compile Include="UI\KaraokePlayfield.cs" />
     <Compile Include="KaraokeRuleset.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Objects\KaraokeTranslateString.cs" />
+    <Compile Include="Objects\LyricTranslate.cs" />
     <Compile Include="UI\Panel\Pieces\KaraokeButton.cs" />
     <Compile Include="UI\Panel\Pieces\KaraokeIntroduceText.cs" />
     <Compile Include="UI\Panel\Pieces\KaraokePlayPauseButton.cs" />
