@@ -88,7 +88,7 @@
     <Compile Include="Edit\Dialog\Pieces\RevertableTextbox.cs" />
     <Compile Include="Objects\KaraokeInfo.cs" />
     <Compile Include="Objects\KaraokeObject.cs" />
-    <Compile Include="Objects\KaraokePosition.cs" />
+    <Compile Include="UI\PlayField\Lyric\KaraokePosition.cs" />
     <Compile Include="Objects\KaraokeSinger.cs" />
     <Compile Include="Objects\KaraokeTemplate.cs" />
     <Compile Include="Configuration\KaraokeLyricConfig.cs" />
@@ -142,8 +142,8 @@
     <Compile Include="UI\Panel\Pieces\WithUpAndDownButtonSlider.cs" />
     <Compile Include="Mods\KaraokeMod.cs" />
     <Compile Include="Objects\Extension\KaraokeObjectExtension.cs" />
-    <Compile Include="UI\PlayField\KaraokeLyricPlayField.cs" />
-    <Compile Include="UI\PlayField\KaraokeTonePlayfield.cs" />
+    <Compile Include="UI\PlayField\Lyric\KaraokeLyricPlayField.cs" />
+    <Compile Include="UI\PlayField\Note\KaraokeTonePlayfield.cs" />
     <Compile Include="UI\Tool\KaraokeTool.cs" />
     <Compile Include="Wiki\KaraokeWikiHeader.cs" />
     <Compile Include="Wiki\KaraokeWikiOverlay.cs" />
@@ -201,13 +201,7 @@
   <ItemGroup>
     <EmbeddedResource Include="Textures\Icon\Icon.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Objects\Drawables\Lyric\" />
-    <Folder Include="Objects\Drawables\Lyric\Pieces\" />
-    <Folder Include="Objects\Drawables\Note\" />
-    <Folder Include="Objects\Drawables\Common\" />
-    <Folder Include="Objects\Drawables\Common\Pieces\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
