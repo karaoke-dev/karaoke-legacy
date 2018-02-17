@@ -42,19 +42,19 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Pieces
             };
         }
 
-        public void AddMainText(TextObject textObject)
+        public void AddMainText(FormattedText textObject)
         {
             LeftSideText.AddMainText(textObject);
             RightSideText.AddMainText(textObject);
         }
 
-        public void AddSubText(TextObject textObject)
+        public void AddSubText(FormattedText textObject)
         {
             LeftSideText.AddSubText(textObject);
             RightSideText.AddSubText(textObject);
         }
 
-        public void AddBottomText(TextObject textObject)
+        public void AddBottomText(FormattedText textObject)
         {
             LeftSideText.AddBottomText(textObject);
             RightSideText.AddBottomText(textObject);

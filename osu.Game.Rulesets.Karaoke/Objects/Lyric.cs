@@ -96,7 +96,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         /// </summary>
         // TODO : list format
         [JsonIgnore]
-        public List<TextObject> MainTexts { get; private set; } = new List<TextObject>();
+        public List<FormattedText> MainTexts { get; private set; } = new List<FormattedText>();
 
         /// <summary>
         /// romaji text

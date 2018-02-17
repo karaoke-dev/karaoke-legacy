@@ -90,6 +90,7 @@
     <Compile Include="Objects\Lyric.cs" />
     <Compile Include="Objects\MainText.cs" />
     <Compile Include="Objects\RomajiTextList.cs" />
+    <Compile Include="Objects\Text.cs" />
     <Compile Include="UI\PlayField\Lyric\KaraokePosition.cs" />
     <Compile Include="Objects\Singer.cs" />
     <Compile Include="Objects\LyricTemplate.cs" />
@@ -97,7 +98,7 @@
     <Compile Include="Objects\LyricProgressPoint.cs" />
     <Compile Include="Objects\RomajiText.cs" />
     <Compile Include="Objects\SubText.cs" />
-    <Compile Include="Objects\TextObject.cs" />
+    <Compile Include="Objects\FormattedText.cs" />
     <Compile Include="Judgements\KaraokeJudgement.cs" />
     <Compile Include="KaraokeDifficulty\KraokeDifficultyCalculator.cs" />
     <Compile Include="KaraokeInputManager.cs" />

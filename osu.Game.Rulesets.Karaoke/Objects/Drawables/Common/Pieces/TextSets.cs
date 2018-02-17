@@ -37,7 +37,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Pieces
             Masking = true;
         }
 
-        public virtual void AddMainText(TextObject textObject)
+        public virtual void AddMainText(FormattedText textObject)
         {
             if (MainKaraokeText == null)
             {
@@ -50,7 +50,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Pieces
             }
         }
 
-        public void AddSubText(TextObject textObject)
+        public void AddSubText(FormattedText textObject)
         {
             var subText = new KaraokeText(textObject)
             {
@@ -60,7 +60,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Pieces
             Add(subText);
         }
 
-        public void AddBottomText(TextObject textObject)
+        public void AddBottomText(FormattedText textObject)
         {
             var bottomText = new KaraokeText(textObject)
             {

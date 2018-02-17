@@ -16,7 +16,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Pieces
 
         public List<float> ListCharEndPosition { get; protected set; } = new List<float>();
 
-        public override TextObject TextObject
+        public override FormattedText TextObject
         {
             get => base.TextObject;
             set
@@ -27,7 +27,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Pieces
             }
         }
 
-        public MainKaraokeText(TextObject textObject)
+        public MainKaraokeText(FormattedText textObject)
             : base(textObject)
         {
         }

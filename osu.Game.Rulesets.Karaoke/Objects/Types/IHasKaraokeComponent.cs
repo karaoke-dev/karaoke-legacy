@@ -10,7 +10,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Types
     /// </summary>
     public interface IHasKaraokeComponent
     {
-        TextObject MainText { get; set; }
+        FormattedText MainText { get; set; }
 
         List<SubText> ListSubTextObject { get; set; }
 

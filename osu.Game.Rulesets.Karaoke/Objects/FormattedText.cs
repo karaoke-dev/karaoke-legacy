@@ -11,7 +11,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects
     /// <summary>
     /// Text objects
     /// </summary>
-    public class TextObject : IHasText , IHasPosition
+    public class FormattedText : Text, IHasPosition
     {
         // <inheritdoc />
         /// <summary>
@@ -42,10 +42,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects
             set => Position = new Vector2(X, value);
         }
 
-        /// <summary>
-        /// text
-        /// </summary>
-        public virtual string Text { get; set; }
+       
 
         /// <summary>
         /// size of the font
@@ -58,7 +55,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         /// <param name="object1"></param>
         /// <param name="object2"></param>
         /// <returns></returns>
-        public static TextObject operator +(TextObject object1, TextObject object2)
+        public static FormattedText operator +(FormattedText object1, FormattedText object2)
         {
             if (object1 == null && object2 == null)
                 return null;
@@ -69,7 +66,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects
             if (object2 == null)
                 return object1;
 
-            return new TextObject()
+            return new FormattedText()
             {
                 Position = object1.Position + object2.Position,
                 Text = object1.Text + object2.Text,
@@ -78,12 +75,12 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         }
 
         /// <summary>
-        /// cast from string to TextObject
+        /// cast from string to FormattedText
         /// </summary>
         /// <param name="textObject"></param>
-        public static explicit operator TextObject(string textObject)
+        public static explicit operator FormattedText(string textObject)
         {
-            return new TextObject()
+            return new FormattedText()
             {
                 Text = textObject,
             };
