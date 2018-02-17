@@ -6,9 +6,9 @@ using osu.Game.Rulesets.Karaoke.Objects;
 
 namespace osu.Game.Rulesets.Karaoke.Beatmaps
 {
-    internal class KaraokeBeatmapProcessor : BeatmapProcessor<KaraokeObject>
+    internal class KaraokeBeatmapProcessor : BeatmapProcessor<Lyric>
     {
-        public override void PostProcess(Beatmap<KaraokeObject> beatmap)
+        public override void PostProcess(Beatmap<Lyric> beatmap)
         {
             //applyStacking(beatmap);
 
@@ -32,7 +32,7 @@ namespace osu.Game.Rulesets.Karaoke.Beatmaps
         }
 
 
-        //private void applyStacking(Beatmap<KaraokeObject> beatmap)
+        //private void applyStacking(Beatmap<Lyric> beatmap)
         //{
         //    const int stack_distance = 3;
         //    float stackThreshold = DrawableOsuHitObject.TIME_PREEMPT * beatmap.BeatmapInfo?.StackLeniency ?? 0.7f;

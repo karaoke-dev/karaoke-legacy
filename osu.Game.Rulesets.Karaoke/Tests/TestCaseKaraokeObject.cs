@@ -48,12 +48,12 @@ namespace osu.Game.Rulesets.Karaoke.Tests
             Add(clockAdjustContainer);
         }
 
-        private void loadHitobjects(KaraokeObject karaokeObject)
+        private void loadHitobjects(Lyric lyric)
         {
-            karaokeObject.StartTime = framedClock.CurrentTime + 160;
-            playfieldContainer.Add(new DrawableKaraokeObject(karaokeObject)
+            lyric.StartTime = framedClock.CurrentTime + 160;
+            playfieldContainer.Add(new DrawableKaraokeObject(lyric)
             {
-                Position = karaokeObject.Position + appearPosition,
+                Position = lyric.Position + appearPosition,
             });
 
             appearPosition = appearPosition + new Vector2(0, 100);

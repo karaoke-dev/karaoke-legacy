@@ -7,13 +7,13 @@ using OpenTK;
 namespace osu.Game.Rulesets.Karaoke.Helps
 {
     /// <summary>
-    /// create verious of condition of karaokeObject
+    /// create verious of condition of lyric
     /// </summary>
     public static class DemoKaraokeObject
     {
-        public static KaraokeObject WithoutProgressPoint()
+        public static Lyric WithoutProgressPoint()
         {
-            var karaokeObject = new KaraokeObject();
+            var karaokeObject = new Lyric();
             karaokeObject.MainText.Text = "終わるまでは終わらないよ";
             karaokeObject.Position = new Vector2(300, 150);
             karaokeObject.ListSubTextObject.Add(new SubTextObject
@@ -34,9 +34,9 @@ namespace osu.Game.Rulesets.Karaoke.Helps
         /// generate normal demo 001
         /// </summary>
         /// <returns></returns>
-        public static KaraokeObject GenerateDemo001()
+        public static Lyric GenerateDemo001()
         {
-            var karaokeObject = new KaraokeObject();
+            var karaokeObject = new Lyric();
             karaokeObject.MainText.Text = "終わるまでは終わらないよ";
             karaokeObject.Position = new Vector2(300, 150);
             karaokeObject.ListSubTextObject.Add(new SubTextObject
@@ -59,9 +59,9 @@ namespace osu.Game.Rulesets.Karaoke.Helps
             return karaokeObject;
         }
 
-        public static KaraokeObject GenerateWithStartAndDuration(double startTime, double duration)
+        public static Lyric GenerateWithStartAndDuration(double startTime, double duration)
         {
-            var karaokeObject = new KaraokeObject();
+            var karaokeObject = new Lyric();
             karaokeObject.MainText.Text = "終わるまでは終わらないよ";
             karaokeObject.Position = new Vector2(300, 150);
             karaokeObject.ListSubTextObject.Add(new SubTextObject

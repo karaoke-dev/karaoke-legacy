@@ -87,7 +87,7 @@
     <Compile Include="Mods\ModInterface.cs" />
     <Compile Include="Edit\Dialog\Pieces\RevertableTextbox.cs" />
     <Compile Include="Objects\KaraokeInfo.cs" />
-    <Compile Include="Objects\KaraokeObject.cs" />
+    <Compile Include="Objects\Lyric.cs" />
     <Compile Include="UI\PlayField\Lyric\KaraokePosition.cs" />
     <Compile Include="Objects\KaraokeSinger.cs" />
     <Compile Include="Objects\KaraokeTemplate.cs" />

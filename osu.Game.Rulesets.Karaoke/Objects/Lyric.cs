@@ -17,7 +17,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects
     /// base karaoke object
     /// contain single sentence , a main text and several additional text
     /// </summary>
-    public class KaraokeObject : HitObject, IHasKaraokeComponent, IHasPosition, IHasCombo, IHasEndTime, IHasPrimaryKey
+    public class Lyric : HitObject, IHasKaraokeComponent, IHasPosition, IHasCombo, IHasEndTime, IHasPrimaryKey
     {
         /// <summary>
         /// ID
@@ -172,7 +172,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         /// Splits the by progress point.
         /// </summary>
         /// <returns>The by progress point.</returns>
-        public List<KaraokeObject> SplitByProgressPoint()
+        public List<Lyric> SplitByProgressPoint()
         {
             //TODO : implement
             return null;

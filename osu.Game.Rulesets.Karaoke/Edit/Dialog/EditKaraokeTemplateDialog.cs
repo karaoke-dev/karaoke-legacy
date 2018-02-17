@@ -18,7 +18,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog
 
         public KaraokeTemplate KarokeTemplate { get; set; } = new KaraokeTemplate();
 
-        public KaraokeObject KaraokeObject { get; set; } = new KaraokeObject()
+        public Lyric Lyric { get; set; } = new Lyric()
         {
             MainText = (TextObject)"カラオケ",
             ListSubTextObject = new List<SubTextObject>()
@@ -36,18 +36,18 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog
 
         protected DrawableKaraokeTemplate DrawableKaraokeTemplate;
 
-        public EditKaraokeTemplateDialog(KaraokeEditPlayfield editPlayField, KaraokeObject demoKaraokeText)
+        public EditKaraokeTemplateDialog(KaraokeEditPlayfield editPlayField, Lyric demoKaraokeText)
         {
             //KarokeTemplate =
 
             if (demoKaraokeText != null)
-                KaraokeObject = demoKaraokeText;
+                Lyric = demoKaraokeText;
         }
 
         public override void InitialDialog()
         {
             //create drawable
-            MainContext.Add(DrawableKaraokeTemplate = new DrawableKaraokeTemplate(KaraokeObject, KarokeTemplate)
+            MainContext.Add(DrawableKaraokeTemplate = new DrawableKaraokeTemplate(Lyric, KarokeTemplate)
             {
                 Position = new Vector2(250, 100)
             });

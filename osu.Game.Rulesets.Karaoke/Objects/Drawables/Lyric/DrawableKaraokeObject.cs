@@ -17,7 +17,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables
     /// <summary>
     /// Karaoke Text
     /// </summary>
-    public class DrawableKaraokeObject : DrawableHitObject<KaraokeObject>, IAmDrawableKaraokeObject
+    public class DrawableKaraokeObject : DrawableHitObject<Lyric>, IAmDrawableKaraokeObject
     {
         //Const
         public const float TIME_FADEIN = 100;
@@ -39,7 +39,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables
         /// Gets the karaoke object.
         /// </summary>
         /// <value>The karaoke object.</value>
-        public KaraokeObject KaraokeObject => HitObject;
+        public Lyric Lyric => HitObject;
 
         /// <summary>
         /// Gets or sets the config.
@@ -105,10 +105,10 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables
         /// <value>The preemptive time.</value>
         public double PreemptiveTime
         {
-            get => KaraokeObject.PreemptiveTime ?? 600;
+            get => Lyric.PreemptiveTime ?? 600;
             set
             {
-                KaraokeObject.PreemptiveTime = value;
+                Lyric.PreemptiveTime = value;
                 UpdateDrawable();
             }
         }
@@ -127,7 +127,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables
 
 
 
-        public DrawableKaraokeObject(KaraokeObject hitObject)
+        public DrawableKaraokeObject(Lyric hitObject)
             : base(hitObject)
         {
             Alpha = 0;
@@ -149,10 +149,10 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables
         {
             TextsAndMaskPiece.ClearAllText();
             //main text
-            TextsAndMaskPiece.AddMainText(Template?.MainText + KaraokeObject.MainText);
+            TextsAndMaskPiece.AddMainText(Template?.MainText + Lyric.MainText);
 
             //subtext
-            foreach (var singleText in KaraokeObject.ListSubTextObject)
+            foreach (var singleText in Lyric.ListSubTextObject)
             {
                 //1. recalculate position
                 var startPosition = TextsAndMaskPiece.MainText.GetEndPositionByIndex(singleText.CharIndex - 1);
@@ -162,8 +162,8 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables
                 TextsAndMaskPiece.AddSubText(Template?.SubText + singleText);
             }
 
-            Width = TextsAndMaskPiece.MainText.GetTextEndPosition(); //KaraokeObject.Width ?? (Template?.Width ?? 700);
-            Height = KaraokeObject.Height ?? (Template?.Height ?? 100);
+            Width = TextsAndMaskPiece.MainText.GetTextEndPosition(); //Lyric.Width ?? (Template?.Width ?? 700);
+            Height = Lyric.Height ?? (Template?.Height ?? 100);
 
             UpdateValue();
         }
@@ -176,7 +176,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables
             TextsAndMaskPiece.SetColor(textColor, backgroundColor);
 
             //translate text
-            TranslateText.TextObject = Template?.TranslateText + KaraokeObject.ListTranslate.Where(x => x.LangCode == LangTagConvertor.GetCode(TranslateCode)).FirstOrDefault();
+            TranslateText.TextObject = Template?.TranslateText + Lyric.ListTranslate.Where(x => x.LangCode == LangTagConvertor.GetCode(TranslateCode)).FirstOrDefault();
             TranslateText.Colour = Template?.TranslateTextColor ?? Color4.White;
 
             Scale = new Vector2(Template?.Scale ?? 1);

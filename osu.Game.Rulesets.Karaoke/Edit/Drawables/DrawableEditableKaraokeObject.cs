@@ -36,10 +36,10 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables
             new OsuMenuItem(@"Destructive option", MenuItemType.Destructive),
         };
 
-        public DrawableEditableKaraokeObject(KaraokeObject hitObject)
+        public DrawableEditableKaraokeObject(Lyric hitObject)
             : base(hitObject)
         {
-            DrawableKaraokeThumbnail = new DrawableKaraokeThumbnail(KaraokeObject)
+            DrawableKaraokeThumbnail = new DrawableKaraokeThumbnail(Lyric)
             {
                 Position = new Vector2(0, -100),
                 Width = 300,
@@ -52,7 +52,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables
         protected override void UpdateDrawable()
         {
             base.UpdateDrawable();
-            EditableMainKaraokeText.TextObject = Template?.MainText + KaraokeObject.MainText;
+            EditableMainKaraokeText.TextObject = Template?.MainText + Lyric.MainText;
             EditableMainKaraokeText.Alpha = 1f;
         }
 
@@ -110,11 +110,11 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables
 
         public void AddPoint(int index)
         {
-            ProgressPoint previousPoint = KaraokeObject.GetFirstProgressPointByIndex(index);
-            ProgressPoint nextPoint = KaraokeObject.GetLastProgressPointByIndex(index);
+            ProgressPoint previousPoint = Lyric.GetFirstProgressPointByIndex(index);
+            ProgressPoint nextPoint = Lyric.GetLastProgressPointByIndex(index);
             double deltaTime = ((previousPoint?.RelativeTime ?? 0) + (nextPoint?.RelativeTime ?? previousPoint.RelativeTime + 500)) / 2;
             ProgressPoint point = new ProgressPoint(deltaTime, index);
-            KaraokeObject.ListProgressPoint.AddProgressPoint(point);
+            Lyric.ListProgressPoint.AddProgressPoint(point);
             DrawableKaraokeThumbnail.UpdateView();
         }
 
@@ -122,7 +122,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables
         {
             //Add it into Karaoke object
             string langCode = LangTagConvertor.GetCode(code);
-            KaraokeObject.AddNewTranslate(new KaraokeTranslateString(langCode, translateResult));
+            Lyric.AddNewTranslate(new KaraokeTranslateString(langCode, translateResult));
             //base
             base.AddTranslate(code, translateResult);
         }

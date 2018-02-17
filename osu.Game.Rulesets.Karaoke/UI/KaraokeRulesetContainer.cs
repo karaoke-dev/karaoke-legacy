@@ -19,7 +19,7 @@ using osu.Game.Rulesets.Karaoke.Configuration;
 
 namespace osu.Game.Rulesets.Karaoke.UI
 {
-    public class KaraokeRulesetContainer : RulesetContainer<KaraokeObject>
+    public class KaraokeRulesetContainer : RulesetContainer<Lyric>
     {
         public KaraokeRulesetContainer(Ruleset ruleset, WorkingBeatmap beatmap, bool isForCurrentRuleset)
             : base(ruleset, beatmap, isForCurrentRuleset)
@@ -29,17 +29,17 @@ namespace osu.Game.Rulesets.Karaoke.UI
 
         public override ScoreProcessor CreateScoreProcessor() => new KaraokeScoreProcessor(this);
 
-        protected override BeatmapConverter<KaraokeObject> CreateBeatmapConverter() => new KaraokeBeatmapConverter();
+        protected override BeatmapConverter<Lyric> CreateBeatmapConverter() => new KaraokeBeatmapConverter();
 
-        protected override BeatmapProcessor<KaraokeObject> CreateBeatmapProcessor() => new KaraokeBeatmapProcessor();
+        protected override BeatmapProcessor<Lyric> CreateBeatmapProcessor() => new KaraokeBeatmapProcessor();
 
         protected override Playfield CreatePlayfield() => new KaraokePlayfield(Ruleset, WorkingBeatmap, this);
 
         public override PassThroughInputManager CreateInputManager() => new KaraokeInputManager(Ruleset.RulesetInfo);
 
-        protected override DrawableHitObject<KaraokeObject> GetVisualRepresentation(KaraokeObject h)
+        protected override DrawableHitObject<Lyric> GetVisualRepresentation(Lyric h)
         {
-            if (h is KaraokeObject karaokeObject)
+            if (h is Lyric karaokeObject)
             {
                 return new DrawableKaraokeObject(karaokeObject);
             }

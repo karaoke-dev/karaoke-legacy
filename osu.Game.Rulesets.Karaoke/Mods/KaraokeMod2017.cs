@@ -6,7 +6,7 @@ namespace osu.Game.Rulesets.Karaoke.Mods
     /// <summary>
     /// Event mod in 2017
     /// </summary>
-    public class ChristmasMod : SnowMod //, IApplicableMod<KaraokeObject>
+    public class ChristmasMod : SnowMod //, IApplicableMod<Lyric>
     {
         public override string Name => "Happy Christmas!";
 

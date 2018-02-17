@@ -25,7 +25,7 @@ namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
 
         public KaraokeTemplate KarokeTemplate { get; set; } = new KaraokeTemplate();
 
-        public KaraokeObject KaraokeObject { get; set; } = new KaraokeObject()
+        public Lyric Lyric { get; set; } = new Lyric()
         {
             MainText = (TextObject)"カラオケ",
             ListSubTextObject = new List<SubTextObject>()
@@ -69,7 +69,7 @@ namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
                         Height = 250,
                         Children = new Drawable[]
                         {
-                            new DrawableKaraokeTemplate(KaraokeObject, KarokeTemplate)
+                            new DrawableKaraokeTemplate(Lyric, KarokeTemplate)
                             {
                                 Position=new Vector2(100,-5),
                                 Anchor = Anchor.Centre,
