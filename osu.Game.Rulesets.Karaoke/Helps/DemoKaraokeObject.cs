@@ -16,15 +16,13 @@ namespace osu.Game.Rulesets.Karaoke.Helps
             var karaokeObject = new Lyric();
             karaokeObject.MainText = MainTextList.SetJapaneseLyric("終わるまでは終わらないよ");
             karaokeObject.Position = new Vector2(300, 150);
-            karaokeObject.SubTexts.Add(new SubText
+            karaokeObject.SubTexts.Add(0,new SubText
             {
                 Text = "お",
-                CharIndex = 0,
             });
-            karaokeObject.SubTexts.Add(new SubText
+            karaokeObject.SubTexts.Add(6,new SubText
             {
                 Text = "お",
-                CharIndex = 6,
             });
 
             return karaokeObject;
@@ -39,15 +37,13 @@ namespace osu.Game.Rulesets.Karaoke.Helps
             var karaokeObject = new Lyric();
             karaokeObject.MainText = MainTextList.SetJapaneseLyric("終わるまでは終わらないよ");
             karaokeObject.Position = new Vector2(300, 150);
-            karaokeObject.SubTexts.Add(new SubText
+            karaokeObject.SubTexts.Add(0, new SubText
             {
                 Text = "お",
-                CharIndex = 0,
             });
-            karaokeObject.SubTexts.Add(new SubText
+            karaokeObject.SubTexts.Add(6, new SubText
             {
                 Text = "お",
-                CharIndex = 6,
             });
 
             karaokeObject.ProgressPoints.AddProgressPoint(new LyricProgressPoint(0, 0));
@@ -64,15 +60,13 @@ namespace osu.Game.Rulesets.Karaoke.Helps
             var karaokeObject = new Lyric();
             karaokeObject.MainText = MainTextList.SetJapaneseLyric("終わるまでは終わらないよ");
             karaokeObject.Position = new Vector2(300, 150);
-            karaokeObject.SubTexts.Add(new SubText
+            karaokeObject.SubTexts.Add(0, new SubText
             {
                 Text = "お",
-                CharIndex = 0,
             });
-            karaokeObject.SubTexts.Add(new SubText
+            karaokeObject.SubTexts.Add(6, new SubText
             {
                 Text = "お",
-                CharIndex = 6,
             });
             karaokeObject.StartTime = startTime;
 
