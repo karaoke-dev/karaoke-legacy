@@ -173,14 +173,14 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
                 {
                     if (Config.RomajiFirst)
                     {
-                        bottomTexts = Lyric.MainText.ToDictionary(k => k.Key, v => (Template?.TopText + v.Value + new FormattedText()
+                        bottomTexts = Lyric.MainText.ToDictionary(k => k.Key, v => (Template?.BottomText + v.Value + new FormattedText()
                         {
                             X = getxPosition(v.Key),
                         }));
                     }
                     else
                     {
-                        bottomTexts = Lyric.RomajiTextListRomajiTexts.ToDictionary(k => k.Key, v => (Template?.TopText + v.Value + new FormattedText()
+                        bottomTexts = Lyric.RomajiTextListRomajiTexts.ToDictionary(k => k.Key, v => (Template?.BottomText + v.Value + new FormattedText()
                         {
                             X = getxPosition(v.Key),
                         }));
