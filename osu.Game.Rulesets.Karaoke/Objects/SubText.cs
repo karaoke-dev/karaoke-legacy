@@ -18,6 +18,6 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         /// <summary>
         /// relativa to textIndex
         /// </summary>
-        public int? CharEndIndex { get; set; }
+        public int? CharLength { get; set; }
     }
 }
