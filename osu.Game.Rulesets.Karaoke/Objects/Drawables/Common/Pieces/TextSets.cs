@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
+using osu.Game.Rulesets.Karaoke.Objects.Types;
 using OpenTK;
 using OpenTK.Graphics;
 
@@ -36,7 +37,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Common.Pieces
             Masking = true;
         }
 
-        public virtual void AddMainText(FormattedText formattedText, MainTextList textObject)
+        public virtual void AddMainText(FormattedText formattedText, List<TextComponent> textObject)
         {
             if (MainKaraokeText == null)
             {

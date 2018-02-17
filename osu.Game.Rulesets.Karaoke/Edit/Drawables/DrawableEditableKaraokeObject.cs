@@ -1,6 +1,7 @@
 ﻿// Copyright (c) 2007-2018 ppy Pty Ltd <contact@ppy.sh>.
 // Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
 
+using System.Linq;
 using osu.Framework.Graphics.Cursor;
 using osu.Framework.Graphics.UserInterface;
 using osu.Framework.Input;
@@ -53,7 +54,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables
         protected override void UpdateDrawable()
         {
             base.UpdateDrawable();
-            EditableMainKaraokeText.MainTextObject = Lyric.MainText;
+            EditableMainKaraokeText.MainTextObject = Lyric.MainText.ToList<TextComponent>();
             EditableMainKaraokeText.TextObject = Template?.MainText;
             EditableMainKaraokeText.Alpha = 1f;
         }

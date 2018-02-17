@@ -5,12 +5,13 @@ using System.Collections.Generic;
 using System.Linq;
 using osu.Framework.Allocation;
 using osu.Framework.IO.Stores;
+using osu.Game.Rulesets.Karaoke.Objects.Types;
 
 namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Common.Pieces
 {
     public class MainKaraokeText : KaraokeText
     {
-        private MainTextList _mainTextObject;
+        private List<TextComponent> _mainTextObject;
 
         protected FontStore FontStore = null;
 
@@ -18,7 +19,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Common.Pieces
 
         public List<float> ListCharEndPosition { get; protected set; } = new List<float>();
 
-        public MainTextList MainTextObject
+        public List<TextComponent> MainTextObject
         {
             get => _mainTextObject;
             set
@@ -34,12 +35,14 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Common.Pieces
             }
         }
 
+        public string Delimiter { get; set; } = "";
+
         protected override void UpdateText()
         {
-            Text = MainTextObject?.Text;
+            Text = MainTextObject?.Select(i => i.Text).Aggregate((i, j) => i + Delimiter + j);
         }
 
-        public MainKaraokeText(FormattedText formattedText,MainTextList textObject) : base(formattedText)
+        public MainKaraokeText(FormattedText formattedText , List<TextComponent> textObject) : base(formattedText)
         {
             MainTextObject = textObject;
         }
