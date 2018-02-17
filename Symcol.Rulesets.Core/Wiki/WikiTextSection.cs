@@ -15,6 +15,7 @@ namespace Symcol.Rulesets.Core.Wiki
             AutoSizeAxes = Axes.Y;
             RelativeSizeAxes = Axes.X;
 
+
             Children = new Drawable[]
             {
                 texContainer = new OsuTextFlowContainer(t => { t.TextSize = 20; })
