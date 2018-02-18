@@ -13,7 +13,7 @@ namespace osu.Game.Rulesets.Karaoke.Mods
     /// will force open the translate for lyrics
     /// even you are not open it in the config
     /// </summary>
-    public class KaraokeOpenTranslate : Mod
+    public class KaraokeModOpenTranslate : Mod
     {
         public override string Name => "Translate";
         public override string ShortenedName => "Tr";

@@ -12,7 +12,7 @@ namespace osu.Game.Rulesets.Karaoke.Mods
     /// will force close the translate for lyrics
     /// even you are open it in the config.
     /// </summary>
-    public class KaraokeCloseTranslate : Mod
+    public class KaraokeModCloseTranslate : Mod
     {
         public override string Name => "OffTranslate";
         public override string ShortenedName => "Tr_Close";

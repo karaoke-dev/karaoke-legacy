@@ -16,7 +16,7 @@ namespace osu.Game.Rulesets.Karaoke.Mods
     /// will ignore the songs you select
     /// maybe
     /// </summary>
-    public class KaraokeTutorial : ModNoFail
+    public class KaraokeModTutorial : ModNoFail
     {
         public override string Name => "Tutorial";
         public override string ShortenedName => "Tu";

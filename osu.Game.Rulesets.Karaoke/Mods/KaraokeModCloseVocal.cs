@@ -9,15 +9,15 @@ using OpenTK;
 namespace osu.Game.Rulesets.Karaoke.Mods
 {
     /// <summary>
-    /// not even shows any lyrics
+    /// if sound trach has two parts, close the vocal part
     /// </summary>
-    public class KaraokeCloseLyrics : Mod
+    public class KaraokeModCloseVocal : Mod
     {
-        public override string Name => "CloseLyrics";
-        public override string ShortenedName => "Cl";
+        public override string Name => "CloseVocal";
+        public override string ShortenedName => "CloseVocal";
         public override double ScoreMultiplier => 1;
-        public override string Description => "not even shows any lyrics.";
-        public override FontAwesome Icon => FontAwesome.fa_osu_mod_suddendeath;
+        public override string Description => "if sound trach has two parts, close the vocal part.";
+        public override FontAwesome Icon => FontAwesome.fa_osu_mod_easy;
         public override bool Ranked => true;
     }
 }

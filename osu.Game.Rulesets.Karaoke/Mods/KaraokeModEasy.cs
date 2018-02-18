@@ -11,7 +11,7 @@ namespace osu.Game.Rulesets.Karaoke.Mods
     /// <summary>
     /// just make slower
     /// </summary>
-    public class KaraokeEasy : ModHalfTime
+    public class KaraokeModEasy : ModHalfTime
     {
         public override string Name => "KaraokeEasy";
         public override string ShortenedName => "EZ";

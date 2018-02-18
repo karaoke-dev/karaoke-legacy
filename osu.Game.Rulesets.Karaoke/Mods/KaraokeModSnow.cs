@@ -14,7 +14,7 @@ namespace osu.Game.Rulesets.Karaoke.Mods
     /// <summary>
     /// snow mod
     /// </summary>
-    public class SnowMod : Mod, IHasLayer
+    public class KaraokeModSnow : Mod, IHasLayer
     {
         public override string Name => "Snow";
         public override string ShortenedName => "SW";

@@ -9,15 +9,15 @@ using OpenTK;
 namespace osu.Game.Rulesets.Karaoke.Mods
 {
     /// <summary>
-    /// if sound trach has two parts, close the vocal part
+    /// make lytric Transparent.
     /// </summary>
-    public class CloseVocal : Mod
+    public class KaraokeModTransparentLyrics : Mod
     {
-        public override string Name => "CloseVocal";
-        public override string ShortenedName => "CloseVocal";
+        public override string Name => "Transparent";
+        public override string ShortenedName => "Transparent";
         public override double ScoreMultiplier => 1;
-        public override string Description => "if sound trach has two parts, close the vocal part.";
-        public override FontAwesome Icon => FontAwesome.fa_osu_mod_easy;
+        public override string Description => "make lytric Transparent.";
+        public override FontAwesome Icon => FontAwesome.fa_osu_mod_flashlight;
         public override bool Ranked => true;
     }
 }

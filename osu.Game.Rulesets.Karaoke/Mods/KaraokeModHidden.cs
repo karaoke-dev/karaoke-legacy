@@ -9,20 +9,15 @@ using OpenTK;
 namespace osu.Game.Rulesets.Karaoke.Mods
 {
     /// <summary>
-    /// just make faster
+    /// will hide the lyrics
     /// </summary>
-    public class KaraokeDoubleTime : ModDoubleTime
+    public class KaraokeModHidden : ModHidden
     {
-        public override string Name => "KaraokeHard";
+        public override string Name => "Hidden";
         public override string ShortenedName => "HD";
         public override double ScoreMultiplier => 1;
-        public override string Description => "just make defult song speed faster.";
-        public override FontAwesome Icon => FontAwesome.fa_osu_mod_doubletime;
+        public override string Description => "Hidden the lyric at the start time.";
+        public override FontAwesome Icon => FontAwesome.fa_osu_mod_hidden;
         public override bool Ranked => true;
-
-        public override void ApplyToClock(IAdjustableClock clock)
-        {
-            clock.Rate = 1.25;
-        }
     }
 }

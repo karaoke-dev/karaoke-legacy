@@ -9,15 +9,15 @@ using OpenTK;
 namespace osu.Game.Rulesets.Karaoke.Mods
 {
     /// <summary>
-    /// will hide the lyrics
+    /// if sound trach has two parts, open the vocal part
     /// </summary>
-    public class KaraokeHidden : ModHidden
+    public class KaraokeModOpenVocal : Mod
     {
-        public override string Name => "Hidden";
-        public override string ShortenedName => "HD";
+        public override string Name => "OpenVocal";
+        public override string ShortenedName => "OpenVocal";
         public override double ScoreMultiplier => 1;
-        public override string Description => "Hidden the lyric at the start time.";
-        public override FontAwesome Icon => FontAwesome.fa_osu_mod_hidden;
+        public override string Description => "if sound trach has two parts, open the vocal part.";
+        public override FontAwesome Icon => FontAwesome.fa_osu_mod_relax;
         public override bool Ranked => true;
     }
 }

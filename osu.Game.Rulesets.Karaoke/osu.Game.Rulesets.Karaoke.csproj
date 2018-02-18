@@ -144,7 +144,7 @@
     <Compile Include="UI\Panel\Pieces\KaraokePlayPauseButton.cs" />
     <Compile Include="UI\Panel\Pieces\KaraokeTimerSliderBar.cs" />
     <Compile Include="UI\Panel\Pieces\WithUpAndDownButtonSlider.cs" />
-    <Compile Include="Mods\SnowMod.cs" />
+    <Compile Include="Mods\KaraokeModSnow.cs" />
     <Compile Include="Objects\Extension\KaraokeObjectExtension.cs" />
     <Compile Include="UI\PlayField\Lyric\KaraokeLyricPlayField.cs" />
     <Compile Include="UI\PlayField\Note\KaraokeTonePlayfield.cs" />
@@ -172,18 +172,18 @@
     <Compile Include="Objects\Drawables\Note\DrawableKaraokeNote.cs" />
     <Compile Include="Objects\Drawables\Common\Pieces\TextSets.cs" />
     <Compile Include="Objects\Types\IHasText.cs" />
-    <Compile Include="Mods\Mod2017\ChristmasMod.cs" />
+    <Compile Include="Mods\Mod2017\KaraokeMod2017_Christmas.cs" />
     <Compile Include="Mods\Types\IHasLayer.cs" />
-    <Compile Include="Mods\KaraokeTutorial.cs" />
-    <Compile Include="Mods\KaraokeOpenTranslate.cs" />
-    <Compile Include="Mods\KaraokeCloseTranslate.cs" />
-    <Compile Include="Mods\KaraokeEasy.cs" />
-    <Compile Include="Mods\KaraokeDoubleTime.cs" />
-    <Compile Include="Mods\CloseVocal.cs" />
-    <Compile Include="Mods\OpenVocal.cs" />
-    <Compile Include="Mods\KaraokeHidden.cs" />
-    <Compile Include="Mods\KaraokeTransparentLyrics.cs" />
-    <Compile Include="Mods\KaraokeCloseLyrics.cs" />
+    <Compile Include="Mods\KaraokeModTutorial.cs" />
+    <Compile Include="Mods\KaraokeModOpenTranslate.cs" />
+    <Compile Include="Mods\KaraokeModCloseTranslate.cs" />
+    <Compile Include="Mods\KaraokeModEasy.cs" />
+    <Compile Include="Mods\KaraokeModDoubleTime.cs" />
+    <Compile Include="Mods\KaraokeModCloseVocal.cs" />
+    <Compile Include="Mods\KaraokeModOpenVocal.cs" />
+    <Compile Include="Mods\KaraokeModHidden.cs" />
+    <Compile Include="Mods\KaraokeModTransparentLyrics.cs" />
+    <Compile Include="Mods\KaraokeModCloseLyrics.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\osu.licenseheader">
