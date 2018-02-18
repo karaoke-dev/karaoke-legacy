@@ -12,7 +12,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects
     public class LyricTemplate
     {
         /// <summary>
-        /// sub text
+        /// top text
         /// </summary>
         public FormattedText TopText { get; set; } = new FormattedText()
         {
@@ -30,7 +30,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         };
 
         /// <summary>
-        /// main text
+        /// bottom text
         /// </summary>
         public FormattedText BottomText { get; set; } = new FormattedText()
         {

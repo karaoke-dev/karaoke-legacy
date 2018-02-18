@@ -126,7 +126,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
 
         //Drawable
         public TextsAndMask TextsAndMaskPiece { get; set; } = new TextsAndMask();
-        public KaraokeText TranslateText { get; set; } = new KaraokeText(null);
+        public TranslateString TranslateText { get; set; } = new TranslateString(null);
 
 
         public DrawableLyric(Objects.Lyric hitObject)
