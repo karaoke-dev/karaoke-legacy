@@ -7,7 +7,7 @@ using osu.Game.Rulesets.Karaoke.Tools.Translator;
 
 namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
 {
-    public interface IAmDrawableLyricObject
+    public interface IAmDrawableLyric
     {
         /// <summary>
         /// Object

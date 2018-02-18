@@ -41,7 +41,7 @@ namespace osu.Game.Rulesets.Karaoke.UI
         {
             if (h is Lyric karaokeObject)
             {
-                return new DrawableLyricObject(karaokeObject);
+                return new DrawableLyric(karaokeObject);
             }
 
             return null;

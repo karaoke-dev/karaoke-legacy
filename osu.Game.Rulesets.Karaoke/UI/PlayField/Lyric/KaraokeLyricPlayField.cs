@@ -40,7 +40,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.PlayField.Lyric
     {
         public KaraokeRulesetContainer KaraokeRulesetContainer { get; set; }
 
-        public List<IAmDrawableLyricObject> ListDrawableKaraokeObject { get; set; } = new List<IAmDrawableLyricObject>();
+        public List<IAmDrawableLyric> ListDrawableKaraokeObject { get; set; } = new List<IAmDrawableLyric>();
 
         public KaraokeLyricConfig Style { get; set; }
         public LyricTemplate Template { get; set; }
@@ -51,18 +51,18 @@ namespace osu.Game.Rulesets.Karaoke.UI.PlayField.Lyric
             h.Depth = (float)h.HitObject.StartTime;
 
             //update template
-            UpdateObjectTemplate(h as DrawableLyricObject);
+            UpdateObjectTemplate(h as DrawableLyric);
 
             //update position
-            UpdateObjectAutomaticallyPosition(h as DrawableLyricObject);
+            UpdateObjectAutomaticallyPosition(h as DrawableLyric);
 
             //add to list
-            ListDrawableKaraokeObject.Add(h as DrawableLyricObject);
+            ListDrawableKaraokeObject.Add(h as DrawableLyric);
 
             base.Add(h);
         }
 
-        public void UpdateObjectTemplate(DrawableLyricObject drawableKaraokeObject)
+        public void UpdateObjectTemplate(DrawableLyric drawableKaraokeObject)
         {
             //get template 
             LyricTemplate template = null;
@@ -97,7 +97,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.PlayField.Lyric
         /// </summary>
         /// <param name="karaokeField"></param>
         /// <param name="karaokeObject"></param>
-        public void UpdateObjectAutomaticallyPosition(DrawableLyricObject drawableKaraokeObject)
+        public void UpdateObjectAutomaticallyPosition(DrawableLyric drawableKaraokeObject)
         {
             //get position
             KaraokePosition position = null;
@@ -162,7 +162,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.PlayField.Lyric
         /// </summary>
         /// <param name="karaokeField"></param>
         /// <param name="karaokeObject"></param>
-        public static void UpdateObjectPreemptiveTime(DrawableLyricObject karaokeObject)
+        public static void UpdateObjectPreemptiveTime(DrawableLyric karaokeObject)
         {
         }
     }

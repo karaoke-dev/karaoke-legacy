@@ -16,7 +16,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
     /// <summary>
     /// use to show the size and spacing of the template / single Karaoke object
     /// </summary>
-    public class DrawableKaraokeTemplate : DrawableLyricObject
+    public class DrawableKaraokeTemplate : DrawableLyric
     {
         //single part
         protected UpDownValueIndicator SubTextSegmentedControl;

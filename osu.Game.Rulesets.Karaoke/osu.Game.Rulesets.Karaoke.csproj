@@ -169,8 +169,8 @@
     <Compile Include="Objects\Drawables\Lyric\Pieces\ProgressPointBar.cs" />
     <Compile Include="Objects\Drawables\Lyric\Pieces\TextsAndMask.cs" />
     <Compile Include="Objects\Drawables\Lyric\Pieces\TranslateString.cs" />
-    <Compile Include="Objects\Drawables\Lyric\DrawableLyricObject.cs" />
-    <Compile Include="Objects\Drawables\Lyric\Types\IAmDrawableLyricObject.cs" />
+    <Compile Include="Objects\Drawables\Lyric\DrawableLyric.cs" />
+    <Compile Include="Objects\Drawables\Lyric\Types\IAmDrawableLyric.cs" />
     <Compile Include="Objects\Drawables\Note\DrawableKaraokeNote.cs" />
     <Compile Include="Objects\Drawables\Common\Pieces\TextSets.cs" />
     <Compile Include="Objects\Types\IHasText.cs" />

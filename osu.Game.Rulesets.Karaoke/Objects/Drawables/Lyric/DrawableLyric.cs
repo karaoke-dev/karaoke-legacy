@@ -20,7 +20,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
     /// <summary>
     /// Karaoke Text
     /// </summary>
-    public class DrawableLyricObject : DrawableHitObject<Objects.Lyric>, IAmDrawableLyricObject
+    public class DrawableLyric : DrawableHitObject<Objects.Lyric>, IAmDrawableLyric
     {
         //Const
         public const float TIME_FADEIN = 100;
@@ -129,7 +129,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
         public KaraokeText TranslateText { get; set; } = new KaraokeText(null);
 
 
-        public DrawableLyricObject(Objects.Lyric hitObject)
+        public DrawableLyric(Objects.Lyric hitObject)
             : base(hitObject)
         {
             Alpha = 0;
