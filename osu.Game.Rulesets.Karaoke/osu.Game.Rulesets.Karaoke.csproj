@@ -84,8 +84,6 @@
     <Compile Include="Beatmaps\KaraokeBeatmapConverter.cs" />
     <Compile Include="Beatmaps\KaraokeBeatmapProcessor.cs" />
     <Compile Include="Helps\DIctionaryHelper.cs" />
-    <Compile Include="Mods\KaraokeMod2017.cs" />
-    <Compile Include="Mods\ModInterface.cs" />
     <Compile Include="Edit\Dialog\Pieces\RevertableTextbox.cs" />
     <Compile Include="Beatmaps\KaraokeInfo.cs" />
     <Compile Include="Objects\LyricProgressPointList.cs" />
@@ -174,6 +172,8 @@
     <Compile Include="Objects\Drawables\Note\DrawableKaraokeNote.cs" />
     <Compile Include="Objects\Drawables\Common\Pieces\TextSets.cs" />
     <Compile Include="Objects\Types\IHasText.cs" />
+    <Compile Include="Mods\Mod2017\ChristmasMod.cs" />
+    <Compile Include="Mods\Types\IHasLayer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\osu.licenseheader">
@@ -207,6 +207,11 @@
     <EmbeddedResource Include="Textures\Icon\Icon.png" />
   </ItemGroup>
   <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Mods\Mod2017\" />
+    <Folder Include="Mods\Mod2018\" />
+    <Folder Include="Mods\Types\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
