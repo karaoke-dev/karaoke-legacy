@@ -36,6 +36,6 @@ namespace osu.Game.Rulesets.Karaoke.UI.Interface
         /// <summary>
         /// list drawable Object
         /// </summary>
-        List<IAmDrawableKaraokeObject> ListDrawableKaraokeObject { get; set; }
+        List<IAmDrawableLyricObject> ListDrawableKaraokeObject { get; set; }
     }
 }

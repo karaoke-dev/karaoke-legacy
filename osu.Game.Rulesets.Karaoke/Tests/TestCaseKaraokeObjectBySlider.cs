@@ -21,7 +21,7 @@ namespace osu.Game.Rulesets.Karaoke.Tests
         /// <summary>
         /// Drawable Object
         /// </summary>
-        public DrawableKaraokeObject DrawableKaraokeObject { get; set; }
+        public DrawableLyricObject DrawableKaraokeObject { get; set; }
 
         public Lyric Lyric { get; set; }
 
@@ -30,7 +30,7 @@ namespace osu.Game.Rulesets.Karaoke.Tests
         {
             Lyric = DemoKaraokeObject.GenerateDemo001();
 
-            DrawableKaraokeObject = new DrawableKaraokeObject(Lyric)
+            DrawableKaraokeObject = new DrawableLyricObject(Lyric)
             {
                 Position = Lyric.Position,
                 ProgressUpdateByTime = false,

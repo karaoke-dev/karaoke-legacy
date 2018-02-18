@@ -20,7 +20,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables
     /// Right click :
     /// Translate >> Add
     /// </summary>
-    public class DrawableEditableKaraokeObject : DrawableKaraokeObject, IHasContextMenu
+    public class DrawableEditableKaraokeObject : DrawableLyricObject, IHasContextMenu
     {
         protected DrawableKaraokeThumbnail DrawableKaraokeThumbnail { get; set; }
         protected EditableMainKaraokeText EditableMainKaraokeText { get; set; } = new EditableMainKaraokeText(null, null);

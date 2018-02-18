@@ -51,7 +51,7 @@ namespace osu.Game.Rulesets.Karaoke.Tests
         private void loadHitobjects(Lyric lyric)
         {
             lyric.StartTime = framedClock.CurrentTime + 160;
-            playfieldContainer.Add(new DrawableKaraokeObject(lyric)
+            playfieldContainer.Add(new DrawableLyricObject(lyric)
             {
                 Position = lyric.Position + appearPosition,
             });
