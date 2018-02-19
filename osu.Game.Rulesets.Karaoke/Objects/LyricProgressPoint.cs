@@ -8,26 +8,20 @@ namespace osu.Game.Rulesets.Karaoke.Objects
     /// <summary>
     /// record what time the 
     /// </summary>
-    public class LyricProgressPoint : IHasCharIndex
+    public class LyricProgressPoint 
     {
         public LyricProgressPoint()
         {
         }
 
-        public LyricProgressPoint(double time, int charIndex)
+        public LyricProgressPoint(double time)
         {
             RelativeTime = time;
-            CharIndex = charIndex;
         }
 
         /// <summary>
         /// relative to word's strt time
         /// </summary>
         public double RelativeTime { get; set; }
-
-        /// <summary>
-        /// position at that time
-        /// </summary>
-        public int CharIndex { get; set; }
     }
 }

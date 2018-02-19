@@ -10,7 +10,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects
     /// <summary>
     /// list Progress point
     /// </summary>
-    public class LyricProgressPointList : List<LyricProgressPoint>
+    public class LyricProgressPointList : Dictionary<int,LyricProgressPoint>
     {
         [JsonIgnore]
         public double MinimumTime { get; set; } = 100;
@@ -20,20 +20,20 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         /// </summary>
         /// <returns><c>true</c>, if progress point was added, <c>false</c> otherwise.</returns>
         /// <param name="karaokeObject">Karaoke object.</param>
-        public bool AddProgressPoint(LyricProgressPoint point)
+        public new void Add(int key,LyricProgressPoint point)
         {
             //TODO : filter
-            if (this.Any(x => x.CharIndex == point.CharIndex))
-                return false;
-            if (this.Any(x => x.RelativeTime == point.RelativeTime))
-                return false;
+            if (this.Any(x => x.Key == key))
+                return ;
+            if (this.Any(x => x.Value.RelativeTime == point.RelativeTime))
+                return ;
 
-            Add(point);
-            SortProgressPoint();
+            base.Add(key,point);
+            //SortProgressPoint();
             FixTime();
-            return true;
         }
 
+        /*
         /// <summary>
         /// sorting by position and time should be higher
         /// </summary>
@@ -48,6 +48,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects
             Clear();
             AddRange(orderByCharList);
         }
+        */
 
         /// <summary>
         /// fix the delta time
@@ -57,12 +58,12 @@ namespace osu.Game.Rulesets.Karaoke.Objects
             double time = 0;
             foreach (var single in this)
             {
-                if (single.RelativeTime < time + MinimumTime)
+                if (single.Value.RelativeTime < time + MinimumTime)
                 {
-                    single.RelativeTime = time + MinimumTime;
+                    single.Value.RelativeTime = time + MinimumTime;
                 }
 
-                time = single.RelativeTime;
+                time = single.Value.RelativeTime;
             }
         }
     }

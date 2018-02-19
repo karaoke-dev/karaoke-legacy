@@ -12,6 +12,7 @@ using osu.Game.Rulesets.Karaoke.Objects;
 using OpenTK;
 using OpenTK.Graphics;
 using OpenTK.Input;
+using System.Collections.Generic;
 
 namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Pieces
 {
@@ -23,7 +24,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Pieces
         };
 
         //public 
-        public LyricProgressPoint LyricProgressPoint { get; set; }
+        public KeyValuePair<int,LyricProgressPoint> LyricProgressPoint { get; set; }
 
         public DrawableKaraokeThumbnail DrawableKaraokeThumbnail { get; set; } //Parent
         public int IndexOfObject => DrawableKaraokeThumbnail.Lyric.ProgressPoints.IndexOf(LyricProgressPoint);
@@ -54,10 +55,10 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Pieces
             get
             {
                 if (IndexOfObject == 0)
-                    return DrawableKaraokeThumbnail.Lyric.MainText.Text.Substring(0, LyricProgressPoint.CharIndex + 1);
+                    return DrawableKaraokeThumbnail.Lyric.MainText.Text.Substring(0, LyricProgressPoint.Key + 1);
                 else
                 {
-                    var thisCharIndex = LyricProgressPoint.CharIndex;
+                    var thisCharIndex = LyricProgressPoint.Key;
                     var lastTime = DrawableKaraokeThumbnail.Lyric.ProgressPoints[IndexOfObject - 1].CharIndex;
                     return DrawableKaraokeThumbnail.Lyric.MainText.Text.Substring(lastTime + 1, thisCharIndex - lastTime);
                 }
@@ -94,7 +95,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Pieces
             Selected = false;
         }
 
-        public EditableProgressPoint(DrawableKaraokeThumbnail drawableKaraokeThumbnail, LyricProgressPoint lyricProgressPoin)
+        public EditableProgressPoint(DrawableKaraokeThumbnail drawableKaraokeThumbnail,  KeyValuePair<int,LyricProgressPoint> lyricProgressPoin)
         {
             DrawableKaraokeThumbnail = drawableKaraokeThumbnail;
             LyricProgressPoint = lyricProgressPoin;
