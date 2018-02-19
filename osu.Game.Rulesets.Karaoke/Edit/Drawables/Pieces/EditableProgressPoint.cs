@@ -13,6 +13,7 @@ using OpenTK;
 using OpenTK.Graphics;
 using OpenTK.Input;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Pieces
 {
@@ -27,7 +28,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Pieces
         public KeyValuePair<int,LyricProgressPoint> LyricProgressPoint { get; set; }
 
         public DrawableKaraokeThumbnail DrawableKaraokeThumbnail { get; set; } //Parent
-        public int IndexOfObject => DrawableKaraokeThumbnail.Lyric.ProgressPoints.IndexOf(LyricProgressPoint);
+        public int IndexOfObject => LyricProgressPoint.Key;
 
         //Drawable component
         protected OsuSpriteText ProgressDrawableText { get; set; }
@@ -59,7 +60,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Pieces
                 else
                 {
                     var thisCharIndex = LyricProgressPoint.Key;
-                    var lastTime = DrawableKaraokeThumbnail.Lyric.ProgressPoints[IndexOfObject - 1].CharIndex;
+                    var lastTime = DrawableKaraokeThumbnail.Lyric.ProgressPoints.FindPrevioud(IndexOfObject).Value.Key;
                     return DrawableKaraokeThumbnail.Lyric.MainText.Text.Substring(lastTime + 1, thisCharIndex - lastTime);
                 }
             }

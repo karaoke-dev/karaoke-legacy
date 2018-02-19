@@ -37,7 +37,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
         /// <summary>
         /// translate text
         /// </summary>
-        KaraokeText TranslateText { get; set; }
+        TranslateString TranslateText { get; set; }
 
         /// <summary>
         /// add translate

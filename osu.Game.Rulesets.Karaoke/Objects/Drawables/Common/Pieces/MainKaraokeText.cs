@@ -23,11 +23,12 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Common.Pieces
             get => _mainTextObject;
             set
             {
+                if (value == null)
+                    return;
+
                 _mainTextObject = value;
                 //set text
                 UpdateText();
-
-                Position = TextObject.Position;
 
                 //update each text's end position
                 UpdateSingleCharacterEndPosition();

@@ -46,7 +46,7 @@ namespace osu.Game.Rulesets.Karaoke.Helps
             karaokeObject.SubTexts.Add(6, new SubText
             {
                 Text = "お",
-            });,
+            });
             karaokeObject.ProgressPoints.Add(0,new LyricProgressPoint(0));
 
             karaokeObject.ProgressPoints.Add(1,new LyricProgressPoint(500));

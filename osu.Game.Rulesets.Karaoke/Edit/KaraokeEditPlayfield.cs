@@ -9,6 +9,8 @@ using osu.Game.Rulesets.Karaoke.Edit.Drawables;
 using osu.Game.Rulesets.Karaoke.UI;
 using osu.Game.Rulesets.Objects.Drawables;
 using OpenTK.Input;
+using osu.Framework.Graphics;
+using osu.Game.Rulesets.Karaoke.UI.PlayField.Lyric;
 
 namespace osu.Game.Rulesets.Karaoke.Edit
 {
@@ -23,6 +25,14 @@ namespace osu.Game.Rulesets.Karaoke.Edit
         public KaraokeEditPlayfield(Ruleset ruleset, WorkingBeatmap beatmap, KaraokeEditRulesetContainer container)
             : base(ruleset, beatmap, container)
         {
+            AddRange(new Drawable[]
+            {
+                //layer
+                KaraokeLyricPlayField = new KaraokeLyricPlayField()
+                {
+                    KaraokeRulesetContainer = KaraokeRulesetContainer
+                }
+            });
         }
 
         /// <summary>

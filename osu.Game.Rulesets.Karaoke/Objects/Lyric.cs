@@ -127,7 +127,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         /// The duration of the HitObject.
         /// </summary>
         [JsonIgnore]
-        public double Duration => ProgressPoints.LastOrDefault()?.Value.RelativeTime ?? 0;
+        public double Duration => ProgressPoints.LastOrDefault().Value?.RelativeTime ?? 0;
 
         /// <summary>
         /// new combo
