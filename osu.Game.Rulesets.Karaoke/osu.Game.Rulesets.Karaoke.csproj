@@ -145,7 +145,6 @@
     <Compile Include="UI\Panel\Pieces\KaraokeTimerSliderBar.cs" />
     <Compile Include="UI\Panel\Pieces\WithUpAndDownButtonSlider.cs" />
     <Compile Include="Mods\KaraokeModSnow.cs" />
-    <Compile Include="Objects\Extension\KaraokeObjectExtension.cs" />
     <Compile Include="UI\PlayField\Lyric\KaraokeLyricPlayField.cs" />
     <Compile Include="UI\PlayField\Note\KaraokeTonePlayfield.cs" />
     <Compile Include="UI\Tool\KaraokeTool.cs" />
@@ -209,7 +208,9 @@
       <Name>Symcol.Rulesets.Core</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Mods\Mod2018\" />
+  </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Textures\Play\Karaoke\Layer\Snow\Snow.png" />
   </ItemGroup>
@@ -217,11 +218,7 @@
     <EmbeddedResource Include="Textures\Icon\Icon.png" />
   </ItemGroup>
   <ItemGroup />
-  <ItemGroup>
-    <Folder Include="Mods\Mod2017\" />
-    <Folder Include="Mods\Mod2018\" />
-    <Folder Include="Mods\Types\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.

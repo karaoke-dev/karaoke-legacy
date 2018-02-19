@@ -49,14 +49,31 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         /// </summary>
         /// <param name="nowRelativeTime"></param>
         /// <returns></returns>
-        public KeyValuePair<int, LyricProgressPoint>? GetFirstProgressPointByTime(double nowRelativeTime)
+        public KeyValuePair<int, LyricProgressPoint> GetFirstProgressPointByTime(double nowRelativeTime)
         {
-            var result = this.Where(x => x.Value.RelativeTime <= nowRelativeTime).Max();
+            var index = this.FirstOrDefault(x => x.Value.RelativeTime > nowRelativeTime).Key;
+
+            LyricProgressPoint result;
+            this.TryGetValue(index - 1, out result);
+
+            if (result == null)
+                return new KeyValuePair<int, LyricProgressPoint>(-1, new LyricProgressPoint(0));
+
+            return new KeyValuePair<int, LyricProgressPoint>(index - 1, result);
+
+            /*
+            var result = this.Where(x => x.Value.RelativeTime <= nowRelativeTime);
+
+            if (!result.Any() || result.FirstOrDefault().Value==null)
+                return this.First();
+
+            var maxResult = result.Max();
 
             if(result.Equals(default(KeyValuePair<string, int>)))
                 return new KeyValuePair<int, LyricProgressPoint>(-1, new LyricProgressPoint(0));
 
-            return result;
+            return maxResult;
+            */
 
         }
 
@@ -68,6 +85,14 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         /// <returns></returns>
         public KeyValuePair<int, LyricProgressPoint>? GetLastProgressPointByTime(double nowRelativeTime)
         {
+            var point = this.FirstOrDefault(x => x.Value.RelativeTime > nowRelativeTime);
+
+            if (point.Equals(default(KeyValuePair<string, int>)))
+                return this.Last();
+
+            return point;
+
+            /*
             if (this.Count == 0)
                 return null;
 
@@ -80,7 +105,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects
             }  
 
             return result;
-
+            */
         }
 
         /// <summary>
@@ -99,6 +124,10 @@ namespace osu.Game.Rulesets.Karaoke.Objects
                 return new KeyValuePair<int, LyricProgressPoint>(-1, new LyricProgressPoint(0));
 
             return new KeyValuePair<int, LyricProgressPoint>(index - 1, result);
+
+            /*
+            return FindPrevioud(charIndex) ?? this.First();
+            */
         }
 
         /// <summary>
@@ -110,6 +139,9 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         {
             var point = this.FirstOrDefault(x => x.Key > charIndex);
             return point; //?? lyric.ProgressPoints.Last();
+            /*
+            return FindNext(charIndex) ?? this.Last();
+            */
         }
 
         /// <summary>

@@ -9,7 +9,6 @@ using osu.Framework.IO.Stores;
 using osu.Game.Rulesets.Karaoke.Configuration;
 using osu.Game.Rulesets.Karaoke.Objects.Drawables.Common.Pieces;
 using osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric.Pieces;
-using osu.Game.Rulesets.Karaoke.Objects.Extension;
 using osu.Game.Rulesets.Karaoke.Tools.Translator;
 using osu.Game.Rulesets.Objects.Drawables;
 using OpenTK;
@@ -275,8 +274,8 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
             if (HitObject.IsInTime(currentRelativeTime))
             {
                 //TODO : get progress point
-                var startProgressPoint = HitObject.GetFirstProgressPointByTime(currentRelativeTime);
-                var endProgressPoint = HitObject.GetLastProgressPointByTime(currentRelativeTime);
+                var startProgressPoint = HitObject.ProgressPoints.GetFirstProgressPointByTime(currentRelativeTime);
+                var endProgressPoint = HitObject.ProgressPoints.GetLastProgressPointByTime(currentRelativeTime);
 
                 var startPosition = TextsAndMaskPiece.MainText.GetEndPositionByIndex(startProgressPoint.Key);
                 var endPosition = TextsAndMaskPiece.MainText.GetEndPositionByIndex(endProgressPoint?.Key ?? -1);

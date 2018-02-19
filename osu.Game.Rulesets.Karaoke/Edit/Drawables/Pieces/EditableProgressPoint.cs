@@ -56,7 +56,9 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Pieces
             get
             {
                 if (IndexOfObject == 0)
+                {
                     return DrawableKaraokeThumbnail.Lyric.MainText.Text.Substring(0, LyricProgressPoint.Key + 1);
+                }
                 else
                 {
                     var thisCharIndex = LyricProgressPoint.Key;

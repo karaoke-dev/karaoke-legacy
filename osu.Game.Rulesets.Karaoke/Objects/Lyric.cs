@@ -155,6 +155,10 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         /// <value>The translate code.</value>
         public TranslateCode TranslateCode { get; set; }
 
+
+
+        #region Function
+
         /// <summary>
         /// Splits the by progress point.
         /// </summary>
@@ -164,5 +168,32 @@ namespace osu.Game.Rulesets.Karaoke.Objects
             //TODO : implement
             return null;
         }
+
+        /// <summary>
+        /// Times the is in time.
+        /// </summary>
+        /// <returns><c>true</c>, if is in time was timed, <c>false</c> otherwise.</returns>
+        /// <param name="lyric">Karaoke object.</param>
+        /// <param name="nowRelativeTime">Now time.</param>
+        public bool IsInTime(double nowRelativeTime)
+        {
+            if (nowRelativeTime > -this.PreemptiveTime && nowRelativeTime <= this.Duration + this.EndPreemptiveTime)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// will filter if has same languate
+        /// </summary>
+        /// <param name="lyric">Karaoke object.</param>
+        public static bool AddNewTranslate(LyricTranslate translate)
+        {
+            return false;
+        }
+
+        #endregion
     }
 }
