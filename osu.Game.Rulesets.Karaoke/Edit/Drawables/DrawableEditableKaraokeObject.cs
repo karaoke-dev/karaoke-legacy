@@ -121,12 +121,10 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables
             DrawableKaraokeThumbnail.UpdateView();
         }
 
-        public override void AddTranslate(TranslateCode code, string translateResult)
+        public void AddTranslate(TranslateCode code, string translateResult)
         {
             //Add it into Karaoke object
             Lyric.Translates.Add(code, new LyricTranslate(translateResult));
-            //base
-            base.AddTranslate(code, translateResult);
         }
     }
 }

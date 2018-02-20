@@ -12,6 +12,7 @@ using osu.Game.Rulesets.Judgements;
 using osu.Game.Rulesets.Karaoke.Configuration;
 using osu.Game.Rulesets.Karaoke.Judgements;
 using osu.Game.Rulesets.Karaoke.Mods;
+using osu.Game.Rulesets.Karaoke.Objects;
 using osu.Game.Rulesets.Karaoke.Tools.Translator;
 using osu.Game.Rulesets.Karaoke.UI.Panel;
 using osu.Game.Rulesets.Karaoke.UI.PlayField.Lyric;
@@ -81,7 +82,11 @@ namespace osu.Game.Rulesets.Karaoke.UI
             {
                 for (int i = 0; i < multiSting.Count; i++)
                 {
-                    ListDrawableKaraokeObject[i].AddTranslate(TranslateCode.Chinese_Traditional, multiSting[i]);
+                    //assign language
+                    ListDrawableKaraokeObject[i].Lyric.Translates.Add(TranslateCode.Chinese_Traditional,new LyricTranslate(multiSting[i]));
+
+                    //assign traslate code
+                    ListDrawableKaraokeObject[i].TranslateCode = TranslateCode.Chinese_Traditional;
                 }
             };
         }

@@ -7,7 +7,6 @@ using osu.Framework.Allocation;
 using osu.Framework.Graphics;
 using osu.Framework.IO.Stores;
 using osu.Game.Rulesets.Karaoke.Configuration;
-using osu.Game.Rulesets.Karaoke.Objects.Drawables.Common.Pieces;
 using osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric.Pieces;
 using osu.Game.Rulesets.Karaoke.Tools.Translator;
 using osu.Game.Rulesets.Objects.Drawables;
@@ -95,7 +94,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
             set
             {
                 _translateCode = value;
-                UpdateDrawable();
+                UpdateValue();
             }
         }
 
@@ -203,11 +202,6 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
                 //show sub text
                 TextsAndMaskPiece.AddBottomText(bottomTexts?.Select(x => x.Value).ToList());
 
-                if (Config.ShowTranslate)
-                {
-                    //TODO : show translate
-                }
-
                 Width = TextsAndMaskPiece.MainText.GetTextEndPosition();
                 Height = Lyric.Height ?? 100;
 
@@ -227,14 +221,24 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
 
         protected virtual void UpdateValue()
         {
+            //translate
+            if (Config != null)
+            {
+                if (Config.ShowTranslate)//show translate
+                {
+                    TranslateText.TextObject = Template?.TranslateText + Lyric.Translates.Where(x => x.Key == TranslateCode).FirstOrDefault().Value;
+                }
+                else
+                {
+                    TranslateText.TextObject = Template?.TranslateText;
+                }
+                TranslateText.Colour = Template?.TranslateTextColor ?? Color4.White;
+            }
+
             //Color
             Color4 textColor = Singer?.LytricColor ?? Color4.Blue;
             Color4 backgroundColor = Singer?.LytricBackgroundColor ?? Color4.White;
             TextsAndMaskPiece.SetColor(textColor, backgroundColor);
-
-            //translate text
-            TranslateText.TextObject = Template?.TranslateText + Lyric.Translates.Where(x => x.Key == TranslateCode).FirstOrDefault().Value;
-            TranslateText.Colour = Template?.TranslateTextColor ?? Color4.White;
 
             Scale = new Vector2(Template?.Scale ?? 1);
 
@@ -354,12 +358,6 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
             //var sequence = this.Delay(HitObject.Duration).FadeOut(TIME_FADEOUT).Expire();
 
             //Expire();
-        }
-
-        public virtual void AddTranslate(TranslateCode code, string translateResult)
-        {
-            //Add and show translate in here
-            TranslateText.Text = translateResult;
         }
     }
 }
