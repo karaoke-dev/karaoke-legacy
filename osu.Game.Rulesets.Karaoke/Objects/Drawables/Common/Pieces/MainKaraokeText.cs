@@ -60,11 +60,18 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Common.Pieces
                 TotalWidth = 0;
                 foreach (var single in MainTextObject)
                 {
-                    string delimiter = (MainTextObject.Last().Key != single.Key ? Delimiter : string.Empty);
                     //get single char width
-                    var singleCharWhdth = GetStringWidth(single.Value.Text + delimiter);
+                    var singleCharWhdth = GetStringWidth(single.Value.Text);
                     TotalWidth += singleCharWhdth;
                     ListCharEndPosition.Add(single.Key, TotalWidth);
+
+                    //delimiterWhdth
+                    if (MainTextObject.Last().Key != single.Key)
+                    {
+                        var delimiterWhdth = GetStringWidth(Delimiter.Replace(" ","_"));
+                        TotalWidth += delimiterWhdth;
+                        ListCharEndPosition.Add(single.Key-100, TotalWidth);
+                    }
                 }
             }
         }
