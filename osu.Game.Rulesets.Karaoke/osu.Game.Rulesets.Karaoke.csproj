@@ -121,7 +121,7 @@
     <Compile Include="Textures\KaraokeTextureStore.cs" />
     <Compile Include="Tools\Romaji\JpRomajiTranslator.cs" />
     <Compile Include="Tools\Romaji\RomajiTranslator.cs" />
-    <Compile Include="Tools\Translator\TranslateCode.cs" />
+    <Compile Include="Configuration\TranslateCode.cs" />
     <Compile Include="Tools\Translator\GoogleTranslator.cs" />
     <Compile Include="Tools\Translator\TranslateorBase.cs" />
     <Compile Include="UI\Cursor\CursorTrail.cs" />
