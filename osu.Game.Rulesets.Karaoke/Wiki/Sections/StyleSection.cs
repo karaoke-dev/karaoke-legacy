@@ -117,7 +117,7 @@ namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
 
     public class RomajiMenuSettings : SettingsSubsection
     {
-        protected override string Header => "Main Menu";
+        protected override string Header => "Lyric Config";
 
         private KaraokeLyricConfig _config;
 
@@ -146,19 +146,19 @@ namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
                 //TopText Vislbility(default is true)
                 _topTextVisibleCheckBox = new SettingsCheckbox
                 {
-                    LabelText = "TopText Vislbility",
+                    LabelText = "TopText vislbility",
                     Bindable = new Bindable<bool>()
                 },
                 //Romaji Wislbility(default is true)
                 _romajiVisibleCheckBox = new SettingsCheckbox
                 {
-                    LabelText = "Romaji Wislbility",
+                    LabelText = "Romaji vislbility",
                     Bindable = new Bindable<bool>()
                 },
                 //Romaji Wislbility(default is false)
                 _romajiFirstCheckBox = new SettingsCheckbox
                 {
-                    LabelText = "Bypass caching",
+                    LabelText = "Romaji first",
                     Bindable = new Bindable<bool>()
                 },
             };
