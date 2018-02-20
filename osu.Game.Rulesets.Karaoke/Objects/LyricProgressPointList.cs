@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json;
 using System.Linq;
+using System;
+using System.Collections;
 
 namespace osu.Game.Rulesets.Karaoke.Objects
 {
@@ -51,6 +53,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         /// <returns></returns>
         public KeyValuePair<int, LyricProgressPoint> GetFirstProgressPointByTime(double nowRelativeTime)
         {
+            /*
             var index = this.FirstOrDefault(x => x.Value.RelativeTime > nowRelativeTime).Key;
 
             LyricProgressPoint result;
@@ -60,21 +63,20 @@ namespace osu.Game.Rulesets.Karaoke.Objects
                 return new KeyValuePair<int, LyricProgressPoint>(-1, new LyricProgressPoint(0));
 
             return new KeyValuePair<int, LyricProgressPoint>(index - 1, result);
-
-            /*
-            var result = this.Where(x => x.Value.RelativeTime <= nowRelativeTime);
-
-            if (!result.Any() || result.FirstOrDefault().Value==null)
-                return this.First();
-
-            var maxResult = result.Max();
-
-            if(result.Equals(default(KeyValuePair<string, int>)))
-                return new KeyValuePair<int, LyricProgressPoint>(-1, new LyricProgressPoint(0));
-
-            return maxResult;
             */
 
+            
+            var result = this.Where(x => x.Value.RelativeTime <= nowRelativeTime).ToDictionary(x => x.Key, x => x.Value);
+
+            if (result.Count() < 2)
+                return this.First();
+
+            var maxResult = Find(result.Keys.Max());
+
+            if (maxResult.Equals(default(KeyValuePair<string, int>)))
+                return new KeyValuePair<int, LyricProgressPoint>(-1, new LyricProgressPoint(0));
+
+            return maxResult.Value;
         }
 
         /// <summary>
@@ -85,27 +87,34 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         /// <returns></returns>
         public KeyValuePair<int, LyricProgressPoint>? GetLastProgressPointByTime(double nowRelativeTime)
         {
+            /*
             var point = this.FirstOrDefault(x => x.Value.RelativeTime > nowRelativeTime);
 
             if (point.Equals(default(KeyValuePair<string, int>)))
                 return this.Last();
 
             return point;
+            */
 
-            /*
             if (this.Count == 0)
                 return null;
 
-            var result = this.Where(x => x.Value.RelativeTime > nowRelativeTime).Max();
+            //result
+            var result = this.Where(x => x.Value.RelativeTime > nowRelativeTime).ToDictionary(x=>x.Key,x=>x.Value);
 
-            if (result.Equals(default(KeyValuePair<string, int>)))
+            if (result.Count()<2)
+                return this.Last();
+
+            var maxResult = Find(result.Keys.Max()); 
+
+            if (maxResult.Equals(default(KeyValuePair<string, int>)))
             {
                 var key = this.Keys.Max();
                 return Find(key);
             }  
 
-            return result;
-            */
+            return maxResult;
+            
         }
 
         /// <summary>

@@ -72,7 +72,7 @@ namespace osu.Game.Rulesets.Karaoke.Helps
             karaokeObject.StartTime = startTime;
 
             karaokeObject.ProgressPoints.Add(0,new LyricProgressPoint(duration / 5));
-            karaokeObject.ProgressPoints.Add(10,new LyricProgressPoint(duration / 4));
+            karaokeObject.ProgressPoints.Add(9,new LyricProgressPoint(duration / 4));
             karaokeObject.ProgressPoints.Add(11,new LyricProgressPoint(duration));
 
             return karaokeObject;

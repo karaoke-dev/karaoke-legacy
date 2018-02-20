@@ -287,6 +287,11 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
                     return;
                 }
 
+                if (startPosition == endPosition)
+                {
+                    return;
+                }
+
                 //Update progress
                 Progress = startPosition + (endPosition - startPosition) / (float)(endProgressPoint?.Value.RelativeTime - startProgressPoint.Value.RelativeTime) * (float)relativeTime;
 
