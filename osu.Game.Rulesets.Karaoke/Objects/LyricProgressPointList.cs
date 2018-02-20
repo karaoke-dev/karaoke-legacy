@@ -31,7 +31,11 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         /// <returns></returns>
         public KeyValuePair<int, LyricProgressPoint>? FindPrevioud(int key)
         {
-            var previousKey = this.Keys.Where(x=>x < key).Max();
+            var result = this.Keys.Where(x => x < key);
+            if (result.Count() < 2)
+                return this.First();
+
+            var previousKey = result.Max();
             return Find(previousKey);
         }
 
@@ -42,7 +46,10 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         /// <returns></returns>
         public KeyValuePair<int, LyricProgressPoint>? FindNext(int key)
         {
-            var nextKey = this.Keys.Where(x => x > key).Min();
+            var result = this.Keys.Where(x => x > key);
+            if (result.Count() < 2)
+                return this.Last();
+            var nextKey = result.Min();
             return Find(nextKey);
         }
 
@@ -124,19 +131,8 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         /// <returns></returns>
         public KeyValuePair<int, LyricProgressPoint> GetFirstProgressPointByIndex(int charIndex)
         {
-            var index = this.FirstOrDefault(x => x.Key > charIndex).Key;
-
-            LyricProgressPoint result;
-            this.TryGetValue(index - 1, out result);
-
-            if (result == null)
-                return new KeyValuePair<int, LyricProgressPoint>(-1, new LyricProgressPoint(0));
-
-            return new KeyValuePair<int, LyricProgressPoint>(index - 1, result);
-
-            /*
-            return FindPrevioud(charIndex) ?? this.First();
-            */
+            var result = FindPrevioud(charIndex).Value;
+            return result;
         }
 
         /// <summary>
@@ -146,11 +142,13 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         /// <returns></returns>
         public KeyValuePair<int, LyricProgressPoint> GetLastProgressPointByIndex(int charIndex)
         {
+            /*
             var point = this.FirstOrDefault(x => x.Key > charIndex);
             return point; //?? lyric.ProgressPoints.Last();
-            /*
-            return FindNext(charIndex) ?? this.Last();
             */
+            var result = FindNext(charIndex).Value;
+
+            return result;
         }
 
         /// <summary>
@@ -167,26 +165,25 @@ namespace osu.Game.Rulesets.Karaoke.Objects
                 return ;
 
             base.Add(key,point);
-            //SortProgressPoint();
+            SortProgressPoint();
             FixTime();
         }
 
-        /*
+        
         /// <summary>
         /// sorting by position and time should be higher
         /// </summary>
         public void SortProgressPoint()
         {
-            // from small to large
-            var orderByRelativeTimeList = this.OrderBy(x => x.RelativeTime).ToList();
-            Clear();
-            AddRange(orderByRelativeTimeList);
             //sort
-            var orderByCharList = this.OrderBy(x => x.CharIndex).ToList();
+            var sortedDic = this.OrderBy(x => x.Key).ToDictionary(keyvalue => keyvalue.Key, keyvalue => keyvalue.Value);
             Clear();
-            AddRange(orderByCharList);
+            foreach (var single in sortedDic)
+            {
+                base.Add(single.Key,single.Value);
+            } 
         }
-        */
+        
 
         /// <summary>
         /// fix the delta time
@@ -194,6 +191,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         public void FixTime()
         {
             double time = 0;
+
             foreach (var single in this)
             {
                 if (single.Value.RelativeTime < time + MinimumTime)

@@ -56,6 +56,8 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables
             //3. show each point with text start and end time
             ListEditableProgressPoint.Direction = FillDirection.Horizontal;
             ListEditableProgressPoint.Clear();
+
+
             foreach (var single in Lyric.ProgressPoints)
             {
                 var editableProgressPoint = new EditableProgressPoint(this, single);
