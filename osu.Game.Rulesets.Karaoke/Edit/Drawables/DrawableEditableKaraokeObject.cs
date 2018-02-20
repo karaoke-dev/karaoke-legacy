@@ -124,8 +124,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables
         public override void AddTranslate(TranslateCode code, string translateResult)
         {
             //Add it into Karaoke object
-            string langCode = LangTagConvertor.GetCode(code);
-            Lyric.AddNewTranslate(new LyricTranslate(langCode, translateResult));
+            Lyric.Translates.Add(code, new LyricTranslate(translateResult));
             //base
             base.AddTranslate(code, translateResult);
         }

@@ -203,6 +203,11 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
                 //show sub text
                 TextsAndMaskPiece.AddBottomText(bottomTexts?.Select(x => x.Value).ToList());
 
+                if (Config.ShowTranslate)
+                {
+                    //TODO : show translate
+                }
+
                 Width = TextsAndMaskPiece.MainText.GetTextEndPosition();
                 Height = Lyric.Height ?? 100;
 
@@ -228,7 +233,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
             TextsAndMaskPiece.SetColor(textColor, backgroundColor);
 
             //translate text
-            TranslateText.TextObject = Template?.TranslateText + Lyric.Translates.Where(x => x.LangCode == LangTagConvertor.GetCode(TranslateCode)).FirstOrDefault();
+            TranslateText.TextObject = Template?.TranslateText + Lyric.Translates.Where(x => x.Key == TranslateCode).FirstOrDefault().Value;
             TranslateText.Colour = Template?.TranslateTextColor ?? Color4.White;
 
             Scale = new Vector2(Template?.Scale ?? 1);

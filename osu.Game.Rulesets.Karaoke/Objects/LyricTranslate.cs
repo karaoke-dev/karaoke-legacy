@@ -2,7 +2,7 @@
 // Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
 
 using System.Collections.Generic;
-using System.Linq;
+using osu.Game.Rulesets.Karaoke.Tools.Translator;
 
 namespace osu.Game.Rulesets.Karaoke.Objects
 {
@@ -13,35 +13,20 @@ namespace osu.Game.Rulesets.Karaoke.Objects
     {
         public LyricTranslate()
         {
+
         }
 
-        public LyricTranslate(string langCode, string translateText)
+        public LyricTranslate(string translateText)
         {
-            LangCode = langCode;
             Text = translateText;
         }
-
-        /// <summary>
-        /// Lang code
-        /// </summary>
-        public string LangCode { get; set; }
     }
 
     /// <summary>
     /// list Progress point
     /// </summary>
-    public class ListKaraokeTranslateString : List<LyricTranslate>
+    public class ListKaraokeTranslateString : Dictionary<TranslateCode, LyricTranslate>
     {
-        /// <summary>
-        /// if add ,check this lang code is added already ?
-        /// </summary>
-        /// <param name="translate"></param>
-        public new void Add(LyricTranslate translate)
-        {
-            if (this.Any(x => x.LangCode == translate.LangCode))
-                FindLast(x => x.LangCode == translate.LangCode).Text = translate.Text;
-            else
-                base.Add(translate);
-        }
+        
     }
 }

@@ -99,7 +99,7 @@ namespace osu.Game.Rulesets.Karaoke.Helps
                 },
                 Translates = new ListKaraokeTranslateString()
                 {
-                    new LyricTranslate(LangTagConvertor.GetCode(TranslateCode.English), "Karaoke")
+                    {TranslateCode.English ,  new LyricTranslate(){Text = "Karaoke" } },
                 }
             };
         }

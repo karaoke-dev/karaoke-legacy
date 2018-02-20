@@ -185,15 +185,6 @@ namespace osu.Game.Rulesets.Karaoke.Objects
             return false;
         }
 
-        /// <summary>
-        /// will filter if has same languate
-        /// </summary>
-        /// <param name="lyric">Karaoke object.</param>
-        public static bool AddNewTranslate(LyricTranslate translate)
-        {
-            return false;
-        }
-
         #endregion
     }
 }

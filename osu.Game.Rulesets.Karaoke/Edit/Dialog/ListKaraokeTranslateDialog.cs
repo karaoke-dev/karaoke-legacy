@@ -114,12 +114,10 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog
 
         public void SetCurrentLanguage(TranslateCode code)
         {
-            //1. change lang to string
-            string LangCode = "";
-            //2. change show translage type
+            //change show translage type
             foreach (var single in Items)
             {
-                single.ChangeLanguage(LangCode);
+                single.ChangeLanguage(code);
             }
         }
     }
@@ -142,15 +140,15 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog
         }
 
         //change language code
-        public void ChangeLanguage(string langCode)
+        public void ChangeLanguage(TranslateCode langCode)
         {
             if (BeatmapSetInfo != null)
             {
                 foreach (var single in BeatmapSetInfo.Translates)
                 {
-                    if (single.LangCode == langCode)
+                    if (single.Key == langCode)
                     {
-                        TranslateTextbox.OldValue = single.Text;
+                        TranslateTextbox.OldValue = single.Value.Text;
                     }
                 }
             }
