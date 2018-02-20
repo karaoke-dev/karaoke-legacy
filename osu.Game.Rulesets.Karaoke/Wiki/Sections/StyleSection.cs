@@ -130,6 +130,7 @@ namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
                 _topTextVisibleCheckBox.Bindable.Value = _config.SubTextVislbility;
                 _romajiVisibleCheckBox.Bindable.Value = _config.RomajiVislbility;
                 _romajiFirstCheckBox.Bindable.Value = _config.RomajiFirst;
+                _translateCheckBox.Bindable.Value = _config.ShowTranslate;
             }
         }
 
@@ -138,6 +139,7 @@ namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
         private SettingsCheckbox _topTextVisibleCheckBox;
         private SettingsCheckbox _romajiVisibleCheckBox;
         private SettingsCheckbox _romajiFirstCheckBox;
+        private SettingsCheckbox _translateCheckBox;
 
         public RomajiMenuSettings()
         {
@@ -161,6 +163,12 @@ namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
                     LabelText = "Romaji first",
                     Bindable = new Bindable<bool>()
                 },
+                //Translate Wislbility(default is true)
+                _translateCheckBox = new SettingsCheckbox
+                {
+                    LabelText = "Translate",
+                    Bindable = new Bindable<bool>()
+                },
             };
             _topTextVisibleCheckBox.Bindable.ValueChanged += (a) =>
             {
@@ -175,6 +183,11 @@ namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
             _romajiFirstCheckBox.Bindable.ValueChanged += (a) =>
             {
                 LyricTConfig.RomajiFirst = a;
+                OnValueChanged?.Invoke(LyricTConfig);
+            };
+            _translateCheckBox.Bindable.ValueChanged += (a) =>
+            {
+                LyricTConfig.ShowTranslate = a;
                 OnValueChanged?.Invoke(LyricTConfig);
             };
         }
