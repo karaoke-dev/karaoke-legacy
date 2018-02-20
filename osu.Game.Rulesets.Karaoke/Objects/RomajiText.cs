@@ -10,6 +10,16 @@ namespace osu.Game.Rulesets.Karaoke.Objects
     /// </summary>
     public class RomajiText : TextComponent, IHasCharEndIndex
     {
+        public RomajiText()
+        {
+
+        }
+
+        public RomajiText(string str)
+        {
+            Text = str;
+        }
+
         /// <summary>
         /// relativa to textIndex
         /// </summary>

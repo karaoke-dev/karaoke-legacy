@@ -4,6 +4,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using osu.Framework.Allocation;
+using osu.Framework.Extensions.IEnumerableExtensions;
 using osu.Framework.IO.Stores;
 
 namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Common.Pieces
@@ -68,12 +69,26 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Common.Pieces
                     //delimiterWhdth
                     if (MainTextObject.Last().Key != single.Key)
                     {
-                        var delimiterWhdth = GetStringWidth(Delimiter.Replace(" ","_"));
+                        var delimiterWhdth = GetStringWidth(Delimiter.Replace(" "," "));
                         TotalWidth += delimiterWhdth;
                         ListCharEndPosition.Add(single.Key-100, TotalWidth);
                     }
                 }
             }
+        }
+
+        public float GetTextCenterPosition(int index)
+        {
+            //find this
+            var thisValue = ListCharEndPosition.Where(x => x.Key == index).FirstOrDefault().Value;
+
+            //find previous
+            var previousValue = ListCharEndPosition.Where(x => x.Key == (index - 100 - 1)).FirstOrDefault().Value;
+
+            //(a + b)/2
+            var returnValue = (previousValue + thisValue) / 2;
+
+            return returnValue;
         }
 
         public float GetEndPositionByIndex(int index)
@@ -130,7 +145,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Common.Pieces
             foreach (var single in str)
             {
                 //get single char width
-                var singleCharWhdth = CreateCharacterDrawable(single).Width * TextSize;
+                var singleCharWhdth = single == ' '? 15 : CreateCharacterDrawable(single).Width * TextSize;
                 totalWidth += singleCharWhdth;
             }
 

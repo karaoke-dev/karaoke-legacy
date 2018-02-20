@@ -48,7 +48,6 @@ namespace osu.Game.Rulesets.Karaoke.Helps
                 Text = "お",
             });
             karaokeObject.ProgressPoints.Add(0,new LyricProgressPoint(0));
-
             karaokeObject.ProgressPoints.Add(1,new LyricProgressPoint(500));
             karaokeObject.ProgressPoints.Add(5,new LyricProgressPoint(1000));
             karaokeObject.ProgressPoints.Add(11,new LyricProgressPoint(1500));
@@ -74,6 +73,19 @@ namespace osu.Game.Rulesets.Karaoke.Helps
             karaokeObject.ProgressPoints.Add(0,new LyricProgressPoint(duration / 5));
             karaokeObject.ProgressPoints.Add(9,new LyricProgressPoint(duration / 4));
             karaokeObject.ProgressPoints.Add(11,new LyricProgressPoint(duration));
+
+            karaokeObject.RomajiTextListRomajiTexts.Add(0, new RomajiText("o"));
+            karaokeObject.RomajiTextListRomajiTexts.Add(1, new RomajiText("wa"));
+            karaokeObject.RomajiTextListRomajiTexts.Add(2, new RomajiText("ru"));
+            karaokeObject.RomajiTextListRomajiTexts.Add(3, new RomajiText("ma"));
+            karaokeObject.RomajiTextListRomajiTexts.Add(4, new RomajiText("de"));
+            karaokeObject.RomajiTextListRomajiTexts.Add(5, new RomajiText("wa"));
+            karaokeObject.RomajiTextListRomajiTexts.Add(6, new RomajiText("o"));
+            karaokeObject.RomajiTextListRomajiTexts.Add(7, new RomajiText("wa"));
+            karaokeObject.RomajiTextListRomajiTexts.Add(8, new RomajiText("ra"));
+            karaokeObject.RomajiTextListRomajiTexts.Add(9, new RomajiText("na"));
+            karaokeObject.RomajiTextListRomajiTexts.Add(10, new RomajiText("i"));
+            karaokeObject.RomajiTextListRomajiTexts.Add(11, new RomajiText("yo"));
 
             return karaokeObject;
         }

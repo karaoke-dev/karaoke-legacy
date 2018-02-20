@@ -210,10 +210,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
 
             float getxPosition(int index)
             {
-                var startPosition = TextsAndMaskPiece.MainText.GetEndPositionByIndex(index - 1);
-                var endPosition = TextsAndMaskPiece.MainText.GetEndPositionByIndex(index);
-
-                var positionX = (startPosition + endPosition) / 2;
+                var positionX = TextsAndMaskPiece.MainText.GetTextCenterPosition(index);
 
                 return positionX;
             }
