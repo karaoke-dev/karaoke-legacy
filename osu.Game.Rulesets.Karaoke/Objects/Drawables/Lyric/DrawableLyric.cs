@@ -160,7 +160,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
                 if (Config.RomajiFirst)
                 {
                     mainText = Lyric.RomajiTextListRomajiTexts.ToDictionary(k => k.Key, v => (TextComponent) v.Value );
-                    mainTextDelimiter = " ";
+                    mainTextDelimiter = "_";
                 }
                 else
                 {
