@@ -1,11 +1,17 @@
 ﻿// Copyright (c) 2007-2018 ppy Pty Ltd <contact@ppy.sh>.
 // Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
 
+using System;
 using System.Collections.Generic;
+using osu.Framework.Allocation;
+using osu.Framework.Configuration;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
+using osu.Game.Configuration;
 using osu.Game.Overlays.Settings;
+using osu.Game.Rulesets.Karaoke.Configuration;
 using osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces;
+using osu.Game.Rulesets.Karaoke.Helps;
 using osu.Game.Rulesets.Karaoke.Objects;
 using osu.Game.Rulesets.Karaoke.Tools.Translator;
 using OpenTK;
@@ -22,23 +28,16 @@ namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
     {
         public override string Title => "Style";
 
-        public LyricTemplate KarokeTemplate { get; set; } = new LyricTemplate();
+        private RomajiMenuSettings _menuSetting;
 
-        public Lyric Lyric { get; set; } = new Lyric()
-        {
-            MainText = MainTextList.SetJapaneseLyric("カラオケ"),
-            SubTexts = new Dictionary<int, SubText>()
-            {
-                { 0, new SubText() { Text = "か" } },
-                { 1, new SubText() { Text = "ら" } },
-                { 2, new SubText() { Text = "お" } },
-                { 3, new SubText() { Text = "け" } },
-            },
-            Translates = new ListKaraokeTranslateString()
-            {
-                new LyricTranslate(LangTagConvertor.GetCode(TranslateCode.English), "Karaoke")
-            }
-        };
+        private KaraokeConfigManager _config;
+
+        public LyricTemplate KarokeTemplate { get; set; } = new LyricTemplate();
+        public KaraokeLyricConfig LyricConfig { get; set; } = new KaraokeLyricConfig();
+
+        public Lyric Lyric { get; set; } = DemoKaraokeObject.GenerateDeomKaraokeLyric();
+
+        public DrawableKaraokeTemplate DrawableKaraokeTemplate { get; set; }
 
         public StyleSection()
         {
@@ -68,7 +67,7 @@ namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
                         Height = 250,
                         Children = new Drawable[]
                         {
-                            new DrawableKaraokeTemplate(Lyric, KarokeTemplate)
+                            DrawableKaraokeTemplate = new DrawableKaraokeTemplate(Lyric, KarokeTemplate)
                             {
                                 Position = new Vector2(100, -5),
                                 Anchor = Anchor.Centre,
@@ -87,8 +86,13 @@ namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
                         AutoSizeAxes = Axes.Y,
                         AutoSizeDuration = 100,
                         AutoSizeEasing = Easing.OutQuint,
-                        Child = new RomajiMenuSettings
+                        Child = _menuSetting = new RomajiMenuSettings
                         {
+                            OnValueChanged = (config) =>
+                            {
+                                DrawableKaraokeTemplate.Config = config;
+                                //_config.SetObject(KaraokeSetting.LyricStyle,config);
+                            }
                         }
                     },
                 }
@@ -100,42 +104,91 @@ namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
 
             Content.Add(new WikiTextSection(" \n\n"));
         }
+
+        [BackgroundDependencyLoader]
+        private void load()
+        {
+            //config = new KaraokeConfigManager(settings,ruleset,0);
+            KarokeTemplate = new LyricTemplate();//_config.GetObject<LyricTemplate>(KaraokeSetting.Template);
+            LyricConfig = new KaraokeLyricConfig();//_config.GetObject<KaraokeLyricConfig>(KaraokeSetting.LyricStyle);
+            _menuSetting.LyricTConfig = LyricConfig;
+        }
     }
 
     public class RomajiMenuSettings : SettingsSubsection
     {
-        protected override string Header => "Main Menu";
+        protected override string Header => "Lyric Config";
 
-        /*
-        [BackgroundDependencyLoader]
-        private void load(OsuConfigManager config)
+        private KaraokeLyricConfig _config;
+
+        public KaraokeLyricConfig LyricTConfig
         {
-            
+            get => _config;
+            set
+            {
+                _config = value;
+                _topTextVisibleCheckBox.Bindable.Value = _config.SubTextVislbility;
+                _romajiVisibleCheckBox.Bindable.Value = _config.RomajiVislbility;
+                _romajiFirstCheckBox.Bindable.Value = _config.RomajiFirst;
+                _translateCheckBox.Bindable.Value = _config.ShowTranslate;
+            }
         }
-        */
+
+        public Action<KaraokeLyricConfig> OnValueChanged { get; set; }
+
+        private SettingsCheckbox _topTextVisibleCheckBox;
+        private SettingsCheckbox _romajiVisibleCheckBox;
+        private SettingsCheckbox _romajiFirstCheckBox;
+        private SettingsCheckbox _translateCheckBox;
 
         public RomajiMenuSettings()
         {
             Children = new Drawable[]
             {
                 //TopText Vislbility(default is true)
-                new SettingsCheckbox
+                _topTextVisibleCheckBox = new SettingsCheckbox
                 {
-                    LabelText = "TopText Vislbility",
-                    //Bindable = config.GetBindable<bool>(DebugSetting.BypassCaching)
+                    LabelText = "TopText vislbility",
+                    Bindable = new Bindable<bool>()
                 },
                 //Romaji Wislbility(default is true)
-                new SettingsCheckbox
+                _romajiVisibleCheckBox = new SettingsCheckbox
                 {
-                    LabelText = "Romaji Wislbility",
-                    //Bindable = config.GetBindable<bool>(DebugSetting.BypassCaching)
+                    LabelText = "Romaji vislbility",
+                    Bindable = new Bindable<bool>()
                 },
                 //Romaji Wislbility(default is false)
-                new SettingsCheckbox
+                _romajiFirstCheckBox = new SettingsCheckbox
                 {
-                    LabelText = "Bypass caching",
-                    //Bindable = config.GetBindable<bool>(DebugSetting.BypassCaching)
+                    LabelText = "Romaji first",
+                    Bindable = new Bindable<bool>()
                 },
+                //Translate Wislbility(default is true)
+                _translateCheckBox = new SettingsCheckbox
+                {
+                    LabelText = "Translate",
+                    Bindable = new Bindable<bool>()
+                },
+            };
+            _topTextVisibleCheckBox.Bindable.ValueChanged += (a) =>
+            {
+                LyricTConfig.SubTextVislbility = a;
+                OnValueChanged?.Invoke(LyricTConfig);
+            };
+            _romajiVisibleCheckBox.Bindable.ValueChanged += (a) =>
+            {
+                LyricTConfig.RomajiVislbility = a;
+                OnValueChanged?.Invoke(LyricTConfig);
+            };
+            _romajiFirstCheckBox.Bindable.ValueChanged += (a) =>
+            {
+                LyricTConfig.RomajiFirst = a;
+                OnValueChanged?.Invoke(LyricTConfig);
+            };
+            _translateCheckBox.Bindable.ValueChanged += (a) =>
+            {
+                LyricTConfig.ShowTranslate = a;
+                OnValueChanged?.Invoke(LyricTConfig);
             };
         }
     }

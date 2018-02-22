@@ -1,13 +1,12 @@
 ﻿// Copyright (c) 2007-2018 ppy Pty Ltd <contact@ppy.sh>.
 // Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
 
-using osu.Game.Rulesets.Karaoke.Objects.Drawables.Common.Pieces;
 using osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric.Pieces;
 using osu.Game.Rulesets.Karaoke.Tools.Translator;
 
 namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
 {
-    public interface IAmDrawableKaraokeObject
+    public interface IAmDrawableLyric
     {
         /// <summary>
         /// Object
@@ -37,13 +36,11 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
         /// <summary>
         /// translate text
         /// </summary>
-        KaraokeText TranslateText { get; set; }
+        TranslateString TranslateText { get; set; }
 
         /// <summary>
-        /// add translate
+        /// Translate code
         /// </summary>
-        /// <param name="code"></param>
-        /// <param name="translateResult"></param>
-        void AddTranslate(TranslateCode code, string translateResult);
+        TranslateCode TranslateCode { get; set; }
     }
 }

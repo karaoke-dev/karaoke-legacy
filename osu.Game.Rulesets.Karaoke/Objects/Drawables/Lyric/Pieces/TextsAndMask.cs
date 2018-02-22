@@ -41,19 +41,19 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric.Pieces
             };
         }
 
-        public void AddMainText(FormattedText formattedText, Dictionary<int, TextComponent> textObject)
+        public void AddMainText(FormattedText formattedText, Dictionary<int, TextComponent> textObject,string delimiter)
         {
-            LeftSideText.AddMainText(formattedText, textObject);
-            RightSideText.AddMainText(formattedText, textObject);
+            LeftSideText.AddMainText(formattedText, textObject, delimiter);
+            RightSideText.AddMainText(formattedText, textObject, delimiter);
         }
 
-        public void AddSubText(FormattedText textObject)
+        public void AddSubText(List<FormattedText> textObject)
         {
             LeftSideText.AddSubText(textObject);
             RightSideText.AddSubText(textObject);
         }
 
-        public void AddBottomText(FormattedText textObject)
+        public void AddBottomText(List<FormattedText> textObject)
         {
             LeftSideText.AddBottomText(textObject);
             RightSideText.AddBottomText(textObject);

@@ -12,7 +12,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects
     public class LyricTemplate
     {
         /// <summary>
-        /// sub text
+        /// top text
         /// </summary>
         public FormattedText TopText { get; set; } = new FormattedText()
         {
@@ -30,12 +30,12 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         };
 
         /// <summary>
-        /// main text
+        /// bottom text
         /// </summary>
         public FormattedText BottomText { get; set; } = new FormattedText()
         {
             FontSize = 20, //default Main text Size is 20
-            Position = new Vector2(0, 50), //default position
+            Position = new Vector2(0, 70), //default position
         };
 
         /// <summary>
@@ -44,7 +44,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         public FormattedText TranslateText { get; set; } = new FormattedText()
         {
             FontSize = 20, //default Main text Size is 50
-            Position = new Vector2(0, 65), //default position
+            Position = new Vector2(0, 85), //default position
         };
 
         /// <summary>

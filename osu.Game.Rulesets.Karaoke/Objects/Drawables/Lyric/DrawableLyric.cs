@@ -1,14 +1,13 @@
 ﻿// Copyright (c) 2007-2018 ppy Pty Ltd <contact@ppy.sh>.
 // Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
 
+using System.Collections.Generic;
 using System.Linq;
 using osu.Framework.Allocation;
 using osu.Framework.Graphics;
 using osu.Framework.IO.Stores;
 using osu.Game.Rulesets.Karaoke.Configuration;
-using osu.Game.Rulesets.Karaoke.Objects.Drawables.Common.Pieces;
 using osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric.Pieces;
-using osu.Game.Rulesets.Karaoke.Objects.Extension;
 using osu.Game.Rulesets.Karaoke.Tools.Translator;
 using osu.Game.Rulesets.Objects.Drawables;
 using OpenTK;
@@ -19,7 +18,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
     /// <summary>
     /// Karaoke Text
     /// </summary>
-    public class DrawableKaraokeObject : DrawableHitObject<Objects.Lyric>, IAmDrawableKaraokeObject
+    public class DrawableLyric : DrawableHitObject<Objects.Lyric>, IAmDrawableLyric
     {
         //Const
         public const float TIME_FADEIN = 100;
@@ -49,7 +48,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
         /// <value>The config.</value>
         public KaraokeLyricConfig Config
         {
-            get => _config;
+            get => _config ?? (_config = new KaraokeLyricConfig());
             set
             {
                 _config = value;
@@ -95,7 +94,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
             set
             {
                 _translateCode = value;
-                UpdateDrawable();
+                UpdateValue();
             }
         }
 
@@ -125,10 +124,10 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
 
         //Drawable
         public TextsAndMask TextsAndMaskPiece { get; set; } = new TextsAndMask();
-        public KaraokeText TranslateText { get; set; } = new KaraokeText(null);
+        public TranslateString TranslateText { get; set; } = new TranslateString(null);
 
 
-        public DrawableKaraokeObject(Objects.Lyric hitObject)
+        public DrawableLyric(Objects.Lyric hitObject)
             : base(hitObject)
         {
             Alpha = 0;
@@ -149,40 +148,94 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
         protected virtual void UpdateDrawable()
         {
             TextsAndMaskPiece.ClearAllText();
-            //main text
-            TextsAndMaskPiece.AddMainText(Template?.MainText, Lyric.MainText.ToDictionary(k => k.Key, v => (TextComponent)v.Value));
 
-            //subtext
-            foreach (var singleText in Lyric.SubTexts)
+            if (Config != null)
             {
-                //1. recalculate position
-                var startPosition = TextsAndMaskPiece.MainText.GetEndPositionByIndex(singleText.Key - 1);
-                var endPosition = TextsAndMaskPiece.MainText.GetEndPositionByIndex(singleText.Key);
+                string mainTextDelimiter = "";
+                Dictionary<int, TextComponent> mainText = null;
+                Dictionary<int, FormattedText> bottomTexts = null;
+                Dictionary<int, FormattedText> subTexts = null;
 
-                var positionX = (startPosition + endPosition) / 2;
-                //2. update to subtext
-                TextsAndMaskPiece.AddSubText(Template?.TopText + singleText.Value + new FormattedText()
+                if (Config.RomajiFirst)
                 {
-                    X = positionX,
-                });
+                    mainText = Lyric.RomajiTextListRomajiTexts.ToDictionary(k => k.Key, v => (TextComponent) v.Value );
+                    mainTextDelimiter = " ";
+                }
+                else
+                {
+                    mainText = Lyric.MainText.ToDictionary(k => k.Key, v => (TextComponent)v.Value);
+                }
+                //main text
+                TextsAndMaskPiece.AddMainText(Template?.MainText, mainText.ToDictionary(k => k.Key, v => (TextComponent)v.Value), mainTextDelimiter);
+
+                //show romaji text
+                if (Config.RomajiVislbility)
+                {
+                    if (Config.RomajiFirst)
+                    {
+                        bottomTexts = Lyric.MainText.ToDictionary(k => k.Key, v => (Template?.BottomText + v.Value + new FormattedText()
+                        {
+                            X = getxPosition(v.Key),
+                        }));
+                    }
+                    else
+                    {
+                        bottomTexts = Lyric.RomajiTextListRomajiTexts.ToDictionary(k => k.Key, v => (Template?.BottomText + v.Value + new FormattedText()
+                        {
+                            X = getxPosition(v.Key),
+                        }));
+                    }
+                }
+
+                //show subtext
+                if (Config.SubTextVislbility)
+                {
+                    subTexts = Lyric.SubTexts.ToDictionary(k=> k.Key, v => (Template?.TopText + v.Value + new FormattedText()
+                    {
+                        X = getxPosition(v.Key),
+                    }));
+                }
+
+                //show sub text
+                TextsAndMaskPiece.AddSubText(subTexts?.Select(x => x.Value).ToList());
+
+                //show sub text
+                TextsAndMaskPiece.AddBottomText(bottomTexts?.Select(x => x.Value).ToList());
+
+                Width = TextsAndMaskPiece.MainText.GetTextEndPosition();
+                Height = Lyric.Height ?? 100;
+
+                UpdateValue();
             }
 
-            Width = TextsAndMaskPiece.MainText.GetTextEndPosition(); //Lyric.Width ?? (Template?.Width ?? 700);
-            Height = Lyric.Height ?? 100;
+            float getxPosition(int index)
+            {
+                var positionX = TextsAndMaskPiece.MainText.GetTextCenterPosition(index);
 
-            UpdateValue();
+                return positionX;
+            }
         }
 
         protected virtual void UpdateValue()
         {
+            //translate
+            if (Config != null)
+            {
+                if (Config.ShowTranslate)//show translate
+                {
+                    TranslateText.TextObject = Template?.TranslateText + Lyric.Translates.Where(x => x.Key == TranslateCode).FirstOrDefault().Value;
+                }
+                else
+                {
+                    TranslateText.TextObject = Template?.TranslateText;
+                }
+                TranslateText.Colour = Template?.TranslateTextColor ?? Color4.White;
+            }
+
             //Color
             Color4 textColor = Singer?.LytricColor ?? Color4.Blue;
             Color4 backgroundColor = Singer?.LytricBackgroundColor ?? Color4.White;
             TextsAndMaskPiece.SetColor(textColor, backgroundColor);
-
-            //translate text
-            TranslateText.TextObject = Template?.TranslateText + Lyric.Translates.Where(x => x.LangCode == LangTagConvertor.GetCode(TranslateCode)).FirstOrDefault();
-            TranslateText.Colour = Template?.TranslateTextColor ?? Color4.White;
 
             Scale = new Vector2(Template?.Scale ?? 1);
 
@@ -227,15 +280,26 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
             if (HitObject.IsInTime(currentRelativeTime))
             {
                 //TODO : get progress point
-                var startProgressPoint = HitObject.GetFirstProgressPointByTime(currentRelativeTime);
-                var endProgressPoint = HitObject.GetLastProgressPointByTime(currentRelativeTime);
+                var startProgressPoint = HitObject.ProgressPoints.GetFirstProgressPointByTime(currentRelativeTime);
+                var endProgressPoint = HitObject.ProgressPoints.GetLastProgressPointByTime(currentRelativeTime);
 
-                var startPosition = TextsAndMaskPiece.MainText.GetEndPositionByIndex(startProgressPoint.CharIndex);
-                var endPosition = TextsAndMaskPiece.MainText.GetEndPositionByIndex(endProgressPoint.CharIndex);
+                var startPosition = TextsAndMaskPiece.MainText.GetEndPositionByIndex(startProgressPoint.Key);
+                var endPosition = TextsAndMaskPiece.MainText.GetEndPositionByIndex(endProgressPoint?.Key ?? -1);
 
-                var relativeTime = currentRelativeTime - startProgressPoint.RelativeTime;
+                var relativeTime = currentRelativeTime - startProgressPoint.Value.RelativeTime;
+
+                if (endProgressPoint?.Value == null)
+                {
+                    return;
+                }
+
+                if (startPosition == endPosition)
+                {
+                    return;
+                }
+
                 //Update progress
-                Progress = startPosition + (endPosition - startPosition) / (float)(endProgressPoint.RelativeTime - startProgressPoint.RelativeTime) * (float)relativeTime;
+                Progress = startPosition + (endPosition - startPosition) / (float)(endProgressPoint?.Value.RelativeTime - startProgressPoint.Value.RelativeTime) * (float)relativeTime;
 
                 Show();
                 Alpha = 1;
@@ -291,12 +355,6 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
             //var sequence = this.Delay(HitObject.Duration).FadeOut(TIME_FADEOUT).Expire();
 
             //Expire();
-        }
-
-        public virtual void AddTranslate(TranslateCode code, string translateResult)
-        {
-            //Add and show translate in here
-            TranslateText.Text = translateResult;
         }
     }
 }

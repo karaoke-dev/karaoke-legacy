@@ -42,20 +42,20 @@
       <HintPath>$(SolutionDir)\packages\JetBrains.Annotations.11.1.0\lib\net20\JetBrains.Annotations.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="nunit.framework, Version=3.8.1.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
       <HintPath>$(SolutionDir)\packages\NUnit.3.8.1\lib\net45\nunit.framework.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="OpenTK, Version=3.0.0.0, Culture=neutral, PublicKeyToken=bad199fe84eb3df4, processorArchitecture=MSIL">
-      <HintPath>$(SolutionDir)\packages\OpenTK.3.0.0-git00009\lib\net20\OpenTK.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="OpenTK">
+      <HintPath>..\packages\ppy.OpenTK.3.0.13\lib\net45\OpenTK.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Beatmaps\KaraokeBeatmap.cs" />
@@ -86,8 +86,7 @@
     <Compile Include="Helps\DemoKaraokeObject.cs" />
     <Compile Include="Beatmaps\KaraokeBeatmapConverter.cs" />
     <Compile Include="Beatmaps\KaraokeBeatmapProcessor.cs" />
-    <Compile Include="Mods\KaraokeMod2017.cs" />
-    <Compile Include="Mods\ModInterface.cs" />
+    <Compile Include="Helps\DIctionaryHelper.cs" />
     <Compile Include="Edit\Dialog\Pieces\RevertableTextbox.cs" />
     <Compile Include="Beatmaps\KaraokeInfo.cs" />
     <Compile Include="Objects\LyricProgressPointList.cs" />
@@ -129,6 +128,9 @@
     <Compile Include="Tools\Romaji\Google\Unicode.cs" />
     <Compile Include="Tools\Romaji\RomajiTranslatorBase.cs" />
     <Compile Include="Tools\Translator\TranslateCode.cs" />
+    <Compile Include="Tools\Romaji\JpRomajiTranslator.cs" />
+    <Compile Include="Tools\Romaji\RomajiTranslator.cs" />
+    <Compile Include="Configuration\TranslateCode.cs" />
     <Compile Include="Tools\Translator\GoogleTranslator.cs" />
     <Compile Include="Tools\Translator\TranslateorBase.cs" />
     <Compile Include="UI\Cursor\CursorTrail.cs" />
@@ -151,8 +153,7 @@
     <Compile Include="UI\Panel\Pieces\KaraokePlayPauseButton.cs" />
     <Compile Include="UI\Panel\Pieces\KaraokeTimerSliderBar.cs" />
     <Compile Include="UI\Panel\Pieces\WithUpAndDownButtonSlider.cs" />
-    <Compile Include="Mods\KaraokeMod.cs" />
-    <Compile Include="Objects\Extension\KaraokeObjectExtension.cs" />
+    <Compile Include="Mods\KaraokeModSnow.cs" />
     <Compile Include="UI\PlayField\Lyric\KaraokeLyricPlayField.cs" />
     <Compile Include="UI\PlayField\Note\KaraokeTonePlayfield.cs" />
     <Compile Include="UI\Tool\KaraokeTool.cs" />
@@ -174,20 +175,31 @@
     <Compile Include="Objects\Drawables\Lyric\Pieces\ProgressPointBar.cs" />
     <Compile Include="Objects\Drawables\Lyric\Pieces\TextsAndMask.cs" />
     <Compile Include="Objects\Drawables\Lyric\Pieces\TranslateString.cs" />
-    <Compile Include="Objects\Drawables\Lyric\DrawableKaraokeObject.cs" />
-    <Compile Include="Objects\Drawables\Lyric\IAmDrawableKaraokeObject.cs" />
-    <Compile Include="Objects\Drawables\Lyric\KarakokeTextAssignment.cs" />
+    <Compile Include="Objects\Drawables\Lyric\DrawableLyric.cs" />
+    <Compile Include="Objects\Drawables\Lyric\Types\IAmDrawableLyric.cs" />
     <Compile Include="Objects\Drawables\Note\DrawableKaraokeNote.cs" />
     <Compile Include="Objects\Drawables\Common\Pieces\TextSets.cs" />
     <Compile Include="Objects\Types\IHasText.cs" />
+    <Compile Include="Mods\Mod2017\KaraokeMod2017_Christmas.cs" />
+    <Compile Include="Mods\Types\IHasLayer.cs" />
+    <Compile Include="Mods\KaraokeModTutorial.cs" />
+    <Compile Include="Mods\KaraokeModOpenTranslate.cs" />
+    <Compile Include="Mods\KaraokeModCloseTranslate.cs" />
+    <Compile Include="Mods\KaraokeModEasy.cs" />
+    <Compile Include="Mods\KaraokeModDoubleTime.cs" />
+    <Compile Include="Mods\KaraokeModCloseVocal.cs" />
+    <Compile Include="Mods\KaraokeModOpenVocal.cs" />
+    <Compile Include="Mods\KaraokeModHidden.cs" />
+    <Compile Include="Mods\KaraokeModTransparentLyrics.cs" />
+    <Compile Include="Mods\KaraokeModCloseLyrics.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\osu.licenseheader">
       <Link>osu.licenseheader</Link>
     </None>
     <None Include="app.config" />
-    <None Include="OpenTK.dll.config" />
     <None Include="packages.config" />
+    <None Include="OpenTK.dll.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\osu-framework\osu.Framework\osu.Framework.csproj">
@@ -205,13 +217,16 @@
       <Name>Symcol.Rulesets.Core</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Mods\Mod2018\" />
+  </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Textures\Play\Karaoke\Layer\Snow\Snow.png" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Textures\Icon\Icon.png" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

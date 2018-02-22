@@ -34,7 +34,7 @@ namespace osu.Game.Rulesets.Karaoke.UI
 
         public KaraokeLyricPlayField KaraokeLyricPlayField;
 
-        public List<IAmDrawableKaraokeObject> ListDrawableKaraokeObject { get; set; } = new List<IAmDrawableKaraokeObject>();
+        public List<IAmDrawableLyric> ListDrawableKaraokeObject { get; set; } = new List<IAmDrawableLyric>();
 
         public static readonly Vector2 BASE_SIZE = new Vector2(512, 384);
 
@@ -86,7 +86,7 @@ namespace osu.Game.Rulesets.Karaoke.UI
         public override void Add(DrawableHitObject h)
         {
             KaraokeLyricPlayField.Add(h);
-            ListDrawableKaraokeObject.Add(h as DrawableKaraokeObject);
+            ListDrawableKaraokeObject.Add(h as DrawableLyric);
         }
 
         //post process

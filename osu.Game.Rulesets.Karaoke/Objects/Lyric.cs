@@ -127,7 +127,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         /// The duration of the HitObject.
         /// </summary>
         [JsonIgnore]
-        public double Duration => ProgressPoints.LastOrDefault()?.RelativeTime ?? 0;
+        public double Duration => ProgressPoints.LastOrDefault().Value?.RelativeTime ?? 0;
 
         /// <summary>
         /// new combo
@@ -155,6 +155,10 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         /// <value>The translate code.</value>
         public TranslateCode TranslateCode { get; set; }
 
+
+
+        #region Function
+
         /// <summary>
         /// Splits the by progress point.
         /// </summary>
@@ -164,5 +168,23 @@ namespace osu.Game.Rulesets.Karaoke.Objects
             //TODO : implement
             return null;
         }
+
+        /// <summary>
+        /// Times the is in time.
+        /// </summary>
+        /// <returns><c>true</c>, if is in time was timed, <c>false</c> otherwise.</returns>
+        /// <param name="lyric">Karaoke object.</param>
+        /// <param name="nowRelativeTime">Now time.</param>
+        public bool IsInTime(double nowRelativeTime)
+        {
+            if (nowRelativeTime > -this.PreemptiveTime && nowRelativeTime <= this.Duration + this.EndPreemptiveTime)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        #endregion
     }
 }

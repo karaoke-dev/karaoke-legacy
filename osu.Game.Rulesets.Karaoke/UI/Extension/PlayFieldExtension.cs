@@ -264,12 +264,12 @@ namespace osu.Game.Rulesets.Karaoke.UI.Extension
         /// <returns></returns>
         public static bool NeedTranslate(this IAmKaraokeField karaokeField)
         {
-            if (karaokeField.WorkingBeatmap.Mods.Value.OfType<KaraokeOpenTranslate>().Any())
+            if (karaokeField.WorkingBeatmap.Mods.Value.OfType<KaraokeModOpenTranslate>().Any())
             {
                 return true;
             }
 
-            if (karaokeField.WorkingBeatmap.Mods.Value.OfType<KaraokeCloseTranslate>().Any())
+            if (karaokeField.WorkingBeatmap.Mods.Value.OfType<KaraokeModCloseTranslate>().Any())
             {
                 return false;
             }

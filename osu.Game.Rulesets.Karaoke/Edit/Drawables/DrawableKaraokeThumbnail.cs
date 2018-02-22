@@ -7,6 +7,7 @@ using osu.Framework.Input;
 using osu.Game.Rulesets.Karaoke.Edit.Drawables.Pieces;
 using osu.Game.Rulesets.Karaoke.Objects;
 using OpenTK.Input;
+using System.Collections.Generic;
 
 namespace osu.Game.Rulesets.Karaoke.Edit.Drawables
 {
@@ -55,6 +56,8 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables
             //3. show each point with text start and end time
             ListEditableProgressPoint.Direction = FillDirection.Horizontal;
             ListEditableProgressPoint.Clear();
+
+
             foreach (var single in Lyric.ProgressPoints)
             {
                 var editableProgressPoint = new EditableProgressPoint(this, single);
@@ -79,9 +82,9 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables
             {
                 //update position
                 var progressPoint = single.LyricProgressPoint;
-                single.Width = ((float)progressPoint.RelativeTime - totalRelativeTime) * Ratio * Zoon;
+                single.Width = ((float)progressPoint.Value.RelativeTime - totalRelativeTime) * Ratio * Zoon;
                 single.Height = 30;
-                totalRelativeTime = (float)progressPoint.RelativeTime;
+                totalRelativeTime = (float)progressPoint.Value.RelativeTime;
             }
 
             Width = totalRelativeTime * Ratio * Zoon;
@@ -147,7 +150,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables
                 if (i >= startIndex && i <= endIndex)
                 {
                     //not out of range
-                    ListEditableProgressPoint[i].LyricProgressPoint.RelativeTime = ListEditableProgressPoint[i].LyricProgressPoint.RelativeTime + deltaPosition;
+                    ListEditableProgressPoint[i].LyricProgressPoint.Value.RelativeTime = ListEditableProgressPoint[i].LyricProgressPoint.Value.RelativeTime + deltaPosition;
                 }
             }
 
@@ -157,11 +160,11 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables
         /// <summary>
         /// Delete single point
         /// </summary>
-        public void DeletePoint(LyricProgressPoint point)
+        public void DeletePoint(KeyValuePair<int,LyricProgressPoint> point)
         {
             if (Lyric.ProgressPoints.Count > 1)
             {
-                Lyric.ProgressPoints.Remove(point);
+                Lyric.ProgressPoints.Remove(point.Key);
             }
 
             UpdateView();

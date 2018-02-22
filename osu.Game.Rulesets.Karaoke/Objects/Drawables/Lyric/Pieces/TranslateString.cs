@@ -2,6 +2,7 @@
 // Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
 
 using osu.Game.Graphics.Sprites;
+using osu.Game.Rulesets.Karaoke.Objects.Drawables.Common.Pieces;
 
 namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric.Pieces
 {
@@ -10,9 +11,9 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric.Pieces
     /// just define the format of string ?
     /// the text will assign from DrawableObject?
     /// </summary>
-    public class TranslateString : OsuSpriteText
+    public class TranslateString : KaraokeText
     {
-        public TranslateString()
+        public TranslateString(FormattedText textObject) : base(textObject)
         {
         }
     }
