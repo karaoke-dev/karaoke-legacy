@@ -7,7 +7,6 @@ using Newtonsoft.Json;
 using osu.Game.Database;
 using osu.Game.Rulesets.Karaoke.Configuration;
 using osu.Game.Rulesets.Karaoke.Objects.Types;
-using osu.Game.Rulesets.Karaoke.Tools.Translator;
 using osu.Game.Rulesets.Objects;
 using osu.Game.Rulesets.Objects.Types;
 using OpenTK;
@@ -157,7 +156,6 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         public TranslateCode TranslateCode { get; set; }
 
 
-
         #region Function
 
         /// <summary>
@@ -178,7 +176,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         /// <param name="nowRelativeTime">Now time.</param>
         public bool IsInTime(double nowRelativeTime)
         {
-            if (nowRelativeTime > -this.PreemptiveTime && nowRelativeTime <= this.Duration + this.EndPreemptiveTime)
+            if (nowRelativeTime > -PreemptiveTime && nowRelativeTime <= Duration + EndPreemptiveTime)
             {
                 return true;
             }

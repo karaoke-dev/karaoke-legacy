@@ -4,9 +4,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json;
-using System.Linq;
-using System;
-using System.Collections;
 
 namespace osu.Game.Rulesets.Karaoke.Objects
 {
@@ -14,7 +11,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects
     /// list Progress point
     /// [Note : key is mapped in Char index, not Dictionary's index]
     /// </summary>
-    public class LyricProgressPointList : Dictionary<int,LyricProgressPoint>
+    public class LyricProgressPointList : Dictionary<int, LyricProgressPoint>
     {
         [JsonIgnore]
         public double MinimumTime { get; set; } = 100;
@@ -31,7 +28,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         /// <returns></returns>
         public KeyValuePair<int, LyricProgressPoint>? FindPrevioud(int key)
         {
-            var result = this.Keys.Where(x => x < key);
+            var result = Keys.Where(x => x < key);
             if (result.Count() < 2)
                 return this.First();
 
@@ -46,7 +43,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         /// <returns></returns>
         public KeyValuePair<int, LyricProgressPoint>? FindNext(int key)
         {
-            var result = this.Keys.Where(x => x > key);
+            var result = Keys.Where(x => x > key);
             if (result.Count() < 2)
                 return this.Last();
             var nextKey = result.Min();
@@ -72,7 +69,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects
             return new KeyValuePair<int, LyricProgressPoint>(index - 1, result);
             */
 
-            
+
             var result = this.Where(x => x.Value.RelativeTime <= nowRelativeTime).ToDictionary(x => x.Key, x => x.Value);
 
             if (result.Count() < 2)
@@ -103,25 +100,24 @@ namespace osu.Game.Rulesets.Karaoke.Objects
             return point;
             */
 
-            if (this.Count == 0)
+            if (Count == 0)
                 return null;
 
             //result
-            var result = this.Where(x => x.Value.RelativeTime > nowRelativeTime).ToDictionary(x=>x.Key,x=>x.Value);
+            var result = this.Where(x => x.Value.RelativeTime > nowRelativeTime).ToDictionary(x => x.Key, x => x.Value);
 
-            if (result.Count()<2)
+            if (result.Count() < 2)
                 return this.Last();
 
-            var maxResult = Find(result.Keys.Max()); 
+            var maxResult = Find(result.Keys.Max());
 
             if (maxResult.Equals(default(KeyValuePair<string, int>)))
             {
-                var key = this.Keys.Max();
+                var key = Keys.Max();
                 return Find(key);
-            }  
+            }
 
             return maxResult;
-            
         }
 
         /// <summary>
@@ -156,20 +152,20 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         /// </summary>
         /// <returns><c>true</c>, if progress point was added, <c>false</c> otherwise.</returns>
         /// <param name="karaokeObject">Karaoke object.</param>
-        public new void Add(int key,LyricProgressPoint point)
+        public new void Add(int key, LyricProgressPoint point)
         {
             //TODO : filter
             if (this.Any(x => x.Key == key))
-                return ;
+                return;
             if (this.Any(x => x.Value.RelativeTime == point.RelativeTime))
-                return ;
+                return;
 
-            base.Add(key,point);
+            base.Add(key, point);
             SortProgressPoint();
             FixTime();
         }
 
-        
+
         /// <summary>
         /// sorting by position and time should be higher
         /// </summary>
@@ -180,10 +176,10 @@ namespace osu.Game.Rulesets.Karaoke.Objects
             Clear();
             foreach (var single in sortedDic)
             {
-                base.Add(single.Key,single.Value);
-            } 
+                base.Add(single.Key, single.Value);
+            }
         }
-        
+
 
         /// <summary>
         /// fix the delta time

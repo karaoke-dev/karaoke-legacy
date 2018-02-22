@@ -1,4 +1,7 @@
-﻿using System.Collections.Generic;
+﻿// Copyright (c) 2007-2018 ppy Pty Ltd <contact@ppy.sh>.
+// Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
+
+using System.Collections.Generic;
 
 namespace osu.Game.Rulesets.Karaoke.Helps
 {
@@ -12,7 +15,7 @@ namespace osu.Game.Rulesets.Karaoke.Helps
         /// <param name="sourceDictionary"></param>
         /// <param name="targetDictionary"></param>
         /// <returns></returns>
-        public static bool ResharpDictionaryId<U,V>(Dictionary<int, U> sourceDictionary, Dictionary<int, V> targetDictionary) where U: struct where V : struct 
+        public static bool ResharpDictionaryId<U, V>(Dictionary<int, U> sourceDictionary, Dictionary<int, V> targetDictionary) where U : struct where V : struct
         {
             return false;
         }

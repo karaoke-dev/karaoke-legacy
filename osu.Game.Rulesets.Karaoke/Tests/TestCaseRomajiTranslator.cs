@@ -1,7 +1,9 @@
-﻿using NUnit.Framework;
+﻿// Copyright (c) 2007-2018 ppy Pty Ltd <contact@ppy.sh>.
+// Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
+
+using NUnit.Framework;
 using osu.Framework.Graphics;
 using osu.Game.Graphics.Sprites;
-using osu.Game.Rulesets.Karaoke.Tools.Romaji;
 using osu.Game.Rulesets.Karaoke.Tools.Romaji.Google;
 using osu.Game.Tests.Visual;
 using OpenTK;
@@ -34,7 +36,6 @@ namespace osu.Game.Rulesets.Karaoke.Tests
                 Position = new Vector2(100, 100),
                 //BorderColour = _textColor,
             });
-            
         }
     }
 }

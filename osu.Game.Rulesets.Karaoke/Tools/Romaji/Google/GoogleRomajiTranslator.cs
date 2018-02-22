@@ -1,4 +1,7 @@
-﻿using System.Collections.Generic;
+﻿// Copyright (c) 2007-2018 ppy Pty Ltd <contact@ppy.sh>.
+// Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
+
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
@@ -13,7 +16,7 @@ namespace osu.Game.Rulesets.Karaoke.Tools.Romaji.Google
 
         private string TranslatorUrl = "https://www.google.com/translate_t?hl=en&ie=UTF8&text={0}&langpair={1}";
 
-        
+
         public string GetTranslatorUrl(string text, string languagePair = LanguagePair)
         {
             return string.Format(TranslatorUrl, text, languagePair);
@@ -34,18 +37,39 @@ namespace osu.Game.Rulesets.Karaoke.Tools.Romaji.Google
             // Load maps and particles lists once
             List<string> hirakanjiMaps = new List<string>()
             {
-                " ̄ : ", "tsud:tsu"
+                " ̄ : ",
+                "tsud:tsu"
             };
 
             List<string> hirakanjiParticles = new List<string>()
             {
-                "ba","de","e","ga","ka","mo","na", "ne",  "ni", "no",
-                "o", "te",  "to", "wa",    "wo",   "ya",   "yo", "sa", "ze", "zo",
+                "ba",
+                "de",
+                "e",
+                "ga",
+                "ka",
+                "mo",
+                "na",
+                "ne",
+                "ni",
+                "no",
+                "o",
+                "te",
+                "to",
+                "wa",
+                "wo",
+                "ya",
+                "yo",
+                "sa",
+                "ze",
+                "zo",
             };
 
             List<string> kataMaps = new List<string>()
             {
-                " ̄ : ","eye:ai","lung:rune"
+                " ̄ : ",
+                "eye:ai",
+                "lung:rune"
             };
 
             List<string> kataParticles = new List<string>()
@@ -53,7 +77,6 @@ namespace osu.Game.Rulesets.Karaoke.Tools.Romaji.Google
                 ""
             };
 
-            
 
             // Translate each token and join them back together
             string outText = "";
@@ -64,11 +87,11 @@ namespace osu.Game.Rulesets.Karaoke.Tools.Romaji.Google
                 switch (textToken.Type)
                 {
                     case TokenType.HiraganaKanji:
-                        outText += textToken.Translate(url,hirakanjiMaps, hirakanjiParticles);
+                        outText += textToken.Translate(url, hirakanjiMaps, hirakanjiParticles);
                         break;
 
                     case TokenType.Katakana:
-                        outText += textToken.Translate(url,kataMaps, kataParticles);
+                        outText += textToken.Translate(url, kataMaps, kataParticles);
                         break;
 
                     case TokenType.Latin:
@@ -85,6 +108,7 @@ namespace osu.Game.Rulesets.Karaoke.Tools.Romaji.Google
         }
 
         #region Function
+
         // Loop through characters in a string and split them into sequential tokens
         // eg. "Cake 01. ヴァンパイア雪降る夜"
         // => ["Cake 01. ", "ヴァンパイア", "雪降る夜"]
@@ -147,8 +171,8 @@ namespace osu.Game.Rulesets.Karaoke.Tools.Romaji.Google
                         {
                             char prevLastChar = textTokens.Last().Text.Last();
                             tokenPrefix = GetTokenPrefix(prevCharTokenType,
-                                                         currCharTokenType,
-                                                         prevLastChar, c);
+                                currCharTokenType,
+                                prevLastChar, c);
                         }
                     }
 
@@ -169,7 +193,7 @@ namespace osu.Game.Rulesets.Karaoke.Tools.Romaji.Google
         }
 
         public string GetTokenPrefix(TokenType prevType, TokenType currType,
-                                            char prevLastChar, char currFirstChar)
+                                     char prevLastChar, char currFirstChar)
         {
             string prefix = "";
 
@@ -302,6 +326,7 @@ namespace osu.Game.Rulesets.Karaoke.Tools.Romaji.Google
 
             return hasPrefix;
         }
+
         #endregion
     }
 }

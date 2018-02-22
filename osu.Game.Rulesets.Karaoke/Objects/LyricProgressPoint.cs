@@ -1,14 +1,12 @@
 ﻿// Copyright (c) 2007-2018 ppy Pty Ltd <contact@ppy.sh>.
 // Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
 
-using osu.Game.Rulesets.Karaoke.Objects.Types;
-
 namespace osu.Game.Rulesets.Karaoke.Objects
 {
     /// <summary>
     /// record what time the 
     /// </summary>
-    public class LyricProgressPoint 
+    public class LyricProgressPoint
     {
         public LyricProgressPoint()
         {

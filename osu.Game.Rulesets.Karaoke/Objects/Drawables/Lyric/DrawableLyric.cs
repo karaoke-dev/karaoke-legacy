@@ -9,7 +9,6 @@ using osu.Framework.IO.Stores;
 using osu.Game.Rulesets.Karaoke.Configuration;
 using osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric.Pieces;
 using osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric.Types;
-using osu.Game.Rulesets.Karaoke.Tools.Translator;
 using osu.Game.Rulesets.Objects.Drawables;
 using OpenTK;
 using OpenTK.Graphics;
@@ -23,6 +22,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
     {
         //Const
         public const float TIME_FADEIN = 100;
+
         public const float TIME_FADEOUT = 100;
 
 
@@ -32,6 +32,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
 
         //Private
         private KaraokeLyricConfig _config;
+
         private LyricTemplate _template;
         private Singer _singer;
         private TranslateCode _translateCode;
@@ -125,6 +126,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
 
         //Drawable
         public TextsAndMask TextsAndMaskPiece { get; set; } = new TextsAndMask();
+
         public TranslateString TranslateText { get; set; } = new TranslateString(null);
 
 
@@ -159,7 +161,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
 
                 if (Config.RomajiFirst)
                 {
-                    mainText = Lyric.RomajiTextListRomajiTexts.ToDictionary(k => k.Key, v => (TextComponent) v.Value );
+                    mainText = Lyric.RomajiTextListRomajiTexts.ToDictionary(k => k.Key, v => (TextComponent)v.Value);
                     mainTextDelimiter = " ";
                 }
                 else
@@ -174,27 +176,27 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
                 {
                     if (Config.RomajiFirst)
                     {
-                        bottomTexts = Lyric.MainText.ToDictionary(k => k.Key, v => (Template?.BottomText + v.Value + new FormattedText()
+                        bottomTexts = Lyric.MainText.ToDictionary(k => k.Key, v => Template?.BottomText + v.Value + new FormattedText()
                         {
                             X = getxPosition(v.Key),
-                        }));
+                        });
                     }
                     else
                     {
-                        bottomTexts = Lyric.RomajiTextListRomajiTexts.ToDictionary(k => k.Key, v => (Template?.BottomText + v.Value + new FormattedText()
+                        bottomTexts = Lyric.RomajiTextListRomajiTexts.ToDictionary(k => k.Key, v => Template?.BottomText + v.Value + new FormattedText()
                         {
                             X = getxPosition(v.Key),
-                        }));
+                        });
                     }
                 }
 
                 //show subtext
                 if (Config.SubTextVislbility)
                 {
-                    subTexts = Lyric.SubTexts.ToDictionary(k=> k.Key, v => (Template?.TopText + v.Value + new FormattedText()
+                    subTexts = Lyric.SubTexts.ToDictionary(k => k.Key, v => Template?.TopText + v.Value + new FormattedText()
                     {
                         X = getxPosition(v.Key),
-                    }));
+                    });
                 }
 
                 //show sub text
@@ -222,7 +224,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
             //translate
             if (Config != null)
             {
-                if (Config.ShowTranslate)//show translate
+                if (Config.ShowTranslate) //show translate
                 {
                     TranslateText.TextObject = Template?.TranslateText + Lyric.Translates.Where(x => x.Key == TranslateCode).FirstOrDefault().Value;
                 }

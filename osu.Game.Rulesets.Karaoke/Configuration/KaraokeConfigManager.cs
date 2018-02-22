@@ -4,7 +4,6 @@
 using osu.Framework.Configuration.Tracking;
 using osu.Game.Configuration;
 using osu.Game.Rulesets.Karaoke.Objects;
-using osu.Game.Rulesets.Karaoke.Tools.Translator;
 
 namespace osu.Game.Rulesets.Karaoke.Configuration
 {
@@ -52,7 +51,6 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
 
         public override TrackedSettings CreateTrackedSettings() => new TrackedSettings
         {
-            
         };
     }
 

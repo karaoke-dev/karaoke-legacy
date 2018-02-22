@@ -1,6 +1,7 @@
 ﻿// Copyright (c) 2007-2018 ppy Pty Ltd <contact@ppy.sh>.
 // Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
 
+using System.Collections.Generic;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Cursor;
 using osu.Framework.Graphics.Shapes;
@@ -12,8 +13,6 @@ using osu.Game.Rulesets.Karaoke.Objects;
 using OpenTK;
 using OpenTK.Graphics;
 using OpenTK.Input;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Pieces
 {
@@ -25,7 +24,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Pieces
         };
 
         //public 
-        public KeyValuePair<int,LyricProgressPoint> LyricProgressPoint { get; set; }
+        public KeyValuePair<int, LyricProgressPoint> LyricProgressPoint { get; set; }
 
         public DrawableKaraokeThumbnail DrawableKaraokeThumbnail { get; set; } //Parent
         public int IndexOfObject => LyricProgressPoint.Key;
@@ -98,7 +97,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Pieces
             Selected = false;
         }
 
-        public EditableProgressPoint(DrawableKaraokeThumbnail drawableKaraokeThumbnail,  KeyValuePair<int,LyricProgressPoint> lyricProgressPoin)
+        public EditableProgressPoint(DrawableKaraokeThumbnail drawableKaraokeThumbnail, KeyValuePair<int, LyricProgressPoint> lyricProgressPoin)
         {
             DrawableKaraokeThumbnail = drawableKaraokeThumbnail;
             LyricProgressPoint = lyricProgressPoin;

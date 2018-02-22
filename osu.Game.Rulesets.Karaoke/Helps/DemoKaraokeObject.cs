@@ -2,8 +2,8 @@
 // Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
 
 using System.Collections.Generic;
+using osu.Game.Rulesets.Karaoke.Configuration;
 using osu.Game.Rulesets.Karaoke.Objects;
-using osu.Game.Rulesets.Karaoke.Tools.Translator;
 using OpenTK;
 
 namespace osu.Game.Rulesets.Karaoke.Helps
@@ -47,10 +47,10 @@ namespace osu.Game.Rulesets.Karaoke.Helps
             {
                 Text = "お",
             });
-            karaokeObject.ProgressPoints.Add(0,new LyricProgressPoint(0));
-            karaokeObject.ProgressPoints.Add(1,new LyricProgressPoint(500));
-            karaokeObject.ProgressPoints.Add(5,new LyricProgressPoint(1000));
-            karaokeObject.ProgressPoints.Add(11,new LyricProgressPoint(1500));
+            karaokeObject.ProgressPoints.Add(0, new LyricProgressPoint(0));
+            karaokeObject.ProgressPoints.Add(1, new LyricProgressPoint(500));
+            karaokeObject.ProgressPoints.Add(5, new LyricProgressPoint(1000));
+            karaokeObject.ProgressPoints.Add(11, new LyricProgressPoint(1500));
 
             return karaokeObject;
         }
@@ -70,9 +70,9 @@ namespace osu.Game.Rulesets.Karaoke.Helps
             });
             karaokeObject.StartTime = startTime;
 
-            karaokeObject.ProgressPoints.Add(0,new LyricProgressPoint(duration / 5));
-            karaokeObject.ProgressPoints.Add(9,new LyricProgressPoint(duration / 4));
-            karaokeObject.ProgressPoints.Add(11,new LyricProgressPoint(duration));
+            karaokeObject.ProgressPoints.Add(0, new LyricProgressPoint(duration / 5));
+            karaokeObject.ProgressPoints.Add(9, new LyricProgressPoint(duration / 4));
+            karaokeObject.ProgressPoints.Add(11, new LyricProgressPoint(duration));
 
             karaokeObject.RomajiTextListRomajiTexts.Add(0, new RomajiText("o"));
             karaokeObject.RomajiTextListRomajiTexts.Add(1, new RomajiText("wa"));
@@ -111,7 +111,7 @@ namespace osu.Game.Rulesets.Karaoke.Helps
                 },
                 Translates = new ListKaraokeTranslateString()
                 {
-                    {TranslateCode.English ,  new LyricTranslate(){Text = "Karaoke" } },
+                    { TranslateCode.English, new LyricTranslate() { Text = "Karaoke" } },
                 }
             };
         }

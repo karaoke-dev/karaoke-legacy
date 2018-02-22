@@ -1,10 +1,8 @@
-﻿using osu.Framework.Graphics;
-using osu.Framework.Graphics.Containers;
-using osu.Framework.Timing;
+﻿// Copyright (c) 2007-2018 ppy Pty Ltd <contact@ppy.sh>.
+// Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
+
 using osu.Game.Graphics;
-using osu.Game.Rulesets.Karaoke.UI.Layer.ShowEffect;
 using osu.Game.Rulesets.Mods;
-using OpenTK;
 
 namespace osu.Game.Rulesets.Karaoke.Mods
 {

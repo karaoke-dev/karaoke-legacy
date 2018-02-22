@@ -1,4 +1,7 @@
-﻿using System.Collections.Generic;
+﻿// Copyright (c) 2007-2018 ppy Pty Ltd <contact@ppy.sh>.
+// Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
+
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Net;
@@ -9,12 +12,12 @@ namespace osu.Game.Rulesets.Karaoke.Tools.Romaji.Google
 {
     public class TextToken
     {
-
         public TokenType Type { get; private set; }
         public string Text { get; set; }
         public string Prefix { get; set; }
 
-        public Dictionary<string, string> PunctuationMap { get; } = new Dictionary<string, string>() {
+        public Dictionary<string, string> PunctuationMap { get; } = new Dictionary<string, string>()
+        {
             { "、", ", " },
             { "“", "\"" },
             { "”", "\"" }
@@ -30,7 +33,7 @@ namespace osu.Game.Rulesets.Karaoke.Tools.Romaji.Google
         // 1. Latin - Don't translate
         // 2. Katakana - Translate to output language
         // 3. Hiragana / Kanji - Translate to phonetic
-        public string Translate(string url,List<string> maps = null,
+        public string Translate(string url, List<string> maps = null,
                                 List<string> particles = null,
                                 string languagePair = GoogleRomajiTranslator.LanguagePair)
         {
@@ -39,29 +42,29 @@ namespace osu.Game.Rulesets.Karaoke.Tools.Romaji.Google
             switch (Type)
             {
                 case TokenType.HiraganaKanji:
-                    {
-                        // Get phoentic text
-                        HtmlDocument doc = new HtmlWeb().Load(url);
-                        string phoneticText = WebUtility.HtmlDecode(doc.GetElementbyId("src-translit").InnerText);
-                        translation = FormatTranslation(phoneticText, maps, particles);
-                        break;
-                    }
+                {
+                    // Get phoentic text
+                    HtmlDocument doc = new HtmlWeb().Load(url);
+                    string phoneticText = WebUtility.HtmlDecode(doc.GetElementbyId("src-translit").InnerText);
+                    translation = FormatTranslation(phoneticText, maps, particles);
+                    break;
+                }
 
                 case TokenType.Katakana:
-                    {
-                        // Get translated text
-                        HtmlDocument doc = new HtmlWeb().Load(url);
-                        string translatedText = WebUtility.HtmlDecode(doc.GetElementbyId("result_box").InnerText);
-                        translation = FormatTranslation(translatedText, maps, particles);
-                        break;
-                    }
+                {
+                    // Get translated text
+                    HtmlDocument doc = new HtmlWeb().Load(url);
+                    string translatedText = WebUtility.HtmlDecode(doc.GetElementbyId("result_box").InnerText);
+                    translation = FormatTranslation(translatedText, maps, particles);
+                    break;
+                }
 
                 case TokenType.Latin:
                 default:
-                    {
-                        translation = FormatTranslation(Text, maps, particles);
-                        break;
-                    }
+                {
+                    translation = FormatTranslation(Text, maps, particles);
+                    break;
+                }
             }
 
             return translation;
@@ -117,8 +120,11 @@ namespace osu.Game.Rulesets.Karaoke.Tools.Romaji.Google
         }
 
         #region Function
+
         private static char MapSplitChar = ':';
-        private List<string> Suffixes = new List<string>() {
+
+        private List<string> Suffixes = new List<string>()
+        {
             "Iru"
         };
 
@@ -131,7 +137,7 @@ namespace osu.Game.Rulesets.Karaoke.Tools.Romaji.Google
                 string[] mapStrings = map.Split(MapSplitChar);
 
                 // Make sure mapping is valid
-                if (map.IndexOf(MapSplitChar) == 0 || (mapStrings.Length != 1 && mapStrings.Length != 2)) continue;
+                if (map.IndexOf(MapSplitChar) == 0 || mapStrings.Length != 1 && mapStrings.Length != 2) continue;
 
                 text = Regex.Replace(text,
                     mapStrings[0],
@@ -193,6 +199,7 @@ namespace osu.Game.Rulesets.Karaoke.Tools.Romaji.Google
 
             return text;
         }
+
         #endregion
     }
 

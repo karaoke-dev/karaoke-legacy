@@ -2,15 +2,15 @@
 // Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
 
 using System.Linq;
+using osu.Framework.Graphics;
 using osu.Framework.Input;
 using osu.Game.Beatmaps;
 using osu.Game.Rulesets.Karaoke.Edit.Dialog;
 using osu.Game.Rulesets.Karaoke.Edit.Drawables;
 using osu.Game.Rulesets.Karaoke.UI;
+using osu.Game.Rulesets.Karaoke.UI.PlayField.Lyric;
 using osu.Game.Rulesets.Objects.Drawables;
 using OpenTK.Input;
-using osu.Framework.Graphics;
-using osu.Game.Rulesets.Karaoke.UI.PlayField.Lyric;
 
 namespace osu.Game.Rulesets.Karaoke.Edit
 {

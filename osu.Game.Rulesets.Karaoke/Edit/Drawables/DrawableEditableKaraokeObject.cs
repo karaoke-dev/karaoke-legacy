@@ -1,18 +1,17 @@
 ﻿// Copyright (c) 2007-2018 ppy Pty Ltd <contact@ppy.sh>.
 // Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
 
+using System.Collections.Generic;
 using System.Linq;
 using osu.Framework.Graphics.Cursor;
 using osu.Framework.Graphics.UserInterface;
 using osu.Framework.Input;
 using osu.Game.Graphics.UserInterface;
+using osu.Game.Rulesets.Karaoke.Configuration;
 using osu.Game.Rulesets.Karaoke.Edit.Drawables.Pieces;
 using osu.Game.Rulesets.Karaoke.Objects;
 using osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric;
-using osu.Game.Rulesets.Karaoke.Tools.Translator;
 using OpenTK;
-using System.Collections.Generic;
-using osu.Game.Rulesets.Karaoke.Configuration;
 
 namespace osu.Game.Rulesets.Karaoke.Edit.Drawables
 {
@@ -116,9 +115,9 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables
         {
             KeyValuePair<int, LyricProgressPoint> previousPoint = Lyric.ProgressPoints.GetFirstProgressPointByIndex(index);
             KeyValuePair<int, LyricProgressPoint> nextPoint = Lyric.ProgressPoints.GetLastProgressPointByIndex(index);
-            double deltaTime = ((previousPoint.Value?.RelativeTime ?? 0) + ((nextPoint.Value?.RelativeTime) ?? (previousPoint.Value?.RelativeTime??0) + 500)) / 2;
+            double deltaTime = ((previousPoint.Value?.RelativeTime ?? 0) + (nextPoint.Value?.RelativeTime ?? (previousPoint.Value?.RelativeTime ?? 0) + 500)) / 2;
             LyricProgressPoint point = new LyricProgressPoint(deltaTime);
-            Lyric.ProgressPoints.Add(index,point);
+            Lyric.ProgressPoints.Add(index, point);
             DrawableKaraokeThumbnail.UpdateView();
         }
 

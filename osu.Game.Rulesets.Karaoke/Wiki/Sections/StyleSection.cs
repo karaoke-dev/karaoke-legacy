@@ -2,18 +2,15 @@
 // Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
 
 using System;
-using System.Collections.Generic;
 using osu.Framework.Allocation;
 using osu.Framework.Configuration;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
-using osu.Game.Configuration;
 using osu.Game.Overlays.Settings;
 using osu.Game.Rulesets.Karaoke.Configuration;
 using osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces;
 using osu.Game.Rulesets.Karaoke.Helps;
 using osu.Game.Rulesets.Karaoke.Objects;
-using osu.Game.Rulesets.Karaoke.Tools.Translator;
 using OpenTK;
 using Symcol.Rulesets.Core.Wiki;
 
@@ -109,8 +106,8 @@ namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
         private void load()
         {
             //config = new KaraokeConfigManager(settings,ruleset,0);
-            KarokeTemplate = new LyricTemplate();//_config.GetObject<LyricTemplate>(KaraokeSetting.Template);
-            LyricConfig = new KaraokeLyricConfig();//_config.GetObject<KaraokeLyricConfig>(KaraokeSetting.LyricStyle);
+            KarokeTemplate = new LyricTemplate(); //_config.GetObject<LyricTemplate>(KaraokeSetting.Template);
+            LyricConfig = new KaraokeLyricConfig(); //_config.GetObject<KaraokeLyricConfig>(KaraokeSetting.LyricStyle);
             _menuSetting.LyricTConfig = LyricConfig;
         }
     }

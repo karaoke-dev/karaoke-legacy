@@ -17,7 +17,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Pieces
         public Color4 HoverColor { get; set; } = Color4.Red;
         public Color4 SelectColor { get; set; } = Color4.Purple;
 
-        public EditableMainKaraokeText(FormattedText textObject, Dictionary<int, TextComponent> mainText,string delimiter="")
+        public EditableMainKaraokeText(FormattedText textObject, Dictionary<int, TextComponent> mainText, string delimiter = "")
             : base(textObject, mainText, delimiter)
         {
         }

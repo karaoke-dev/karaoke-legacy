@@ -1,13 +1,13 @@
 ﻿// Copyright (c) 2007-2018 ppy Pty Ltd <contact@ppy.sh>.
 // Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
 
+using System.Collections.Generic;
 using System.Linq;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Input;
 using osu.Game.Rulesets.Karaoke.Edit.Drawables.Pieces;
 using osu.Game.Rulesets.Karaoke.Objects;
 using OpenTK.Input;
-using System.Collections.Generic;
 
 namespace osu.Game.Rulesets.Karaoke.Edit.Drawables
 {
@@ -160,7 +160,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables
         /// <summary>
         /// Delete single point
         /// </summary>
-        public void DeletePoint(KeyValuePair<int,LyricProgressPoint> point)
+        public void DeletePoint(KeyValuePair<int, LyricProgressPoint> point)
         {
             if (Lyric.ProgressPoints.Count > 1)
             {

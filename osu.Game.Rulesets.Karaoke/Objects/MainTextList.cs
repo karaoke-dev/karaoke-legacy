@@ -10,8 +10,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects
 {
     public class MainTextList : Dictionary<int, MainText>, IHasText
     {
-        [JsonIgnore]
-        public string Delimiter = "";
+        [JsonIgnore] public string Delimiter = "";
 
         public string Text
         {

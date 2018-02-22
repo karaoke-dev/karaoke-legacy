@@ -3,7 +3,6 @@
 
 using System.Collections.Generic;
 using osu.Game.Rulesets.Karaoke.Configuration;
-using osu.Game.Rulesets.Karaoke.Tools.Translator;
 
 namespace osu.Game.Rulesets.Karaoke.Objects
 {
@@ -14,7 +13,6 @@ namespace osu.Game.Rulesets.Karaoke.Objects
     {
         public LyricTranslate()
         {
-
         }
 
         public LyricTranslate(string translateText)
@@ -28,6 +26,5 @@ namespace osu.Game.Rulesets.Karaoke.Objects
     /// </summary>
     public class ListKaraokeTranslateString : Dictionary<TranslateCode, LyricTranslate>
     {
-        
     }
 }

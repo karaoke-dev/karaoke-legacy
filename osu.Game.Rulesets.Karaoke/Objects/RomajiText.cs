@@ -12,7 +12,6 @@ namespace osu.Game.Rulesets.Karaoke.Objects
     {
         public RomajiText()
         {
-
         }
 
         public RomajiText(string str)

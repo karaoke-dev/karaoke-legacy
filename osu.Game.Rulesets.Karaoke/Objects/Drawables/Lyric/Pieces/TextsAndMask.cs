@@ -25,10 +25,12 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric.Pieces
 
         //TopText
         public KaraokeText SubText => SubTexts?.FirstOrDefault();
+
         public List<KaraokeText> SubTexts => RightSideText.ListDrawableSubText;
 
         //BottomText
         public KaraokeText BottomText => BottomTexts?.FirstOrDefault();
+
         public List<KaraokeText> BottomTexts => RightSideText.ListDrawableBottomText;
 
 
@@ -41,7 +43,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric.Pieces
             };
         }
 
-        public void AddMainText(FormattedText formattedText, Dictionary<int, TextComponent> textObject,string delimiter)
+        public void AddMainText(FormattedText formattedText, Dictionary<int, TextComponent> textObject, string delimiter)
         {
             LeftSideText.AddMainText(formattedText, textObject, delimiter);
             RightSideText.AddMainText(formattedText, textObject, delimiter);
