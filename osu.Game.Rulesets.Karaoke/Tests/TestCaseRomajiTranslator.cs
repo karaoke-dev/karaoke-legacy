@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using osu.Framework.Graphics;
 using osu.Game.Graphics.Sprites;
 using osu.Game.Rulesets.Karaoke.Tools.Romaji;
@@ -23,7 +18,7 @@ namespace osu.Game.Rulesets.Karaoke.Tests
         {
             googleRomajiTranslator = new GoogleRomajiTranslator();
 
-            var translateResult = GoogleRomajiTranslator.Translate("終わるまでは終わらないよ");
+            var translateResult = googleRomajiTranslator.Translate("終わるまでは終わらないよ");
 
             Add(new OsuSpriteText
             {

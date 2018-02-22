@@ -2,6 +2,7 @@
 using System.Globalization;
 using System.Linq;
 using System.Net;
+using System.Text.RegularExpressions;
 using HtmlAgilityPack;
 
 namespace osu.Game.Rulesets.Karaoke.Tools.Romaji.Google
@@ -13,7 +14,7 @@ namespace osu.Game.Rulesets.Karaoke.Tools.Romaji.Google
         public string Text { get; set; }
         public string Prefix { get; set; }
 
-        public static Dictionary<string, string> PunctuationMap { get; } = new Dictionary<string, string>() {
+        public Dictionary<string, string> PunctuationMap { get; } = new Dictionary<string, string>() {
             { "、", ", " },
             { "“", "\"" },
             { "”", "\"" }
@@ -26,228 +27,10 @@ namespace osu.Game.Rulesets.Karaoke.Tools.Romaji.Google
             Prefix = prefix;
         }
 
-        // Loop through characters in a string and split them into sequential tokens
-        // eg. "Cake 01. ヴァンパイア雪降る夜"
-        // => ["Cake 01. ", "ヴァンパイア", "雪降る夜"]
-        public static List<TextToken> GetTextTokens(string inText)
-        {
-            List<TextToken> textTokens = new List<TextToken>();
-
-            // Start with arbitrary token type
-            TokenType prevCharTokenType = TokenType.Latin;
-            TokenType currCharTokenType = prevCharTokenType;
-
-            TextToken currToken = new TextToken(currCharTokenType);
-
-            foreach (char c in inText)
-            {
-                string cs = c.ToString();
-
-                if (Unicode.IsProlongedChar(c))
-                {
-                    // Special condition for prolonged sound character
-                    currCharTokenType = prevCharTokenType;
-                }
-                else if (Unicode.IsHiragana(cs) || Unicode.IsKanji(cs))
-                {
-                    // Hiragana / Kanji
-                    currCharTokenType = TokenType.HiraganaKanji;
-                }
-                else if (Unicode.IsKatakana(cs))
-                {
-                    // Katakana
-                    currCharTokenType = TokenType.Katakana;
-                }
-                else
-                {
-                    // Latin or other
-                    currCharTokenType = TokenType.Latin;
-                }
-
-                // Check if there is a new token
-                if (prevCharTokenType == currCharTokenType)
-                {
-                    // Same token
-                    currToken.Text += cs;
-                }
-                else
-                {
-                    // New token
-
-                    // Modifies the prefix of the token depending on prev/curr tokens
-                    // eg. Add space before curr token
-                    string tokenPrefix = "";
-
-                    if (!string.IsNullOrEmpty(currToken.Text))
-                    {
-                        // Add token to token list if there is text in it
-                        textTokens.Add(currToken);
-
-                        // Get token prefix for new token if previous token was not empty
-                        if (textTokens.Count > 0)
-                        {
-                            char prevLastChar = textTokens.Last().Text.Last();
-                            tokenPrefix = GetTokenPrefix(prevCharTokenType,
-                                                         currCharTokenType,
-                                                         prevLastChar, c);
-                        }
-                    }
-
-                    // Create new token
-                    currToken = new TextToken(currCharTokenType, cs, tokenPrefix);
-
-                    prevCharTokenType = currCharTokenType;
-                }
-            }
-
-            // Add last token to the list
-            if (!string.IsNullOrEmpty(currToken.Text))
-            {
-                textTokens.Add(currToken);
-            }
-
-            return textTokens;
-        }
-
-        public static bool HasPrefix(TokenType prevType, TokenType currType, char prevLastChar, char currFirstChar)
-        {
-            bool hasPrefix = char.IsPunctuation(currFirstChar);
-
-            switch (currType)
-            {
-                // =========================================================================
-                // Current: Latin
-                // =========================================================================
-                case TokenType.Latin:
-                    // ==============================
-                    // Previous: HiraganaKanji / Katakana
-                    // ==============================
-                    if (!char.IsWhiteSpace(currFirstChar) && !char.IsPunctuation(currFirstChar))
-                    {
-                        hasPrefix = true;
-                    }
-
-                    // Some other characters which override above
-                    switch (currFirstChar)
-                    {
-                        case '(':
-                        case '&':
-                            hasPrefix = true;
-                            break;
-
-                        case '、':
-                        case ',':
-                        case '“':
-                        case '”':
-                        case '"':
-                        case ')':
-                        case '」':
-                        case '~':
-                        case '-':
-                        case '!':
-                        case '?':
-                            hasPrefix = false;
-                            break;
-                    }
-                    break;
-
-                // =========================================================================
-                // Current: HiraganaKanji
-                // =========================================================================
-                case TokenType.HiraganaKanji:
-                    switch (prevType)
-                    {
-                        // ==============================
-                        // Previous: Latin
-                        // ==============================
-                        case TokenType.Latin:
-                            if (!char.IsWhiteSpace(prevLastChar))
-                            {
-                                hasPrefix = true;
-                            }
-
-                            // Some other characters which override above
-                            switch (prevLastChar)
-                            {
-                                case '(':
-                                case '「':
-                                case '"':
-                                case '“':
-                                case '~':
-                                case '-':
-                                    hasPrefix = false;
-                                    break;
-                            }
-                            break;
-
-                        // ==============================
-                        // Previous: Katakana
-                        // ==============================
-                        case TokenType.Katakana:
-                            hasPrefix = true;
-                            break;
-                    }
-                    break;
-
-                // =========================================================================
-                // Current: Katakana
-                // =========================================================================
-                case TokenType.Katakana:
-                    switch (prevType)
-                    {
-                        // ==============================
-                        // Previous: Latin
-                        // ==============================
-                        case TokenType.Latin:
-                            if (!char.IsWhiteSpace(prevLastChar))
-                            {
-                                hasPrefix = true;
-                            }
-
-                            // Some other characters which override above
-                            switch (prevLastChar)
-                            {
-                                case '(':
-                                case '「':
-                                case '"':
-                                case '“':
-                                case '~':
-                                case '-':
-                                    hasPrefix = false;
-                                    break;
-                            }
-                            break;
-
-                        // ==============================
-                        // Previous: HirganaKanji
-                        // ==============================
-                        case TokenType.HiraganaKanji:
-                            hasPrefix = true;
-                            break;
-                    }
-                    break;
-            }
-
-            return hasPrefix;
-        }
-
-        public static string GetTokenPrefix(TokenType prevType, TokenType currType,
-                                            char prevLastChar, char currFirstChar)
-        {
-            string prefix = "";
-
-            if (HasPrefix(prevType, currType, prevLastChar, currFirstChar))
-            {
-                prefix = " ";
-            }
-
-            return prefix;
-        }
-
         // 1. Latin - Don't translate
         // 2. Katakana - Translate to output language
         // 3. Hiragana / Kanji - Translate to phonetic
-        public string Translate(List<string> maps = null,
+        public string Translate(string url,List<string> maps = null,
                                 List<string> particles = null,
                                 string languagePair = GoogleRomajiTranslator.LanguagePair)
         {
@@ -258,7 +41,6 @@ namespace osu.Game.Rulesets.Karaoke.Tools.Romaji.Google
                 case TokenType.HiraganaKanji:
                     {
                         // Get phoentic text
-                        string url = GoogleRomajiTranslator.GetTranslatorUrl(Text, languagePair);
                         HtmlDocument doc = new HtmlWeb().Load(url);
                         string phoneticText = WebUtility.HtmlDecode(doc.GetElementbyId("src-translit").InnerText);
                         translation = FormatTranslation(phoneticText, maps, particles);
@@ -268,7 +50,6 @@ namespace osu.Game.Rulesets.Karaoke.Tools.Romaji.Google
                 case TokenType.Katakana:
                     {
                         // Get translated text
-                        string url = GoogleRomajiTranslator.GetTranslatorUrl(Text, languagePair);
                         HtmlDocument doc = new HtmlWeb().Load(url);
                         string translatedText = WebUtility.HtmlDecode(doc.GetElementbyId("result_box").InnerText);
                         translation = FormatTranslation(translatedText, maps, particles);
@@ -295,21 +76,21 @@ namespace osu.Game.Rulesets.Karaoke.Tools.Romaji.Google
             switch (Type)
             {
                 case TokenType.HiraganaKanji:
-                    translatedText = GoogleRomajiTranslator.FixYouon(translatedText);
+                    translatedText = FixYouon(translatedText);
                     goto case TokenType.Katakana;
 
                 case TokenType.Katakana:
                     // Maps
-                    translatedText = GoogleRomajiTranslator.MapPhrases(translatedText, maps);
+                    translatedText = MapPhrases(translatedText, maps);
 
                     // Capitalise
                     translatedText = new CultureInfo("en").TextInfo.ToTitleCase(translatedText);
 
                     // Decapitalise particles
-                    translatedText = GoogleRomajiTranslator.LowercaseParticles(translatedText, particles);
+                    translatedText = LowercaseParticles(translatedText, particles);
 
                     // Attach suffixes
-                    translatedText = GoogleRomajiTranslator.AttachSuffixes(translatedText);
+                    translatedText = AttachSuffixes(translatedText);
 
                     // Trim and join
                     outText = Prefix + translatedText.Trim();
@@ -334,6 +115,85 @@ namespace osu.Game.Rulesets.Karaoke.Tools.Romaji.Google
 
             return outText;
         }
+
+        #region Function
+        private static char MapSplitChar = ':';
+        private List<string> Suffixes = new List<string>() {
+            "Iru"
+        };
+
+        public string MapPhrases(string text, List<string> maps)
+        {
+            if (maps == null) return text;
+
+            foreach (string map in maps)
+            {
+                string[] mapStrings = map.Split(MapSplitChar);
+
+                // Make sure mapping is valid
+                if (map.IndexOf(MapSplitChar) == 0 || (mapStrings.Length != 1 && mapStrings.Length != 2)) continue;
+
+                text = Regex.Replace(text,
+                    mapStrings[0],
+                    mapStrings[1],
+                    RegexOptions.IgnoreCase);
+            }
+
+            return text;
+        }
+
+        public string LowercaseParticles(string text, List<string> particles)
+        {
+            if (particles == null) return text;
+
+            foreach (string particle in particles)
+            {
+                text = Regex.Replace(text,
+                    @"\b" + particle + @"\b",
+                    particle,
+                    RegexOptions.IgnoreCase);
+            }
+
+            return text;
+        }
+
+        public bool IsTranslated(string text)
+        {
+            return !text.Any(c => Unicode.IsJapanese(c.ToString()));
+        }
+
+        public string AttachSuffixes(string text)
+        {
+            foreach (string suffix in Suffixes)
+            {
+                text = Regex.Replace(text,
+                    @"\s" + suffix + @"\b",
+                    suffix.ToLower());
+            }
+
+            return text;
+        }
+
+        public string FixYouon(string text)
+        {
+            // Shi/chi: shi ~yu -> shu, etc
+            text = Regex.Replace(text, @"((?i)(?:s|c)(?-i)h)i ?~y([aou])", "$1$2");
+            // shi ~e -> she, etc
+            text = Regex.Replace(text, @"((?i)(?:s|c)(?-i)h)i ?~([e])", "$1$2");
+            // Non-shi/chi: ji ~yu -> jyu, etc
+            text = Regex.Replace(text, @"((?!(?i)(?:s|c)(?-i)h))i ?~(y[aou])", "$1$2");
+            // Non-shi/chi unconventional: vu ~yu -> vyu, etc
+            text = Regex.Replace(text, @"((?!(?i)(?:s|c)(?-i)h))u ?~(y[aou])", "$1$2");
+
+            // ri ~i -> ryi, etc
+            text = Regex.Replace(text, @"((?i)[knhmrgjbp](?-i))i ?~([ei])", "$1y$2");
+
+            // All others, e.g. vu ~o -> vo
+            text = Regex.Replace(text, @"[iu] ?~([aeiou])", "$1");
+
+            return text;
+        }
+        #endregion
     }
 
     public enum TokenType
