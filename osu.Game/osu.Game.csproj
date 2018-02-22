@@ -290,6 +290,8 @@
     <Compile Include="IO\Archives\ArchiveReader.cs" />
     <Compile Include="IO\Archives\LegacyFilesystemReader.cs" />
     <Compile Include="IO\Archives\ZipArchiveReader.cs" />
+    <Compile Include="Online\API\DummyAPIAccess.cs" />
+    <Compile Include="Online\API\IAPIProvider.cs" />
     <Compile Include="Online\API\APIDownloadRequest.cs" />
     <Compile Include="Online\API\Requests\GetUserRequest.cs" />
     <Compile Include="Migrations\20180125143340_Settings.cs" />
@@ -355,6 +357,7 @@
     <Compile Include="Overlays\Social\SocialPanel.cs" />
     <Compile Include="Rulesets\Mods\IApplicableToDrawableHitObject.cs" />
     <Compile Include="Rulesets\Objects\HitWindows.cs" />
+    <Compile Include="Rulesets\UI\ScalableContainer.cs" />
     <Compile Include="Screens\Play\PlayerSettings\VisualSettings.cs" />
     <Compile Include="Rulesets\Objects\CatmullApproximator.cs" />
     <Compile Include="Rulesets\UI\HitObjectContainer.cs" />
