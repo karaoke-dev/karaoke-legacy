@@ -2,6 +2,7 @@
 using osu.Framework.Graphics;
 using osu.Game.Graphics.Sprites;
 using osu.Game.Rulesets.Karaoke.Tools.Romaji;
+using osu.Game.Rulesets.Karaoke.Tools.Romaji.Google;
 using osu.Game.Tests.Visual;
 using OpenTK;
 

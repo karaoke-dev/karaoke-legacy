@@ -12,6 +12,7 @@ using osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric;
 using osu.Game.Rulesets.Karaoke.Tools.Translator;
 using OpenTK;
 using System.Collections.Generic;
+using osu.Game.Rulesets.Karaoke.Configuration;
 
 namespace osu.Game.Rulesets.Karaoke.Edit.Drawables
 {

@@ -3,7 +3,7 @@
 
 using System.ComponentModel;
 
-namespace osu.Game.Rulesets.Karaoke.Tools.Translator
+namespace osu.Game.Rulesets.Karaoke.Configuration
 {
     /// <summary>
     /// translate language code

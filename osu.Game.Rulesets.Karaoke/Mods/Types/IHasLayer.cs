@@ -3,7 +3,7 @@
 
 using osu.Framework.Graphics.Containers;
 
-namespace osu.Game.Rulesets.Karaoke.Mods
+namespace osu.Game.Rulesets.Karaoke.Mods.Types
 {
     /// <summary>
     /// if this mod has new layer

@@ -9,6 +9,7 @@ using osu.Game.Overlays.Music;
 using osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces;
 using osu.Game.Rulesets.Karaoke.Objects;
 using osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric;
+using osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric.Types;
 using OpenTK;
 
 namespace osu.Game.Rulesets.Karaoke.Edit.Dialog

@@ -1,11 +1,8 @@
 ﻿using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Text;
-using System.Text.RegularExpressions;
-using osu.Game.Rulesets.Karaoke.Tools.Romaji.Google;
 
-namespace osu.Game.Rulesets.Karaoke.Tools.Romaji
+namespace osu.Game.Rulesets.Karaoke.Tools.Romaji.Google
 {
     /// <summary>
     /// google romaji translator
