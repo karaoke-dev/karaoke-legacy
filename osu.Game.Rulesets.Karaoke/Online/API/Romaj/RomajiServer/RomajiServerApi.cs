@@ -13,7 +13,7 @@ namespace osu.Game.Rulesets.Karaoke.Online.API.Romaj.RomajiServer
     /// this translate server is provided by : 
     /// https://romaji-translator.herokuapp.com/
     /// </summary>
-    public class KaraokeRomajiTranslator : BaseApi
+    public class RomajiServerApi : BaseApi
     {
         protected override string Host => "http://localhost:1337/translate/jp/list";
 

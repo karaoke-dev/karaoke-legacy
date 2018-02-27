@@ -35,7 +35,7 @@ namespace osu.Game.Rulesets.Karaoke.Online.API.Romaj.Google
         // 3. Hiragana / Kanji - Translate to phonetic
         public string Translate(string url, List<string> maps = null,
                                 List<string> particles = null,
-                                string languagePair = GoogleRomajiTranslator.LanguagePair)
+                                string languagePair = GoogleRomajiApi.LanguagePair)
         {
             string translation = "";
 

@@ -99,7 +99,7 @@
     <Compile Include="Objects\TextComponent.cs" />
     <Compile Include="Online\API\BaseApi.cs" />
     <Compile Include="Online\API\Translate\Google\GoogleTranslateApi.cs" />
-    <Compile Include="Online\API\Romaj\RomajiServer\KaraokeRomajiTranslator.cs" />
+    <Compile Include="Online\API\Romaj\RomajiServer\RomajiServerApi.cs" />
     <Compile Include="UI\PlayField\Lyric\KaraokePosition.cs" />
     <Compile Include="Objects\Singer.cs" />
     <Compile Include="Objects\LyricTemplate.cs" />
@@ -128,7 +128,7 @@
     <Compile Include="Tests\TestCaseWiki.cs" />
     <Compile Include="Tests\TestCaseWindows.cs" />
     <Compile Include="Textures\KaraokeTextureStore.cs" />
-    <Compile Include="Online\API\Romaj\Google\GoogleRomajiTranslator.cs" />
+    <Compile Include="Online\API\Romaj\Google\GoogleRomajiApi.cs" />
     <Compile Include="Online\API\Romaj\Google\TextToken.cs" />
     <Compile Include="Online\API\Romaj\Google\Unicode.cs" />
     <Compile Include="Tools\Romaji\RomajiTranslatorBase.cs" />

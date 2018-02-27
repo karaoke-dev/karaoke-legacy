@@ -11,7 +11,7 @@ namespace osu.Game.Rulesets.Karaoke.Online.API.Romaj.Google
     /// <summary>
     /// google romaji translator
     /// </summary>
-    public class GoogleRomajiTranslator : RomajiTranslatorBase
+    public class GoogleRomajiApi : RomajiTranslatorBase
     {
         public const string LanguagePair = "ja|en";
 

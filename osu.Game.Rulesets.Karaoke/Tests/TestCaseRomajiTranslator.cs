@@ -15,13 +15,13 @@ namespace osu.Game.Rulesets.Karaoke.Tests
     [System.ComponentModel.Description("Test karaoke romaji translate")]
     public class TestCaseRomajiTranslator : OsuTestCase
     {
-        private GoogleRomajiTranslator googleRomajiTranslator { get; set; }
+        private GoogleRomajiApi googleRomajiApi { get; set; }
 
         public TestCaseRomajiTranslator()
         {
-            googleRomajiTranslator = new GoogleRomajiTranslator();
+            googleRomajiApi = new GoogleRomajiApi();
 
-            var translateResult = googleRomajiTranslator.Translate("終わるまでは終わらないよ");
+            var translateResult = googleRomajiApi.Translate("終わるまでは終わらないよ");
 
             Add(new OsuSpriteText
             {
