@@ -43,7 +43,7 @@ namespace osu.Game.Rulesets.Karaoke.Tools.Translator
             try
             {
                 GoogleTranslateApi transpateApi = new GoogleTranslateApi();
-                var result = await transpateApi.Translate(sourceLangeCode, targetLangCode, new List<string>(){ translateString });
+                var result = await transpateApi.Translate(sourceLangeCode, targetLangCode, new List<string>() { translateString });
 
                 var translateText = result.FirstOrDefault()?.TranslatedText;
 

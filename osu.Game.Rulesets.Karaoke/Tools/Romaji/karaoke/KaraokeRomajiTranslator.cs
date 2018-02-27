@@ -1,9 +1,9 @@
-﻿using System;
+﻿// Copyright (c) 2007-2018 ppy Pty Ltd <contact@ppy.sh>.
+// Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
+
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using osu.Game.Rulesets.Karaoke.Configuration;
 using osu.Game.Rulesets.Karaoke.Objects;
 
 namespace osu.Game.Rulesets.Karaoke.Tools.Romaji.karaoke
@@ -22,7 +22,6 @@ namespace osu.Game.Rulesets.Karaoke.Tools.Romaji.karaoke
         /// <returns></returns>
         public async Task<Lyric> Translate(Lyric translateListString)
         {
-            
             return (await TranslatePart(new List<Lyric>() { translateListString })).FirstOrDefault();
         }
 
@@ -37,7 +36,6 @@ namespace osu.Game.Rulesets.Karaoke.Tools.Romaji.karaoke
         {
             foreach (var single in translateListString)
             {
-                
             }
             return translateListString;
         }
@@ -52,11 +50,11 @@ namespace osu.Game.Rulesets.Karaoke.Tools.Romaji.karaoke
             return null;
         }
     }
+
     /// <summary>
     /// translate result
     /// </summary>
     public class TranslateResult
     {
-
     }
 }

@@ -19,6 +19,7 @@ namespace osu.Game.Rulesets.Karaoke.Online.API.Translate.Google
         protected int MaxThanslateSentenceAtTime => 70; //max is 73
 
         private Dictionary<TranslateCode, string> _langCode;
+
         public Dictionary<TranslateCode, string> LangToCodeDictionary
         {
             get
@@ -38,7 +39,7 @@ namespace osu.Game.Rulesets.Karaoke.Online.API.Translate.Google
         /// <returns></returns>
         public async Task<List<Translation>> Translate(TranslateCode sourceLangeCode, TranslateCode targetLangCode, List<string> translateListString)
         {
-            List<Translation> listTranslate =new List<Translation>();
+            List<Translation> listTranslate = new List<Translation>();
 
             int translateTime = translateListString.Count / MaxThanslateSentenceAtTime + 1;
             for (int i = 0; i < translateTime; i++)
