@@ -12,24 +12,36 @@ namespace osu.Game.Rulesets.Karaoke.Tools.Translator
     /// </summary>
     public abstract class TranslateorBase
     {
-        protected abstract int MaxThanslateSentenceAtTime { get; }
-
-        public abstract Dictionary<TranslateCode, string> LangToCodeDictionary { get; }
-
-        //notified translate single string 
-        public EventHandler<string> OnTranslateSuccess { get; set; }
-
-        //notified translate multi string 
+        /// <summary>
+        /// notified translate multi string 
+        /// </summary>
         public EventHandler<List<string>> OnTranslateMultiStringSuccess { get; set; }
 
-        //if fail ,get error message
+        /// <summary>
+        /// notified translate single string 
+        /// </summary>
+        public EventHandler<string> OnTranslateSuccess { get; set; }
+
+        /// <summary>
+        /// if fail ,get error message
+        /// </summary>
         public EventHandler<string> OnTranslateFail { get; set; }
 
-        //translate single streing 
-        public abstract void Translate(TranslateCode sourceLangeCode, TranslateCode targetLangCode, string translateString);
-
-        //translate multi string at the same thme
+        /// <summary>
+        /// translate multi string at the same thme
+        /// </summary>
+        /// <param name="sourceLangeCode"></param>
+        /// <param name="targetLangCode"></param>
+        /// <param name="translateString"></param>
         public abstract void Translate(TranslateCode sourceLangeCode, TranslateCode targetLangCode, List<string> translateString);
+
+        /// <summary>
+        /// translate multi string at the same thme
+        /// </summary>
+        /// <param name="sourceLangeCode"></param>
+        /// <param name="targetLangCode"></param>
+        /// <param name="translateString"></param>
+        public abstract void Translate(TranslateCode sourceLangeCode, TranslateCode targetLangCode, string translateString);
     }
 
     /// <summary>
