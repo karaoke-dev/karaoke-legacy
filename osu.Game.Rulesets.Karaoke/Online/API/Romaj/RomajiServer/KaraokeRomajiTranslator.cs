@@ -6,7 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using osu.Game.Rulesets.Karaoke.Objects;
 
-namespace osu.Game.Rulesets.Karaoke.Tools.Romaji.karaoke
+namespace osu.Game.Rulesets.Karaoke.Online.API.Romaj.RomajiServer
 {
     /// <summary>
     /// this translate server is provided by : 

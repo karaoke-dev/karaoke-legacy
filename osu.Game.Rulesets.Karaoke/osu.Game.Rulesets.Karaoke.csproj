@@ -96,7 +96,7 @@
     <Compile Include="Objects\RomajiTextList.cs" />
     <Compile Include="Objects\TextComponent.cs" />
     <Compile Include="Online\API\Translate\Google\GoogleTranslateApi.cs" />
-    <Compile Include="Tools\Romaji\karaoke\KaraokeRomajiTranslator.cs" />
+    <Compile Include="Online\API\Romaj\RomajiServer\KaraokeRomajiTranslator.cs" />
     <Compile Include="UI\PlayField\Lyric\KaraokePosition.cs" />
     <Compile Include="Objects\Singer.cs" />
     <Compile Include="Objects\LyricTemplate.cs" />
@@ -125,9 +125,9 @@
     <Compile Include="Tests\TestCaseWiki.cs" />
     <Compile Include="Tests\TestCaseWindows.cs" />
     <Compile Include="Textures\KaraokeTextureStore.cs" />
-    <Compile Include="Tools\Romaji\Google\GoogleRomajiTranslator.cs" />
-    <Compile Include="Tools\Romaji\Google\TextToken.cs" />
-    <Compile Include="Tools\Romaji\Google\Unicode.cs" />
+    <Compile Include="Online\API\Romaj\Google\GoogleRomajiTranslator.cs" />
+    <Compile Include="Online\API\Romaj\Google\TextToken.cs" />
+    <Compile Include="Online\API\Romaj\Google\Unicode.cs" />
     <Compile Include="Tools\Romaji\RomajiTranslatorBase.cs" />
     <Compile Include="Configuration\TranslateCode.cs" />
     <Compile Include="Tools\Translator\GoogleTranslator.cs" />
@@ -218,8 +218,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Mods\Mod2018\" />
-    <Folder Include="Online\API\Romaj\Google\" />
-    <Folder Include="Online\API\Romaj\RomajiServer\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Textures\Play\Karaoke\Layer\Snow\Snow.png" />

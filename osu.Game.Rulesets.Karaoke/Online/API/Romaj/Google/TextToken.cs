@@ -8,7 +8,7 @@ using System.Net;
 using System.Text.RegularExpressions;
 using HtmlAgilityPack;
 
-namespace osu.Game.Rulesets.Karaoke.Tools.Romaji.Google
+namespace osu.Game.Rulesets.Karaoke.Online.API.Romaj.Google
 {
     public class TextToken
     {

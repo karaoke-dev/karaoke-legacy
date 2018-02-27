@@ -3,7 +3,7 @@
 
 using System.Linq;
 
-namespace osu.Game.Rulesets.Karaoke.Tools.Romaji.Google
+namespace osu.Game.Rulesets.Karaoke.Online.API.Romaj.Google
 {
     public static class Unicode
     {
