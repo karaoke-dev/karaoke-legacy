@@ -20,6 +20,4 @@ namespace osu.Game.Rulesets.Karaoke.Objects
             Text = translateText;
         }
     }
-
-    
 }

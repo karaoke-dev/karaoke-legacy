@@ -22,7 +22,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
-    <LangVersion>Default</LangVersion>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -32,7 +32,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
-    <LangVersion>Default</LangVersion>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="HtmlAgilityPack, Version=1.6.17.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
@@ -99,6 +99,7 @@
     <Compile Include="Objects\MainTextList.cs" />
     <Compile Include="Objects\RomajiTextList.cs" />
     <Compile Include="Objects\TextComponent.cs" />
+    <Compile Include="Objects\Types\ICopyable.cs" />
     <Compile Include="Online\API\BaseApi.cs" />
     <Compile Include="Online\API\Translate\Google\GoogleTranslateApi.cs" />
     <Compile Include="Online\API\Romaj\RomajiServer\RomajiServerApi.cs" />
