@@ -90,6 +90,36 @@ namespace osu.Game.Rulesets.Karaoke.Objects
             return Find(nextKey);
         }
 
+        /// <summary>
+        /// add new remaji
+        /// </summary>
+        /// <param name="value"></param>
+        public new void Add(Key key, Value value)
+        {
+            //filter
+            if (this.Any(x => x.Key.Equals(key)))
+                return;
 
+            //Add
+            base.Add(key, value);
+
+            SortProgressPoint();
+        }
+
+        /// <summary>
+        /// sorting by position and time should be higher
+        /// </summary>
+        protected void SortProgressPoint()
+        {
+            //sort
+            var sortedDic = this.OrderBy(x => x.Key).ToDictionary(keyvalue => keyvalue.Key, keyvalue => keyvalue.Value);
+
+            //re-add
+            Clear();
+            foreach (var single in sortedDic)
+            {
+                base.Add(single.Key, single.Value);
+            }
+        }
     }
 }

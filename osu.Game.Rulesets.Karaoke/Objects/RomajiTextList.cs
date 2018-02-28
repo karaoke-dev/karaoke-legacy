@@ -47,16 +47,6 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         /// <summary>
         /// collect list 
         /// </summary>
-        private List<int> listRomajiTextCount => this.Select(x => x.Value.Text.Length).ToList();
-
-        /// <summary>
-        /// add new remaji
-        /// </summary>
-        /// <param name="value"></param>
-        public new void Add(int key, RomajiText value)
-        {
-            //Add
-            base.Add(key, value);
-        }
+        private List<int> listRomajiTextCount => this.Select(x => x.Value.Text.Length).ToList(); 
     }
 }

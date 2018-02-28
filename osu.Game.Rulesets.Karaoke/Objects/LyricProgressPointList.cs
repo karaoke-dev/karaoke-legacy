@@ -122,32 +122,13 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         /// <param name="karaokeObject">Karaoke object.</param>
         public new void Add(int key, LyricProgressPoint point)
         {
-            //TODO : filter
-            if (this.Any(x => x.Key == key))
-                return;
             if (this.Any(x => x.Value.RelativeTime == point.RelativeTime))
                 return;
 
             base.Add(key, point);
-            SortProgressPoint();
+
             FixTime();
         }
-
-
-        /// <summary>
-        /// sorting by position and time should be higher
-        /// </summary>
-        public void SortProgressPoint()
-        {
-            //sort
-            var sortedDic = this.OrderBy(x => x.Key).ToDictionary(keyvalue => keyvalue.Key, keyvalue => keyvalue.Value);
-            Clear();
-            foreach (var single in sortedDic)
-            {
-                base.Add(single.Key, single.Value);
-            }
-        }
-
 
         /// <summary>
         /// fix the delta time
