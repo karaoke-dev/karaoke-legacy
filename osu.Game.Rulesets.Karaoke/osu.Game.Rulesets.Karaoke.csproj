@@ -131,7 +131,7 @@
     <Compile Include="Online\API\Romaj\Google\GoogleRomajiApi.cs" />
     <Compile Include="Online\API\Romaj\Google\TextToken.cs" />
     <Compile Include="Online\API\Romaj\Google\Unicode.cs" />
-    <Compile Include="Tools\Romaji\RomajiTranslatorBase.cs" />
+    <Compile Include="Tools\Romaji\RomajiServerTranslator.cs" />
     <Compile Include="Configuration\TranslateCode.cs" />
     <Compile Include="Tools\Translator\GoogleTranslator.cs" />
     <Compile Include="Tools\Translator\TranslateorBase.cs" />

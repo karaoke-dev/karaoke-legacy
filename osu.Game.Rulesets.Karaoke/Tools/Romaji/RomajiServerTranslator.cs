@@ -13,7 +13,7 @@ namespace osu.Game.Rulesets.Karaoke.Tools.Romaji
     /// <summary>
     /// can translate any langlage to romaji
     /// </summary>
-    public class RomajiTranslatorBase
+    public class RomajiServerTranslator
     {
         private RomajiServerApi RomajiServerApi = new RomajiServerApi();
 
