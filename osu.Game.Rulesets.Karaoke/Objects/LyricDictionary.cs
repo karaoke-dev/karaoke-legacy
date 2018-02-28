@@ -103,13 +103,13 @@ namespace osu.Game.Rulesets.Karaoke.Objects
             //Add
             base.Add(key, value);
 
-            SortProgressPoint();
+            Sort();
         }
 
         /// <summary>
         /// sorting by position and time should be higher
         /// </summary>
-        protected void SortProgressPoint()
+        public void Sort()
         {
             //sort
             var sortedDic = this.OrderBy(x => x.Key).ToDictionary(keyvalue => keyvalue.Key, keyvalue => keyvalue.Value);
