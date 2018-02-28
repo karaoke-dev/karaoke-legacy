@@ -91,6 +91,7 @@
     <Compile Include="Helps\DIctionaryHelper.cs" />
     <Compile Include="Edit\Dialog\Pieces\RevertableTextbox.cs" />
     <Compile Include="Beatmaps\KaraokeInfo.cs" />
+    <Compile Include="Objects\LyricDictionary.cs" />
     <Compile Include="Objects\LyricProgressPointList.cs" />
     <Compile Include="Objects\Lyric.cs" />
     <Compile Include="Objects\MainText.cs" />
