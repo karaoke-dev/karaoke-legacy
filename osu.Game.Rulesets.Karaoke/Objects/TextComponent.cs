@@ -24,6 +24,11 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         /// </summary>
         public virtual string Text { get; set; }
 
+        /// <summary>
+        /// copy
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
         public T Copy<T>() where T : new()
         {
             T result = new T();
