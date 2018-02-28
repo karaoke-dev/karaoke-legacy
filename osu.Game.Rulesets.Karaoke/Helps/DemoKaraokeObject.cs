@@ -109,7 +109,7 @@ namespace osu.Game.Rulesets.Karaoke.Helps
                     { 2, new RomajiText() { Text = "o" } },
                     { 3, new RomajiText() { Text = "ke" } },
                 },
-                Translates = new ListKaraokeTranslateString()
+                Translates = new LyricTranslateList()
                 {
                     { TranslateCode.English, new LyricTranslate() { Text = "Karaoke" } },
                 }

@@ -21,10 +21,5 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         }
     }
 
-    /// <summary>
-    /// list Progress point
-    /// </summary>
-    public class ListKaraokeTranslateString : Dictionary<TranslateCode, LyricTranslate>
-    {
-    }
+    
 }

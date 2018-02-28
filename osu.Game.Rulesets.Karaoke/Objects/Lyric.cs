@@ -115,7 +115,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         /// all the translate for a single language
         /// </summary>
         /// <value>The list trans late.</value>
-        public ListKaraokeTranslateString Translates { get; set; } = new ListKaraokeTranslateString();
+        public LyricTranslateList Translates { get; set; } = new LyricTranslateList();
 
         /// <summary>
         /// The time at which the HitObject ends.

@@ -34,7 +34,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Types
         /// <summary>
         /// list translate
         /// </summary>
-        ListKaraokeTranslateString Translates { get; set; }
+        LyricTranslateList Translates { get; set; }
 
 
         /// <summary>

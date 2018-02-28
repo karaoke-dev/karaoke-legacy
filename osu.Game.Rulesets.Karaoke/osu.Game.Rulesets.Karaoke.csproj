@@ -94,6 +94,7 @@
     <Compile Include="Objects\LyricDictionary.cs" />
     <Compile Include="Objects\LyricProgressPointList.cs" />
     <Compile Include="Objects\Lyric.cs" />
+    <Compile Include="Objects\LyricTranslateList.cs" />
     <Compile Include="Objects\MainText.cs" />
     <Compile Include="Objects\MainTextList.cs" />
     <Compile Include="Objects\RomajiTextList.cs" />
