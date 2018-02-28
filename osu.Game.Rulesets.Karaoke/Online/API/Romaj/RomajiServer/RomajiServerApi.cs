@@ -33,7 +33,7 @@ namespace osu.Game.Rulesets.Karaoke.Online.API.Romaj.RomajiServer
             //split the translate
             var listTranslate = translateListString.Split(10);
 
-            var listCollection = new List<TranslateResult>();
+            var listCollection = new List<TranslateResult> ();
 
             foreach (var singleTranslateProcess in listTranslate)
             {
@@ -42,21 +42,35 @@ namespace osu.Game.Rulesets.Karaoke.Online.API.Romaj.RomajiServer
                 {
                     parameter.Add(new KeyValuePair<string, string>("str", singleLyric));
                 }
-                var result =await GetObjectApi<List<TranslateResult>>("/translate/jp/list", parameter);
+                var result =await GetObjectApi<List<TranslateResult>> ("/translate/jp/list", parameter);
 
                 listCollection.AddRange(result);
             }
 
             return listCollection;
         }
-
-
     }
 
     /// <summary>
-    /// translate result
+    /// romaji should be like that
     /// </summary>
     public class TranslateResult
+    {
+        /// <summary>
+        /// index
+        /// </summary>
+        public int Index { get; set; }
+
+        /// <summary>
+        /// reslut
+        /// </summary>
+        public List<Character> Result { get; set; } =new List<Character>();
+    }
+
+    /// <summary>
+    /// chearacter
+    /// </summary>
+    public class Character
     {
         /// <summary>
         /// text

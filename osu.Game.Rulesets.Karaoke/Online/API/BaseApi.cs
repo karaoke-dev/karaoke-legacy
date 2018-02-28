@@ -3,7 +3,6 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-using osu.Game.Rulesets.Karaoke.Online.API.Translate.Google;
 
 namespace osu.Game.Rulesets.Karaoke.Online.API
 {
@@ -40,6 +39,12 @@ namespace osu.Game.Rulesets.Karaoke.Online.API
             return json;
         }
 
+        /// <summary>
+        /// Get api
+        /// </summary>
+        /// <param name="path"></param>
+        /// <param name="parameter"></param>
+        /// <returns></returns>
         protected async Task<T> GetObjectApi<T>(string path, List<KeyValuePair<string, string>> parameter)
         {
             string json = await GetStringApi(path, parameter);
