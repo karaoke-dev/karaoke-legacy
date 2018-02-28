@@ -35,7 +35,7 @@ namespace osu.Desktop
                 else
                 {
 
-#if !Debug
+#if Debug
                     host.Run(new OsuTestBrowser());
                     return 0;
 #endif

@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace osu.Game.Rulesets.Karaoke.Objects
 {
-    public class RomajiTextList : Dictionary<int, RomajiText>
+    public class RomajiTextList : LyricDictionary<int, RomajiText>
     {
         /// <summary>
         /// get romaji start position from main text's text index

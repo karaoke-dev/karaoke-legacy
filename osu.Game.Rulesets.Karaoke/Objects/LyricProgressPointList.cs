@@ -11,44 +11,12 @@ namespace osu.Game.Rulesets.Karaoke.Objects
     /// list Progress point
     /// [Note : key is mapped in Char index, not Dictionary's index]
     /// </summary>
-    public class LyricProgressPointList : Dictionary<int, LyricProgressPoint>
+    public class LyricProgressPointList : LyricDictionary<int, LyricProgressPoint>
     {
         [JsonIgnore]
         public double MinimumTime { get; set; } = 100;
 
-        public KeyValuePair<int, LyricProgressPoint>? Find(int key)
-        {
-            return this.FirstOrDefault(x => x.Key == key);
-        }
-
-        /// <summary>
-        /// find previous by key
-        /// </summary>
-        /// <param name="key"></param>
-        /// <returns></returns>
-        public KeyValuePair<int, LyricProgressPoint>? FindPrevioud(int key)
-        {
-            var result = Keys.Where(x => x < key);
-            if (result.Count() < 2)
-                return this.First();
-
-            var previousKey = result.Max();
-            return Find(previousKey);
-        }
-
-        /// <summary>
-        /// find next from key
-        /// </summary>
-        /// <param name="key"></param>
-        /// <returns></returns>
-        public KeyValuePair<int, LyricProgressPoint>? FindNext(int key)
-        {
-            var result = Keys.Where(x => x > key);
-            if (result.Count() < 2)
-                return this.Last();
-            var nextKey = result.Min();
-            return Find(nextKey);
-        }
+        
 
         /// <summary>
         /// get first progress point by time
@@ -77,7 +45,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects
 
             var maxResult = Find(result.Keys.Max());
 
-            if (maxResult.Equals(default(KeyValuePair<string, int>)))
+            if (maxResult.Equals(default(KeyValuePair<int, LyricProgressPoint>)))
                 return new KeyValuePair<int, LyricProgressPoint>(-1, new LyricProgressPoint(0));
 
             return maxResult.Value;
@@ -111,7 +79,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects
 
             var maxResult = Find(result.Keys.Max());
 
-            if (maxResult.Equals(default(KeyValuePair<string, int>)))
+            if (maxResult.Equals(default(KeyValuePair<int, LyricProgressPoint>)))
             {
                 var key = Keys.Max();
                 return Find(key);

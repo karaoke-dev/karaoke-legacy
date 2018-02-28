@@ -11,7 +11,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects
     /// </summary>
     /// <typeparam name="Key"></typeparam>
     /// <typeparam name="Value"></typeparam>
-    public class LyricDictionary<Key,Value> : Dictionary<Key, Value>
+    public class LyricDictionary<Key,Value> : Dictionary<Key, Value> where Key : IComparable
     {
         /// <summary>
         /// if key already exist, 'won;t be replaced
@@ -55,5 +55,41 @@ namespace osu.Game.Rulesets.Karaoke.Objects
             //fill
             Fill(sourceDictionary);
         }
+
+        public KeyValuePair<Key, Value>? Find(Key key)
+        {
+            return this.FirstOrDefault(x => x.Key.CompareTo(key) == 0);
+        }
+
+        /// <summary>
+        /// find previous by key
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        public KeyValuePair<Key, Value>? FindPrevioud(Key key)
+        {
+            var result = Keys.Where(x => x.CompareTo(key) < 0);
+            if (result.Count() < 2)
+                return this.First();
+
+            var previousKey = result.Max();
+            return Find(previousKey);
+        }
+
+        /// <summary>
+        /// find next from key
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        public KeyValuePair<Key, Value>? FindNext(Key key)
+        {
+            var result = Keys.Where(x => x.CompareTo(key) > 0);
+            if (result.Count() < 2)
+                return this.Last();
+            var nextKey = result.Min();
+            return Find(nextKey);
+        }
+
+
     }
 }
