@@ -1,4 +1,7 @@
-﻿using System;
+﻿// Copyright (c) 2007-2018 ppy Pty Ltd <contact@ppy.sh>.
+// Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -9,7 +12,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects
     /// </summary>
     /// <typeparam name="Key"></typeparam>
     /// <typeparam name="Value"></typeparam>
-    public class LyricDictionary<Key,Value> : Dictionary<Key, Value> where Key : IComparable
+    public class LyricDictionary<Key, Value> : Dictionary<Key, Value> where Key : IComparable
     {
         /// <summary>
         /// if key already exist, 'won;t be replaced
@@ -19,9 +22,9 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         {
             foreach (var single in sourceDictionary)
             {
-                if(!this.ContainsKey(single.Key))
+                if (!ContainsKey(single.Key))
                 {
-                    Add(single.Key,single.Value);
+                    Add(single.Key, single.Value);
                 }
             }
         }
@@ -35,7 +38,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects
             foreach (var single in sourceDictionary)
             {
                 //if exist then remove
-                if (this.ContainsKey(single.Key))
+                if (ContainsKey(single.Key))
                     Remove(single.Key);
 
                 Add(single.Key, single.Value);

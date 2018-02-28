@@ -1,8 +1,8 @@
-﻿using System;
+﻿// Copyright (c) 2007-2018 ppy Pty Ltd <contact@ppy.sh>.
+// Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
+
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace osu.Game.Rulesets.Karaoke.Extension
 {
@@ -17,7 +17,7 @@ namespace osu.Game.Rulesets.Karaoke.Extension
         /// <param name="list"></param>
         /// <param name="splitNumber"></param>
         /// <returns></returns>
-        public static List<List<T>> Split<T>(this List<T> list,int splitNumber)
+        public static List<List<T>> Split<T>(this List<T> list, int splitNumber)
         {
             List<List<T>> listGroup = new List<List<T>>();
             int j = splitNumber;

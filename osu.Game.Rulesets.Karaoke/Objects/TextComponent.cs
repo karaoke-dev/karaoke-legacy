@@ -5,7 +5,10 @@ using osu.Game.Rulesets.Karaoke.Objects.Types;
 
 namespace osu.Game.Rulesets.Karaoke.Objects
 {
-    public class TextComponent : IHasText , ICopyable
+    /// <summary>
+    /// TextComponent
+    /// </summary>
+    public class TextComponent : IHasText, ICopyable
     {
         public TextComponent()
         {
@@ -26,7 +29,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects
             T result = new T();
             if (result is TextComponent textComponent)
             {
-                textComponent.Text = this.Text;
+                textComponent.Text = Text;
             }
             return result;
         }
@@ -44,7 +47,5 @@ namespace osu.Game.Rulesets.Karaoke.Objects
                 Text = object1.Text + object2.Text,
             };
         }
-
-
     }
 }

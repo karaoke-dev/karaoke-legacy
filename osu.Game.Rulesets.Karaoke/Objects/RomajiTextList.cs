@@ -47,6 +47,6 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         /// <summary>
         /// collect list 
         /// </summary>
-        private List<int> listRomajiTextCount => this.Select(x => x.Value.Text.Length).ToList(); 
+        private List<int> listRomajiTextCount => this.Select(x => x.Value.Text.Length).ToList();
     }
 }

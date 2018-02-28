@@ -1,4 +1,7 @@
-﻿using System.Collections.Generic;
+﻿// Copyright (c) 2007-2018 ppy Pty Ltd <contact@ppy.sh>.
+// Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
+
+using System.Collections.Generic;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,7 +31,7 @@ namespace osu.Game.Rulesets.Karaoke.Online.API
 
             foreach (var single in parameter)
             {
-                bool isFirst = parameter.IndexOf(single) == 0 ;
+                bool isFirst = parameter.IndexOf(single) == 0;
                 parameterString = parameterString + (isFirst ? "?" : "&") + single.Key + "=" + single.Value;
             }
 

@@ -4,7 +4,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using osu.Game.Rulesets.Karaoke.Tools.Romaji;
 
 namespace osu.Game.Rulesets.Karaoke.Online.API.Romaj.Google
 {

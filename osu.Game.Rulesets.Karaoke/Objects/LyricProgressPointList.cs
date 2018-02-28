@@ -16,7 +16,6 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         [JsonIgnore]
         public double MinimumTime { get; set; } = 100;
 
-        
 
         /// <summary>
         /// get first progress point by time
