@@ -12,17 +12,17 @@ namespace osu.Game.Rulesets.Karaoke.Online.API.Romaj.Google
     /// </summary>
     public class GoogleRomajiApi
     {
-        public const string LanguagePair = "ja|en";
+        public const string LANGUAGE_PAIR = "ja|en";
 
         private string TranslatorUrl = "https://www.google.com/translate_t?hl=en&ie=UTF8&text={0}&langpair={1}";
 
 
-        public string GetTranslatorUrl(string text, string languagePair = LanguagePair)
+        public string GetTranslatorUrl(string text, string languagePair = LANGUAGE_PAIR)
         {
             return string.Format(TranslatorUrl, text, languagePair);
         }
 
-        public string Translate(string inText, string languagePair = LanguagePair)
+        public string Translate(string inText, string languagePair = LANGUAGE_PAIR)
         {
             // Check if already translated / romanized
             // TODO check japanese punctuation too

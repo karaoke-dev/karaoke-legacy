@@ -35,7 +35,7 @@ namespace osu.Game.Rulesets.Karaoke.Online.API.Romaj.Google
         // 3. Hiragana / Kanji - Translate to phonetic
         public string Translate(string url, List<string> maps = null,
                                 List<string> particles = null,
-                                string languagePair = GoogleRomajiApi.LanguagePair)
+                                string languagePair = GoogleRomajiApi.LANGUAGE_PAIR)
         {
             string translation = "";
 
@@ -46,7 +46,7 @@ namespace osu.Game.Rulesets.Karaoke.Online.API.Romaj.Google
                     // Get phoentic text
                     HtmlDocument doc = new HtmlWeb().Load(url);
                     string phoneticText = WebUtility.HtmlDecode(doc.GetElementbyId("src-translit").InnerText);
-                    translation = FormatTranslation(phoneticText, maps, particles);
+                    translation = formatTranslation(phoneticText, maps, particles);
                     break;
                 }
 
@@ -55,14 +55,14 @@ namespace osu.Game.Rulesets.Karaoke.Online.API.Romaj.Google
                     // Get translated text
                     HtmlDocument doc = new HtmlWeb().Load(url);
                     string translatedText = WebUtility.HtmlDecode(doc.GetElementbyId("result_box").InnerText);
-                    translation = FormatTranslation(translatedText, maps, particles);
+                    translation = formatTranslation(translatedText, maps, particles);
                     break;
                 }
 
                 case TokenType.Latin:
                 default:
                 {
-                    translation = FormatTranslation(Text, maps, particles);
+                    translation = formatTranslation(Text, maps, particles);
                     break;
                 }
             }
@@ -70,7 +70,7 @@ namespace osu.Game.Rulesets.Karaoke.Online.API.Romaj.Google
             return translation;
         }
 
-        private string FormatTranslation(string translatedText,
+        private string formatTranslation(string translatedText,
                                          List<string> maps = null,
                                          List<string> particles = null)
         {
