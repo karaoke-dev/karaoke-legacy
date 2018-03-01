@@ -116,7 +116,7 @@
     <Compile Include="Judgements\KaraokeJudgement.cs" />
     <Compile Include="KaraokeDifficulty\KraokeDifficultyCalculator.cs" />
     <Compile Include="KaraokeInputManager.cs" />
-    <Compile Include="Objects\Types\IHasCharEndIndex.cs" />
+    <Compile Include="Objects\Types\IHasEndIndex.cs" />
     <Compile Include="Objects\Types\IHasCharIndex.cs" />
     <Compile Include="Objects\Types\IHasEndPreemptiveTime.cs" />
     <Compile Include="Objects\Types\IHasLyricComponent.cs" />

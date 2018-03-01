@@ -8,7 +8,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects
     /// <summary>
     /// use to record romaji
     /// </summary>
-    public class RomajiText : TextComponent, IHasCharEndIndex
+    public class RomajiText : TextComponent, IHasEndIndex
     {
         public RomajiText()
         {
@@ -22,6 +22,6 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         /// <summary>
         /// relativa to textIndex
         /// </summary>
-        public int? CharLength { get; set; }
+        public int? Length { get; set; }
     }
 }
