@@ -174,7 +174,7 @@ namespace osu.Game.Rulesets.Karaoke
         public override SettingsSubsection CreateSettings() => new KaraokeSettings();
 
         //TODO : give it a id temporatory
-        public override int LegacyID => 0;
+        public override int? LegacyID => 0;
 
         public KaraokeRuleset(RulesetInfo rulesetInfo)
             : base(rulesetInfo)

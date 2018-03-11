@@ -8,7 +8,7 @@ using OpenTK;
 
 namespace osu.Game.Rulesets.Karaoke.Replays
 {
-    public class KaraokeReplayInputHandler : FramedReplayInputHandler
+    public class KaraokeReplayInputHandler : FramedReplayInputHandler<KaraokeReplayFrame>
     {
         public KaraokeReplayInputHandler(Replay replay)
             : base(replay)
@@ -26,8 +26,8 @@ namespace osu.Game.Rulesets.Karaoke.Replays
             {
                 new ReplayState<KaraokeAction>
                 {
-                    Mouse = new ReplayMouseState(ToScreenSpace(Position ?? Vector2.Zero)),
-                    PressedActions = actions
+                    //Mouse = new ReplayMouseState(ToScreenSpace(Position ?? Vector2.Zero)),
+                    //PressedActions = actions
                 }
             };
         }

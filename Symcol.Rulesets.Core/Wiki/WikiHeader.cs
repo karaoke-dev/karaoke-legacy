@@ -141,7 +141,7 @@ namespace Symcol.Rulesets.Core.Wiki
 
         protected override Container<Drawable> Content => content ?? (Container<Drawable>)this;
 
-        protected override IEnumerable<Drawable> FlowingChildren => Children;
+        public override IEnumerable<Drawable> FlowingChildren => Children;
 
         public string Url
         {

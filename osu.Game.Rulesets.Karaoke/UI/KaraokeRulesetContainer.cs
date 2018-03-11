@@ -4,6 +4,7 @@
 using osu.Framework.Input;
 using osu.Game.Beatmaps;
 using osu.Game.Configuration;
+using osu.Game.Input.Handlers;
 using osu.Game.Rulesets.Configuration;
 using osu.Game.Rulesets.Karaoke.Beatmaps;
 using osu.Game.Rulesets.Karaoke.Configuration;
@@ -47,7 +48,7 @@ namespace osu.Game.Rulesets.Karaoke.UI
             return null;
         }
 
-        protected override FramedReplayInputHandler CreateReplayInputHandler(Replay replay) => new KaraokeReplayInputHandler(replay);
+        protected override ReplayInputHandler CreateReplayInputHandler(Replay replay) => new KaraokeReplayInputHandler(replay);
 
         protected override Vector2 GetAspectAdjustedSize() => new Vector2(0.75f);
 

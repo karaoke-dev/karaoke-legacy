@@ -104,6 +104,7 @@
     <Compile Include="Online\API\BaseApi.cs" />
     <Compile Include="Online\API\Translate\Google\GoogleTranslateApi.cs" />
     <Compile Include="Online\API\Romaj\RomajiServer\RomajiServerApi.cs" />
+    <Compile Include="Replays\KaraokeReplayFrame.cs" />
     <Compile Include="Tests\TestCaseRomajiTranslateServer.cs" />
     <Compile Include="UI\PlayField\Lyric\KaraokePosition.cs" />
     <Compile Include="Objects\Singer.cs" />
@@ -233,7 +234,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Textures\Icon\Icon.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
+  </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
