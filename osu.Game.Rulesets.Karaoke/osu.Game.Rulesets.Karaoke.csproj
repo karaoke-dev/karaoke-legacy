@@ -61,6 +61,7 @@
     <Compile Include="Beatmaps\KaraokeBeatmap.cs" />
     <Compile Include="Configuration\BaseKaraokeConfigManager.cs" />
     <Compile Include="Configuration\KaraokeConfigManager.cs" />
+    <Compile Include="Configuration\MobileScrollAnixConfig.cs" />
     <Compile Include="Configuration\PlayFieldType.cs" />
     <Compile Include="Edit\Dialog\EditKaraokeTemplateDialog.cs" />
     <Compile Include="Edit\Dialog\ListKaraokeLyricsDialog.cs" />
@@ -211,6 +212,7 @@
     <None Include="app.config" />
     <None Include="packages.config" />
     <None Include="OpenTK.dll.config" />
+    <None Include="UI\PlayField\README.md" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\osu-framework\osu.Framework\osu.Framework.csproj">
