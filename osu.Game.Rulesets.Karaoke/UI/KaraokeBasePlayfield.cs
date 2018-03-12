@@ -16,9 +16,12 @@ using osu.Game.Rulesets.Karaoke.UI.Tool;
 using osu.Game.Rulesets.Objects.Drawables;
 using osu.Game.Rulesets.UI;
 using OpenTK;
+using System;
 
 namespace osu.Game.Rulesets.Karaoke.UI
 {
+    
+
     /// <summary>
     /// Karaoke base panel
     /// </summary>

@@ -61,6 +61,7 @@
     <Compile Include="Beatmaps\KaraokeBeatmap.cs" />
     <Compile Include="Configuration\BaseKaraokeConfigManager.cs" />
     <Compile Include="Configuration\KaraokeConfigManager.cs" />
+    <Compile Include="Configuration\PlayFieldType.cs" />
     <Compile Include="Edit\Dialog\EditKaraokeTemplateDialog.cs" />
     <Compile Include="Edit\Dialog\ListKaraokeLyricsDialog.cs" />
     <Compile Include="Edit\Dialog\ListKaraokeTranslateDialog.cs" />
@@ -106,6 +107,7 @@
     <Compile Include="Online\API\Romaj\RomajiServer\RomajiServerApi.cs" />
     <Compile Include="Replays\KaraokeReplayFrame.cs" />
     <Compile Include="Tests\TestCaseRomajiTranslateServer.cs" />
+    <Compile Include="UI\KaraokeMobilePlayField.cs" />
     <Compile Include="UI\PlayField\Lyric\KaraokePosition.cs" />
     <Compile Include="Objects\Singer.cs" />
     <Compile Include="Objects\LyricTemplate.cs" />
