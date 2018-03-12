@@ -36,6 +36,9 @@ namespace osu.Game.Rulesets.Karaoke.Wiki
             //     4.3 : echo
             new MicrophoneSection(),
 
+            //Device section
+            new DeviceSection(),
+
             //[5] introduce editor
             //     5.1 : TODO : if has any setting , add in here
             new EditorSection(),
