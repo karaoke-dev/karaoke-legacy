@@ -10,6 +10,9 @@ namespace osu.Game.Rulesets.Karaoke.Beatmaps
     /// </summary>
     public class KaraokeInfo
     {
+        /// <summary>
+        /// override the origin Template
+        /// </summary>
         public LyricTemplate LyricTemplate { get; set; } = new LyricTemplate();
     }
 }

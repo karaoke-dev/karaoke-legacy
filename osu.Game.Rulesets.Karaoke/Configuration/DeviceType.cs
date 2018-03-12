@@ -7,14 +7,14 @@ using System.Threading.Tasks;
 namespace osu.Game.Rulesets.Karaoke.Configuration
 {
     /// <summary>
-    /// PlayFieldType
+    /// DeviceType
     /// </summary>
-    public enum PlayFieldType
+    public enum DeviceType
     {
         /// <summary>
         /// For desktop
         /// </summary>
-        Normal,
+        Desktop,
 
         /// <summary>
         /// For Mobile ,like iphone

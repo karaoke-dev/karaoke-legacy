@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using osu.Framework.Graphics;
+﻿using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Game.Overlays.Settings;
 using osu.Game.Rulesets.Karaoke.Configuration;
@@ -42,7 +37,7 @@ namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
                         AutoSizeAxes = Axes.Y,
                         Width = 200,
 
-                        Child = new SettingsEnumDropdown<PlayFieldType>
+                        Child = new SettingsEnumDropdown<DeviceType>
                         {
                             //Bindable = selectedGamemode
                         }

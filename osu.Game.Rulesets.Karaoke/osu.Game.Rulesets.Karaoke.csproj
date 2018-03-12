@@ -62,7 +62,7 @@
     <Compile Include="Configuration\BaseKaraokeConfigManager.cs" />
     <Compile Include="Configuration\KaraokeConfigManager.cs" />
     <Compile Include="Configuration\MobileScrollAnixConfig.cs" />
-    <Compile Include="Configuration\PlayFieldType.cs" />
+    <Compile Include="Configuration\DeviceType.cs" />
     <Compile Include="Edit\Dialog\EditKaraokeTemplateDialog.cs" />
     <Compile Include="Edit\Dialog\ListKaraokeLyricsDialog.cs" />
     <Compile Include="Edit\Dialog\ListKaraokeTranslateDialog.cs" />

@@ -40,13 +40,17 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
             });
 
             //singer
-            //Set(KaraokeSetting.Singer, new LyricTemplate());
+            Set(KaraokeSetting.Singer, new Singer());
 
             //Style
             Set(KaraokeSetting.Microphone, -1);
             Set(KaraokeSetting.MicrophoneVolumn, 0.5);
             Set(KaraokeSetting.Echo, 0.5);
             Set(KaraokeSetting.Tone, 0);
+
+            //Device
+            Set(KaraokeSetting.Device, DeviceType.Desktop);
+            SetObject(KaraokeSetting.TouchScreen, new MobileScrollAnixConfig());
         }
 
         public override TrackedSettings CreateTrackedSettings() => new TrackedSettings
@@ -83,5 +87,9 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
         MicrophoneVolumn, //[double]Volumn
         Echo, //[double]Echo
         Tone, //Future work ,adjust how voice microphone sounds like
+
+        //device
+        Device,//which device
+        TouchScreen,//touch screen action
     }
 }
