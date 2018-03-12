@@ -165,6 +165,7 @@
     <Compile Include="UI\Panel\Pieces\WithUpAndDownButtonSlider.cs" />
     <Compile Include="Mods\KaraokeModSnow.cs" />
     <Compile Include="UI\PlayField\Lyric\KaraokeLyricPlayField.cs" />
+    <Compile Include="UI\PlayField\Mobile\TimeScrollPlayField.cs" />
     <Compile Include="UI\PlayField\Note\KaraokeTonePlayfield.cs" />
     <Compile Include="UI\Tool\KaraokeTool.cs" />
     <Compile Include="Wiki\KaraokeWikiHeader.cs" />
