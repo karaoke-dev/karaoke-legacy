@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using osu.Game.Rulesets.Karaoke.Configuration;
 
 namespace osu.Game.Rulesets.Karaoke.UI.PlayField.Mobile
 {
     /// <summary>
-    /// use finger to swap the screen can change the time and volumn
+    /// use to introduce which action is use for
     /// </summary>
-    public class TimeScrollPlayField
+    public class TouchScreenIntroPlayField
     {
-
+        public MobileScrollAnixConfig Config { get; set; }
     }
 }

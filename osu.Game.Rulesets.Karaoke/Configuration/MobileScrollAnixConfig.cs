@@ -42,6 +42,11 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
         public TapConfig DoubleTapConfig { get; set; }
 
         /// <summary>
+        /// double-tap
+        /// </summary>
+        public TapConfig HoldConfig { get; set; }
+
+        /// <summary>
         /// SingleAnixConfig
         /// </summary>
         public class SingleAnixConfig
