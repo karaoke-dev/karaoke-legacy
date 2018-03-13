@@ -170,6 +170,7 @@
     <Compile Include="UI\PlayField\TouchScreen\TouchScreenIntroPlayField.cs" />
     <Compile Include="UI\PlayField\TouchScreen\TouchScreenPlayField.cs" />
     <Compile Include="UI\PlayField\Note\KaraokeTonePlayfield.cs" />
+    <Compile Include="UI\KaraokeDesktopPlayfield.cs" />
     <Compile Include="UI\Tool\KaraokeTool.cs" />
     <Compile Include="Wiki\KaraokeWikiHeader.cs" />
     <Compile Include="Wiki\KaraokeWikiOverlay.cs" />

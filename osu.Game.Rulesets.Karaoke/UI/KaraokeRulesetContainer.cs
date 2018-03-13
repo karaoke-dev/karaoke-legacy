@@ -12,6 +12,7 @@ using osu.Game.Rulesets.Karaoke.Objects;
 using osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric;
 using osu.Game.Rulesets.Karaoke.Replays;
 using osu.Game.Rulesets.Karaoke.Scoring;
+using osu.Game.Rulesets.Karaoke.UI.Tool;
 using osu.Game.Rulesets.Objects.Drawables;
 using osu.Game.Rulesets.Replays;
 using osu.Game.Rulesets.Scoring;
@@ -22,6 +23,8 @@ namespace osu.Game.Rulesets.Karaoke.UI
 {
     public class KaraokeRulesetContainer : RulesetContainer<Lyric>
     {
+        protected KaraokeConfigManager ConfigManager;
+
         public KaraokeRulesetContainer(Ruleset ruleset, WorkingBeatmap beatmap, bool isForCurrentRuleset)
             : base(ruleset, beatmap, isForCurrentRuleset)
         {
@@ -34,7 +37,15 @@ namespace osu.Game.Rulesets.Karaoke.UI
 
         protected override BeatmapProcessor<Lyric> CreateBeatmapProcessor() => new KaraokeBeatmapProcessor();
 
-        protected override Playfield CreatePlayfield() => new KaraokePlayfield(Ruleset, WorkingBeatmap, this);
+        protected override Playfield CreatePlayfield()
+        {
+            //Desktop version
+            if(ConfigManager.Get<DeviceType>(KaraokeSetting.Device)== DeviceType.Desktop)
+                return new KaraokeDesktopPlayfield(Ruleset, WorkingBeatmap, this);
+
+            //Mobile Version
+            return new KaraokeMobilePlayField(Ruleset, WorkingBeatmap, this);
+        }
 
         public override PassThroughInputManager CreateInputManager() => new KaraokeInputManager(Ruleset.RulesetInfo);
 
@@ -52,6 +63,10 @@ namespace osu.Game.Rulesets.Karaoke.UI
 
         protected override Vector2 GetAspectAdjustedSize() => new Vector2(0.75f);
 
-        protected override IRulesetConfigManager CreateConfig(Ruleset ruleset, SettingsStore settings) => new KaraokeConfigManager(settings, Ruleset.RulesetInfo, Variant);
+        protected override IRulesetConfigManager CreateConfig(Ruleset ruleset, SettingsStore settings)
+        {
+            ConfigManager = new KaraokeConfigManager(settings, Ruleset.RulesetInfo, Variant);
+            return ConfigManager;
+        }
     }
 }

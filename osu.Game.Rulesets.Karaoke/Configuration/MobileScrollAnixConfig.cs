@@ -110,6 +110,11 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
             /// Tap to pause
             /// </summary>
             Pause,
+
+            /// <summary>
+            /// Show panel
+            /// </summary>
+            ShowPanel,
         }
     }
 }

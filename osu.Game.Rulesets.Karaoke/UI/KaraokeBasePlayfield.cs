@@ -19,10 +19,17 @@ using OpenTK;
 
 namespace osu.Game.Rulesets.Karaoke.UI
 {
-    
+
 
     /// <summary>
     /// Karaoke base panel
+    /// the design should be like that : 
+    /// |                   |                       |   [Kaeakoe Mobile Playfield]
+    /// |                   |  playable Playfield   |------------
+    /// |                   |                       |   [Karaoke PlayField]
+    /// |   base Playfield  |-----------------------|-------------
+    /// |                   |  [editor playField]    
+    /// |                   |                       
     /// </summary>
     public class KaraokeBasePlayfield : Playfield, IAmKaraokeField
     {
