@@ -19,8 +19,6 @@ using OpenTK;
 
 namespace osu.Game.Rulesets.Karaoke.UI
 {
-
-
     /// <summary>
     /// Karaoke base panel
     /// the design should be like that : 

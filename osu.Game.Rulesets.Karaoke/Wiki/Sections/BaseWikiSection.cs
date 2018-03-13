@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿// Copyright (c) 2007-2018 ppy Pty Ltd <contact@ppy.sh>.
+// Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
+
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using osu.Framework.Allocation;
 using osu.Game.Configuration;
 using osu.Game.Rulesets.Karaoke.Configuration;
@@ -20,7 +19,6 @@ namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
         private void load(RulesetStore rulesetStore, SettingsStore settings)
         {
             var karaokeRuleset = rulesetStore.AvailableRulesets.Where(x => x.ShortName == "karaoke").FirstOrDefault();
-
             RulesetConfig = new KaraokeConfigManager(settings, karaokeRuleset);
 
             //initial view

@@ -24,9 +24,6 @@ namespace osu.Game.Rulesets.Karaoke.Tests
         /// </summary>
         protected void TranslateKanjiToRomaji()
         {
-
         }
     }
-
-    
 }

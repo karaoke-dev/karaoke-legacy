@@ -9,7 +9,7 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
 {
     public class KaraokeConfigManager : BaseKaraokeConfigManager<KaraokeSetting>
     {
-        public KaraokeConfigManager(SettingsStore settings, RulesetInfo ruleset, int variant=0)
+        public KaraokeConfigManager(SettingsStore settings, RulesetInfo ruleset, int variant = 0)
             : base(settings, ruleset, variant)
         {
         }
@@ -89,7 +89,7 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
         Tone, //Future work ,adjust how voice microphone sounds like
 
         //device
-        Device,//which device
-        TouchScreen,//touch screen action
+        Device, //which device
+        TouchScreen, //touch screen action
     }
 }

@@ -4,7 +4,6 @@
 using System.Collections.Generic;
 using osu.Framework.Input;
 using osu.Game.Rulesets.Replays;
-using OpenTK;
 
 namespace osu.Game.Rulesets.Karaoke.Replays
 {

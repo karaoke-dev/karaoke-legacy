@@ -1,8 +1,8 @@
-﻿using osu.Framework.Allocation;
+﻿// Copyright (c) 2007-2018 ppy Pty Ltd <contact@ppy.sh>.
+// Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
+
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
-using osu.Game.Configuration;
-using osu.Game.Overlays;
 using osu.Game.Overlays.Settings;
 using osu.Game.Rulesets.Karaoke.Configuration;
 using OpenTK;
@@ -58,7 +58,5 @@ namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
                 }
             });
         }
-
-       
     }
 }
