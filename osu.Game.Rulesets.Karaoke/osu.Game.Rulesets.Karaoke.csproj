@@ -107,6 +107,7 @@
     <Compile Include="Online\API\Translate\Google\GoogleTranslateApi.cs" />
     <Compile Include="Online\API\Romaj\RomajiServer\RomajiServerApi.cs" />
     <Compile Include="Replays\KaraokeReplayFrame.cs" />
+    <Compile Include="Tests\TestCaseEditor.cs" />
     <Compile Include="Tests\TestCaseRomajiTranslateServer.cs" />
     <Compile Include="UI\KaraokeMobilePlayField.cs" />
     <Compile Include="UI\PlayField\Lyric\KaraokePosition.cs" />

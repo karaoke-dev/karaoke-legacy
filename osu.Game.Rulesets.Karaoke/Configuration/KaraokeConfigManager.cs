@@ -40,7 +40,7 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
             });
 
             //singer
-            Set(KaraokeSetting.Singer, new Singer());
+            SetObject(KaraokeSetting.Singer, new Singer());
 
             //Style
             Set(KaraokeSetting.Microphone, -1);

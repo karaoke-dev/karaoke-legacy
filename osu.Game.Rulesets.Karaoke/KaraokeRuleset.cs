@@ -176,7 +176,7 @@ namespace osu.Game.Rulesets.Karaoke
         //TODO : give it a id temporatory
         public override int? LegacyID => 0;
 
-        public KaraokeRuleset(RulesetInfo rulesetInfo)
+        public KaraokeRuleset(RulesetInfo rulesetInfo = null)
             : base(rulesetInfo)
         {
             var karaokeTextureStore = new KaraokeTextureStore();
