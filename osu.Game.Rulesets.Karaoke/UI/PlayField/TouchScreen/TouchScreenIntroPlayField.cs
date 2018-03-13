@@ -13,5 +13,10 @@ namespace osu.Game.Rulesets.Karaoke.UI.PlayField.Mobile
     public class TouchScreenIntroPlayField
     {
         public MobileScrollAnixConfig Config { get; set; }
+
+        public TouchScreenIntroPlayField()
+        {
+
+        }
     }
 }
