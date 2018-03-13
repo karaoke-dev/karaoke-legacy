@@ -40,10 +40,10 @@ namespace osu.Game.Rulesets.Karaoke.UI
         protected override Playfield CreatePlayfield()
         {
             //Desktop version
-            if(ConfigManager.Get<DeviceType>(KaraokeSetting.Device)== DeviceType.Desktop)
+            if(ConfigManager?.Get<DeviceType>(KaraokeSetting.Device) == DeviceType.Desktop)
                 return new KaraokeDesktopPlayfield(Ruleset, WorkingBeatmap, this);
 
-            //Mobile Version
+            //Mobile version
             return new KaraokeMobilePlayField(Ruleset, WorkingBeatmap, this);
         }
 
@@ -55,7 +55,6 @@ namespace osu.Game.Rulesets.Karaoke.UI
             {
                 return new DrawableLyric(karaokeObject);
             }
-
             return null;
         }
 

@@ -110,7 +110,7 @@
     <Compile Include="Tests\TestCaseEditor.cs" />
     <Compile Include="Tests\TestCaseRomajiTranslateServer.cs" />
     <Compile Include="UI\KaraokeMobilePlayField.cs" />
-    <Compile Include="UI\PlayField\Lyric\KaraokePosition.cs" />
+    <Compile Include="UI\Layer\Lyric\KaraokePosition.cs" />
     <Compile Include="Objects\Singer.cs" />
     <Compile Include="Objects\LyricTemplate.cs" />
     <Compile Include="Configuration\KaraokeLyricConfig.cs" />
@@ -150,9 +150,9 @@
     <Compile Include="UI\Extension\PlayFieldExtension.cs" />
     <Compile Include="UI\Interface\IAmKaraokeField.cs" />
     <Compile Include="UI\KaraokeBasePlayfield.cs" />
-    <Compile Include="UI\Layer\ShowEffect\SnowLayer.cs" />
-    <Compile Include="UI\Panel\KaraokeHotkeyPanel.cs" />
-    <Compile Include="UI\Panel\KaraokePanelOverlay.cs" />
+    <Compile Include="UI\Layer\Effect\ShowEffect\SnowLayer.cs" />
+    <Compile Include="UI\Layer\Panel\KaraokeHotkeyPanel.cs" />
+    <Compile Include="UI\Layer\Panel\KaraokePanelOverlay.cs" />
     <Compile Include="UI\KaraokeSettings.cs" />
     <Compile Include="Scoring\KaraokeScoreProcessor.cs" />
     <Compile Include="UI\KaraokeRulesetContainer.cs" />
@@ -160,16 +160,16 @@
     <Compile Include="KaraokeRuleset.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Objects\LyricTranslate.cs" />
-    <Compile Include="UI\Panel\Pieces\KaraokeButton.cs" />
-    <Compile Include="UI\Panel\Pieces\KaraokeIntroduceText.cs" />
-    <Compile Include="UI\Panel\Pieces\KaraokePlayPauseButton.cs" />
-    <Compile Include="UI\Panel\Pieces\KaraokeTimerSliderBar.cs" />
-    <Compile Include="UI\Panel\Pieces\WithUpAndDownButtonSlider.cs" />
+    <Compile Include="UI\Layer\Panel\Pieces\KaraokeButton.cs" />
+    <Compile Include="UI\Layer\Panel\Pieces\KaraokeIntroduceText.cs" />
+    <Compile Include="UI\Layer\Panel\Pieces\KaraokePlayPauseButton.cs" />
+    <Compile Include="UI\Layer\Panel\Pieces\KaraokeTimerSliderBar.cs" />
+    <Compile Include="UI\Layer\Panel\Pieces\WithUpAndDownButtonSlider.cs" />
     <Compile Include="Mods\KaraokeModSnow.cs" />
-    <Compile Include="UI\PlayField\Lyric\KaraokeLyricPlayField.cs" />
-    <Compile Include="UI\PlayField\TouchScreen\TouchScreenIntroPlayField.cs" />
-    <Compile Include="UI\PlayField\TouchScreen\TouchScreenPlayField.cs" />
-    <Compile Include="UI\PlayField\Note\KaraokeTonePlayfield.cs" />
+    <Compile Include="UI\Layer\Lyric\KaraokeLyricPlayField.cs" />
+    <Compile Include="UI\Layer\TouchScreen\TouchScreenIntroPlayField.cs" />
+    <Compile Include="UI\Layer\TouchScreen\TouchScreenPlayField.cs" />
+    <Compile Include="UI\Layer\Note\KaraokeTonePlayfield.cs" />
     <Compile Include="UI\KaraokeDesktopPlayfield.cs" />
     <Compile Include="UI\Tool\KaraokeTool.cs" />
     <Compile Include="Wiki\KaraokeWikiHeader.cs" />
@@ -216,7 +216,7 @@
     <None Include="app.config" />
     <None Include="packages.config" />
     <None Include="OpenTK.dll.config" />
-    <None Include="UI\PlayField\README.md" />
+    <None Include="UI\Layer\README.md" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\osu-framework\osu.Framework\osu.Framework.csproj">
