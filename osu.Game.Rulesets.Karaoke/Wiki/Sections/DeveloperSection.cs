@@ -8,11 +8,11 @@ namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
     /// <summary>
     /// [6] introduce develpopers
     /// </summary>
-    class DeveloperSection : BaseWikiSection
+    internal class DeveloperSection : BaseWikiSection
     {
         public override string Title => "Development";
 
-        public DeveloperSection()
+        protected override void InitialView()
         {
             Content.Add(new WikiTextSection("osu!karaoke developer"));
             Content.Add(new WikiTextSection(" \n\n"));

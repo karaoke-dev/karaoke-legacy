@@ -21,7 +21,7 @@ namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
     ///     3.1 : template
     ///     3.2 : singer(maybe)
     /// </summary>
-    class StyleSection : BaseWikiSection
+    internal class StyleSection : BaseWikiSection
     {
         public override string Title => "Style";
 
@@ -36,7 +36,7 @@ namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
 
         public DrawableKaraokeTemplate DrawableKaraokeTemplate { get; set; }
 
-        public StyleSection()
+        protected override void InitialView()
         {
             Content.Add(new WikiTextSection("Setting karaoke Text and other."));
             Content.Add(new WikiTextSection(" \n\n"));

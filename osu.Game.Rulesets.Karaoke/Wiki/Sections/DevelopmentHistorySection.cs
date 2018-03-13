@@ -9,11 +9,11 @@ namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
     /// [8]show the develpment progress
     ///     8.1 : TODO : will get the newest markdown style progress from github or gitbook
     /// </summary>
-    class DevelopmentHistorySection : BaseWikiSection
+    internal class DevelopmentHistorySection : BaseWikiSection
     {
         public override string Title => "Development History";
 
-        public DevelopmentHistorySection()
+        protected override void InitialView()
         {
             Content.Add(new WikiTextSection("History of development"));
             Content.Add(new WikiLinkTextSection("And source code can be found in https://github.com/osu-Karaoke/osu-Karaoke")

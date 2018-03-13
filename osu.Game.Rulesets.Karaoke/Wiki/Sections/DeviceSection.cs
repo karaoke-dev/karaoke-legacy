@@ -13,11 +13,11 @@ namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
     /// <summary>
     /// Desktop or mobile device
     /// </summary>
-    public class DeviceSection : BaseWikiSection
+    internal class DeviceSection : BaseWikiSection
     {
         public override string Title => "Device";
 
-        public DeviceSection()
+        protected override void InitialView()
         {
             Content.Add(new WikiTextSection("Choose the Target Device"));
             Content.Add(new WikiTextSection(" \n\n"));
@@ -42,7 +42,7 @@ namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
 
                         Child = new SettingsEnumDropdown<DeviceType>
                         {
-                            //Bindable = selectedGamemode
+                            Bindable = RulesetConfig.GetBindable<DeviceType>(KaraokeSetting.Device)
                         }
                     },
                     new Container

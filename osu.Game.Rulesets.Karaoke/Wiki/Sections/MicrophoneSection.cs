@@ -17,7 +17,7 @@ namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
     ///     4.2 : volumn
     ///     4.3 : echo
     /// </summary>
-    class MicrophoneSection : BaseWikiSection
+    internal class MicrophoneSection : BaseWikiSection
     {
         public override string Title => "Microphone";
 
@@ -44,7 +44,7 @@ namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
             }
         }
 
-        public MicrophoneSection()
+        protected override void InitialView()
         {
             Content.Add(new WikiTextSection("TODO : Introduce about V2 system"));
             Content.Add(new WikiTextSection(" \n\n"));

@@ -10,7 +10,7 @@ using Symcol.Rulesets.Core.Wiki;
 
 namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
 {
-    public class BaseWikiSection : WikiSection
+    public abstract class BaseWikiSection : WikiSection
     {
         public override string Title => "Base Wiki";
 
@@ -22,6 +22,14 @@ namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
             var karaokeRuleset = rulesetStore.AvailableRulesets.Where(x => x.ShortName == "karaoke").FirstOrDefault();
 
             RulesetConfig = new KaraokeConfigManager(settings, karaokeRuleset);
+
+            //initial view
+            InitialView();
         }
+
+        /// <summary>
+        /// Initial view
+        /// </summary>
+        protected abstract void InitialView();
     }
 }

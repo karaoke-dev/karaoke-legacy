@@ -5,11 +5,11 @@ using Symcol.Rulesets.Core.Wiki;
 
 namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
 {
-    class CreditSection : BaseWikiSection
+    internal class CreditSection : BaseWikiSection
     {
         public override string Title => "Credit";
 
-        public CreditSection()
+        protected override void InitialView()
         {
             Content.Add(new WikiTextSection("The people wants to thanks to : )"));
             Content.Add(new WikiTextSection(" \n\n"));

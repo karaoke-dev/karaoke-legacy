@@ -15,11 +15,11 @@ namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
     ///     1.1 : select language translate API (default is google)
     ///     1.2 : select romaji translator
     /// </summary>
-    class LanguageSection : BaseWikiSection
+    internal class LanguageSection : BaseWikiSection
     {
         public override string Title => "Language";
 
-        public LanguageSection()
+        protected override void InitialView()
         {
             Content.Add(new WikiTextSection("Adjust which language you want to translate.\n" +
                                             "And if you need Romaji , you can select in here.  \n\n"));
@@ -47,7 +47,7 @@ namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
 
                         Child = new SettingsEnumDropdown<TranslateCode>
                         {
-                            //Bindable = selectedGamemode
+                            Bindable = RulesetConfig.GetBindable<TranslateCode>(KaraokeSetting.DefaultTranslateLanguage)
                         }
                     },
                     new Container
@@ -81,9 +81,9 @@ namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
                         AutoSizeAxes = Axes.Y,
                         Width = 200,
 
-                        Child = new SettingsEnumDropdown<TranslateCode>
+                        Child = new SettingsEnumDropdown<TranslateService>
                         {
-                            //Bindable = selectedGamemode
+                            Bindable = RulesetConfig.GetBindable<TranslateService>(KaraokeSetting.TranslateService)
                         }
                     },
                     new Container
@@ -101,6 +101,7 @@ namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
             Content.Add(new WikiTextSection(" \n\n"));
 
             Content.Add(new WikiSubSectionHeader("Romaji"));
+
             //romaji engine
             Content.Add(new Container
             {
@@ -120,9 +121,9 @@ namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
                         AutoSizeAxes = Axes.Y,
                         Width = 200,
 
-                        Child = new SettingsEnumDropdown<TranslateCode>
+                        Child = new SettingsEnumDropdown<RomajiService>
                         {
-                            //Bindable = selectedGamemode
+                            Bindable = RulesetConfig.GetBindable<RomajiService>(KaraokeSetting.RomajiService)
                         }
                     },
                     new Container

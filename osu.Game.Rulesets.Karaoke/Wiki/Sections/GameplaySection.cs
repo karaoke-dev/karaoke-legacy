@@ -8,11 +8,11 @@ namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
     /// <summary>
     /// [0] introduce karaoke
     /// </summary>
-    class GameplaySection : BaseWikiSection
+    internal class GameplaySection : BaseWikiSection
     {
         public override string Title => "GamePlay";
 
-        public GameplaySection()
+        protected override void InitialView()
         {
             Content.Add(new WikiTextSection("osu!Karaoke \n" +
                                             "It's a third-party ruleset that can let everyone make their karaoke songs and share it on osu! \n" +

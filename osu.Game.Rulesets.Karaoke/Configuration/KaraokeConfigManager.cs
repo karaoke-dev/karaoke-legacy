@@ -19,12 +19,12 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
             base.InitialiseDefaults();
 
             //language
-            Set(KaraokeSetting.TranslateEngine, -1);
+            Set(KaraokeSetting.TranslateService, TranslateService.Google);
             Set(KaraokeSetting.DefaultTranslateLanguage, TranslateCode.English);
             Set(KaraokeSetting.NeedTranslate, false);
 
             //Romaji
-            Set(KaraokeSetting.RomajiEngine, -1);
+            Set(KaraokeSetting.RomajiService, RomajiService.KoroSiro);
 
             //karaoke
             Set(KaraokeSetting.ShowKarokePanel, false);
@@ -64,12 +64,12 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
     public enum KaraokeSetting
     {
         //language
-        TranslateEngine, //[int]use which api to translate
+        TranslateService, //[int]use which api to translate
         DefaultTranslateLanguage, //[enum]
         NeedTranslate, //[bool]false
 
         //Romaji
-        RomajiEngine, //[int]use which api to get romaji
+        RomajiService, //[int]use which api to get romaji
 
         //karaoke
         ShowKarokePanel, //[bool]show panel at the beginning
