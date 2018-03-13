@@ -8,7 +8,7 @@ namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
     /// <summary>
     /// [6] introduce develpopers
     /// </summary>
-    class DeveloperSection : WikiSection
+    class DeveloperSection : BaseWikiSection
     {
         public override string Title => "Development";
 

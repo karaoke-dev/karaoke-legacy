@@ -21,7 +21,7 @@ namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
     ///     3.1 : template
     ///     3.2 : singer(maybe)
     /// </summary>
-    class StyleSection : WikiSection
+    class StyleSection : BaseWikiSection
     {
         public override string Title => "Style";
 

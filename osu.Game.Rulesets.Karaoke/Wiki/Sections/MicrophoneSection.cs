@@ -17,7 +17,7 @@ namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
     ///     4.2 : volumn
     ///     4.3 : echo
     /// </summary>
-    class MicrophoneSection : WikiSection
+    class MicrophoneSection : BaseWikiSection
     {
         public override string Title => "Microphone";
 

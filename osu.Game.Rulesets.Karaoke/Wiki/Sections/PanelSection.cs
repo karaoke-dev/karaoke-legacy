@@ -9,7 +9,7 @@ namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
     /// [2]introduce panel(app the panel, contain normal panel and microphone panel)
     ///     2.1 : setting need to show panel at startup
     /// </summary>
-    class PanelSection : WikiSection
+    class PanelSection : BaseWikiSection
     {
         public override string Title => "Panel";
 

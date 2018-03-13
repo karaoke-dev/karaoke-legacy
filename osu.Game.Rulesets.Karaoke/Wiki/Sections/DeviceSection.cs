@@ -1,5 +1,8 @@
-﻿using osu.Framework.Graphics;
+﻿using osu.Framework.Allocation;
+using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
+using osu.Game.Configuration;
+using osu.Game.Overlays;
 using osu.Game.Overlays.Settings;
 using osu.Game.Rulesets.Karaoke.Configuration;
 using OpenTK;
@@ -10,7 +13,7 @@ namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
     /// <summary>
     /// Desktop or mobile device
     /// </summary>
-    public class DeviceSection : WikiSection
+    public class DeviceSection : BaseWikiSection
     {
         public override string Title => "Device";
 
@@ -55,5 +58,7 @@ namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
                 }
             });
         }
+
+       
     }
 }

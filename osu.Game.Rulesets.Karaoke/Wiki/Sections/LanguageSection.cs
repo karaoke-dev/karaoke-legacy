@@ -15,7 +15,7 @@ namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
     ///     1.1 : select language translate API (default is google)
     ///     1.2 : select romaji translator
     /// </summary>
-    class LanguageSection : WikiSection
+    class LanguageSection : BaseWikiSection
     {
         public override string Title => "Language";
 

@@ -9,7 +9,7 @@ namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
     /// [5] introduce editor
     ///     5.1 : TODO : if has any setting , add in here
     /// </summary>
-    class EditorSection : WikiSection
+    class EditorSection : BaseWikiSection
     {
         public override string Title => "Editor";
 

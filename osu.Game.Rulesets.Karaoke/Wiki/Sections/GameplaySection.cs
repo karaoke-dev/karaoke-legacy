@@ -8,7 +8,7 @@ namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
     /// <summary>
     /// [0] introduce karaoke
     /// </summary>
-    class GameplaySection : WikiSection
+    class GameplaySection : BaseWikiSection
     {
         public override string Title => "GamePlay";
 

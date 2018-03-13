@@ -5,7 +5,7 @@ using Symcol.Rulesets.Core.Wiki;
 
 namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
 {
-    class CreditSection : WikiSection
+    class CreditSection : BaseWikiSection
     {
         public override string Title => "Credit";
 
