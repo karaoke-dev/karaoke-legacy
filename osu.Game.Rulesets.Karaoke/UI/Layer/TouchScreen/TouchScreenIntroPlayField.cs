@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using osu.Game.Rulesets.Karaoke.Configuration;
+﻿using osu.Game.Rulesets.Karaoke.Configuration;
 
-namespace osu.Game.Rulesets.Karaoke.UI.PlayField.Mobile
+namespace osu.Game.Rulesets.Karaoke.UI.Layer.TouchScreen
 {
     /// <summary>
     /// use to introduce which action is use for

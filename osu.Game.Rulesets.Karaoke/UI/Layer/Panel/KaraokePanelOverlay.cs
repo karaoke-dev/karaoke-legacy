@@ -9,11 +9,11 @@ using osu.Game.Graphics;
 using osu.Game.Overlays;
 using osu.Game.Rulesets.Karaoke.UI.Extension;
 using osu.Game.Rulesets.Karaoke.UI.Interface;
-using osu.Game.Rulesets.Karaoke.UI.Panel.Pieces;
+using osu.Game.Rulesets.Karaoke.UI.Layer.Panel.Pieces;
 using OpenTK;
 using OpenTK.Graphics;
 
-namespace osu.Game.Rulesets.Karaoke.UI.Panel
+namespace osu.Game.Rulesets.Karaoke.UI.Layer.Panel
 {
     /// <summary>
     /// to show the Karaoke panel on Playfield 

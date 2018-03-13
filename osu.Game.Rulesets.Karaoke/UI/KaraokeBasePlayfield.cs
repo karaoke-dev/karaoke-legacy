@@ -11,7 +11,7 @@ using osu.Game.Rulesets.Karaoke.Edit.Dialog;
 using osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric;
 using osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric.Types;
 using osu.Game.Rulesets.Karaoke.UI.Interface;
-using osu.Game.Rulesets.Karaoke.UI.PlayField.Lyric;
+using osu.Game.Rulesets.Karaoke.UI.Layer.Lyric;
 using osu.Game.Rulesets.Karaoke.UI.Tool;
 using osu.Game.Rulesets.Objects.Drawables;
 using osu.Game.Rulesets.UI;

@@ -4,7 +4,7 @@
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Input.Bindings;
 
-namespace osu.Game.Rulesets.Karaoke.UI.Panel
+namespace osu.Game.Rulesets.Karaoke.UI.Layer.Panel
 {
     /// <summary>
     /// this container is use for detect HotKey pressing

@@ -8,7 +8,7 @@ using osu.Game.Beatmaps;
 using osu.Game.Rulesets.Karaoke.Edit.Dialog;
 using osu.Game.Rulesets.Karaoke.Edit.Drawables;
 using osu.Game.Rulesets.Karaoke.UI;
-using osu.Game.Rulesets.Karaoke.UI.PlayField.Lyric;
+using osu.Game.Rulesets.Karaoke.UI.Layer.Lyric;
 using osu.Game.Rulesets.Objects.Drawables;
 using OpenTK.Input;
 

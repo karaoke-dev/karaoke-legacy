@@ -3,7 +3,7 @@
 
 using osu.Game.Rulesets.UI.Scrolling;
 
-namespace osu.Game.Rulesets.Karaoke.UI.PlayField.Note
+namespace osu.Game.Rulesets.Karaoke.UI.Layer.Note
 {
     /// <summary>
     /// use to show karaoke tone Playfield

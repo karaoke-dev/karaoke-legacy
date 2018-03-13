@@ -5,7 +5,7 @@ using osu.Framework.Graphics;
 using osu.Framework.Graphics.Cursor;
 using osu.Game.Graphics.Sprites;
 
-namespace osu.Game.Rulesets.Karaoke.UI.Panel.Pieces
+namespace osu.Game.Rulesets.Karaoke.UI.Layer.Panel.Pieces
 {
     public class KaraokeIntroduceText : OsuSpriteText, IHasTooltip
     {

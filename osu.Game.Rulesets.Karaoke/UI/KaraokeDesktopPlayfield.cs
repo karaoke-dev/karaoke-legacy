@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using osu.Game.Beatmaps;
+﻿using osu.Game.Beatmaps;
 
-namespace osu.Game.Rulesets.Karaoke.UI.Tool
+namespace osu.Game.Rulesets.Karaoke.UI
 {
     public class KaraokeDesktopPlayfield : KaraokePlayfield
     {

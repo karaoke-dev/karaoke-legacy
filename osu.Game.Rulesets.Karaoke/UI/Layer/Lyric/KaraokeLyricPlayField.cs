@@ -11,7 +11,7 @@ using osu.Game.Rulesets.Objects.Drawables;
 using osu.Game.Rulesets.UI;
 using OpenTK;
 
-namespace osu.Game.Rulesets.Karaoke.UI.PlayField.Lyric
+namespace osu.Game.Rulesets.Karaoke.UI.Layer.Lyric
 {
     /// <summary>
     /// use to manage karaoke lyric's position arrangement

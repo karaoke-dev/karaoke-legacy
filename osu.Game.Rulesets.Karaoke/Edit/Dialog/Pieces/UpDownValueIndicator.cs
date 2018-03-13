@@ -6,7 +6,7 @@ using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Shapes;
 using osu.Game.Graphics.Sprites;
-using osu.Game.Rulesets.Karaoke.UI.Panel.Pieces;
+using osu.Game.Rulesets.Karaoke.UI.Layer.Panel.Pieces;
 using OpenTK.Graphics;
 
 namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces

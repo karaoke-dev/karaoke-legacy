@@ -2,10 +2,9 @@
 // Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
 
 using NUnit.Framework;
-using osu.Game.Rulesets.Karaoke;
 using osu.Game.Tests.Visual;
 
-namespace osu.Game.Rulesets.Osu.Tests
+namespace osu.Game.Rulesets.Karaoke.Tests
 {
     [TestFixture]
     public class TestCaseEditor : EditorTestCase

@@ -8,7 +8,7 @@ using osu.Game.Graphics.Sprites;
 using osu.Game.Graphics.UserInterface;
 using OpenTK;
 
-namespace osu.Game.Rulesets.Karaoke.UI.Panel.Pieces
+namespace osu.Game.Rulesets.Karaoke.UI.Layer.Panel.Pieces
 {
     public class KaraokeTimerSliderBar : OsuSliderBar<double>
     {
