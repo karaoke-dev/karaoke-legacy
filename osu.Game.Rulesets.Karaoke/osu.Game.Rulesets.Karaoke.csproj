@@ -60,6 +60,7 @@
   <ItemGroup>
     <Compile Include="Beatmaps\KaraokeBeatmap.cs" />
     <Compile Include="Configuration\BaseKaraokeConfigManager.cs" />
+    <Compile Include="Configuration\BindableObject.cs" />
     <Compile Include="Configuration\KaraokeConfigManager.cs" />
     <Compile Include="Configuration\MobileScrollAnixConfig.cs" />
     <Compile Include="Configuration\DeviceType.cs" />
