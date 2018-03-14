@@ -15,6 +15,8 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
         {
         }
 
+
+
         /// <summary>
         /// serialize and set object
         /// </summary>
@@ -22,22 +24,36 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
         /// <param name="lookup"></param>
         /// <param name="value"></param>
         /// <returns></returns>
-        public Bindable<string> SetObject<U>(T lookup, U value) where U : class
+        public BindableObject<U> SetObject<U>(T lookup, U value) where U : class
         {
-            string bindableValue = JsonConvert.SerializeObject(value);
-            return Set(lookup, bindableValue);
+            BindableObject<U> bindable = GetOriginalBindable<U>(lookup) as BindableObject<U>;
+
+            if (bindable == null)
+            {
+                bindable = new BindableObject<U>(value);
+                AddBindable(lookup, bindable);
+            }
+            else
+            {
+                bindable.Value = value;
+            }
+
+            bindable.Default = value;
+
+            return bindable;
         }
 
         /// <summary>
-        /// get obejct and deserialize object
+        /// get object bindable
         /// </summary>
         /// <typeparam name="U"></typeparam>
         /// <param name="lookup"></param>
+        /// <param name="value"></param>
         /// <returns></returns>
-        public U GetObject<U>(T lookup) where U : class
+        public Bindable<U> GetObjectBindable<U>(T lookup) where U : class
         {
-            var jsonString = Get<string>(lookup);
-            return JsonConvert.DeserializeObject<U>(jsonString);
+            var bindable = GetBindable<U>(lookup);
+            return bindable;
         }
     }
 }

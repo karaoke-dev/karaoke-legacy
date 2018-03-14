@@ -69,6 +69,10 @@ namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
                                 Position = new Vector2(100, -5),
                                 Anchor = Anchor.Centre,
                                 Origin = Anchor.Centre,
+                                OnValueChanged = (template) =>
+                                {
+                                    RulesetConfig.GetBindable<LyricTemplate>(KaraokeSetting.Template).Value = template;
+                                }
                             },
                         }
                     },
@@ -85,17 +89,19 @@ namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
                         AutoSizeEasing = Easing.OutQuint,
                         Child = _menuSetting = new RomajiMenuSettings
                         {
-                            OnValueChanged = (config) =>
-                            {
-                                DrawableKaraokeTemplate.Config = config;
-                                //_config.SetObject(KaraokeSetting.LyricStyle,config);
-                            }
+                            Bindnig = RulesetConfig.GetObjectBindable<KaraokeLyricConfig>(KaraokeSetting.LyricStyle)
                         }
                     },
                 }
             });
-            Content.Add(new WikiTextSection(" \n\n"));
 
+            //if value is changed
+            _menuSetting.Bindnig.ValueChanged += (config) =>
+            {
+                DrawableKaraokeTemplate.Config = config;
+            };
+
+            Content.Add(new WikiTextSection(" \n\n"));
             Content.Add(new WikiSubSectionHeader("Singer"));
             //TODO : show singer
 
@@ -107,8 +113,6 @@ namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
         {
             //config = new KaraokeConfigManager(settings,ruleset,0);
             KarokeTemplate = new LyricTemplate(); //_config.GetObject<LyricTemplate>(KaraokeSetting.Template);
-            LyricConfig = new KaraokeLyricConfig(); //_config.GetObject<KaraokeLyricConfig>(KaraokeSetting.LyricStyle);
-            _menuSetting.LyricTConfig = LyricConfig;
         }
     }
 
@@ -116,27 +120,24 @@ namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
     {
         protected override string Header => "Lyric Config";
 
-        private KaraokeLyricConfig _config;
-
-        public KaraokeLyricConfig LyricTConfig
-        {
-            get => _config;
-            set
-            {
-                _config = value;
-                _topTextVisibleCheckBox.Bindable.Value = _config.SubTextVislbility;
-                _romajiVisibleCheckBox.Bindable.Value = _config.RomajiVislbility;
-                _romajiFirstCheckBox.Bindable.Value = _config.RomajiFirst;
-                _translateCheckBox.Bindable.Value = _config.ShowTranslate;
-            }
-        }
-
-        public Action<KaraokeLyricConfig> OnValueChanged { get; set; }
+        public Bindable<KaraokeLyricConfig> Bindnig { get; set; }
 
         private SettingsCheckbox _topTextVisibleCheckBox;
         private SettingsCheckbox _romajiVisibleCheckBox;
         private SettingsCheckbox _romajiFirstCheckBox;
         private SettingsCheckbox _translateCheckBox;
+
+        protected override void LoadComplete()
+        {
+            base.LoadComplete();
+            if (Bindnig != null)
+            {
+                _topTextVisibleCheckBox.Bindable.Value = Bindnig.Value.SubTextVislbility;
+                _romajiVisibleCheckBox.Bindable.Value = Bindnig.Value.RomajiVislbility;
+                _romajiFirstCheckBox.Bindable.Value = Bindnig.Value.RomajiFirst;
+                _translateCheckBox.Bindable.Value = Bindnig.Value.ShowTranslate;
+            }
+        }
 
         public RomajiMenuSettings()
         {
@@ -169,23 +170,23 @@ namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
             };
             _topTextVisibleCheckBox.Bindable.ValueChanged += (a) =>
             {
-                LyricTConfig.SubTextVislbility = a;
-                OnValueChanged?.Invoke(LyricTConfig);
+                Bindnig.Value.SubTextVislbility = a;
+                Bindnig?.TriggerChange();
             };
             _romajiVisibleCheckBox.Bindable.ValueChanged += (a) =>
             {
-                LyricTConfig.RomajiVislbility = a;
-                OnValueChanged?.Invoke(LyricTConfig);
+                Bindnig.Value.RomajiVislbility = a;
+                Bindnig?.TriggerChange();
             };
             _romajiFirstCheckBox.Bindable.ValueChanged += (a) =>
             {
-                LyricTConfig.RomajiFirst = a;
-                OnValueChanged?.Invoke(LyricTConfig);
+                Bindnig.Value.RomajiFirst = a;
+                Bindnig?.TriggerChange();
             };
             _translateCheckBox.Bindable.ValueChanged += (a) =>
             {
-                LyricTConfig.ShowTranslate = a;
-                OnValueChanged?.Invoke(LyricTConfig);
+                Bindnig.Value.ShowTranslate = a;
+                Bindnig?.TriggerChange();
             };
         }
     }
