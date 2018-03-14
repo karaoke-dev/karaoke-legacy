@@ -1,6 +1,7 @@
 ﻿// Copyright (c) 2007-2018 ppy Pty Ltd <contact@ppy.sh>.
 // Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
 
+using System.Linq;
 using osu.Framework.Allocation;
 using osu.Framework.Graphics;
 using osu.Game.Configuration;
@@ -15,22 +16,20 @@ namespace osu.Game.Rulesets.Karaoke.UI
     {
         protected override string Header => "Karaoke!";
 
-        //public static KaraokeConfigManager KaraokeConfigManager;
+        public static KaraokeConfigManager RulesetConfig;
 
         [BackgroundDependencyLoader]
-        private void load(OsuConfigManager config)
+        private void load(RulesetStore rulesetStore, SettingsStore settings)
         {
+            var karaokeRuleset = rulesetStore.AvailableRulesets.Where(x => x.ShortName == "karaoke").FirstOrDefault();
+            RulesetConfig = new KaraokeConfigManager(settings, karaokeRuleset);
+
             Children = new Drawable[]
             {
-                new SettingsCheckbox
-                {
-                    LabelText = "Show Translate by google",
-                    //Bindable = config.GetBindable<bool>(OsuSetting.SnakingInSliders)
-                },
                 new SettingsEnumDropdown<TranslateCode>
                 {
                     LabelText = "Translate to...",
-                    //Bindable = config.GetBindable<SelectionRandomType>(OsuSetting.SelectionRandomType),
+                    Bindable = RulesetConfig.GetBindable<TranslateCode>(KaraokeSetting.DefaultTranslateLanguage)
                 },
                 new SettingsCheckbox
                 {
@@ -50,7 +49,7 @@ namespace osu.Game.Rulesets.Karaoke.UI
                 new SettingsButton
                 {
                     Text = "Open In-game Wiki",
-                    Action = () => { ShowWiki(); },
+                    Action = ShowWiki,
                 },
             };
         }
