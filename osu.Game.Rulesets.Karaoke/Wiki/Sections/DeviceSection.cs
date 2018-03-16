@@ -40,9 +40,9 @@ namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
                         AutoSizeAxes = Axes.Y,
                         Width = 200,
 
-                        Child = new SettingsEnumDropdown<DeviceType>
+                        Child = new SettingsEnumDropdown<PlatformType>
                         {
-                            Bindable = RulesetConfig.GetBindable<DeviceType>(KaraokeSetting.Device)
+                            Bindable = RulesetConfig.GetBindable<PlatformType>(KaraokeSetting.Device)
                         }
                     },
                     new Container

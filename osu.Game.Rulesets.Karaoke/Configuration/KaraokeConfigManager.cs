@@ -49,7 +49,7 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
             Set(KaraokeSetting.Tone, 0);
 
             //Device
-            Set(KaraokeSetting.Device, DeviceType.Desktop);
+            Set(KaraokeSetting.Device, PlatformType.Desktop);
             SetObject(KaraokeSetting.TouchScreen, new MobileScrollAnixConfig());
         }
 

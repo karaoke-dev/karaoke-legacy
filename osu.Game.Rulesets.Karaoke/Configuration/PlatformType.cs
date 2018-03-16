@@ -4,9 +4,9 @@
 namespace osu.Game.Rulesets.Karaoke.Configuration
 {
     /// <summary>
-    /// DeviceType
+    /// PlatformType
     /// </summary>
-    public enum DeviceType
+    public enum PlatformType
     {
         /// <summary>
         /// For desktop
