@@ -3,7 +3,7 @@
 
 using osu.Game.Rulesets.Karaoke.Configuration;
 
-namespace osu.Game.Rulesets.Karaoke.UI.Layer.TouchScreen
+namespace osu.Game.Rulesets.Karaoke.UI.Layer.ControlPanel.Mobile.Touch
 {
     /// <summary>
     /// use to introduce which action is use for

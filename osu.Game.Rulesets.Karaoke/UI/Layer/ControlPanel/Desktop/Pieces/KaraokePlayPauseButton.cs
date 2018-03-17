@@ -8,7 +8,7 @@ using osu.Game.Graphics.UserInterface;
 using OpenTK;
 using OpenTK.Graphics;
 
-namespace osu.Game.Rulesets.Karaoke.UI.Layer.Panel.Pieces
+namespace osu.Game.Rulesets.Karaoke.UI.Layer.ControlPanel.Desktop.Pieces
 {
     public class KaraokePlayPauseButton : KaraokeButton
     {

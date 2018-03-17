@@ -4,7 +4,7 @@
 using NUnit.Framework;
 using osu.Framework.Allocation;
 using osu.Framework.Graphics;
-using osu.Game.Rulesets.Karaoke.UI.Layer.Panel;
+using osu.Game.Rulesets.Karaoke.UI.Layer.ControlPanel.Desktop;
 using osu.Game.Tests.Visual;
 
 namespace osu.Game.Rulesets.Karaoke.Tests
