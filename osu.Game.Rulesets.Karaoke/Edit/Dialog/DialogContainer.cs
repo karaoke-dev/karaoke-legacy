@@ -177,7 +177,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog
         /// <summary>
         /// Show Dialog
         /// </summary>
-        public virtual void Show()
+        public virtual void ShowDialog()
         {
             //TODO : Adding Dialog effect in here
         }

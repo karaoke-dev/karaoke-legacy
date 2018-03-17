@@ -82,10 +82,7 @@ namespace osu.Game.Rulesets.Karaoke.UI
                 for (int i = 0; i < multiSting.Count; i++)
                 {
                     //assign language
-                    ListDrawableKaraokeObject[i].Lyric.Translates.Add(TranslateCode.Chinese_Traditional, new LyricTranslate(multiSting[i]));
-
-                    //assign traslate code
-                    ListDrawableKaraokeObject[i].TranslateCode = TranslateCode.Chinese_Traditional;
+                    KaraokeLyricPlayField.ListDrawableKaraokeObject[i].Lyric.Translates.Add(TranslateCode.Chinese_Traditional, new LyricTranslate(multiSting[i]));
                 }
             };
         }
@@ -131,7 +128,7 @@ namespace osu.Game.Rulesets.Karaoke.UI
             if (needTranslate)
             {
                 var listTranslateString = new List<string>();
-                foreach (var singleKaraokeObject in ListDrawableKaraokeObject)
+                foreach (var singleKaraokeObject in KaraokeLyricPlayField.ListDrawableKaraokeObject)
                 {
                     listTranslateString.Add(singleKaraokeObject.Lyric.MainText.Text);
                 }
@@ -152,13 +149,18 @@ namespace osu.Game.Rulesets.Karaoke.UI
         [BackgroundDependencyLoader]
         private void load(KaraokeConfigManager karaokeConfig)
         {
-            /*
-            //get property from setting
-            KaraokeLyricPlayField.Style = karaokeConfig.GetObject<KaraokeLyricConfig>(KaraokeSetting.LyricStyle);
-            KaraokeLyricPlayField.Template = karaokeConfig.GetObject<LyricTemplate>(KaraokeSetting.Template);
-            */
+            if (karaokeConfig != null)
+            {
+                var style = karaokeConfig.GetObjectBindable<KaraokeLyricConfig>(KaraokeSetting.LyricStyle);
+                var template = karaokeConfig.GetObjectBindable<LyricTemplate>(KaraokeSetting.Template);
+                var singerTemplate = karaokeConfig.GetObjectBindable<SingerTemplate>(KaraokeSetting.SingerTemplate);
+                var translateCode = karaokeConfig.GetBindable<TranslateCode>(KaraokeSetting.DefaultTranslateLanguage);
 
-            //TODO : Apply property
+                KaraokeLyricPlayField.Style.BindTo(style);
+                KaraokeLyricPlayField.Template.BindTo(template);
+                KaraokeLyricPlayField.SingerTemplate.BindTo(singerTemplate);
+                KaraokeLyricPlayField.TranslateCode.BindTo(translateCode);
+            }
         }
     }
 }

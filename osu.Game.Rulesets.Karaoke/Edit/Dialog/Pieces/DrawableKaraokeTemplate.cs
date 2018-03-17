@@ -43,10 +43,10 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
         //don't update by time
         public override bool ProgressUpdateByTime => false;
 
-        public DrawableKaraokeTemplate(Lyric hitObject, LyricTemplate template)
+        public DrawableKaraokeTemplate(Lyric hitObject)
             : base(hitObject)
         {
-            Template = template;
+            var templateValue = Template.Value;
             SegmentedControlContainer = new Container()
             {
                 Children = new Drawable[]
@@ -60,11 +60,11 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
                     SubTextSegmentedControl = new UpDownValueIndicator()
                     {
                         Origin = Anchor.BottomLeft,
-                        Value = Template.TopText.FontSize ?? 0,
+                        Value = templateValue.TopText.FontSize ?? 0,
                         PostfixText = "px",
                         OnValueChanged = (newValue) =>
                         {
-                            Template.TopText.FontSize = (int)newValue;
+                            templateValue.TopText.FontSize = (int)newValue;
                             UpdateDrawable();
                             OnValueChanged?.Invoke(Template);
                         },
@@ -72,11 +72,11 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
                     SubTextToMainTextSegmentedControl = new UpDownValueIndicator()
                     {
                         Origin = Anchor.BottomRight,
-                        Value = Template.TopText.Position.Y,
+                        Value = templateValue.TopText.Position.Y,
                         PostfixText = "px",
                         OnValueChanged = (newValue) =>
                         {
-                            Template.TopText.Position = new Vector2(0, newValue);
+                            templateValue.TopText.Position = new Vector2(0, newValue);
                             UpdateDrawable();
                             OnValueChanged?.Invoke(Template);
                         },
@@ -84,11 +84,11 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
                     MainTextSegmentedControl = new UpDownValueIndicator()
                     {
                         Origin = Anchor.BottomLeft,
-                        Value = Template.MainText.FontSize ?? 0,
+                        Value = templateValue.MainText.FontSize ?? 0,
                         PostfixText = "px",
                         OnValueChanged = (newValue) =>
                         {
-                            Template.MainText.FontSize = (int)newValue;
+                            templateValue.MainText.FontSize = (int)newValue;
                             UpdateDrawable();
                             OnValueChanged?.Invoke(Template);
                         },
@@ -96,11 +96,11 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
                     MainTextToTranslateTextSegmentedControl = new UpDownValueIndicator()
                     {
                         Origin = Anchor.BottomRight,
-                        Value = Template.TranslateText.Position.Y,
+                        Value = templateValue.TranslateText.Position.Y,
                         PostfixText = "px",
                         OnValueChanged = (newValue) =>
                         {
-                            Template.TranslateText.Position = new Vector2(0, newValue);
+                            templateValue.TranslateText.Position = new Vector2(0, newValue);
                             UpdateDrawable();
                             OnValueChanged?.Invoke(Template);
                         },
@@ -108,11 +108,11 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
                     TranslateTextSegmentedControl = new UpDownValueIndicator()
                     {
                         Origin = Anchor.BottomLeft,
-                        Value = Template.TranslateText.FontSize ?? 0,
+                        Value = templateValue.TranslateText.FontSize ?? 0,
                         PostfixText = "px",
                         OnValueChanged = (newValue) =>
                         {
-                            Template.TranslateText.FontSize = (int)newValue;
+                            templateValue.TranslateText.FontSize = (int)newValue;
                             UpdateDrawable();
                             OnValueChanged?.Invoke(Template);
                         },
@@ -122,11 +122,11 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
                         Origin = Anchor.BottomCentre,
                         Step = 0.1f,
                         Position = new Vector2(50, 150),
-                        Value = Template.Scale,
+                        Value = templateValue.Scale,
                         PostfixText = "x",
                         OnValueChanged = (newValue) =>
                         {
-                            Template.Scale = newValue;
+                            templateValue.Scale = newValue;
                             UpdateDrawable();
                             OnValueChanged?.Invoke(Template);
                         },
@@ -135,7 +135,6 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
             };
 
             AddInternal(SegmentedControlContainer);
-            UpdateValue();
         }
 
         protected override void UpdateValue()
@@ -145,6 +144,8 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
             if (SubTextSegmentedControl == null)
                 return;
 
+            var templateValue = Template.Value;
+
             //1. Get all start Position
             Vector2 subTextSegmentedControlStartPosition = new Vector2(TextsAndMaskPiece.SubTexts.Last().Position.X + 20, TextsAndMaskPiece.SubText.Position.Y);
             Vector2 mainTextSegmentedControlStartPosition = new Vector2(TextsAndMaskPiece.MainText.TotalWidth, TextsAndMaskPiece.MainText.Position.Y);
@@ -153,11 +154,11 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
             Vector2 mainTextToTranslateTextSegmentedControlStartPosition = new Vector2(-10, (mainTextSegmentedControlStartPosition.Y + translateTextSegmentedControlStartPosition.Y) / 2);
 
             //2. get all end position (s mainText and subText and translate text position)
-            Vector2 subTextSegmentedControlEndPosition = subTextSegmentedControlStartPosition + new Vector2(100, -50) / Template.Scale;
-            Vector2 subTextToMainTextSegmentedControlEndPosition = subTextToMainTextSegmentedControlStartPosition + new Vector2(-50, -50) / Template.Scale;
-            Vector2 mainTextSegmentedControlEndPosition = mainTextSegmentedControlStartPosition + new Vector2(100, -10) / Template.Scale;
-            Vector2 mainTextToTranslateTextSegmentedControlEndPosition = mainTextToTranslateTextSegmentedControlStartPosition + new Vector2(-50, 10) / Template.Scale;
-            Vector2 translateTextSegmentedControlEndPosition = translateTextSegmentedControlStartPosition + new Vector2(100, 30) / Template.Scale;
+            Vector2 subTextSegmentedControlEndPosition = subTextSegmentedControlStartPosition + new Vector2(100, -50) / templateValue.Scale;
+            Vector2 subTextToMainTextSegmentedControlEndPosition = subTextToMainTextSegmentedControlStartPosition + new Vector2(-50, -50) / templateValue.Scale;
+            Vector2 mainTextSegmentedControlEndPosition = mainTextSegmentedControlStartPosition + new Vector2(100, -10) / templateValue.Scale;
+            Vector2 mainTextToTranslateTextSegmentedControlEndPosition = mainTextToTranslateTextSegmentedControlStartPosition + new Vector2(-50, 10) / templateValue.Scale;
+            Vector2 translateTextSegmentedControlEndPosition = translateTextSegmentedControlStartPosition + new Vector2(100, 30) / templateValue.Scale;
 
             //3. update position
             SubTextSegmentedControl.Position = subTextSegmentedControlEndPosition;

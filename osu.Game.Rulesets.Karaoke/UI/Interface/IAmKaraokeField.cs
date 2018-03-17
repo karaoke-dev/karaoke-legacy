@@ -33,9 +33,5 @@ namespace osu.Game.Rulesets.Karaoke.UI.Interface
         /// </summary>
         KaraokeTool KaraokeFieldTool { get; }
 
-        /// <summary>
-        /// list drawable Object
-        /// </summary>
-        List<IAmDrawableLyric> ListDrawableKaraokeObject { get; set; }
     }
 }

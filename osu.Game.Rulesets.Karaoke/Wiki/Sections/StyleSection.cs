@@ -41,8 +41,10 @@ namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
             Content.Add(new WikiTextSection("Setting karaoke Text and other."));
             Content.Add(new WikiTextSection(" \n\n"));
 
-
             Content.Add(new WikiSubSectionHeader("Template"));
+
+            var karaokeLyricConfig = RulesetConfig.GetObjectBindable<KaraokeLyricConfig>(KaraokeSetting.LyricStyle);
+
             //show settingTemplate
             Content.Add(new Container
             {
@@ -64,7 +66,7 @@ namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
                         Height = 250,
                         Children = new Drawable[]
                         {
-                            DrawableKaraokeTemplate = new DrawableKaraokeTemplate(Lyric, KarokeTemplate)
+                            DrawableKaraokeTemplate = new DrawableKaraokeTemplate(Lyric)
                             {
                                 Position = new Vector2(100, -5),
                                 Anchor = Anchor.Centre,
@@ -89,19 +91,17 @@ namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
                         AutoSizeEasing = Easing.OutQuint,
                         Child = _menuSetting = new RomajiMenuSettings
                         {
-                            Bindnig = RulesetConfig.GetObjectBindable<KaraokeLyricConfig>(KaraokeSetting.LyricStyle)
+                            Bindnig = karaokeLyricConfig,
                         }
                     },
                 }
             });
 
             //if value is changed
-            _menuSetting.Bindnig.ValueChanged += (config) =>
-            {
-                DrawableKaraokeTemplate.Config = config;
-            };
-
+            _menuSetting.Bindnig.BindTo(karaokeLyricConfig);
             Content.Add(new WikiTextSection(" \n\n"));
+
+
             Content.Add(new WikiSubSectionHeader("Singer"));
             //TODO : show singer
 

@@ -40,7 +40,7 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
             });
 
             //singer
-            SetObject(KaraokeSetting.Singer, new Singer());
+            SetObject(KaraokeSetting.SingerTemplate, new SingerTemplate());
 
             //Style
             Set(KaraokeSetting.Microphone, -1);
@@ -64,32 +64,32 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
     public enum KaraokeSetting
     {
         //language
-        TranslateService, //[int]use which api to translate
-        DefaultTranslateLanguage, //[enum]
-        NeedTranslate, //[bool]false
+        TranslateService = 0, //[int]use which api to translate
+        DefaultTranslateLanguage = 1, //[enum]
+        NeedTranslate = 2, //[bool]false
 
         //Romaji
-        RomajiService, //[int]use which api to get romaji
+        RomajiService = 11, //[int]use which api to get romaji
 
         //karaoke
-        ShowKarokePanel, //[bool]show panel at the beginning
-        DisableHotKay, //[bool]enable hotkey
+        ShowKarokePanel = 21, //[bool]show panel at the beginning
+        DisableHotKay = 22, //[bool]enable hotkey
 
         //Style
-        Template, //[object]
-        LyricStyle, //[Object]
+        Template = 31, //[object]
+        LyricStyle = 32, //[Object]
 
         //singler
-        Singer, //[object]
+        SingerTemplate = 41, //[object]
 
         //Microphone (V2 system)
-        Microphone, //[int]select microphone device
-        MicrophoneVolumn, //[double]Volumn
-        Echo, //[double]Echo
-        Tone, //Future work ,adjust how voice microphone sounds like
+        Microphone = 51, //[int]select microphone device
+        MicrophoneVolumn = 52, //[double]Volumn
+        Echo = 53, //[double]Echo
+        Tone = 54, //Future work ,adjust how voice microphone sounds like
 
         //device
-        Device, //which device
-        TouchScreen, //touch screen action
+        Device = 61, //which device
+        TouchScreen = 62, //touch screen action
     }
 }

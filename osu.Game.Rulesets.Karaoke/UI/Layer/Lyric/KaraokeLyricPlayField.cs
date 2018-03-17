@@ -2,6 +2,7 @@
 // Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
 
 using System.Collections.Generic;
+using osu.Framework.Configuration;
 using osu.Framework.Graphics;
 using osu.Game.Rulesets.Karaoke.Configuration;
 using osu.Game.Rulesets.Karaoke.Objects;
@@ -37,34 +38,45 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layer.Lyric
     /// 
     /// 2. 3. 4. will be implement until release
     /// </summary>
-    public class KaraokeLyricPlayField : Playfield
+    public class KaraokeLyricPlayField : Playfield , IDrawableLyricBindable
     {
         public KaraokeRulesetContainer KaraokeRulesetContainer { get; set; }
-        public List<IAmDrawableLyric> ListDrawableKaraokeObject { get; set; } = new List<IAmDrawableLyric>();
+        public List<IDrawableLyricParameter> ListDrawableKaraokeObject { get; set; } = new List<IDrawableLyricParameter>();
 
         //bindable
-        public BindableObject<KaraokeLyricConfig> Style { get; set; }
-        public BindableObject<LyricTemplate> Template { get; set; }
-        public BindableObject<SingerTemplate> Singer { get; set; }
+        public BindableObject<KaraokeLyricConfig> Style { get; set; } = new BindableObject<KaraokeLyricConfig>(new KaraokeLyricConfig());
+        public BindableObject<LyricTemplate> Template { get; set; } = new BindableObject<LyricTemplate>(new LyricTemplate());
+        public BindableObject<SingerTemplate> SingerTemplate { get; set; } = new BindableObject<SingerTemplate>(new SingerTemplate());
+        public Bindable<TranslateCode> TranslateCode { get; set; } = new Bindable<TranslateCode>();
 
         public override void Add(DrawableHitObject h)
         {
             h.Depth = (float)h.HitObject.StartTime;
 
-            //update template
-            UpdateObjectTemplate(h as DrawableLyric);
+            if (h is DrawableLyric drawableLyric)
+            {
+                //binding
+                Style.BindTo(Style);
+                Template.BindTo(Template);
+                SingerTemplate.BindTo(SingerTemplate);
+                TranslateCode.BindTo(TranslateCode);
 
-            //update position
-            UpdateObjectAutomaticallyPosition(h as DrawableLyric);
+                //update template
+                UpdateObjectTemplate(drawableLyric);
 
-            //add to list
-            ListDrawableKaraokeObject.Add(h as DrawableLyric);
+                //update position
+                UpdateObjectAutomaticallyPosition(drawableLyric);
 
-            base.Add(h);
+                //add to list
+                ListDrawableKaraokeObject.Add(drawableLyric);
+
+                base.Add(h);
+            }
         }
 
         public void UpdateObjectTemplate(DrawableLyric drawableKaraokeObject)
         {
+            /*
             //get template 
             LyricTemplate template = null;
             if (drawableKaraokeObject.Lyric.TemplateIndex != null)
@@ -77,6 +89,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layer.Lyric
             {
                 drawableKaraokeObject.Template = template;
             }
+            */
         }
 
         /// <summary>

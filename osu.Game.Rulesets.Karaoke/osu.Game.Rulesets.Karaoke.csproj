@@ -96,6 +96,7 @@
     <Compile Include="Helps\DIctionaryHelper.cs" />
     <Compile Include="Edit\Dialog\Pieces\RevertableTextbox.cs" />
     <Compile Include="Beatmaps\KaraokeInfo.cs" />
+    <Compile Include="Objects\Drawables\Lyric\Types\IDrawableLyricBindable.cs" />
     <Compile Include="Objects\KaraokeCommercial.cs" />
     <Compile Include="Objects\LyricDictionary.cs" />
     <Compile Include="Objects\LyricProgressPointList.cs" />
@@ -200,7 +201,7 @@
     <Compile Include="Objects\Drawables\Lyric\Pieces\TextsAndMask.cs" />
     <Compile Include="Objects\Drawables\Lyric\Pieces\TranslateString.cs" />
     <Compile Include="Objects\Drawables\Lyric\DrawableLyric.cs" />
-    <Compile Include="Objects\Drawables\Lyric\Types\IAmDrawableLyric.cs" />
+    <Compile Include="Objects\Drawables\Lyric\Types\IDrawableLyricParameter.cs" />
     <Compile Include="Objects\Drawables\Note\DrawableKaraokeNote.cs" />
     <Compile Include="Objects\Drawables\Common\Pieces\TextSets.cs" />
     <Compile Include="Objects\Types\IHasText.cs" />

@@ -32,7 +32,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog
         public override void InitialDialog()
         {
             //create drawable
-            MainContext.Add(DrawableKaraokeTemplate = new DrawableKaraokeTemplate(Lyric, KarokeTemplate)
+            MainContext.Add(DrawableKaraokeTemplate = new DrawableKaraokeTemplate(Lyric)
             {
                 Position = new Vector2(250, 100)
             });

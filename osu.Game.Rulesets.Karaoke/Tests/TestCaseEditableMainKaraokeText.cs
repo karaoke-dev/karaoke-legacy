@@ -25,7 +25,6 @@ namespace osu.Game.Rulesets.Karaoke.Tests
             Add(new DrawableEditableKaraokeObject(DemoKaraokeObject.GenerateWithStartAndDuration(0, 100000))
             {
                 Position = new Vector2(100, 100),
-                Template = new LyricTemplate(),
                 //ProgressUpdateByTime = false,
             });
         }

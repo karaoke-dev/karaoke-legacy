@@ -54,7 +54,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables
         {
             base.UpdateDrawable();
             EditableMainKaraokeText.MainTextObject = Lyric.MainText.ToDictionary(k => k.Key, v => (TextComponent)v.Value);
-            EditableMainKaraokeText.TextObject = Template?.MainText;
+            EditableMainKaraokeText.TextObject = Template?.Value?.MainText;
             EditableMainKaraokeText.Alpha = 1f;
         }
 

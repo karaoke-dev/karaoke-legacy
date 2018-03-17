@@ -97,7 +97,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog
 
         private void initialItemsScrollContainerItems()
         {
-            var listObjects = PlayField?.ListDrawableKaraokeObject ?? new List<IAmDrawableLyric>();
+            var listObjects = PlayField?.KaraokeLyricPlayField.ListDrawableKaraokeObject ?? new List<IDrawableLyricParameter>();
             var listKaraokeObjects = new List<Lyric>();
             foreach (var single in listObjects)
                 listKaraokeObjects.Add(single.Lyric);
