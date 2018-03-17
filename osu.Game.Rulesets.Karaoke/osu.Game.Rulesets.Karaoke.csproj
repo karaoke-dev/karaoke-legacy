@@ -104,6 +104,7 @@
     <Compile Include="Objects\MainText.cs" />
     <Compile Include="Objects\MainTextList.cs" />
     <Compile Include="Objects\RomajiTextList.cs" />
+    <Compile Include="Objects\SingerTemplate.cs" />
     <Compile Include="Objects\TextComponent.cs" />
     <Compile Include="Objects\Types\ICopyable.cs" />
     <Compile Include="Online\API\BaseApi.cs" />

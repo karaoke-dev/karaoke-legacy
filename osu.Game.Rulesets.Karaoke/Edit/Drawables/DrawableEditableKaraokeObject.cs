@@ -46,8 +46,8 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables
                 Width = 300,
                 Height = 100,
             };
-            Add(EditableMainKaraokeText);
-            Add(DrawableKaraokeThumbnail);
+            AddInternal(EditableMainKaraokeText);
+            AddInternal(DrawableKaraokeThumbnail);
         }
 
         protected override void UpdateDrawable()

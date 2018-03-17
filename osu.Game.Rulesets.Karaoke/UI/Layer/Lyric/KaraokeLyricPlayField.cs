@@ -40,12 +40,12 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layer.Lyric
     public class KaraokeLyricPlayField : Playfield
     {
         public KaraokeRulesetContainer KaraokeRulesetContainer { get; set; }
-
         public List<IAmDrawableLyric> ListDrawableKaraokeObject { get; set; } = new List<IAmDrawableLyric>();
 
-        public KaraokeLyricConfig Style { get; set; }
-        public LyricTemplate Template { get; set; }
-        public Singer Singer { get; set; }
+        //bindable
+        public BindableObject<KaraokeLyricConfig> Style { get; set; }
+        public BindableObject<LyricTemplate> Template { get; set; }
+        public BindableObject<SingerTemplate> Singer { get; set; }
 
         public override void Add(DrawableHitObject h)
         {

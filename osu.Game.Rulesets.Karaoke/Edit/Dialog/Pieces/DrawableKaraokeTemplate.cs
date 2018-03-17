@@ -134,7 +134,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
                 }
             };
 
-            Add(SegmentedControlContainer);
+            AddInternal(SegmentedControlContainer);
             UpdateValue();
         }
 

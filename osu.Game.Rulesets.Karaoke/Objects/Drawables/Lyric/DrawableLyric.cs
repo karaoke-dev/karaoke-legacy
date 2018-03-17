@@ -22,7 +22,6 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
     {
         //Const
         public const float TIME_FADEIN = 100;
-
         public const float TIME_FADEOUT = 100;
 
 
@@ -126,7 +125,6 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
 
         //Drawable
         public TextsAndMask TextsAndMaskPiece { get; set; } = new TextsAndMask();
-
         public TranslateString TranslateText { get; set; } = new TranslateString(null);
 
 
@@ -138,7 +136,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
             Template = new LyricTemplate();
             TranslateCode = TranslateCode.English;
 
-            Children = new Drawable[]
+            InternalChildren = new Drawable[]
             {
                 TextsAndMaskPiece,
                 TranslateText,
