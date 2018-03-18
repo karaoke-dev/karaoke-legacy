@@ -114,6 +114,43 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
                 TextsAndMaskPiece,
                 TranslateText,
             };
+
+            Style.ValueChanged += (style) =>
+            {
+                OnStyleChange();
+            };
+            Template.ValueChanged += (style) =>
+            {
+                OnTemplateChange();
+            };
+            SingerTemplate.ValueChanged += (style) =>
+            {
+                OnSingerTemplateChange();
+            };
+            TranslateCode.ValueChanged += (style) =>
+            {
+                OnTranslateCodeChange();
+            };
+        }
+
+        protected virtual void OnStyleChange()
+        {
+            UpdateDrawable();
+        }
+
+        protected virtual void OnTemplateChange()
+        {
+            UpdateDrawable();
+        }
+
+        protected virtual void OnSingerTemplateChange()
+        {
+            UpdateValue();
+        }
+
+        protected virtual void OnTranslateCodeChange()
+        {
+            UpdateValue();
         }
 
         /// <summary>

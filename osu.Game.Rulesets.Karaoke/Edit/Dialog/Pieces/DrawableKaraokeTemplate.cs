@@ -38,8 +38,6 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
 
         protected Container SegmentedControlContainer;
 
-        public Action<LyricTemplate> OnValueChanged { get; set; }
-
         //don't update by time
         public override bool ProgressUpdateByTime => false;
 
@@ -66,7 +64,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
                         {
                             templateValue.TopText.FontSize = (int)newValue;
                             UpdateDrawable();
-                            OnValueChanged?.Invoke(Template);
+                            Template.TriggerChange();
                         },
                     },
                     SubTextToMainTextSegmentedControl = new UpDownValueIndicator()
@@ -78,7 +76,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
                         {
                             templateValue.TopText.Position = new Vector2(0, newValue);
                             UpdateDrawable();
-                            OnValueChanged?.Invoke(Template);
+                            Template.TriggerChange();
                         },
                     },
                     MainTextSegmentedControl = new UpDownValueIndicator()
@@ -90,7 +88,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
                         {
                             templateValue.MainText.FontSize = (int)newValue;
                             UpdateDrawable();
-                            OnValueChanged?.Invoke(Template);
+                            Template.TriggerChange();
                         },
                     },
                     MainTextToTranslateTextSegmentedControl = new UpDownValueIndicator()
@@ -102,7 +100,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
                         {
                             templateValue.TranslateText.Position = new Vector2(0, newValue);
                             UpdateDrawable();
-                            OnValueChanged?.Invoke(Template);
+                            Template.TriggerChange();
                         },
                     },
                     TranslateTextSegmentedControl = new UpDownValueIndicator()
@@ -114,7 +112,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
                         {
                             templateValue.TranslateText.FontSize = (int)newValue;
                             UpdateDrawable();
-                            OnValueChanged?.Invoke(Template);
+                            Template.TriggerChange();
                         },
                     },
                     ScaleSegmentedControl = new UpDownValueIndicator()
@@ -128,7 +126,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
                         {
                             templateValue.Scale = newValue;
                             UpdateDrawable();
-                            OnValueChanged?.Invoke(Template);
+                            Template.TriggerChange();
                         },
                     },
                 }

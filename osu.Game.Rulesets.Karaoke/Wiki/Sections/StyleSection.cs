@@ -25,16 +25,8 @@ namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
     {
         public override string Title => "Style";
 
-        private RomajiMenuSettings _menuSetting;
-
-        private KaraokeConfigManager _config;
-
-        public LyricTemplate KarokeTemplate { get; set; } = new LyricTemplate();
-        public KaraokeLyricConfig LyricConfig { get; set; } = new KaraokeLyricConfig();
-
-        public Lyric Lyric { get; set; } = DemoKaraokeObject.GenerateDeomKaraokeLyric();
-
-        public DrawableKaraokeTemplate DrawableKaraokeTemplate { get; set; }
+        protected RomajiMenuSettings RomajiMenuSettings;
+        protected DrawableKaraokeTemplate DrawableKaraokeTemplate { get; set; }
 
         protected override void InitialView()
         {
@@ -44,6 +36,7 @@ namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
             Content.Add(new WikiSubSectionHeader("Template"));
 
             var karaokeLyricConfig = RulesetConfig.GetObjectBindable<KaraokeLyricConfig>(KaraokeSetting.LyricStyle);
+            var lyricTemplate = RulesetConfig.GetBindable<LyricTemplate>(KaraokeSetting.Template);
 
             //show settingTemplate
             Content.Add(new Container
@@ -66,15 +59,11 @@ namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
                         Height = 250,
                         Children = new Drawable[]
                         {
-                            DrawableKaraokeTemplate = new DrawableKaraokeTemplate(Lyric)
+                            DrawableKaraokeTemplate = new DrawableKaraokeTemplate(DemoKaraokeObject.GenerateDeomKaraokeLyric())
                             {
                                 Position = new Vector2(100, -5),
                                 Anchor = Anchor.Centre,
                                 Origin = Anchor.Centre,
-                                OnValueChanged = (template) =>
-                                {
-                                    RulesetConfig.GetBindable<LyricTemplate>(KaraokeSetting.Template).Value = template;
-                                }
                             },
                         }
                     },
@@ -89,16 +78,22 @@ namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
                         AutoSizeAxes = Axes.Y,
                         AutoSizeDuration = 100,
                         AutoSizeEasing = Easing.OutQuint,
-                        Child = _menuSetting = new RomajiMenuSettings
+                        Child = RomajiMenuSettings = new RomajiMenuSettings
                         {
-                            Bindnig = karaokeLyricConfig,
+                            
                         }
                     },
                 }
             });
 
-            //if value is changed
-            _menuSetting.Bindnig.BindTo(karaokeLyricConfig);
+            //lyricTemplate.BindTo(DrawableKaraokeTemplate.Template);
+            //karaokeLyricConfig.BindTo(DrawableKaraokeTemplate.Style);
+            //karaokeLyricConfig.BindTo(RomajiMenuSettings.Bindnig);
+            DrawableKaraokeTemplate.Template.BindTo(lyricTemplate);
+            DrawableKaraokeTemplate.Style.BindTo(karaokeLyricConfig);
+            RomajiMenuSettings.Bindnig.BindTo(DrawableKaraokeTemplate.Style);
+
+
             Content.Add(new WikiTextSection(" \n\n"));
 
 
@@ -107,20 +102,13 @@ namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
 
             Content.Add(new WikiTextSection(" \n\n"));
         }
-
-        [BackgroundDependencyLoader]
-        private void load()
-        {
-            //config = new KaraokeConfigManager(settings,ruleset,0);
-            KarokeTemplate = new LyricTemplate(); //_config.GetObject<LyricTemplate>(KaraokeSetting.Template);
-        }
     }
 
     public class RomajiMenuSettings : SettingsSubsection
     {
         protected override string Header => "Lyric Config";
 
-        public Bindable<KaraokeLyricConfig> Bindnig { get; set; }
+        public Bindable<KaraokeLyricConfig> Bindnig { get; set; } = new Bindable<KaraokeLyricConfig>(new KaraokeLyricConfig());
 
         private SettingsCheckbox _topTextVisibleCheckBox;
         private SettingsCheckbox _romajiVisibleCheckBox;
