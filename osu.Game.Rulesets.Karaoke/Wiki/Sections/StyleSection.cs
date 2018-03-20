@@ -91,7 +91,7 @@ namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
             //karaokeLyricConfig.BindTo(RomajiMenuSettings.Bindnig);
             DrawableKaraokeTemplate.Template.BindTo(lyricTemplate);
             DrawableKaraokeTemplate.Style.BindTo(karaokeLyricConfig);
-            RomajiMenuSettings.Bindnig.BindTo(DrawableKaraokeTemplate.Style);
+            DrawableKaraokeTemplate.Style.BindTo(RomajiMenuSettings.Bindnig);
 
 
             Content.Add(new WikiTextSection(" \n\n"));
@@ -108,7 +108,7 @@ namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
     {
         protected override string Header => "Lyric Config";
 
-        public Bindable<KaraokeLyricConfig> Bindnig { get; set; } = new Bindable<KaraokeLyricConfig>(new KaraokeLyricConfig());
+        public BindableObject<KaraokeLyricConfig> Bindnig { get; set; } = new BindableObject<KaraokeLyricConfig>(new KaraokeLyricConfig());
 
         private SettingsCheckbox _topTextVisibleCheckBox;
         private SettingsCheckbox _romajiVisibleCheckBox;
