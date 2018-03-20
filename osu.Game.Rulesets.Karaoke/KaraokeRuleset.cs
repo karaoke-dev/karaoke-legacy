@@ -39,38 +39,38 @@ namespace osu.Game.Rulesets.Karaoke
             {
                 return new[]
                 {
-                    new KeyBinding(InputKey.Number1, KaraokeAction.FirstLyric),
-                    new KeyBinding(InputKey.Keypad1, KaraokeAction.FirstLyric),
+                    new KeyBinding(InputKey.Number1, KaraokeKeyAction.FirstLyric),
+                    new KeyBinding(InputKey.Keypad1, KaraokeKeyAction.FirstLyric),
 
-                    new KeyBinding(InputKey.Left, KaraokeAction.PreviousLyric),
-                    new KeyBinding(InputKey.Right, KaraokeAction.NextLyric),
+                    new KeyBinding(InputKey.Left, KaraokeKeyAction.PreviousLyric),
+                    new KeyBinding(InputKey.Right, KaraokeKeyAction.NextLyric),
 
-                    new KeyBinding(InputKey.Enter, KaraokeAction.PlayAndPause),
-                    new KeyBinding(InputKey.KeypadEnter, KaraokeAction.PlayAndPause),
+                    new KeyBinding(InputKey.Enter, KaraokeKeyAction.PlayAndPause),
+                    new KeyBinding(InputKey.KeypadEnter, KaraokeKeyAction.PlayAndPause),
 
-                    new KeyBinding(InputKey.Q, KaraokeAction.IncreaseSpeed),
-                    new KeyBinding(InputKey.A, KaraokeAction.DecreaseSpeed),
-                    new KeyBinding(InputKey.Z, KaraokeAction.ResetSpeed),
+                    new KeyBinding(InputKey.Q, KaraokeKeyAction.IncreaseSpeed),
+                    new KeyBinding(InputKey.A, KaraokeKeyAction.DecreaseSpeed),
+                    new KeyBinding(InputKey.Z, KaraokeKeyAction.ResetSpeed),
 
-                    new KeyBinding(InputKey.W, KaraokeAction.IncreaseTone),
-                    new KeyBinding(InputKey.S, KaraokeAction.DecreaseTone),
-                    new KeyBinding(InputKey.X, KaraokeAction.ResetTone),
+                    new KeyBinding(InputKey.W, KaraokeKeyAction.IncreaseTone),
+                    new KeyBinding(InputKey.S, KaraokeKeyAction.DecreaseTone),
+                    new KeyBinding(InputKey.X, KaraokeKeyAction.ResetTone),
 
-                    new KeyBinding(InputKey.E, KaraokeAction.IncreaseLyricAppearTime),
-                    new KeyBinding(InputKey.D, KaraokeAction.DecreaseLyricAppearTime),
-                    new KeyBinding(InputKey.C, KaraokeAction.ResetLyricAppearTime),
+                    new KeyBinding(InputKey.E, KaraokeKeyAction.IncreaseLyricAppearTime),
+                    new KeyBinding(InputKey.D, KaraokeKeyAction.DecreaseLyricAppearTime),
+                    new KeyBinding(InputKey.C, KaraokeKeyAction.ResetLyricAppearTime),
 
-                    new KeyBinding(InputKey.P, KaraokeAction.OpenPanel),
+                    new KeyBinding(InputKey.P, KaraokeKeyAction.OpenPanel),
                 };
             }
             else //Editor
             {
                 return new[]
                 {
-                    new KeyBinding(InputKey.T, KaraokeAction.TemplateDialog),
-                    new KeyBinding(InputKey.L, KaraokeAction.LyricsDialog),
-                    new KeyBinding(InputKey.R, KaraokeAction.TranslateDialog),
-                    new KeyBinding(InputKey.G, KaraokeAction.SingerDialog),
+                    new KeyBinding(InputKey.T, KaraokeKeyAction.TemplateDialog),
+                    new KeyBinding(InputKey.L, KaraokeKeyAction.LyricsDialog),
+                    new KeyBinding(InputKey.R, KaraokeKeyAction.TranslateDialog),
+                    new KeyBinding(InputKey.G, KaraokeKeyAction.SingerDialog),
                 };
             }
         }

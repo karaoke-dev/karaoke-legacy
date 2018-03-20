@@ -9,7 +9,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layer.ControlPanel.Desktop
     /// <summary>
     /// this container is use for detect HotKey pressing
     /// </summary>
-    public class KaraokeHotkeyPanel : Container, IKeyBindingHandler<KaraokeAction>
+    public class KaraokeHotkeyPanel : Container, IKeyBindingHandler<KaraokeKeyAction>
     {
         protected KaraokePanelOverlay KaraokePanelOverlay;
 
@@ -23,57 +23,57 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layer.ControlPanel.Desktop
         /// </summary>
         /// <returns><c>true</c>, if pressed was oned, <c>false</c> otherwise.</returns>
         /// <param name="action">Action.</param>
-        public bool OnPressed(KaraokeAction action)
+        public bool OnPressed(KaraokeKeyAction action)
         {
             switch (action)
             {
-                case KaraokeAction.FirstLyric:
+                case KaraokeKeyAction.FirstLyric:
                     KaraokePanelOverlay?.FirstLyricButton.Action?.Invoke();
                     break;
-                case KaraokeAction.PreviousLyric:
+                case KaraokeKeyAction.PreviousLyric:
                     KaraokePanelOverlay?.PreviousLyricButton.Action?.Invoke();
                     break;
-                case KaraokeAction.NextLyric:
+                case KaraokeKeyAction.NextLyric:
                     KaraokePanelOverlay?.NextLyricButton.Action?.Invoke();
                     break;
-                case KaraokeAction.PlayAndPause:
+                case KaraokeKeyAction.PlayAndPause:
                     KaraokePanelOverlay?.PlayPauseButton.Action?.Invoke();
                     break;
 
-                case KaraokeAction.IncreaseSpeed:
+                case KaraokeKeyAction.IncreaseSpeed:
                     KaraokePanelOverlay?.SpeedSlider.IncreaseButton.Action?.Invoke();
                     break;
-                case KaraokeAction.DecreaseSpeed:
+                case KaraokeKeyAction.DecreaseSpeed:
                     KaraokePanelOverlay?.SpeedSlider.DecreaseButton.Action?.Invoke();
                     break;
-                case KaraokeAction.ResetSpeed:
+                case KaraokeKeyAction.ResetSpeed:
                     KaraokePanelOverlay?.SpeedSlider.ResetToDefauleValue();
                     break;
 
 
-                case KaraokeAction.IncreaseTone:
+                case KaraokeKeyAction.IncreaseTone:
                     KaraokePanelOverlay?.ToneSlider.IncreaseButton.Action?.Invoke();
                     break;
-                case KaraokeAction.DecreaseTone:
+                case KaraokeKeyAction.DecreaseTone:
                     KaraokePanelOverlay?.ToneSlider.DecreaseButton.Action?.Invoke();
                     break;
-                case KaraokeAction.ResetTone:
+                case KaraokeKeyAction.ResetTone:
                     KaraokePanelOverlay?.ToneSlider.ResetToDefauleValue();
                     break;
 
 
-                case KaraokeAction.IncreaseLyricAppearTime:
+                case KaraokeKeyAction.IncreaseLyricAppearTime:
                     KaraokePanelOverlay?.LyricOffectSlider.IncreaseButton.Action?.Invoke();
                     break;
-                case KaraokeAction.DecreaseLyricAppearTime:
+                case KaraokeKeyAction.DecreaseLyricAppearTime:
                     KaraokePanelOverlay?.LyricOffectSlider.DecreaseButton.Action?.Invoke();
                     break;
 
-                case KaraokeAction.ResetLyricAppearTime:
+                case KaraokeKeyAction.ResetLyricAppearTime:
                     KaraokePanelOverlay?.LyricOffectSlider.ResetToDefauleValue();
                     break;
 
-                case KaraokeAction.OpenPanel:
+                case KaraokeKeyAction.OpenPanel:
                     KaraokePanelOverlay?.ToggleVisibility();
                     break;
             }
@@ -81,6 +81,6 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layer.ControlPanel.Desktop
             return true;
         }
 
-        public bool OnReleased(KaraokeAction action) => true;
+        public bool OnReleased(KaraokeKeyAction action) => true;
     }
 }

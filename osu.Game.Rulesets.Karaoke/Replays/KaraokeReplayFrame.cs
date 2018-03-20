@@ -13,13 +13,13 @@ namespace osu.Game.Rulesets.Karaoke.Replays
     public class KaraokeReplayFrame : ReplayFrame, IConvertibleReplayFrame
     {
         public Vector2 Position;
-        public List<KaraokeAction> Actions = new List<KaraokeAction>();
+        public List<KaraokeKeyAction> Actions = new List<KaraokeKeyAction>();
 
         public KaraokeReplayFrame()
         {
         }
 
-        public KaraokeReplayFrame(double time, Vector2 position, params KaraokeAction[] actions)
+        public KaraokeReplayFrame(double time, Vector2 position, params KaraokeKeyAction[] actions)
             : base(time)
         {
             Position = position;

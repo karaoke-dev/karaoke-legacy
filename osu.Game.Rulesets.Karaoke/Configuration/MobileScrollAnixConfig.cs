@@ -66,52 +66,5 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
         {
             public TapAction TapAction { get; set; }
         }
-
-        /// <summary>
-        /// X or Y-anix can be use as...
-        /// </summary>
-        public enum ScrollAction
-        {
-            /// <summary>
-            /// Time
-            /// </summary>
-            Time,
-
-            /// <summary>
-            /// Volumn
-            /// </summary>
-            Volumn,
-
-            /// <summary>
-            /// Dim
-            /// </summary>
-            BackgroundDim,
-
-            /// <summary>
-            /// Tone
-            /// </summary>
-            Tome,
-
-            /// <summary>
-            /// Speed
-            /// </summary>
-            Speed,
-        }
-
-        /// <summary>
-        /// action
-        /// </summary>
-        public enum TapAction
-        {
-            /// <summary>
-            /// Tap to pause
-            /// </summary>
-            Pause,
-
-            /// <summary>
-            /// Show panel
-            /// </summary>
-            ShowPanel,
-        }
     }
 }

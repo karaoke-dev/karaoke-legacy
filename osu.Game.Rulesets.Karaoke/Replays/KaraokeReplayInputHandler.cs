@@ -16,14 +16,14 @@ namespace osu.Game.Rulesets.Karaoke.Replays
 
         public override List<InputState> GetPendingStates()
         {
-            List<KaraokeAction> actions = new List<KaraokeAction>();
+            List<KaraokeKeyAction> actions = new List<KaraokeKeyAction>();
 
             //if (CurrentFrame?.MouseLeft ?? false) actions.Add(KaraokeAction.LeftButton);
             //if (CurrentFrame?.MouseRight ?? false) actions.Add(KaraokeAction.RightButton);
 
             return new List<InputState>
             {
-                new ReplayState<KaraokeAction>
+                new ReplayState<KaraokeKeyAction>
                 {
                     //Mouse = new ReplayMouseState(ToScreenSpace(Position ?? Vector2.Zero)),
                     //PressedActions = actions

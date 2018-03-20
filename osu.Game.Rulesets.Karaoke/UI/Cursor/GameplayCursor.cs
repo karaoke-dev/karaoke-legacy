@@ -16,7 +16,7 @@ using OpenTK.Graphics;
 
 namespace osu.Game.Rulesets.Karaoke.UI.Cursor
 {
-    public class GameplayCursor : CursorContainer, IKeyBindingHandler<KaraokeAction>
+    public class GameplayCursor : CursorContainer, IKeyBindingHandler<KaraokeKeyAction>
     {
         protected override Drawable CreateCursor() => new OsuCursor();
 
@@ -132,7 +132,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Cursor
             }
         }
 
-        public bool OnPressed(KaraokeAction action)
+        public bool OnPressed(KaraokeKeyAction action)
         {
             switch (action)
             {
@@ -148,7 +148,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Cursor
             return false;
         }
 
-        public bool OnReleased(KaraokeAction action)
+        public bool OnReleased(KaraokeKeyAction action)
         {
             switch (action)
             {
