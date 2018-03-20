@@ -10,6 +10,7 @@ using osu.Game.Graphics;
 using osu.Game.Overlays.Settings;
 using osu.Game.Rulesets.Edit;
 using osu.Game.Rulesets.Karaoke.Edit;
+using osu.Game.Rulesets.Karaoke.Input;
 using osu.Game.Rulesets.Karaoke.KaraokeDifficulty;
 using osu.Game.Rulesets.Karaoke.Mods;
 using osu.Game.Rulesets.Karaoke.Mods.Mod2017;

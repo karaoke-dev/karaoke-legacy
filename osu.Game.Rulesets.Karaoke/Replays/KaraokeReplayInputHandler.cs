@@ -3,6 +3,7 @@
 
 using System.Collections.Generic;
 using osu.Framework.Input;
+using osu.Game.Rulesets.Karaoke.Input;
 using osu.Game.Rulesets.Replays;
 
 namespace osu.Game.Rulesets.Karaoke.Replays

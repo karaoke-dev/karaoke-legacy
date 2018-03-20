@@ -3,6 +3,7 @@
 
 using System.ComponentModel;
 using osu.Framework.Input.Bindings;
+using osu.Game.Rulesets.Karaoke.Input;
 using osu.Game.Rulesets.UI;
 
 namespace osu.Game.Rulesets.Karaoke

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace osu.Game.Rulesets.Karaoke.Configuration
+﻿namespace osu.Game.Rulesets.Karaoke.Input
 {
     /// <summary>
     /// X or Y-anix can be use as...

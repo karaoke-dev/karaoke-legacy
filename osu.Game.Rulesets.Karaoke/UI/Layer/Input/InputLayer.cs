@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using osu.Framework.Configuration;
 using osu.Game.Rulesets.Karaoke.UI.Layer.ControlPanel.Desktop;
+using osu.Game.Rulesets.Karaoke.UI.Layer.Input.Keyboard;
 using osu.Game.Rulesets.Karaoke.UI.Layer.Input.TouchScreen;
 
 namespace osu.Game.Rulesets.Karaoke.UI.Layer.Input
