@@ -89,6 +89,7 @@
     <Compile Include="Edit\KaraokeEditRulesetContainer.cs" />
     <Compile Include="Edit\KaraokeHitObjectComposer.cs" />
     <Compile Include="Edit\Layers\Selection\Overlays\LyricMask.cs" />
+    <Compile Include="Edit\Types\IHasEditableText.cs" />
     <Compile Include="Extension\KeyValuePairExtension.cs" />
     <Compile Include="Extension\ListExtension.cs" />
     <Compile Include="Helps\DemoKaraokeObject.cs" />
@@ -119,6 +120,7 @@
     <Compile Include="Tests\TestCaseEditor.cs" />
     <Compile Include="Tests\TestCaseRomajiTranslateServer.cs" />
     <Compile Include="UI\KaraokeMobilePlayField.cs" />
+    <Compile Include="UI\Layers\ControlPanel\ControlLayer.cs" />
     <Compile Include="UI\Layers\ControlPanel\Desktop\KaraokePanelOverlay.Panel.cs" />
     <Compile Include="UI\Layers\Input\Action\KeyAction.cs" />
     <Compile Include="UI\Layers\Input\Action\ScrollAction.cs" />
