@@ -88,6 +88,7 @@
     <Compile Include="Edit\KaraokeEditPlayfield.cs" />
     <Compile Include="Edit\KaraokeEditRulesetContainer.cs" />
     <Compile Include="Edit\KaraokeHitObjectComposer.cs" />
+    <Compile Include="Edit\Layers\Selection\Overlays\LyricMask.cs" />
     <Compile Include="Extension\KeyValuePairExtension.cs" />
     <Compile Include="Extension\ListExtension.cs" />
     <Compile Include="Helps\DemoKaraokeObject.cs" />

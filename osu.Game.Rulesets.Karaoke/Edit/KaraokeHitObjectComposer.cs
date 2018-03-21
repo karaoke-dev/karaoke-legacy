@@ -2,10 +2,15 @@
 // Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
 
 using System.Collections.Generic;
+using osu.Framework.Graphics;
 using osu.Game.Beatmaps;
 using osu.Game.Rulesets.Edit;
 using osu.Game.Rulesets.Edit.Tools;
+using osu.Game.Rulesets.Karaoke.Edit.Layers.Selection.Overlays;
 using osu.Game.Rulesets.Karaoke.Objects;
+using osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric;
+using osu.Game.Rulesets.Karaoke.UI;
+using osu.Game.Rulesets.Objects.Drawables;
 using osu.Game.Rulesets.UI;
 
 namespace osu.Game.Rulesets.Karaoke.Edit
@@ -25,5 +30,18 @@ namespace osu.Game.Rulesets.Karaoke.Edit
             //new HitObjectCompositionTool<FormattedText>(),//add subtext to karaoke Object
             //new HitObjectCompositionTool<LyricTranslate>(),//add translate to Lyric
         };
+
+        protected override ScalableContainer CreateLayerContainer() => new ScalableContainer(KaraokeBasePlayfield.BASE_SIZE.X) { RelativeSizeAxes = Axes.Both };
+
+        public override HitObjectMask CreateMaskFor(DrawableHitObject hitObject)
+        {
+            switch (hitObject)
+            {
+                case DrawableLyric lyric:
+                    return new LyricMask(lyric);
+            }
+
+            return base.CreateMaskFor(hitObject);
+        }
     }
 }
