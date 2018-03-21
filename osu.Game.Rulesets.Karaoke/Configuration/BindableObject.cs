@@ -32,6 +32,16 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
         }
         */
 
+        /// <summary>
+        /// Raise <see cref="ValueChanged"/> and <see cref="DisabledChanged"/> once, without any changes actually occurring.
+        /// This does not propagate to any outward bound bindables.
+        /// </summary>
+        public override void TriggerChange()
+        {
+            TriggerValueChange(false);
+            TriggerDisabledChange(false);
+        }
+
         public static implicit operator T(BindableObject<T> value) => value?.Value ?? throw new InvalidCastException($"Casting a null {nameof(BindableObject<T>)} to a bool is likely a mistake");
 
         public override string ToString()

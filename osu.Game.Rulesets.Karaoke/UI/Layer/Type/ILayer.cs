@@ -10,16 +10,11 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layer.Type
     /// <summary>
     /// All layer should inherit this
     /// </summary>
-    public interface ILayer<TConfig> where TConfig : LayerConfig
+    public interface ILayer 
     {
         /// <summary>
         /// Platform
         /// </summary>
         PlatformType PlatformType { get; set; }
-
-        /// <summary>
-        /// Config
-        /// </summary>
-        BindableObject<TConfig> Config { get; set; }
     }
 }

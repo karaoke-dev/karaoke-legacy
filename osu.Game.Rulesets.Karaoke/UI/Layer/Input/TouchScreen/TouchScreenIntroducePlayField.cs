@@ -8,11 +8,11 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layer.ControlPanel.Mobile.Touch
     /// <summary>
     /// use to introduce which action is use for
     /// </summary>
-    public class TouchScreenIntroPlayField
+    public class TouchScreenIntroducePlayField
     {
         public MobileScrollAnixConfig Config { get; set; }
 
-        public TouchScreenIntroPlayField()
+        public TouchScreenIntroducePlayField()
         {
         }
     }

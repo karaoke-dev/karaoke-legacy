@@ -178,12 +178,11 @@
     <Compile Include="UI\Layer\ControlPanel\Desktop\Pieces\WithUpAndDownButtonSlider.cs" />
     <Compile Include="Mods\KaraokeModSnow.cs" />
     <Compile Include="UI\Layer\Lyric\KaraokeLyricPlayField.cs" />
-    <Compile Include="UI\Layer\ControlPanel\Mobile\Touch\TouchScreenIntroPlayField.cs" />
-    <Compile Include="UI\Layer\ControlPanel\Mobile\Touch\TouchScreenPlayField.cs" />
+    <Compile Include="UI\Layer\Input\TouchScreen\TouchScreenIntroducePlayField.cs" />
+    <Compile Include="UI\Layer\Input\TouchScreen\TouchScreenPlayField.cs" />
     <Compile Include="UI\Layer\Note\KaraokeTonePlayfield.cs" />
     <Compile Include="UI\KaraokeDesktopPlayfield.cs" />
     <Compile Include="UI\Layer\Type\ILayer.cs" />
-    <Compile Include="UI\Layer\Type\ILayerConfig.cs" />
     <Compile Include="UI\Tool\KaraokeTool.cs" />
     <Compile Include="Wiki\KaraokeWikiHeader.cs" />
     <Compile Include="Wiki\KaraokeWikiOverlay.cs" />
@@ -250,6 +249,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Mods\Mod2018\" />
+    <Folder Include="UI\Layer\ControlPanel\Mobile\Pieces\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Textures\Play\Karaoke\Layer\Snow\Snow.png" />
