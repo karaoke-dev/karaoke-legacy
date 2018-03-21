@@ -3,7 +3,7 @@
     /// <summary>
     /// action
     /// </summary>
-    public enum TapAction
+    public enum KaraokeTapAction
     {
         /// <summary>
         /// Tap to pause

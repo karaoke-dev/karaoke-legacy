@@ -118,8 +118,12 @@
     <Compile Include="Tests\TestCaseEditor.cs" />
     <Compile Include="Tests\TestCaseRomajiTranslateServer.cs" />
     <Compile Include="UI\KaraokeMobilePlayField.cs" />
+    <Compile Include="UI\Layer\ControlPanel\Desktop\KaraokePanelOverlay.Panel.cs" />
+    <Compile Include="UI\Layer\Input\Action\KeyAction.cs" />
+    <Compile Include="UI\Layer\Input\Action\ScrollAction.cs" />
+    <Compile Include="UI\Layer\Input\Action\TapAction.cs" />
     <Compile Include="UI\Layer\Input\InputLayer.cs" />
-    <Compile Include="UI\Layer\Input\TouchScreen\TouchScreenInput.cs" />
+    <Compile Include="UI\Layer\Input\InputLayer.TouchScreen.cs" />
     <Compile Include="UI\Layer\Lyric\KaraokePosition.cs" />
     <Compile Include="Objects\Singer.cs" />
     <Compile Include="Objects\LyricTemplate.cs" />
@@ -161,7 +165,7 @@
     <Compile Include="UI\Interface\IAmKaraokeField.cs" />
     <Compile Include="UI\KaraokeBasePlayfield.cs" />
     <Compile Include="UI\Layer\Effect\ShowEffect\SnowLayer.cs" />
-    <Compile Include="UI\Layer\Input\Keyboard\KaraokeHotkeyPanel.cs" />
+    <Compile Include="UI\Layer\Input\InputLayer.Keyboard.cs" />
     <Compile Include="UI\Layer\ControlPanel\Mobile\KaraokeLightPanel.cs" />
     <Compile Include="UI\Layer\ControlPanel\Desktop\KaraokePanelOverlay.cs" />
     <Compile Include="UI\KaraokeSettings.cs" />
@@ -182,7 +186,9 @@
     <Compile Include="UI\Layer\Input\TouchScreen\TouchScreenPlayField.cs" />
     <Compile Include="UI\Layer\Note\KaraokeTonePlayfield.cs" />
     <Compile Include="UI\KaraokeDesktopPlayfield.cs" />
+    <Compile Include="UI\Layer\Type\IControlLayer.cs" />
     <Compile Include="UI\Layer\Type\ILayer.cs" />
+    <Compile Include="UI\Layer\Type\IPlatformLayer.cs" />
     <Compile Include="UI\Tool\KaraokeTool.cs" />
     <Compile Include="Wiki\KaraokeWikiHeader.cs" />
     <Compile Include="Wiki\KaraokeWikiOverlay.cs" />
@@ -229,6 +235,7 @@
     <None Include="app.config" />
     <None Include="packages.config" />
     <None Include="OpenTK.dll.config" />
+    <Compile Include="UI\Layer\ControlPanel\Desktop\KaraokePanelOverlay.Keyboard.cs" />
     <None Include="UI\Layer\README.md" />
   </ItemGroup>
   <ItemGroup>
@@ -250,6 +257,7 @@
   <ItemGroup>
     <Folder Include="Mods\Mod2018\" />
     <Folder Include="UI\Layer\ControlPanel\Mobile\Pieces\" />
+    <Folder Include="UI\Layer\Input\Keyboard\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Textures\Play\Karaoke\Layer\Snow\Snow.png" />

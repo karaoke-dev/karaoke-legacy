@@ -12,9 +12,6 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layer.Type
     /// </summary>
     public interface ILayer 
     {
-        /// <summary>
-        /// Platform
-        /// </summary>
-        PlatformType PlatformType { get; set; }
+       
     }
 }

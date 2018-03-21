@@ -4,31 +4,43 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using osu.Framework.Configuration;
+using osu.Game.Rulesets.Karaoke.Configuration;
 using osu.Game.Rulesets.Karaoke.UI.Layer.ControlPanel.Desktop;
-using osu.Game.Rulesets.Karaoke.UI.Layer.Input.Keyboard;
-using osu.Game.Rulesets.Karaoke.UI.Layer.Input.TouchScreen;
+using osu.Game.Rulesets.Karaoke.UI.Layer.Input.Action;
+using osu.Game.Rulesets.Karaoke.UI.Layer.Type;
 
 namespace osu.Game.Rulesets.Karaoke.UI.Layer.Input
 {
     /// <summary>
     /// Input layer
     /// </summary>
-    public class InputLayer
+    public partial class InputLayer : IControlLayer
     {
         /// <summary>
-        /// Keyboard input layer
+        /// Key action
         /// </summary>
-        private KaraokeHotkeyPanel _karaokeHotkeyPanel { get; set; }
+        public BindableObject<KeyAction> KeyAction { get; set; } = new BindableObject<KeyAction>(null);
 
         /// <summary>
-        /// Keyboard input layer
+        /// Tap action
         /// </summary>
-        private TouchScreenInput _touchScreenInput { get; set; }
+        public BindableObject<TapAction> TapAction { get; set; } = new BindableObject<TapAction>(null);
 
-        
-        public InputLayer()
+        /// <summary>
+        /// Scroll action
+        /// </summary>
+        public BindableObject<ScrollAction> ScrollAction { get; set; } = new BindableObject<ScrollAction>(null);
+
+        /// <summary>
+        /// Touch screen config
+        /// </summary>
+        public BindableObject<MobileScrollAnixConfig> MobileScrollAnixConfig { get; set; } = new BindableObject<MobileScrollAnixConfig>(new MobileScrollAnixConfig());
+
+
+
+        public InputLayer(KaraokePanelOverlay karaokePanelOverlay)
         {
-
+            
         }
     }
 }

@@ -53,7 +53,7 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
             /// <summary>
             /// Anix
             /// </summary>
-            public ScrollAction ScrollAction { get; set; }
+            public KaraokeScrollAction KaraokeScrollAction { get; set; }
 
             /// <summary>
             /// Sensitive
@@ -66,7 +66,7 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
         /// </summary>
         public class TapConfig
         {
-            public TapAction TapAction { get; set; }
+            public KaraokeTapAction KaraokeTapAction { get; set; }
         }
     }
 }

@@ -3,7 +3,7 @@
     /// <summary>
     /// X or Y-anix can be use as...
     /// </summary>
-    public enum ScrollAction
+    public enum KaraokeScrollAction
     {
         /// <summary>
         /// Time

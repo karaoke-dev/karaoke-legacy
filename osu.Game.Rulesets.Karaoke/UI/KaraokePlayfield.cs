@@ -14,7 +14,7 @@ using osu.Game.Rulesets.Karaoke.Judgements;
 using osu.Game.Rulesets.Karaoke.Mods.Types;
 using osu.Game.Rulesets.Karaoke.Objects;
 using osu.Game.Rulesets.Karaoke.UI.Layer.ControlPanel.Desktop;
-using osu.Game.Rulesets.Karaoke.UI.Layer.Input.Keyboard;
+using osu.Game.Rulesets.Karaoke.UI.Layer.Input;
 using osu.Game.Rulesets.Karaoke.UI.Layer.Lyric;
 using osu.Game.Rulesets.Objects.Drawables;
 using OpenTK;
@@ -54,7 +54,7 @@ namespace osu.Game.Rulesets.Karaoke.UI
                         }
                     }
                 },
-                new KaraokeHotkeyPanel(karaokePanelOverlay)
+                new InputLayer(karaokePanelOverlay)
                 {
                     RelativeSizeAxes = Axes.Both,
                     Depth = -2,
