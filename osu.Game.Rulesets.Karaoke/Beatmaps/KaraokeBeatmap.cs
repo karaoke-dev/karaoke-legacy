@@ -34,6 +34,11 @@ namespace osu.Game.Rulesets.Karaoke.Beatmaps
         /// </summary>
         public List<string> SongLanguages { get; set; } = new List<string>();
 
+        /// <summary>
+        /// Mode Support
+        /// </summary>
+        public KaraokeModeSupport KaraokeModeSupport { get; set; }
+
         #endregion
 
         #region Language

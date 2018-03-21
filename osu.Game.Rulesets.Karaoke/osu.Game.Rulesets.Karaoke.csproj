@@ -59,6 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Beatmaps\KaraokeBeatmap.cs" />
+    <Compile Include="Beatmaps\KaraokeModeSupport.cs" />
     <Compile Include="Configuration\BaseKaraokeConfigManager.cs" />
     <Compile Include="Configuration\BindableObject.cs" />
     <Compile Include="Configuration\KaraokeConfigManager.cs" />
