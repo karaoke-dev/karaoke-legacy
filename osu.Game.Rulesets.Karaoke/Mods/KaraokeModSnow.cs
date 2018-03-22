@@ -5,7 +5,7 @@ using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Timing;
 using osu.Game.Rulesets.Karaoke.Mods.Types;
-using osu.Game.Rulesets.Karaoke.UI.Layer.Effect.ShowEffect;
+using osu.Game.Rulesets.Karaoke.UI.Layers.Effect.ShowEffect;
 using osu.Game.Rulesets.Mods;
 using OpenTK;
 

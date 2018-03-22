@@ -6,7 +6,7 @@ using osu.Framework.Graphics;
 using osu.Game.Graphics.UserInterface;
 using OpenTK;
 
-namespace osu.Game.Rulesets.Karaoke.UI.Layer.ControlPanel.Desktop.Pieces
+namespace osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel.Desktop.Pieces
 {
     /// <summary>
     /// it's a slider with up and down button

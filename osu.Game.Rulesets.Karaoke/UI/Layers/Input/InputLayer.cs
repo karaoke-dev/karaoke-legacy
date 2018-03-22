@@ -1,19 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using osu.Framework.Allocation;
-using osu.Framework.Configuration;
-using osu.Framework.Input.Bindings;
+﻿using osu.Framework.Allocation;
 using osu.Game.Rulesets.Karaoke.Configuration;
-using osu.Game.Rulesets.Karaoke.Input;
-using osu.Game.Rulesets.Karaoke.UI.Layer.ControlPanel.Desktop;
-using osu.Game.Rulesets.Karaoke.UI.Layer.Input.Action;
-using osu.Game.Rulesets.Karaoke.UI.Layer.Type;
+using osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel.Desktop;
 
-namespace osu.Game.Rulesets.Karaoke.UI.Layer.Input
+namespace osu.Game.Rulesets.Karaoke.UI.Layers.Input
 {
     /// <summary>
     /// Input layer

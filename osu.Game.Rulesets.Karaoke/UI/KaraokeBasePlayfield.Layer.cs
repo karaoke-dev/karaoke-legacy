@@ -8,9 +8,9 @@ using osu.Framework.Graphics.Containers;
 using osu.Framework.Timing;
 using osu.Game.Rulesets.Karaoke.Configuration;
 using osu.Game.Rulesets.Karaoke.Edit.Dialog;
-using osu.Game.Rulesets.Karaoke.UI.Layer.Lyric;
-using osu.Game.Rulesets.Karaoke.UI.Layer.Type;
 using osu.Game.Rulesets.Karaoke.UI.Layers.Dialog;
+using osu.Game.Rulesets.Karaoke.UI.Layers.Lyric;
+using osu.Game.Rulesets.Karaoke.UI.Layers.Type;
 
 namespace osu.Game.Rulesets.Karaoke.UI
 {

@@ -1,7 +1,7 @@
 ﻿using osu.Framework.Configuration;
 using osu.Game.Rulesets.Karaoke.Configuration;
-using osu.Game.Rulesets.Karaoke.UI.Layer.Input.Action;
-using osu.Game.Rulesets.Karaoke.UI.Layer.Type;
+using osu.Game.Rulesets.Karaoke.UI.Layers.Input.Action;
+using osu.Game.Rulesets.Karaoke.UI.Layers.Type;
 
 namespace osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel
 {

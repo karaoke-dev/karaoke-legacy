@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace osu.Game.Rulesets.Karaoke.Objects
+﻿namespace osu.Game.Rulesets.Karaoke.Configuration
 {
     public class SingerTemplate
     {

@@ -4,7 +4,7 @@
 using osu.Framework.Configuration;
 using osu.Game.Rulesets.Karaoke.Configuration;
 
-namespace osu.Game.Rulesets.Karaoke.UI.Layer.Type
+namespace osu.Game.Rulesets.Karaoke.UI.Layers.Type
 {
     public interface IPlatformLayer : ILayer
     {

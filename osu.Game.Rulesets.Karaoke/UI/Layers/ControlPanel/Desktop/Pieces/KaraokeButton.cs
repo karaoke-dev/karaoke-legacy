@@ -4,7 +4,7 @@
 using osu.Framework.Graphics.Cursor;
 using osu.Game.Graphics.UserInterface;
 
-namespace osu.Game.Rulesets.Karaoke.UI.Layer.ControlPanel.Desktop.Pieces
+namespace osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel.Desktop.Pieces
 {
     /// <summary>
     /// inherit from osuButton

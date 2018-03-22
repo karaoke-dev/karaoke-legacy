@@ -1,20 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using osu.Framework.Extensions.Color4Extensions;
+﻿using osu.Framework.Extensions.Color4Extensions;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Shapes;
 using osu.Game.Graphics;
 using osu.Game.Rulesets.Karaoke.UI.Extension;
 using osu.Game.Rulesets.Karaoke.UI.Interface;
-using osu.Game.Rulesets.Karaoke.UI.Layer.ControlPanel.Desktop.Pieces;
+using osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel.Desktop.Pieces;
 using OpenTK;
 using OpenTK.Graphics;
 
-namespace osu.Game.Rulesets.Karaoke.UI.Layer.ControlPanel.Desktop
+namespace osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel.Desktop
 {
     public partial class KaraokePanelOverlay
     {

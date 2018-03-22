@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using osu.Game.Rulesets.Karaoke.Input;
-using osu.Game.Rulesets.Karaoke.UI.Layer.Input.Action;
+﻿using osu.Game.Rulesets.Karaoke.Input;
+using osu.Game.Rulesets.Karaoke.UI.Layers.Input.Action;
 
-namespace osu.Game.Rulesets.Karaoke.UI.Layer.ControlPanel.Desktop
+namespace osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel.Desktop
 {
     public partial class KaraokePanelOverlay
     {

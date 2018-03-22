@@ -4,7 +4,7 @@
 using osu.Framework.Graphics;
 using OpenTK;
 
-namespace osu.Game.Rulesets.Karaoke.UI.Layer.Lyric
+namespace osu.Game.Rulesets.Karaoke.UI.Layers.Lyric
 {
     public class KaraokePosition
     {

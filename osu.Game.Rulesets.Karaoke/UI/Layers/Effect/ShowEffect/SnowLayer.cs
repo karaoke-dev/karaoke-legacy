@@ -11,7 +11,7 @@ using osu.Framework.Graphics.Textures;
 using OpenTK;
 using OpenTK.Graphics;
 
-namespace osu.Game.Rulesets.Karaoke.UI.Layer.Effect.ShowEffect
+namespace osu.Game.Rulesets.Karaoke.UI.Layers.Effect.ShowEffect
 {
     /// <summary>
     /// show Visualisation layer

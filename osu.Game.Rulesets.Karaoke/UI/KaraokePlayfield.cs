@@ -13,9 +13,9 @@ using osu.Game.Rulesets.Karaoke.Configuration;
 using osu.Game.Rulesets.Karaoke.Judgements;
 using osu.Game.Rulesets.Karaoke.Mods.Types;
 using osu.Game.Rulesets.Karaoke.Objects;
-using osu.Game.Rulesets.Karaoke.UI.Layer.ControlPanel.Desktop;
-using osu.Game.Rulesets.Karaoke.UI.Layer.Input;
-using osu.Game.Rulesets.Karaoke.UI.Layer.Lyric;
+using osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel.Desktop;
+using osu.Game.Rulesets.Karaoke.UI.Layers.Input;
+using osu.Game.Rulesets.Karaoke.UI.Layers.Lyric;
 using osu.Game.Rulesets.Objects.Drawables;
 using OpenTK;
 
