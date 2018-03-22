@@ -87,6 +87,7 @@
     <Compile Include="Edit\Dialog\EditKaraokeSubTextDialog.cs" />
     <Compile Include="Edit\Dialog\DialogContainer.cs" />
     <Compile Include="Edit\KaraokeEditPlayfield.cs" />
+    <Compile Include="Edit\KaraokeEditPlayfield.Layer.cs" />
     <Compile Include="Edit\KaraokeEditRulesetContainer.cs" />
     <Compile Include="Edit\KaraokeHitObjectComposer.cs" />
     <Compile Include="Edit\Layers\Selection\Overlays\LyricMask.cs" />
@@ -244,6 +245,7 @@
     <Compile Include="UI\Layers\ControlPanel\Desktop\KaraokePanelOverlay.Keyboard.cs" />
     <Compile Include="UI\Layers\ControlPanel\ControlPanelLayer.Platform.cs" />
     <Compile Include="UI\KaraokeBasePlayfield.Utility.cs" />
+    <Compile Include="UI\KaraokePlayfield.Layer.cs" />
     <None Include="UI\Layers\README.md" />
   </ItemGroup>
   <ItemGroup>

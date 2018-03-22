@@ -14,7 +14,7 @@ using OpenTK.Input;
 
 namespace osu.Game.Rulesets.Karaoke.Edit
 {
-    public class KaraokeEditPlayfield : KaraokeBasePlayfield
+    public partial class KaraokeEditPlayfield : KaraokeBasePlayfield
     {
         /// <summary>
         /// Selected karaoke Object
@@ -25,14 +25,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit
         public KaraokeEditPlayfield(Ruleset ruleset, WorkingBeatmap beatmap, KaraokeEditRulesetContainer container)
             : base(ruleset, beatmap, container)
         {
-            AddRange(new Drawable[]
-            {
-                //layer
-                KaraokeLyricPlayField = new KaraokeLyricPlayField()
-                {
-                    KaraokeRulesetContainer = KaraokeRulesetContainer
-                }
-            });
+           
         }
 
         /// <summary>
@@ -76,24 +69,6 @@ namespace osu.Game.Rulesets.Karaoke.Edit
             return base.OnKeyDown(state, args);
         }
 
-        #region Dialog
-
-        public void OpenListKaraokeLyricsDialog()
-        {
-            if (!DialogLayer.Children.OfType<ListKaraokeLyricsDialog>().Any())
-            {
-                DialogLayer.Add(new ListKaraokeLyricsDialog(this));
-            }
-        }
-
-        public void OpenListKaraokeTranslateDialog()
-        {
-            if (!DialogLayer.Children.OfType<ListKaraokeLyricsDialog>().Any())
-            {
-                DialogLayer.Add(new ListKaraokeTranslateDialog(this));
-            }
-        }
-
-        #endregion
+      
     }
 }

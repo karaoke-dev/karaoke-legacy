@@ -24,60 +24,13 @@ namespace osu.Game.Rulesets.Karaoke.UI
     /// <summary>
     /// Karaoke PlayField
     /// </summary>
-    public class KaraokePlayfield : KaraokeBasePlayfield
+    public partial class KaraokePlayfield : KaraokeBasePlayfield
     {
-        private Container karaokecontrolLayer;
-        private KaraokePanelOverlay karaokePanelOverlay;
+        
 
         public KaraokePlayfield(Ruleset ruleset, WorkingBeatmap beatmap, KaraokeRulesetContainer container)
             : base(ruleset, beatmap, container)
         {
-            AddRange(new Drawable[]
-            {
-                karaokecontrolLayer = new Container
-                {
-                    RelativeSizeAxes = Axes.Both,
-                    Depth = -2,
-                    Clock = new FramedClock(new StopwatchClock(true)),
-                    Children = new Drawable[]
-                    {
-                        new TriangleButton()
-                        {
-                            Origin = Anchor.Centre,
-                            Anchor = Anchor.Centre,
-
-                            Position = new Vector2(110, 100),
-                            Width = 70,
-                            Height = 30,
-                            Text = "Panel",
-                            Action = () => { karaokePanelOverlay.ToggleVisibility(); }
-                        }
-                    }
-                },
-                new InputLayer(karaokePanelOverlay)
-                {
-                    RelativeSizeAxes = Axes.Both,
-                    Depth = -2,
-                    Clock = new FramedClock(new StopwatchClock(true)),
-                },
-
-                //layer
-                KaraokeLyricPlayField = new KaraokeLyricPlayField()
-                {
-                    KaraokeRulesetContainer = KaraokeRulesetContainer
-                }
-            });
-
-            //create all layer if contains in mod
-            foreach (var singleMod in WorkingBeatmap.Mods.Value)
-            {
-                if (singleMod is IHasLayer iHasLayer)
-                {
-                    Add(iHasLayer.CreateNewLayer());
-                    break;
-                }
-            }
-
             KaraokeFieldTool.Translateor.OnTranslateMultiStringSuccess += (a, multiSting) =>
             {
                 for (int i = 0; i < multiSting.Count; i++)
@@ -93,24 +46,8 @@ namespace osu.Game.Rulesets.Karaoke.UI
         {
             base.Dispose(isDisposing);
             KaraokeLyricPlayField.Dispose();
-
         }
         */
-
-        public override void InitialRulesetLayer()
-        {
-            base.InitialRulesetLayer();
-
-            KaraokeRulesetContainer.Add(karaokePanelOverlay = new KaraokePanelOverlay(this)
-            {
-                Clock = new FramedClock(new StopwatchClock(true)),
-                RelativeSizeAxes = Axes.X,
-                Origin = Anchor.BottomCentre,
-                Anchor = Anchor.BottomCentre,
-                Scale = new Vector2(1.0f),
-                Depth = 10f,
-            });
-        }
 
         protected override void LoadComplete()
         {
