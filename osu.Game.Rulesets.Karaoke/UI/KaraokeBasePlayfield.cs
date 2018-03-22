@@ -22,9 +22,9 @@ namespace osu.Game.Rulesets.Karaoke.UI
     /// <summary>
     /// Karaoke base panel
     /// the design should be like that : 
-    /// |                   |                       |   [Kaeakoe Mobile Playfield]
-    /// |                   |  playable Playfield   |------------
-    /// |                   |                       |   [Karaoke PlayField]
+    /// |                   |                       |   Kaeakoe Mobile 
+    /// |                   |  [playable Playfield] |   Karaoke Ipad
+    /// |                   |                       |   Karaoke Desktop
     /// |   base Playfield  |-----------------------|-------------
     /// |                   |  [editor playField]    
     /// |                   |                       

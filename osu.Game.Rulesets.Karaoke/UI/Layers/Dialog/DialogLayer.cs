@@ -6,9 +6,12 @@ using System.Threading.Tasks;
 using osu.Framework.Graphics.Containers;
 using osu.Game.Rulesets.Karaoke.UI.Layer.Type;
 
-namespace osu.Game.Rulesets.Karaoke.UI.Layers.Effect
+namespace osu.Game.Rulesets.Karaoke.UI.Layers.Dialog
 {
-    public class EffectLayer : Container , ILayer
+    /// <summary>
+    /// 
+    /// </summary>
+    public class DialogLayer : Container , ILayer
     {
     }
 }

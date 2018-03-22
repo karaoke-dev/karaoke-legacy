@@ -121,8 +121,9 @@
     <Compile Include="Tests\TestCaseEditor.cs" />
     <Compile Include="Tests\TestCaseRomajiTranslateServer.cs" />
     <Compile Include="UI\KaraokeMobilePlayField.cs" />
-    <Compile Include="UI\Layers\ControlPanel\ControlLayer.cs" />
+    <Compile Include="UI\Layers\ControlPanel\ControlPanelLayer.cs" />
     <Compile Include="UI\Layers\ControlPanel\Desktop\KaraokePanelOverlay.Panel.cs" />
+    <Compile Include="UI\Layers\Dialog\DialogLayer.cs" />
     <Compile Include="UI\Layers\Effect\EffectLayer.cs" />
     <Compile Include="UI\Layers\Input\Action\KeyAction.cs" />
     <Compile Include="UI\Layers\Input\Action\ScrollAction.cs" />
@@ -191,6 +192,7 @@
     <Compile Include="UI\Layers\Input\TouchScreen\TouchScreenPlayField.cs" />
     <Compile Include="UI\Layers\Note\KaraokeTonePlayfield.cs" />
     <Compile Include="UI\KaraokeDesktopPlayfield.cs" />
+    <Compile Include="UI\Layers\Type\IAcceptControlLayer.cs" />
     <Compile Include="UI\Layers\Type\IControlLayer.cs" />
     <Compile Include="UI\Layers\Type\ILayer.cs" />
     <Compile Include="UI\Layers\Type\IPlatformLayer.cs" />
@@ -241,6 +243,7 @@
     <None Include="packages.config" />
     <None Include="OpenTK.dll.config" />
     <Compile Include="UI\Layers\ControlPanel\Desktop\KaraokePanelOverlay.Keyboard.cs" />
+    <Compile Include="UI\Layers\ControlPanel\ControlPanelLayer.Platform.cs" />
     <None Include="UI\Layers\README.md" />
   </ItemGroup>
   <ItemGroup>

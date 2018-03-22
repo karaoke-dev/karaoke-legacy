@@ -9,7 +9,7 @@ using osu.Game.Rulesets.Karaoke.UI.Layer.Input.Action;
 namespace osu.Game.Rulesets.Karaoke.UI.Layer.Type
 {
     /// <summary>
-    /// 
+    /// This layer can control the layer that inhit <see cref="IAcceptControlLayer"/>
     /// </summary>
     public interface IControlLayer : ILayer
     {

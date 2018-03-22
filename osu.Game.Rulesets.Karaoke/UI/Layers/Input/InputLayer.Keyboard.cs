@@ -6,13 +6,14 @@ using osu.Framework.Input.Bindings;
 using osu.Game.Rulesets.Karaoke.Input;
 using osu.Game.Rulesets.Karaoke.UI.Layer.ControlPanel.Desktop;
 using osu.Game.Rulesets.Karaoke.UI.Layer.Input.Action;
+using osu.Game.Rulesets.Karaoke.UI.Layer.Type;
 
 namespace osu.Game.Rulesets.Karaoke.UI.Layer.Input
 {
     /// <summary>
     /// this container is use for detect HotKey pressing
     /// </summary>
-    public partial class InputLayer : Container, IKeyBindingHandler<KaraokeKeyAction>
+    public partial class InputLayer : Container, IKeyBindingHandler<KaraokeKeyAction>, IControlLayer
     {
 
         /// <summary>

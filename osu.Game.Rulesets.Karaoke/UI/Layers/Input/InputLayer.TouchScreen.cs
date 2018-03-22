@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace osu.Game.Rulesets.Karaoke.UI.Layer.Input.TouchScreen
+namespace osu.Game.Rulesets.Karaoke.UI.Layer.Input
 {
-    public class TouchScreenInput
+    public partial class InputLayer
     {
     }
 }

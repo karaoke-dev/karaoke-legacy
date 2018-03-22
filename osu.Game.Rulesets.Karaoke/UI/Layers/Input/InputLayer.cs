@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using osu.Framework.Configuration;
+using osu.Framework.Input.Bindings;
 using osu.Game.Rulesets.Karaoke.Configuration;
+using osu.Game.Rulesets.Karaoke.Input;
 using osu.Game.Rulesets.Karaoke.UI.Layer.ControlPanel.Desktop;
 using osu.Game.Rulesets.Karaoke.UI.Layer.Input.Action;
 using osu.Game.Rulesets.Karaoke.UI.Layer.Type;
@@ -14,7 +17,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layer.Input
     /// <summary>
     /// Input layer
     /// </summary>
-    public partial class InputLayer : IControlLayer
+    public partial class InputLayer 
     {
         /// <summary>
         /// Key action
