@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using osu.Framework.Allocation;
 using osu.Framework.Configuration;
 using osu.Framework.Input.Bindings;
 using osu.Game.Rulesets.Karaoke.Configuration;
@@ -20,30 +21,20 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layer.Input
     public partial class InputLayer 
     {
         /// <summary>
-        /// Key action
+        /// Ctor
         /// </summary>
-        public BindableObject<KeyAction> KeyAction { get; set; } = new BindableObject<KeyAction>(null);
-
-        /// <summary>
-        /// Tap action
-        /// </summary>
-        public BindableObject<TapAction> TapAction { get; set; } = new BindableObject<TapAction>(null);
-
-        /// <summary>
-        /// Scroll action
-        /// </summary>
-        public BindableObject<ScrollAction> ScrollAction { get; set; } = new BindableObject<ScrollAction>(null);
-
-        /// <summary>
-        /// Touch screen config
-        /// </summary>
-        public BindableObject<MobileScrollAnixConfig> MobileScrollAnixConfig { get; set; } = new BindableObject<MobileScrollAnixConfig>(new MobileScrollAnixConfig());
-
-
-
+        /// <param name="karaokePanelOverlay"></param>
         public InputLayer(KaraokePanelOverlay karaokePanelOverlay)
         {
             
+        }
+
+
+        [BackgroundDependencyLoader(true)]
+        private void load(KaraokeConfigManager manager)
+        {
+            var scrollConfig = manager.GetObjectBindable<MobileScrollAnixConfig>(KaraokeSetting.TouchScreen);
+            MobileScrollAnixConfig.BindTo(scrollConfig);
         }
     }
 }

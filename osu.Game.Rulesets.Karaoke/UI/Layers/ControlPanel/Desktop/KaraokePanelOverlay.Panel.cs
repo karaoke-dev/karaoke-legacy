@@ -43,9 +43,11 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layer.ControlPanel.Desktop
         public WithUpAndDownButtonSlider ToneSlider;
         public WithUpAndDownButtonSlider LyricOffectSlider;
 
+        public bool LoadComplete = false;
+
         protected override void Update()
         {
-            if (PlayField != null)
+            if (PlayField != null && LoadComplete)
             {
                 //Update current time
                 double current = PlayField.GetCurrentTime();
@@ -273,6 +275,8 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layer.ControlPanel.Desktop
             //initialize value
             SpeedSlider.Value = PlayField.GetSpeed();
             ToneSlider.Value = PlayField.GetTone();
+
+            LoadComplete = true;
         }
     }
 }

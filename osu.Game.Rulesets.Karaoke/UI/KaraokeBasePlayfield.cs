@@ -3,15 +3,19 @@
 
 using System.Collections.Generic;
 using System.Linq;
+using osu.Framework.Allocation;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Timing;
 using osu.Game.Beatmaps;
+using osu.Game.Configuration;
+using osu.Game.Rulesets.Karaoke.Configuration;
 using osu.Game.Rulesets.Karaoke.Edit.Dialog;
 using osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric;
 using osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric.Types;
 using osu.Game.Rulesets.Karaoke.UI.Interface;
 using osu.Game.Rulesets.Karaoke.UI.Layer.Lyric;
+using osu.Game.Rulesets.Karaoke.UI.Layers.Dialog;
 using osu.Game.Rulesets.Karaoke.UI.Tool;
 using osu.Game.Rulesets.Objects.Drawables;
 using osu.Game.Rulesets.UI;
@@ -29,27 +33,19 @@ namespace osu.Game.Rulesets.Karaoke.UI
     /// |                   |  [editor playField]    
     /// |                   |                       
     /// </summary>
-    public class KaraokeBasePlayfield : Playfield, IAmKaraokeField
+    public partial class KaraokeBasePlayfield : Playfield, IAmKaraokeField
     {
-        /// <summary>
-        /// karaoke tools
-        /// </summary>
-        public KaraokeTool KaraokeFieldTool { get; } = new KaraokeTool();
-
         public Ruleset Ruleset { get; set; }
         public WorkingBeatmap WorkingBeatmap { get; set; }
         public KaraokeRulesetContainer KaraokeRulesetContainer { get; set; }
 
-        public KaraokeLyricPlayField KaraokeLyricPlayField;
+        public KaraokeConfigManager KaraokeConfigManager { get; set; }
 
         public static readonly Vector2 BASE_SIZE = new Vector2(512, 384);
 
-
         /// <summary>
-        /// Dialog Layer
+        /// Size
         /// </summary>
-        protected Container DialogLayer;
-
         public override Vector2 Size
         {
             get
@@ -61,6 +57,12 @@ namespace osu.Game.Rulesets.Karaoke.UI
             }
         }
 
+        /// <summary>
+        /// Ctor
+        /// </summary>
+        /// <param name="ruleset"></param>
+        /// <param name="beatmap"></param>
+        /// <param name="container"></param>
         public KaraokeBasePlayfield(Ruleset ruleset, WorkingBeatmap beatmap, KaraokeRulesetContainer container)
             : base(BASE_SIZE.X)
         {
@@ -72,23 +74,39 @@ namespace osu.Game.Rulesets.Karaoke.UI
             Origin = Anchor.Centre;
         }
 
+        /// <summary>
+        /// Load
+        /// </summary>
+        /// <param name="manager"></param>
+        [BackgroundDependencyLoader(true)]
+        private void load(KaraokeConfigManager manager)
+        {
+            KaraokeConfigManager = manager;
+
+            //Dialog
+            InitialDialogLayer();
+            //Frontend
+            InitialFrontendLayer();
+            //Ruleset
+            InitialRulesetLayer();
+            //Backend
+            InitialBackendLayer();
+
+            //post process
+            PostProcessLayer(manager);
+        }
+
+        /*
         protected override void LoadComplete()
         {
             base.LoadComplete();
-            InitialRulesetLayer();
         }
+        */
 
-        public virtual void InitialRulesetLayer()
-        {
-            Add(DialogLayer = new Container
-            {
-                Name = "DialogLayer",
-                Clock = new FramedClock(new StopwatchClock(true)),
-                RelativeSizeAxes = Axes.Both,
-                Depth = 10,
-            });
-        }
-
+        /// <summary>
+        /// Add HitObject
+        /// </summary>
+        /// <param name="h"></param>
         public override void Add(DrawableHitObject h)
         {
             KaraokeLyricPlayField.Add(h);
@@ -97,10 +115,6 @@ namespace osu.Game.Rulesets.Karaoke.UI
         //post process
         public override void PostProcess()
         {
-            // foreach to update Template
-
-            // foreach to update position
-
             base.PostProcess();
         }
 
@@ -122,16 +136,6 @@ namespace osu.Game.Rulesets.Karaoke.UI
 
         #endregion
 
-        #region Dialog
-
-        public void OpenLoadSaveDialog()
-        {
-            if (!DialogLayer.Children.OfType<LoadSaveDialog>().Any())
-            {
-                DialogLayer.Add(new LoadSaveDialog(this));
-            }
-        }
-
-        #endregion
+       
     }
 }

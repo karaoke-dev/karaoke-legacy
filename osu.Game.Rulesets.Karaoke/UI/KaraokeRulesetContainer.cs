@@ -38,12 +38,16 @@ namespace osu.Game.Rulesets.Karaoke.UI
 
         protected override Playfield CreatePlayfield()
         {
+            return new KaraokePlayfield(Ruleset, WorkingBeatmap, this);
+
+            /*
             //Desktop version
             if (ConfigManager?.Get<PlatformType>(KaraokeSetting.Device) == PlatformType.Desktop)
                 return new KaraokeDesktopPlayfield(Ruleset, WorkingBeatmap, this);
 
             //Mobile version
             return new KaraokeMobilePlayField(Ruleset, WorkingBeatmap, this);
+            */
         }
 
         public override PassThroughInputManager CreateInputManager() => new KaraokeInputManager(Ruleset.RulesetInfo);
