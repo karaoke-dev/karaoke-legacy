@@ -131,6 +131,7 @@
     <Compile Include="UI\Layers\Input\Action\TapAction.cs" />
     <Compile Include="UI\Layers\Input\InputLayer.cs" />
     <Compile Include="UI\Layers\Input\InputLayer.TouchScreen.cs" />
+    <Compile Include="UI\Layers\Input\InputLayer.UI.cs" />
     <Compile Include="UI\Layers\Lyric\KaraokePosition.cs" />
     <Compile Include="Objects\Singer.cs" />
     <Compile Include="Configuration\LyricTemplate.cs" />

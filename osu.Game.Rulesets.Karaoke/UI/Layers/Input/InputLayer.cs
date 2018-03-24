@@ -12,12 +12,15 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Input
     /// </summary>
     public partial class InputLayer
     {
+        private readonly KaraokePanelOverlay _karaokePanelOverlay;
         /// <summary>
         /// Ctor
         /// </summary>
         /// <param name="karaokePanelOverlay"></param>
         public InputLayer(KaraokePanelOverlay karaokePanelOverlay)
         {
+            _karaokePanelOverlay = karaokePanelOverlay;
+            initialUi();
         }
 
 
