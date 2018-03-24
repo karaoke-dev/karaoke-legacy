@@ -1,10 +1,9 @@
-﻿using System;
+﻿// Copyright (c) 2007-2018 ppy Pty Ltd <contact@ppy.sh>.
+// Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
+
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using osu.Framework.Graphics;
-using osu.Framework.Graphics.Containers;
 using osu.Framework.Timing;
 using osu.Game.Rulesets.Karaoke.Configuration;
 using osu.Game.Rulesets.Karaoke.Edit.Dialog;
@@ -44,7 +43,6 @@ namespace osu.Game.Rulesets.Karaoke.UI
         /// </summary>
         public virtual void InitialFrontendLayer()
         {
-
         }
 
         /// <summary>
@@ -52,7 +50,6 @@ namespace osu.Game.Rulesets.Karaoke.UI
         /// </summary>
         public virtual void InitialRulesetLayer()
         {
-
         }
 
         /// <summary>
@@ -60,7 +57,6 @@ namespace osu.Game.Rulesets.Karaoke.UI
         /// </summary>
         public virtual void InitialBackendLayer()
         {
-
         }
 
         /// <summary>

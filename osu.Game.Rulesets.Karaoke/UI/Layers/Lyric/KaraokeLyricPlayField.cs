@@ -38,13 +38,14 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Lyric
     /// 
     /// 2. 3. 4. will be implement until release
     /// </summary>
-    public class KaraokeLyricPlayField : Playfield , IDrawableLyricBindable , ILayer
+    public class KaraokeLyricPlayField : Playfield, IDrawableLyricBindable, ILayer
     {
         public KaraokeRulesetContainer KaraokeRulesetContainer { get; set; }
         public List<IDrawableLyricParameter> ListDrawableKaraokeObject { get; set; } = new List<IDrawableLyricParameter>();
 
         //bindable
         public BindableObject<KaraokeLyricConfig> Style { get; set; } = new BindableObject<KaraokeLyricConfig>(new KaraokeLyricConfig());
+
         public BindableObject<LyricTemplate> Template { get; set; } = new BindableObject<LyricTemplate>(new LyricTemplate());
         public BindableObject<SingerTemplate> SingerTemplate { get; set; } = new BindableObject<SingerTemplate>(new SingerTemplate());
         public Bindable<TranslateCode> TranslateCode { get; set; } = new Bindable<TranslateCode>();

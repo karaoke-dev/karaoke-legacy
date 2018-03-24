@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿// Copyright (c) 2007-2018 ppy Pty Ltd <contact@ppy.sh>.
+// Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
+
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using osu.Framework.Graphics;
 using osu.Game.Rulesets.Karaoke.Edit.Dialog;
 using osu.Game.Rulesets.Karaoke.UI.Layers.Lyric;
@@ -16,7 +15,6 @@ namespace osu.Game.Rulesets.Karaoke.Edit
         /// </summary>
         public override void InitialFrontendLayer()
         {
-
         }
 
         /// <summary>
@@ -39,7 +37,6 @@ namespace osu.Game.Rulesets.Karaoke.Edit
         /// </summary>
         public override void InitialBackendLayer()
         {
-
         }
 
         #region Dialog

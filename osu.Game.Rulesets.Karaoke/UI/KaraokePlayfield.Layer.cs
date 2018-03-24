@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿// Copyright (c) 2007-2018 ppy Pty Ltd <contact@ppy.sh>.
+// Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
+
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Timing;
@@ -53,8 +51,6 @@ namespace osu.Game.Rulesets.Karaoke.UI
                     Depth = -2,
                     Clock = new FramedClock(new StopwatchClock(true)),
                 },
-
-               
             });
 
             KaraokeRulesetContainer.Add(karaokePanelOverlay = new KaraokePanelOverlay(this)
@@ -77,10 +73,9 @@ namespace osu.Game.Rulesets.Karaoke.UI
 
             //layer
             Add(KaraokeLyricPlayField = new KaraokeLyricPlayField()
-                {
-                    KaraokeRulesetContainer = KaraokeRulesetContainer
-                });
-            
+            {
+                KaraokeRulesetContainer = KaraokeRulesetContainer
+            });
         }
 
         /// <summary>

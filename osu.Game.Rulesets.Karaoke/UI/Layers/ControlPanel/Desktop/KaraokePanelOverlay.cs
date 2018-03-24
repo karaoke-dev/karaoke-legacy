@@ -12,7 +12,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel.Desktop
     /// <summary>
     /// to show the Karaoke panel on Playfield 
     /// </summary>
-    public partial class KaraokePanelOverlay : WaveOverlayContainer , IControlLayer
+    public partial class KaraokePanelOverlay : WaveOverlayContainer, IControlLayer
     {
         /// <summary>
         /// Key action

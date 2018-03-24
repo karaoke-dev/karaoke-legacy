@@ -20,6 +20,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
     {
         //single part
         protected UpDownValueIndicator SubTextSegmentedControl;
+
         protected UpDownValueIndicator SubTextToMainTextSegmentedControl;
         protected UpDownValueIndicator MainTextSegmentedControl;
         protected UpDownValueIndicator MainTextToTranslateTextSegmentedControl;

@@ -1,4 +1,7 @@
-﻿using osu.Framework.Allocation;
+﻿// Copyright (c) 2007-2018 ppy Pty Ltd <contact@ppy.sh>.
+// Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
+
+using osu.Framework.Allocation;
 using osu.Game.Rulesets.Karaoke.Configuration;
 using osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel.Desktop;
 
@@ -7,7 +10,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Input
     /// <summary>
     /// Input layer
     /// </summary>
-    public partial class InputLayer 
+    public partial class InputLayer
     {
         /// <summary>
         /// Ctor
@@ -15,7 +18,6 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Input
         /// <param name="karaokePanelOverlay"></param>
         public InputLayer(KaraokePanelOverlay karaokePanelOverlay)
         {
-            
         }
 
 

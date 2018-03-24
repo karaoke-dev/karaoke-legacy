@@ -1,8 +1,6 @@
 ﻿// Copyright (c) 2007-2018 ppy Pty Ltd <contact@ppy.sh>.
 // Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
 
-using System;
-using osu.Framework.Allocation;
 using osu.Framework.Configuration;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
@@ -10,7 +8,6 @@ using osu.Game.Overlays.Settings;
 using osu.Game.Rulesets.Karaoke.Configuration;
 using osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces;
 using osu.Game.Rulesets.Karaoke.Helps;
-using osu.Game.Rulesets.Karaoke.Objects;
 using OpenTK;
 using Symcol.Rulesets.Core.Wiki;
 
@@ -80,7 +77,6 @@ namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
                         AutoSizeEasing = Easing.OutQuint,
                         Child = RomajiMenuSettings = new RomajiMenuSettings
                         {
-                            
                         }
                     },
                 }

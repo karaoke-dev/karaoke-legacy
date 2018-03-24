@@ -15,12 +15,11 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Note
     /// ---######-----------------------
     /// --------------------------------
     /// </summary>
-    public class KaraokeTonePlayfield : ScrollingPlayfield , ILayer
+    public class KaraokeTonePlayfield : ScrollingPlayfield, ILayer
     {
         public KaraokeTonePlayfield()
             : base(ScrollingDirection.Right)
         {
-
         }
     }
 }

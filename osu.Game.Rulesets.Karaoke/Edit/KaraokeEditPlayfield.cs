@@ -1,14 +1,10 @@
 ﻿// Copyright (c) 2007-2018 ppy Pty Ltd <contact@ppy.sh>.
 // Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
 
-using System.Linq;
-using osu.Framework.Graphics;
 using osu.Framework.Input;
 using osu.Game.Beatmaps;
-using osu.Game.Rulesets.Karaoke.Edit.Dialog;
 using osu.Game.Rulesets.Karaoke.Edit.Drawables;
 using osu.Game.Rulesets.Karaoke.UI;
-using osu.Game.Rulesets.Karaoke.UI.Layers.Lyric;
 using osu.Game.Rulesets.Objects.Drawables;
 using OpenTK.Input;
 
@@ -25,7 +21,6 @@ namespace osu.Game.Rulesets.Karaoke.Edit
         public KaraokeEditPlayfield(Ruleset ruleset, WorkingBeatmap beatmap, KaraokeEditRulesetContainer container)
             : base(ruleset, beatmap, container)
         {
-           
         }
 
         /// <summary>
@@ -68,7 +63,5 @@ namespace osu.Game.Rulesets.Karaoke.Edit
 
             return base.OnKeyDown(state, args);
         }
-
-      
     }
 }

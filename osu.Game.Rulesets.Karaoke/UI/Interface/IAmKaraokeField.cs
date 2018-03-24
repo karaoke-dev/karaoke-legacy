@@ -1,9 +1,7 @@
 ﻿// Copyright (c) 2007-2018 ppy Pty Ltd <contact@ppy.sh>.
 // Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
 
-using System.Collections.Generic;
 using osu.Game.Beatmaps;
-using osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric.Types;
 using osu.Game.Rulesets.Karaoke.UI.Tool;
 
 namespace osu.Game.Rulesets.Karaoke.UI.Interface
@@ -32,6 +30,5 @@ namespace osu.Game.Rulesets.Karaoke.UI.Interface
         /// some userful tools will be define in here
         /// </summary>
         KaraokeTool KaraokeFieldTool { get; }
-
     }
 }

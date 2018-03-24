@@ -11,8 +11,6 @@ namespace osu.Game.Rulesets.Karaoke.Beatmaps
         public override void PostProcess(Beatmap<Lyric> beatmap)
         {
             //applyStacking(beatmap);
-
-            
         }
 
 

@@ -19,14 +19,16 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
     /// <summary>
     /// Karaoke Text
     /// </summary>
-    public class DrawableLyric : DrawableHitObject<Objects.Lyric>, IDrawableLyricParameter , IDrawableLyricBindable
+    public class DrawableLyric : DrawableHitObject<Objects.Lyric>, IDrawableLyricParameter, IDrawableLyricBindable
     {
         //Const
         public const float TIME_FADEIN = 100;
+
         public const float TIME_FADEOUT = 100;
         private double _nowProgress;
 
         #region Bindable
+
         /// <summary>
         /// Style
         /// </summary>
@@ -46,12 +48,14 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
         /// TranslateCode
         /// </summary>
         public Bindable<TranslateCode> TranslateCode { get; set; } = new Bindable<TranslateCode>();
+
         #endregion
 
         #region Field
 
         //Private
         private KaraokeLyricConfig _config;
+
         private Singer _singer;
         private TranslateCode _translateCode;
 
@@ -115,22 +119,10 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
                 TranslateText,
             };
 
-            Style.ValueChanged += (style) =>
-            {
-                OnStyleChange();
-            };
-            Template.ValueChanged += (style) =>
-            {
-                OnTemplateChange();
-            };
-            SingerTemplate.ValueChanged += (style) =>
-            {
-                OnSingerTemplateChange();
-            };
-            TranslateCode.ValueChanged += (style) =>
-            {
-                OnTranslateCodeChange();
-            };
+            Style.ValueChanged += (style) => { OnStyleChange(); };
+            Template.ValueChanged += (style) => { OnTemplateChange(); };
+            SingerTemplate.ValueChanged += (style) => { OnSingerTemplateChange(); };
+            TranslateCode.ValueChanged += (style) => { OnTranslateCodeChange(); };
         }
 
         protected virtual void OnStyleChange()
@@ -225,8 +217,6 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
 
                 Width = TextsAndMaskPiece.MainText.GetTextEndPosition();
                 Height = Lyric.Height ?? 100;
-
-                
             }
 
             float getxPosition(int index)

@@ -15,7 +15,6 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
         }
 
 
-
         /// <summary>
         /// serialize and set object
         /// </summary>
