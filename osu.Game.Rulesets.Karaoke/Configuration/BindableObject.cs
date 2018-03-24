@@ -22,7 +22,7 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
             set
             {
                 //if class changed
-                if (value.GetChanges().Any())
+                if (value?.GetChanges()?.Any()??false)
                 {
                     value.Initialize();
                     base.Value = value.Copy<T>();
