@@ -2,13 +2,15 @@
 // Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
 
 using osu.Game.Rulesets.Karaoke.Input;
+using osu.Game.Rulesets.Karaoke.Objects;
+using osu.Game.Rulesets.Karaoke.Objects.Types;
 
 namespace osu.Game.Rulesets.Karaoke.Configuration
 {
     /// <summary>
     /// Config
     /// </summary>
-    public class MobileScrollAnixConfig
+    public class MobileScrollAnixConfig : RecordChangeObject, ICopyable
     {
         /// <summary>
         /// X Anix
@@ -48,7 +50,7 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
         /// <summary>
         /// SingleAnixConfig
         /// </summary>
-        public class SingleAnixConfig
+        public class SingleAnixConfig : ICopyable
         {
             /// <summary>
             /// Anix
@@ -59,14 +61,67 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
             /// Sensitive
             /// </summary>
             public double Sensitive { get; set; }
+
+            /// <summary>
+            /// Copy
+            /// </summary>
+            /// <typeparam name="T"></typeparam>
+            /// <returns></returns>
+            public T Copy<T>() where T : class, ICopyable, new()
+            {
+                T result = new T();
+                if (result is SingleAnixConfig singleAnixConfig)
+                {
+                    singleAnixConfig.KaraokeScrollAction = KaraokeScrollAction;
+                    singleAnixConfig.Sensitive = Sensitive;
+                }
+                return result;
+            }
         }
 
         /// <summary>
         /// TapConfig
         /// </summary>
-        public class TapConfig
+        public class TapConfig : ICopyable
         {
             public KaraokeTapAction KaraokeTapAction { get; set; }
+
+            /// <summary>
+            /// Copy
+            /// </summary>
+            /// <typeparam name="T"></typeparam>
+            /// <returns></returns>
+            public T Copy<T>() where T : class, ICopyable, new()
+            {
+                T result = new T();
+                if (result is TapConfig tapConfig)
+                {
+                    tapConfig.KaraokeTapAction = KaraokeTapAction;
+                }
+                return result;
+            }
+        }
+
+        /// <summary>
+        /// Copy
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
+        public T Copy<T>() where T : class, ICopyable, new()
+        {
+            T result = new T();
+            if (result is MobileScrollAnixConfig mobileScrollAnixConfig)
+            {
+                mobileScrollAnixConfig.XAnixConfig = XAnixConfig.Copy<SingleAnixConfig>();
+                mobileScrollAnixConfig.YAnixConfig = YAnixConfig.Copy<SingleAnixConfig>();
+                mobileScrollAnixConfig.TwoFingerXAnixConfig = TwoFingerXAnixConfig.Copy<SingleAnixConfig>();
+                mobileScrollAnixConfig.TwoFingerYAnixConfig = TwoFingerYAnixConfig.Copy<SingleAnixConfig>();
+                mobileScrollAnixConfig.SingleTapConfig = SingleTapConfig.Copy<TapConfig>();
+                mobileScrollAnixConfig.DoubleTapConfig = DoubleTapConfig.Copy<TapConfig>();
+                mobileScrollAnixConfig.HoldConfig = HoldConfig.Copy<TapConfig>();
+                mobileScrollAnixConfig.Initialize();
+            }
+            return result;
         }
     }
 }

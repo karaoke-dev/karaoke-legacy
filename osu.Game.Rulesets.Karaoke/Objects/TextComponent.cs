@@ -8,7 +8,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects
     /// <summary>
     /// TextComponent
     /// </summary>
-    public class TextComponent : IHasText, ICopyable
+    public class TextComponent : RecordChangeObject, IHasText, ICopyable
     {
         public TextComponent()
         {
@@ -29,12 +29,13 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
-        public T Copy<T>() where T : new()
+        public T Copy<T>() where T : class, ICopyable, new()
         {
             T result = new T();
             if (result is TextComponent textComponent)
             {
                 textComponent.Text = Text;
+                textComponent.Initialize();
             }
             return result;
         }

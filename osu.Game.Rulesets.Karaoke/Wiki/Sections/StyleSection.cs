@@ -85,9 +85,10 @@ namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
             //lyricTemplate.BindTo(DrawableKaraokeTemplate.Template);
             //karaokeLyricConfig.BindTo(DrawableKaraokeTemplate.Style);
             //karaokeLyricConfig.BindTo(RomajiMenuSettings.Bindnig);
+            RomajiMenuSettings.Bindnig.BindTo(karaokeLyricConfig);
             DrawableKaraokeTemplate.Template.BindTo(lyricTemplate);
-            DrawableKaraokeTemplate.Style.BindTo(karaokeLyricConfig);
             DrawableKaraokeTemplate.Style.BindTo(RomajiMenuSettings.Bindnig);
+            
 
 
             Content.Add(new WikiTextSection(" \n\n"));
@@ -155,22 +156,22 @@ namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
             _topTextVisibleCheckBox.Bindable.ValueChanged += (a) =>
             {
                 Bindnig.Value.SubTextVislbility = a;
-                Bindnig?.TriggerChange();
+                Bindnig.Value = Bindnig.Value;
             };
             _romajiVisibleCheckBox.Bindable.ValueChanged += (a) =>
             {
                 Bindnig.Value.RomajiVislbility = a;
-                Bindnig?.TriggerChange();
+                Bindnig.Value = Bindnig.Value;
             };
             _romajiFirstCheckBox.Bindable.ValueChanged += (a) =>
             {
                 Bindnig.Value.RomajiFirst = a;
-                Bindnig?.TriggerChange();
+                Bindnig.Value = Bindnig.Value;
             };
             _translateCheckBox.Bindable.ValueChanged += (a) =>
             {
                 Bindnig.Value.ShowTranslate = a;
-                Bindnig?.TriggerChange();
+                Bindnig.Value = Bindnig.Value;
             };
         }
     }

@@ -2,6 +2,7 @@
 // Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
 
 using osu.Game.Rulesets.Karaoke.Objects;
+using osu.Game.Rulesets.Karaoke.Objects.Types;
 using OpenTK;
 using OpenTK.Graphics;
 
@@ -10,7 +11,7 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
     /// <summary>
     /// define the position of karaoke
     /// </summary>
-    public class LyricTemplate
+    public class LyricTemplate : RecordChangeObject, ICopyable
     {
         /// <summary>
         /// top text
@@ -57,5 +58,26 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
         /// Scale
         /// </summary>
         public float Scale { get; set; } = 1;
+
+        /// <summary>
+        /// Copy
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
+        public T Copy<T>() where T : class, ICopyable, new()
+        {
+            T result = new T();
+            if (result is LyricTemplate lyricTemplate)
+            {
+                lyricTemplate.TopText = TopText.Copy<FormattedText>();
+                lyricTemplate.MainText = MainText.Copy<FormattedText>();
+                lyricTemplate.BottomText = BottomText.Copy<FormattedText>();
+                lyricTemplate.TranslateText = TranslateText.Copy<FormattedText>();
+                lyricTemplate.TranslateTextColor = TranslateTextColor;
+                lyricTemplate.Scale = Scale;
+                lyricTemplate.Initialize();
+            }
+            return result;
+        }
     }
 }

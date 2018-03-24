@@ -1,12 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Linq;
 using Newtonsoft.Json;
 using osu.Framework.Configuration;
+using osu.Game.Rulesets.Karaoke.Objects;
+using osu.Game.Rulesets.Karaoke.Objects.Types;
 
 namespace osu.Game.Rulesets.Karaoke.Configuration
 {
     public class BindableObject<T> : Bindable<T>
-        where T : class 
+        where T : RecordChangeObject, ICopyable , new ()
     {
         public BindableObject(T value)
             : base(value)
@@ -14,26 +16,26 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
 
         }
 
-        /*
         public override T Value
         {
             get { return base.Value; }
             set
             {
-                
-                if (Disabled)
-                    throw new InvalidOperationException($"Can not set value to \"{value.ToString()}\" as bindable is disabled.");
-
-                base.Value = value;
-
-                //TODO : 會造成無限遞迴
-                TriggerValueChange();
+                //if class changed
+                if (value.GetChanges().Any())
+                {
+                    value.Initialize();
+                    base.Value = value.Copy<T>();
+                }
+                else//class does not change
+                {
+                    base.Value = value;
+                }
             }
         }
-        */
 
         /// <summary>
-        /// Raise <see cref="ValueChanged"/> and <see cref="DisabledChanged"/> once, without any changes actually occurring.
+        /// Raise <see cref="Bindable{T}.ValueChanged"/> and <see cref="Bindable{T}.DisabledChanged"/> once, without any changes actually occurring.
         /// This does not propagate to any outward bound bindables.
         /// </summary>
         public override void TriggerChange()

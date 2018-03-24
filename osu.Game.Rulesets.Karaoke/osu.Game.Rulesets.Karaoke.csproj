@@ -111,6 +111,7 @@
     <Compile Include="Objects\LyricTranslateList.cs" />
     <Compile Include="Objects\MainText.cs" />
     <Compile Include="Objects\MainTextList.cs" />
+    <Compile Include="Objects\RecordChangeObject.cs" />
     <Compile Include="Objects\RomajiTextList.cs" />
     <Compile Include="Configuration\SingerTemplate.cs" />
     <Compile Include="Objects\TextComponent.cs" />

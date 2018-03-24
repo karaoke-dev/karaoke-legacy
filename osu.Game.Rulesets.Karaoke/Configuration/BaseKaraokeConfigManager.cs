@@ -4,6 +4,8 @@
 using osu.Framework.Configuration;
 using osu.Game.Configuration;
 using osu.Game.Rulesets.Configuration;
+using osu.Game.Rulesets.Karaoke.Objects;
+using osu.Game.Rulesets.Karaoke.Objects.Types;
 
 namespace osu.Game.Rulesets.Karaoke.Configuration
 {
@@ -22,7 +24,7 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
         /// <param name="lookup"></param>
         /// <param name="value"></param>
         /// <returns></returns>
-        public BindableObject<U> SetObject<U>(T lookup, U value) where U : class
+        public BindableObject<U> SetObject<U>(T lookup, U value) where U : RecordChangeObject, ICopyable, new()
         {
             BindableObject<U> bindable = GetOriginalBindable<U>(lookup) as BindableObject<U>;
 

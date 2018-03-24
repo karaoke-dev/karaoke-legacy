@@ -6,13 +6,13 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Types
     /// <summary>
     /// ICopyable
     /// </summary>
-    interface ICopyable
+    public interface ICopyable
     {
         /// <summary>
         /// copy
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
-        T Copy<T>() where T : new();
+        T Copy<T>() where T : class, ICopyable, new();
     }
 }
