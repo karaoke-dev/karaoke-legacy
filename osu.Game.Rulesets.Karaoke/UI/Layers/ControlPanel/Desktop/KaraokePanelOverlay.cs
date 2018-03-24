@@ -37,6 +37,8 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel.Desktop
         {
             PlayField = playField;
 
+            InitialPanel();
+
             //key changed
             KeyAction.ValueChanged += OnKeyAction;
         }
