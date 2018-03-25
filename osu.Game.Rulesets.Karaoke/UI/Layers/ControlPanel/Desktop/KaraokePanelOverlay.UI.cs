@@ -15,8 +15,6 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel.Desktop
 {
     public partial class KaraokePanelOverlay
     {
-        
-
         private const float content_width = 0.8f;
 
         //define the position of object

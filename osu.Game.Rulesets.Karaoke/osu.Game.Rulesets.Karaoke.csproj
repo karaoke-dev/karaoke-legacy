@@ -124,7 +124,9 @@
     <Compile Include="Tests\TestCaseRomajiTranslateServer.cs" />
     <Compile Include="UI\KaraokeBasePlayfield.Layer.cs" />
     <Compile Include="UI\Layers\ControlPanel\ControlPanelLayer.cs" />
-    <Compile Include="UI\Layers\ControlPanel\Desktop\KaraokePanelOverlay.Panel.cs" />
+    <Compile Include="UI\Layers\ControlPanel\Desktop\KaraokePanelOverlay.UI.cs" />
+    <Compile Include="UI\Layers\ControlPanel\Mobile\KaraokeLightPanel.UI.cs" />
+    <Compile Include="UI\Layers\ControlPanel\Mobile\Pieces\InfoPiece.cs" />
     <Compile Include="UI\Layers\ControlPanel\Type\IControlPanel.cs" />
     <Compile Include="UI\Layers\Dialog\DialogLayer.cs" />
     <Compile Include="UI\Layers\Effect\EffectLayer.cs" />
@@ -269,7 +271,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Mods\Mod2018\" />
-    <Folder Include="UI\Layers\ControlPanel\Mobile\Pieces\" />
     <Folder Include="UI\Layers\Input\Keyboard\" />
   </ItemGroup>
   <ItemGroup>
