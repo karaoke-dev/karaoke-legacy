@@ -18,7 +18,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel.Mobile.Pieces
     /// use to inherit
     /// <see cref="ScreenWhiteBox"/>
     /// </summary>
-    public class InfoPiece<T> : Container , IInfoPiece where T : Info 
+    public class InfoPiece<T> : Container, IInfoPiece where T : Info
     {
         private readonly FillFlowContainer textContainer;
 
@@ -100,6 +100,5 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel.Mobile.Pieces
     /// </summary>
     public class InfoPiece : InfoPiece<Info>
     {
-
     }
 }

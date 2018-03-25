@@ -78,12 +78,10 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel.Desktop
             }
             else if (action is TapAction tapAction)
             {
-
             }
             else if (action is ScrollAction scrollAction)
             {
-
-            } 
+            }
         }
     }
 }
