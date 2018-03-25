@@ -1,19 +1,16 @@
 ﻿// Copyright (c) 2007-2018 ppy Pty Ltd <contact@ppy.sh>.
 // Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
 
-using osu.Framework.Graphics.Containers;
-using osu.Framework.Input.Bindings;
 using osu.Game.Rulesets.Karaoke.Configuration;
 using osu.Game.Rulesets.Karaoke.Input;
 using osu.Game.Rulesets.Karaoke.UI.Layers.Input.Action;
-using osu.Game.Rulesets.Karaoke.UI.Layers.Type;
 
 namespace osu.Game.Rulesets.Karaoke.UI.Layers.Input
 {
     /// <summary>
     /// this container is use for detect HotKey pressing
     /// </summary>
-    public partial class InputLayer 
+    public partial class InputLayer
     {
         public BindableObject<KeyAction> KeyAction { get; set; } = new BindableObject<KeyAction>(null);
 

@@ -15,6 +15,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel
     public partial class ControlPanelLayer
     {
         private IControlPanel _panelLayer;
+
         /// <summary>
         /// On platform change
         /// </summary>
@@ -35,7 +36,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel
                         Depth = 10f,
                     };
                     break;
-                    default:
+                default:
                     _panelLayer = new KaraokeLightPanel(_playField)
                     {
                         Clock = new FramedClock(new StopwatchClock(true)),

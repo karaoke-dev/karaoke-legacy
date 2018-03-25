@@ -18,7 +18,6 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
             T result = new T();
             if (result is SingerTemplate singerTemplate)
             {
-
             }
             return result;
         }

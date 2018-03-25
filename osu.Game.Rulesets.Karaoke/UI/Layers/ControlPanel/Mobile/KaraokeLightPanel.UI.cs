@@ -1,9 +1,9 @@
-﻿using System;
+﻿// Copyright (c) 2007-2018 ppy Pty Ltd <contact@ppy.sh>.
+// Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
+
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using osu.Framework.Graphics;
+using osu.Framework.Graphics.Shapes;
 using osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel.Mobile.Pieces;
 using osu.Game.Rulesets.Karaoke.UI.Layers.Input.Action;
 
@@ -14,12 +14,18 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel.Mobile
         private const double transition_time = 1000;
         private const double panel_display_time = 2000;
 
+        //record all the piece
+        private List<InfoPiece> _infoPieses = new List<InfoPiece>();
+
+        //background dim
+        private Box _backgroundDimBox = new Box();
+
         /// <summary>
         /// prepare the InfoPiece for different action
         /// </summary>
         protected void PrepareKeyInfoPanel(KeyAction action)
         {
-            if((action?.Press ?? false) == false)
+            if ((action?.Press ?? false) == false)
                 return;
 
 

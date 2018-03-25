@@ -19,6 +19,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel.Desktop
 
         //define the position of object
         private const int one_layer_y_position = 30;
+
         private const int two_layer_y_position = 75;
         private const int object_height = 30;
         private const int start_x_positin = 60;
@@ -26,6 +27,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel.Desktop
 
         //TODO : all the setting object
         public KaraokeButton FirstLyricButton;
+
         public KaraokeButton PreviousLyricButton;
         public KaraokeButton NextLyricButton;
         public KaraokePlayPauseButton PlayPauseButton;

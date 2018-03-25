@@ -4,7 +4,6 @@
 using osu.Framework.Configuration;
 using osu.Framework.Graphics.Containers;
 using osu.Game.Rulesets.Karaoke.Configuration;
-using osu.Game.Rulesets.Karaoke.Input;
 using osu.Game.Rulesets.Karaoke.UI.Interface;
 using osu.Game.Rulesets.Karaoke.UI.Layers.Input.Action;
 using osu.Game.Rulesets.Karaoke.UI.Layers.Type;

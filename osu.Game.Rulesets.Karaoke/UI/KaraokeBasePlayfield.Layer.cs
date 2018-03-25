@@ -85,7 +85,7 @@ namespace osu.Game.Rulesets.Karaoke.UI
                 singleLayer.PlatformType.BindTo(bindable);
 
                 //if same then trigger change
-                if(singleLayer.PlatformType== bindable.Value)
+                if (singleLayer.PlatformType == bindable.Value)
                     singleLayer.PlatformType.TriggerChange();
             }
         }

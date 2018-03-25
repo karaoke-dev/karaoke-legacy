@@ -9,7 +9,7 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
     /// <summary>
     /// karaoke lyric config
     /// </summary>
-    public class KaraokeLyricConfig : RecordChangeObject, ICopyable 
+    public class KaraokeLyricConfig : RecordChangeObject, ICopyable
     {
         /// <summary>
         /// show subText
@@ -36,7 +36,7 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
-        public T Copy<T>() where T : class,ICopyable, new()
+        public T Copy<T>() where T : class, ICopyable, new()
         {
             T result = new T();
             if (result is KaraokeLyricConfig karaokeLyricConfig)

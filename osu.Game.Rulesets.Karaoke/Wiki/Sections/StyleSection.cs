@@ -88,7 +88,6 @@ namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
             RomajiMenuSettings.Bindnig.BindTo(karaokeLyricConfig);
             DrawableKaraokeTemplate.Template.BindTo(lyricTemplate);
             DrawableKaraokeTemplate.Style.BindTo(RomajiMenuSettings.Bindnig);
-            
 
 
             Content.Add(new WikiTextSection(" \n\n"));
