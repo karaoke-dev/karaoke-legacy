@@ -7,7 +7,7 @@ using osu.Game.Rulesets.Karaoke.Objects.Types;
 
 namespace osu.Game.Rulesets.Karaoke.UI.Layers.Input.Action
 {
-    public class KeyAction : RecordChangeObject, ICopyable
+    public class KeyAction : BaseAction, ICopyable
     {
         public KaraokeKeyAction KaraokeKeyAction { get; set; }
 

@@ -7,7 +7,7 @@ using osu.Game.Rulesets.Karaoke.Objects.Types;
 
 namespace osu.Game.Rulesets.Karaoke.UI.Layers.Input.Action
 {
-    public class TapAction : RecordChangeObject, ICopyable
+    public class TapAction : BaseAction, ICopyable
     {
         public KaraokeTapAction KaraokeTapAction { get; set; }
 

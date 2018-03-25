@@ -126,10 +126,17 @@
     <Compile Include="UI\Layers\ControlPanel\ControlPanelLayer.cs" />
     <Compile Include="UI\Layers\ControlPanel\Desktop\KaraokePanelOverlay.UI.cs" />
     <Compile Include="UI\Layers\ControlPanel\Mobile\KaraokeLightPanel.UI.cs" />
+    <Compile Include="UI\Layers\ControlPanel\Mobile\Pieces\Info.cs" />
     <Compile Include="UI\Layers\ControlPanel\Mobile\Pieces\InfoPiece.cs" />
+    <Compile Include="UI\Layers\ControlPanel\Mobile\Pieces\PrecentageInfo.cs" />
+    <Compile Include="UI\Layers\ControlPanel\Mobile\Pieces\PrecentageInfoPiece.cs" />
+    <Compile Include="UI\Layers\ControlPanel\Mobile\Pieces\ValueInfo.cs" />
+    <Compile Include="UI\Layers\ControlPanel\Mobile\Pieces\ValueInfoPiece.cs" />
+    <Compile Include="UI\Layers\ControlPanel\Mobile\Type\IInfoPiece.cs" />
     <Compile Include="UI\Layers\ControlPanel\Type\IControlPanel.cs" />
     <Compile Include="UI\Layers\Dialog\DialogLayer.cs" />
     <Compile Include="UI\Layers\Effect\EffectLayer.cs" />
+    <Compile Include="UI\Layers\Input\Action\BaseAction.cs" />
     <Compile Include="UI\Layers\Input\Action\KeyAction.cs" />
     <Compile Include="UI\Layers\Input\Action\ScrollAction.cs" />
     <Compile Include="UI\Layers\Input\Action\TapAction.cs" />

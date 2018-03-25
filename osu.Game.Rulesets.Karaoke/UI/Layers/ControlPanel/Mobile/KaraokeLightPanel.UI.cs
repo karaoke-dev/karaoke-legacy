@@ -3,8 +3,10 @@
 
 using System.Collections.Generic;
 using osu.Framework.Graphics;
+using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Shapes;
 using osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel.Mobile.Pieces;
+using osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel.Mobile.Type;
 using osu.Game.Rulesets.Karaoke.UI.Layers.Input.Action;
 
 namespace osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel.Mobile
@@ -15,7 +17,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel.Mobile
         private const double panel_display_time = 2000;
 
         //record all the piece
-        private List<InfoPiece> _infoPieses = new List<InfoPiece>();
+        private List<IInfoPiece> _infoPieses = new List<IInfoPiece>();
 
         //background dim
         private Box _backgroundDimBox = new Box();
@@ -29,7 +31,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel.Mobile
                 return;
 
 
-            InfoPiece boxContainer = new InfoPiece();
+            IInfoPiece boxContainer = new InfoPiece();
 
             PrepareShowInfoPanel(boxContainer);
         }
@@ -42,7 +44,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel.Mobile
             if ((action?.Tap ?? false) == false)
                 return;
 
-            InfoPiece boxContainer = new InfoPiece();
+            IInfoPiece boxContainer = new InfoPiece();
 
             PrepareShowInfoPanel(boxContainer);
         }
@@ -55,7 +57,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel.Mobile
             if ((action?.Touch ?? false) == false)
                 return;
 
-            InfoPiece boxContainer = new InfoPiece();
+            IInfoPiece boxContainer = new InfoPiece();
 
             PrepareShowInfoPanel(boxContainer);
         }
@@ -63,23 +65,23 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel.Mobile
         /// <summary>
         /// show info panel
         /// </summary>
-        protected void PrepareShowInfoPanel(InfoPiece boxContainer)
+        protected void PrepareShowInfoPanel(IInfoPiece boxContainer)
         {
             //1. add to child list
-            Add(boxContainer);
+            Add(boxContainer as Container);
 
             //2. call ShowInfoPiece
-            ShowInfoPiece(boxContainer);
+            ShowInfoPiece(boxContainer as Container);
 
             //3. set timer
             using (Content.BeginDelayedSequence(panel_display_time, true))
             {
                 //4. call HideInfoPiece
-                HideInfoPiece(boxContainer);
+                HideInfoPiece(boxContainer as Container);
             }
         }
 
-        protected void ShowInfoPiece(InfoPiece boxContainer)
+        protected void ShowInfoPiece(Container boxContainer)
         {
             boxContainer.Alpha = 1;
             boxContainer.ScaleTo(0.2f);
@@ -95,7 +97,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel.Mobile
             }
         }
 
-        protected void HideInfoPiece(InfoPiece boxContainer)
+        protected void HideInfoPiece(Container boxContainer)
         {
             boxContainer.Alpha = 0;
         }

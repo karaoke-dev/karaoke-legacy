@@ -7,6 +7,7 @@ using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Shapes;
 using osu.Game.Graphics;
 using osu.Game.Graphics.Sprites;
+using osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel.Mobile.Type;
 using osu.Game.Screens;
 using OpenTK;
 using OpenTK.Graphics;
@@ -14,12 +15,14 @@ using OpenTK.Graphics;
 namespace osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel.Mobile.Pieces
 {
     /// <summary>
-    /// use to show the into
+    /// use to inherit
     /// <see cref="ScreenWhiteBox"/>
     /// </summary>
-    public class InfoPiece : Container
+    public class InfoPiece<T> : Container , IInfoPiece where T : Info 
     {
         private readonly FillFlowContainer textContainer;
+
+        public virtual T Value { get; set; }
 
         public InfoPiece()
         {
@@ -89,5 +92,14 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel.Mobile.Pieces
             byte b = (byte)MathHelper.Clamp((hash & 0x0000FF) * 0.8f, 20, 255);
             return new Color4(r, g, b, 255);
         }
+    }
+
+    /// <summary>
+    /// use to show the into
+    /// <see cref="ScreenWhiteBox"/>
+    /// </summary>
+    public class InfoPiece : InfoPiece<Info>
+    {
+
     }
 }
