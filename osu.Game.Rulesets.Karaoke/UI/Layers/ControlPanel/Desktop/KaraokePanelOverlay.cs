@@ -14,9 +14,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel.Desktop
     /// </summary>
     public partial class KaraokePanelOverlay : WaveOverlayContainer, IControlPanel
     {
-        public BindableObject<KeyAction> KeyAction { get; set; } = new BindableObject<KeyAction>(null);
-        public BindableObject<TapAction> TapAction { get; set; } = new BindableObject<TapAction>(null);
-        public BindableObject<ScrollAction> ScrollAction { get; set; } = new BindableObject<ScrollAction>(null);
+        public BindableObject<BaseAction> InputAction { get; set; } = new BindableObject<BaseAction>(null);
 
         private readonly IAmKaraokeField _playField;
 
@@ -31,7 +29,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel.Desktop
             InitialPanel();
 
             //key changed
-            KeyAction.ValueChanged += OnKeyAction;
+            InputAction.ValueChanged += OnKeyAction;
         }
     }
 }

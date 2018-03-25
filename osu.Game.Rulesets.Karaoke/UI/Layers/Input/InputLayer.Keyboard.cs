@@ -12,8 +12,6 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Input
     /// </summary>
     public partial class InputLayer
     {
-        public BindableObject<KeyAction> KeyAction { get; set; } = new BindableObject<KeyAction>(null);
-
         /// <summary>
         /// On Press
         /// </summary>
@@ -26,7 +24,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Input
                 KaraokeKeyAction = action,
                 Press = true,
             };
-            KeyAction.Value = keyAction;
+            InputAction.Value = keyAction;
 
             return true;
         }
@@ -43,7 +41,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Input
                 KaraokeKeyAction = action,
                 Press = false,
             };
-            KeyAction.Value = keyAction;
+            InputAction.Value = keyAction;
 
             return true;
         }

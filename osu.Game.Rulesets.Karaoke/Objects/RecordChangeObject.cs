@@ -1,6 +1,7 @@
 ﻿// Copyright (c) 2007-2018 ppy Pty Ltd <contact@ppy.sh>.
 // Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -9,7 +10,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects
     /// <summary>
     /// Inherit this object can record the number of property has changed
     /// </summary>
-    public class RecordChangeObject
+    public class RecordChangeObject : ICloneable
     {
         private readonly Dictionary<string, object> mOriginalValues = new Dictionary<string, object>();
 
@@ -44,6 +45,13 @@ namespace osu.Game.Rulesets.Karaoke.Objects
                     latestChanges.Add(property.Name, property.GetValue(this));
 
             return latestChanges;
+        }
+
+        public object Clone()
+        {
+            var copyObject = this.MemberwiseClone();
+            (copyObject as RecordChangeObject)?.Initialize();
+            return copyObject;
         }
     }
 }

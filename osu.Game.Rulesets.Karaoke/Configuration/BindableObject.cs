@@ -27,7 +27,7 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
                 if (value?.GetChanges()?.Any() ?? false)
                 {
                     value.Initialize();
-                    base.Value = value.Copy<T>();
+                    base.Value = value.Clone() as T;
                 }
                 else //class does not change
                 {

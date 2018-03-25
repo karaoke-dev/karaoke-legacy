@@ -15,11 +15,9 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel.Mobile
     /// </summary>
     public partial class KaraokeLightPanel : Container, IControlPanel
     {
-        private IAmKaraokeField _playField;
+        public BindableObject<BaseAction> InputAction { get; set; } = new BindableObject<BaseAction>(null);
 
-        public BindableObject<KeyAction> KeyAction { get; set; } = new BindableObject<KeyAction>(null);
-        public BindableObject<TapAction> TapAction { get; set; } = new BindableObject<TapAction>(null);
-        public BindableObject<ScrollAction> ScrollAction { get; set; } = new BindableObject<ScrollAction>(null);
+        private IAmKaraokeField _playField;
 
         /// <summary>
         /// Ctor
@@ -29,9 +27,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel.Mobile
         {
             _playField = playField;
 
-            KeyAction.ValueChanged += PrepareKeyInfoPanel;
-            TapAction.ValueChanged += PrepareTapInfoPanel;
-            ScrollAction.ValueChanged += PrepareScrollInfoPanel;
+            InputAction.ValueChanged += PrepareKeyInfoPanel;
         }
 
         /// <summary>

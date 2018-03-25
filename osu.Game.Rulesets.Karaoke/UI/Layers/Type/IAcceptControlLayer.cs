@@ -14,16 +14,6 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Type
         /// <summary>
         /// Key action
         /// </summary>
-        BindableObject<KeyAction> KeyAction { get; set; }
-
-        /// <summary>
-        /// Tap action
-        /// </summary>
-        BindableObject<TapAction> TapAction { get; set; }
-
-        /// <summary>
-        /// Scroll action
-        /// </summary>
-        BindableObject<ScrollAction> ScrollAction { get; set; }
+        BindableObject<BaseAction> InputAction { get; set; }
     }
 }

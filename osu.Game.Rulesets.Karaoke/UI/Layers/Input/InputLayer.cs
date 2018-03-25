@@ -6,6 +6,7 @@ using osu.Framework.Graphics.Containers;
 using osu.Framework.Input.Bindings;
 using osu.Game.Rulesets.Karaoke.Configuration;
 using osu.Game.Rulesets.Karaoke.Input;
+using osu.Game.Rulesets.Karaoke.UI.Layers.Input.Action;
 using osu.Game.Rulesets.Karaoke.UI.Layers.Type;
 
 namespace osu.Game.Rulesets.Karaoke.UI.Layers.Input
@@ -15,6 +16,8 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Input
     /// </summary>
     public partial class InputLayer : Container, IKeyBindingHandler<KaraokeKeyAction>, IControlLayer
     {
+        public BindableObject<BaseAction> InputAction { get; set; } = new BindableObject<BaseAction>(null);
+
         /// <summary>
         /// Ctor
         /// </summary>

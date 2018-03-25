@@ -2,12 +2,10 @@
 // Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
 
 using osu.Game.Rulesets.Karaoke.Input;
-using osu.Game.Rulesets.Karaoke.Objects;
-using osu.Game.Rulesets.Karaoke.Objects.Types;
 
 namespace osu.Game.Rulesets.Karaoke.UI.Layers.Input.Action
 {
-    public class TapAction : BaseAction, ICopyable
+    public class TapAction : BaseAction 
     {
         public KaraokeTapAction KaraokeTapAction { get; set; }
 
@@ -18,7 +16,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Input.Action
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
-        public T Copy<T>() where T : class, ICopyable, new()
+        public override T Copy<T>()
         {
             T result = new T();
             if (result is TapAction keyAction)

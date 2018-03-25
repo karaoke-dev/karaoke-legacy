@@ -25,37 +25,21 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel.Mobile
         /// <summary>
         /// prepare the InfoPiece for different action
         /// </summary>
-        protected void PrepareKeyInfoPanel(KeyAction action)
+        protected void PrepareKeyInfoPanel(BaseAction action)
         {
-            if ((action?.Press ?? false) == false)
-                return;
+            if (action is KeyAction keyAction)
+            {
+                if ((keyAction?.Press ?? false) == false)
+                    return;
+            }
+            else if (action is TapAction tapAction)
+            {
 
+            }
+            else if (action is ScrollAction scrollAction)
+            {
 
-            IInfoPiece boxContainer = new InfoPiece();
-
-            PrepareShowInfoPanel(boxContainer);
-        }
-
-        /// <summary>
-        /// prepare the InfoPiece for different action
-        /// </summary>
-        protected void PrepareTapInfoPanel(TapAction action)
-        {
-            if ((action?.Tap ?? false) == false)
-                return;
-
-            IInfoPiece boxContainer = new InfoPiece();
-
-            PrepareShowInfoPanel(boxContainer);
-        }
-
-        /// <summary>
-        /// prepare the InfoPiece for different action
-        /// </summary>
-        protected void PrepareScrollInfoPanel(ScrollAction action)
-        {
-            if ((action?.Touch ?? false) == false)
-                return;
+            }
 
             IInfoPiece boxContainer = new InfoPiece();
 

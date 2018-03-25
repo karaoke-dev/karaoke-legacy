@@ -12,14 +12,15 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel
 {
     public partial class ControlPanelLayer : Container, IAcceptControlLayer, IPlatformLayer
     {
-        public BindableObject<KeyAction> KeyAction { get; set; } = new BindableObject<KeyAction>(null);
-        public BindableObject<TapAction> TapAction { get; set; } = new BindableObject<TapAction>(null);
-        public BindableObject<ScrollAction> ScrollAction { get; set; } = new BindableObject<ScrollAction>(null);
-
+        public BindableObject<BaseAction> InputAction { get; set; } = new BindableObject<BaseAction>(null);
         public Bindable<PlatformType> PlatformType { get; set; } = new Bindable<PlatformType>();
 
         private readonly IAmKaraokeField _playField;
 
+        /// <summary>
+        /// Ctor
+        /// </summary>
+        /// <param name="playField"></param>
         public ControlPanelLayer(IAmKaraokeField playField = null)
         {
             _playField = playField;

@@ -50,9 +50,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel
             }
 
             //initial key eveht
-            _panelLayer.KeyAction.BindTo(KeyAction);
-            _panelLayer.TapAction.BindTo(TapAction);
-            _panelLayer.ScrollAction.BindTo(ScrollAction);
+            _panelLayer.InputAction.BindTo(InputAction);
 
             //add to child
             Children = new Drawable[]
