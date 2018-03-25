@@ -49,7 +49,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects
 
         public object Clone()
         {
-            var copyObject = this.MemberwiseClone();
+            var copyObject = MemberwiseClone();
             (copyObject as RecordChangeObject)?.Initialize();
             return copyObject;
         }

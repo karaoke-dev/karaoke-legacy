@@ -5,7 +5,7 @@ using osu.Game.Rulesets.Karaoke.Input;
 
 namespace osu.Game.Rulesets.Karaoke.UI.Layers.Input.Action
 {
-    public class TapAction : BaseAction 
+    public class TapAction : BaseAction
     {
         public KaraokeTapAction KaraokeTapAction { get; set; }
 

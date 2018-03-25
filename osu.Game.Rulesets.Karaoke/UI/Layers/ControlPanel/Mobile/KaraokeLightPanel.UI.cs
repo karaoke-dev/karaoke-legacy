@@ -34,11 +34,9 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel.Mobile
             }
             else if (action is TapAction tapAction)
             {
-
             }
             else if (action is ScrollAction scrollAction)
             {
-
             }
 
             IInfoPiece boxContainer = new InfoPiece();
