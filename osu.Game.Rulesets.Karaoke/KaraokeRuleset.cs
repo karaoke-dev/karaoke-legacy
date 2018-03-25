@@ -68,10 +68,10 @@ namespace osu.Game.Rulesets.Karaoke
             {
                 return new[]
                 {
-                    new KeyBinding(InputKey.T, KaraokeKeyAction.TemplateDialog),
-                    new KeyBinding(InputKey.L, KaraokeKeyAction.LyricsDialog),
-                    new KeyBinding(InputKey.R, KaraokeKeyAction.TranslateDialog),
-                    new KeyBinding(InputKey.G, KaraokeKeyAction.SingerDialog),
+                    new KeyBinding(InputKey.T, KaraokeEditorKeyAction.TemplateDialog),
+                    new KeyBinding(InputKey.L, KaraokeEditorKeyAction.LyricsDialog),
+                    new KeyBinding(InputKey.R, KaraokeEditorKeyAction.TranslateDialog),
+                    new KeyBinding(InputKey.G, KaraokeEditorKeyAction.SingerDialog),
                 };
             }
         }

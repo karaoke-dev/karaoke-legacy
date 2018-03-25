@@ -100,6 +100,8 @@
     <Compile Include="Helps\DIctionaryHelper.cs" />
     <Compile Include="Edit\Dialog\Pieces\RevertableTextbox.cs" />
     <Compile Include="Beatmaps\KaraokeInfo.cs" />
+    <Compile Include="Input\KaraokeEditorInputManager.cs" />
+    <Compile Include="Input\KaraokeEditorKeyAction.cs" />
     <Compile Include="Input\KaraokeKeyAction.cs" />
     <Compile Include="Input\KaraokeScrollAction.cs" />
     <Compile Include="Input\KaraokeTapAction.cs" />
@@ -153,7 +155,7 @@
     <Compile Include="Objects\FormattedText.cs" />
     <Compile Include="Judgements\KaraokeJudgement.cs" />
     <Compile Include="KaraokeDifficulty\KraokeDifficultyCalculator.cs" />
-    <Compile Include="KaraokeInputManager.cs" />
+    <Compile Include="Input\KaraokeInputManager.cs" />
     <Compile Include="Objects\Types\IHasEndIndex.cs" />
     <Compile Include="Objects\Types\IHasCharIndex.cs" />
     <Compile Include="Objects\Types\IHasEndPreemptiveTime.cs" />

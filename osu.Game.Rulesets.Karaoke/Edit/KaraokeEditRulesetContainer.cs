@@ -1,8 +1,10 @@
 ﻿// Copyright (c) 2007-2018 ppy Pty Ltd <contact@ppy.sh>.
 // Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
 
+using osu.Framework.Input;
 using osu.Game.Beatmaps;
 using osu.Game.Rulesets.Karaoke.Edit.Drawables;
+using osu.Game.Rulesets.Karaoke.Input;
 using osu.Game.Rulesets.Karaoke.Objects;
 using osu.Game.Rulesets.Karaoke.UI;
 using osu.Game.Rulesets.Objects.Drawables;
@@ -34,5 +36,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit
         }
 
         protected override Playfield CreatePlayfield() => new KaraokeEditPlayfield(Ruleset, WorkingBeatmap, this);
+
+        public override PassThroughInputManager CreateInputManager() => new KaraokeEditorInputManager(Ruleset.RulesetInfo);
     }
 }

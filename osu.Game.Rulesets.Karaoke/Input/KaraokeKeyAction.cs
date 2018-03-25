@@ -35,14 +35,5 @@ namespace osu.Game.Rulesets.Karaoke.Input
         [Description("Reset Lyric Appear Time")] ResetLyricAppearTime, //C
 
         [Description("Panel key")] OpenPanel, //P
-
-        //open Dialog Hotkey
-        [Description("Template Dialog")] TemplateDialog, //T
-
-        [Description("Lyrics Dialog")] LyricsDialog, //L
-
-        [Description("Translate Dialog")] TranslateDialog, //R
-
-        [Description("Singer Dialog")] SingerDialog, //P
     }
 }
