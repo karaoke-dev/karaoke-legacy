@@ -23,7 +23,8 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel.Desktop
         private const int one_layer_y_position = 30;
         private const int two_layer_y_position = 75;
         private const int object_height = 30;
-        private const int start_x_positin = -60;
+        private const int start_x_positin = 60;
+        private const int height = 130;
 
         //TODO : all the setting object
         public KaraokeButton FirstLyricButton;
@@ -55,7 +56,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel.Desktop
             FourthWaveColour = OsuColour.FromHex(@"003a4e").Opacity(50);
             //FourthWaveColour = new Color4(0, 0, 0, 0);
 
-            Height = 110;
+            Height = height;
             Content.RelativeSizeAxes = Axes.X;
             Content.AutoSizeAxes = Axes.Y;
             Children = new Drawable[]
@@ -98,8 +99,8 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel.Desktop
                             Anchor = Anchor.TopCentre,
                             RelativeSizeAxes = Axes.X,
                             Width = content_width,
-                            Height = _playField != null ? 110.0f / 0.7f : 110,
-                            Scale = _playField != null ? new Vector2(0.7f) : new Vector2(1.0f), // if on playfield , make UI smaller
+                            Height = height,
+                            Scale = new Vector2(1.0f), // if on playfield , make UI smaller
                             Children = new Drawable[]
                             {
                                 //"sentence" introduce text

@@ -65,7 +65,7 @@ namespace osu.Game.Rulesets.Karaoke.UI
         public virtual void PostProcessLayer(KaraokeConfigManager manager)
         {
             //ProcessInput
-            var inputLayer = Layers.OfType<IAcceptControlLayer>().FirstOrDefault();
+            var inputLayer = Layers.OfType<IControlLayer>().FirstOrDefault();
             if (inputLayer != null)
             {
                 var acceeptsControlLayers = Layers.OfType<IAcceptControlLayer>();
@@ -81,7 +81,12 @@ namespace osu.Game.Rulesets.Karaoke.UI
             var platformLayers = Layers.OfType<IPlatformLayer>();
             foreach (var singleLayer in platformLayers)
             {
-                singleLayer.PlatformType.BindTo(manager.GetBindable<PlatformType>(KaraokeSetting.Device));
+                var bindable = manager.GetBindable<PlatformType>(KaraokeSetting.Device);
+                singleLayer.PlatformType.BindTo(bindable);
+
+                //if same then trigger change
+                if(singleLayer.PlatformType== bindable.Value)
+                    singleLayer.PlatformType.TriggerChange();
             }
         }
 

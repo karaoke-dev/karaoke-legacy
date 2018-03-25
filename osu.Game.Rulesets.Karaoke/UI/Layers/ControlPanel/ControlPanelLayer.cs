@@ -23,18 +23,8 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel
 
         public ControlPanelLayer(IAmKaraokeField playField = null)
         {
+            _playField = playField;
             PlatformType.ValueChanged += OnPlatformChanged;
-
-            KeyAction.ValueChanged += (newValue) =>
-            {
-                if (newValue != null && newValue.Press)
-                {
-                    if (newValue.KaraokeKeyAction == KaraokeKeyAction.OpenPanel)
-                    {
-                        _panelLayer?.ToggleVisibility();
-                    }
-                }
-            };
         }
     }
 }

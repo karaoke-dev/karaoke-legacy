@@ -13,7 +13,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Input
     /// <summary>
     /// this container is use for detect HotKey pressing
     /// </summary>
-    public partial class InputLayer : Container, IKeyBindingHandler<KaraokeKeyAction>, IControlLayer
+    public partial class InputLayer 
     {
         public BindableObject<KeyAction> KeyAction { get; set; } = new BindableObject<KeyAction>(null);
 
