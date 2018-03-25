@@ -3,6 +3,7 @@
 
 using osu.Framework.Graphics;
 using osu.Game.Graphics.UserInterface;
+using osu.Game.Rulesets.Karaoke.Input;
 using OpenTK;
 
 namespace osu.Game.Rulesets.Karaoke.UI.Layers.Input
@@ -24,7 +25,8 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Input
                     Text = "Panel",
                     Action = () =>
                     {
-                        _karaokePanelOverlay?.ToggleVisibility();
+                        //as press openPanel hotkey
+                        OnPressed(KaraokeKeyAction.OpenPanel);
                     }
                 }
             };

@@ -3,7 +3,6 @@
 
 using osu.Framework.Allocation;
 using osu.Game.Rulesets.Karaoke.Configuration;
-using osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel.Desktop;
 
 namespace osu.Game.Rulesets.Karaoke.UI.Layers.Input
 {
@@ -12,17 +11,13 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Input
     /// </summary>
     public partial class InputLayer
     {
-        private readonly KaraokePanelOverlay _karaokePanelOverlay;
         /// <summary>
         /// Ctor
         /// </summary>
-        /// <param name="karaokePanelOverlay"></param>
-        public InputLayer(KaraokePanelOverlay karaokePanelOverlay)
+        public InputLayer()
         {
-            _karaokePanelOverlay = karaokePanelOverlay;
             initialUi();
         }
-
 
         [BackgroundDependencyLoader(true)]
         private void load(KaraokeConfigManager manager)

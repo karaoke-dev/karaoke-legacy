@@ -125,6 +125,7 @@
     <Compile Include="UI\KaraokeBasePlayfield.Layer.cs" />
     <Compile Include="UI\Layers\ControlPanel\ControlPanelLayer.cs" />
     <Compile Include="UI\Layers\ControlPanel\Desktop\KaraokePanelOverlay.Panel.cs" />
+    <Compile Include="UI\Layers\ControlPanel\Type\IControlPanel.cs" />
     <Compile Include="UI\Layers\Dialog\DialogLayer.cs" />
     <Compile Include="UI\Layers\Effect\EffectLayer.cs" />
     <Compile Include="UI\Layers\Input\Action\KeyAction.cs" />

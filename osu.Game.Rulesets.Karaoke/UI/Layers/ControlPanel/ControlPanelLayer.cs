@@ -2,23 +2,39 @@
 // Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
 
 using osu.Framework.Configuration;
+using osu.Framework.Graphics.Containers;
 using osu.Game.Rulesets.Karaoke.Configuration;
+using osu.Game.Rulesets.Karaoke.Input;
+using osu.Game.Rulesets.Karaoke.UI.Interface;
 using osu.Game.Rulesets.Karaoke.UI.Layers.Input.Action;
 using osu.Game.Rulesets.Karaoke.UI.Layers.Type;
 
 namespace osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel
 {
-    public partial class ControlPanelLayer : IAcceptControlLayer, IPlatformLayer
+    public partial class ControlPanelLayer : Container, IAcceptControlLayer, IPlatformLayer
     {
-        public BindableObject<KeyAction> KeyAction { get; set; }
-        public BindableObject<TapAction> TapAction { get; set; }
-        public BindableObject<ScrollAction> ScrollAction { get; set; }
+        public BindableObject<KeyAction> KeyAction { get; set; } = new BindableObject<KeyAction>(null);
+        public BindableObject<TapAction> TapAction { get; set; } = new BindableObject<TapAction>(null);
+        public BindableObject<ScrollAction> ScrollAction { get; set; } = new BindableObject<ScrollAction>(null);
 
         public Bindable<PlatformType> PlatformType { get; set; } = new Bindable<PlatformType>();
 
-        public ControlPanelLayer()
+        private readonly IAmKaraokeField _playField;
+
+        public ControlPanelLayer(IAmKaraokeField playField = null)
         {
             PlatformType.ValueChanged += OnPlatformChanged;
+
+            KeyAction.ValueChanged += (newValue) =>
+            {
+                if (newValue != null && newValue.Press)
+                {
+                    if (newValue.KaraokeKeyAction == KaraokeKeyAction.OpenPanel)
+                    {
+                        _panelLayer?.ToggleVisibility();
+                    }
+                }
+            };
         }
     }
 }

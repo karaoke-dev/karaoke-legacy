@@ -72,8 +72,8 @@ namespace osu.Game.Rulesets.Karaoke.UI
                 foreach (var singleLayer in acceeptsControlLayers)
                 {
                     singleLayer.KeyAction.BindTo(inputLayer.KeyAction);
-                    singleLayer.ScrollAction.BindTo(inputLayer.ScrollAction);
                     singleLayer.TapAction.BindTo(inputLayer.TapAction);
+                    singleLayer.ScrollAction.BindTo(inputLayer.ScrollAction);
                 }
             }
 

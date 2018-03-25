@@ -5,6 +5,7 @@ using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Timing;
 using osu.Game.Rulesets.Karaoke.Mods.Types;
+using osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel;
 using osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel.Desktop;
 using osu.Game.Rulesets.Karaoke.UI.Layers.Input;
 using osu.Game.Rulesets.Karaoke.UI.Layers.Lyric;
@@ -14,7 +15,7 @@ namespace osu.Game.Rulesets.Karaoke.UI
 {
     public partial class KaraokePlayfield
     {
-        private KaraokePanelOverlay _karaokePanelOverlay;
+        private ControlPanelLayer _karaokePanelOverlay;
         private InputLayer _inputLayer;
 
         /// <summary>
@@ -23,7 +24,7 @@ namespace osu.Game.Rulesets.Karaoke.UI
         public override void InitialFrontendLayer()
         {
             //panel
-            KaraokeRulesetContainer.Add(_karaokePanelOverlay = new KaraokePanelOverlay(this)
+            KaraokeRulesetContainer.Add(_karaokePanelOverlay = new ControlPanelLayer(this)
             {
                 Clock = new FramedClock(new StopwatchClock(true)),
                 RelativeSizeAxes = Axes.X,
@@ -34,7 +35,7 @@ namespace osu.Game.Rulesets.Karaoke.UI
             });
 
             //Input layer
-            KaraokeRulesetContainer.Add(_inputLayer = new InputLayer(_karaokePanelOverlay)
+            KaraokeRulesetContainer.Add(_inputLayer = new InputLayer
             {
                 RelativeSizeAxes = Axes.Both,
                 Depth = -2,

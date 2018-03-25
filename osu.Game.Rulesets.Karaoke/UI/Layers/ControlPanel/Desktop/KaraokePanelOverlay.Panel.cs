@@ -7,7 +7,6 @@ using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Shapes;
 using osu.Game.Graphics;
 using osu.Game.Rulesets.Karaoke.UI.Extension;
-using osu.Game.Rulesets.Karaoke.UI.Interface;
 using osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel.Desktop.Pieces;
 using OpenTK;
 using OpenTK.Graphics;
@@ -16,23 +15,18 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel.Desktop
 {
     public partial class KaraokePanelOverlay
     {
-        private IAmKaraokeField PlayField;
+        
 
         private const float content_width = 0.8f;
 
         //define the position of object
         private const int one_layer_y_position = 30;
-
         private const int two_layer_y_position = 75;
         private const int object_height = 30;
         private const int start_x_positin = -60;
 
-        //panel container
-        private Container panelContainer;
-
         //TODO : all the setting object
         public KaraokeButton FirstLyricButton;
-
         public KaraokeButton PreviousLyricButton;
         public KaraokeButton NextLyricButton;
         public KaraokePlayPauseButton PlayPauseButton;
@@ -45,10 +39,10 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel.Desktop
 
         protected override void Update()
         {
-            if (PlayField != null && LoadComplete)
+            if (_playField != null && LoadComplete)
             {
                 //Update current time
-                double current = PlayField.GetCurrentTime();
+                double current = _playField.GetCurrentTime();
                 TimeSlideBar.CurrentTime = current;
             }
         }
@@ -98,14 +92,14 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel.Desktop
                     Children = new Drawable[]
                     {
                         // Body
-                        panelContainer = new Container
+                        new Container
                         {
                             Origin = Anchor.TopCentre,
                             Anchor = Anchor.TopCentre,
                             RelativeSizeAxes = Axes.X,
                             Width = content_width,
-                            Height = PlayField != null ? 110.0f / 0.7f : 110,
-                            Scale = PlayField != null ? new Vector2(0.7f) : new Vector2(1.0f), // if on playfield , make UI smaller
+                            Height = _playField != null ? 110.0f / 0.7f : 110,
+                            Scale = _playField != null ? new Vector2(0.7f) : new Vector2(1.0f), // if on playfield , make UI smaller
                             Children = new Drawable[]
                             {
                                 //"sentence" introduce text
@@ -125,7 +119,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel.Desktop
                                     Height = object_height,
                                     Text = "1",
                                     TooltipText = "Move to first sentence",
-                                    Action = () => { PlayField?.NavigationToFirst(); }
+                                    Action = () => { _playField?.NavigationToFirst(); }
                                 },
 
                                 //switch to previous sentence
@@ -137,7 +131,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel.Desktop
                                     Height = object_height,
                                     Text = "<-",
                                     TooltipText = "Move to previous sentence",
-                                    Action = () => { PlayField?.NavigationToPrevious(); }
+                                    Action = () => { _playField?.NavigationToPrevious(); }
                                 },
 
                                 //switch to next sentence
@@ -149,7 +143,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel.Desktop
                                     Height = object_height,
                                     Text = "->",
                                     TooltipText = "Move to next sentence",
-                                    Action = () => { PlayField?.NavigationToNext(); }
+                                    Action = () => { _playField?.NavigationToNext(); }
                                 },
 
                                 //"play" introduce text
@@ -172,16 +166,16 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel.Desktop
                                     Action = () =>
                                     {
                                         //TODO :
-                                        if (PlayField != null)
+                                        if (_playField != null)
                                         {
                                             if (PlayPauseButton.KaraokeShowingState == KaraokePlayState.Pause)
                                             {
-                                                PlayField?.Pause();
+                                                _playField?.Pause();
                                                 PlayPauseButton.KaraokeShowingState = KaraokePlayState.Play;
                                             }
                                             else
                                             {
-                                                PlayField?.Play();
+                                                _playField?.Play();
                                                 PlayPauseButton.KaraokeShowingState = KaraokePlayState.Pause;
                                             }
                                         }
@@ -194,9 +188,9 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel.Desktop
                                     Position = new Vector2(start_x_positin + 280, one_layer_y_position),
                                     Origin = Anchor.CentreLeft,
                                     Width = 500,
-                                    StartTime = PlayField != null ? (PlayField?.FirstObjectTime()).Value : 0,
-                                    EndTime = PlayField != null ? (PlayField?.LastObjectTime()).Value : 100000, //1:40
-                                    OnValueChanged = (eaa, newValue) => { PlayField?.NavigateToTime(newValue); },
+                                    StartTime = _playField != null ? (_playField?.FirstObjectTime()).Value : 0,
+                                    EndTime = _playField != null ? (_playField?.LastObjectTime()).Value : 100000, //1:40
+                                    OnValueChanged = (eaa, newValue) => { _playField?.NavigateToTime(newValue); },
                                 },
 
                                 //"speed" introduce
@@ -218,7 +212,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel.Desktop
                                     Value = 1,
                                     DefauleValue = 1,
                                     KeyboardStep = 0.05f,
-                                    OnValueChanged = (eaa, newValue) => { PlayField?.AdjustSpeed(newValue); },
+                                    OnValueChanged = (eaa, newValue) => { _playField?.AdjustSpeed(newValue); },
                                 },
 
                                 //"tone" introduce
@@ -240,7 +234,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel.Desktop
                                     Value = 1.0f,
                                     DefauleValue = 1,
                                     KeyboardStep = 0.05f,
-                                    OnValueChanged = (eaa, newValue) => { PlayField?.AdjustTone(newValue); },
+                                    OnValueChanged = (eaa, newValue) => { _playField?.AdjustTone(newValue); },
                                 },
 
                                 //"offset" introduce
@@ -262,7 +256,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel.Desktop
                                     Value = 0,
                                     DefauleValue = 0,
                                     KeyboardStep = 0.5f,
-                                    OnValueChanged = (eaa, newValue) => { PlayField?.AdjustlyricsOffset(newValue); },
+                                    OnValueChanged = (eaa, newValue) => { _playField?.AdjustlyricsOffset(newValue); },
                                 },
                             },
                         },
@@ -271,8 +265,8 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel.Desktop
             };
 
             //initialize value
-            SpeedSlider.Value = PlayField.GetSpeed();
-            ToneSlider.Value = PlayField.GetTone();
+            SpeedSlider.Value = _playField.GetSpeed();
+            ToneSlider.Value = _playField.GetTone();
 
             LoadComplete = true;
         }
