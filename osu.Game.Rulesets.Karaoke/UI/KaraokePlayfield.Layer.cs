@@ -5,6 +5,7 @@ using osu.Framework.Graphics;
 using osu.Framework.Timing;
 using osu.Game.Rulesets.Karaoke.Mods.Types;
 using osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel;
+using osu.Game.Rulesets.Karaoke.UI.Layers.Effect;
 using osu.Game.Rulesets.Karaoke.UI.Layers.Input;
 using osu.Game.Rulesets.Karaoke.UI.Layers.Lyric;
 using OpenTK;
@@ -15,6 +16,7 @@ namespace osu.Game.Rulesets.Karaoke.UI
     {
         private ControlPanelLayer _karaokePanelOverlay;
         private InputLayer _inputLayer;
+        private EffectLayer _effectLayer;
 
         /// <summary>
         /// Frontend
@@ -65,15 +67,11 @@ namespace osu.Game.Rulesets.Karaoke.UI
         /// </summary>
         public override void InitialBackendLayer()
         {
-            //create all layer if contains in mod
-            foreach (var singleMod in WorkingBeatmap.Mods.Value)
+            Add(_effectLayer = new EffectLayer()
             {
-                if (singleMod is IHasLayer iHasLayer)
-                {
-                    Add(iHasLayer.CreateNewLayer());
-                    break;
-                }
-            }
+               
+            });
+            Layers.Add(_effectLayer);
         }
     }
 }

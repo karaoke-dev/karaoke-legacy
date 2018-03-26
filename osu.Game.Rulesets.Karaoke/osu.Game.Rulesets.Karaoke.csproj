@@ -210,6 +210,7 @@
     <Compile Include="UI\Layers\Type\IAcceptControlLayer.cs" />
     <Compile Include="UI\Layers\Type\IControlLayer.cs" />
     <Compile Include="UI\Layers\Type\ILayer.cs" />
+    <Compile Include="UI\Layers\Type\IModLayer.cs" />
     <Compile Include="UI\Layers\Type\IPlatformLayer.cs" />
     <Compile Include="UI\Tool\KaraokeTool.cs" />
     <Compile Include="Wiki\KaraokeWikiHeader.cs" />

@@ -86,6 +86,12 @@ namespace osu.Game.Rulesets.Karaoke.UI
                 if (singleLayer.PlatformType == bindable.Value)
                     singleLayer.PlatformType.TriggerChange();
             }
+
+            var modLayers = Layers.OfType<IModLayer>();
+            foreach (var singleLayer in modLayers)
+            {
+                singleLayer.Mods.BindTo(WorkingBeatmap?.Mods);
+            }
         }
 
         #endregion

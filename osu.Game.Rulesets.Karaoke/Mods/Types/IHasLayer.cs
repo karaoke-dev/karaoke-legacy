@@ -2,6 +2,7 @@
 // Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
 
 using osu.Framework.Graphics.Containers;
+using osu.Game.Rulesets.Mods;
 
 namespace osu.Game.Rulesets.Karaoke.Mods.Types
 {
@@ -9,7 +10,7 @@ namespace osu.Game.Rulesets.Karaoke.Mods.Types
     /// if this mod has new layer
     /// use this
     /// </summary>
-    public interface IHasLayer
+    public interface IHasLayer : IApplicableMod
     {
         Container CreateNewLayer();
     }

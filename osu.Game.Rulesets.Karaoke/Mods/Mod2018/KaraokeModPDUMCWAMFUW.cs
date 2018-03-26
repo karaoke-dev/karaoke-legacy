@@ -11,7 +11,7 @@ namespace osu.Game.Rulesets.Karaoke.Mods.Mod2018
     /// <summary>
     /// Window$
     /// </summary>
-    public class KaraokeModPDUMCWAMFUW : Mod
+    public class KaraokeModPDUMCWAMFUW : Mod , IApplicableMod
     {
         public override string Name => "PDUMCWAMFUW";
         public override string ShortenedName => "PDUMCWAMFUW";
