@@ -79,9 +79,9 @@ namespace osu.Game.Rulesets.Karaoke
         public override string GetVariantName(int variant)
         {
             if (variant == 0)
-                return "Karaoke Key";
+                return "Karaoke Hotkey";
             else
-                return "Dialog Hotkey";
+                return "Editor Hotkey";
         }
 
         public override IEnumerable<BeatmapStatistic> GetBeatmapStatistics(WorkingBeatmap beatmap) => new[]
