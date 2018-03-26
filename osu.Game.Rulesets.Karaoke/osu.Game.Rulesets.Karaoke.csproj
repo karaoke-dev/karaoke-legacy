@@ -105,6 +105,7 @@
     <Compile Include="Input\KaraokeKeyAction.cs" />
     <Compile Include="Input\KaraokeScrollAction.cs" />
     <Compile Include="Input\KaraokeTapAction.cs" />
+    <Compile Include="Mods\Mod2018\KaraokeModPDUMCWAMFUW.cs" />
     <Compile Include="Objects\Drawables\Lyric\Types\IDrawableLyricBindable.cs" />
     <Compile Include="Objects\KaraokeCommercial.cs" />
     <Compile Include="Objects\LyricDictionary.cs" />
@@ -279,7 +280,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Mods\Mod2018\" />
     <Folder Include="UI\Layers\Input\Keyboard\" />
   </ItemGroup>
   <ItemGroup>
