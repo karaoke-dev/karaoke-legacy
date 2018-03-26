@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿// Copyright (c) 2007-2018 ppy Pty Ltd <contact@ppy.sh>.
+// Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
+
 using osu.Game.Graphics;
 using osu.Game.Rulesets.Mods;
 
@@ -11,7 +9,7 @@ namespace osu.Game.Rulesets.Karaoke.Mods.Mod2018
     /// <summary>
     /// Window$
     /// </summary>
-    public class KaraokeModPDUMCWAMFUW : Mod , IApplicableMod
+    public class KaraokeModPDUMCWAMFUW : Mod, IApplicableMod
     {
         public override string Name => "PDUMCWAMFUW";
         public override string ShortenedName => "PDUMCWAMFUW";

@@ -3,7 +3,6 @@
 
 using osu.Framework.Graphics;
 using osu.Framework.Timing;
-using osu.Game.Rulesets.Karaoke.Mods.Types;
 using osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel;
 using osu.Game.Rulesets.Karaoke.UI.Layers.Effect;
 using osu.Game.Rulesets.Karaoke.UI.Layers.Input;
@@ -69,7 +68,6 @@ namespace osu.Game.Rulesets.Karaoke.UI
         {
             Add(_effectLayer = new EffectLayer()
             {
-               
             });
             Layers.Add(_effectLayer);
         }
