@@ -204,8 +204,7 @@
     <Compile Include="UI\Layers\ControlPanel\Desktop\Pieces\WithUpAndDownButtonSlider.cs" />
     <Compile Include="Mods\KaraokeModSnow.cs" />
     <Compile Include="UI\Layers\Lyric\KaraokeLyricPlayField.cs" />
-    <Compile Include="UI\Layers\Input\TouchScreen\TouchScreenIntroducePlayField.cs" />
-    <Compile Include="UI\Layers\Input\TouchScreen\TouchScreenPlayField.cs" />
+    <Compile Include="UI\Layers\Input\Introduce\TouchScreenIntroduce.cs" />
     <Compile Include="UI\Layers\Note\KaraokeTonePlayfield.cs" />
     <Compile Include="UI\Layers\Type\IAcceptControlLayer.cs" />
     <Compile Include="UI\Layers\Type\IControlLayer.cs" />
@@ -280,9 +279,7 @@
       <Name>Symcol.Rulesets.Core</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="UI\Layers\Input\Keyboard\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <EmbeddedResource Include="Textures\Play\Karaoke\Layer\Snow\Snow.png" />
   </ItemGroup>
