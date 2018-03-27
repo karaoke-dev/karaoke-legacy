@@ -24,6 +24,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Input
         public InputLayer()
         {
             initialUi();
+            InitialTouchScreen();
         }
 
         [BackgroundDependencyLoader(true)]
