@@ -11,7 +11,9 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Input.Action
 
         public bool Touch { get; set; }
 
-        public double Value { get; set; }
+        public double TotalMovingPosition { get; set; }
+
+        public double RelativeMovingPosition { get; set; }
 
         /// <summary>
         /// Copy
@@ -25,7 +27,8 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Input.Action
             {
                 keyAction.KaraokeScrollAction = KaraokeScrollAction;
                 keyAction.Touch = Touch;
-                keyAction.Value = Value;
+                keyAction.TotalMovingPosition = TotalMovingPosition;
+                keyAction.RelativeMovingPosition = RelativeMovingPosition;
                 keyAction.Initialize();
             }
             return result;
