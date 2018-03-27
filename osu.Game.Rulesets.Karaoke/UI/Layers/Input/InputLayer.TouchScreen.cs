@@ -1,6 +1,8 @@
 ﻿// Copyright (c) 2007-2018 ppy Pty Ltd <contact@ppy.sh>.
 // Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
 
+using System;
+using System.Timers;
 using osu.Framework.Input;
 using osu.Game.Rulesets.Karaoke.Configuration;
 using osu.Game.Rulesets.Karaoke.Input;
@@ -20,23 +22,68 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Input
         //judge the direction when moving more then this pixal
         private double _judgePixal = 20;
 
+        //Hold time
+        private Timer _timer = new Timer()
+        {
+            Interval = 200,
+        };
+
+        protected void InitialTouchScreen()
+        {
+            _timer.Elapsed += (a, b) =>
+            {
+                _timer.Stop();
+                //TODO : Hold
+            };
+        }
+
         protected override bool OnMouseDown(InputState state, MouseDownEventArgs args)
         {
+            _timer.Start();
             return base.OnMouseDown(state, args);
         }
 
         protected override bool OnMouseMove(InputState state)
         {
+            var mouseDownPosition = state.Mouse.PositionMouseDown ?? state.Mouse.Position;
+            var nowPosition = state.Mouse.Position;
+            var movingPosition = nowPosition - mouseDownPosition;
+
+            //if noe scroll mode
+            if (_moveDirection == Vector2.Zero)
+            {
+                _moveDirection = new Vector2((int)(movingPosition.X / _judgePixal), (int)(movingPosition.Y / _judgePixal));
+                _timer.Stop();
+            }
+            else//scroll mode
+            {
+                
+            }
             return base.OnMouseMove(state);
         }
 
         protected override bool OnMouseUp(InputState state, MouseUpEventArgs args)
         {
-            if (_moveDirection == Vector2.Zero)
+            if (_moveDirection == Vector2.Zero)//tap mode
             {
 
             }
+            else//scroll mode
+            {
+                
+            }
+
+            //clear direction
+            _moveDirection = Vector2.Zero;
+            _timer.Stop();
+
             return base.OnMouseUp(state, args);
+        }
+
+        protected override bool OnDoubleClick(InputState state)
+        {
+            return base.OnDoubleClick(state);
+            //TODO: trigger double tap
         }
 
         /// <summary>
