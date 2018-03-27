@@ -103,6 +103,8 @@
     <Compile Include="Input\KaraokeKeyAction.cs" />
     <Compile Include="Input\KaraokeScrollAction.cs" />
     <Compile Include="Input\KaraokeTapAction.cs" />
+    <Compile Include="Mods\Types\IHasSsr.cs" />
+    <Compile Include="Mods\Types\IHasSsrPlus.cs" />
     <Compile Include="Objects\Drawables\Lyric\Types\IDrawableLyricBindable.cs" />
     <Compile Include="Objects\KaraokeCommercial.cs" />
     <Compile Include="Objects\LyricDictionary.cs" />
