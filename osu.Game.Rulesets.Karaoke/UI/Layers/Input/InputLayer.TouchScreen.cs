@@ -31,6 +31,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Input
             _timer.Elapsed += (a, b) =>
             {
                 _timer.Stop();
+
                 var tapConfig = MobileScrollAnixConfig.Value.TagConfigs[TouchScreenTapInteractive.Hold];
                 OnTap(tapConfig);
             };
@@ -59,13 +60,15 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Input
             {
                 if (_moveDirection.X != 0)
                 {
-                    OnScroll(MobileScrollAnixConfig.Value.ScrollConfigs[TouchScreenScrollInteractive.XAnix], true,
-                        deltaPosition.X, movingPosition.X);
+                    SingleAnixConfig singleAnixConfig;
+                    if (MobileScrollAnixConfig.Value.ScrollConfigs.TryGetValue(TouchScreenScrollInteractive.XAnix, out singleAnixConfig))
+                        OnScroll(singleAnixConfig, true, deltaPosition.X, movingPosition.X);
                 }
                 else if (_moveDirection.Y != 0)
                 {
-                    OnScroll(MobileScrollAnixConfig.Value.ScrollConfigs[TouchScreenScrollInteractive.XAnix], true,
-                        deltaPosition.Y, movingPosition.Y);
+                    SingleAnixConfig singleAnixConfig;
+                    if (MobileScrollAnixConfig.Value.ScrollConfigs.TryGetValue(TouchScreenScrollInteractive.YAnix, out singleAnixConfig))
+                        OnScroll(singleAnixConfig, true, deltaPosition.Y, movingPosition.Y);
                 }
             }
             return base.OnMouseMove(state);
@@ -81,20 +84,23 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Input
 
             if (_moveDirection == Vector2.Zero)//tap mode
             {
-                var tapConfig = MobileScrollAnixConfig.Value.TagConfigs[TouchScreenTapInteractive.SingleTap];
-                OnTap(tapConfig);
+                TapConfig tapConfig;
+                if (MobileScrollAnixConfig.Value.TagConfigs.TryGetValue(TouchScreenTapInteractive.SingleTap, out tapConfig))
+                    OnTap(tapConfig);
             }
             else//scroll mode
             {
                 if (_moveDirection.X != 0)
                 {
-                    OnScroll(MobileScrollAnixConfig.Value.ScrollConfigs[TouchScreenScrollInteractive.XAnix], true,
-                        deltaPosition.X, movingPosition.X);
+                    SingleAnixConfig singleAnixConfig;
+                    if(MobileScrollAnixConfig.Value.ScrollConfigs.TryGetValue(TouchScreenScrollInteractive.XAnix, out singleAnixConfig))
+                    OnScroll(singleAnixConfig, false,deltaPosition.X, movingPosition.X);
                 }
                 else if (_moveDirection.Y != 0)
                 {
-                    OnScroll(MobileScrollAnixConfig.Value.ScrollConfigs[TouchScreenScrollInteractive.XAnix], true,
-                        deltaPosition.Y, movingPosition.Y);
+                    SingleAnixConfig singleAnixConfig;
+                    if (MobileScrollAnixConfig.Value.ScrollConfigs.TryGetValue(TouchScreenScrollInteractive.YAnix, out singleAnixConfig))
+                        OnScroll(singleAnixConfig, false, deltaPosition.Y, movingPosition.Y);
                 }
             }
 
@@ -108,8 +114,9 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Input
         protected override bool OnDoubleClick(InputState state)
         {
             //trigger double tap
-            var tapConfig = MobileScrollAnixConfig.Value.TagConfigs[TouchScreenTapInteractive.DoubleTap];
-            OnTap(tapConfig);
+            TapConfig tapConfig;
+            if (MobileScrollAnixConfig.Value.TagConfigs.TryGetValue(TouchScreenTapInteractive.DoubleTap, out tapConfig))
+                OnTap(tapConfig);
 
             return base.OnDoubleClick(state); 
         }
