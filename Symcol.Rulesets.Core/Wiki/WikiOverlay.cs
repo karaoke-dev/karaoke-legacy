@@ -17,6 +17,9 @@ namespace Symcol.Rulesets.Core.Wiki
         protected abstract WikiHeader Header { get; }
         protected abstract WikiSection[] Sections { get; }
 
+        protected const int APPEAR_DURATION = 500;
+        protected const int DISAPPEAR_DURATION = 500;
+
         private WikiSection lastSection;
         private SectionsContainer<WikiSection> sectionsContainer;
         private WikiTabControl tabs;
@@ -25,10 +28,10 @@ namespace Symcol.Rulesets.Core.Wiki
 
         public WikiOverlay()
         {
-            FirstWaveColour = OsuColour.Gray(0.4f);
-            SecondWaveColour = OsuColour.Gray(0.3f);
-            ThirdWaveColour = OsuColour.Gray(0.2f);
-            FourthWaveColour = OsuColour.Gray(0.1f);
+            //FirstWaveColour = OsuColour.Gray(0.4f);
+            //SecondWaveColour = OsuColour.Gray(0.3f);
+            //ThirdWaveColour = OsuColour.Gray(0.2f);
+            //FourthWaveColour = OsuColour.Gray(0.1f);
 
             RelativeSizeAxes = Axes.Both;
             RelativePositionAxes = Axes.Both;

@@ -50,10 +50,10 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel.Desktop
 
         protected void InitialPanel()
         {
-            FirstWaveColour = OsuColour.FromHex(@"19b0e2").Opacity(50);
-            SecondWaveColour = OsuColour.FromHex(@"2280a2").Opacity(50);
-            ThirdWaveColour = OsuColour.FromHex(@"005774").Opacity(50);
-            FourthWaveColour = OsuColour.FromHex(@"003a4e").Opacity(50);
+            //FirstWaveColour = OsuColour.FromHex(@"19b0e2").Opacity(50);
+            //SecondWaveColour = OsuColour.FromHex(@"2280a2").Opacity(50);
+            //ThirdWaveColour = OsuColour.FromHex(@"005774").Opacity(50);
+            //FourthWaveColour = OsuColour.FromHex(@"003a4e").Opacity(50);
             //FourthWaveColour = new Color4(0, 0, 0, 0);
 
             Height = height;

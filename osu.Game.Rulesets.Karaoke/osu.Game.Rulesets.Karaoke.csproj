@@ -30,7 +30,7 @@
   <ItemGroup Label="Package References">
     <PackageReference Include="HtmlAgilityPack" Version="1.7.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="2.0.1" />
-    <PackageReference Include="NUnit" Version="3.8.1" />
+    <PackageReference Include="NUnit" Version="3.10.1" />
   </ItemGroup>
   <ItemGroup Label="Resources">
     <EmbeddedResource Include="Resources\**\*.*" />
