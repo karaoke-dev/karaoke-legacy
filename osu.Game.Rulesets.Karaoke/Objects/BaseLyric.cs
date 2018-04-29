@@ -162,7 +162,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         /// Splits the by progress point.
         /// </summary>
         /// <returns>The by progress point.</returns>
-        public List<Lyric> SplitByProgressPoint()
+        public List<BaseLyric> SplitByProgressPoint()
         {
             //TODO : implement
             return null;

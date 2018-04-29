@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using osu.Framework.Configuration;
 using osu.Framework.Graphics;
 using osu.Game.Rulesets.Karaoke.Configuration;
+using osu.Game.Rulesets.Karaoke.Objects;
 using osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric;
 using osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric.Types;
 using osu.Game.Rulesets.Karaoke.UI.Layers.Type;
@@ -135,7 +136,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Lyric
         /// </summary>
         /// <param name="karaokeField"></param>
         /// <returns></returns>
-        public List<Objects.Lyric> GetListKaraokeObjects()
+        public List<BaseLyric> GetListKaraokeObjects()
         {
             return KaraokeRulesetContainer.Beatmap.HitObjects;
         }
@@ -168,7 +169,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Lyric
         /// </summary>
         /// <param name="karaokeField"></param>
         /// <param name="lyric"></param>
-        public static void UpdateObjectCombo(Objects.Lyric lyric)
+        public static void UpdateObjectCombo(BaseLyric lyric)
         {
         }
 

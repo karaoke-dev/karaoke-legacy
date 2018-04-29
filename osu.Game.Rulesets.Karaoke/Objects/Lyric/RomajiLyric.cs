@@ -5,8 +5,7 @@ using osu.Game.Rulesets.Karaoke.Objects.Lyric.Types;
 
 namespace osu.Game.Rulesets.Karaoke.Objects.Lyric
 {
-    public class JpLyric : RomajiLyric , IHasFurigana
+    public class RomajiLyric : BaseLyric , IHasRomaji
     {
-
     }
 }

@@ -10,7 +10,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric.Types
         /// <summary>
         /// Object
         /// </summary>
-        Objects.Lyric Lyric { get; }
+        BaseLyric Lyric { get; }
 
         /// <summary>
         /// singer

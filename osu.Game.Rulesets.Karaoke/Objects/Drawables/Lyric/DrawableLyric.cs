@@ -19,7 +19,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
     /// <summary>
     /// Karaoke Text
     /// </summary>
-    public class DrawableLyric : DrawableHitObject<Objects.Lyric>, IDrawableLyricParameter, IDrawableLyricBindable
+    public class DrawableLyric : DrawableHitObject<BaseLyric>, IDrawableLyricParameter, IDrawableLyricBindable
     {
         //Const
         public const float TIME_FADEIN = 100;
@@ -64,7 +64,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
         /// Gets the karaoke object.
         /// </summary>
         /// <value>The karaoke object.</value>
-        public Objects.Lyric Lyric => HitObject;
+        public BaseLyric Lyric => HitObject;
 
 
         /// <summary>
@@ -109,7 +109,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
         //Drawable
         public TextsAndMask TextsAndMaskPiece { get; set; } = new TextsAndMask();
 
-        public DrawableLyric(Objects.Lyric hitObject)
+        public DrawableLyric(BaseLyric hitObject)
             : base(hitObject)
         {
             Alpha = 0;
@@ -203,7 +203,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
                 //show subtext
                 if (styleValue.SubTextVislbility)
                 {
-                    subTexts = Lyric.SubTexts.ToDictionary(k => k.Key, v => templateValue?.TopText + v.Value + new FormattedText()
+                    subTexts = Lyric.Furigana.ToDictionary(k => k.Key, v => templateValue?.TopText + v.Value + new FormattedText()
                     {
                         X = getxPosition(v.Key),
                     });
