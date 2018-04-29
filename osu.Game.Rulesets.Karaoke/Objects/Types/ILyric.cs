@@ -3,13 +3,14 @@
 
 using System.Collections.Generic;
 using osu.Game.Rulesets.Karaoke.Configuration;
+using osu.Game.Rulesets.Karaoke.Objects.Lyric.Types;
 
 namespace osu.Game.Rulesets.Karaoke.Objects.Types
 {
     /// <summary>
     /// define the basic class of karaoke object
     /// </summary>
-    public interface ILyric
+    public interface ILyric : IHasLangCode , IHasLyricVersion
     {
         /// <summary>
         /// Main Text list 
@@ -36,10 +37,5 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Types
         /// singer index
         /// </summary>
         int? SingerIndex { get; set; }
-
-        /// <summary>
-        /// translate code
-        /// </summary>
-        TranslateCode TranslateCode { get; set; }
     }
 }

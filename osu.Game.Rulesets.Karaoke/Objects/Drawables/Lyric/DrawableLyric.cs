@@ -46,7 +46,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
         public BindableObject<SingerTemplate> SingerTemplate { get; set; } = new BindableObject<SingerTemplate>(new SingerTemplate());
 
         /// <summary>
-        /// TranslateCode
+        /// Lang
         /// </summary>
         public Bindable<TranslateCode> TranslateCode { get; set; } = new Bindable<TranslateCode>();
 

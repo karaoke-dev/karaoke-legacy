@@ -139,7 +139,12 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         /// get translate code
         /// </summary>
         /// <value>The translate code.</value>
-        public TranslateCode TranslateCode { get; set; }
+        public TranslateCode Lang { get; set; }
+
+        /// <summary>
+        /// Version of the lyric
+        /// </summary>
+        public virtual int Ver { get; set; } = 0;
 
 
         #region Function
@@ -173,6 +178,9 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         #endregion
     }
 
+    /// <summary>
+    /// Main Text List
+    /// </summary>
     public class MainTextList : LyricDictionary<int, MainText>, IHasText
     {
         [JsonIgnore] public string Delimiter = "";
@@ -212,6 +220,9 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         }
     }
 
+    /// <summary>
+    /// Main Text
+    /// </summary>
     public class MainText : TextComponent
     {
 
