@@ -93,13 +93,6 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         public MainTextList Lyric { get; set; } = new MainTextList();
 
         /// <summary>
-        /// list romaji text
-        /// </summary>
-        // TODO : [set] cannot set here
-        // TODO : [get] get the value is combine from list
-        public RomajiTextList Romaji { get; set; } = new RomajiTextList();
-
-        /// <summary>
         /// record list time where position goes
         /// </summary>
         public LyricProgressPointList ProgressPoints { get; set; } = new LyricProgressPointList();

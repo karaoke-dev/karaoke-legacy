@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using osu.Game.Rulesets.Karaoke.Configuration;
 using osu.Game.Rulesets.Karaoke.Objects;
+using osu.Game.Rulesets.Karaoke.Objects.Lyric;
 using osu.Game.Rulesets.Karaoke.Objects.Lyric.Types;
 using osu.Game.Rulesets.Karaoke.Online.API.Romaj.RomajiServer;
 
@@ -52,10 +53,14 @@ namespace osu.Game.Rulesets.Karaoke.Tools.Romaji
                     var character = single.Result[i];
 
                     //romaji
-                    singleTranslate.Romaji.Add(i, new RomajiText()
+                    if (singleTranslate is IHasRomaji romajiLyric)
                     {
-                        Text = character.Romaji,
-                    });
+
+                        romajiLyric.Romaji.Add(i, new RomajiText()
+                        {
+                            Text = character.Romaji,
+                        });
+                    }
 
                     //means it is kanji
                     if (character.Type == 0)

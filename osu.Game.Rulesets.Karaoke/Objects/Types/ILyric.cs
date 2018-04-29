@@ -17,11 +17,6 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Types
         MainTextList Lyric { get; set; }
 
         /// <summary>
-        /// romaji text list
-        /// </summary>
-        RomajiTextList Romaji { get; set; }
-
-        /// <summary>
         /// list progress point
         /// </summary>
         LyricProgressPointList ProgressPoints { get; set; }
