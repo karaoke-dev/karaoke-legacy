@@ -160,7 +160,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables
         /// <summary>
         /// Delete single point
         /// </summary>
-        public void DeletePoint(KeyValuePair<int, LyricProgressPoint> point)
+        public void DeletePoint(KeyValuePair<int, LyricTimeLine> point)
         {
             if (Lyric.ProgressPoints.Count > 1)
             {

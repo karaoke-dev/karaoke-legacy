@@ -6,13 +6,13 @@ namespace osu.Game.Rulesets.Karaoke.Objects
     /// <summary>
     /// record what time the 
     /// </summary>
-    public class LyricProgressPoint
+    public class LyricTimeLine
     {
-        public LyricProgressPoint()
+        public LyricTimeLine()
         {
         }
 
-        public LyricProgressPoint(double time)
+        public LyricTimeLine(double time)
         {
             RelativeTime = time;
         }

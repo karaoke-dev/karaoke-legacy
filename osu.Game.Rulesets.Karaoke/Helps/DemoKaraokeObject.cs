@@ -48,10 +48,10 @@ namespace osu.Game.Rulesets.Karaoke.Helps
             {
                 Text = "お",
             });
-            karaokeObject.ProgressPoints.Add(0, new LyricProgressPoint(0));
-            karaokeObject.ProgressPoints.Add(1, new LyricProgressPoint(500));
-            karaokeObject.ProgressPoints.Add(5, new LyricProgressPoint(1000));
-            karaokeObject.ProgressPoints.Add(11, new LyricProgressPoint(1500));
+            karaokeObject.ProgressPoints.Add(0, new LyricTimeLine(0));
+            karaokeObject.ProgressPoints.Add(1, new LyricTimeLine(500));
+            karaokeObject.ProgressPoints.Add(5, new LyricTimeLine(1000));
+            karaokeObject.ProgressPoints.Add(11, new LyricTimeLine(1500));
 
             return karaokeObject;
         }
@@ -71,9 +71,9 @@ namespace osu.Game.Rulesets.Karaoke.Helps
             });
             karaokeObject.StartTime = startTime;
 
-            karaokeObject.ProgressPoints.Add(0, new LyricProgressPoint(duration / 5));
-            karaokeObject.ProgressPoints.Add(9, new LyricProgressPoint(duration / 4));
-            karaokeObject.ProgressPoints.Add(11, new LyricProgressPoint(duration));
+            karaokeObject.ProgressPoints.Add(0, new LyricTimeLine(duration / 5));
+            karaokeObject.ProgressPoints.Add(9, new LyricTimeLine(duration / 4));
+            karaokeObject.ProgressPoints.Add(11, new LyricTimeLine(duration));
 
             karaokeObject.Romaji.Add(0, new RomajiText("o"));
             karaokeObject.Romaji.Add(1, new RomajiText("wa"));

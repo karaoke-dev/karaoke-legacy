@@ -11,7 +11,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects
     /// list Progress point
     /// [Note : key is mapped in Char index, not Dictionary's index]
     /// </summary>
-    public class LyricProgressPointList : LyricDictionary<int, LyricProgressPoint>
+    public class LyricTimeLineList : LyricDictionary<int, LyricTimeLine>
     {
         [JsonIgnore]
         public double MinimumTime { get; set; } = 100;
@@ -22,7 +22,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         /// </summary>
         /// <param name="nowRelativeTime"></param>
         /// <returns></returns>
-        public KeyValuePair<int, LyricProgressPoint> GetFirstProgressPointByTime(double nowRelativeTime)
+        public KeyValuePair<int, LyricTimeLine> GetFirstProgressPointByTime(double nowRelativeTime)
         {
             /*
             var index = this.FirstOrDefault(x => x.Value.RelativeTime > nowRelativeTime).Key;
@@ -44,8 +44,8 @@ namespace osu.Game.Rulesets.Karaoke.Objects
 
             var maxResult = Find(result.Keys.Max());
 
-            if (maxResult.Equals(default(KeyValuePair<int, LyricProgressPoint>)))
-                return new KeyValuePair<int, LyricProgressPoint>(-1, new LyricProgressPoint(0));
+            if (maxResult.Equals(default(KeyValuePair<int, LyricTimeLine>)))
+                return new KeyValuePair<int, LyricTimeLine>(-1, new LyricTimeLine(0));
 
             return maxResult.Value;
         }
@@ -56,7 +56,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         /// <param name="lyric"></param>
         /// <param name="nowRelativeTime"></param>
         /// <returns></returns>
-        public KeyValuePair<int, LyricProgressPoint>? GetLastProgressPointByTime(double nowRelativeTime)
+        public KeyValuePair<int, LyricTimeLine>? GetLastProgressPointByTime(double nowRelativeTime)
         {
             /*
             var point = this.FirstOrDefault(x => x.Value.RelativeTime > nowRelativeTime);
@@ -78,7 +78,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects
 
             var maxResult = Find(result.Keys.Max());
 
-            if (maxResult.Equals(default(KeyValuePair<int, LyricProgressPoint>)))
+            if (maxResult.Equals(default(KeyValuePair<int, LyricTimeLine>)))
             {
                 var key = Keys.Max();
                 return Find(key);
@@ -92,7 +92,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         /// </summary>
         /// <param name="charIndex"></param>
         /// <returns></returns>
-        public KeyValuePair<int, LyricProgressPoint> GetFirstProgressPointByIndex(int charIndex)
+        public KeyValuePair<int, LyricTimeLine> GetFirstProgressPointByIndex(int charIndex)
         {
             var result = FindPrevioud(charIndex).Value;
             return result;
@@ -103,7 +103,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         /// </summary>
         /// <param name="charIndex"></param>
         /// <returns></returns>
-        public KeyValuePair<int, LyricProgressPoint> GetLastProgressPointByIndex(int charIndex)
+        public KeyValuePair<int, LyricTimeLine> GetLastProgressPointByIndex(int charIndex)
         {
             /*
             var point = this.FirstOrDefault(x => x.Key > charIndex);
@@ -119,7 +119,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         /// </summary>
         /// <returns><c>true</c>, if progress point was added, <c>false</c> otherwise.</returns>
         /// <param name="karaokeObject">Karaoke object.</param>
-        public new void Add(int key, LyricProgressPoint point)
+        public new void Add(int key, LyricTimeLine point)
         {
             if (this.Any(x => x.Value.RelativeTime == point.RelativeTime))
                 return;

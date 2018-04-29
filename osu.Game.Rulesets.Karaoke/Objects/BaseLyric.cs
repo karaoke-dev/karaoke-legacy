@@ -95,7 +95,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         /// <summary>
         /// record list time where position goes
         /// </summary>
-        public LyricProgressPointList ProgressPoints { get; set; } = new LyricProgressPointList();
+        public LyricTimeLineList ProgressPoints { get; set; } = new LyricTimeLineList();
 
         /// <summary>
         /// all the translate for a single language

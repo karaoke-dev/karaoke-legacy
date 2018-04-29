@@ -24,7 +24,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Pieces
         };
 
         //public 
-        public KeyValuePair<int, LyricProgressPoint> LyricProgressPoint { get; set; }
+        public KeyValuePair<int, LyricTimeLine> LyricProgressPoint { get; set; }
 
         public DrawableKaraokeThumbnail DrawableKaraokeThumbnail { get; set; } //Parent
         public int IndexOfObject => LyricProgressPoint.Key;
@@ -97,7 +97,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Pieces
             Selected = false;
         }
 
-        public EditableProgressPoint(DrawableKaraokeThumbnail drawableKaraokeThumbnail, KeyValuePair<int, LyricProgressPoint> lyricProgressPoin)
+        public EditableProgressPoint(DrawableKaraokeThumbnail drawableKaraokeThumbnail, KeyValuePair<int, LyricTimeLine> lyricProgressPoin)
         {
             DrawableKaraokeThumbnail = drawableKaraokeThumbnail;
             LyricProgressPoint = lyricProgressPoin;
