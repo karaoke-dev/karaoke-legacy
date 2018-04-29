@@ -5,23 +5,5 @@ using osu.Game.Rulesets.Karaoke.Objects.Types;
 
 namespace osu.Game.Rulesets.Karaoke.Objects
 {
-    /// <summary>
-    /// use to record romaji
-    /// </summary>
-    public class RomajiText : TextComponent, IHasEndIndex
-    {
-        public RomajiText()
-        {
-        }
-
-        public RomajiText(string str)
-        {
-            Text = str;
-        }
-
-        /// <summary>
-        /// relativa to textIndex
-        /// </summary>
-        public int? Length { get; set; }
-    }
+   
 }
