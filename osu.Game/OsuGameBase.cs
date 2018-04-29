@@ -100,6 +100,9 @@ namespace osu.Game
         [BackgroundDependencyLoader]
         private void load()
         {
+            //TODO : add for karaoke ruleset
+            Resources.AddStore(new DllResourceStore(@"osu.Game.Rulesets.Karaoke.dll"));
+
             dependencies.Cache(contextFactory = new DatabaseContextFactory(Host));
 
             dependencies.Cache(new LargeTextureStore(new RawTextureLoaderStore(new NamespacedResourceStore<byte[]>(Resources, @"Textures"))));
