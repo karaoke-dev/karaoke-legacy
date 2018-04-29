@@ -11,13 +11,13 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Lyric
         /// <summary>
         /// Furigana
         /// </summary>
-        public Dictionary<int, SubText> Furigana { get; set; } = new Dictionary<int, SubText>();
+        public Dictionary<int, FuriganaText> Furigana { get; set; } = new Dictionary<int, FuriganaText>();
     }
 
     /// <summary>
     /// sub text
     /// </summary>
-    public class SubText : TextComponent, IHasEndIndex
+    public class FuriganaText : TextComponent, IHasEndIndex
     {
         /// <summary>
         /// relativa to textIndex

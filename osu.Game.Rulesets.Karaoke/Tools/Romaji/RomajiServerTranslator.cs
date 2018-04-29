@@ -67,7 +67,7 @@ namespace osu.Game.Rulesets.Karaoke.Tools.Romaji
                     {
                         if (singleTranslate is IHasFurigana furiganaLyric)
                         {
-                            furiganaLyric.Furigana.Add(i, new SubText()
+                            furiganaLyric.Furigana.Add(i, new FuriganaText()
                             {
                                 Text = character.Katakana,
                             });

@@ -12,6 +12,6 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Lyric.Types
         /// <summary>
         /// Furigana
         /// </summary>
-        Dictionary<int, SubText> Furigana { get; }
+        Dictionary<int, FuriganaText> Furigana { get; }
     }
 }

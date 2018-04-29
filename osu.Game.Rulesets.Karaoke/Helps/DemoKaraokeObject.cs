@@ -19,11 +19,11 @@ namespace osu.Game.Rulesets.Karaoke.Helps
             var karaokeObject = new JpLyric();
             karaokeObject.Lyric = MainTextList.SetJapaneseLyric("終わるまでは終わらないよ");
             karaokeObject.Position = new Vector2(300, 150);
-            karaokeObject.Furigana.Add(0, new SubText
+            karaokeObject.Furigana.Add(0, new FuriganaText
             {
                 Text = "お",
             });
-            karaokeObject.Furigana.Add(6, new SubText
+            karaokeObject.Furigana.Add(6, new FuriganaText
             {
                 Text = "お",
             });
@@ -40,11 +40,11 @@ namespace osu.Game.Rulesets.Karaoke.Helps
             var karaokeObject = new JpLyric();
             karaokeObject.Lyric = MainTextList.SetJapaneseLyric("終わるまでは終わらないよ");
             karaokeObject.Position = new Vector2(300, 150);
-            karaokeObject.Furigana.Add(0, new SubText
+            karaokeObject.Furigana.Add(0, new FuriganaText
             {
                 Text = "お",
             });
-            karaokeObject.Furigana.Add(6, new SubText
+            karaokeObject.Furigana.Add(6, new FuriganaText
             {
                 Text = "お",
             });
@@ -61,11 +61,11 @@ namespace osu.Game.Rulesets.Karaoke.Helps
             var karaokeObject = new JpLyric();
             karaokeObject.Lyric = MainTextList.SetJapaneseLyric("終わるまでは終わらないよ");
             karaokeObject.Position = new Vector2(300, 150);
-            karaokeObject.Furigana.Add(0, new SubText
+            karaokeObject.Furigana.Add(0, new FuriganaText
             {
                 Text = "お",
             });
-            karaokeObject.Furigana.Add(6, new SubText
+            karaokeObject.Furigana.Add(6, new FuriganaText
             {
                 Text = "お",
             });
@@ -96,12 +96,12 @@ namespace osu.Game.Rulesets.Karaoke.Helps
             return new JpLyric()
             {
                 Lyric = MainTextList.SetJapaneseLyric("カラオケ"),
-                Furigana = new Dictionary<int, SubText>()
+                Furigana = new Dictionary<int, FuriganaText>()
                 {
-                    { 0, new SubText() { Text = "か" } },
-                    { 1, new SubText() { Text = "ら" } },
-                    { 2, new SubText() { Text = "お" } },
-                    { 3, new SubText() { Text = "け" } },
+                    { 0, new FuriganaText() { Text = "か" } },
+                    { 1, new FuriganaText() { Text = "ら" } },
+                    { 2, new FuriganaText() { Text = "お" } },
+                    { 3, new FuriganaText() { Text = "け" } },
                 },
                 Romaji = new RomajiTextList()
                 {
