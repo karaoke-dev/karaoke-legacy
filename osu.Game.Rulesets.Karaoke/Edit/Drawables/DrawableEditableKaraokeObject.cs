@@ -37,7 +37,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables
             new OsuMenuItem(@"Destructive option", MenuItemType.Destructive),
         };
 
-        public DrawableEditableKaraokeObject(Lyric hitObject)
+        public DrawableEditableKaraokeObject(BaseLyric hitObject)
             : base(hitObject)
         {
             DrawableKaraokeThumbnail = new DrawableKaraokeThumbnail(Lyric)

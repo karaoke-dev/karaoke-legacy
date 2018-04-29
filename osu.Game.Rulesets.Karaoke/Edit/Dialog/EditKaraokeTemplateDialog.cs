@@ -18,11 +18,11 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog
 
         public LyricTemplate KarokeTemplate { get; set; } = new LyricTemplate();
 
-        public Lyric Lyric { get; set; } = DemoKaraokeObject.GenerateDeomKaraokeLyric();
+        public BaseLyric Lyric { get; set; } = DemoKaraokeObject.GenerateDeomKaraokeLyric();
 
         protected DrawableKaraokeTemplate DrawableKaraokeTemplate;
 
-        public EditKaraokeTemplateDialog(KaraokeEditPlayfield editPlayField, Lyric demoKaraokeText)
+        public EditKaraokeTemplateDialog(KaraokeEditPlayfield editPlayField, BaseLyric demoKaraokeText)
         {
             //KarokeTemplate =
 

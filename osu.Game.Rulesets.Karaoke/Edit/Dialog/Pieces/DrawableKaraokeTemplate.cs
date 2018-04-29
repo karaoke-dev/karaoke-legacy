@@ -42,7 +42,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
         //don't update by time
         public override bool ProgressUpdateByTime => false;
 
-        public DrawableKaraokeTemplate(Lyric hitObject)
+        public DrawableKaraokeTemplate(BaseLyric hitObject)
             : base(hitObject)
         {
             var templateValue = Template.Value;

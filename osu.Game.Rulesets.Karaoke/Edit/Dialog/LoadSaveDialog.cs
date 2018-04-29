@@ -61,7 +61,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog
         public void ShowSerializeResult()
         {
             //get list object
-            List<Lyric> beatmap = new List<Lyric>();
+            List<BaseLyric> beatmap = new List<BaseLyric>();
             //1. get result
             var result = JsonConvert.SerializeObject(beatmap);
             //2. fill in textbox
@@ -72,7 +72,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog
         {
             string textboxString = LoadSaveTextbox.Text;
             //1. get result
-            List<Lyric> result = JsonConvert.DeserializeObject<List<Lyric>>(textboxString);
+            List<BaseLyric> result = JsonConvert.DeserializeObject<List<BaseLyric>>(textboxString);
             //2. update result to playFiled
         }
     }

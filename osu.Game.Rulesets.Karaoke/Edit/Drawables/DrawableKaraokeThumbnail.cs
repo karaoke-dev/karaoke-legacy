@@ -17,7 +17,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables
     /// </summary>
     public class DrawableKaraokeThumbnail : Container
     {
-        public Lyric Lyric { get; set; }
+        public BaseLyric Lyric { get; set; }
 
         //if change zoon,call this
         public float Ratio = 0.3f;
@@ -36,7 +36,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables
 
         protected FillFlowContainer<EditableProgressPoint> ListEditableProgressPoint { get; set; } = new FillFlowContainer<EditableProgressPoint>();
 
-        public DrawableKaraokeThumbnail(Lyric lyric)
+        public DrawableKaraokeThumbnail(BaseLyric lyric)
         {
             Lyric = lyric;
             Add(ListEditableProgressPoint);

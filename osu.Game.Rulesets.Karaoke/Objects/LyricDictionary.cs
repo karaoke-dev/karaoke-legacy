@@ -8,7 +8,7 @@ using System.Linq;
 namespace osu.Game.Rulesets.Karaoke.Objects
 {
     /// <summary>
-    /// Lyric Dictionary
+    /// BaseLyric Dictionary
     /// </summary>
     /// <typeparam name="Key"></typeparam>
     /// <typeparam name="Value"></typeparam>

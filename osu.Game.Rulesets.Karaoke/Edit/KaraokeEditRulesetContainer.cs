@@ -25,9 +25,9 @@ namespace osu.Game.Rulesets.Karaoke.Edit
         /// </summary>
         /// <param name="h"></param>
         /// <returns></returns>
-        protected override DrawableHitObject<Lyric> GetVisualRepresentation(Lyric h)
+        protected override DrawableHitObject<BaseLyric> GetVisualRepresentation(BaseLyric h)
         {
-            if (h is Lyric karaokeObject)
+            if (h is BaseLyric karaokeObject)
             {
                 return new DrawableEditableKaraokeObject(karaokeObject);
             }

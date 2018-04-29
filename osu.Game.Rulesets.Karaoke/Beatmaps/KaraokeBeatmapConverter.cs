@@ -11,12 +11,12 @@ using osu.Game.Rulesets.Objects.Types;
 
 namespace osu.Game.Rulesets.Karaoke.Beatmaps
 {
-    internal class KaraokeBeatmapConverter : BeatmapConverter<Lyric>
+    internal class KaraokeBeatmapConverter : BeatmapConverter<BaseLyric>
     {
         protected override IEnumerable<Type> ValidConversionTypes { get; } = new[] { typeof(IHasPosition) };
 
 
-        protected override IEnumerable<Lyric> ConvertHitObject(HitObject original, Beatmap beatmap)
+        protected override IEnumerable<BaseLyric> ConvertHitObject(HitObject original, Beatmap beatmap)
         {
             var curveData = original as IHasCurve;
             var endTimeData = original as IHasEndTime;
@@ -24,7 +24,7 @@ namespace osu.Game.Rulesets.Karaoke.Beatmaps
             var comboData = original as IHasCombo;
 
 
-            yield return (Lyric)original;
+            yield return (BaseLyric)original;
 
             /*
             if (curveData != null)
@@ -73,10 +73,10 @@ namespace osu.Game.Rulesets.Karaoke.Beatmaps
         /// </summary>
         /// <param name="original">The un-converted Beatmap.</param>
         /// <returns>The converted Beatmap.</returns>
-        protected override Beatmap<Lyric> ConvertBeatmap(Beatmap original)
+        protected override Beatmap<BaseLyric> ConvertBeatmap(Beatmap original)
         {
             //TODO : ・ｽﾒ考Mania・ｽ・ｽ・ｽ・ｽ・ｽ・ｽ・ｽ
-            var newBratmaps = new Beatmap<Lyric>()
+            var newBratmaps = new Beatmap<BaseLyric>()
             {
                 BeatmapInfo = original.BeatmapInfo,
                 ControlPointInfo = original.ControlPointInfo,
@@ -86,9 +86,9 @@ namespace osu.Game.Rulesets.Karaoke.Beatmaps
             return newBratmaps;
         }
 
-        protected List<Lyric> Convert(List<HitObject> originalHitOjects)
+        protected List<BaseLyric> Convert(List<HitObject> originalHitOjects)
         {
-            List<Lyric> listRerturn = new List<Lyric>();
+            List<BaseLyric> listRerturn = new List<BaseLyric>();
 
             for (int i = 0; i < originalHitOjects.Count; i++)
             {

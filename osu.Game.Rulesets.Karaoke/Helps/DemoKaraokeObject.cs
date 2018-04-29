@@ -13,9 +13,9 @@ namespace osu.Game.Rulesets.Karaoke.Helps
     /// </summary>
     public static class DemoKaraokeObject
     {
-        public static Lyric WithoutProgressPoint()
+        public static BaseLyric WithoutProgressPoint()
         {
-            var karaokeObject = new Lyric();
+            var karaokeObject = new BaseLyric();
             karaokeObject.MainText = MainTextList.SetJapaneseLyric("終わるまでは終わらないよ");
             karaokeObject.Position = new Vector2(300, 150);
             karaokeObject.SubTexts.Add(0, new SubText
@@ -34,9 +34,9 @@ namespace osu.Game.Rulesets.Karaoke.Helps
         /// generate normal demo 001
         /// </summary>
         /// <returns></returns>
-        public static Lyric GenerateDemo001()
+        public static BaseLyric GenerateDemo001()
         {
-            var karaokeObject = new Lyric();
+            var karaokeObject = new BaseLyric();
             karaokeObject.MainText = MainTextList.SetJapaneseLyric("終わるまでは終わらないよ");
             karaokeObject.Position = new Vector2(300, 150);
             karaokeObject.SubTexts.Add(0, new SubText
@@ -55,9 +55,9 @@ namespace osu.Game.Rulesets.Karaoke.Helps
             return karaokeObject;
         }
 
-        public static Lyric GenerateWithStartAndDuration(double startTime, double duration)
+        public static BaseLyric GenerateWithStartAndDuration(double startTime, double duration)
         {
-            var karaokeObject = new Lyric();
+            var karaokeObject = new BaseLyric();
             karaokeObject.MainText = MainTextList.SetJapaneseLyric("終わるまでは終わらないよ");
             karaokeObject.Position = new Vector2(300, 150);
             karaokeObject.SubTexts.Add(0, new SubText
@@ -90,9 +90,9 @@ namespace osu.Game.Rulesets.Karaoke.Helps
             return karaokeObject;
         }
 
-        public static Lyric GenerateDeomKaraokeLyric()
+        public static BaseLyric GenerateDeomKaraokeLyric()
         {
-            return new Lyric()
+            return new BaseLyric()
             {
                 MainText = MainTextList.SetJapaneseLyric("カラオケ"),
                 SubTexts = new Dictionary<int, SubText>()

@@ -23,9 +23,9 @@ namespace osu.Game.Rulesets.Karaoke.Tools.Romaji
         /// <param name="sourceLangeCode"></param>
         /// <param name="translateListString"></param>
         /// <returns></returns>
-        public async Task<Lyric> Translate(TranslateCode code, Lyric translateListString)
+        public async Task<BaseLyric> Translate(TranslateCode code, BaseLyric translateListString)
         {
-            return (await Translate(code, new List<Lyric>() { translateListString })).FirstOrDefault();
+            return (await Translate(code, new List<BaseLyric>() { translateListString })).FirstOrDefault();
         }
 
 
@@ -35,15 +35,15 @@ namespace osu.Game.Rulesets.Karaoke.Tools.Romaji
         /// <param name="sourceLangeCode"></param>
         /// <param name="translateListString"></param>
         /// <returns></returns>
-        public async Task<List<Lyric>> Translate(TranslateCode code, List<Lyric> translateListString)
+        public async Task<List<BaseLyric>> Translate(TranslateCode code, List<BaseLyric> translateListString)
         {
-            List<Lyric> listTranslate = new List<Lyric>();
+            List<BaseLyric> listTranslate = new List<BaseLyric>();
             var result = await RomajiServerApi.Translate(code, translateListString.Select(x => x.MainText.Text).ToList());
 
             //convert each sentence
             foreach (var single in result)
             {
-                var singleTranslate = new Lyric();
+                var singleTranslate = new BaseLyric();
 
                 //convert from Translatersult to lyruc
                 for (int i = 0; i < single.Result.Count; i++)

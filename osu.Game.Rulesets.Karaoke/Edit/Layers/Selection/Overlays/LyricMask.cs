@@ -7,7 +7,7 @@ using osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric;
 namespace osu.Game.Rulesets.Karaoke.Edit.Layers.Selection.Overlays
 {
     /// <summary>
-    /// Drawable Lyric Mask
+    /// Drawable BaseLyric Mask
     /// </summary>
     public class LyricMask : HitObjectMask
     {

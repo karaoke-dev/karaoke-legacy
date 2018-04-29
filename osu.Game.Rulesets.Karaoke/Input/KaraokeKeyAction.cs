@@ -8,11 +8,11 @@ namespace osu.Game.Rulesets.Karaoke.Input
     public enum KaraokeKeyAction
     {
         //KaraokeGamePlay
-        [Description("First Lyric")] FirstLyric, // 1 ,number_1
+        [Description("First BaseLyric")] FirstLyric, // 1 ,number_1
 
-        [Description("Previous Lyric")] PreviousLyric, // left
+        [Description("Previous BaseLyric")] PreviousLyric, // left
 
-        [Description("Next Lyric")] NextLyric, //right
+        [Description("Next BaseLyric")] NextLyric, //right
 
         [Description("PlayAndPause")] PlayAndPause, //space
 
@@ -28,11 +28,11 @@ namespace osu.Game.Rulesets.Karaoke.Input
 
         [Description("Reset Tone")] ResetTone, //X
 
-        [Description("Increase Lyric Appear Time")] IncreaseLyricAppearTime, //E
+        [Description("Increase BaseLyric Appear Time")] IncreaseLyricAppearTime, //E
 
-        [Description("Decrease Lyric Appear Time")] DecreaseLyricAppearTime, //D
+        [Description("Decrease BaseLyric Appear Time")] DecreaseLyricAppearTime, //D
 
-        [Description("Reset Lyric Appear Time")] ResetLyricAppearTime, //C
+        [Description("Reset BaseLyric Appear Time")] ResetLyricAppearTime, //C
 
         [Description("Panel key")] OpenPanel, //P
     }

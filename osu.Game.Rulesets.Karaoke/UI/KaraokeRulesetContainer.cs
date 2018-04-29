@@ -20,7 +20,7 @@ using OpenTK;
 
 namespace osu.Game.Rulesets.Karaoke.UI
 {
-    public class KaraokeRulesetContainer : RulesetContainer<Lyric>
+    public class KaraokeRulesetContainer : RulesetContainer<BaseLyric>
     {
         protected KaraokeConfigManager ConfigManager;
 
@@ -32,9 +32,9 @@ namespace osu.Game.Rulesets.Karaoke.UI
 
         public override ScoreProcessor CreateScoreProcessor() => new KaraokeScoreProcessor(this);
 
-        protected override BeatmapConverter<Lyric> CreateBeatmapConverter() => new KaraokeBeatmapConverter();
+        protected override BeatmapConverter<BaseLyric> CreateBeatmapConverter() => new KaraokeBeatmapConverter();
 
-        protected override BeatmapProcessor<Lyric> CreateBeatmapProcessor() => new KaraokeBeatmapProcessor();
+        protected override BeatmapProcessor<BaseLyric> CreateBeatmapProcessor() => new KaraokeBeatmapProcessor();
 
         protected override Playfield CreatePlayfield()
         {
@@ -52,9 +52,9 @@ namespace osu.Game.Rulesets.Karaoke.UI
 
         public override PassThroughInputManager CreateInputManager() => new KaraokeInputManager(Ruleset.RulesetInfo);
 
-        protected override DrawableHitObject<Lyric> GetVisualRepresentation(Lyric h)
+        protected override DrawableHitObject<BaseLyric> GetVisualRepresentation(BaseLyric h)
         {
-            if (h is Lyric karaokeObject)
+            if (h is BaseLyric karaokeObject)
             {
                 return new DrawableLyric(karaokeObject);
             }

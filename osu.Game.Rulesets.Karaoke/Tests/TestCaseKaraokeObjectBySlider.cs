@@ -15,7 +15,7 @@ namespace osu.Game.Rulesets.Karaoke.Tests
 {
     [TestFixture]
     [Ignore("getting CI working")]
-    [System.ComponentModel.Description("Test Lyric By Slider")]
+    [System.ComponentModel.Description("Test BaseLyric By Slider")]
     public class TestCaseKaraokeObjectBySlider : OsuTestCase
     {
         /// <summary>
@@ -23,7 +23,7 @@ namespace osu.Game.Rulesets.Karaoke.Tests
         /// </summary>
         public DrawableLyric DrawableKaraokeObject { get; set; }
 
-        public Lyric Lyric { get; set; }
+        public BaseLyric Lyric { get; set; }
 
         [BackgroundDependencyLoader]
         private void load(RulesetStore rulesets)

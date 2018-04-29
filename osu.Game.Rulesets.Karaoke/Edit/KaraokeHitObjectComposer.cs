@@ -26,9 +26,9 @@ namespace osu.Game.Rulesets.Karaoke.Edit
 
         protected override IReadOnlyList<ICompositionTool> CompositionTools => new ICompositionTool[]
         {
-            new HitObjectCompositionTool<Lyric>(), //karaoke object
+            new HitObjectCompositionTool<BaseLyric>(), //karaoke object
             //new HitObjectCompositionTool<FormattedText>(),//add subtext to karaoke Object
-            //new HitObjectCompositionTool<LyricTranslate>(),//add translate to Lyric
+            //new HitObjectCompositionTool<LyricTranslate>(),//add translate to BaseLyric
         };
 
         protected override ScalableContainer CreateLayerContainer() => new ScalableContainer(KaraokeBasePlayfield.BASE_SIZE.X) { RelativeSizeAxes = Axes.Both };

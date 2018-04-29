@@ -98,7 +98,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog
         private void initialItemsScrollContainerItems()
         {
             var listObjects = PlayField?.KaraokeLyricPlayField.ListDrawableKaraokeObject ?? new List<IDrawableLyricParameter>();
-            var listKaraokeObjects = new List<Lyric>();
+            var listKaraokeObjects = new List<BaseLyric>();
             foreach (var single in listObjects)
                 listKaraokeObjects.Add(single.Lyric);
 
@@ -106,7 +106,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog
         }
     }
 
-    public class ListTranslateScrollContainer : TableView<Lyric, TranslateCell>
+    public class ListTranslateScrollContainer : TableView<BaseLyric, TranslateCell>
     {
         public ListTranslateScrollContainer()
         {
@@ -122,14 +122,14 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog
         }
     }
 
-    public class TranslateCell : KaraokeBaseTableViewCell<Lyric>
+    public class TranslateCell : KaraokeBaseTableViewCell<BaseLyric>
     {
-        public RevertableTextbox LyricsTextbox { get; set; } //Lyric
+        public RevertableTextbox LyricsTextbox { get; set; } //BaseLyric
         public RevertableTextbox TranslateTextbox { get; set; } //Translate
 
         public FillFlowContainer<Drawable> FillFlowContainer { get; set; }
 
-        public override Lyric BeatmapSetInfo
+        public override BaseLyric BeatmapSetInfo
         {
             get => base.BeatmapSetInfo;
             set

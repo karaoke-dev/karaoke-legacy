@@ -101,7 +101,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
 
         /// <summary>
         /// Gets or sets a value indicating whether this
-        /// <see cref="T:osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric.DrawableKaraokeObject"/> progress update by time.
+        /// <see cref="T:osu.Game.Rulesets.Karaoke.Objects.Drawables.BaseLyric.DrawableKaraokeObject"/> progress update by time.
         /// </summary>
         /// <value><c>true</c> if progress update by time; otherwise, <c>false</c>.</value>
         public virtual bool ProgressUpdateByTime { get; set; } = true;

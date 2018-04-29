@@ -102,7 +102,7 @@ namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
 
     public class RomajiMenuSettings : SettingsSubsection
     {
-        protected override string Header => "Lyric Config";
+        protected override string Header => "BaseLyric Config";
 
         public BindableObject<KaraokeLyricConfig> Bindnig { get; set; } = new BindableObject<KaraokeLyricConfig>(new KaraokeLyricConfig());
 

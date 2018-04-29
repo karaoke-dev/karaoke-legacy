@@ -93,13 +93,13 @@ namespace osu.Game.Rulesets.Karaoke
             new BeatmapStatistic
             {
                 Name = @"Circle count",
-                Content = beatmap.Beatmap.HitObjects.Count(h => h is Lyric).ToString(),
+                Content = beatmap.Beatmap.HitObjects.Count(h => h is BaseLyric).ToString(),
                 Icon = FontAwesome.fa_dot_circle_o
             },
             new BeatmapStatistic
             {
                 Name = @"Slider count",
-                Content = beatmap.Beatmap.HitObjects.Count(h => h is Lyric).ToString(),
+                Content = beatmap.Beatmap.HitObjects.Count(h => h is BaseLyric).ToString(),
                 Icon = FontAwesome.fa_circle_o
             }
         };

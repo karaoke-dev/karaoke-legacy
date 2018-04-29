@@ -80,9 +80,9 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Lyric
             /*
             //get template 
             LyricTemplate template = null;
-            if (drawableKaraokeObject.Lyric.TemplateIndex != null)
+            if (drawableKaraokeObject.BaseLyric.TemplateIndex != null)
             {
-                template = GetListKaraokeTemplate()[drawableKaraokeObject.Lyric.TemplateIndex.Value];
+                template = GetListKaraokeTemplate()[drawableKaraokeObject.BaseLyric.TemplateIndex.Value];
             }
 
             //setting drawable by template
