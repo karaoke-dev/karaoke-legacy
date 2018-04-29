@@ -103,7 +103,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         /// <summary>
         /// List little aid text,like japanese's text
         /// </summary>
-        public Dictionary<int, SubText> SubTexts { get; set; } = new Dictionary<int, SubText>();
+        public Dictionary<int, SubText> Furigana { get; set; } = new Dictionary<int, SubText>();
 
 
         /// <summary>

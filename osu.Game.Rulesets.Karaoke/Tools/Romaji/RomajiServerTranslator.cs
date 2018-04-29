@@ -59,7 +59,7 @@ namespace osu.Game.Rulesets.Karaoke.Tools.Romaji
                     //means it is kanji
                     if (character.Type == 0)
                     {
-                        singleTranslate.SubTexts.Add(i, new SubText()
+                        singleTranslate.Furigana.Add(i, new SubText()
                         {
                             Text = character.Katakana,
                         });

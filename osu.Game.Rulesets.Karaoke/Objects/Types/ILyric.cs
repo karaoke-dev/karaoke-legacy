@@ -19,7 +19,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Types
         /// <summary>
         /// subText list
         /// </summary>
-        Dictionary<int, SubText> SubTexts { get; set; }
+        Dictionary<int, SubText> Furigana { get; set; }
 
         /// <summary>
         /// romaji text list
