@@ -34,5 +34,11 @@
   </ItemGroup>
   <ItemGroup Label="Resources">
     <EmbeddedResource Include="Resources\**\*.*" />
+    <EmbeddedResource Include="Beatmaps\**\*" />
+    <EmbeddedResource Include="Fonts\**\*" />
+    <EmbeddedResource Include="Samples\**\*" />
+    <EmbeddedResource Include="Shaders\**\*" />
+    <EmbeddedResource Include="Textures\**\*" />
+    <EmbeddedResource Include="Tracks\**\*" />
   </ItemGroup>
 </Project>
