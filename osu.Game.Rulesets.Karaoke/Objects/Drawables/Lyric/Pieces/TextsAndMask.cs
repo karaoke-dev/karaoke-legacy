@@ -20,7 +20,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric.Pieces
 
         private float _maskHeight;
 
-        //MainText
+        //Lyric
         public MainKaraokeText MainText => RightSideText.MainKaraokeText;
 
         //TopText

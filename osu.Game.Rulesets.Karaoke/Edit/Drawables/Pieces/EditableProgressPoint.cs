@@ -56,13 +56,13 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Pieces
             {
                 if (IndexOfObject == 0)
                 {
-                    return DrawableKaraokeThumbnail.Lyric.MainText.Text.Substring(0, LyricProgressPoint.Key + 1);
+                    return DrawableKaraokeThumbnail.Lyric.Lyric.Text.Substring(0, LyricProgressPoint.Key + 1);
                 }
                 else
                 {
                     var thisCharIndex = LyricProgressPoint.Key;
                     var lastTime = DrawableKaraokeThumbnail.Lyric.ProgressPoints.FindPrevioud(IndexOfObject).Value.Key;
-                    return DrawableKaraokeThumbnail.Lyric.MainText.Text.Substring(lastTime + 1, thisCharIndex - lastTime);
+                    return DrawableKaraokeThumbnail.Lyric.Lyric.Text.Substring(lastTime + 1, thisCharIndex - lastTime);
                 }
             }
         }

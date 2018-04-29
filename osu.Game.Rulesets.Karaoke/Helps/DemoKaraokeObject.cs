@@ -16,7 +16,7 @@ namespace osu.Game.Rulesets.Karaoke.Helps
         public static BaseLyric WithoutProgressPoint()
         {
             var karaokeObject = new BaseLyric();
-            karaokeObject.MainText = MainTextList.SetJapaneseLyric("終わるまでは終わらないよ");
+            karaokeObject.Lyric = MainTextList.SetJapaneseLyric("終わるまでは終わらないよ");
             karaokeObject.Position = new Vector2(300, 150);
             karaokeObject.Furigana.Add(0, new SubText
             {
@@ -37,7 +37,7 @@ namespace osu.Game.Rulesets.Karaoke.Helps
         public static BaseLyric GenerateDemo001()
         {
             var karaokeObject = new BaseLyric();
-            karaokeObject.MainText = MainTextList.SetJapaneseLyric("終わるまでは終わらないよ");
+            karaokeObject.Lyric = MainTextList.SetJapaneseLyric("終わるまでは終わらないよ");
             karaokeObject.Position = new Vector2(300, 150);
             karaokeObject.Furigana.Add(0, new SubText
             {
@@ -58,7 +58,7 @@ namespace osu.Game.Rulesets.Karaoke.Helps
         public static BaseLyric GenerateWithStartAndDuration(double startTime, double duration)
         {
             var karaokeObject = new BaseLyric();
-            karaokeObject.MainText = MainTextList.SetJapaneseLyric("終わるまでは終わらないよ");
+            karaokeObject.Lyric = MainTextList.SetJapaneseLyric("終わるまでは終わらないよ");
             karaokeObject.Position = new Vector2(300, 150);
             karaokeObject.Furigana.Add(0, new SubText
             {
@@ -74,18 +74,18 @@ namespace osu.Game.Rulesets.Karaoke.Helps
             karaokeObject.ProgressPoints.Add(9, new LyricProgressPoint(duration / 4));
             karaokeObject.ProgressPoints.Add(11, new LyricProgressPoint(duration));
 
-            karaokeObject.RomajiTextListRomajiTexts.Add(0, new RomajiText("o"));
-            karaokeObject.RomajiTextListRomajiTexts.Add(1, new RomajiText("wa"));
-            karaokeObject.RomajiTextListRomajiTexts.Add(2, new RomajiText("ru"));
-            karaokeObject.RomajiTextListRomajiTexts.Add(3, new RomajiText("ma"));
-            karaokeObject.RomajiTextListRomajiTexts.Add(4, new RomajiText("de"));
-            karaokeObject.RomajiTextListRomajiTexts.Add(5, new RomajiText("wa"));
-            karaokeObject.RomajiTextListRomajiTexts.Add(6, new RomajiText("o"));
-            karaokeObject.RomajiTextListRomajiTexts.Add(7, new RomajiText("wa"));
-            karaokeObject.RomajiTextListRomajiTexts.Add(8, new RomajiText("ra"));
-            karaokeObject.RomajiTextListRomajiTexts.Add(9, new RomajiText("na"));
-            karaokeObject.RomajiTextListRomajiTexts.Add(10, new RomajiText("i"));
-            karaokeObject.RomajiTextListRomajiTexts.Add(11, new RomajiText("yo"));
+            karaokeObject.Romaji.Add(0, new RomajiText("o"));
+            karaokeObject.Romaji.Add(1, new RomajiText("wa"));
+            karaokeObject.Romaji.Add(2, new RomajiText("ru"));
+            karaokeObject.Romaji.Add(3, new RomajiText("ma"));
+            karaokeObject.Romaji.Add(4, new RomajiText("de"));
+            karaokeObject.Romaji.Add(5, new RomajiText("wa"));
+            karaokeObject.Romaji.Add(6, new RomajiText("o"));
+            karaokeObject.Romaji.Add(7, new RomajiText("wa"));
+            karaokeObject.Romaji.Add(8, new RomajiText("ra"));
+            karaokeObject.Romaji.Add(9, new RomajiText("na"));
+            karaokeObject.Romaji.Add(10, new RomajiText("i"));
+            karaokeObject.Romaji.Add(11, new RomajiText("yo"));
 
             return karaokeObject;
         }
@@ -94,7 +94,7 @@ namespace osu.Game.Rulesets.Karaoke.Helps
         {
             return new BaseLyric()
             {
-                MainText = MainTextList.SetJapaneseLyric("カラオケ"),
+                Lyric = MainTextList.SetJapaneseLyric("カラオケ"),
                 Furigana = new Dictionary<int, SubText>()
                 {
                     { 0, new SubText() { Text = "か" } },
@@ -102,7 +102,7 @@ namespace osu.Game.Rulesets.Karaoke.Helps
                     { 2, new SubText() { Text = "お" } },
                     { 3, new SubText() { Text = "け" } },
                 },
-                RomajiTextListRomajiTexts = new RomajiTextList()
+                Romaji = new RomajiTextList()
                 {
                     { 0, new RomajiText() { Text = "ka" } },
                     { 1, new RomajiText() { Text = "ra" } },

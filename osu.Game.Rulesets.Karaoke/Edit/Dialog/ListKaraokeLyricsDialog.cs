@@ -94,7 +94,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog
             set
             {
                 base.BeatmapSetInfo = value;
-                LyricsTextbox.OldValue = BeatmapSetInfo?.MainText?.Text;
+                LyricsTextbox.OldValue = BeatmapSetInfo?.Lyric?.Text;
                 StartTimeTextbox.OldValue = BeatmapSetInfo?.StartTime ?? 0;
                 EndTimeTextbox.OldValue = BeatmapSetInfo?.EndTime ?? 0;
             }

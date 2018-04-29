@@ -135,7 +135,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog
             set
             {
                 base.BeatmapSetInfo = value;
-                LyricsTextbox.OldValue = BeatmapSetInfo?.MainText?.Text;
+                LyricsTextbox.OldValue = BeatmapSetInfo?.Lyric?.Text;
             }
         }
 

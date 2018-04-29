@@ -14,7 +14,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Types
         /// <summary>
         /// Main Text list 
         /// </summary>
-        MainTextList MainText { get; set; }
+        MainTextList Lyric { get; set; }
 
         /// <summary>
         /// subText list
@@ -24,7 +24,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Types
         /// <summary>
         /// romaji text list
         /// </summary>
-        RomajiTextList RomajiTextListRomajiTexts { get; set; }
+        RomajiTextList Romaji { get; set; }
 
         /// <summary>
         /// list progress point

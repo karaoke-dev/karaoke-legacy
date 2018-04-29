@@ -171,12 +171,12 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
 
                 if (styleValue.RomajiFirst)
                 {
-                    mainText = Lyric.RomajiTextListRomajiTexts.ToDictionary(k => k.Key, v => (TextComponent)v.Value);
+                    mainText = Lyric.Romaji.ToDictionary(k => k.Key, v => (TextComponent)v.Value);
                     mainTextDelimiter = " ";
                 }
                 else
                 {
-                    mainText = Lyric.MainText.ToDictionary(k => k.Key, v => (TextComponent)v.Value);
+                    mainText = Lyric.Lyric.ToDictionary(k => k.Key, v => (TextComponent)v.Value);
                 }
                 //main text
                 TextsAndMaskPiece.AddMainText(templateValue?.MainText, mainText.ToDictionary(k => k.Key, v => (TextComponent)v.Value), mainTextDelimiter);
@@ -186,14 +186,14 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
                 {
                     if (styleValue.RomajiFirst)
                     {
-                        bottomTexts = Lyric.MainText.ToDictionary(k => k.Key, v => templateValue?.BottomText + v.Value + new FormattedText()
+                        bottomTexts = Lyric.Lyric.ToDictionary(k => k.Key, v => templateValue?.BottomText + v.Value + new FormattedText()
                         {
                             X = getxPosition(v.Key),
                         });
                     }
                     else
                     {
-                        bottomTexts = Lyric.RomajiTextListRomajiTexts.ToDictionary(k => k.Key, v => templateValue?.BottomText + v.Value + new FormattedText()
+                        bottomTexts = Lyric.Romaji.ToDictionary(k => k.Key, v => templateValue?.BottomText + v.Value + new FormattedText()
                         {
                             X = getxPosition(v.Key),
                         });
