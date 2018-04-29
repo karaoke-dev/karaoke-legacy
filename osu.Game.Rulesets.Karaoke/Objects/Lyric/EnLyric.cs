@@ -4,7 +4,8 @@ using System.Text;
 
 namespace osu.Game.Rulesets.Karaoke.Objects.Lyric
 {
-    public class EnLyric
+    public class EnLyric : BaseLyric
     {
+
     }
 }

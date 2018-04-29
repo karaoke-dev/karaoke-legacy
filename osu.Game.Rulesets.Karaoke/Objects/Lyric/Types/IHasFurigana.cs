@@ -10,7 +10,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Lyric.Types
     public interface IHasFurigana
     {
         /// <summary>
-        /// 
+        /// Furigana
         /// </summary>
         Dictionary<int, SubText> Furigana { get; }
     }

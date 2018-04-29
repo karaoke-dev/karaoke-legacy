@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using osu.Game.Rulesets.Karaoke.Configuration;
 using osu.Game.Rulesets.Karaoke.Objects;
+using osu.Game.Rulesets.Karaoke.Objects.Lyric.Types;
 using osu.Game.Rulesets.Karaoke.Online.API.Romaj.RomajiServer;
 
 namespace osu.Game.Rulesets.Karaoke.Tools.Romaji
@@ -59,10 +60,14 @@ namespace osu.Game.Rulesets.Karaoke.Tools.Romaji
                     //means it is kanji
                     if (character.Type == 0)
                     {
-                        singleTranslate.Furigana.Add(i, new SubText()
+                        if (singleTranslate is IHasFurigana furiganaLyric)
                         {
-                            Text = character.Katakana,
-                        });
+                            furiganaLyric.Furigana.Add(i, new SubText()
+                            {
+                                Text = character.Katakana,
+                            });
+                        }
+                        
                     }
                 }
 

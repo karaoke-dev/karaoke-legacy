@@ -10,6 +10,7 @@ using osu.Framework.IO.Stores;
 using osu.Game.Rulesets.Karaoke.Configuration;
 using osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric.Pieces;
 using osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric.Types;
+using osu.Game.Rulesets.Karaoke.Objects.Lyric.Types;
 using osu.Game.Rulesets.Objects.Drawables;
 using OpenTK;
 using OpenTK.Graphics;
@@ -203,10 +204,13 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
                 //show subtext
                 if (styleValue.SubTextVislbility)
                 {
-                    subTexts = Lyric.Furigana.ToDictionary(k => k.Key, v => templateValue?.TopText + v.Value + new FormattedText()
+                    if (Lyric is IHasFurigana furiganaLyric)
                     {
-                        X = getxPosition(v.Key),
-                    });
+                        subTexts = furiganaLyric.Furigana.ToDictionary(k => k.Key, v => templateValue?.TopText + v.Value + new FormattedText()
+                        {
+                            X = getxPosition(v.Key),
+                        });
+                    }
                 }
 
                 //show sub text

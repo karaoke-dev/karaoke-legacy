@@ -4,6 +4,7 @@
 using System.Collections.Generic;
 using osu.Game.Rulesets.Karaoke.Configuration;
 using osu.Game.Rulesets.Karaoke.Objects;
+using osu.Game.Rulesets.Karaoke.Objects.Lyric;
 using OpenTK;
 
 namespace osu.Game.Rulesets.Karaoke.Helps
@@ -13,9 +14,9 @@ namespace osu.Game.Rulesets.Karaoke.Helps
     /// </summary>
     public static class DemoKaraokeObject
     {
-        public static BaseLyric WithoutProgressPoint()
+        public static JpLyric WithoutProgressPoint()
         {
-            var karaokeObject = new BaseLyric();
+            var karaokeObject = new JpLyric();
             karaokeObject.Lyric = MainTextList.SetJapaneseLyric("終わるまでは終わらないよ");
             karaokeObject.Position = new Vector2(300, 150);
             karaokeObject.Furigana.Add(0, new SubText
@@ -34,9 +35,9 @@ namespace osu.Game.Rulesets.Karaoke.Helps
         /// generate normal demo 001
         /// </summary>
         /// <returns></returns>
-        public static BaseLyric GenerateDemo001()
+        public static JpLyric GenerateDemo001()
         {
-            var karaokeObject = new BaseLyric();
+            var karaokeObject = new JpLyric();
             karaokeObject.Lyric = MainTextList.SetJapaneseLyric("終わるまでは終わらないよ");
             karaokeObject.Position = new Vector2(300, 150);
             karaokeObject.Furigana.Add(0, new SubText
@@ -55,9 +56,9 @@ namespace osu.Game.Rulesets.Karaoke.Helps
             return karaokeObject;
         }
 
-        public static BaseLyric GenerateWithStartAndDuration(double startTime, double duration)
+        public static JpLyric GenerateWithStartAndDuration(double startTime, double duration)
         {
-            var karaokeObject = new BaseLyric();
+            var karaokeObject = new JpLyric();
             karaokeObject.Lyric = MainTextList.SetJapaneseLyric("終わるまでは終わらないよ");
             karaokeObject.Position = new Vector2(300, 150);
             karaokeObject.Furigana.Add(0, new SubText
@@ -90,9 +91,9 @@ namespace osu.Game.Rulesets.Karaoke.Helps
             return karaokeObject;
         }
 
-        public static BaseLyric GenerateDeomKaraokeLyric()
+        public static JpLyric GenerateDeomKaraokeLyric()
         {
-            return new BaseLyric()
+            return new JpLyric()
             {
                 Lyric = MainTextList.SetJapaneseLyric("カラオケ"),
                 Furigana = new Dictionary<int, SubText>()

@@ -99,13 +99,6 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         // TODO : [get] get the value is combine from list
         public RomajiTextList Romaji { get; set; } = new RomajiTextList();
 
-
-        /// <summary>
-        /// List little aid text,like japanese's text
-        /// </summary>
-        public Dictionary<int, SubText> Furigana { get; set; } = new Dictionary<int, SubText>();
-
-
         /// <summary>
         /// record list time where position goes
         /// </summary>
