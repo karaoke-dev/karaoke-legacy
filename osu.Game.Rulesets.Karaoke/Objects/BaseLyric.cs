@@ -172,4 +172,48 @@ namespace osu.Game.Rulesets.Karaoke.Objects
 
         #endregion
     }
+
+    public class MainTextList : LyricDictionary<int, MainText>, IHasText
+    {
+        [JsonIgnore] public string Delimiter = "";
+
+        public string Text
+        {
+            get
+            {
+                string result = this.Select(i => i.Value.Text).Aggregate((i, j) => i + Delimiter + j);
+                return result;
+            }
+        }
+
+        public static MainTextList SetJapaneseLyric(string str)
+        {
+            MainTextList returnList = new MainTextList();
+            int startCharIndex = 0;
+            foreach (var singleCharacter in str)
+            {
+                returnList.Add(startCharIndex, new MainText()
+                {
+                    Text = singleCharacter.ToString(),
+                });
+                startCharIndex++;
+            }
+
+            return returnList;
+        }
+
+        public static MainTextList SetEnglishLyric(string str)
+        {
+            MainTextList returnList = new MainTextList();
+
+            //TODO : implement
+
+            return returnList;
+        }
+    }
+
+    public class MainText : TextComponent
+    {
+
+    }
 }
