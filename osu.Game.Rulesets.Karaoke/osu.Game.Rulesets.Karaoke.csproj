@@ -44,9 +44,10 @@
     <EmbeddedResource Include="Tracks\**\*" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Tools\Github\" />
+    <Folder Include="Tools\RomajiUploader\" />
     <Folder Include="Online\API\Git\" />
     <Folder Include="Online\API\Romaj\Github\" />
     <Folder Include="Online\API\Translate\Github\" />
+    <Folder Include="Tools\TranslatorUploader\" />
   </ItemGroup>
 </Project>
