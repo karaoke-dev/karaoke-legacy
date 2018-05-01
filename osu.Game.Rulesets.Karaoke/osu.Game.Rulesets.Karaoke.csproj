@@ -43,4 +43,10 @@
     <EmbeddedResource Include="Textures\**\*" />
     <EmbeddedResource Include="Tracks\**\*" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Tools\Github\" />
+    <Folder Include="Online\API\Git\" />
+    <Folder Include="Online\API\Romaj\Github\" />
+    <Folder Include="Online\API\Translate\Github\" />
+  </ItemGroup>
 </Project>
