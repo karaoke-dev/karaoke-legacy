@@ -1,5 +1,5 @@
 ﻿using System;
-namespace osu.Game.Rulesets.Karaoke.Tools.RomajiUploader
+namespace osu.Game.Rulesets.Karaoke.Service.RomajiUploader
 {
     public class GithubRomajiUploader
     {
