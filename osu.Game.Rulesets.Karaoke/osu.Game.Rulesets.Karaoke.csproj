@@ -29,6 +29,9 @@
   </ItemGroup>
   <ItemGroup Label="Package References">
     <PackageReference Include="HtmlAgilityPack" Version="1.7.2" />
+    <PackageReference Include="LibGit2Sharp-SSH" Version="1.0.22" />
+    <PackageReference Include="LibGit2Sharp-SSH.NativeBinaries" Version="1.0.14" />
+    <PackageReference Include="LibGit2Sharp.NativeBinaries" Version="1.0.210" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="2.0.1" />
     <PackageReference Include="NUnit" Version="3.10.1" />
     <PackageReference Include="LibGit2Sharp" Version="0.25.0" />
