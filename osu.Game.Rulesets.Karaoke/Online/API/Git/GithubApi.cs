@@ -1,4 +1,8 @@
 ﻿using System;
+using System.Net;
+using System.Text;
+using System.Threading.Tasks;
+
 namespace osu.Game.Rulesets.Karaoke.Online.API.Git
 {
     /// <summary>
@@ -13,6 +17,24 @@ namespace osu.Game.Rulesets.Karaoke.Online.API.Git
     {
         public GithubApi()
         {
+
+        }
+
+        /// <summary>
+        /// Get file
+        /// </summary>
+        /// <param name="orgination"></param>
+        /// <param name="repositoryName"></param>
+        /// <param name="path"></param>
+        /// <returns></returns>
+        public async Task<string> GetFileFrom(string orgination,string repositoryName,string path)
+        {
+            WebClient client = new WebClient();
+            client.Encoding = Encoding.UTF8;
+
+            string url = "https://raw.githubusercontent.com/" + orgination + "/" + repositoryName + "/" + path;
+            string json = await client.DownloadStringTaskAsync(url);
+            return json;
         }
     }
 }

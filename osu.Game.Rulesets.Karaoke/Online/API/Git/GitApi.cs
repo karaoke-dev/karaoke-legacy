@@ -1,4 +1,10 @@
 ﻿using System;
+using System.Diagnostics;
+using LibGit2Sharp;
+using LibGit2Sharp.Core.Handles;
+using LibGit2Sharp.Handlers;
+using System.IO;
+
 namespace osu.Game.Rulesets.Karaoke.Online.API.Git
 {
     /// <summary>
@@ -12,6 +18,158 @@ namespace osu.Game.Rulesets.Karaoke.Online.API.Git
     {
         public GitApi()
         {
+
+        }
+
+        /// <summary>
+        /// Clone project
+        /// </summary>
+        /// <returns></returns>
+        public bool CloneProject(string url,string dir,string userName = null,string password = null)
+        {
+            try
+            {
+                if (userName != null)
+                {
+                    var co = new CloneOptions();
+                    co.CredentialsProvider = (_url, _user, _cred) => new UsernamePasswordCredentials { Username = userName, Password = password };
+                    Repository.Clone(url, dir, co);
+                }
+                else
+                {
+                    Repository.Clone(url, dir);
+                }
+                return true;
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e);
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Pull project
+        /// </summary>
+        /// <param name="dir"></param>
+        /// <param name="userName"></param>
+        /// <param name="password"></param>
+        /// <param name="email"></param>
+        /// <returns></returns>
+        public bool PullProject(string dir, string userName = null, string password = null,string email = null)
+        {
+            using (var repo = new Repository(dir))
+            {
+                LibGit2Sharp.PullOptions options = new LibGit2Sharp.PullOptions();
+
+                //Create provider
+                options.FetchOptions = new FetchOptions();
+                options.FetchOptions.CredentialsProvider = new CredentialsHandler(
+                    (url, usernameFromUrl, types) =>
+                        new UsernamePasswordCredentials()
+                        {
+                            Username = userName,
+                            Password = password
+                        });
+
+                //if pull success, create a commit
+                options.MergeOptions.CommitOnSuccess = true;
+
+                //create signature
+                var signature = new Signature(userName, email, new DateTimeOffset(DateTime.Now));
+
+                //pull 
+                repo.Network.Pull(signature, options);
+            }
+
+            return true;
+        }
+
+        /// <summary>
+        /// Write a file to working dictionary
+        /// </summary>
+        /// <returns></returns>
+        public bool WriteFile(string dir,string filename,string content)
+        {
+            using (var repo = new Repository("path/to/your/repo"))
+            {
+                // Write content to file system
+                File.WriteAllText(Path.Combine(repo.Info.WorkingDirectory, filename), content);
+            }
+            return true;
+        }
+
+        /// <summary>
+        /// Commit project
+        /// </summary>
+        /// <param name="dir"></param>
+        /// <param name="userName"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
+        public bool CommitProject(string dir, string[] fileNames, string userName = null, string password = null, string email = null)
+        {
+            using (var repo = new Repository("path/to/your/repo"))
+            {
+                // Stage the file
+                foreach (var filename in fileNames)
+                {
+                    LibGit2Sharp.Commands.Stage(repo, filename);
+                }
+
+                // Create the committer's signature and commit
+                Signature author = new Signature("James", "@jugglingnutcase", DateTime.Now);
+                Signature committer = author;
+
+                // Commit to the repository
+                Commit commit = repo.Commit("Here's a commit i made!", author, committer);
+            }
+
+            return true;
+        }
+
+        /// <summary>
+        /// Push
+        /// </summary>
+        /// <param name="dir"></param>
+        /// <param name="branchName"></param>
+        /// <param name="userName"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
+        public bool PushProject(string dir,string branchName, string userName = null, string password = null)
+        {
+            using (var repo = new Repository("path/to/your/repo"))
+            {
+                LibGit2Sharp.PushOptions options = new LibGit2Sharp.PushOptions();
+                options.CredentialsProvider = new CredentialsHandler(
+                    (url, usernameFromUrl, types) =>
+                        new UsernamePasswordCredentials()
+                        {
+                            Username = userName,
+                            Password = password
+                        });
+                repo.Network.Push(repo.Branches[branchName], options);
+            }
+
+            return true;
+        }
+
+        /// <summary>
+        /// TODO : I'm not sure it can use as pull request
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public bool PushToRemote(string dir,string remoteUrl,string branchName, string userName = null, string password = null)
+        {
+            using (var repo = new Repository(dir))
+            {
+                Remote remote = repo.Network.Remotes[branchName];
+                var options = new PushOptions();
+                options.CredentialsProvider = (_url, _user, _cred) =>
+                    new UsernamePasswordCredentials { Username = userName, Password = password };
+                repo.Network.Push(remote, @"refs/heads/master", options);
+            }
+
+            return true;
         }
     }
 }
