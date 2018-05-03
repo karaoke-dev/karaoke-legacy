@@ -4,6 +4,7 @@
 using System.Collections.Generic;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
+using osu.Game.Rulesets.Karaoke.Objects.Text;
 using OpenTK;
 using OpenTK.Graphics;
 

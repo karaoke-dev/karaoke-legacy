@@ -4,8 +4,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json;
+using osu.Game.Rulesets.Karaoke.Objects.Lyric;
 
-namespace osu.Game.Rulesets.Karaoke.Objects
+namespace osu.Game.Rulesets.Karaoke.Objects.TimeLine
 {
     /// <summary>
     /// list Progress point

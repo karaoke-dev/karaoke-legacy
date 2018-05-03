@@ -4,7 +4,7 @@
 using osu.Game.Database;
 using OpenTK.Graphics;
 
-namespace osu.Game.Rulesets.Karaoke.Objects
+namespace osu.Game.Rulesets.Karaoke.Beatmaps
 {
     public class Singer : IHasPrimaryKey
     {
