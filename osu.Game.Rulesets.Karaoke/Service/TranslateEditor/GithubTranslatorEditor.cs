@@ -3,9 +3,9 @@
     /// <summary>
     /// update translate by github
     /// </summary>
-    public class GithubTranslatorUploader
+    public class GithubTranslatorEditor : ITranslateEditor
     {
-        public GithubTranslatorUploader()
+        public GithubTranslatorEditor()
         {
         }
     }

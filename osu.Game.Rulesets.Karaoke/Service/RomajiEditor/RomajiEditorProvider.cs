@@ -1,4 +1,6 @@
-﻿namespace osu.Game.Rulesets.Karaoke.Service.TranslateEditor
+﻿
+
+namespace osu.Game.Rulesets.Karaoke.Service.RomajiEditor
 {
     public class TranslatorServiceProvider
     {
@@ -7,22 +9,25 @@
         /// </summary>
         /// <param name="providerType"></param>
         /// <returns></returns>
-        public static ITranslateEditor GetTranslatorByProvider(TranslatorUploaderProvider providerType)
+        public static IRomajiEditor GetTranslatorByProvider(RomajiEditorProviderType providerType)
         {
             switch (providerType)
             {
-                case TranslatorUploaderProvider.Github:
-                    return new GithubTranslatorEditor();
+                case RomajiEditorProviderType.Github:
+                    return new GithubRomajiEditor();
                 default:
                     return null;
             }
         }
     }
 
-    public enum TranslatorUploaderProvider
+    /// <summary>
+    /// List Provider
+    /// </summary>
+    public enum RomajiEditorProviderType
     {
         /// <summary>
-        /// The github.
+        /// <see cref="GithubRomajiEditor"/>
         /// </summary>
         Github,
     }
