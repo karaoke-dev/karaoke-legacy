@@ -38,16 +38,16 @@ namespace osu.Game.Rulesets.Karaoke.Online.API.Git
         /// <summary>
         /// Get file
         /// </summary>
-        /// <param name="orgination"></param>
+        /// <param name="organization"></param>
         /// <param name="repositoryName"></param>
         /// <param name="path"></param>
         /// <returns></returns>
-        public async Task<string> GetFileFrom(string orgination,string repositoryName,string path)
+        public async Task<string> GetFileFrom(string organization, string repositoryName,string path)
         {
             WebClient client = new WebClient();
             client.Encoding = Encoding.UTF8;
 
-            string url = "https://raw.githubusercontent.com/" + orgination + "/" + repositoryName + "/" + path;
+            string url = "https://raw.githubusercontent.com/" + organization + "/" + repositoryName + "/" + path;
             string json = await client.DownloadStringTaskAsync(url);
             return json;
         }
