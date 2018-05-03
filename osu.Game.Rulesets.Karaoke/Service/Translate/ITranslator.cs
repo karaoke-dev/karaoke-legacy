@@ -10,22 +10,22 @@ namespace osu.Game.Rulesets.Karaoke.Tools.Translator
     /// <summary>
     /// translator base
     /// </summary>
-    public abstract class TranslatorBase
+    public interface ITranslator
     {
         /// <summary>
         /// notified translate multi string 
         /// </summary>
-        public EventHandler<List<string>> OnTranslateMultiStringSuccess { get; set; }
+        EventHandler<List<string>> OnTranslateMultiStringSuccess { get; set; }
 
         /// <summary>
         /// notified translate single string 
         /// </summary>
-        public EventHandler<string> OnTranslateSuccess { get; set; }
+        EventHandler<string> OnTranslateSuccess { get; set; }
 
         /// <summary>
         /// if fail ,get error message
         /// </summary>
-        public EventHandler<string> OnTranslateFail { get; set; }
+        EventHandler<string> OnTranslateFail { get; set; }
 
         /// <summary>
         /// translate multi string at the same thme
@@ -33,7 +33,7 @@ namespace osu.Game.Rulesets.Karaoke.Tools.Translator
         /// <param name="sourceLangeCode"></param>
         /// <param name="targetLangCode"></param>
         /// <param name="translateString"></param>
-        public abstract void Translate(TranslateCode sourceLangeCode, TranslateCode targetLangCode, List<string> translateString);
+        void Translate(TranslateCode sourceLangeCode, TranslateCode targetLangCode, List<string> translateString);
 
         /// <summary>
         /// translate multi string at the same thme
@@ -41,14 +41,6 @@ namespace osu.Game.Rulesets.Karaoke.Tools.Translator
         /// <param name="sourceLangeCode"></param>
         /// <param name="targetLangCode"></param>
         /// <param name="translateString"></param>
-        public abstract void Translate(TranslateCode sourceLangeCode, TranslateCode targetLangCode, string translateString);
-    }
-
-    /// <summary>
-    /// Translator Type
-    /// </summary>
-    public enum TranslatorType
-    {
-        google,
+        void Translate(TranslateCode sourceLangeCode, TranslateCode targetLangCode, string translateString);
     }
 }

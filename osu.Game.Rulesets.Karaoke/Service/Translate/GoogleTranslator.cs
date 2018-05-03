@@ -9,15 +9,19 @@ using osu.Game.Rulesets.Karaoke.Online.API.Translate.Google;
 
 namespace osu.Game.Rulesets.Karaoke.Tools.Translator
 {
-    public class GoogleTranslator : TranslatorBase
+    public class GoogleTranslator : ITranslator
     {
+        public EventHandler<List<string>> OnTranslateMultiStringSuccess { get; set; }
+        public EventHandler<string> OnTranslateSuccess { get; set; }
+        public EventHandler<string> OnTranslateFail { get; set; }
+
         /// <summary>
         /// translate multi string
         /// </summary>
         /// <param name="sourceLangeCode"></param>
         /// <param name="targetLangCode"></param>
         /// <param name="translateListString"></param>
-        public override async void Translate(TranslateCode sourceLangeCode, TranslateCode targetLangCode, List<string> translateListString)
+        public async void Translate(TranslateCode sourceLangeCode, TranslateCode targetLangCode, List<string> translateListString)
         {
             try
             {
@@ -38,7 +42,7 @@ namespace osu.Game.Rulesets.Karaoke.Tools.Translator
             }
         }
 
-        public override async void Translate(TranslateCode sourceLangeCode, TranslateCode targetLangCode, string translateString)
+        public async void Translate(TranslateCode sourceLangeCode, TranslateCode targetLangCode, string translateString)
         {
             try
             {

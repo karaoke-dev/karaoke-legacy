@@ -30,7 +30,7 @@ namespace osu.Game.Rulesets.Karaoke.Online.API.Git
         /// <returns></returns>
         public async Task<string> ForkFromGithub(string orgination, string repositoryName,string account,string password)
         {
-            Octokit.NewRepositoryFork
+           // Octokit.NewRepositoryFork
 
             return null;
         }
