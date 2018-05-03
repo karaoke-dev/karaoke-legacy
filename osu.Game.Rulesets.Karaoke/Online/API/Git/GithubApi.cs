@@ -21,6 +21,21 @@ namespace osu.Game.Rulesets.Karaoke.Online.API.Git
         }
 
         /// <summary>
+        /// Fork file
+        /// </summary>
+        /// <param name="orgination"></param>
+        /// <param name="repositoryName"></param>
+        /// <param name="account"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
+        public async Task<string> ForkFromGithub(string orgination, string repositoryName,string account,string password)
+        {
+            Octokit.NewRepositoryFork
+
+            return null;
+        }
+
+        /// <summary>
         /// Get file
         /// </summary>
         /// <param name="orgination"></param>

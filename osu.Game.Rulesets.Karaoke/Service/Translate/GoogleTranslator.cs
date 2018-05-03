@@ -9,7 +9,7 @@ using osu.Game.Rulesets.Karaoke.Online.API.Translate.Google;
 
 namespace osu.Game.Rulesets.Karaoke.Tools.Translator
 {
-    public class GoogleTranslator : TranslateorBase
+    public class GoogleTranslator : TranslatorBase
     {
         /// <summary>
         /// translate multi string

@@ -15,6 +15,6 @@ namespace osu.Game.Rulesets.Karaoke.UI.Tool
         /// <summary>
         /// translate tool
         /// </summary>
-        public TranslateorBase Translateor = new GoogleTranslator();
+        public TranslatorBase Translateor = new GoogleTranslator();
     }
 }

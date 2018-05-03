@@ -10,7 +10,7 @@ namespace osu.Game.Rulesets.Karaoke.Tools.Translator
     /// <summary>
     /// translator base
     /// </summary>
-    public abstract class TranslateorBase
+    public abstract class TranslatorBase
     {
         /// <summary>
         /// notified translate multi string 
