@@ -1,5 +1,4 @@
-﻿using System;
-namespace osu.Game.Rulesets.Karaoke.Tools.TranslatorUploader
+﻿namespace osu.Game.Rulesets.Karaoke.Service.TranslateEditor
 {
     /// <summary>
     /// update translate by github

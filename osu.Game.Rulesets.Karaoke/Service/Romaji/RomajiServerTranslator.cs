@@ -10,12 +10,12 @@ using osu.Game.Rulesets.Karaoke.Objects.Lyric;
 using osu.Game.Rulesets.Karaoke.Objects.Lyric.Types;
 using osu.Game.Rulesets.Karaoke.Online.API.Romaj.RomajiServer;
 
-namespace osu.Game.Rulesets.Karaoke.Tools.Romaji
+namespace osu.Game.Rulesets.Karaoke.Service.Romaji
 {
     /// <summary>
     /// can translate any langlage to romaji
     /// </summary>
-    public class RomajiServerTranslator
+    public class RomajiServerTranslator : IRomajiTranslator
     {
         private RomajiServerApi RomajiServerApi = new RomajiServerApi();
 

@@ -3,7 +3,7 @@
 
 using osu.Game.Rulesets.Karaoke.Objects.Types;
 
-namespace osu.Game.Rulesets.Karaoke.Objects
+namespace osu.Game.Rulesets.Karaoke.Objects.Text
 {
     /// <summary>
     /// TextComponent

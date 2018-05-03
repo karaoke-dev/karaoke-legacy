@@ -1,5 +1,4 @@
-﻿using System;
-namespace osu.Game.Rulesets.Karaoke.Service.TranslatorUploader
+﻿namespace osu.Game.Rulesets.Karaoke.Service.TranslateEditor
 {
     public enum TranslatorUploaderProvider
     {

@@ -1,5 +1,6 @@
-﻿using System;
-namespace osu.Game.Rulesets.Karaoke.Service.RomajiUploader
+﻿using osu.Game.Rulesets.Karaoke.Service.RomajiUploader;
+
+namespace osu.Game.Rulesets.Karaoke.Service.RomajiEditor
 {
     /// <summary>
     /// List Provider
