@@ -37,6 +37,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects
                 textComponent.Text = Text;
                 textComponent.Initialize();
             }
+
             return result;
         }
 

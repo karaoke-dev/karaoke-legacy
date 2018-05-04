@@ -58,6 +58,7 @@ namespace osu.Game.Rulesets.Karaoke.UI
             {
                 return new DrawableLyric(karaokeObject);
             }
+
             return null;
         }
 

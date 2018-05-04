@@ -31,6 +31,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Input.Action
                 keyAction.RelativeMovingPosition = RelativeMovingPosition;
                 keyAction.Initialize();
             }
+
             return result;
         }
     }

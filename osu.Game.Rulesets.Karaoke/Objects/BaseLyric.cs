@@ -185,7 +185,8 @@ namespace osu.Game.Rulesets.Karaoke.Objects
     /// </summary>
     public class MainTextList : LyricDictionary<int, MainText>, IHasText
     {
-        [JsonIgnore] public string Delimiter = "";
+        [JsonIgnore]
+        public string Delimiter = "";
 
         public string Text
         {
@@ -227,6 +228,5 @@ namespace osu.Game.Rulesets.Karaoke.Objects
     /// </summary>
     public class MainText : TextComponent
     {
-
     }
 }

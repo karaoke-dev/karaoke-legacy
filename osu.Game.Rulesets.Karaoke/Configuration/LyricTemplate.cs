@@ -77,6 +77,7 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
                 lyricTemplate.Scale = Scale;
                 lyricTemplate.Initialize();
             }
+
             return result;
         }
     }

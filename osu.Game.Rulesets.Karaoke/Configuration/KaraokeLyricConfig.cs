@@ -47,6 +47,7 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
                 karaokeLyricConfig.ShowTranslate = ShowTranslate;
                 karaokeLyricConfig.Initialize();
             }
+
             return result;
         }
     }

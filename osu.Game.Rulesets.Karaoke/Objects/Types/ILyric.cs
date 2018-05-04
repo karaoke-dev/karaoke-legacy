@@ -1,8 +1,6 @@
 ﻿// Copyright (c) 2007-2018 ppy Pty Ltd <contact@ppy.sh>.
 // Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
 
-using System.Collections.Generic;
-using osu.Game.Rulesets.Karaoke.Configuration;
 using osu.Game.Rulesets.Karaoke.Objects.Lyric.Types;
 using osu.Game.Rulesets.Karaoke.Objects.TimeLine;
 
@@ -11,7 +9,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Types
     /// <summary>
     /// define the basic class of karaoke object
     /// </summary>
-    public interface ILyric : IHasLangCode , IHasLyricVersion
+    public interface ILyric : IHasLangCode, IHasLyricVersion
     {
         /// <summary>
         /// Main Text list 
