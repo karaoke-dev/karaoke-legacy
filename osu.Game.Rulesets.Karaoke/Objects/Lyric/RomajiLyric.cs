@@ -1,14 +1,15 @@
-﻿using System;
+﻿// Copyright (c) 2007-2018 ppy Pty Ltd <contact@ppy.sh>.
+// Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
+
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using osu.Game.Rulesets.Karaoke.Objects.Lyric.Types;
 using osu.Game.Rulesets.Karaoke.Objects.Text;
 using osu.Game.Rulesets.Karaoke.Objects.Types;
 
 namespace osu.Game.Rulesets.Karaoke.Objects.Lyric
 {
-    public class RomajiLyric : BaseLyric , IHasRomaji
+    public class RomajiLyric : BaseLyric, IHasRomaji
     {
         /// <summary>
         /// list romaji text

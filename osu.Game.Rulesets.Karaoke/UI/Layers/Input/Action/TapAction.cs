@@ -25,6 +25,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Input.Action
                 keyAction.Tap = Tap;
                 keyAction.Initialize();
             }
+
             return result;
         }
     }
