@@ -16,7 +16,7 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
         /// <summary>
         /// Tap Action
         /// </summary>
-        public Dictionary<TouchScreenTapInteractive, TapConfig> TagConfigs { get; set; }=new Dictionary<TouchScreenTapInteractive, TapConfig>();
+        public Dictionary<TouchScreenTapInteractive, TapConfig> TagConfigs { get; set; } = new Dictionary<TouchScreenTapInteractive, TapConfig>();
 
 
         /// <summary>

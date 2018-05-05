@@ -2,16 +2,6 @@
 // Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
 
 using NUnit.Framework;
-using osu.Framework.Allocation;
-using osu.Framework.Graphics;
-using osu.Framework.Graphics.Containers;
-using osu.Framework.Timing;
-using osu.Game.Rulesets.Karaoke.Helps;
-using osu.Game.Rulesets.Karaoke.Objects;
-using osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric;
-using osu.Game.Tests.Visual;
-using OpenTK;
-
 
 namespace osu.Game.Rulesets.Karaoke.Tests
 {
@@ -42,7 +32,6 @@ namespace osu.Game.Rulesets.Karaoke.Tests
         /// </summary>
         public TestCaseGithub()
         {
-            
         }
     }
 }

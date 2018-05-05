@@ -228,6 +228,5 @@ namespace osu.Game.Rulesets.Karaoke.Objects
     /// </summary>
     public class MainText : TextComponent
     {
-
     }
 }

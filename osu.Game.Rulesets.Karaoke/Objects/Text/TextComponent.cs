@@ -12,7 +12,6 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Text
     {
         public TextComponent()
         {
-
         }
 
         public TextComponent(string str)

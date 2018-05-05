@@ -3,6 +3,7 @@
 
 using osu.Framework.Graphics;
 using osu.Game.Graphics.Sprites;
+using osu.Game.Rulesets.Karaoke.Objects.Text;
 
 namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Common.Pieces
 {

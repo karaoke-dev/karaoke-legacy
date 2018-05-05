@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using osu.Framework.Allocation;
 using osu.Framework.IO.Stores;
+using osu.Game.Rulesets.Karaoke.Objects.Text;
 
 namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Common.Pieces
 {

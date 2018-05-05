@@ -56,7 +56,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Input
                 _moveDirection = new Vector2((int)(movingPosition.X / _judgePixal), (int)(movingPosition.Y / _judgePixal));
                 _timer.Stop();
             }
-            else//scroll mode
+            else //scroll mode
             {
                 if (_moveDirection.X != 0)
                 {
@@ -82,19 +82,19 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Input
             var deltaPosition = nowPosition - state.Mouse.LastPosition;
 
 
-            if (_moveDirection == Vector2.Zero)//tap mode
+            if (_moveDirection == Vector2.Zero) //tap mode
             {
                 TapConfig tapConfig;
                 if (MobileScrollAnixConfig.Value.TagConfigs.TryGetValue(TouchScreenTapInteractive.SingleTap, out tapConfig))
                     OnTap(tapConfig);
             }
-            else//scroll mode
+            else //scroll mode
             {
                 if (_moveDirection.X != 0)
                 {
                     SingleAnixConfig singleAnixConfig;
-                    if(MobileScrollAnixConfig.Value.ScrollConfigs.TryGetValue(TouchScreenScrollInteractive.XAnix, out singleAnixConfig))
-                    OnScroll(singleAnixConfig, false,deltaPosition.X, movingPosition.X);
+                    if (MobileScrollAnixConfig.Value.ScrollConfigs.TryGetValue(TouchScreenScrollInteractive.XAnix, out singleAnixConfig))
+                        OnScroll(singleAnixConfig, false, deltaPosition.X, movingPosition.X);
                 }
                 else if (_moveDirection.Y != 0)
                 {
@@ -118,7 +118,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Input
             if (MobileScrollAnixConfig.Value.TagConfigs.TryGetValue(TouchScreenTapInteractive.DoubleTap, out tapConfig))
                 OnTap(tapConfig);
 
-            return base.OnDoubleClick(state); 
+            return base.OnDoubleClick(state);
         }
 
         /// <summary>
@@ -127,11 +127,11 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Input
         /// <returns><c>true</c>, if pressed was oned, <c>false</c> otherwise.</returns>
         /// <param name="config">Action.</param>
         /// <param name="tap">Action.</param>
-        protected void OnTap(TapConfig config,bool tap=true)
+        protected void OnTap(TapConfig config, bool tap = true)
         {
-            if(config==null)
+            if (config == null)
                 return;
-            
+
             TapAction tapAction = new TapAction()
             {
                 KaraokeTapAction = config.KaraokeTapAction,
@@ -148,9 +148,9 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Input
         /// <param name="relativePosition"></param>
         /// <param name="totalmovingPosition"></param>
         /// <returns></returns>
-        protected void OnScroll(SingleAnixConfig config, bool touch,double relativePosition,double totalmovingPosition)
+        protected void OnScroll(SingleAnixConfig config, bool touch, double relativePosition, double totalmovingPosition)
         {
-            if (config==null)
+            if (config == null)
                 return;
 
             ScrollAction scrollAction = new ScrollAction()
