@@ -2,6 +2,7 @@
 // Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
 
 using NUnit.Framework;
+using osu.Game.Tests.Visual;
 
 namespace osu.Game.Rulesets.Karaoke.Tests
 {
@@ -25,13 +26,14 @@ namespace osu.Game.Rulesets.Karaoke.Tests
     [TestFixture]
     [Ignore("getting CI working")]
     [System.ComponentModel.Description("Test Github")]
-    public class TestCaseGithub
+    public class TestCaseGithub : OsuTestCase
     {
         /// <summary>
         /// Ctor
         /// </summary>
         public TestCaseGithub()
         {
+
         }
     }
 }
