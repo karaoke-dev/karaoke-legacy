@@ -245,6 +245,7 @@ namespace osu.Game.Rulesets.Karaoke.Online.API.Romaj.Google
                             hasPrefix = false;
                             break;
                     }
+
                     break;
 
                 // =========================================================================
@@ -274,6 +275,7 @@ namespace osu.Game.Rulesets.Karaoke.Online.API.Romaj.Google
                                     hasPrefix = false;
                                     break;
                             }
+
                             break;
 
                         // ==============================
@@ -283,6 +285,7 @@ namespace osu.Game.Rulesets.Karaoke.Online.API.Romaj.Google
                             hasPrefix = true;
                             break;
                     }
+
                     break;
 
                 // =========================================================================
@@ -312,6 +315,7 @@ namespace osu.Game.Rulesets.Karaoke.Online.API.Romaj.Google
                                     hasPrefix = false;
                                     break;
                             }
+
                             break;
 
                         // ==============================
@@ -321,6 +325,7 @@ namespace osu.Game.Rulesets.Karaoke.Online.API.Romaj.Google
                             hasPrefix = true;
                             break;
                     }
+
                     break;
             }
 

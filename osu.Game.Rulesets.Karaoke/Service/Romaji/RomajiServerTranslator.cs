@@ -55,7 +55,6 @@ namespace osu.Game.Rulesets.Karaoke.Service.Romaji
                     //romaji
                     if (singleTranslate is IHasRomaji romajiLyric)
                     {
-
                         romajiLyric.Romaji.Add(i, new RomajiText()
                         {
                             Text = character.Romaji,
@@ -72,12 +71,12 @@ namespace osu.Game.Rulesets.Karaoke.Service.Romaji
                                 Text = character.Katakana,
                             });
                         }
-                        
                     }
                 }
 
                 listTranslate.Add(singleTranslate);
             }
+
             return listTranslate;
         }
     }

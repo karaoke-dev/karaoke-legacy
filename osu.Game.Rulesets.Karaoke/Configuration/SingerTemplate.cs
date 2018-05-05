@@ -19,6 +19,7 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
             if (result is SingerTemplate singerTemplate)
             {
             }
+
             return result;
         }
     }

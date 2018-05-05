@@ -184,6 +184,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
                 {
                     mainText = Lyric.Lyric.ToDictionary(k => k.Key, v => (TextComponent)v.Value);
                 }
+
                 //main text
                 TextsAndMaskPiece.AddMainText(templateValue?.MainText, mainText.ToDictionary(k => k.Key, v => (TextComponent)v.Value), mainTextDelimiter);
 
@@ -255,6 +256,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
                 {
                     TranslateText.TextObject = templateValue?.TranslateText;
                 }
+
                 TranslateText.Colour = templateValue?.TranslateTextColor ?? Color4.White;
             }
 

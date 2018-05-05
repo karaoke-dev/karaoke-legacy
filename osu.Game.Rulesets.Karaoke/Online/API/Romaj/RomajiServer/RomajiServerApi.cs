@@ -42,6 +42,7 @@ namespace osu.Game.Rulesets.Karaoke.Online.API.Romaj.RomajiServer
                 {
                     parameter.Add(new KeyValuePair<string, string>("str", singleLyric));
                 }
+
                 var result = await GetObjectApi<List<TranslateResult>>("/translate/jp/list", parameter);
 
                 listCollection.AddRange(result);

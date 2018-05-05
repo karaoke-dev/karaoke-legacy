@@ -71,6 +71,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Input
                         OnScroll(singleAnixConfig, true, deltaPosition.Y, movingPosition.Y);
                 }
             }
+
             return base.OnMouseMove(state);
         }
 

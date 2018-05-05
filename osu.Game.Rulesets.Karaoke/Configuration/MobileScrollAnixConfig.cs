@@ -39,6 +39,7 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
                 mobileScrollAnixConfig.ScrollConfigs = ScrollConfigs;
                 mobileScrollAnixConfig.Initialize();
             }
+
             return result;
         }
     }
@@ -71,6 +72,7 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
                 singleAnixConfig.KaraokeScrollAction = KaraokeScrollAction;
                 singleAnixConfig.Sensitive = Sensitive;
             }
+
             return result;
         }
     }
@@ -94,6 +96,7 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
             {
                 tapConfig.KaraokeTapAction = KaraokeTapAction;
             }
+
             return result;
         }
     }
