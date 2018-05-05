@@ -2,6 +2,7 @@
 // Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
 
 using System.Collections.Generic;
+using osu.Game.Rulesets.Karaoke.Configuration;
 
 namespace osu.Game.Rulesets.Karaoke.Beatmaps
 {
@@ -31,7 +32,7 @@ namespace osu.Game.Rulesets.Karaoke.Beatmaps
         /// <summary>
         /// song languages
         /// </summary>
-        public List<string> SongLanguages { get; set; } = new List<string>();
+        public List<TranslateCode> SongLanguages { get; set; } = new List<TranslateCode>();
 
         /// <summary>
         /// Mode Support
@@ -43,9 +44,14 @@ namespace osu.Game.Rulesets.Karaoke.Beatmaps
         #region Language
 
         /// <summary>
-        /// translate languages
+        /// available translate languages
         /// </summary>
-        public List<string> TranslateLanguages { get; set; } = new List<string>();
+        public List<TranslateCode> TranslateLanguages { get; set; } = new List<TranslateCode>();
+
+        /// <summary>
+        /// Has Language
+        /// </summary>
+        public bool HasRomaji { get; set; }
 
         #endregion
 
