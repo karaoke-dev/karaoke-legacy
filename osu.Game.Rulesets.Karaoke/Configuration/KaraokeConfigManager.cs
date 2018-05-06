@@ -30,6 +30,7 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
             Set(KaraokeSetting.RomajiService, RomajiServiceProviderType.KaraokeRomajiServer);
 
             //karaoke
+            Set(KaraokeSetting.Platform, PlatformType.Desktop);
             Set(KaraokeSetting.ShowKarokePanel, false);
             Set(KaraokeSetting.DisableHotKay, false);
 
@@ -75,7 +76,8 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
         NeedRomajiService = 12,
         RomajiService = 11, //[int]use which api to get romaji
 
-        //karaoke
+        //karaoke control panel.
+        Platform = 22,
         ShowKarokePanel = 21, //[bool]show panel at the beginning
         DisableHotKay = 22, //[bool]enable hotkey
 
