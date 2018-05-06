@@ -51,5 +51,7 @@
     <Folder Include="Online\API\Git\" />
     <Folder Include="Online\API\Romaj\Github\" />
     <Folder Include="Online\API\Translate\Github\" />
+    <Folder Include="Service\Type\" />
+    <Folder Include="Service\Object\" />
   </ItemGroup>
 </Project>
