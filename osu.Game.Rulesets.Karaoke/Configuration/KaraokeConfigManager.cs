@@ -20,11 +20,13 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
             base.InitialiseDefaults();
 
             //language
+            Set(KaraokeSetting.NeedTranslateService, false);
             Set(KaraokeSetting.TranslateService, TranslatorProviderType.Google);
             Set(KaraokeSetting.DefaultTranslateLanguage, TranslateCode.English);
-            Set(KaraokeSetting.NeedTranslate, false);
+
 
             //Romaji
+            Set(KaraokeSetting.NeedRomajiService, false);
             Set(KaraokeSetting.RomajiService, RomajiServiceProviderType.KaraokeRomajiServer);
 
             //karaoke
@@ -67,9 +69,10 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
         //language
         TranslateService = 0, //[int]use which api to translate
         DefaultTranslateLanguage = 1, //[enum]
-        NeedTranslate = 2, //[bool]false
+        NeedTranslateService = 2, //[bool]false
 
         //Romaji
+        NeedRomajiService = 12,
         RomajiService = 11, //[int]use which api to get romaji
 
         //karaoke
