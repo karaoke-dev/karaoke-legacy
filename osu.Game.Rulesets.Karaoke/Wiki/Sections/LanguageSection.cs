@@ -5,6 +5,8 @@ using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Game.Overlays.Settings;
 using osu.Game.Rulesets.Karaoke.Configuration;
+using osu.Game.Rulesets.Karaoke.Service.Translator;
+using osu.Game.Rulesets.Karaoke.Tools.Romaji;
 using OpenTK;
 using Symcol.Rulesets.Core.Wiki;
 
@@ -81,9 +83,9 @@ namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
                         AutoSizeAxes = Axes.Y,
                         Width = 200,
 
-                        Child = new SettingsEnumDropdown<TranslateService>
+                        Child = new SettingsEnumDropdown<TranslatorProviderType>
                         {
-                            Bindable = RulesetConfig.GetBindable<TranslateService>(KaraokeSetting.TranslateService)
+                            Bindable = RulesetConfig.GetBindable<TranslatorProviderType>(KaraokeSetting.TranslateService)
                         }
                     },
                     new Container
@@ -121,9 +123,9 @@ namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
                         AutoSizeAxes = Axes.Y,
                         Width = 200,
 
-                        Child = new SettingsEnumDropdown<RomajiService>
+                        Child = new SettingsEnumDropdown<RomajiServiceProviderType>
                         {
-                            Bindable = RulesetConfig.GetBindable<RomajiService>(KaraokeSetting.RomajiService)
+                            Bindable = RulesetConfig.GetBindable<RomajiServiceProviderType>(KaraokeSetting.RomajiService)
                         }
                     },
                     new Container

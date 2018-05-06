@@ -32,12 +32,12 @@ namespace osu.Game.Rulesets.Karaoke.Tools.Romaji
         /// The romaji server just for osu!Karaoke
         /// <see cref="RomajiServerTranslator"/>
         /// </summary>
-        KaraokeRomajiServer,
+        KaraokeRomajiServer = 1,
 
         /// <summary>
         /// The service that upload by othe people.
         /// <see cref="GithubTranslator"/>
         /// </summary>
-        Github,
+        Github = 2,
     }
 }

@@ -30,6 +30,6 @@ namespace osu.Game.Rulesets.Karaoke.Service.RomajiEditor
         /// <summary>
         /// <see cref="GithubRomajiEditor"/>
         /// </summary>
-        Github,
+        Github = 1,
     }
 }

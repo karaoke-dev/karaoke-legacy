@@ -35,11 +35,11 @@ namespace osu.Game.Rulesets.Karaoke.Service.Translator
         /// Google.
         /// <see cref="GoogleTranslator"/>
         /// </summary>
-        Google,
+        Google = 1,
 
         /// <summary>
         /// The github.
         /// </summary>
-        Github,
+        Github = 2,
     }
 }

@@ -3,6 +3,8 @@
 
 using osu.Framework.Configuration.Tracking;
 using osu.Game.Configuration;
+using osu.Game.Rulesets.Karaoke.Service.Translator;
+using osu.Game.Rulesets.Karaoke.Tools.Romaji;
 
 namespace osu.Game.Rulesets.Karaoke.Configuration
 {
@@ -18,12 +20,12 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
             base.InitialiseDefaults();
 
             //language
-            Set(KaraokeSetting.TranslateService, TranslateService.Google);
+            Set(KaraokeSetting.TranslateService, TranslatorProviderType.Google);
             Set(KaraokeSetting.DefaultTranslateLanguage, TranslateCode.English);
             Set(KaraokeSetting.NeedTranslate, false);
 
             //Romaji
-            Set(KaraokeSetting.RomajiService, RomajiService.KoroSiro);
+            Set(KaraokeSetting.RomajiService, RomajiServiceProviderType.KaraokeRomajiServer);
 
             //karaoke
             Set(KaraokeSetting.ShowKarokePanel, false);

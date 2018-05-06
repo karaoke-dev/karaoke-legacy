@@ -28,6 +28,6 @@ namespace osu.Game.Rulesets.Karaoke.Service.Lyric
         /// The romaji server just for osu!Karaoke
         /// <see cref="MusixMatchLyric"/>
         /// </summary>
-        MusixMatch,
+        MusixMatch = 1,
     }
 }

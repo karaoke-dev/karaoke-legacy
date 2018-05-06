@@ -27,6 +27,6 @@ namespace osu.Game.Rulesets.Karaoke.Service.TranslateEditor
         /// <summary>
         /// The github.
         /// </summary>
-        Github,
+        Github = 1,
     }
 }
