@@ -1,4 +1,6 @@
-﻿using System;
+﻿// Copyright (c) 2007-2018 ppy Pty Ltd <contact@ppy.sh>.
+// Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
+
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,7 +19,6 @@ namespace osu.Game.Rulesets.Karaoke.Online.API.Git
     {
         public GithubApi()
         {
-
         }
 
         /// <summary>
@@ -28,9 +29,9 @@ namespace osu.Game.Rulesets.Karaoke.Online.API.Git
         /// <param name="account"></param>
         /// <param name="password"></param>
         /// <returns></returns>
-        public async Task<string> ForkFromGithub(string orgination, string repositoryName,string account,string password)
+        public async Task<string> ForkFromGithub(string orgination, string repositoryName, string account, string password)
         {
-           // Octokit.NewRepositoryFork
+            // Octokit.NewRepositoryFork
 
             return null;
         }
@@ -42,7 +43,7 @@ namespace osu.Game.Rulesets.Karaoke.Online.API.Git
         /// <param name="repositoryName"></param>
         /// <param name="path"></param>
         /// <returns></returns>
-        public async Task<string> GetFileFrom(string organization, string repositoryName,string path)
+        public async Task<string> GetFileFrom(string organization, string repositoryName, string path)
         {
             WebClient client = new WebClient();
             client.Encoding = Encoding.UTF8;

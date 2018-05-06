@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using osu.Framework.Graphics.Containers;
-using osu.Game.Overlays.Settings;
-using system.Collection.Generic;
+﻿// Copyright (c) 2007-2018 ppy Pty Ltd <contact@ppy.sh>.
+// Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
 
+using System.Collections.Generic;
+using osu.Framework.Graphics.Containers;
 
 namespace osu.Game.Rulesets.Karaoke.Wiki.Sections.Pieces
 {
@@ -16,14 +14,14 @@ namespace osu.Game.Rulesets.Karaoke.Wiki.Sections.Pieces
     public class MultiSettingsEnumDropdown<T> : FillFlowContainer
     {
         //List selection
-        protected List<DropDownSection<T>> ListSelectin = new List<DropDownSection<T>>();
+        protected List<DropDownSelectionSection<T>> ListSelectin = new List<DropDownSelectionSection<T>>();
 
 
         public string AlretMessage { get; set; } = nameof(T) + "Cannot be same";
 
         public int StartSelectionNumber { get; set; } = 1;
 
-        public int MaxSelextionNumber { get; set } = -1;
+        public int MaxSelextionNumber { get; set; } = -1;
 
         public bool EnableAddMore { get; set; } = true;
 
@@ -32,7 +30,6 @@ namespace osu.Game.Rulesets.Karaoke.Wiki.Sections.Pieces
         /// </summary>
         public MultiSettingsEnumDropdown()
         {
-
         }
 
         /// <summary>
@@ -50,7 +47,6 @@ namespace osu.Game.Rulesets.Karaoke.Wiki.Sections.Pieces
     /// </summary>
     public class DropDownSelectionSection<T> : FillFlowContainer
     {
-        
     }
 
     /// <summary>
@@ -58,7 +54,6 @@ namespace osu.Game.Rulesets.Karaoke.Wiki.Sections.Pieces
     /// </summary>
     public class AlertSection : FillFlowContainer
     {
-        
     }
 
     /// <summary>
@@ -66,7 +61,5 @@ namespace osu.Game.Rulesets.Karaoke.Wiki.Sections.Pieces
     /// </summary>
     public class AddMoreDropDownSelectionSection : FillFlowContainer
     {
-        
     }
-
 }

@@ -1,4 +1,9 @@
-﻿using System;
+﻿// Copyright (c) 2007-2018 ppy Pty Ltd <contact@ppy.sh>.
+// Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
+
+using System.Collections.Generic;
+using osu.Game.Beatmaps;
+using osu.Game.Rulesets.Karaoke.Service.Object;
 
 namespace osu.Game.Rulesets.Karaoke.Service.Type
 {
@@ -8,6 +13,11 @@ namespace osu.Game.Rulesets.Karaoke.Service.Type
     /// </summary>
     public interface IEditorService<T> where T : IEditItem
     {
+        /// <summary>
+        /// Get all the edited record
+        /// </summary>
+        /// <returns></returns>
+        List<EditRecord> GetListEditRecord();
 
         /// <summary>
         /// Get edit item from beatmap

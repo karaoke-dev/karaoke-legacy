@@ -1,11 +1,12 @@
-﻿using System;
+﻿// Copyright (c) 2007-2018 ppy Pty Ltd <contact@ppy.sh>.
+// Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
+
 namespace osu.Game.Rulesets.Karaoke.Service.Object
 {
     public class PublicCheckResult
     {
         public PublicCheckResult()
         {
-
         }
 
         public PublicCheckResultTyle PublicCheckResultTyle { get; set; }
