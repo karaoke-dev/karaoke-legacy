@@ -9,23 +9,24 @@ using osu.Game.Rulesets.Mods;
 
 namespace osu.Game.Rulesets.Karaoke.KaraokeDifficulty
 {
-    public class KaraokeDifficultyCalculator : DifficultyCalculator<BaseLyric>
+    public class KaraokeDifficultyCalculator : DifficultyCalculator
     {
         private const int section_length = 400;
         private const double difficulty_multiplier = 0.0675;
 
-        public KaraokeDifficultyCalculator(Beatmap beatmap, Mod[] mods = null)
+        public KaraokeDifficultyCalculator(IBeatmap beatmap, Mod[] mods = null)
             : base(beatmap)
         {
         }
 
-        public KaraokeDifficultyCalculator(Beatmap beatmap)
+        public KaraokeDifficultyCalculator(IBeatmap beatmap)
             : base(beatmap)
         {
         }
 
         protected override void PreprocessHitObjects()
         {
+            
         }
 
         public override double Calculate(Dictionary<string, double> categoryDifficulty = null)
@@ -34,6 +35,8 @@ namespace osu.Game.Rulesets.Karaoke.KaraokeDifficulty
             return 1.5;
         }
 
+        /*
         protected override BeatmapConverter<BaseLyric> CreateBeatmapConverter(Beatmap beatmap) => new KaraokeBeatmapConverter();
+        */
     }
 }

@@ -16,7 +16,7 @@ namespace osu.Game.Rulesets.Karaoke.Beatmaps
         protected override IEnumerable<Type> ValidConversionTypes { get; } = new[] { typeof(IHasPosition) };
 
 
-        protected override IEnumerable<BaseLyric> ConvertHitObject(HitObject original, Beatmap beatmap)
+        protected override IEnumerable<BaseLyric> ConvertHitObject(HitObject original, IBeatmap beatmap)
         {
             var curveData = original as IHasCurve;
             var endTimeData = original as IHasEndTime;
@@ -73,7 +73,7 @@ namespace osu.Game.Rulesets.Karaoke.Beatmaps
         /// </summary>
         /// <param name="original">The un-converted Beatmap.</param>
         /// <returns>The converted Beatmap.</returns>
-        protected override Beatmap<BaseLyric> ConvertBeatmap(Beatmap original)
+        protected override Beatmap<BaseLyric> ConvertBeatmap(IBeatmap original)
         {
             //TODO : ・ｽﾒ考Mania・ｽ・ｽ・ｽ・ｽ・ｽ・ｽ・ｽ
             var newBratmaps = new Beatmap<BaseLyric>()

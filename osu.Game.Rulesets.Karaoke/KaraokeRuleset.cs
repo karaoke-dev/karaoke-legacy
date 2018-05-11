@@ -166,7 +166,7 @@ namespace osu.Game.Rulesets.Karaoke
 
         public override Drawable CreateIcon() => new ImagePicec(@"Icon/Icon");
 
-        public override DifficultyCalculator CreateDifficultyCalculator(Beatmap beatmap, Mod[] mods = null) => new KaraokeDifficultyCalculator(beatmap, mods);
+        public override DifficultyCalculator CreateDifficultyCalculator(IBeatmap beatmap, Mod[] mods = null) => new KaraokeDifficultyCalculator(beatmap, mods);
 
         public override HitObjectComposer CreateHitObjectComposer() => new KaraokeHitObjectComposer(this);
 
