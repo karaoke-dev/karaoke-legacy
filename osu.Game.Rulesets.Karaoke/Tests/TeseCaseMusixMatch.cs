@@ -20,7 +20,7 @@ namespace osu.Game.Rulesets.Karaoke.Tests
     {
         public TeseCaseMusixMatch()
         {
-            MusixMatchApi api = new MusixMatchApi();
+            MusixMatchApi api = new MusixMatchApi("");
 
             List<TrackList> listResult = new List<TrackList>();
 

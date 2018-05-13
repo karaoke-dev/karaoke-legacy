@@ -24,17 +24,13 @@ namespace osu.Game.Rulesets.Karaoke.UI
     {
         protected KaraokeConfigManager ConfigManager;
 
-        public KaraokeRulesetContainer(Ruleset ruleset, WorkingBeatmap beatmap, bool isForCurrentRuleset)
-            : base(ruleset, beatmap, isForCurrentRuleset)
+        public KaraokeRulesetContainer(Ruleset ruleset, WorkingBeatmap beatmap)
+            : base(ruleset, beatmap)
         {
             //TODO : add "autoPlay" to Mods to control play speed
         }
 
         public override ScoreProcessor CreateScoreProcessor() => new KaraokeScoreProcessor(this);
-
-        protected override BeatmapConverter<BaseLyric> CreateBeatmapConverter() => new KaraokeBeatmapConverter();
-
-        protected override BeatmapProcessor<BaseLyric> CreateBeatmapProcessor() => new KaraokeBeatmapProcessor();
 
         protected override Playfield CreatePlayfield()
         {

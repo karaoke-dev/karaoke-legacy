@@ -3,6 +3,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using osu.Game.Beatmaps;
 using osu.Game.Rulesets.Karaoke.Helps;
 using osu.Game.Rulesets.Karaoke.Objects;
@@ -13,8 +14,13 @@ namespace osu.Game.Rulesets.Karaoke.Beatmaps
 {
     internal class KaraokeBeatmapConverter : BeatmapConverter<BaseLyric>
     {
-        protected override IEnumerable<Type> ValidConversionTypes { get; } = new[] { typeof(IHasPosition) };
+        public KaraokeBeatmapConverter(IBeatmap beatmap)
+            : base(beatmap)
+        {
 
+        }
+
+        protected override IEnumerable<Type> ValidConversionTypes { get; } = new[] { typeof(IHasPosition) };
 
         protected override IEnumerable<BaseLyric> ConvertHitObject(HitObject original, IBeatmap beatmap)
         {
@@ -80,7 +86,7 @@ namespace osu.Game.Rulesets.Karaoke.Beatmaps
             {
                 BeatmapInfo = original.BeatmapInfo,
                 ControlPointInfo = original.ControlPointInfo,
-                HitObjects = Convert(original.HitObjects),
+                HitObjects = Convert(original.HitObjects.ToList()),
             };
             //newBratmaps.HitObjects.BindingAll();
             return newBratmaps;
@@ -102,5 +108,7 @@ namespace osu.Game.Rulesets.Karaoke.Beatmaps
 
             return listRerturn;
         }
+
+       
     }
 }

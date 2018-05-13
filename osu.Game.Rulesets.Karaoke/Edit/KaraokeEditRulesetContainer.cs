@@ -14,8 +14,8 @@ namespace osu.Game.Rulesets.Karaoke.Edit
 {
     public class KaraokeEditRulesetContainer : KaraokeRulesetContainer
     {
-        public KaraokeEditRulesetContainer(Ruleset ruleset, WorkingBeatmap beatmap, bool isForCurrentRuleset)
-            : base(ruleset, beatmap, isForCurrentRuleset)
+        public KaraokeEditRulesetContainer(Ruleset ruleset, WorkingBeatmap beatmap)
+            : base(ruleset, beatmap)
         {
             Name = "KaraokeEditRulesetContainer";
         }

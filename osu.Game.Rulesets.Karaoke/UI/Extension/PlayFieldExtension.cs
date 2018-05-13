@@ -295,7 +295,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Extension
         /// <returns></returns>
         public static List<HitObject> GetListHitObjects(this IAmKaraokeField karaokeField)
         {
-            return karaokeField.WorkingBeatmap.Beatmap.HitObjects;
+            return karaokeField.WorkingBeatmap.Beatmap.HitObjects.ToList();
         }
     }
 }

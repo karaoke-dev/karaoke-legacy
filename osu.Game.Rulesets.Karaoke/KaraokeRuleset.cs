@@ -9,6 +9,7 @@ using osu.Game.Beatmaps;
 using osu.Game.Graphics;
 using osu.Game.Overlays.Settings;
 using osu.Game.Rulesets.Edit;
+using osu.Game.Rulesets.Karaoke.Beatmaps;
 using osu.Game.Rulesets.Karaoke.Edit;
 using osu.Game.Rulesets.Karaoke.Input;
 using osu.Game.Rulesets.Karaoke.KaraokeDifficulty;
@@ -31,7 +32,9 @@ namespace osu.Game.Rulesets.Karaoke
     /// </summary>
     public class KaraokeRuleset : Ruleset
     {
-        public override RulesetContainer CreateRulesetContainerWith(WorkingBeatmap beatmap, bool isForCurrentRuleset) => new KaraokeRulesetContainer(this, beatmap, isForCurrentRuleset);
+        public override RulesetContainer CreateRulesetContainerWith(WorkingBeatmap beatmap) => new KaraokeRulesetContainer(this, beatmap);
+        public override IBeatmapConverter CreateBeatmapConverter(IBeatmap beatmap) => new KaraokeBeatmapConverter(beatmap);
+        public override IBeatmapProcessor CreateBeatmapProcessor(IBeatmap beatmap) => new KaraokeBeatmapProcessor(beatmap);
 
         public override IEnumerable<int> AvailableVariants => new[] { 0, 1 };
 
@@ -84,25 +87,6 @@ namespace osu.Game.Rulesets.Karaoke
             else
                 return "Editor Hotkey";
         }
-
-        public override IEnumerable<BeatmapStatistic> GetBeatmapStatistics(WorkingBeatmap beatmap) => new[]
-        {
-            //TODO Change to foreach and calculate each singer's lyric number
-
-
-            new BeatmapStatistic
-            {
-                Name = @"Circle count",
-                Content = beatmap.Beatmap.HitObjects.Count(h => h is BaseLyric).ToString(),
-                Icon = FontAwesome.fa_dot_circle_o
-            },
-            new BeatmapStatistic
-            {
-                Name = @"Slider count",
-                Content = beatmap.Beatmap.HitObjects.Count(h => h is BaseLyric).ToString(),
-                Icon = FontAwesome.fa_circle_o
-            }
-        };
 
         public override IEnumerable<Mod> GetModsFor(ModType type)
         {
