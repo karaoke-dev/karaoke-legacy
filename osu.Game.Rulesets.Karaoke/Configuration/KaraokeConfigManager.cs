@@ -79,7 +79,7 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
         //karaoke control panel.
         Platform = 22,
         ShowKarokePanel = 21, //[bool]show panel at the beginning
-        DisableHotKay = 22, //[bool]enable hotkey
+        DisableHotKay = 24, //[bool]enable hotkey
 
         //Style
         Template = 31, //[object]
