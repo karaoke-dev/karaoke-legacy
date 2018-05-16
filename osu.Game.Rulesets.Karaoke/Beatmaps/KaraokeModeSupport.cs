@@ -8,7 +8,7 @@ namespace osu.Game.Rulesets.Karaoke.Beatmaps
         /// <summary>
         /// Show tome visualization
         /// </summary>
-        public bool Tome { get; set; }
+        public bool Tone { get; set; }
 
         /// <summary>
         /// Has vocal track that can has off-vocal mod

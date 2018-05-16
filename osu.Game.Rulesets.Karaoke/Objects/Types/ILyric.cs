@@ -19,7 +19,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Types
         /// <summary>
         /// list progress point
         /// </summary>
-        LyricTimeLineList ProgressPoints { get; set; }
+        LyricTimeLineList TimeLines { get; set; }
 
         /// <summary>
         /// list translate
