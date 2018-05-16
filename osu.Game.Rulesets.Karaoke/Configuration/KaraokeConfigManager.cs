@@ -55,6 +55,9 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
             //Device
             Set(KaraokeSetting.Device, PlatformType.Desktop);
             SetObject(KaraokeSetting.TouchScreen, new MobileScrollAnixConfig());
+
+            //Tone
+            Set(KaraokeSetting.NoteSpeed, 1500.0);
         }
 
         public override TrackedSettings CreateTrackedSettings() => new TrackedSettings

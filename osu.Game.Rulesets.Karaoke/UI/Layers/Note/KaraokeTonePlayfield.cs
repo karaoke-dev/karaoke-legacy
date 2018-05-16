@@ -111,13 +111,16 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Note
 
         private void initialBarLine()
         {
-            var timingPoints = KaraokeRulesetContainer.Beatmap.ControlPointInfo.TimingPoints;
+            var beatmap = KaraokeRulesetContainer.Beatmap;
+            var Objects = beatmap.HitObjects;
+            double lastObjectTime = (Objects.LastOrDefault() as IHasEndTime)?.EndTime ?? Objects.LastOrDefault()?.StartTime ?? double.MaxValue;
+            var timingPoints = beatmap.ControlPointInfo.TimingPoints;
             var barLines = new List<BarLine>();
             for (int i = 0; i < timingPoints.Count; i++)
             {
                 TimingControlPoint point = timingPoints[i];
 
-                double endTime = timingPoints[i + 1].Time - point.BeatLength;
+                double endTime = i < timingPoints.Count - 1 ? timingPoints[i + 1].Time - point.BeatLength : lastObjectTime + point.BeatLength * (int)point.TimeSignature;
 
                 int index = 0;
                 for (double t = timingPoints[i].Time; Precision.DefinitelyBigger(endTime, t); t += point.BeatLength, index++)
@@ -130,7 +133,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Note
                     });
                 }
             }
-
+            BarLines = barLines;
             BarLines.ForEach(Add);
         }
     }
