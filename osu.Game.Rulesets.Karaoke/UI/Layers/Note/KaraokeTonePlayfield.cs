@@ -97,10 +97,5 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Note
         {
             karaokeConfig.BindWith(KaraokeSetting.NoteSpeed, VisibleTimeRange);
         }
-
-        internal void OnJudgement(DrawableHitObject judgedObject, Judgement judgement)
-        {
-            getStageByColumn(((BaseLyric)judgedObject.HitObject).Column).OnJudgement(judgedObject, judgement);
-        }
     }
 }
