@@ -48,6 +48,9 @@
     <EmbeddedResource Include="Tracks\**\*" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Remove="Beatmaps\KaraokeStageDefinition.cs" />
+  </ItemGroup>
+  <ItemGroup>
     <Folder Include="Online\API\Git\" />
     <Folder Include="Online\API\Romaj\Github\" />
     <Folder Include="Online\API\Translate\Github\" />
