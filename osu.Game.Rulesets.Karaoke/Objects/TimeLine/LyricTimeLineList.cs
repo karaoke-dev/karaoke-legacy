@@ -108,7 +108,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.TimeLine
         {
             /*
             var point = this.FirstOrDefault(x => x.Key > charIndex);
-            return point; //?? lyric.ProgressPoints.Last();
+            return point; //?? lyric.TimeLines.Last();
             */
             var result = FindNext(charIndex).Value;
 

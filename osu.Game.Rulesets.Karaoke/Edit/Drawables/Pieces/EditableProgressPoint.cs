@@ -61,7 +61,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Pieces
                 else
                 {
                     var thisCharIndex = LyricProgressPoint.Key;
-                    var lastTime = DrawableKaraokeThumbnail.Lyric.ProgressPoints.FindPrevioud(IndexOfObject).Value.Key;
+                    var lastTime = DrawableKaraokeThumbnail.Lyric.TimeLines.FindPrevioud(IndexOfObject).Value.Key;
                     return DrawableKaraokeThumbnail.Lyric.Lyric.Text.Substring(lastTime + 1, thisCharIndex - lastTime);
                 }
             }

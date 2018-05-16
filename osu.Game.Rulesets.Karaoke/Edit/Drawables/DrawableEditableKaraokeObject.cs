@@ -114,11 +114,11 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables
 
         public void AddPoint(int index)
         {
-            KeyValuePair<int, LyricTimeLine> previousPoint = Lyric.ProgressPoints.GetFirstProgressPointByIndex(index);
-            KeyValuePair<int, LyricTimeLine> nextPoint = Lyric.ProgressPoints.GetLastProgressPointByIndex(index);
+            KeyValuePair<int, LyricTimeLine> previousPoint = Lyric.TimeLines.GetFirstProgressPointByIndex(index);
+            KeyValuePair<int, LyricTimeLine> nextPoint = Lyric.TimeLines.GetLastProgressPointByIndex(index);
             double deltaTime = ((previousPoint.Value?.RelativeTime ?? 0) + (nextPoint.Value?.RelativeTime ?? (previousPoint.Value?.RelativeTime ?? 0) + 500)) / 2;
             LyricTimeLine point = new LyricTimeLine(deltaTime);
-            Lyric.ProgressPoints.Add(index, point);
+            Lyric.TimeLines.Add(index, point);
             DrawableKaraokeThumbnail.UpdateView();
         }
 

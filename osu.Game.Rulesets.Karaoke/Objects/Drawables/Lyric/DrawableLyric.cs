@@ -308,8 +308,8 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
             if (HitObject.IsInTime(currentRelativeTime))
             {
                 //TODO : get progress point
-                var startProgressPoint = HitObject.ProgressPoints.GetFirstProgressPointByTime(currentRelativeTime);
-                var endProgressPoint = HitObject.ProgressPoints.GetLastProgressPointByTime(currentRelativeTime);
+                var startProgressPoint = HitObject.TimeLines.GetFirstProgressPointByTime(currentRelativeTime);
+                var endProgressPoint = HitObject.TimeLines.GetLastProgressPointByTime(currentRelativeTime);
 
                 var startPosition = TextsAndMaskPiece.MainText.GetEndPositionByIndex(startProgressPoint.Key);
                 var endPosition = TextsAndMaskPiece.MainText.GetEndPositionByIndex(endProgressPoint?.Key ?? -1);
