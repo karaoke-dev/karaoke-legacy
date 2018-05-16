@@ -7,6 +7,7 @@ using osu.Framework.Configuration;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Game.Rulesets.Judgements;
+using osu.Game.Rulesets.Karaoke.Configuration;
 using osu.Game.Rulesets.Karaoke.Objects;
 using osu.Game.Rulesets.Karaoke.Objects.Drawables.Note;
 using osu.Game.Rulesets.Karaoke.Objects.Note;
@@ -79,9 +80,9 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Note
         }
 
         [BackgroundDependencyLoader]
-        private void load(ManiaConfigManager maniaConfig)
+        private void load(KaraokeConfigManager karaokeConfig)
         {
-            maniaConfig.BindWith(ManiaSetting.ScrollTime, VisibleTimeRange);
+            karaokeConfig.BindWith(KaraokeSetting.ScrollTime, VisibleTimeRange);
         }
 
         internal void OnJudgement(DrawableHitObject judgedObject, Judgement judgement)

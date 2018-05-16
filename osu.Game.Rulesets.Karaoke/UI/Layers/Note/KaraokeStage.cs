@@ -35,8 +35,8 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Note
         protected override Container<Drawable> Content => content;
         private readonly Container<Drawable> content;
 
-        public Container<DrawableManiaJudgement> Judgements => judgements;
-        private readonly JudgementContainer<DrawableManiaJudgement> judgements;
+        public Container<DrawableNoteJudgement> Judgements => judgements;
+        private readonly JudgementContainer<DrawableNoteJudgement> judgements;
 
         private readonly Container topLevelContainer;
 
@@ -45,7 +45,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Note
 
         private readonly int firstColumnIndex;
 
-        public ManiaStage(int firstColumnIndex, StageDefinition definition)
+        public KaraokeStage(int firstColumnIndex, KaraokeStageDefinition definition)
             : base(ScrollingDirection.Up)
         {
             this.firstColumnIndex = firstColumnIndex;
@@ -110,7 +110,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Note
                                 Padding = new MarginPadding { Top = HIT_TARGET_POSITION }
                             }
                         },
-                        judgements = new JudgementContainer<DrawableManiaJudgement>
+                        judgements = new JudgementContainer<DrawableNoteJudgement>
                         {
                             Anchor = Anchor.TopCentre,
                             Origin = Anchor.Centre,
@@ -167,7 +167,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Note
         internal void OnJudgement(DrawableHitObject judgedObject, Judgement judgement)
         {
             judgements.Clear();
-            judgements.Add(new DrawableManiaJudgement(judgement, judgedObject)
+            judgements.Add(new DrawableNoteJudgement(judgement, judgedObject)
             {
                 Anchor = Anchor.Centre,
                 Origin = Anchor.Centre,
