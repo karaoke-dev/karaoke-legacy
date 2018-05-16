@@ -145,6 +145,11 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         public TranslateCode Lang { get; set; }
 
         /// <summary>
+        /// Stage Index
+        /// </summary>
+        public int StageIndex { get; set; }
+
+        /// <summary>
         /// Version of the lyric
         /// </summary>
         public virtual int Ver { get; set; } = 0;

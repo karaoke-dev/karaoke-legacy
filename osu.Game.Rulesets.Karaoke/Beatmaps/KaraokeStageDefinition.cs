@@ -5,6 +5,9 @@ using osu.Game.Rulesets.Karaoke.UI.Layers.Note;
 
 namespace osu.Game.Rulesets.Karaoke.Beatmaps
 {
+    /// <summary>
+    /// stage definition
+    /// </summary>
     public class KaraokeStageDefinition
     {
         /// <summary>
