@@ -74,7 +74,7 @@ namespace osu.Game.Rulesets.Karaoke.UI
 
         protected override ReplayInputHandler CreateReplayInputHandler(Replay replay) => new KaraokeReplayInputHandler(replay);
 
-        protected override Vector2 GetAspectAdjustedSize() => new Vector2(0.75f);
+        protected override Vector2 GetAspectAdjustedSize() => new Vector2(1);
 
         protected override IRulesetConfigManager CreateConfig(Ruleset ruleset, SettingsStore settings)
         {

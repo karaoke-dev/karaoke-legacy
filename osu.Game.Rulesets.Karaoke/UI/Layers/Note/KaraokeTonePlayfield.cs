@@ -49,7 +49,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Note
         public KaraokeRulesetContainer KaraokeRulesetContainer { get; set; }
 
         public KaraokeTonePlayfield(List<KaraokeStageDefinition> stageDefinitions)
-            : base(ScrollingDirection.Up)
+            : base(ScrollingDirection.Right)
         {
             if (stageDefinitions == null)
                 throw new ArgumentNullException(nameof(stageDefinitions));
@@ -65,7 +65,6 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Note
                 RelativeSizeAxes = Axes.Both,
                 Content = new[] { new Drawable[stageDefinitions.Count] }
             };
-
 
             int firstColumnIndex = 0;
             for (int i = 0; i < stageDefinitions.Count; i++)
