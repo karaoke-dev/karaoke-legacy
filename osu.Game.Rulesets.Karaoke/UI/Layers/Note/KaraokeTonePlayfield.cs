@@ -103,10 +103,10 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Note
         [BackgroundDependencyLoader]
         private void load(KaraokeConfigManager karaokeConfig)
         {
-            karaokeConfig.BindWith(KaraokeSetting.NoteSpeed, VisibleTimeRange);
-
             //initial bar lines
             initialBarLine();
+
+            karaokeConfig.BindWith(KaraokeSetting.NoteSpeed, VisibleTimeRange);
         }
 
         private void initialBarLine()
