@@ -9,6 +9,7 @@ using osu.Game.Rulesets.Karaoke.Configuration;
 using osu.Game.Rulesets.Karaoke.Edit.Dialog;
 using osu.Game.Rulesets.Karaoke.UI.Layers.Dialog;
 using osu.Game.Rulesets.Karaoke.UI.Layers.Lyric;
+using osu.Game.Rulesets.Karaoke.UI.Layers.Note;
 using osu.Game.Rulesets.Karaoke.UI.Layers.Type;
 
 namespace osu.Game.Rulesets.Karaoke.UI
@@ -19,6 +20,7 @@ namespace osu.Game.Rulesets.Karaoke.UI
 
         protected DialogLayer DialogLayer;
         public KaraokeLyricPlayField KaraokeLyricPlayField;
+        public KaraokeTonePlayfield KaraokeTonePlayfield;
 
 
         #region Layer

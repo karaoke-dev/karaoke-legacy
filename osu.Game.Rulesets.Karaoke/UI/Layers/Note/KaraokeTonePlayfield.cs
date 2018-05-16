@@ -11,6 +11,7 @@ using osu.Framework.Graphics.Containers;
 using osu.Game.Rulesets.Judgements;
 using osu.Game.Rulesets.Karaoke.Beatmaps;
 using osu.Game.Rulesets.Karaoke.Configuration;
+using osu.Game.Rulesets.Karaoke.Objects;
 using osu.Game.Rulesets.Karaoke.Objects.Drawables.Note;
 using osu.Game.Rulesets.Karaoke.Objects.Note;
 using osu.Game.Rulesets.Karaoke.UI.Layers.Type;
@@ -94,12 +95,12 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Note
         [BackgroundDependencyLoader]
         private void load(KaraokeConfigManager karaokeConfig)
         {
-            karaokeConfig.BindWith(KaraokeSetting.ScrollTime, VisibleTimeRange);
+            karaokeConfig.BindWith(KaraokeSetting.NoteSpeed, VisibleTimeRange);
         }
 
         internal void OnJudgement(DrawableHitObject judgedObject, Judgement judgement)
         {
-            getStageByColumn(((ManiaHitObject)judgedObject.HitObject).Column).OnJudgement(judgedObject, judgement);
+            getStageByColumn(((BaseLyric)judgedObject.HitObject).Column).OnJudgement(judgedObject, judgement);
         }
     }
 }

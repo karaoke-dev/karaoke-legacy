@@ -10,6 +10,7 @@ using osu.Framework.Graphics.Shapes;
 using osu.Game.Graphics;
 using osu.Game.Rulesets.Judgements;
 using osu.Game.Rulesets.Karaoke.Beatmaps;
+using osu.Game.Rulesets.Karaoke.Objects;
 using osu.Game.Rulesets.Karaoke.Objects.Drawables.Note;
 using osu.Game.Rulesets.Karaoke.Objects.Note;
 using osu.Game.Rulesets.Objects.Drawables;
@@ -130,7 +131,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Note
                 var column = new Column
                 {
                     IsSpecial = isSpecial,
-                    Action = isSpecial ? specialColumnStartAction++ : normalColumnStartAction++
+                    //Action = isSpecial ? specialColumnStartAction++ : normalColumnStartAction++
                 };
 
                 AddColumn(column);
@@ -157,7 +158,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Note
 
         public override void Add(DrawableHitObject h)
         {
-            var maniaObject = (ManiaHitObject)h.HitObject;
+            var maniaObject = (BaseLyric)h.HitObject;
             int columnIndex = maniaObject.Column - firstColumnIndex;
             Columns.ElementAt(columnIndex).Add(h);
             h.OnJudgement += OnJudgement;

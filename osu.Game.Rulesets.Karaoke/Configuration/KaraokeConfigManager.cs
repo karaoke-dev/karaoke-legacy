@@ -97,5 +97,8 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
         //device
         Device = 61, //which device
         TouchScreen = 62, //touch screen action
+
+        //Note
+        NoteSpeed = 71,//noteSpeed
     }
 }
