@@ -6,8 +6,11 @@ using System.Collections.Generic;
 using System.Linq;
 using osu.Framework.Allocation;
 using osu.Framework.Configuration;
+using osu.Framework.Extensions.IEnumerableExtensions;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
+using osu.Framework.MathUtils;
+using osu.Game.Beatmaps.ControlPoints;
 using osu.Game.Rulesets.Judgements;
 using osu.Game.Rulesets.Karaoke.Beatmaps;
 using osu.Game.Rulesets.Karaoke.Configuration;
@@ -16,6 +19,7 @@ using osu.Game.Rulesets.Karaoke.Objects.Drawables.Note;
 using osu.Game.Rulesets.Karaoke.Objects.Note;
 using osu.Game.Rulesets.Karaoke.UI.Layers.Type;
 using osu.Game.Rulesets.Objects.Drawables;
+using osu.Game.Rulesets.Objects.Types;
 using osu.Game.Rulesets.UI.Scrolling;
 using osu.Game.Screens.Play;
 
@@ -39,6 +43,10 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Note
 
         public List<Column> Columns => stages.SelectMany(x => x.Columns).ToList();
         private readonly List<KaraokeStage> stages = new List<KaraokeStage>();
+
+        public IList<BarLine> BarLines = new List<BarLine>();
+
+        public KaraokeRulesetContainer KaraokeRulesetContainer { get; set; }
 
         public KaraokeTonePlayfield(List<KaraokeStageDefinition> stageDefinitions)
             : base(ScrollingDirection.Up)
@@ -96,6 +104,34 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Note
         private void load(KaraokeConfigManager karaokeConfig)
         {
             karaokeConfig.BindWith(KaraokeSetting.NoteSpeed, VisibleTimeRange);
+
+            //initial bar lines
+            initialBarLine();
+        }
+
+        private void initialBarLine()
+        {
+            var timingPoints = KaraokeRulesetContainer.Beatmap.ControlPointInfo.TimingPoints;
+            var barLines = new List<BarLine>();
+            for (int i = 0; i < timingPoints.Count; i++)
+            {
+                TimingControlPoint point = timingPoints[i];
+
+                double endTime = timingPoints[i + 1].Time - point.BeatLength;
+
+                int index = 0;
+                for (double t = timingPoints[i].Time; Precision.DefinitelyBigger(endTime, t); t += point.BeatLength, index++)
+                {
+                    barLines.Add(new BarLine
+                    {
+                        StartTime = t,
+                        ControlPoint = point,
+                        BeatIndex = index
+                    });
+                }
+            }
+
+            BarLines.ForEach(Add);
         }
     }
 }
