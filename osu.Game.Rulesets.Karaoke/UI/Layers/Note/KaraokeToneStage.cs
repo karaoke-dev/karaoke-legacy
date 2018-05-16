@@ -7,6 +7,9 @@ using osu.Framework.Configuration;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Game.Rulesets.Judgements;
+using osu.Game.Rulesets.Karaoke.Objects;
+using osu.Game.Rulesets.Karaoke.Objects.Drawables.Note;
+using osu.Game.Rulesets.Karaoke.Objects.Note;
 using osu.Game.Rulesets.Objects.Drawables;
 using osu.Game.Rulesets.UI.Scrolling;
 using osu.Game.Screens.Play;
@@ -58,7 +61,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Note
             }
         }
 
-        public override void Add(DrawableHitObject h) => getStageByColumn(((ManiaHitObject)h.HitObject).Column).Add(h);
+        public override void Add(DrawableHitObject h) => getStageByColumn(((DrawableKaraokeNote)h).TimeLine.Tone).Add(h);
 
         public void Add(BarLine barline) => stages.ForEach(s => s.Add(barline));
 

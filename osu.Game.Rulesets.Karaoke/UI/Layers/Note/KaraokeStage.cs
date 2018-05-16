@@ -9,6 +9,8 @@ using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Shapes;
 using osu.Game.Graphics;
 using osu.Game.Rulesets.Judgements;
+using osu.Game.Rulesets.Karaoke.Objects.Drawables.Note;
+using osu.Game.Rulesets.Karaoke.Objects.Note;
 using osu.Game.Rulesets.Objects.Drawables;
 using osu.Game.Rulesets.UI;
 using osu.Game.Rulesets.UI.Scrolling;

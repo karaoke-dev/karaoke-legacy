@@ -21,5 +21,11 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         /// relative to word's strt time
         /// </summary>
         public double RelativeTime { get; set; }
+
+        /// <summary>
+        /// Tone
+        /// TODO : not sure will change to enum type
+        /// </summary>
+        public int Tone { get; set; }
     }
 }
