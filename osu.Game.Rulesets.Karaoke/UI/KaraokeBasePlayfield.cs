@@ -99,6 +99,12 @@ namespace osu.Game.Rulesets.Karaoke.UI
         public override void Add(DrawableHitObject h)
         {
             KaraokeLyricPlayField.Add(h);
+
+            //import
+            if (KaraokeTonePlayfield != null)
+            {
+
+            }
         }
 
         //post process

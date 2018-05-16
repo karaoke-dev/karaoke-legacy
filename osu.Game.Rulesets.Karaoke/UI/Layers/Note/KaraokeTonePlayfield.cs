@@ -82,7 +82,12 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Note
             }
         }
 
-        public override void Add(DrawableHitObject h) => getStageByColumn(((DrawableKaraokeNote)h).TimeLine.Tone).Add(h);
+        public override void Add(DrawableHitObject h)
+        {
+            //TODO : 這邊註冊事件
+            //然後根據事件去做物件的加減
+            getStageByColumn(((DrawableKaraokeNote)h).TimeLine.Tone).Add(h);
+        }
 
         public void Add(BarLine barline) => stages.ForEach(s => s.Add(barline));
 
