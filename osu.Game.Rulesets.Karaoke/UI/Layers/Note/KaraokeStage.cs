@@ -9,6 +9,7 @@ using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Shapes;
 using osu.Game.Graphics;
 using osu.Game.Rulesets.Judgements;
+using osu.Game.Rulesets.Karaoke.Beatmaps;
 using osu.Game.Rulesets.Karaoke.Objects.Drawables.Note;
 using osu.Game.Rulesets.Karaoke.Objects.Note;
 using osu.Game.Rulesets.Objects.Drawables;
@@ -29,8 +30,8 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Note
         /// </summary>
         public readonly Bindable<bool> Inverted = new Bindable<bool>(true);
 
-        public IReadOnlyList<SquareGraph.Column> Columns => columnFlow.Children;
-        private readonly FillFlowContainer<SquareGraph.Column> columnFlow;
+        public IReadOnlyList<Column> Columns => columnFlow.Children;
+        private readonly FillFlowContainer<Column> columnFlow;
 
         protected override Container<Drawable> Content => content;
         private readonly Container<Drawable> content;
@@ -81,7 +82,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Note
                                     RelativeSizeAxes = Axes.Both,
                                     Colour = Color4.Black
                                 },
-                                columnFlow = new FillFlowContainer<SquareGraph.Column>
+                                columnFlow = new FillFlowContainer<Column>
                                 {
                                     Name = "Columns",
                                     RelativeSizeAxes = Axes.Y,
@@ -126,7 +127,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Note
             for (int i = 0; i < definition.Columns; i++)
             {
                 var isSpecial = definition.IsSpecialColumn(i);
-                var column = new SquareGraph.Column
+                var column = new Column
                 {
                     IsSpecial = isSpecial,
                     Action = isSpecial ? specialColumnStartAction++ : normalColumnStartAction++
@@ -145,7 +146,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Note
             Judgements.Scale = Scale;
         }
 
-        public void AddColumn(SquareGraph.Column c)
+        public void AddColumn(Column c)
         {
             c.VisibleTimeRange.BindTo(VisibleTimeRange);
 

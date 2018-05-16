@@ -9,6 +9,7 @@ using osu.Framework.Configuration;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Game.Rulesets.Judgements;
+using osu.Game.Rulesets.Karaoke.Beatmaps;
 using osu.Game.Rulesets.Karaoke.Configuration;
 using osu.Game.Rulesets.Karaoke.Objects.Drawables.Note;
 using osu.Game.Rulesets.Karaoke.Objects.Note;
@@ -35,10 +36,10 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Note
         /// </summary>
         public readonly Bindable<bool> Inverted = new Bindable<bool>(true);
 
-        public List<SquareGraph.Column> Columns => stages.SelectMany(x => x.Columns).ToList();
+        public List<Column> Columns => stages.SelectMany(x => x.Columns).ToList();
         private readonly List<KaraokeStage> stages = new List<KaraokeStage>();
 
-        public KaraokeToneStage(List<KaraokeStageDefinition> stageDefinitions)
+        public KaraokeTonePlayfield(List<KaraokeStageDefinition> stageDefinitions)
             : base(ScrollingDirection.Up)
         {
             if (stageDefinitions == null)
