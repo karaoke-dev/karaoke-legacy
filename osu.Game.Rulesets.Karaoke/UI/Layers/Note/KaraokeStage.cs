@@ -159,7 +159,8 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Note
         public override void Add(DrawableHitObject h)
         {
             var maniaObject = (BaseLyric)h.HitObject;
-            int columnIndex = maniaObject.Column - firstColumnIndex;
+            var timeLine = ((DrawableKaraokeNote)h).TimeLine;
+            int columnIndex = timeLine.Tone - firstColumnIndex;
             Columns.ElementAt(columnIndex).Add(h);
             h.OnJudgement += OnJudgement;
         }
