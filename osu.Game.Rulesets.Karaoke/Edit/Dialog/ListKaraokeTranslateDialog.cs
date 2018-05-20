@@ -14,7 +14,7 @@ using OpenTK;
 
 namespace osu.Game.Rulesets.Karaoke.Edit.Dialog
 {
-    class ListKaraokeTranslateDialog : DialogContainer
+    public class ListKaraokeTranslateDialog : DialogContainer
     {
         protected KaraokeEditPlayfield PlayField;
         protected ListTranslateScrollContainer ItemsScrollContainer { get; set; }
