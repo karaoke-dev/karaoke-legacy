@@ -24,8 +24,24 @@ namespace osu.Game.Rulesets.Karaoke.Objects
 
         /// <summary>
         /// Tone
-        /// TODO : not sure will change to enum type
         /// </summary>
         public int Tone { get; set; }
+
+        /// <summary>
+        /// Add helf tone
+        /// </summary>
+        public bool AddHelfTone { get; set; }
+
+        /// <summary>
+        /// Display Text
+        /// If null, will get text from <see cref="MainText"/>
+        /// </summary>
+        public string DisplayText { get; set; }
+
+        /// <summary>
+        /// Duration
+        /// Default is -1 , means duration is next.RelativeTime -  this.RelativeTime
+        /// </summary>
+        public double Duration { get; set; } = -1;
     }
 }
