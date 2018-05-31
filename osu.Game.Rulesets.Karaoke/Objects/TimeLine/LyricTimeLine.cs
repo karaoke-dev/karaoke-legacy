@@ -25,12 +25,12 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         /// <summary>
         /// Tone
         /// </summary>
-        public int Tone { get; set; }
+        public int? Tone { get; set; }
 
         /// <summary>
         /// Add helf tone
         /// </summary>
-        public bool AddHelfTone { get; set; }
+        public bool HelfTone { get; set; }
 
         /// <summary>
         /// Display Text
@@ -42,6 +42,6 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         /// Duration
         /// Default is -1 , means duration is next.RelativeTime -  this.RelativeTime
         /// </summary>
-        public double Duration { get; set; } = -1;
+        public double? EarlyTime { get; set; }
     }
 }

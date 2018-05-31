@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using NUnit.Framework;
 using osu.Framework.Allocation;
 using osu.Framework.Configuration;
@@ -13,15 +12,14 @@ using osu.Framework.Graphics.Shapes;
 using osu.Framework.Input.Bindings;
 using osu.Game.Graphics;
 using osu.Game.Rulesets.Judgements;
+using osu.Game.Rulesets.Karaoke.Beatmaps;
+using osu.Game.Rulesets.Karaoke.Input;
 using osu.Game.Rulesets.Karaoke.Objects;
 using osu.Game.Rulesets.Karaoke.Objects.Drawables.Common.Pieces;
 using osu.Game.Rulesets.Karaoke.Objects.Drawables.Note;
 using osu.Game.Rulesets.Karaoke.Objects.Drawables.Note.Pieces;
 using osu.Game.Rulesets.Karaoke.Objects.Note;
-using osu.Game.Rulesets.Objects;
 using osu.Game.Rulesets.Objects.Drawables;
-using osu.Game.Rulesets.Scoring;
-using osu.Game.Rulesets.UI;
 using osu.Game.Rulesets.UI.Scrolling;
 using osu.Game.Tests.Visual;
 using OpenTK;
@@ -36,10 +34,93 @@ namespace osu.Game.Rulesets.Karaoke.Develop
     {
         public DevelopNoteUi()
         {
-            ManiaStage stage = new ManiaStage();
-
-            this.Add(stage);
+            Add(new FillFlowContainer
+            {
+                Anchor = Anchor.Centre,
+                Origin = Anchor.Centre,
+                RelativeSizeAxes = Axes.Y,
+                Direction = FillDirection.Horizontal,
+                Spacing = new Vector2(10, 0),
+                // Imagine that the containers containing the drawable notes are the "columns"
+                Children = new Drawable[]
+                {
+                    new Container
+                    {
+                        Name = "Normal note column",
+                        Anchor = Anchor.Centre,
+                        Origin = Anchor.Centre,
+                        RelativeSizeAxes = Axes.Y,
+                        Width = 50,
+                        Children = new[]
+                        {
+                            new Container
+                            {
+                                Name = "Timing section",
+                                RelativeSizeAxes = Axes.Both,
+                                RelativeChildSize = new Vector2(1, 10000),
+                                Children = new[]
+                                {
+                                    new DrawableHoldNote(new Note(), ManiaAction.Key1)
+                                    {
+                                        Y = 5000,
+                                        LifetimeStart = double.MinValue,
+                                        LifetimeEnd = double.MaxValue,
+                                        AccentColour = Color4.Red
+                                    },
+                                    new DrawableHoldNote(new Note(), ManiaAction.Key1)
+                                    {
+                                        Y = 6000,
+                                        LifetimeStart = double.MinValue,
+                                        LifetimeEnd = double.MaxValue,
+                                        AccentColour = Color4.Red
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    new Container
+                    {
+                        Name = "Hold note column",
+                        Anchor = Anchor.Centre,
+                        Origin = Anchor.Centre,
+                        RelativeSizeAxes = Axes.Y,
+                        Width = 50,
+                        Children = new[]
+                        {
+                            new Container
+                            {
+                                Name = "Timing section",
+                                RelativeSizeAxes = Axes.Both,
+                                RelativeChildSize = new Vector2(1, 10000),
+                                Children = new[]
+                                {
+                                    new DrawableHoldNote(new DrawableHoldNote { Duration = 1000 } , ManiaAction.Key1)
+                                    {
+                                        Y = 5000,
+                                        Height = 1000,
+                                        LifetimeStart = double.MinValue,
+                                        LifetimeEnd = double.MaxValue,
+                                        AccentColour = Color4.Red
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            });
         }
+
+        /*
+        public DevelopNoteUi()
+        {
+            //ManiaStage stage = new ManiaStage(0, new KaraokeStageDefinition(){ Columns = 5});
+
+            var column = new Column();
+            column.Add(new DrawableHoldNote(new BaseLyric(),KaraokeKeyAction.FirstLyric));
+
+            this.Add(column);
+        }
+        */
     }
 
     /// <summary>
@@ -60,9 +141,6 @@ namespace osu.Game.Rulesets.Karaoke.Develop
         protected override Container<Drawable> Content => content;
         private readonly Container<Drawable> content;
 
-        public Container<DrawableManiaJudgement> Judgements => judgements;
-        private readonly JudgementContainer<DrawableManiaJudgement> judgements;
-
         private readonly Container topLevelContainer;
 
         private List<Color4> normalColumnColours = new List<Color4>();
@@ -70,7 +148,7 @@ namespace osu.Game.Rulesets.Karaoke.Develop
 
         private readonly int firstColumnIndex;
 
-        public ManiaStage(int firstColumnIndex, StageDefinition definition, ref ManiaAction normalColumnStartAction, ref ManiaAction specialColumnStartAction)
+        public ManiaStage(int firstColumnIndex, KaraokeStageDefinition definition)
             : base(ScrollingDirection.Up)
         {
             this.firstColumnIndex = firstColumnIndex;
@@ -135,14 +213,6 @@ namespace osu.Game.Rulesets.Karaoke.Develop
                                 Padding = new MarginPadding { Top = HIT_TARGET_POSITION }
                             }
                         },
-                        judgements = new JudgementContainer<DrawableManiaJudgement>
-                        {
-                            Anchor = Anchor.TopCentre,
-                            Origin = Anchor.Centre,
-                            AutoSizeAxes = Axes.Both,
-                            Y = HIT_TARGET_POSITION + 150,
-                            BypassAutoSizeAxes = Axes.Both
-                        },
                         topLevelContainer = new Container { RelativeSizeAxes = Axes.Both }
                     }
                 }
@@ -154,7 +224,6 @@ namespace osu.Game.Rulesets.Karaoke.Develop
                 var column = new Column
                 {
                     IsSpecial = isSpecial,
-                    Action = isSpecial ? specialColumnStartAction++ : normalColumnStartAction++
                 };
 
                 AddColumn(column);
@@ -167,7 +236,6 @@ namespace osu.Game.Rulesets.Karaoke.Develop
         private void invertedChanged(bool newValue)
         {
             Scale = new Vector2(1, newValue ? -1 : 1);
-            Judgements.Scale = Scale;
         }
 
         public void AddColumn(Column c)
@@ -179,25 +247,17 @@ namespace osu.Game.Rulesets.Karaoke.Develop
             AddNested(c);
         }
 
+        /*
         public override void Add(DrawableHitObject h)
         {
-            var maniaObject = (ManiaHitObject)h.HitObject;
+            var maniaObject = (BaseLyric)h.HitObject;
             int columnIndex = maniaObject.Column - firstColumnIndex;
             Columns.ElementAt(columnIndex).Add(h);
-            h.OnJudgement += OnJudgement;
+            //h.OnJudgement += OnJudgement;
         }
+        */
 
         public void Add(BarLine barline) => base.Add(new DrawableBarLine(barline));
-
-        internal void OnJudgement(DrawableHitObject judgedObject, Judgement judgement)
-        {
-            judgements.Clear();
-            judgements.Add(new DrawableManiaJudgement(judgement, judgedObject)
-            {
-                Anchor = Anchor.Centre,
-                Origin = Anchor.Centre,
-            });
-        }
 
         [BackgroundDependencyLoader]
         private void load(OsuColour colours)
@@ -239,7 +299,7 @@ namespace osu.Game.Rulesets.Karaoke.Develop
         }
     }
 
-    public class Column : ScrollingPlayfield, IKeyBindingHandler<ManiaAction>, IHasAccentColour
+    public class Column : ScrollingPlayfield, IKeyBindingHandler<KaraokeKeyAction>, IHasAccentColour
     {
         private const float key_icon_size = 10;
         private const float key_icon_corner_radius = 3;
@@ -251,7 +311,7 @@ namespace osu.Game.Rulesets.Karaoke.Develop
         private const float column_width = 45;
         private const float special_column_width = 70;
 
-        public ManiaAction Action;
+        public KaraokeKeyAction Action;
 
         private readonly Box background;
         private readonly Container hitTargetBar;
@@ -437,10 +497,10 @@ namespace osu.Game.Rulesets.Karaoke.Develop
             if (!judgement.IsHit)
                 return;
 
-            explosionContainer.Add(new HitExplosion(judgedObject));
+            //explosionContainer.Add(new HitExplosion(judgedObject));
         }
 
-        private bool onPressed(ManiaAction action)
+        private bool onPressed(KaraokeKeyAction action)
         {
             if (action == Action)
             {
@@ -451,7 +511,7 @@ namespace osu.Game.Rulesets.Karaoke.Develop
             return false;
         }
 
-        private bool onReleased(ManiaAction action)
+        private bool onReleased(KaraokeKeyAction action)
         {
             if (action == Action)
             {
@@ -465,10 +525,10 @@ namespace osu.Game.Rulesets.Karaoke.Develop
         /// <summary>
         /// This is a simple container which delegates various input events that have to be captured before the notes.
         /// </summary>
-        private class InputTarget : Container, IKeyBindingHandler<ManiaAction>
+        private class InputTarget : Container, IKeyBindingHandler<KaraokeKeyAction>
         {
-            public Func<ManiaAction, bool> Pressed;
-            public Func<ManiaAction, bool> Released;
+            public Func<KaraokeKeyAction, bool> Pressed;
+            public Func<KaraokeKeyAction, bool> Released;
 
             public InputTarget()
             {
@@ -477,11 +537,11 @@ namespace osu.Game.Rulesets.Karaoke.Develop
                 Alpha = 0;
             }
 
-            public bool OnPressed(ManiaAction action) => Pressed?.Invoke(action) ?? false;
-            public bool OnReleased(ManiaAction action) => Released?.Invoke(action) ?? false;
+            public bool OnPressed(KaraokeKeyAction action) => Pressed?.Invoke(action) ?? false;
+            public bool OnReleased(KaraokeKeyAction action) => Released?.Invoke(action) ?? false;
         }
 
-        public bool OnPressed(ManiaAction action)
+        public bool OnPressed(KaraokeKeyAction action)
         {
             if (action != Action)
                 return false;
@@ -492,7 +552,7 @@ namespace osu.Game.Rulesets.Karaoke.Develop
             return true;
         }
 
-        public bool OnReleased(ManiaAction action) => false;
+        public bool OnReleased(KaraokeKeyAction action) => false;
     }
 
     /// <summary>
@@ -500,9 +560,6 @@ namespace osu.Game.Rulesets.Karaoke.Develop
     /// </summary>
     public class DrawableHoldNote : DrawableHitObject<BaseLyric>
     {
-        private readonly DrawableNote head;
-        private readonly DrawableNote tail;
-
         private readonly GlowPiece glowPiece;
         private readonly BodyPiece bodyPiece;
         private readonly Container fullHeightContainer;
@@ -517,10 +574,9 @@ namespace osu.Game.Rulesets.Karaoke.Develop
         /// </summary>
         private bool hasBroken;
 
-        public DrawableHoldNote(HoldNote hitObject, ManiaAction action)
-            : base(hitObject, action)
+        public DrawableHoldNote(BaseLyric hitObject, KaraokeKeyAction action)
+            : base(hitObject)
         {
-            Container<DrawableHoldNoteTick> tickContainer;
             RelativeSizeAxes = Axes.X;
 
             InternalChildren = new Drawable[]
@@ -538,31 +594,7 @@ namespace osu.Game.Rulesets.Karaoke.Develop
                     Origin = Anchor.TopCentre,
                     RelativeSizeAxes = Axes.X,
                 },
-                tickContainer = new Container<DrawableHoldNoteTick>
-                {
-                    RelativeSizeAxes = Axes.Both,
-                    ChildrenEnumerable = HitObject.NestedHitObjects.OfType<HoldNoteTick>().Select(tick => new DrawableHoldNoteTick(tick)
-                    {
-                        HoldStartTime = () => holdStartTime
-                    })
-                },
-                head = new DrawableHeadNote(this, action)
-                {
-                    Anchor = Anchor.TopCentre,
-                    Origin = Anchor.TopCentre
-                },
-                tail = new DrawableTailNote(this, action)
-                {
-                    Anchor = Anchor.TopCentre,
-                    Origin = Anchor.TopCentre
-                }
             };
-
-            foreach (var tick in tickContainer)
-                AddNested(tick);
-
-            AddNested(head);
-            AddNested(tail);
         }
 
         public override Color4 AccentColour
@@ -574,8 +606,6 @@ namespace osu.Game.Rulesets.Karaoke.Develop
 
                 glowPiece.AccentColour = value;
                 bodyPiece.AccentColour = value;
-                head.AccentColour = value;
-                tail.AccentColour = value;
             }
         }
 
@@ -588,97 +618,12 @@ namespace osu.Game.Rulesets.Karaoke.Develop
             base.Update();
 
             // Make the body piece not lie under the head note
-            bodyPiece.Y = head.Height;
-            bodyPiece.Height = DrawHeight - head.Height;
+            //bodyPiece.Y = head.Height;
+            bodyPiece.Height = DrawHeight;// - head.Height;
 
             // Make the fullHeightContainer "contain" the height of the tail note, keeping in mind
             // that the tail note overshoots the height of this hit object
-            fullHeightContainer.Height = DrawHeight + tail.Height;
-        }
-
-        /// <summary>
-        /// The head note of a hold.
-        /// </summary>
-        private class DrawableHeadNote : DrawableNote
-        {
-            private readonly DrawableHoldNote holdNote;
-
-            public DrawableHeadNote(DrawableHoldNote holdNote, ManiaAction action)
-                : base(holdNote.HitObject.Head, action)
-            {
-                this.holdNote = holdNote;
-
-                GlowPiece.Alpha = 0;
-            }
-
-            public override bool OnPressed(ManiaAction action)
-            {
-                if (!base.OnPressed(action))
-                    return false;
-
-                // If the key has been released too early, the user should not receive full score for the release
-                if (Judgements.Any(j => j.Result == HitResult.Miss))
-                    holdNote.hasBroken = true;
-
-                // The head note also handles early hits before the body, but we want accurate early hits to count as the body being held
-                // The body doesn't handle these early early hits, so we have to explicitly set the holding state here
-                holdNote.holdStartTime = Time.Current;
-
-                return true;
-            }
-
-            protected override void UpdateState(ArmedState state)
-            {
-                // The holdnote keeps scrolling through for now, so having the head disappear looks weird
-            }
-        }
-
-        /// <summary>
-        /// The tail note of a hold.
-        /// </summary>
-        private class DrawableTailNote : DrawableNote
-        {
-            private readonly DrawableHoldNote holdNote;
-
-            public DrawableTailNote(DrawableHoldNote holdNote, ManiaAction action)
-                : base(holdNote.HitObject.Tail, action)
-            {
-                this.holdNote = holdNote;
-
-                GlowPiece.Alpha = 0;
-            }
-
-            protected override void CheckForJudgements(bool userTriggered, double timeOffset)
-            {
-                if (!userTriggered)
-                {
-                    if (!HitObject.HitWindows.CanBeHit(timeOffset))
-                    {
-                        AddJudgement(new HoldNoteTailJudgement
-                        {
-                            Result = HitResult.Miss,
-                            HasBroken = holdNote.hasBroken
-                        });
-                    }
-
-                    return;
-                }
-
-                var result = HitObject.HitWindows.ResultFor(timeOffset);
-                if (result == HitResult.None)
-                    return;
-
-                AddJudgement(new HoldNoteTailJudgement
-                {
-                    Result = result,
-                    HasBroken = holdNote.hasBroken
-                });
-            }
-
-            protected override void UpdateState(ArmedState state)
-            {
-                // The holdnote keeps scrolling through, so having the tail disappear looks weird
-            }
+            fullHeightContainer.Height = DrawHeight;//+ tail.Height;
         }
     }
 }
