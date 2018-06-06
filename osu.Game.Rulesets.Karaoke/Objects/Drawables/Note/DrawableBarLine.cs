@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using osu.Framework.Graphics;
+using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Shapes;
 using osu.Game.Rulesets.Karaoke.Objects.Note;
 using osu.Game.Rulesets.Objects.Drawables;
@@ -21,42 +22,56 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note
         /// </summary>
         private const float triangle_offset = 9;
 
+        private readonly Container triangleContainer;
+
         public DrawableBarLine(BarLine barLine)
             : base(barLine)
         {
-            RelativeSizeAxes = Axes.X;
-            Height = 1;
+            Anchor = Anchor.CentreLeft;
+            Origin = Anchor.Centre;
+
+            RelativeSizeAxes = Axes.Y;
+            Width = 1;
 
             AddInternal(new Box
             {
                 Name = "Bar line",
-                Anchor = Anchor.BottomCentre,
-                Origin = Anchor.BottomCentre,
+                Anchor = Anchor.Centre,
+                Origin = Anchor.Centre,
                 RelativeSizeAxes = Axes.Both,
+                EdgeSmoothness = new Vector2(0.5f, 0),
             });
 
             bool isMajor = barLine.BeatIndex % (int)barLine.ControlPoint.TimeSignature == 0;
 
             if (isMajor)
             {
-                AddInternal(new EquilateralTriangle
+                AddInternal(triangleContainer = new Container
                 {
-                    Name = "Left triangle",
-                    Anchor = Anchor.BottomLeft,
-                    Origin = Anchor.TopCentre,
-                    Size = new Vector2(triangle_height),
-                    X = -triangle_offset,
-                    Rotation = 90
-                });
-
-                AddInternal(new EquilateralTriangle
-                {
-                    Name = "Right triangle",
-                    Anchor = Anchor.BottomRight,
-                    Origin = Anchor.TopCentre,
-                    Size = new Vector2(triangle_height),
-                    X = triangle_offset,
-                    Rotation = -90
+                    Anchor = Anchor.Centre,
+                    Origin = Anchor.Centre,
+                    RelativeSizeAxes = Axes.Both,
+                    Children = new[]
+                    {
+                        new EquilateralTriangle
+                        {
+                            Name = "Top",
+                            Anchor = Anchor.TopCentre,
+                            Origin = Anchor.TopCentre,
+                            Position = new Vector2(0, - triangle_offset),
+                            Size = new Vector2(-triangle_height),
+                            EdgeSmoothness = new Vector2(1),
+                        },
+                        new EquilateralTriangle
+                        {
+                            Name = "Bottom",
+                            Anchor = Anchor.BottomCentre,
+                            Origin = Anchor.TopCentre,
+                            Position = new Vector2(0, triangle_offset),
+                            Size = new Vector2(triangle_height),
+                            EdgeSmoothness = new Vector2(1),
+                        }
+                    }
                 });
             }
 

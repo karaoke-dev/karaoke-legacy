@@ -22,17 +22,24 @@ using OpenTK.Graphics;
 
 namespace osu.Game.Rulesets.Karaoke.UI.Layers.Note
 {
+    /// <summary>
+    /// the stage contains list note group
+    /// </summary>
     public class KaraokeStage : ScrollingPlayfield
     {
-        public const float HIT_TARGET_POSITION = 50;
+        public const float HIT_TARGET_POSITION = 200;
+
+        public const float COLUMN_HEIGHT = 25;
+
+        public const float COLUMN_SPACING = 1;
 
         /// <summary>
         /// Whether this playfield should be inverted. This flips everything inside the playfield.
         /// </summary>
         public readonly Bindable<bool> Inverted = new Bindable<bool>(true);
 
-        public IReadOnlyList<Column> Columns => columnFlow.Children;
-        private readonly FillFlowContainer<Column> columnFlow;
+        public IReadOnlyList<Background> Columns => columnFlow.Children;
+        private readonly FillFlowContainer<Background> columnFlow;
 
         protected override Container<Drawable> Content => content;
         private readonly Container<Drawable> content;
@@ -40,15 +47,13 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Note
         public Container<DrawableNoteJudgement> Judgements => judgements;
         private readonly JudgementContainer<DrawableNoteJudgement> judgements;
 
-        private readonly Container topLevelContainer;
-
         private List<Color4> normalColumnColours = new List<Color4>();
         private Color4 specialColumnColour;
 
         private readonly int firstColumnIndex;
 
         public KaraokeStage(int firstColumnIndex, KaraokeStageDefinition definition)
-            : base(ScrollingDirection.Up)
+            : base(ScrollingDirection.Left)
         {
             this.firstColumnIndex = firstColumnIndex;
 
@@ -56,24 +61,24 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Note
 
             Anchor = Anchor.Centre;
             Origin = Anchor.Centre;
-            RelativeSizeAxes = Axes.Y;
-            AutoSizeAxes = Axes.X;
+            RelativeSizeAxes = Axes.X;
+            AutoSizeAxes = Axes.Y;
 
             InternalChildren = new Drawable[]
             {
                 new Container
                 {
-                    Anchor = Anchor.TopCentre,
-                    Origin = Anchor.TopCentre,
-                    RelativeSizeAxes = Axes.Y,
-                    AutoSizeAxes = Axes.X,
+                    Anchor = Anchor.CentreLeft,
+                    Origin = Anchor.CentreLeft,
+                    RelativeSizeAxes = Axes.X,
+                    AutoSizeAxes = Axes.Y,
                     Children = new Drawable[]
                     {
                         new Container
                         {
                             Name = "Columns mask",
-                            RelativeSizeAxes = Axes.Y,
-                            AutoSizeAxes = Axes.X,
+                            RelativeSizeAxes = Axes.X,
+                            AutoSizeAxes = Axes.Y,
                             Masking = true,
                             Children = new Drawable[]
                             {
@@ -81,16 +86,17 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Note
                                 {
                                     Name = "Background",
                                     RelativeSizeAxes = Axes.Both,
-                                    Colour = Color4.Black
+                                    Colour = Color4.Black,
+                                    Alpha = 0.5f,
                                 },
-                                columnFlow = new FillFlowContainer<Column>
+                                columnFlow = new FillFlowContainer<Background>
                                 {
                                     Name = "Columns",
-                                    RelativeSizeAxes = Axes.Y,
-                                    AutoSizeAxes = Axes.X,
-                                    Direction = FillDirection.Horizontal,
-                                    Padding = new MarginPadding { Left = 1, Right = 1 },
-                                    Spacing = new Vector2(1, 0)
+                                    RelativeSizeAxes = Axes.X,
+                                    AutoSizeAxes = Axes.Y,
+                                    Direction = FillDirection.Vertical,
+                                    Padding = new MarginPadding { Top = COLUMN_SPACING, Bottom = COLUMN_SPACING },
+                                    Spacing = new Vector2(0, COLUMN_SPACING)
                                 },
                             }
                         },
@@ -99,8 +105,8 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Note
                             Name = "Barlines mask",
                             Anchor = Anchor.TopCentre,
                             Origin = Anchor.TopCentre,
-                            RelativeSizeAxes = Axes.Y,
-                            Width = 1366, // Bar lines should only be masked on the vertical axis
+                            RelativeSizeAxes = Axes.X,
+                            Height = 1366, // Bar lines should only be masked on the vertical axis
                             BypassAutoSizeAxes = Axes.Both,
                             Masking = true,
                             Child = content = new Container
@@ -108,19 +114,18 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Note
                                 Name = "Bar lines",
                                 Anchor = Anchor.TopCentre,
                                 Origin = Anchor.TopCentre,
-                                RelativeSizeAxes = Axes.Y,
-                                Padding = new MarginPadding { Top = HIT_TARGET_POSITION }
+                                RelativeSizeAxes = Axes.X,
+                                Padding = new MarginPadding { Left = HIT_TARGET_POSITION }
                             }
                         },
                         judgements = new JudgementContainer<DrawableNoteJudgement>
                         {
-                            Anchor = Anchor.TopCentre,
+                            Anchor = Anchor.CentreLeft,
                             Origin = Anchor.Centre,
                             AutoSizeAxes = Axes.Both,
-                            Y = HIT_TARGET_POSITION + 150,
+                            X = HIT_TARGET_POSITION + 150,
                             BypassAutoSizeAxes = Axes.Both
                         },
-                        topLevelContainer = new Container { RelativeSizeAxes = Axes.Both }
                     }
                 }
             };
@@ -128,13 +133,11 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Note
             for (int i = 0; i < definition.Columns; i++)
             {
                 var isSpecial = definition.IsSpecialColumn(i);
-                var column = new Column
+                var column = new Background
                 {
-                    IsSpecial = isSpecial,
-                    //Action = isSpecial ? specialColumnStartAction++ : normalColumnStartAction++
+                    Height = COLUMN_HEIGHT,
                 };
-
-                AddColumn(column);
+                AddBackground(column);
             }
 
             Inverted.ValueChanged += invertedChanged;
@@ -143,31 +146,27 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Note
 
         private void invertedChanged(bool newValue)
         {
-            Scale = new Vector2(1, newValue ? -1 : 1);
+            //TODO : change the position but not change scale
+            //Scale = new Vector2(newValue ? -1 : 1,1);
             Judgements.Scale = Scale;
         }
 
-        public void AddColumn(Column c)
+        public void AddBackground(Background c)
         {
-            c.VisibleTimeRange.BindTo(VisibleTimeRange);
-
-            topLevelContainer.Add(c.TopLevelContainer.CreateProxy());
             columnFlow.Add(c);
-            AddNested(c);
         }
 
         public override void Add(DrawableHitObject h)
         {
-            var maniaObject = (BaseLyric)h.HitObject;
-            var timeLine = ((DrawableKaraokeNote)h).TimeLine;
-            int columnIndex = (timeLine.Tone ?? 0) - firstColumnIndex;
-            Columns.ElementAt(columnIndex).Add(h);
+            h.Y = 0;
             h.OnJudgement += OnJudgement;
+            //add
+            base.Add(h);
         }
 
         public void Add(BarLine barline) => base.Add(new DrawableBarLine(barline));
 
-        internal void OnJudgement(DrawableHitObject judgedObject, Judgement judgement)
+        public void OnJudgement(DrawableHitObject judgedObject, Judgement judgement)
         {
             judgements.Clear();
             judgements.Add(new DrawableNoteJudgement(judgement, judgedObject)
@@ -182,30 +181,21 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Note
         {
             normalColumnColours = new List<Color4>
             {
-                colours.RedDark,
-                colours.GreenDark
+                colours.Gray0,
+                colours.Gray9
             };
 
-            specialColumnColour = colours.BlueDark;
+            specialColumnColour = colours.BlueLight;
 
-            // Set the special column + colour + key
-            foreach (var column in Columns)
-            {
-                if (!column.IsSpecial)
-                    continue;
-
-                column.AccentColour = specialColumnColour;
-            }
-
-            var nonSpecialColumns = Columns.Where(c => !c.IsSpecial).ToList();
+            var nonSpecialColumns = Columns.ToList();
 
             // We'll set the colours of the non-special columns in a separate loop, because the non-special
             // column colours are mirrored across their centre and special styles mess with this
-            for (int i = 0; i < Math.Ceiling(nonSpecialColumns.Count / 2f); i++)
+            for (int i = 0; i < nonSpecialColumns.Count; i++)
             {
                 Color4 colour = normalColumnColours[i % normalColumnColours.Count];
                 nonSpecialColumns[i].AccentColour = colour;
-                nonSpecialColumns[nonSpecialColumns.Count - 1 - i].AccentColour = colour;
+                //nonSpecialColumns[nonSpecialColumns.Count - 1 - i].AccentColour = colour;
             }
         }
 
@@ -213,7 +203,31 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Note
         {
             // Due to masking differences, it is not possible to get the width of the columns container automatically
             // While masking on effectively only the Y-axis, so we need to set the width of the bar line container manually
-            content.Width = columnFlow.Width;
+            content.Height = columnFlow.Height;
+        }
+    }
+
+    public class Background : Box, IHasAccentColour
+    {
+        public Background()
+        {
+            RelativeSizeAxes = Axes.X;
+        }
+
+
+        private Color4 accentColour;
+        public Color4 AccentColour
+        {
+            get { return accentColour; }
+            set
+            {
+                if (accentColour == value)
+                    return;
+                accentColour = value;
+
+                this.Colour = accentColour;
+
+            }
         }
     }
 }

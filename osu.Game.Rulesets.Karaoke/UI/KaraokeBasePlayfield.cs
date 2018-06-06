@@ -103,7 +103,7 @@ namespace osu.Game.Rulesets.Karaoke.UI
             //import
             if (KaraokeTonePlayfield != null)
             {
-
+                KaraokeTonePlayfield.Add(h);
             }
         }
 

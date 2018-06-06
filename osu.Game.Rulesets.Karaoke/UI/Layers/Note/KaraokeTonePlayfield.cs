@@ -39,9 +39,8 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Note
         /// <summary>
         /// Whether this playfield should be inverted. This flips everything inside the playfield.
         /// </summary>
-        public readonly Bindable<bool> Inverted = new Bindable<bool>(true);
+        public readonly Bindable<bool> Inverted = new Bindable<bool>(false);
 
-        public List<Column> Columns => stages.SelectMany(x => x.Columns).ToList();
         private readonly List<KaraokeStage> stages = new List<KaraokeStage>();
 
         public IList<BarLine> BarLines = new List<BarLine>();
@@ -49,7 +48,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Note
         public KaraokeRulesetContainer KaraokeRulesetContainer { get; set; }
 
         public KaraokeTonePlayfield(List<KaraokeStageDefinition> stageDefinitions)
-            : base(ScrollingDirection.Right)
+            : base(ScrollingDirection.Left)
         {
             if (stageDefinitions == null)
                 throw new ArgumentNullException(nameof(stageDefinitions));
@@ -60,33 +59,42 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Note
             Inverted.Value = true;
 
             GridContainer playfieldGrid;
-            InternalChild = playfieldGrid = new GridContainer
-            {
-                RelativeSizeAxes = Axes.Both,
-                Content = new[] { new Drawable[stageDefinitions.Count] }
-            };
 
             int firstColumnIndex = 0;
+
+            var content = new Drawable[stageDefinitions.Count][];
             for (int i = 0; i < stageDefinitions.Count; i++)
             {
                 var newStage = new KaraokeStage(firstColumnIndex, stageDefinitions[i]);
                 newStage.VisibleTimeRange.BindTo(VisibleTimeRange);
                 newStage.Inverted.BindTo(Inverted);
 
-                playfieldGrid.Content[0][i] = newStage;
+                content[i] = new[] { newStage };
 
                 stages.Add(newStage);
                 AddNested(newStage);
 
                 firstColumnIndex += newStage.Columns.Count;
             }
+
+            InternalChild = playfieldGrid = new GridContainer
+            {
+                RelativeSizeAxes = Axes.Both,
+                Content = content,
+            };
         }
 
         public override void Add(DrawableHitObject h)
         {
+            //Create object
+            var drawableNote = new DrawableKaraokeNoteGroup(h.HitObject as BaseLyric)
+            {
+                //AccentColour = playfield.Columns.ElementAt(col).AccentColour
+            };
             //TODO : 這邊註冊事件
+
             //然後根據事件去做物件的加減
-            //getStageByColumn(((DrawableKaraokeNote)h).TimeLine.Tone).Add(h);
+            getStageByColumn(((BaseLyric)drawableNote.HitObject).SingerIndex ?? 0).Add(drawableNote);
         }
 
         public void Add(BarLine barline) => stages.ForEach(s => s.Add(barline));
@@ -116,8 +124,8 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Note
         private void initialBarLine()
         {
             var beatmap = KaraokeRulesetContainer.Beatmap;
-            var Objects = beatmap.HitObjects;
-            double lastObjectTime = (Objects.LastOrDefault() as IHasEndTime)?.EndTime ?? Objects.LastOrDefault()?.StartTime ?? double.MaxValue;
+            var objects = beatmap.HitObjects;
+            double lastObjectTime = (objects.LastOrDefault() as IHasEndTime)?.EndTime ?? objects.LastOrDefault()?.StartTime ?? double.MaxValue;
             var timingPoints = beatmap.ControlPointInfo.TimingPoints;
             var barLines = new List<BarLine>();
             for (int i = 0; i < timingPoints.Count; i++)
