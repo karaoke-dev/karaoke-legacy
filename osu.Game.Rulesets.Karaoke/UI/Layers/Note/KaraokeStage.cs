@@ -160,7 +160,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Note
         {
             var maniaObject = (BaseLyric)h.HitObject;
             var timeLine = ((DrawableKaraokeNote)h).TimeLine;
-            int columnIndex = timeLine.Tone - firstColumnIndex;
+            int columnIndex = (timeLine.Tone ?? 0) - firstColumnIndex;
             Columns.ElementAt(columnIndex).Add(h);
             h.OnJudgement += OnJudgement;
         }
