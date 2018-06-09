@@ -96,7 +96,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Note
                                     AutoSizeAxes = Axes.Y,
                                     Direction = FillDirection.Vertical,
                                     Padding = new MarginPadding { Top = COLUMN_SPACING, Bottom = COLUMN_SPACING },
-                                    Spacing = new Vector2(0, COLUMN_SPACING)
+                                    Spacing = new Vector2(0, COLUMN_SPACING),
                                 },
                             }
                         },
@@ -136,6 +136,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Note
                 var column = new Background
                 {
                     Height = COLUMN_HEIGHT,
+                    Alpha = 0.15f,
                 };
                 AddBackground(column);
             }

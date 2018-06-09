@@ -35,7 +35,7 @@ namespace osu.Game.Rulesets.Karaoke.UI
         /// <summary>
         /// Default height of a <see cref="KaraokeBasePlayfield"/> when inside a <see cref="KaraokeRulesetContainer"/>.
         /// </summary>
-        public const float DEFAULT_HEIGHT = 768;
+        public const float DEFAULT_HEIGHT = 512;
 
         /// <summary>
         /// Ctor

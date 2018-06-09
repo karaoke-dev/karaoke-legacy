@@ -63,7 +63,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Note
 
             int firstColumnIndex = 0;
 
-            var content = new Drawable[stageDefinitions.Count][];
+            var content = new Drawable[2][];
             for (int i = 0; i < stageDefinitions.Count; i++)
             {
                 var newStage = new KaraokeStage(firstColumnIndex, stageDefinitions[i]);
@@ -121,7 +121,8 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Note
             //initial bar lines
             initialBarLine();
 
-            karaokeConfig.BindWith(KaraokeSetting.NoteSpeed, VisibleTimeRange);
+            VisibleTimeRange.Value = 6000;
+            //karaokeConfig.BindWith(KaraokeSetting.NoteSpeed, VisibleTimeRange);
         }
 
         private void initialBarLine()

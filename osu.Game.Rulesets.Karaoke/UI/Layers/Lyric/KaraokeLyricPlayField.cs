@@ -152,12 +152,12 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Lyric
             {
                 new KaraokePosition()
                 {
-                    Position = new Vector2(0, 200),
+                    Position = new Vector2(200, 300),
                     Anchor = Anchor.CentreLeft
                 },
                 new KaraokePosition()
                 {
-                    Position = new Vector2(200, 270),
+                    Position = new Vector2(400, 370),
                     Anchor = Anchor.CentreRight
                 }
             };
