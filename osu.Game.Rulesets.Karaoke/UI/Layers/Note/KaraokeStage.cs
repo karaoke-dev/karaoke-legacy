@@ -50,12 +50,12 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Note
         private List<Color4> normalColumnColours = new List<Color4>();
         private Color4 specialColumnColour;
 
-        private readonly int firstColumnIndex;
+        private readonly int singerIndex;
 
-        public KaraokeStage(int firstColumnIndex, KaraokeStageDefinition definition)
+        public KaraokeStage(int singerIndex, KaraokeStageDefinition definition)
             : base(ScrollingDirection.Left)
         {
-            this.firstColumnIndex = firstColumnIndex;
+            this.singerIndex = singerIndex;
 
             Name = "Stage";
 
@@ -117,6 +117,15 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Note
                                 RelativeSizeAxes = Axes.X,
                                 Padding = new MarginPadding { Left = HIT_TARGET_POSITION }
                             }
+                        },
+                        new Box()
+                        {
+                            Anchor = Anchor.CentreLeft,
+                            Origin = Anchor.Centre,
+                            Colour = Color4.Red,
+                            Width = 5,
+                            Height = 300,
+                            X = HIT_TARGET_POSITION,
                         },
                         judgements = new JudgementContainer<DrawableNoteJudgement>
                         {
