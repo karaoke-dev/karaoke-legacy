@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using osu.Game.Rulesets.Karaoke.Objects;
 using osu.Game.Rulesets.Karaoke.UI.Layers.Note;
 
 namespace osu.Game.Rulesets.Karaoke.Beatmaps
@@ -11,9 +12,14 @@ namespace osu.Game.Rulesets.Karaoke.Beatmaps
     public class KaraokeStageDefinition
     {
         /// <summary>
-        /// The number of <see cref="Column"/>s which this stage contains.
+        /// The number of <see cref="KaraokeStage"/>s which this stage contains.
         /// </summary>
         public int Columns;
+
+        /// <summary>
+        /// if <see cref="LyricTimeLine"/> does not assign tone, use default
+        /// </summary>
+        public int DefaultIndex = 0;
 
         /// <summary>
         /// Whether the column index is a special column for this stage.

@@ -33,18 +33,9 @@ namespace osu.Game.Rulesets.Karaoke.UI
         public static readonly Vector2 BASE_SIZE = new Vector2(512, 384);
 
         /// <summary>
-        /// Size
+        /// Default height of a <see cref="KaraokeBasePlayfield"/> when inside a <see cref="KaraokeRulesetContainer"/>.
         /// </summary>
-        public override Vector2 Size
-        {
-            get
-            {
-                var parentSize = Parent.DrawSize;
-                var aspectSize = parentSize.X * 0.75f < parentSize.Y ? new Vector2(parentSize.X, parentSize.X * 0.75f) : new Vector2(parentSize.Y * 4f / 3f, parentSize.Y);
-
-                return new Vector2(aspectSize.X / parentSize.X, aspectSize.Y / parentSize.Y) * base.Size;
-            }
-        }
+        public const float DEFAULT_HEIGHT = 768;
 
         /// <summary>
         /// Ctor
@@ -53,7 +44,6 @@ namespace osu.Game.Rulesets.Karaoke.UI
         /// <param name="beatmap"></param>
         /// <param name="container"></param>
         public KaraokeBasePlayfield(Ruleset ruleset, WorkingBeatmap beatmap, KaraokeRulesetContainer container)
-            : base(BASE_SIZE.X)
         {
             Ruleset = ruleset;
             WorkingBeatmap = beatmap;

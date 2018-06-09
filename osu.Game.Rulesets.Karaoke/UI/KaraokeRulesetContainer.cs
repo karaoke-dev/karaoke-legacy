@@ -74,7 +74,17 @@ namespace osu.Game.Rulesets.Karaoke.UI
 
         protected override ReplayInputHandler CreateReplayInputHandler(Replay replay) => new KaraokeReplayInputHandler(replay);
 
-        protected override Vector2 GetAspectAdjustedSize() => new Vector2(1);
+        protected override Vector2 GetAspectAdjustedSize()
+        {
+            const float default_relative_height = KaraokeBasePlayfield.DEFAULT_HEIGHT / 768;
+            const float default_aspect = 16f / 9f;
+
+            float aspectAdjust = MathHelper.Clamp(DrawWidth / DrawHeight, 0.4f, 4) / default_aspect;
+
+            return new Vector2(1, default_relative_height * aspectAdjust);
+        }
+
+        protected override Vector2 PlayfieldArea => Vector2.One;
 
         protected override IRulesetConfigManager CreateConfig(Ruleset ruleset, SettingsStore settings)
         {

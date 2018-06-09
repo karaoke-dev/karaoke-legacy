@@ -1,9 +1,13 @@
 ﻿// Copyright (c) 2007-2018 ppy Pty Ltd <contact@ppy.sh>.
 // Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
 
+using System.Collections.Generic;
 using System.Linq;
 using osu.Framework.Graphics;
+using osu.Game.Rulesets.Karaoke.Beatmaps;
 using osu.Game.Rulesets.Karaoke.Edit.Dialog;
+using osu.Game.Rulesets.Karaoke.Edit.Layers.Lyric;
+using osu.Game.Rulesets.Karaoke.Edit.Layers.Note;
 using osu.Game.Rulesets.Karaoke.UI.Layers.Lyric;
 
 namespace osu.Game.Rulesets.Karaoke.Edit
@@ -25,11 +29,21 @@ namespace osu.Game.Rulesets.Karaoke.Edit
             AddRange(new Drawable[]
             {
                 //layer
-                KaraokeLyricPlayField = new KaraokeLyricPlayField()
+                KaraokeLyricPlayField = new KaraokeLyricEditPlayField()
+                {
+                    KaraokeRulesetContainer = KaraokeRulesetContainer
+                },
+                KaraokeTonePlayfield = new KaraokeToneEditPlayfield(new List<KaraokeStageDefinition>()
+                {
+                    new KaraokeStageDefinition(){ Columns = 10}
+                })
                 {
                     KaraokeRulesetContainer = KaraokeRulesetContainer
                 }
             });
+
+            Layers.Add(KaraokeLyricPlayField);
+            Layers.Add(KaraokeLyricPlayField);
         }
 
         /// <summary>

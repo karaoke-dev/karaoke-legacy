@@ -22,6 +22,7 @@ using osu.Game.Rulesets.Objects.Drawables;
 using osu.Game.Rulesets.Objects.Types;
 using osu.Game.Rulesets.UI.Scrolling;
 using osu.Game.Screens.Play;
+using OpenTK.Graphics;
 
 namespace osu.Game.Rulesets.Karaoke.UI.Layers.Note
 {
@@ -89,9 +90,11 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Note
             //Create object
             var drawableNote = new DrawableKaraokeNoteGroup(h.HitObject as BaseLyric)
             {
-                //AccentColour = playfield.Columns.ElementAt(col).AccentColour
+                AccentColour = Color4.Blue
             };
-            //TODO : 這邊註冊事件
+
+            //regist event
+            drawableNote.NoteSpeed.BindTo(VisibleTimeRange);
 
             //然後根據事件去做物件的加減
             getStageByColumn(((BaseLyric)drawableNote.HitObject).SingerIndex ?? 0).Add(drawableNote);

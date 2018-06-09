@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using osu.Framework.Configuration;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Game.Rulesets.Karaoke.Judgements;
+using osu.Game.Rulesets.Karaoke.UI;
 using osu.Game.Rulesets.Karaoke.UI.Layers.Note;
 using osu.Game.Rulesets.Objects.Drawables;
 using osu.Game.Rulesets.Scoring;
+using OpenTK.Graphics;
 
 namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note
 {
@@ -17,11 +20,10 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note
     {
 
         private FillFlowContainer<DrawableLyricNote> listNote;
+        private float _lastWidth;
 
-        /// <summary>
-        /// Whether the hold note has been released too early and shouldn't give full score for the release.
-        /// </summary>
-        private bool hasBroken;
+        public BindableDouble NoteSpeed = new BindableDouble();
+
 
         public DrawableKaraokeNoteGroup(BaseLyric hitObject)
             : base(hitObject)
@@ -38,15 +40,32 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note
                 },
             };
 
-            for (int i = 0; i < 10; i++)
+            foreach (var timeline in hitObject.TimeLines)
             {
-                var note = new DrawableLyricNote(KaraokeStage.COLUMN_HEIGHT * i, hitObject);
-                note.Width = 100;
-                //note.Height = KaraokeStage.COLUMN_HEIGHT;
-                //note.Y = KaraokeStage.COLUMN_HEIGHT * i;
+                var noteHeight = (timeline.Value.Tone ?? 0) * KaraokeStage.COLUMN_HEIGHT;
+                var note = new DrawableLyricNote(noteHeight, hitObject);
+
                 listNote.Add(note);
             }
+
         }
+
+        
+        protected override void Update()
+        {
+            base.Update();
+
+            //means width channged
+            if (Math.Abs(_lastWidth - DrawWidth) > 0)
+            {
+                _lastWidth = DrawWidth;
+                foreach (var note in listNote)
+                {
+                    note.Width = (float)(NoteSpeed.Value * note.Duration / 1000);
+                }
+            }
+        }
+        
 
         protected override void UpdateState(ArmedState state)
         {
@@ -62,6 +81,17 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note
         protected override void CheckForJudgements(bool userTriggered, double timeOffset)
         {
             AddJudgement(new KaraokeJudgement { Result = HitResult.Perfect });
+        }
+
+        public override Color4 AccentColour
+        {
+            set
+            {
+                foreach (var single in listNote)
+                {
+                    single.AccentColour = value;
+                }
+            }
         }
     }
 }

@@ -7,6 +7,7 @@ using osu.Framework.Graphics.Containers;
 using osu.Game.Rulesets.Karaoke.Judgements;
 using osu.Game.Rulesets.Karaoke.Objects.Drawables.Common.Pieces;
 using osu.Game.Rulesets.Karaoke.Objects.Drawables.Note.Pieces;
+using osu.Game.Rulesets.Karaoke.UI.Layers.Note;
 using osu.Game.Rulesets.Objects.Drawables;
 using osu.Game.Rulesets.Scoring;
 using OpenTK.Graphics;
@@ -44,6 +45,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note
                 noteContainer = new Container()
                 {
                     Y = height,
+                    Height = KaraokeStage.COLUMN_HEIGHT,
                     Children = new Drawable[]
                     {
                         // The hit object itself cannot be used for various elements because the tail overshoots it
@@ -86,15 +88,15 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note
             };
 
 
-            //foreach (var tick in tickContainer)
-            //    noteContainer.Add(tick);
+            foreach (var tick in tickContainer)
+                noteContainer.Add(tick);
 
             //noteContainer.Add(head);
             //noteContainer.Add(tail);
         }
 
         private Color4 accentColour;
-        public Color4 AccentColour
+        public override Color4 AccentColour
         {
             get { return accentColour; }
             set
@@ -105,6 +107,15 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note
                 bodyPiece.AccentColour = value;
                 head.AccentColour = value;
                 tail.AccentColour = value;
+            }
+        }
+
+        public virtual double Duration
+        {
+            get
+            {
+                //TODO : real value
+                return 500;
             }
         }
 

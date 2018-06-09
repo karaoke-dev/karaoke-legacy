@@ -31,7 +31,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit
             //new HitObjectCompositionTool<LyricTranslate>(),//add translate to BaseLyric
         };
 
-        protected override ScalableContainer CreateLayerContainer() => new ScalableContainer(KaraokeBasePlayfield.BASE_SIZE.X) { RelativeSizeAxes = Axes.Both };
+        protected override ScalableContainer CreateLayerContainer() => new ScalableContainer() { RelativeSizeAxes = Axes.Both };
 
         public override HitObjectMask CreateMaskFor(DrawableHitObject hitObject)
         {
