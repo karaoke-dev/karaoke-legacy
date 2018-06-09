@@ -13,17 +13,24 @@ using OpenTK.Graphics;
 
 namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note
 {
+    public class DrawableKaraokeNoteGroup : DrawableKaraokeNoteGroup<DrawableLyricNote>
+    {
+        public DrawableKaraokeNoteGroup(BaseLyric hitObject)
+            : base(hitObject)
+        {
+
+        }
+    }
+
     /// <summary>
     /// list of DrawableLyricNote
     /// </summary>
-    public class DrawableKaraokeNoteGroup : DrawableBaseNote<BaseLyric>
+    public class DrawableKaraokeNoteGroup<T> : DrawableBaseNote<BaseLyric> where T : DrawableLyricNote , new()
     {
-
-        private FillFlowContainer<DrawableLyricNote> listNote;
+        protected FillFlowContainer<T> ListNote;
         private float _lastWidth;
 
         public BindableDouble NoteSpeed = new BindableDouble();
-
 
         public DrawableKaraokeNoteGroup(BaseLyric hitObject)
             : base(hitObject)
@@ -32,7 +39,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note
 
             InternalChildren = new Drawable[]
             {
-                listNote = new FillFlowContainer<DrawableLyricNote>
+                ListNote = new FillFlowContainer<T>
                 {
                     Name = "Background",
                     Direction = FillDirection.Horizontal,
@@ -40,17 +47,24 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note
                 },
             };
 
-            foreach (var timeline in hitObject.TimeLines)
-            {
-                var noteHeight = (timeline.Value.Tone ?? 0) * KaraokeStage.COLUMN_HEIGHT;
-                var note = new DrawableLyricNote(noteHeight, hitObject);
-
-                listNote.Add(note);
-            }
-
+            //initial note
+            InitialNote();
         }
 
-        
+        protected virtual void InitialNote()
+        {
+            foreach (var timeline in HitObject.TimeLines)
+            {
+
+                var note = new T()
+                {
+                    HitObject = HitObject,
+                    TimeLine = timeline,
+                };
+                ListNote.Add(note);
+            }
+        }
+
         protected override void Update()
         {
             base.Update();
@@ -59,13 +73,12 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note
             if (Math.Abs(_lastWidth - DrawWidth) > 0)
             {
                 _lastWidth = DrawWidth;
-                foreach (var note in listNote)
+                foreach (var note in ListNote)
                 {
                     note.Width = (float)(NoteSpeed.Value * note.Duration / 1000);
                 }
             }
         }
-        
 
         protected override void UpdateState(ArmedState state)
         {
@@ -87,7 +100,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note
         {
             set
             {
-                foreach (var single in listNote)
+                foreach (var single in ListNote)
                 {
                     single.AccentColour = value;
                 }

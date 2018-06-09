@@ -26,7 +26,7 @@ namespace osu.Game.Rulesets.Karaoke.UI
         public override void InitialFrontendLayer()
         {
             //panel
-            KaraokeRulesetContainer.Add(_karaokePanelOverlay = new ControlPanelLayer(this)
+            Add(_karaokePanelOverlay = new ControlPanelLayer(this)
             {
                 Clock = new FramedClock(new StopwatchClock(true)),
                 RelativeSizeAxes = Axes.X,
@@ -37,7 +37,7 @@ namespace osu.Game.Rulesets.Karaoke.UI
             });
 
             //Input layer
-            KaraokeRulesetContainer.Add(_inputLayer = new InputLayer
+            Add(_inputLayer = new InputLayer
             {
                 RelativeSizeAxes = Axes.Both,
                 Depth = -2,

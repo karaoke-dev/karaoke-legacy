@@ -10,14 +10,15 @@ using osu.Game.Rulesets.Karaoke.Objects.Drawables.Note.Pieces;
 using osu.Game.Rulesets.Karaoke.UI.Layers.Note;
 using osu.Game.Rulesets.Objects.Drawables;
 using osu.Game.Rulesets.Scoring;
+using osu.Game.Skinning;
 using OpenTK.Graphics;
 
 namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note
 {
-    public class DrawableLyricNote : DrawableBaseNote<BaseLyric>
+    public class DrawableLyricNote : SkinReloadableDrawable
     {
-        private readonly DrawableNote head;
-        private readonly DrawableNote tail;
+        private readonly DrawableHeadNote head;
+        private readonly DrawableTailNote tail;
 
         private readonly GlowPiece glowPiece;
         private readonly BodyPiece bodyPiece;
@@ -37,14 +38,16 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note
 
         private Container noteContainer;
 
-        public DrawableLyricNote(float height, BaseLyric hitObject) : base(hitObject)
+        public DrawableLyricNote() : base(null)
         {
+            Anchor = Anchor.CentreLeft;
+            Origin = Anchor.CentreLeft;
+
             RelativeSizeAxes = Axes.Y;
             InternalChildren = new Drawable[]
             {
                 noteContainer = new Container()
                 {
-                    Y = height,
                     Height = KaraokeStage.COLUMN_HEIGHT,
                     Children = new Drawable[]
                     {
@@ -64,17 +67,17 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note
                         tickContainer = new Container<DrawableKaraokeNoteTick>
                         {
                             RelativeSizeAxes = Axes.Both,
-                            ChildrenEnumerable = HitObject.NestedHitObjects.OfType<BaseLyric>().Select(tick => new DrawableKaraokeNoteTick(tick)
-                            {
-                                HoldStartTime = () => holdStartTime
-                            })
+                            //ChildrenEnumerable = HitObject.NestedHitObjects.OfType<BaseLyric>().Select(tick => new DrawableKaraokeNoteTick(tick)
+                            //{
+                            //    HoldStartTime = () => holdStartTime
+                            //})
                         },
-                        head = new DrawableHeadNote(this)
+                        head = new DrawableHeadNote()
                         {
                             Anchor = Anchor.CentreLeft,
                             Origin = Anchor.CentreLeft
                         },
-                        tail = new DrawableTailNote(this)
+                        tail = new DrawableTailNote()
                         {
                             Anchor = Anchor.CentreLeft,
                             Origin = Anchor.CentreLeft
@@ -96,7 +99,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note
         }
 
         private Color4 accentColour;
-        public override Color4 AccentColour
+        public virtual Color4 AccentColour
         {
             get { return accentColour; }
             set
@@ -105,8 +108,8 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note
 
                 glowPiece.AccentColour = value;
                 bodyPiece.AccentColour = value;
-                head.AccentColour = value;
-                tail.AccentColour = value;
+                //head.AccentColour = value;
+                //tail.AccentColour = value;
             }
         }
 
@@ -119,14 +122,28 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note
             }
         }
 
-        protected override void UpdateState(ArmedState state)
+        public virtual BaseLyric HitObject { get; set; }
+
+        private KeyValuePair<int, LyricTimeLine> _timeLine;
+        public virtual KeyValuePair<int, LyricTimeLine> TimeLine
+        {
+            get => _timeLine;
+            set
+            {
+                _timeLine = value;
+                var noteHeight = (_timeLine.Value.Tone ?? 0) * KaraokeStage.COLUMN_HEIGHT;
+                noteContainer.Y = noteHeight;
+            }
+        }
+
+        protected virtual void UpdateState(ArmedState state)
         {
             switch (state)
             {
-                case ArmedState.Hit:
+                //case ArmedState.Hit:
                     // Good enough for now, we just want them to have a lifetime end
-                    this.Delay(2000).Expire();
-                    break;
+                //    this.Delay(2000).Expire();
+                //    break;
             }
         }
 
@@ -146,28 +163,20 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note
         /// <summary>
         /// The head note of a hold.
         /// </summary>
-        private class DrawableHeadNote : DrawableNote
+        private class DrawableHeadNote : SkinReloadableDrawable
         {
-            private readonly DrawableLyricNote holdNote;
-
-            public DrawableHeadNote(DrawableLyricNote holdNote)
-                : base(holdNote.HitObject)
+            public DrawableHeadNote()
+                : base()
             {
-                this.holdNote = holdNote;
-
-                GlowPiece.Alpha = 0;
-            }
-
-            protected override void UpdateState(ArmedState state)
-            {
-                // The holdnote keeps scrolling through for now, so having the head disappear looks weird
+                Anchor = Anchor.CentreLeft;
+                Origin = Anchor.CentreLeft;
             }
         }
 
         /// <summary>
         /// The tail note of a hold.
         /// </summary>
-        private class DrawableTailNote : DrawableNote
+        private class DrawableTailNote : SkinReloadableDrawable
         {
             /// <summary>
             /// Lenience of release hit windows. This is to make cases where the hold note release
@@ -176,49 +185,11 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note
             /// </summary>
             private const double release_window_lenience = 1.5;
 
-            private readonly DrawableLyricNote holdNote;
-
-            public DrawableTailNote(DrawableLyricNote holdNote)
-                : base(holdNote.HitObject)
+            public DrawableTailNote()
+                : base()
             {
-                this.holdNote = holdNote;
-
-                GlowPiece.Alpha = 0;
-            }
-
-            protected override void CheckForJudgements(bool userTriggered, double timeOffset)
-            {
-                // Factor in the release lenience
-                timeOffset /= release_window_lenience;
-
-                if (!userTriggered)
-                {
-                    if (!HitObject.HitWindows.CanBeHit(timeOffset))
-                    {
-                        AddJudgement(new KaraokeNoteTailJudgement
-                        {
-                            Result = HitResult.Miss,
-                            HasBroken = holdNote.hasBroken
-                        });
-                    }
-
-                    return;
-                }
-
-                var result = HitObject.HitWindows.ResultFor(timeOffset);
-                if (result == HitResult.None)
-                    return;
-
-                AddJudgement(new KaraokeNoteTailJudgement
-                {
-                    Result = result,
-                    HasBroken = holdNote.hasBroken
-                });
-            }
-
-            protected override void UpdateState(ArmedState state)
-            {
-                // The holdnote keeps scrolling through, so having the tail disappear looks weird
+                Anchor = Anchor.CentreLeft;
+                Origin = Anchor.CentreLeft;
             }
         }
     }
