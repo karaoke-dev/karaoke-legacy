@@ -75,15 +75,15 @@ namespace osu.Game.Rulesets.Karaoke.Helps
 
             karaokeObject.TimeLines.Add(0, new LyricTimeLine(duration / 5)
             {
-                Tone = 3,
+                Tone = 3
             });
             karaokeObject.TimeLines.Add(9, new LyricTimeLine(duration / 4)
             {
-                Tone = 5,
+                Tone = 5
             });
             karaokeObject.TimeLines.Add(11, new LyricTimeLine(duration)
             {
-                Tone = -3,
+                Tone = -3
             });
 
             karaokeObject.Romaji.Add(0, new RomajiText("o"));

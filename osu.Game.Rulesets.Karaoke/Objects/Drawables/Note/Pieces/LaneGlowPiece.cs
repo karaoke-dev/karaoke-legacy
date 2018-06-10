@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using osu.Framework.Extensions.Color4Extensions;
+﻿using osu.Framework.Extensions.Color4Extensions;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Colour;
 using osu.Framework.Graphics.Containers;
@@ -13,6 +10,12 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note.Pieces
 {
     public class LaneGlowPiece : CompositeDrawable, IHasAccentColour
     {
+        public Color4 AccentColour
+        {
+            get => Colour;
+            set => Colour = value;
+        }
+
         private const float total_height = 100;
         private const float glow_height = 50;
         private const float glow_alpha = 0.4f;
@@ -54,32 +57,29 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note.Pieces
             };
         }
 
-        private Drawable[] createGradient(float alpha) => new Drawable[]
+        private Drawable[] createGradient(float alpha)
         {
-            new Box
+            return new Drawable[]
             {
-                Name = "Top",
-                RelativeSizeAxes = Axes.Both,
-                Height = 0.5f,
-                Blending = BlendingMode.Additive,
-                Colour = ColourInfo.GradientVertical(Color4.Transparent, Color4.White.Opacity(alpha))
-            },
-            new Box
-            {
-                Name = "Bottom",
-                Anchor = Anchor.BottomLeft,
-                Origin = Anchor.BottomLeft,
-                RelativeSizeAxes = Axes.Both,
-                Height = 0.5f,
-                Blending = BlendingMode.Additive,
-                Colour = ColourInfo.GradientVertical(Color4.White.Opacity(alpha), Color4.Transparent)
-            }
-        };
-
-        public Color4 AccentColour
-        {
-            get { return Colour; }
-            set { Colour = value; }
+                new Box
+                {
+                    Name = "Top",
+                    RelativeSizeAxes = Axes.Both,
+                    Height = 0.5f,
+                    Blending = BlendingMode.Additive,
+                    Colour = ColourInfo.GradientVertical(Color4.Transparent, Color4.White.Opacity(alpha))
+                },
+                new Box
+                {
+                    Name = "Bottom",
+                    Anchor = Anchor.BottomLeft,
+                    Origin = Anchor.BottomLeft,
+                    RelativeSizeAxes = Axes.Both,
+                    Height = 0.5f,
+                    Blending = BlendingMode.Additive,
+                    Colour = ColourInfo.GradientVertical(Color4.White.Opacity(alpha), Color4.Transparent)
+                }
+            };
         }
     }
 }

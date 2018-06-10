@@ -8,6 +8,32 @@ namespace osu.Game.Rulesets.Karaoke.Objects.TimeLine
     /// </summary>
     public class LyricTimeLine
     {
+        /// <summary>
+        ///     relative to word's strt time
+        /// </summary>
+        public double RelativeTime { get; set; }
+
+        /// <summary>
+        ///     Tone
+        /// </summary>
+        public int? Tone { get; set; }
+
+        /// <summary>
+        ///     Add helf tone
+        /// </summary>
+        public bool HelfTone { get; set; }
+
+        /// <summary>
+        ///     Display Text
+        ///     If null, will get text from <see cref="MainText" />
+        /// </summary>
+        public string DisplayText { get; set; }
+
+        /// <summary>
+        ///     Duration
+        ///     Default is -1 , means duration is next.RelativeTime -  this.RelativeTime
+        /// </summary>
+        public double? EarlyTime { get; set; }
 
         public LyricTimeLine()
         {
@@ -17,32 +43,5 @@ namespace osu.Game.Rulesets.Karaoke.Objects.TimeLine
         {
             RelativeTime = time;
         }
-
-        /// <summary>
-        /// relative to word's strt time
-        /// </summary>
-        public double RelativeTime { get; set; }
-
-        /// <summary>
-        /// Tone
-        /// </summary>
-        public int? Tone { get; set; }
-
-        /// <summary>
-        /// Add helf tone
-        /// </summary>
-        public bool HelfTone { get; set; }
-
-        /// <summary>
-        /// Display Text
-        /// If null, will get text from <see cref="MainText"/>
-        /// </summary>
-        public string DisplayText { get; set; }
-
-        /// <summary>
-        /// Duration
-        /// Default is -1 , means duration is next.RelativeTime -  this.RelativeTime
-        /// </summary>
-        public double? EarlyTime { get; set; }
     }
 }

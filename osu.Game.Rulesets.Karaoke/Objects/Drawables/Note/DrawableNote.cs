@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using osu.Framework.Graphics;
+﻿using osu.Framework.Graphics;
 using osu.Game.Rulesets.Karaoke.Judgements;
-using osu.Game.Rulesets.Karaoke.Objects.Drawables.Common.Pieces;
 using osu.Game.Rulesets.Karaoke.Objects.Drawables.Note.Pieces;
 using osu.Game.Rulesets.Objects.Drawables;
 using osu.Game.Rulesets.Scoring;
@@ -12,10 +8,22 @@ using OpenTK.Graphics;
 namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note
 {
     /// <summary>
-    /// Visualises a <see cref="BaseLyric"/> hit object.
+    ///     Visualises a <see cref="BaseLyric" /> hit object.
     /// </summary>
     public class DrawableNote : DrawableBaseNote<BaseLyric>
     {
+        public override Color4 AccentColour
+        {
+            get => base.AccentColour;
+            set
+            {
+                base.AccentColour = value;
+                laneGlowPiece.AccentColour = AccentColour;
+                GlowPiece.AccentColour = AccentColour;
+                headPiece.AccentColour = AccentColour;
+            }
+        }
+
         protected readonly GlowPiece GlowPiece;
 
         private readonly LaneGlowPiece laneGlowPiece;
@@ -41,18 +49,6 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note
                     Origin = Anchor.CentreLeft
                 }
             };
-        }
-
-        public override Color4 AccentColour
-        {
-            get { return base.AccentColour; }
-            set
-            {
-                base.AccentColour = value;
-                laneGlowPiece.AccentColour = AccentColour;
-                GlowPiece.AccentColour = AccentColour;
-                headPiece.AccentColour = AccentColour;
-            }
         }
 
         protected override void CheckForJudgements(bool userTriggered, double timeOffset)

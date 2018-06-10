@@ -62,9 +62,9 @@ namespace osu.Game.Rulesets.Karaoke.UI
             });
 
             //layer
-            Add(KaraokeTonePlayfield = new KaraokeTonePlayfield(new List<KaraokeStageDefinition>()
+            Add(KaraokeTonePlayfield = new KaraokeTonePlayfield(new List<KaraokeStageDefinition>
             {
-                new KaraokeStageDefinition(){ Columns = 10}
+                new KaraokeStageDefinition { Columns = 10 }
             })
             {
                 KaraokeRulesetContainer = KaraokeRulesetContainer

@@ -9,7 +9,6 @@ using osu.Game.Rulesets.Edit.Tools;
 using osu.Game.Rulesets.Karaoke.Edit.Layers.Selection.Overlays;
 using osu.Game.Rulesets.Karaoke.Objects;
 using osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric;
-using osu.Game.Rulesets.Karaoke.UI;
 using osu.Game.Rulesets.Objects.Drawables;
 using osu.Game.Rulesets.UI;
 
@@ -24,7 +23,6 @@ namespace osu.Game.Rulesets.Karaoke.Edit
             //new HitObjectCompositionTool<LyricTranslate>(),//add translate to BaseLyric
         };
 
-        protected override ScalableContainer CreateLayerContainer() => new ScalableContainer() { RelativeSizeAxes = Axes.Both };
         public KaraokeHitObjectComposer(Ruleset ruleset)
             : base(ruleset)
         {
@@ -39,6 +37,11 @@ namespace osu.Game.Rulesets.Karaoke.Edit
             }
 
             return base.CreateMaskFor(hitObject);
+        }
+
+        protected override ScalableContainer CreateLayerContainer()
+        {
+            return new ScalableContainer { RelativeSizeAxes = Axes.Both };
         }
 
         protected override RulesetContainer CreateRulesetContainer(Ruleset ruleset, WorkingBeatmap beatmap)

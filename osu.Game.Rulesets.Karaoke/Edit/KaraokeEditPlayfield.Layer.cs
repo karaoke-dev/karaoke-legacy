@@ -8,7 +8,6 @@ using osu.Game.Rulesets.Karaoke.Beatmaps;
 using osu.Game.Rulesets.Karaoke.Edit.Dialog;
 using osu.Game.Rulesets.Karaoke.Edit.Layers.Lyric;
 using osu.Game.Rulesets.Karaoke.Edit.Layers.Note;
-using osu.Game.Rulesets.Karaoke.UI.Layers.Lyric;
 
 namespace osu.Game.Rulesets.Karaoke.Edit
 {
@@ -29,13 +28,13 @@ namespace osu.Game.Rulesets.Karaoke.Edit
             AddRange(new Drawable[]
             {
                 //layer
-                KaraokeLyricPlayField = new KaraokeLyricEditPlayField()
+                KaraokeLyricPlayField = new KaraokeLyricEditPlayField
                 {
                     KaraokeRulesetContainer = KaraokeRulesetContainer
                 },
-                KaraokeTonePlayfield = new KaraokeToneEditPlayfield(new List<KaraokeStageDefinition>()
+                KaraokeTonePlayfield = new KaraokeToneEditPlayfield(new List<KaraokeStageDefinition>
                 {
-                    new KaraokeStageDefinition(){ Columns = 10}
+                    new KaraokeStageDefinition { Columns = 10 }
                 })
                 {
                     KaraokeRulesetContainer = KaraokeRulesetContainer

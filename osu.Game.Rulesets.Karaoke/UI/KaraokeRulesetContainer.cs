@@ -1,14 +1,8 @@
 ﻿// Copyright (c) 2007-2018 ppy Pty Ltd <contact@ppy.sh>.
 // Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
 
-using System.Collections.Generic;
-using System.Linq;
-using osu.Framework.Allocation;
-using osu.Framework.Extensions.IEnumerableExtensions;
 using osu.Framework.Input;
-using osu.Framework.Lists;
 using osu.Game.Beatmaps;
-using osu.Game.Beatmaps.ControlPoints;
 using osu.Game.Configuration;
 using osu.Game.Input.Handlers;
 using osu.Game.Rulesets.Configuration;
@@ -19,20 +13,17 @@ using osu.Game.Rulesets.Karaoke.Objects;
 using osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric;
 using osu.Game.Rulesets.Karaoke.Replays;
 using osu.Game.Rulesets.Karaoke.Scoring;
-using osu.Game.Rulesets.Objects;
 using osu.Game.Rulesets.Objects.Drawables;
-using osu.Game.Rulesets.Objects.Types;
 using osu.Game.Rulesets.Replays;
 using osu.Game.Rulesets.Scoring;
-using osu.Game.Rulesets.Timing;
 using osu.Game.Rulesets.UI;
-using osu.Game.Rulesets.UI.Scrolling;
 using OpenTK;
 
 namespace osu.Game.Rulesets.Karaoke.UI
 {
     public class KaraokeRulesetContainer : BaseRulesetContainer<BaseLyric>
     {
+        protected override Vector2 PlayfieldArea => Vector2.One;
         protected KaraokeConfigManager ConfigManager;
 
         public KaraokeRulesetContainer(Ruleset ruleset, WorkingBeatmap beatmap, bool isForCurrentRuleset)
@@ -93,12 +84,10 @@ namespace osu.Game.Rulesets.Karaoke.UI
             const float default_relative_height = KaraokeBasePlayfield.DEFAULT_HEIGHT / 768;
             const float default_aspect = 16f / 9f;
 
-            float aspectAdjust = MathHelper.Clamp(DrawWidth / DrawHeight, 0.4f, 4) / default_aspect;
+            var aspectAdjust = MathHelper.Clamp(DrawWidth / DrawHeight, 0.4f, 4) / default_aspect;
 
             return new Vector2(1, default_relative_height * aspectAdjust);
         }
-
-        protected override Vector2 PlayfieldArea => Vector2.One;
 
         protected override IRulesetConfigManager CreateConfig(Ruleset ruleset, SettingsStore settings)
         {

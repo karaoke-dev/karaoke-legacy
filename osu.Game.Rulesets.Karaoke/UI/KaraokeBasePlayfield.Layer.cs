@@ -16,11 +16,11 @@ namespace osu.Game.Rulesets.Karaoke.UI
 {
     public partial class KaraokeBasePlayfield
     {
+        public KaraokeLyricPlayField KaraokeLyricPlayField;
+        public KaraokeTonePlayfield KaraokeTonePlayfield;
         protected List<ILayer> Layers = new List<ILayer>();
 
         protected DialogLayer DialogLayer;
-        public KaraokeLyricPlayField KaraokeLyricPlayField;
-        public KaraokeTonePlayfield KaraokeTonePlayfield;
 
         #region Dialog
 

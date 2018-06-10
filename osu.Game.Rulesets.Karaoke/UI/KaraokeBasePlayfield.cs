@@ -25,16 +25,17 @@ namespace osu.Game.Rulesets.Karaoke.UI
     public partial class KaraokeBasePlayfield : Playfield, IAmKaraokeField
     {
         public static readonly Vector2 BASE_SIZE = new Vector2(512, 384);
+
+        /// <summary>
+        ///     Default height of a <see cref="KaraokeBasePlayfield" /> when inside a <see cref="KaraokeRulesetContainer" />.
+        /// </summary>
+        public const float DEFAULT_HEIGHT = 512;
+
         public Ruleset Ruleset { get; set; }
         public WorkingBeatmap WorkingBeatmap { get; set; }
         public KaraokeRulesetContainer KaraokeRulesetContainer { get; set; }
 
         public KaraokeConfigManager KaraokeConfigManager { get; set; }
-
-        /// <summary>
-        ///     Default height of a <see cref="KaraokeBasePlayfield"/> when inside a <see cref="KaraokeRulesetContainer"/>.
-        /// </summary>
-        public const float DEFAULT_HEIGHT = 512;
 
         /// <summary>
         ///     Ctor
@@ -69,9 +70,7 @@ namespace osu.Game.Rulesets.Karaoke.UI
 
             //import
             if (KaraokeTonePlayfield != null)
-            {
                 KaraokeTonePlayfield.Add(h);
-            }
         }
 
         //post process

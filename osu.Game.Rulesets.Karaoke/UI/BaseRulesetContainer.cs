@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using osu.Framework.Allocation;
 using osu.Framework.Extensions.IEnumerableExtensions;
 using osu.Framework.Input;
@@ -19,12 +18,20 @@ using osu.Game.Rulesets.UI.Scrolling;
 namespace osu.Game.Rulesets.Karaoke.UI
 {
     /// <summary>
-    /// TODO : 
-    /// <see cref="KaraokeTonePlayfield"/> 's column cannot work without this
+    ///     TODO :
+    ///     <see cref="KaraokeTonePlayfield" /> 's column cannot work without this
     /// </summary>
     /// <typeparam name="T"></typeparam>
     public class BaseRulesetContainer<T> : RulesetContainer<T> where T : HitObject
     {
+        /// <summary>
+        ///     Provides the default <see cref="MultiplierControlPoint" />s that adjust the scrolling rate of
+        ///     <see cref="HitObject" />s
+        ///     inside this <see cref="RulesetContainer{TPlayfield,TObject}" />.
+        /// </summary>
+        /// <returns></returns>
+        protected readonly SortedList<MultiplierControlPoint> DefaultControlPoints = new SortedList<MultiplierControlPoint>(Comparer<MultiplierControlPoint>.Default);
+
         public BaseRulesetContainer(Ruleset ruleset, WorkingBeatmap workingBeatmap, bool isForCurrentRuleset)
             : base(ruleset, workingBeatmap, isForCurrentRuleset)
         {
@@ -49,13 +56,6 @@ namespace osu.Game.Rulesets.Karaoke.UI
         {
             throw new NotImplementedException();
         }
-
-        /// <summary>
-        /// Provides the default <see cref="MultiplierControlPoint"/>s that adjust the scrolling rate of <see cref="HitObject"/>s
-        /// inside this <see cref="RulesetContainer{TPlayfield,TObject}"/>.
-        /// </summary>
-        /// <returns></returns>
-        protected readonly SortedList<MultiplierControlPoint> DefaultControlPoints = new SortedList<MultiplierControlPoint>(Comparer<MultiplierControlPoint>.Default);
 
         [BackgroundDependencyLoader]
         private void load()
@@ -88,14 +88,14 @@ namespace osu.Game.Rulesets.Karaoke.UI
                 };
             });
 
-            double lastObjectTime = (Objects.LastOrDefault() as IHasEndTime)?.EndTime ?? Objects.LastOrDefault()?.StartTime ?? double.MaxValue;
+            var lastObjectTime = (Objects.LastOrDefault() as IHasEndTime)?.EndTime ?? Objects.LastOrDefault()?.StartTime ?? double.MaxValue;
 
             // Perform some post processing of the timing changes
             timingChanges = timingChanges
-                            // Collapse sections after the last hit object
-                            .Where(s => s.StartTime <= lastObjectTime)
-                            // Collapse sections with the same start time
-                            .GroupBy(s => s.StartTime).Select(g => g.Last()).OrderBy(s => s.StartTime);
+                // Collapse sections after the last hit object
+                .Where(s => s.StartTime <= lastObjectTime)
+                // Collapse sections with the same start time
+                .GroupBy(s => s.StartTime).Select(g => g.Last()).OrderBy(s => s.StartTime);
 
             DefaultControlPoints.AddRange(timingChanges);
 

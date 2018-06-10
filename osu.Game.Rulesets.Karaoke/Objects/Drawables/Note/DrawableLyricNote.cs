@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
-using osu.Game.Rulesets.Karaoke.Judgements;
-using osu.Game.Rulesets.Karaoke.Objects.Drawables.Common.Pieces;
 using osu.Game.Rulesets.Karaoke.Objects.Drawables.Note.Pieces;
 using osu.Game.Rulesets.Karaoke.Objects.TimeLine;
 using osu.Game.Rulesets.Karaoke.UI.Layers.Note;
 using osu.Game.Rulesets.Objects.Drawables;
-using osu.Game.Rulesets.Scoring;
 using osu.Game.Skinning;
 using OpenTK.Graphics;
 
@@ -18,6 +12,35 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note
 {
     public class DrawableLyricNote : SkinReloadableDrawable
     {
+        public virtual double Duration => 500;
+
+        public virtual Color4 AccentColour
+        {
+            get => accentColour;
+            set
+            {
+                accentColour = value;
+
+                glowPiece.AccentColour = value;
+                bodyPiece.AccentColour = value;
+                //head.AccentColour = value;
+                //tail.AccentColour = value;
+            }
+        }
+
+        public virtual BaseLyric HitObject { get; set; }
+
+        public virtual KeyValuePair<int, LyricTimeLine> TimeLine
+        {
+            get => _timeLine;
+            set
+            {
+                _timeLine = value;
+                var noteHeight = (_timeLine.Value.Tone ?? 0) * KaraokeStage.COLUMN_HEIGHT;
+                noteContainer.Y = noteHeight;
+            }
+        }
+
         private readonly DrawableHeadNote head;
         private readonly DrawableTailNote tail;
 
@@ -28,18 +51,23 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note
         private readonly Container<DrawableKaraokeNoteTick> tickContainer;
 
         /// <summary>
-        /// Time at which the user started holding this hold note. Null if the user is not holding this hold note.
+        ///     Time at which the user started holding this hold note. Null if the user is not holding this hold note.
         /// </summary>
         private double? holdStartTime;
 
         /// <summary>
-        /// Whether the hold note has been released too early and shouldn't give full score for the release.
+        ///     Whether the hold note has been released too early and shouldn't give full score for the release.
         /// </summary>
         private bool hasBroken;
 
-        private Container noteContainer;
+        private readonly Container noteContainer;
 
-        public DrawableLyricNote() : base(null)
+        private Color4 accentColour;
+
+        private KeyValuePair<int, LyricTimeLine> _timeLine;
+
+        public DrawableLyricNote()
+            : base(null)
         {
             Anchor = Anchor.CentreLeft;
             Origin = Anchor.CentreLeft;
@@ -47,7 +75,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note
             RelativeSizeAxes = Axes.Y;
             InternalChildren = new Drawable[]
             {
-                noteContainer = new Container()
+                noteContainer = new Container
                 {
                     Height = KaraokeStage.COLUMN_HEIGHT,
                     Children = new Drawable[]
@@ -63,29 +91,29 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note
                         {
                             Anchor = Anchor.CentreLeft,
                             Origin = Anchor.CentreLeft,
-                            RelativeSizeAxes = Axes.Y,
+                            RelativeSizeAxes = Axes.Y
                         },
                         tickContainer = new Container<DrawableKaraokeNoteTick>
                         {
-                            RelativeSizeAxes = Axes.Both,
+                            RelativeSizeAxes = Axes.Both
                             //ChildrenEnumerable = HitObject.NestedHitObjects.OfType<BaseLyric>().Select(tick => new DrawableKaraokeNoteTick(tick)
                             //{
                             //    HoldStartTime = () => holdStartTime
                             //})
                         },
-                        head = new DrawableHeadNote()
+                        head = new DrawableHeadNote
                         {
                             Anchor = Anchor.CentreLeft,
                             Origin = Anchor.CentreLeft
                         },
-                        tail = new DrawableTailNote()
+                        tail = new DrawableTailNote
                         {
                             Anchor = Anchor.CentreLeft,
                             Origin = Anchor.CentreLeft
                         },
-                        new TextFlowContainer()
+                        new TextFlowContainer
                         {
-                            Text = "Hello",
+                            Text = "Hello"
                         }
                     }
                 }
@@ -99,50 +127,12 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note
             //noteContainer.Add(tail);
         }
 
-        private Color4 accentColour;
-        public virtual Color4 AccentColour
-        {
-            get { return accentColour; }
-            set
-            {
-                accentColour = value;
-
-                glowPiece.AccentColour = value;
-                bodyPiece.AccentColour = value;
-                //head.AccentColour = value;
-                //tail.AccentColour = value;
-            }
-        }
-
-        public virtual double Duration
-        {
-            get
-            {
-                //TODO : real value
-                return 500;
-            }
-        }
-
-        public virtual BaseLyric HitObject { get; set; }
-
-        private KeyValuePair<int, LyricTimeLine> _timeLine;
-        public virtual KeyValuePair<int, LyricTimeLine> TimeLine
-        {
-            get => _timeLine;
-            set
-            {
-                _timeLine = value;
-                var noteHeight = (_timeLine.Value.Tone ?? 0) * KaraokeStage.COLUMN_HEIGHT;
-                noteContainer.Y = noteHeight;
-            }
-        }
-
         protected virtual void UpdateState(ArmedState state)
         {
             switch (state)
             {
                 //case ArmedState.Hit:
-                    // Good enough for now, we just want them to have a lifetime end
+                // Good enough for now, we just want them to have a lifetime end
                 //    this.Delay(2000).Expire();
                 //    break;
             }
@@ -162,12 +152,11 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note
         }
 
         /// <summary>
-        /// The head note of a hold.
+        ///     The head note of a hold.
         /// </summary>
         private class DrawableHeadNote : SkinReloadableDrawable
         {
             public DrawableHeadNote()
-                : base()
             {
                 Anchor = Anchor.CentreLeft;
                 Origin = Anchor.CentreLeft;
@@ -175,19 +164,18 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note
         }
 
         /// <summary>
-        /// The tail note of a hold.
+        ///     The tail note of a hold.
         /// </summary>
         private class DrawableTailNote : SkinReloadableDrawable
         {
             /// <summary>
-            /// Lenience of release hit windows. This is to make cases where the hold note release
-            /// is timed alongside presses of other hit objects less awkward.
-            /// Todo: This shouldn't exist for non-LegacyBeatmapDecoder beatmaps
+            ///     Lenience of release hit windows. This is to make cases where the hold note release
+            ///     is timed alongside presses of other hit objects less awkward.
+            ///     Todo: This shouldn't exist for non-LegacyBeatmapDecoder beatmaps
             /// </summary>
             private const double release_window_lenience = 1.5;
 
             public DrawableTailNote()
-                : base()
             {
                 Anchor = Anchor.CentreLeft;
                 Origin = Anchor.CentreLeft;

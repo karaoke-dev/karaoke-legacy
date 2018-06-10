@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using osu.Framework.Allocation;
+﻿using osu.Framework.Allocation;
 using osu.Framework.Graphics;
 using osu.Game.Rulesets.Judgements;
 using osu.Game.Rulesets.Objects.Drawables;
@@ -13,13 +10,6 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Note
         public DrawableNoteJudgement(Judgement judgement, DrawableHitObject judgedObject)
             : base(judgement, judgedObject)
         {
-        }
-
-        [BackgroundDependencyLoader]
-        private void load()
-        {
-            if (JudgementText != null)
-                JudgementText.TextSize = 25;
         }
 
         protected override void LoadComplete()
@@ -37,6 +27,13 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Note
             }
 
             Expire();
+        }
+
+        [BackgroundDependencyLoader]
+        private void load()
+        {
+            if (JudgementText != null)
+                JudgementText.TextSize = 25;
         }
     }
 }

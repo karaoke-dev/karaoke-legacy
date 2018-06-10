@@ -146,7 +146,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         public TranslateCode Lang { get; set; }
 
         /// <summary>
-        /// Stage Index
+        ///     Stage Index
         /// </summary>
         public int StageIndex { get; set; }
 

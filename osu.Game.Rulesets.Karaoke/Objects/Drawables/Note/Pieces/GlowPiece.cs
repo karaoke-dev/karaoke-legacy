@@ -9,8 +9,23 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note.Pieces
 {
     public class GlowPiece : CompositeDrawable, IHasAccentColour
     {
+        public Color4 AccentColour
+        {
+            get => accentColour;
+            set
+            {
+                if (accentColour == value)
+                    return;
+                accentColour = value;
+
+                updateGlow();
+            }
+        }
+
         private const float glow_alpha = 0.7f;
         private const float glow_radius = 5;
+
+        private Color4 accentColour;
 
         public GlowPiece()
         {
@@ -29,20 +44,6 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note.Pieces
         {
             base.LoadComplete();
             updateGlow();
-        }
-
-        private Color4 accentColour;
-        public Color4 AccentColour
-        {
-            get { return accentColour; }
-            set
-            {
-                if (accentColour == value)
-                    return;
-                accentColour = value;
-
-                updateGlow();
-            }
         }
 
         private void updateGlow()

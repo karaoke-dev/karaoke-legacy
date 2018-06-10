@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using osu.Framework.Caching;
 using osu.Framework.Extensions.Color4Extensions;
 using osu.Framework.Graphics;
@@ -12,15 +10,32 @@ using OpenTK.Graphics;
 namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note.Pieces
 {
     /// <summary>
-    /// Represents length-wise portion of a hold note.
+    ///     Represents length-wise portion of a hold note.
     /// </summary>
     public class BodyPiece : Container, IHasAccentColour
     {
+        public Color4 AccentColour
+        {
+            get => accentColour;
+            set
+            {
+                if (accentColour == value)
+                    return;
+                accentColour = value;
+
+                updateAccentColour();
+            }
+        }
+
         private readonly Container subtractionLayer;
 
         private readonly Drawable background;
         private readonly BufferedContainer foreground;
         private readonly BufferedContainer subtractionContainer;
+
+        private Color4 accentColour;
+
+        private Cached subtractionCache = new Cached();
 
         public BodyPiece()
         {
@@ -64,35 +79,19 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note.Pieces
             };
         }
 
-        protected override void LoadComplete()
-        {
-            base.LoadComplete();
-
-            updateAccentColour();
-        }
-
-        private Color4 accentColour;
-        public Color4 AccentColour
-        {
-            get { return accentColour; }
-            set
-            {
-                if (accentColour == value)
-                    return;
-                accentColour = value;
-
-                updateAccentColour();
-            }
-        }
-
-        private Cached subtractionCache = new Cached();
-
         public override bool Invalidate(Invalidation invalidation = Invalidation.All, Drawable source = null, bool shallPropagate = true)
         {
             if ((invalidation & Invalidation.DrawSize) > 0)
                 subtractionCache.Invalidate();
 
             return base.Invalidate(invalidation, source, shallPropagate);
+        }
+
+        protected override void LoadComplete()
+        {
+            base.LoadComplete();
+
+            updateAccentColour();
         }
 
         protected override void Update()

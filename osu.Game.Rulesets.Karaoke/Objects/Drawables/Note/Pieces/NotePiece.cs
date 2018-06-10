@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using osu.Framework.Extensions.Color4Extensions;
+﻿using osu.Framework.Extensions.Color4Extensions;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Shapes;
@@ -11,14 +8,29 @@ using OpenTK.Graphics;
 namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note.Pieces
 {
     /// <summary>
-    /// Represents the static hit markers of notes.
+    ///     Represents the static hit markers of notes.
     /// </summary>
     public class NotePiece : Container, IHasAccentColour
     {
+        public Color4 AccentColour
+        {
+            get => accentColour;
+            set
+            {
+                if (accentColour == value)
+                    return;
+                accentColour = value;
+
+                colouredBox.Colour = AccentColour.Lighten(0.9f);
+            }
+        }
+
         private const float head_height = 10;
         private const float head_colour_height = 6;
 
         private readonly Box colouredBox;
+
+        private Color4 accentColour;
 
         public NotePiece()
         {
@@ -40,20 +52,6 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note.Pieces
                     Alpha = 0.2f
                 }
             };
-        }
-
-        private Color4 accentColour;
-        public Color4 AccentColour
-        {
-            get { return accentColour; }
-            set
-            {
-                if (accentColour == value)
-                    return;
-                accentColour = value;
-
-                colouredBox.Colour = AccentColour.Lighten(0.9f);
-            }
         }
     }
 }

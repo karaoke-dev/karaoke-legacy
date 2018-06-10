@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using osu.Framework.Extensions.Color4Extensions;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Shapes;
 using osu.Game.Rulesets.Karaoke.Judgements;
-using osu.Game.Rulesets.Objects;
 using osu.Game.Rulesets.Objects.Drawables;
 using osu.Game.Rulesets.Scoring;
 using OpenTK;
@@ -14,16 +11,32 @@ using OpenTK.Graphics;
 
 namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note
 {
-
     /// <summary>
-    /// Visualises a <see cref="HoldNoteTick"/> hit object.
+    ///     Visualises a <see cref="HoldNoteTick" /> hit object.
     /// </summary>
     public class DrawableKaraokeNoteTick : DrawableBaseNote<BaseLyric>
     {
         /// <summary>
-        /// References the time at which the user started holding the hold note.
+        ///     References the time at which the user started holding the hold note.
         /// </summary>
         public Func<double?> HoldStartTime;
+
+        public override Color4 AccentColour
+        {
+            get => base.AccentColour;
+            set
+            {
+                base.AccentColour = value;
+
+                glowContainer.EdgeEffect = new EdgeEffectParameters
+                {
+                    Type = EdgeEffectType.Glow,
+                    Radius = 2f,
+                    Roundness = 15f,
+                    Colour = value.Opacity(0.3f)
+                };
+            }
+        }
 
         private readonly Container glowContainer;
 
@@ -55,23 +68,6 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note
                     }
                 }
             };
-        }
-
-        public override Color4 AccentColour
-        {
-            get { return base.AccentColour; }
-            set
-            {
-                base.AccentColour = value;
-
-                glowContainer.EdgeEffect = new EdgeEffectParameters
-                {
-                    Type = EdgeEffectType.Glow,
-                    Radius = 2f,
-                    Roundness = 15f,
-                    Colour = value.Opacity(0.3f)
-                };
-            }
         }
 
         protected override void CheckForJudgements(bool userTriggered, double timeOffset)

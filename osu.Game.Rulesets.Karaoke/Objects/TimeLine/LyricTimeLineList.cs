@@ -18,12 +18,6 @@ namespace osu.Game.Rulesets.Karaoke.Objects.TimeLine
         [JsonIgnore]
         public double MinimumTime { get; set; } = 100;
 
-        //just change value
-        public event Action<LyricTimeLineList> ValueChangerd;
-
-        //change number of time point
-        public event Action<LyricTimeLineList> SizeChanged;
-
         /// <summary>
         ///     get first progress point by time
         /// </summary>
@@ -151,5 +145,11 @@ namespace osu.Game.Rulesets.Karaoke.Objects.TimeLine
                 time = single.Value.RelativeTime;
             }
         }
+
+        //just change value
+        public event Action<LyricTimeLineList> ValueChangerd;
+
+        //change number of time point
+        public event Action<LyricTimeLineList> SizeChanged;
     }
 }
