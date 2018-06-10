@@ -14,9 +14,8 @@ namespace osu.Game.Rulesets.Karaoke.UI
 {
     public class KaraokeSettings : SymcolSettingsSubsection<KaraokeWikiOverlay>
     {
-        protected override string Header => "Karaoke!";
-
         public static KaraokeConfigManager RulesetConfig;
+        protected override string Header => "Karaoke!";
 
         [BackgroundDependencyLoader]
         private void load(RulesetStore rulesetStore, SettingsStore settings)
@@ -33,24 +32,24 @@ namespace osu.Game.Rulesets.Karaoke.UI
                 },
                 new SettingsCheckbox
                 {
-                    LabelText = "Always shows Karaoke panel",
+                    LabelText = "Always shows Karaoke panel"
                     //Bindable = config.GetBindable<bool>(OsuSetting.SnakingOutSliders)
                 },
                 new SettingsCheckbox
                 {
-                    LabelText = "Karaoke Effect",
+                    LabelText = "Karaoke Effect"
                     //Bindable = config.GetBindable<bool>(OsuSetting.SnakingOutSliders)
                 },
                 new SettingsCheckbox
                 {
-                    LabelText = "Enable HotKey",
+                    LabelText = "Enable HotKey"
                     //Bindable = config.GetBindable<bool>(OsuSetting.SnakingOutSliders)
                 },
                 new SettingsButton
                 {
                     Text = "Open In-game Wiki",
-                    Action = ShowWiki,
-                },
+                    Action = ShowWiki
+                }
             };
         }
     }

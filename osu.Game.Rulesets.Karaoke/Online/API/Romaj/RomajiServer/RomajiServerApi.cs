@@ -10,8 +10,8 @@ using osu.Game.Rulesets.Karaoke.Extension;
 namespace osu.Game.Rulesets.Karaoke.Online.API.Romaj.RomajiServer
 {
     /// <summary>
-    /// this translate server is provided by : 
-    /// https://romaji-translator.herokuapp.com/
+    ///     this translate server is provided by :
+    ///     https://romaji-translator.herokuapp.com/
     /// </summary>
     public class RomajiServerApi : BaseApi
     {
@@ -19,11 +19,9 @@ namespace osu.Game.Rulesets.Karaoke.Online.API.Romaj.RomajiServer
 
 
         /// <summary>
-        /// translte list 
-        /// 
-        /// TODO : 或許之後考慮使用皮皮牌的
-        /// <see cref="WebRequest"/>
-        /// 
+        ///     translte list
+        ///     TODO : 或許之後考慮使用皮皮牌的
+        ///     <see cref="WebRequest" />
         /// </summary>
         /// <param name="sourceLangeCode"></param>
         /// <param name="translateListString"></param>
@@ -39,9 +37,7 @@ namespace osu.Game.Rulesets.Karaoke.Online.API.Romaj.RomajiServer
             {
                 var parameter = new List<KeyValuePair<string, string>>();
                 foreach (var singleLyric in singleTranslateProcess)
-                {
                     parameter.Add(new KeyValuePair<string, string>("str", singleLyric));
-                }
 
                 var result = await GetObjectApi<List<TranslateResult>>("/translate/jp/list", parameter);
 
@@ -53,53 +49,53 @@ namespace osu.Game.Rulesets.Karaoke.Online.API.Romaj.RomajiServer
     }
 
     /// <summary>
-    /// romaji should be like that
+    ///     romaji should be like that
     /// </summary>
     public class TranslateResult
     {
         /// <summary>
-        /// index
+        ///     index
         /// </summary>
         public int Index { get; set; }
 
         /// <summary>
-        /// reslut
+        ///     reslut
         /// </summary>
         public List<Character> Result { get; set; } = new List<Character>();
     }
 
     /// <summary>
-    /// chearacter
+    ///     chearacter
     /// </summary>
     public class Character
     {
         /// <summary>
-        /// text
+        ///     text
         /// </summary>
         public string Text { get; set; }
 
         /// <summary>
-        /// type
+        ///     type
         /// </summary>
         public int Type { get; set; }
 
         /// <summary>
-        /// Index
+        ///     Index
         /// </summary>
         public int Index { get; set; }
 
         /// <summary>
-        /// Hiragana
+        ///     Hiragana
         /// </summary>
         public string Hiragana { get; set; }
 
         /// <summary>
-        /// Katakana
+        ///     Katakana
         /// </summary>
         public string Katakana { get; set; }
 
         /// <summary>
-        /// romaji
+        ///     romaji
         /// </summary>
         public string Romaji { get; set; }
     }

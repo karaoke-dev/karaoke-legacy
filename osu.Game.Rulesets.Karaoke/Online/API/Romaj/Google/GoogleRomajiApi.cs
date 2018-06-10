@@ -8,13 +8,13 @@ using System.Text;
 namespace osu.Game.Rulesets.Karaoke.Online.API.Romaj.Google
 {
     /// <summary>
-    /// google romaji translator
+    ///     google romaji translator
     /// </summary>
     public class GoogleRomajiApi
     {
         public const string LANGUAGE_PAIR = "ja|en";
 
-        private string TranslatorUrl = "https://www.google.com/translate_t?hl=en&ie=UTF8&text={0}&langpair={1}";
+        private readonly string TranslatorUrl = "https://www.google.com/translate_t?hl=en&ie=UTF8&text={0}&langpair={1}";
 
 
         public string GetTranslatorUrl(string text, string languagePair = LANGUAGE_PAIR)
@@ -32,16 +32,16 @@ namespace osu.Game.Rulesets.Karaoke.Online.API.Romaj.Google
             inText = inText.Normalize(NormalizationForm.FormKC);
 
             // Split the text into separate sequential tokens and translate each token
-            List<TextToken> textTokens = GetTextTokens(inText);
+            var textTokens = GetTextTokens(inText);
 
             // Load maps and particles lists once
-            List<string> hirakanjiMaps = new List<string>()
+            var hirakanjiMaps = new List<string>
             {
                 " ̄ : ",
                 "tsud:tsu"
             };
 
-            List<string> hirakanjiParticles = new List<string>()
+            var hirakanjiParticles = new List<string>
             {
                 "ba",
                 "de",
@@ -62,27 +62,27 @@ namespace osu.Game.Rulesets.Karaoke.Online.API.Romaj.Google
                 "yo",
                 "sa",
                 "ze",
-                "zo",
+                "zo"
             };
 
-            List<string> kataMaps = new List<string>()
+            var kataMaps = new List<string>
             {
                 " ̄ : ",
                 "eye:ai",
                 "lung:rune"
             };
 
-            List<string> kataParticles = new List<string>()
+            var kataParticles = new List<string>
             {
                 ""
             };
 
 
             // Translate each token and join them back together
-            string outText = "";
-            foreach (TextToken textToken in textTokens)
+            var outText = "";
+            foreach (var textToken in textTokens)
             {
-                string url = GetTranslatorUrl(textToken.Text, languagePair);
+                var url = GetTranslatorUrl(textToken.Text, languagePair);
 
                 switch (textToken.Type)
                 {
@@ -114,38 +114,26 @@ namespace osu.Game.Rulesets.Karaoke.Online.API.Romaj.Google
         // => ["Cake 01. ", "ヴァンパイア", "雪降る夜"]
         public List<TextToken> GetTextTokens(string inText)
         {
-            List<TextToken> textTokens = new List<TextToken>();
+            var textTokens = new List<TextToken>();
 
             // Start with arbitrary token type
-            TokenType prevCharTokenType = TokenType.Latin;
-            TokenType currCharTokenType = prevCharTokenType;
+            var prevCharTokenType = TokenType.Latin;
+            var currCharTokenType = prevCharTokenType;
 
-            TextToken currToken = new TextToken(currCharTokenType);
+            var currToken = new TextToken(currCharTokenType);
 
-            foreach (char c in inText)
+            foreach (var c in inText)
             {
-                string cs = c.ToString();
+                var cs = c.ToString();
 
                 if (Unicode.IsProlongedChar(c))
-                {
-                    // Special condition for prolonged sound character
                     currCharTokenType = prevCharTokenType;
-                }
                 else if (Unicode.IsHiragana(cs) || Unicode.IsKanji(cs))
-                {
-                    // Hiragana / Kanji
                     currCharTokenType = TokenType.HiraganaKanji;
-                }
                 else if (Unicode.IsKatakana(cs))
-                {
-                    // Katakana
                     currCharTokenType = TokenType.Katakana;
-                }
                 else
-                {
-                    // Latin or other
                     currCharTokenType = TokenType.Latin;
-                }
 
                 // Check if there is a new token
                 if (prevCharTokenType == currCharTokenType)
@@ -159,7 +147,7 @@ namespace osu.Game.Rulesets.Karaoke.Online.API.Romaj.Google
 
                     // Modifies the prefix of the token depending on prev/curr tokens
                     // eg. Add space before curr token
-                    string tokenPrefix = "";
+                    var tokenPrefix = "";
 
                     if (!string.IsNullOrEmpty(currToken.Text))
                     {
@@ -169,7 +157,7 @@ namespace osu.Game.Rulesets.Karaoke.Online.API.Romaj.Google
                         // Get token prefix for new token if previous token was not empty
                         if (textTokens.Count > 0)
                         {
-                            char prevLastChar = textTokens.Last().Text.Last();
+                            var prevLastChar = textTokens.Last().Text.Last();
                             tokenPrefix = GetTokenPrefix(prevCharTokenType,
                                 currCharTokenType,
                                 prevLastChar, c);
@@ -185,9 +173,7 @@ namespace osu.Game.Rulesets.Karaoke.Online.API.Romaj.Google
 
             // Add last token to the list
             if (!string.IsNullOrEmpty(currToken.Text))
-            {
                 textTokens.Add(currToken);
-            }
 
             return textTokens;
         }
@@ -195,19 +181,17 @@ namespace osu.Game.Rulesets.Karaoke.Online.API.Romaj.Google
         public string GetTokenPrefix(TokenType prevType, TokenType currType,
                                      char prevLastChar, char currFirstChar)
         {
-            string prefix = "";
+            var prefix = "";
 
             if (HasPrefix(prevType, currType, prevLastChar, currFirstChar))
-            {
                 prefix = " ";
-            }
 
             return prefix;
         }
 
         public bool HasPrefix(TokenType prevType, TokenType currType, char prevLastChar, char currFirstChar)
         {
-            bool hasPrefix = char.IsPunctuation(currFirstChar);
+            var hasPrefix = char.IsPunctuation(currFirstChar);
 
             switch (currType)
             {
@@ -219,9 +203,7 @@ namespace osu.Game.Rulesets.Karaoke.Online.API.Romaj.Google
                     // Previous: HiraganaKanji / Katakana
                     // ==============================
                     if (!char.IsWhiteSpace(currFirstChar) && !char.IsPunctuation(currFirstChar))
-                    {
                         hasPrefix = true;
-                    }
 
                     // Some other characters which override above
                     switch (currFirstChar)
@@ -259,9 +241,7 @@ namespace osu.Game.Rulesets.Karaoke.Online.API.Romaj.Google
                         // ==============================
                         case TokenType.Latin:
                             if (!char.IsWhiteSpace(prevLastChar))
-                            {
                                 hasPrefix = true;
-                            }
 
                             // Some other characters which override above
                             switch (prevLastChar)
@@ -299,9 +279,7 @@ namespace osu.Game.Rulesets.Karaoke.Online.API.Romaj.Google
                         // ==============================
                         case TokenType.Latin:
                             if (!char.IsWhiteSpace(prevLastChar))
-                            {
                                 hasPrefix = true;
-                            }
 
                             // Some other characters which override above
                             switch (prevLastChar)

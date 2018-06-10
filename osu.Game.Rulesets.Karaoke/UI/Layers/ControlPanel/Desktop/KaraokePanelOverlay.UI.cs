@@ -14,16 +14,6 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel.Desktop
 {
     public partial class KaraokePanelOverlay
     {
-        private const float content_width = 0.8f;
-
-        //define the position of object
-        private const int one_layer_y_position = 30;
-
-        private const int two_layer_y_position = 75;
-        private const int object_height = 30;
-        private const int start_x_positin = 60;
-        private const int height = 130;
-
         //TODO : all the setting object
         public KaraokeButton FirstLyricButton;
 
@@ -35,14 +25,23 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel.Desktop
         public WithUpAndDownButtonSlider ToneSlider;
         public WithUpAndDownButtonSlider LyricOffectSlider;
 
-        public bool LoadComplete = false;
+        public bool LoadComplete;
+        private const float content_width = 0.8f;
+
+        //define the position of object
+        private const int one_layer_y_position = 30;
+
+        private const int two_layer_y_position = 75;
+        private const int object_height = 30;
+        private const int start_x_positin = 60;
+        private const int height = 130;
 
         protected override void Update()
         {
             if (_playField != null && LoadComplete)
             {
                 //Update current time
-                double current = _playField.GetCurrentTime();
+                var current = _playField.GetCurrentTime();
                 TimeSlideBar.CurrentTime = current;
             }
         }
@@ -70,7 +69,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel.Desktop
                         {
                             RelativeSizeAxes = Axes.Both,
                             Colour = Color4.Black.Opacity(0.4f)
-                        },
+                        }
                         //new Triangles
                         //{
                         //    TriangleScale = 5,
@@ -79,7 +78,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel.Desktop
                         //    ColourLight = new Color4(53, 66, 82, 150),
                         //    ColourDark = new Color4(41, 54, 70, 150),
                         //},
-                    },
+                    }
                 },
                 new FillFlowContainer
                 {
@@ -111,7 +110,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel.Desktop
                                 },
 
                                 //switch to first sentence
-                                FirstLyricButton = new KaraokeButton()
+                                FirstLyricButton = new KaraokeButton
                                 {
                                     Position = new Vector2(start_x_positin + 40, one_layer_y_position),
                                     Origin = Anchor.CentreLeft,
@@ -123,7 +122,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel.Desktop
                                 },
 
                                 //switch to previous sentence
-                                PreviousLyricButton = new KaraokeButton()
+                                PreviousLyricButton = new KaraokeButton
                                 {
                                     Position = new Vector2(start_x_positin + 80, one_layer_y_position),
                                     Origin = Anchor.CentreLeft,
@@ -135,7 +134,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel.Desktop
                                 },
 
                                 //switch to next sentence
-                                NextLyricButton = new KaraokeButton()
+                                NextLyricButton = new KaraokeButton
                                 {
                                     Position = new Vector2(start_x_positin + 120, one_layer_y_position),
                                     Origin = Anchor.CentreLeft,
@@ -155,7 +154,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel.Desktop
                                 },
 
                                 //Play and pause
-                                PlayPauseButton = new KaraokePlayPauseButton()
+                                PlayPauseButton = new KaraokePlayPauseButton
                                 {
                                     Position = new Vector2(start_x_positin + 200, one_layer_y_position),
                                     Origin = Anchor.CentreLeft,
@@ -167,7 +166,6 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel.Desktop
                                     {
                                         //TODO :
                                         if (_playField != null)
-                                        {
                                             if (PlayPauseButton.KaraokeShowingState == KaraokePlayState.Pause)
                                             {
                                                 _playField?.Pause();
@@ -178,19 +176,18 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel.Desktop
                                                 _playField?.Play();
                                                 PlayPauseButton.KaraokeShowingState = KaraokePlayState.Pause;
                                             }
-                                        }
                                     }
                                 },
 
                                 //time slider
-                                TimeSlideBar = new KaraokeTimerSliderBar()
+                                TimeSlideBar = new KaraokeTimerSliderBar
                                 {
                                     Position = new Vector2(start_x_positin + 280, one_layer_y_position),
                                     Origin = Anchor.CentreLeft,
                                     Width = 500,
                                     StartTime = _playField != null ? (_playField?.FirstObjectTime()).Value : 0,
                                     EndTime = _playField != null ? (_playField?.LastObjectTime()).Value : 100000, //1:40
-                                    OnValueChanged = (eaa, newValue) => { _playField?.NavigateToTime(newValue); },
+                                    OnValueChanged = (eaa, newValue) => { _playField?.NavigateToTime(newValue); }
                                 },
 
                                 //"speed" introduce
@@ -202,7 +199,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel.Desktop
                                 },
 
                                 //speed
-                                SpeedSlider = new WithUpAndDownButtonSlider()
+                                SpeedSlider = new WithUpAndDownButtonSlider
                                 {
                                     Position = new Vector2(start_x_positin + 60, two_layer_y_position),
                                     Origin = Anchor.CentreLeft,
@@ -212,7 +209,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel.Desktop
                                     Value = 1,
                                     DefauleValue = 1,
                                     KeyboardStep = 0.05f,
-                                    OnValueChanged = (eaa, newValue) => { _playField?.AdjustSpeed(newValue); },
+                                    OnValueChanged = (eaa, newValue) => { _playField?.AdjustSpeed(newValue); }
                                 },
 
                                 //"tone" introduce
@@ -224,7 +221,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel.Desktop
                                 },
 
                                 //Tone
-                                ToneSlider = new WithUpAndDownButtonSlider()
+                                ToneSlider = new WithUpAndDownButtonSlider
                                 {
                                     Position = new Vector2(start_x_positin + 340, two_layer_y_position),
                                     Origin = Anchor.CentreLeft,
@@ -234,7 +231,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel.Desktop
                                     Value = 1.0f,
                                     DefauleValue = 1,
                                     KeyboardStep = 0.05f,
-                                    OnValueChanged = (eaa, newValue) => { _playField?.AdjustTone(newValue); },
+                                    OnValueChanged = (eaa, newValue) => { _playField?.AdjustTone(newValue); }
                                 },
 
                                 //"offset" introduce
@@ -246,7 +243,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel.Desktop
                                 },
 
                                 //offset
-                                LyricOffectSlider = new WithUpAndDownButtonSlider()
+                                LyricOffectSlider = new WithUpAndDownButtonSlider
                                 {
                                     Position = new Vector2(start_x_positin + 630, two_layer_y_position),
                                     Origin = Anchor.CentreLeft,
@@ -256,12 +253,12 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel.Desktop
                                     Value = 0,
                                     DefauleValue = 0,
                                     KeyboardStep = 0.5f,
-                                    OnValueChanged = (eaa, newValue) => { _playField?.AdjustlyricsOffset(newValue); },
-                                },
-                            },
-                        },
-                    },
-                },
+                                    OnValueChanged = (eaa, newValue) => { _playField?.AdjustlyricsOffset(newValue); }
+                                }
+                            }
+                        }
+                    }
+                }
             };
 
             //initialize value

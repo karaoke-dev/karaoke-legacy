@@ -11,21 +11,21 @@ namespace osu.Game.Rulesets.Karaoke.Edit
     public partial class KaraokeEditPlayfield
     {
         /// <summary>
-        /// Frontend
+        ///     Frontend
         /// </summary>
         public override void InitialFrontendLayer()
         {
         }
 
         /// <summary>
-        /// Ruleset
+        ///     Ruleset
         /// </summary>
         public override void InitialRulesetLayer()
         {
             AddRange(new Drawable[]
             {
                 //layer
-                KaraokeLyricPlayField = new KaraokeLyricPlayField()
+                KaraokeLyricPlayField = new KaraokeLyricPlayField
                 {
                     KaraokeRulesetContainer = KaraokeRulesetContainer
                 }
@@ -33,7 +33,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit
         }
 
         /// <summary>
-        /// Backend
+        ///     Backend
         /// </summary>
         public override void InitialBackendLayer()
         {
@@ -44,17 +44,13 @@ namespace osu.Game.Rulesets.Karaoke.Edit
         public void OpenListKaraokeLyricsDialog()
         {
             if (!DialogLayer.Children.OfType<ListKaraokeLyricsDialog>().Any())
-            {
                 DialogLayer.Add(new ListKaraokeLyricsDialog(this));
-            }
         }
 
         public void OpenListKaraokeTranslateDialog()
         {
             if (!DialogLayer.Children.OfType<ListKaraokeLyricsDialog>().Any())
-            {
                 DialogLayer.Add(new ListKaraokeTranslateDialog(this));
-            }
         }
 
         #endregion

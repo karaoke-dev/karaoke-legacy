@@ -13,14 +13,9 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
     public class BindableObject<T> : Bindable<T>
         where T : RecordChangeObject, ICopyable, new()
     {
-        public BindableObject(T value)
-            : base(value)
-        {
-        }
-
         public override T Value
         {
-            get { return base.Value; }
+            get => base.Value;
             set
             {
                 //if class changed
@@ -36,9 +31,20 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
             }
         }
 
+        public BindableObject(T value)
+            : base(value)
+        {
+        }
+
+        public static implicit operator T(BindableObject<T> value)
+        {
+            return value?.Value ?? throw new InvalidCastException($"Casting a null {nameof(BindableObject<T>)} to a bool is likely a mistake");
+        }
+
         /// <summary>
-        /// Raise <see cref="Bindable{T}.ValueChanged"/> and <see cref="Bindable{T}.DisabledChanged"/> once, without any changes actually occurring.
-        /// This does not propagate to any outward bound bindables.
+        ///     Raise <see cref="Bindable{T}.ValueChanged" /> and <see cref="Bindable{T}.DisabledChanged" /> once, without any
+        ///     changes actually occurring.
+        ///     This does not propagate to any outward bound bindables.
         /// </summary>
         public override void TriggerChange()
         {
@@ -46,11 +52,9 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
             TriggerDisabledChange(false);
         }
 
-        public static implicit operator T(BindableObject<T> value) => value?.Value ?? throw new InvalidCastException($"Casting a null {nameof(BindableObject<T>)} to a bool is likely a mistake");
-
         public override string ToString()
         {
-            string bindableValue = JsonConvert.SerializeObject(Value);
+            var bindableValue = JsonConvert.SerializeObject(Value);
             return bindableValue;
         }
 

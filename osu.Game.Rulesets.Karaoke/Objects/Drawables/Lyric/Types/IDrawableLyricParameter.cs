@@ -9,22 +9,22 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric.Types
     public interface IDrawableLyricParameter
     {
         /// <summary>
-        /// Object
+        ///     Object
         /// </summary>
         BaseLyric Lyric { get; }
 
         /// <summary>
-        /// singer
+        ///     singer
         /// </summary>
         Singer Singer { get; set; }
 
         /// <summary>
-        /// set preemptive time
+        ///     set preemptive time
         /// </summary>
         double PreemptiveTime { get; set; }
 
         /// <summary>
-        /// translate text
+        ///     translate text
         /// </summary>
         TranslateString TranslateText { get; set; }
     }

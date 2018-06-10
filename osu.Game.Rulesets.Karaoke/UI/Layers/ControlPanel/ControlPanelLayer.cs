@@ -18,7 +18,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel
         private readonly IAmKaraokeField _playField;
 
         /// <summary>
-        /// Ctor
+        ///     Ctor
         /// </summary>
         /// <param name="playField"></param>
         public ControlPanelLayer(IAmKaraokeField playField = null)

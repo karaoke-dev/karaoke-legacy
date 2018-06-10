@@ -4,13 +4,13 @@
 namespace osu.Game.Rulesets.Karaoke.Objects.Lyric.Types
 {
     /// <summary>
-    /// Has char end index.
+    ///     Has char end index.
     /// </summary>
     public interface IHasEndIndex
     {
         /// <summary>
-        /// length
-        /// compare of end index , char length is more comvenent to record
+        ///     length
+        ///     compare of end index , char length is more comvenent to record
         /// </summary>
         /// <value>The length of the char.</value>
         int? Length { get; set; }

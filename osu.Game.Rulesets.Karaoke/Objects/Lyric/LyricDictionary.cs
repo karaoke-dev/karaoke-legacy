@@ -8,29 +8,25 @@ using System.Linq;
 namespace osu.Game.Rulesets.Karaoke.Objects.Lyric
 {
     /// <summary>
-    /// BaseLyric Dictionary
+    ///     BaseLyric Dictionary
     /// </summary>
     /// <typeparam name="Key"></typeparam>
     /// <typeparam name="Value"></typeparam>
     public class LyricDictionary<Key, Value> : Dictionary<Key, Value> where Key : IComparable
     {
         /// <summary>
-        /// if key already exist, 'won;t be replaced
+        ///     if key already exist, 'won;t be replaced
         /// </summary>
         /// <param name="sourceDictionary"></param>
         public void Fill(Dictionary<Key, Value> sourceDictionary)
         {
             foreach (var single in sourceDictionary)
-            {
                 if (!ContainsKey(single.Key))
-                {
                     Add(single.Key, single.Value);
-                }
-            }
         }
 
         /// <summary>
-        /// if key already exist, will be replaced
+        ///     if key already exist, will be replaced
         /// </summary>
         /// <param name="sourceDictionary"></param>
         public void Replace(Dictionary<Key, Value> sourceDictionary)
@@ -46,7 +42,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Lyric
         }
 
         /// <summary>
-        /// clean all value and fill all the value from sourceDictionary
+        ///     clean all value and fill all the value from sourceDictionary
         /// </summary>
         /// <param name="sourceDictionary"></param>
         public void CleanAndReplace(Dictionary<Key, Value> sourceDictionary)
@@ -63,7 +59,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Lyric
         }
 
         /// <summary>
-        /// find previous by key
+        ///     find previous by key
         /// </summary>
         /// <param name="key"></param>
         /// <returns></returns>
@@ -78,7 +74,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Lyric
         }
 
         /// <summary>
-        /// find next from key
+        ///     find next from key
         /// </summary>
         /// <param name="key"></param>
         /// <returns></returns>
@@ -92,7 +88,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Lyric
         }
 
         /// <summary>
-        /// add new remaji
+        ///     add new remaji
         /// </summary>
         /// <param name="value"></param>
         public new void Add(Key key, Value value)
@@ -108,7 +104,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Lyric
         }
 
         /// <summary>
-        /// sorting by position and time should be higher
+        ///     sorting by position and time should be higher
         /// </summary>
         public void Sort()
         {
@@ -118,9 +114,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Lyric
             //re-add
             Clear();
             foreach (var single in sortedDic)
-            {
                 base.Add(single.Key, single.Value);
-            }
         }
     }
 }

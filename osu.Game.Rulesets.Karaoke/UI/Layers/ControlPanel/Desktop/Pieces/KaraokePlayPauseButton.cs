@@ -12,27 +12,8 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel.Desktop.Pieces
 {
     public class KaraokePlayPauseButton : KaraokeButton
     {
-        private KaraokePlayState _state;
-
-        //use as show icon
-        //From MusicController.cs
-        private IconButton playButton;
-
-        public KaraokePlayPauseButton()
-        {
-            Add(playButton = new IconButton
-            {
-                Anchor = Anchor.Centre,
-                Origin = Anchor.Centre,
-                Scale = new Vector2(1.0f),
-                IconScale = new Vector2(1.0f),
-                HoverColour = Color4.Yellow.Opacity(0.2f),
-                //Action = play,
-            });
-        }
-
         /// <summary>
-        /// if is pause , show pause icon
+        ///     if is pause , show pause icon
         /// </summary>
         public KaraokePlayState KaraokeShowingState
         {
@@ -53,11 +34,30 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel.Desktop.Pieces
             }
             get => _state;
         }
+
+        private KaraokePlayState _state;
+
+        //use as show icon
+        //From MusicController.cs
+        private readonly IconButton playButton;
+
+        public KaraokePlayPauseButton()
+        {
+            Add(playButton = new IconButton
+            {
+                Anchor = Anchor.Centre,
+                Origin = Anchor.Centre,
+                Scale = new Vector2(1.0f),
+                IconScale = new Vector2(1.0f),
+                HoverColour = Color4.Yellow.Opacity(0.2f)
+                //Action = play,
+            });
+        }
     }
 
     public enum KaraokePlayState
     {
         Play,
-        Pause,
+        Pause
     }
 }

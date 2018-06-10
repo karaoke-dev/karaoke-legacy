@@ -4,10 +4,15 @@
 namespace osu.Game.Rulesets.Karaoke.Objects
 {
     /// <summary>
-    /// record what time the 
+    ///     record what time the
     /// </summary>
     public class LyricTimeLine
     {
+        /// <summary>
+        ///     relative to word's strt time
+        /// </summary>
+        public double RelativeTime { get; set; }
+
         public LyricTimeLine()
         {
         }
@@ -16,10 +21,5 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         {
             RelativeTime = time;
         }
-
-        /// <summary>
-        /// relative to word's strt time
-        /// </summary>
-        public double RelativeTime { get; set; }
     }
 }

@@ -12,13 +12,13 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Input.Action
         public bool Press { get; set; }
 
         /// <summary>
-        /// Copy
+        ///     Copy
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
         public override T Copy<T>()
         {
-            T result = new T();
+            var result = new T();
             if (result is KeyAction keyAction)
             {
                 keyAction.KaraokeKeyAction = KaraokeKeyAction;

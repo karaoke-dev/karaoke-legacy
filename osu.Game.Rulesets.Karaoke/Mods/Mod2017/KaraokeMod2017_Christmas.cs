@@ -4,7 +4,7 @@
 namespace osu.Game.Rulesets.Karaoke.Mods.Mod2017
 {
     /// <summary>
-    /// Event mod in 2017
+    ///     Event mod in 2017
     /// </summary>
     public class KaraokeMod2017_Christmas : KaraokeModSnow
     {

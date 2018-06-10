@@ -24,16 +24,19 @@ namespace osu.Game.Rulesets.Karaoke.KaraokeDifficulty
         {
         }
 
-        protected override void PreprocessHitObjects()
-        {
-        }
-
         public override double Calculate(Dictionary<string, double> categoryDifficulty = null)
         {
             //TODO : implement
             return 1.5;
         }
 
-        protected override BeatmapConverter<BaseLyric> CreateBeatmapConverter(Beatmap beatmap) => new KaraokeBeatmapConverter();
+        protected override void PreprocessHitObjects()
+        {
+        }
+
+        protected override BeatmapConverter<BaseLyric> CreateBeatmapConverter(Beatmap beatmap)
+        {
+            return new KaraokeBeatmapConverter();
+        }
     }
 }

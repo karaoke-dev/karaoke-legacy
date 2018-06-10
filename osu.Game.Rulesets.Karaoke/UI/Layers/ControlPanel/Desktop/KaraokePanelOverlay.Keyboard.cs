@@ -9,7 +9,6 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel.Desktop
     public partial class KaraokePanelOverlay
     {
         /// <summary>
-        /// 
         /// </summary>
         /// <returns><c>true</c>, if pressed was oned, <c>false</c> otherwise.</returns>
         /// <param name="action">Action.</param>

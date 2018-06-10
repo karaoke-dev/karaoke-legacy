@@ -11,25 +11,25 @@ using OpenTK.Graphics;
 namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Common.Pieces
 {
     /// <summary>
-    /// this class contains 
-    /// 1. top text
-    /// 2. main text
-    /// 3. bottom text
+    ///     this class contains
+    ///     1. top text
+    ///     2. main text
+    ///     3. bottom text
     /// </summary>
     public class TextSets : Container
     {
         /// <summary>
-        /// main text 
+        ///     main text
         /// </summary>
         public MainKaraokeText MainKaraokeText;
 
         /// <summary>
-        /// top text
+        ///     top text
         /// </summary>
         public List<KaraokeText> ListDrawableSubText = new List<KaraokeText>();
 
         /// <summary>
-        /// bottom text
+        ///     bottom text
         /// </summary>
         public List<KaraokeText> ListDrawableBottomText = new List<KaraokeText>();
 
@@ -57,16 +57,16 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Common.Pieces
         public void AddSubText(List<FormattedText> textObjectsList)
         {
             if (textObjectsList == null)
-                textObjectsList = new List<FormattedText>()
+                textObjectsList = new List<FormattedText>
                 {
-                    new FormattedText(),
+                    new FormattedText()
                 };
 
             foreach (var textObject in textObjectsList)
             {
                 var subText = new KaraokeText(textObject)
                 {
-                    Origin = Anchor.BottomCentre,
+                    Origin = Anchor.BottomCentre
                 };
                 Add(subText);
                 ListDrawableSubText.Add(subText);
@@ -76,16 +76,16 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Common.Pieces
         public void AddBottomText(List<FormattedText> textObjectsList)
         {
             if (textObjectsList == null)
-                textObjectsList = new List<FormattedText>()
+                textObjectsList = new List<FormattedText>
                 {
-                    new FormattedText(),
+                    new FormattedText()
                 };
 
             foreach (var textObject in textObjectsList)
             {
                 var subText = new KaraokeText(textObject)
                 {
-                    Origin = Anchor.BottomCentre,
+                    Origin = Anchor.BottomCentre
                 };
                 Add(subText);
                 ListDrawableBottomText.Add(subText);
@@ -111,15 +111,9 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Common.Pieces
             Position = new Vector2(startPositionX, 0);
 
             if (startPositionX != 0)
-            {
                 foreach (var singleText in Children)
-                {
                     if (singleText is KaraokeText terxtObject)
-                    {
                         terxtObject.Position = terxtObject.TextObject.Position - Position;
-                    }
-                }
-            }
 
             Width = endPositionX - startPositionX;
         }

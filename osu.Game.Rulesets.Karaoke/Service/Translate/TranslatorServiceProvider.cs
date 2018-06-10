@@ -8,7 +8,7 @@ namespace osu.Game.Rulesets.Karaoke.Service.Translator
     public class TranslatorServiceProvider
     {
         /// <summary>
-        /// Get translator by providerType
+        ///     Get translator by providerType
         /// </summary>
         /// <param name="providerType"></param>
         /// <returns></returns>
@@ -27,19 +27,19 @@ namespace osu.Game.Rulesets.Karaoke.Service.Translator
     }
 
     /// <summary>
-    /// Translator providor type
+    ///     Translator providor type
     /// </summary>
     public enum TranslatorProviderType
     {
         /// <summary>
-        /// Google.
-        /// <see cref="GoogleTranslator"/>
+        ///     Google.
+        ///     <see cref="GoogleTranslator" />
         /// </summary>
         Google = 1,
 
         /// <summary>
-        /// The github.
+        ///     The github.
         /// </summary>
-        Github = 2,
+        Github = 2
     }
 }

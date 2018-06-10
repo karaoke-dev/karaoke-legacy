@@ -16,13 +16,13 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Input.Action
         public double RelativeMovingPosition { get; set; }
 
         /// <summary>
-        /// Copy
+        ///     Copy
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
         public override T Copy<T>()
         {
-            T result = new T();
+            var result = new T();
             if (result is ScrollAction keyAction)
             {
                 keyAction.KaraokeScrollAction = KaraokeScrollAction;

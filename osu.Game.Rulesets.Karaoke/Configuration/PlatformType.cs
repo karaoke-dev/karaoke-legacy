@@ -4,23 +4,23 @@
 namespace osu.Game.Rulesets.Karaoke.Configuration
 {
     /// <summary>
-    /// PlatformType
+    ///     PlatformType
     /// </summary>
     public enum PlatformType
     {
         /// <summary>
-        /// For desktop
+        ///     For desktop
         /// </summary>
         Desktop,
 
         /// <summary>
-        /// For Mobile ,like iphone
+        ///     For Mobile ,like iphone
         /// </summary>
         Mobile,
 
         /// <summary>
-        /// For iPad
+        ///     For iPad
         /// </summary>
-        LargeMobile,
+        LargeMobile
     }
 }

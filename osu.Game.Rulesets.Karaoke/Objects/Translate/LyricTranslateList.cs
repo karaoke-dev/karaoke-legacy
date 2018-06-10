@@ -7,7 +7,7 @@ using osu.Game.Rulesets.Karaoke.Objects.Lyric;
 namespace osu.Game.Rulesets.Karaoke.Objects
 {
     /// <summary>
-    /// list Progress point
+    ///     list Progress point
     /// </summary>
     public class LyricTranslateList : LyricDictionary<TranslateCode, LyricTranslate>
     {

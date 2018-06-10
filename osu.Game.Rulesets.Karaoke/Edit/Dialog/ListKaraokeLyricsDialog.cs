@@ -14,14 +14,14 @@ using OpenTK;
 namespace osu.Game.Rulesets.Karaoke.Edit.Dialog
 {
     /// <summary>
-    /// list karaoke lytrics
-    /// click the unlock can edit it
+    ///     list karaoke lytrics
+    ///     click the unlock can edit it
     /// </summary>
     public class ListKaraokeLyricsDialog : DialogContainer
     {
+        public FilterControl.FilterTextBox Search;
         protected KaraokeEditPlayfield PlayField;
         protected ListLyricsScrollContainer ItemsScrollContainer { get; set; }
-        public FilterControl.FilterTextBox Search;
 
         public ListKaraokeLyricsDialog(KaraokeEditPlayfield playField)
         {
@@ -41,18 +41,18 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog
             MainContext.Add(Search = new FilterControl.FilterTextBox
             {
                 RelativeSizeAxes = Axes.X,
-                Height = 40,
+                Height = 40
                 //Exit = () => ExitRequested?.Invoke(),
             });
 
             //if search new word
-            Search.Current.ValueChanged += (newString) => { ItemsScrollContainer.SearchTerm = newString; };
+            Search.Current.ValueChanged += newString => { ItemsScrollContainer.SearchTerm = newString; };
 
-            MainContext.Add(ItemsScrollContainer = new ListLyricsScrollContainer()
+            MainContext.Add(ItemsScrollContainer = new ListLyricsScrollContainer
             {
                 Position = new Vector2(0, 40),
                 Width = 600,
-                Height = 300,
+                Height = 300
             });
 
             base.InitialDialog();
@@ -71,9 +71,6 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog
 
     public class ListLyricsScrollContainer : TableView<BaseLyric, LyricsCell>
     {
-        public ListLyricsScrollContainer()
-        {
-        }
     }
 
     public class LyricsCell : KaraokeBaseTableViewCell<BaseLyric>
@@ -110,33 +107,33 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog
             //Initial view
             base.InitialView();
             //add
-            Add(FillFlowContainer = new FillFlowContainer<Drawable>()
+            Add(FillFlowContainer = new FillFlowContainer<Drawable>
             {
                 Direction = FillDirection.Horizontal,
                 Position = new Vector2(20, 0),
                 Spacing = new Vector2(10, 0),
                 Children = new Drawable[]
                 {
-                    LyricsTextbox = new RevertableTextbox()
+                    LyricsTextbox = new RevertableTextbox
                     {
                         Width = 350,
-                        Height = 35,
+                        Height = 35
                     },
-                    StartTimeTextbox = new TimeTextBox()
+                    StartTimeTextbox = new TimeTextBox
                     {
                         Width = 80,
-                        Height = 35,
+                        Height = 35
                     },
-                    ToLabel = new OsuSpriteText()
+                    ToLabel = new OsuSpriteText
                     {
                         //Width=10,
                         Text = " ~ "
                     },
-                    EndTimeTextbox = new TimeTextBox()
+                    EndTimeTextbox = new TimeTextBox
                     {
                         Width = 80,
-                        Height = 35,
-                    },
+                        Height = 35
+                    }
                 }
             });
         }

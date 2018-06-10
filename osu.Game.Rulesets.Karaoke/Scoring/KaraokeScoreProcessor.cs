@@ -13,41 +13,17 @@ using osu.Game.Rulesets.UI;
 namespace osu.Game.Rulesets.Karaoke.Scoring
 {
     /// <summary>
-    /// Karaoke does not have score i think
+    ///     Karaoke does not have score i think
     /// </summary>
     internal class KaraokeScoreProcessor : ScoreProcessor<BaseLyric>
     {
-        public KaraokeScoreProcessor(RulesetContainer<BaseLyric> rulesetContainer)
-            : base(rulesetContainer)
-        {
-        }
+        private readonly Dictionary<HitResult, int> scoreResultCounts = new Dictionary<HitResult, int>();
 
         private float hpDrainRate;
 
-        private readonly Dictionary<HitResult, int> scoreResultCounts = new Dictionary<HitResult, int>();
-
-        protected override void SimulateAutoplay(Beatmap<BaseLyric> beatmap)
+        public KaraokeScoreProcessor(RulesetContainer<BaseLyric> rulesetContainer)
+            : base(rulesetContainer)
         {
-            hpDrainRate = beatmap.BeatmapInfo.BaseDifficulty.DrainRate;
-
-            foreach (var obj in beatmap.HitObjects)
-            {
-                var slider = obj;
-                if (slider != null)
-                {
-                    // Head
-                    AddJudgement(new KaraokeJudgement { Result = HitResult.Great });
-                }
-
-                AddJudgement(new KaraokeJudgement { Result = HitResult.Great });
-            }
-        }
-
-        protected override void Reset(bool storeResults)
-        {
-            base.Reset(storeResults);
-
-            scoreResultCounts.Clear();
         }
 
         public override void PopulateScore(Score score)
@@ -60,6 +36,27 @@ namespace osu.Game.Rulesets.Karaoke.Scoring
             score.Statistics[HitResult.Miss] = scoreResultCounts.GetOrDefault(HitResult.Miss);
         }
 
+        protected override void SimulateAutoplay(Beatmap<BaseLyric> beatmap)
+        {
+            hpDrainRate = beatmap.BeatmapInfo.BaseDifficulty.DrainRate;
+
+            foreach (var obj in beatmap.HitObjects)
+            {
+                var slider = obj;
+                if (slider != null)
+                    AddJudgement(new KaraokeJudgement { Result = HitResult.Great });
+
+                AddJudgement(new KaraokeJudgement { Result = HitResult.Great });
+            }
+        }
+
+        protected override void Reset(bool storeResults)
+        {
+            base.Reset(storeResults);
+
+            scoreResultCounts.Clear();
+        }
+
         protected override void OnNewJudgement(Judgement judgement)
         {
             base.OnNewJudgement(judgement);
@@ -67,9 +64,7 @@ namespace osu.Game.Rulesets.Karaoke.Scoring
             var osuJudgement = (KaraokeJudgement)judgement;
 
             if (judgement.Result != HitResult.None)
-            {
                 scoreResultCounts[judgement.Result] = scoreResultCounts.GetOrDefault(judgement.Result) + 1;
-            }
 
             switch (judgement.Result)
             {

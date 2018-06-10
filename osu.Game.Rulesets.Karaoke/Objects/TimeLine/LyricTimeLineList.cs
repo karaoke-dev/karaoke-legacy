@@ -9,8 +9,8 @@ using osu.Game.Rulesets.Karaoke.Objects.Lyric;
 namespace osu.Game.Rulesets.Karaoke.Objects.TimeLine
 {
     /// <summary>
-    /// list Progress point
-    /// [Note : key is mapped in Char index, not Dictionary's index]
+    ///     list Progress point
+    ///     [Note : key is mapped in Char index, not Dictionary's index]
     /// </summary>
     public class LyricTimeLineList : LyricDictionary<int, LyricTimeLine>
     {
@@ -19,7 +19,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.TimeLine
 
 
         /// <summary>
-        /// get first progress point by time
+        ///     get first progress point by time
         /// </summary>
         /// <param name="nowRelativeTime"></param>
         /// <returns></returns>
@@ -52,7 +52,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.TimeLine
         }
 
         /// <summary>
-        /// get last progress point by time
+        ///     get last progress point by time
         /// </summary>
         /// <param name="lyric"></param>
         /// <param name="nowRelativeTime"></param>
@@ -89,7 +89,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.TimeLine
         }
 
         /// <summary>
-        /// get first Progress by char index
+        ///     get first Progress by char index
         /// </summary>
         /// <param name="charIndex"></param>
         /// <returns></returns>
@@ -100,7 +100,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.TimeLine
         }
 
         /// <summary>
-        /// get last Progress by char index
+        ///     get last Progress by char index
         /// </summary>
         /// <param name="charIndex"></param>
         /// <returns></returns>
@@ -116,7 +116,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.TimeLine
         }
 
         /// <summary>
-        /// will check if this progress point is valid
+        ///     will check if this progress point is valid
         /// </summary>
         /// <returns><c>true</c>, if progress point was added, <c>false</c> otherwise.</returns>
         /// <param name="karaokeObject">Karaoke object.</param>
@@ -131,7 +131,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.TimeLine
         }
 
         /// <summary>
-        /// fix the delta time
+        ///     fix the delta time
         /// </summary>
         public void FixTime()
         {
@@ -140,9 +140,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.TimeLine
             foreach (var single in this)
             {
                 if (single.Value.RelativeTime < time + MinimumTime)
-                {
                     single.Value.RelativeTime = time + MinimumTime;
-                }
 
                 time = single.Value.RelativeTime;
             }

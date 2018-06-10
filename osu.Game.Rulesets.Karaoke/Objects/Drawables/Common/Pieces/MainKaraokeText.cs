@@ -11,11 +11,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Common.Pieces
 {
     public class MainKaraokeText : KaraokeText
     {
-        private Dictionary<int, TextComponent> _mainTextObject;
-
-        protected FontStore FontStore = null;
-
-        public float TotalWidth { get; protected set; } = 0;
+        public float TotalWidth { get; protected set; }
 
         public Dictionary<int, float> ListCharEndPosition { get; protected set; } = new Dictionary<int, float>();
 
@@ -38,43 +34,14 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Common.Pieces
 
         public string Delimiter { get; set; } = "";
 
-        protected override void UpdateText()
-        {
-            Text = MainTextObject?.Select(i => i.Value.Text).Aggregate((i, j) => i + Delimiter + j);
-        }
+        protected FontStore FontStore;
+        private Dictionary<int, TextComponent> _mainTextObject;
 
         public MainKaraokeText(FormattedText formattedText, Dictionary<int, TextComponent> textObject, string delimiter)
             : base(formattedText)
         {
             Delimiter = delimiter;
             MainTextObject = textObject;
-        }
-
-        protected void UpdateSingleCharacterEndPosition()
-        {
-            if (FontStore == null)
-                return;
-
-            if (MainTextObject != null && MainTextObject.Count > 0)
-            {
-                ListCharEndPosition.Clear();
-                TotalWidth = 0;
-                foreach (var single in MainTextObject)
-                {
-                    //get single char width
-                    var singleCharWhdth = GetStringWidth(single.Value.Text);
-                    TotalWidth += singleCharWhdth;
-                    ListCharEndPosition.Add(single.Key, TotalWidth);
-
-                    //delimiterWhdth
-                    if (MainTextObject.Last().Key != single.Key)
-                    {
-                        var delimiterWhdth = GetStringWidth(Delimiter.Replace(" ", " "));
-                        TotalWidth += delimiterWhdth;
-                        ListCharEndPosition.Add(single.Key - 100, TotalWidth);
-                    }
-                }
-            }
         }
 
         public float GetTextCenterPosition(int index)
@@ -130,11 +97,36 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Common.Pieces
             return ListCharEndPosition.Where(x => x.Value > position).FirstOrDefault().Key;
         }
 
-        [BackgroundDependencyLoader]
-        private void load(FontStore store)
+        protected override void UpdateText()
         {
-            FontStore = store;
-            UpdateSingleCharacterEndPosition();
+            Text = MainTextObject?.Select(i => i.Value.Text).Aggregate((i, j) => i + Delimiter + j);
+        }
+
+        protected void UpdateSingleCharacterEndPosition()
+        {
+            if (FontStore == null)
+                return;
+
+            if (MainTextObject != null && MainTextObject.Count > 0)
+            {
+                ListCharEndPosition.Clear();
+                TotalWidth = 0;
+                foreach (var single in MainTextObject)
+                {
+                    //get single char width
+                    var singleCharWhdth = GetStringWidth(single.Value.Text);
+                    TotalWidth += singleCharWhdth;
+                    ListCharEndPosition.Add(single.Key, TotalWidth);
+
+                    //delimiterWhdth
+                    if (MainTextObject.Last().Key != single.Key)
+                    {
+                        var delimiterWhdth = GetStringWidth(Delimiter.Replace(" ", " "));
+                        TotalWidth += delimiterWhdth;
+                        ListCharEndPosition.Add(single.Key - 100, TotalWidth);
+                    }
+                }
+            }
         }
 
         #region Function
@@ -153,5 +145,12 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Common.Pieces
         }
 
         #endregion
+
+        [BackgroundDependencyLoader]
+        private void load(FontStore store)
+        {
+            FontStore = store;
+            UpdateSingleCharacterEndPosition();
+        }
     }
 }

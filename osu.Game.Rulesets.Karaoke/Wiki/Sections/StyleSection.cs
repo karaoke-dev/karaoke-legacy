@@ -14,7 +14,7 @@ using Symcol.Rulesets.Core.Wiki;
 namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
 {
     /// <summary>
-    /// [3] introduce which style can be setting
+    ///     [3] introduce which style can be setting
     ///     3.1 : template
     ///     3.2 : singer(maybe)
     /// </summary>
@@ -60,8 +60,8 @@ namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
                             {
                                 Position = new Vector2(100, -5),
                                 Anchor = Anchor.Centre,
-                                Origin = Anchor.Centre,
-                            },
+                                Origin = Anchor.Centre
+                            }
                         }
                     },
 
@@ -75,10 +75,8 @@ namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
                         AutoSizeAxes = Axes.Y,
                         AutoSizeDuration = 100,
                         AutoSizeEasing = Easing.OutQuint,
-                        Child = RomajiMenuSettings = new RomajiMenuSettings
-                        {
-                        }
-                    },
+                        Child = RomajiMenuSettings = new RomajiMenuSettings()
+                    }
                 }
             });
 
@@ -102,26 +100,13 @@ namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
 
     public class RomajiMenuSettings : SettingsSubsection
     {
+        public BindableObject<KaraokeLyricConfig> Bindnig { get; set; } = new BindableObject<KaraokeLyricConfig>(new KaraokeLyricConfig());
         protected override string Header => "BaseLyric Config";
 
-        public BindableObject<KaraokeLyricConfig> Bindnig { get; set; } = new BindableObject<KaraokeLyricConfig>(new KaraokeLyricConfig());
-
-        private SettingsCheckbox _topTextVisibleCheckBox;
-        private SettingsCheckbox _romajiVisibleCheckBox;
-        private SettingsCheckbox _romajiFirstCheckBox;
-        private SettingsCheckbox _translateCheckBox;
-
-        protected override void LoadComplete()
-        {
-            base.LoadComplete();
-            if (Bindnig != null)
-            {
-                _topTextVisibleCheckBox.Bindable.Value = Bindnig.Value.SubTextVislbility;
-                _romajiVisibleCheckBox.Bindable.Value = Bindnig.Value.RomajiVislbility;
-                _romajiFirstCheckBox.Bindable.Value = Bindnig.Value.RomajiFirst;
-                _translateCheckBox.Bindable.Value = Bindnig.Value.ShowTranslate;
-            }
-        }
+        private readonly SettingsCheckbox _topTextVisibleCheckBox;
+        private readonly SettingsCheckbox _romajiVisibleCheckBox;
+        private readonly SettingsCheckbox _romajiFirstCheckBox;
+        private readonly SettingsCheckbox _translateCheckBox;
 
         public RomajiMenuSettings()
         {
@@ -150,28 +135,40 @@ namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
                 {
                     LabelText = "Translate",
                     Bindable = new Bindable<bool>()
-                },
+                }
             };
-            _topTextVisibleCheckBox.Bindable.ValueChanged += (a) =>
+            _topTextVisibleCheckBox.Bindable.ValueChanged += a =>
             {
                 Bindnig.Value.SubTextVislbility = a;
                 Bindnig.Value = Bindnig.Value;
             };
-            _romajiVisibleCheckBox.Bindable.ValueChanged += (a) =>
+            _romajiVisibleCheckBox.Bindable.ValueChanged += a =>
             {
                 Bindnig.Value.RomajiVislbility = a;
                 Bindnig.Value = Bindnig.Value;
             };
-            _romajiFirstCheckBox.Bindable.ValueChanged += (a) =>
+            _romajiFirstCheckBox.Bindable.ValueChanged += a =>
             {
                 Bindnig.Value.RomajiFirst = a;
                 Bindnig.Value = Bindnig.Value;
             };
-            _translateCheckBox.Bindable.ValueChanged += (a) =>
+            _translateCheckBox.Bindable.ValueChanged += a =>
             {
                 Bindnig.Value.ShowTranslate = a;
                 Bindnig.Value = Bindnig.Value;
             };
+        }
+
+        protected override void LoadComplete()
+        {
+            base.LoadComplete();
+            if (Bindnig != null)
+            {
+                _topTextVisibleCheckBox.Bindable.Value = Bindnig.Value.SubTextVislbility;
+                _romajiVisibleCheckBox.Bindable.Value = Bindnig.Value.RomajiVislbility;
+                _romajiFirstCheckBox.Bindable.Value = Bindnig.Value.RomajiFirst;
+                _translateCheckBox.Bindable.Value = Bindnig.Value.ShowTranslate;
+            }
         }
     }
 }

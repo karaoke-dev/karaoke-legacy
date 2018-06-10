@@ -6,7 +6,7 @@ using Symcol.Rulesets.Core.Wiki;
 namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
 {
     /// <summary>
-    /// [8]show the develpment progress
+    ///     [8]show the develpment progress
     ///     8.1 : TODO : will get the newest markdown style progress from github or gitbook
     /// </summary>
     internal class DevelopmentHistorySection : BaseWikiSection
@@ -19,7 +19,7 @@ namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
             Content.Add(new WikiLinkTextSection("And source code can be found in https://github.com/osu-Karaoke/osu-Karaoke")
             {
                 Url = "https://github.com/osu-Karaoke/osu-Karaoke",
-                TooltipText = "https://github.com/osu-Karaoke/osu-Karaoke",
+                TooltipText = "https://github.com/osu-Karaoke/osu-Karaoke"
             });
             Content.Add(new WikiTextSection(" \n\n"));
 

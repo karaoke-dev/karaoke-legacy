@@ -9,8 +9,6 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Common.Pieces
 {
     public class KaraokeText : OsuSpriteText
     {
-        private FormattedText _textObject;
-
         public virtual FormattedText TextObject
         {
             get => _textObject;
@@ -28,10 +26,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Common.Pieces
             }
         }
 
-        protected virtual void UpdateText()
-        {
-            Text = TextObject.Text;
-        }
+        private FormattedText _textObject;
 
         public KaraokeText(FormattedText textObject)
         {
@@ -40,6 +35,11 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Common.Pieces
             Anchor = Anchor.TopLeft;
             Origin = Anchor.BottomLeft;
             Alpha = 1;
+        }
+
+        protected virtual void UpdateText()
+        {
+            Text = TextObject.Text;
         }
     }
 }

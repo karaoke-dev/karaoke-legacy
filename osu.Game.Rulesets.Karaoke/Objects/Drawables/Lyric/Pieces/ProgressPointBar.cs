@@ -4,12 +4,9 @@
 namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric.Pieces
 {
     /// <summary>
-    /// Copy song progress, just make line longer
+    ///     Copy song progress, just make line longer
     /// </summary>
     public class ProgressPointBar
     {
-        public ProgressPointBar()
-        {
-        }
     }
 }

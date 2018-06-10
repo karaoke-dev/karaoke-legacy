@@ -12,7 +12,7 @@ namespace osu.Game.Rulesets.Karaoke.Judgements
         public override HitResult MaxResult => HitResult.Great;
 
         /// <summary>
-        /// The positional hit offset.
+        ///     The positional hit offset.
         /// </summary>
         public Vector2 PositionOffset;
 

@@ -51,7 +51,7 @@ namespace osu.Game.Rulesets.Karaoke.Wiki
 
             //[8]show the develpment progress
             //     8.1 : TODO : will get the newest markdown style progress from github or gitbook
-            new DevelopmentHistorySection(),
+            new DevelopmentHistorySection()
         };
     }
 }

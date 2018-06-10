@@ -7,8 +7,8 @@ using osu.Game.Rulesets.Mods;
 namespace osu.Game.Rulesets.Karaoke.Mods.Types
 {
     /// <summary>
-    /// if this mod has new layer
-    /// use this
+    ///     if this mod has new layer
+    ///     use this
     /// </summary>
     public interface IHasLayer : IApplicableMod
     {

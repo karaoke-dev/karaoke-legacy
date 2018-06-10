@@ -69,18 +69,18 @@ namespace osu.Game.Rulesets.Karaoke.Beatmaps
 
 
         /// <summary>
-        /// Performs the conversion of a Beatmap using this Beatmap Converter.
+        ///     Performs the conversion of a Beatmap using this Beatmap Converter.
         /// </summary>
         /// <param name="original">The un-converted Beatmap.</param>
         /// <returns>The converted Beatmap.</returns>
         protected override Beatmap<BaseLyric> ConvertBeatmap(Beatmap original)
         {
             //TODO : ・ｽﾒ考Mania・ｽ・ｽ・ｽ・ｽ・ｽ・ｽ・ｽ
-            var newBratmaps = new Beatmap<BaseLyric>()
+            var newBratmaps = new Beatmap<BaseLyric>
             {
                 BeatmapInfo = original.BeatmapInfo,
                 ControlPointInfo = original.ControlPointInfo,
-                HitObjects = Convert(original.HitObjects),
+                HitObjects = Convert(original.HitObjects)
             };
             //newBratmaps.HitObjects.BindingAll();
             return newBratmaps;
@@ -88,17 +88,15 @@ namespace osu.Game.Rulesets.Karaoke.Beatmaps
 
         protected List<BaseLyric> Convert(List<HitObject> originalHitOjects)
         {
-            List<BaseLyric> listRerturn = new List<BaseLyric>();
+            var listRerturn = new List<BaseLyric>();
 
-            for (int i = 0; i < originalHitOjects.Count; i++)
-            {
+            for (var i = 0; i < originalHitOjects.Count; i++)
                 if (i % 5 == 4)
                 {
-                    double duration = originalHitOjects[i].StartTime - originalHitOjects[i - 4].StartTime;
+                    var duration = originalHitOjects[i].StartTime - originalHitOjects[i - 4].StartTime;
                     var karaokeObject = DemoKaraokeObject.GenerateWithStartAndDuration(originalHitOjects[i].StartTime, duration);
                     listRerturn.Add(karaokeObject);
                 }
-            }
 
             return listRerturn;
         }

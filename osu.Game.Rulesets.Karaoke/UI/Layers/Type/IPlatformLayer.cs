@@ -9,7 +9,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Type
     public interface IPlatformLayer : ILayer
     {
         /// <summary>
-        /// Platform
+        ///     Platform
         /// </summary>
         Bindable<PlatformType> PlatformType { get; set; }
     }

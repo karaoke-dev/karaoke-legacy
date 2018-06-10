@@ -10,7 +10,7 @@ using osu.Game.Rulesets.Karaoke.UI.Layers.Input.Action;
 namespace osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel.Desktop
 {
     /// <summary>
-    /// to show the Karaoke panel on Playfield 
+    ///     to show the Karaoke panel on Playfield
     /// </summary>
     public partial class KaraokePanelOverlay : WaveOverlayContainer, IControlPanel
     {
@@ -19,7 +19,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel.Desktop
         private readonly IAmKaraokeField _playField;
 
         /// <summary>
-        /// Ctor
+        ///     Ctor
         /// </summary>
         /// <param name="playField"></param>
         public KaraokePanelOverlay(IAmKaraokeField playField = null)

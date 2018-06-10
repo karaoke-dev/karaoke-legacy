@@ -17,44 +17,56 @@ using OpenTK;
 namespace osu.Game.Rulesets.Karaoke.Objects
 {
     /// <summary>
-    /// base karaoke object
-    /// contain single sentence , a main text and several additional text
+    ///     base karaoke object
+    ///     contain single sentence , a main text and several additional text
     /// </summary>
     public class BaseLyric : HitObject, ILyric, IHasPosition, IHasCombo, IHasEndTime, IHasPrimaryKey
     {
         /// <summary>
-        /// ID
+        ///     The time at which the HitObject ends.
+        /// </summary>
+        [JsonIgnore]
+        public double EndTime => StartTime + Duration + (EndPreemptiveTime ?? 0);
+
+        /// <summary>
+        ///     The duration of the HitObject.
+        /// </summary>
+        [JsonIgnore]
+        public double Duration => TimeLines.LastOrDefault().Value?.RelativeTime ?? 0;
+
+        /// <summary>
+        ///     ID
         /// </summary>
         public int ID { get; set; }
 
         /// <summary>
-        /// template Index
-        /// if null , will use all the 
+        ///     template Index
+        ///     if null , will use all the
         /// </summary>
         public int? TemplateIndex { get; set; } = 0;
 
         /// <summary>
-        /// position Index
-        /// if null , will be auto allogate
+        ///     position Index
+        ///     if null , will be auto allogate
         /// </summary>
         public int? PositionIndex { get; set; } = null;
 
         /// <summary>
-        /// the index of singer 
-        /// Default is singler1;
-        /// Each singer has different Text color
+        ///     the index of singer
+        ///     Default is singler1;
+        ///     Each singer has different Text color
         /// </summary>
         public int? SingerIndex { get; set; } = 0;
 
         /// <summary>
-        /// if template !=null will relative to template's position
-        /// else, will be absolute position
+        ///     if template !=null will relative to template's position
+        ///     else, will be absolute position
         /// </summary>
         public Vector2 Position { get; set; }
 
         /// <inheritdoc />
         /// <summary>
-        /// X position
+        ///     X position
         /// </summary>
         [JsonIgnore]
         public float X
@@ -65,7 +77,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects
 
         /// <inheritdoc />
         /// <summary>
-        /// Y position
+        ///     Y position
         /// </summary>
         [JsonIgnore]
         public float Y
@@ -75,19 +87,19 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         }
 
         /// <summary>
-        /// width
+        ///     width
         /// </summary>
         [JsonIgnore]
         public float? Width { get; set; }
 
         /// <summary>
-        /// height
+        ///     height
         /// </summary>
         [JsonIgnore]
         public float? Height { get; set; }
 
         /// <summary>
-        /// Main text 
+        ///     Main text
         /// </summary>
         // TODO : list format
         // TODO : [set] if change the value here, will generate the list
@@ -96,56 +108,44 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         public MainTextList Lyric { get; set; } = new MainTextList();
 
         /// <summary>
-        /// record list time where position goes
+        ///     record list time where position goes
         /// </summary>
         public LyricTimeLineList TimeLines { get; set; } = new LyricTimeLineList();
 
         /// <summary>
-        /// all the translate for a single language
+        ///     all the translate for a single language
         /// </summary>
         /// <value>The list trans late.</value>
         public LyricTranslateList Translates { get; set; } = new LyricTranslateList();
 
         /// <summary>
-        /// The time at which the HitObject ends.
-        /// </summary>
-        [JsonIgnore]
-        public double EndTime => StartTime + Duration + (EndPreemptiveTime ?? 0);
-
-        /// <summary>
-        /// The duration of the HitObject.
-        /// </summary>
-        [JsonIgnore]
-        public double Duration => TimeLines.LastOrDefault().Value?.RelativeTime ?? 0;
-
-        /// <summary>
-        /// new combo
+        ///     new combo
         /// </summary>
         public virtual bool NewCombo { get; set; }
 
         /// <summary>
-        /// combo index，will be assign by beatmap post process or other extension?
+        ///     combo index，will be assign by beatmap post process or other extension?
         /// </summary>
         public int ComboIndex { get; set; }
 
         /// <summary>
-        /// if value is null ,use automatically generated preemptive time;
+        ///     if value is null ,use automatically generated preemptive time;
         /// </summary>
         public double? PreemptiveTime { get; set; } = 600;
 
         /// <summary>
-        /// End preemptive time
+        ///     End preemptive time
         /// </summary>
         public double? EndPreemptiveTime { get; set; } = 600;
 
         /// <summary>
-        /// get translate code
+        ///     get translate code
         /// </summary>
         /// <value>The translate code.</value>
         public TranslateCode Lang { get; set; }
 
         /// <summary>
-        /// Version of the lyric
+        ///     Version of the lyric
         /// </summary>
         public virtual int Ver { get; set; } = 0;
 
@@ -153,7 +153,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         #region Function
 
         /// <summary>
-        /// Splits the by progress point.
+        ///     Splits the by progress point.
         /// </summary>
         /// <returns>The by progress point.</returns>
         public List<BaseLyric> SplitByProgressPoint()
@@ -163,7 +163,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         }
 
         /// <summary>
-        /// Times the is in time.
+        ///     Times the is in time.
         /// </summary>
         /// <returns><c>true</c>, if is in time was timed, <c>false</c> otherwise.</returns>
         /// <param name="lyric">Karaoke object.</param>
@@ -171,9 +171,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         public bool IsInTime(double nowRelativeTime)
         {
             if (nowRelativeTime > -PreemptiveTime && nowRelativeTime <= Duration + EndPreemptiveTime)
-            {
                 return true;
-            }
 
             return false;
         }
@@ -182,30 +180,30 @@ namespace osu.Game.Rulesets.Karaoke.Objects
     }
 
     /// <summary>
-    /// Main Text List
+    ///     Main Text List
     /// </summary>
     public class MainTextList : LyricDictionary<int, MainText>, IHasText
     {
-        [JsonIgnore] public string Delimiter = "";
-
         public string Text
         {
             get
             {
-                string result = this.Select(i => i.Value.Text).Aggregate((i, j) => i + Delimiter + j);
+                var result = this.Select(i => i.Value.Text).Aggregate((i, j) => i + Delimiter + j);
                 return result;
             }
         }
 
+        [JsonIgnore] public string Delimiter = "";
+
         public static MainTextList SetJapaneseLyric(string str)
         {
-            MainTextList returnList = new MainTextList();
-            int startCharIndex = 0;
+            var returnList = new MainTextList();
+            var startCharIndex = 0;
             foreach (var singleCharacter in str)
             {
-                returnList.Add(startCharIndex, new MainText()
+                returnList.Add(startCharIndex, new MainText
                 {
-                    Text = singleCharacter.ToString(),
+                    Text = singleCharacter.ToString()
                 });
                 startCharIndex++;
             }
@@ -215,7 +213,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects
 
         public static MainTextList SetEnglishLyric(string str)
         {
-            MainTextList returnList = new MainTextList();
+            var returnList = new MainTextList();
 
             //TODO : implement
 
@@ -224,7 +222,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects
     }
 
     /// <summary>
-    /// Main Text
+    ///     Main Text
     /// </summary>
     public class MainText : TextComponent
     {

@@ -18,7 +18,7 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
 
 
         /// <summary>
-        /// serialize and set object
+        ///     serialize and set object
         /// </summary>
         /// <typeparam name="U"></typeparam>
         /// <param name="lookup"></param>
@@ -26,7 +26,7 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
         /// <returns></returns>
         public BindableObject<U> SetObject<U>(T lookup, U value) where U : RecordChangeObject, ICopyable, new()
         {
-            BindableObject<U> bindable = GetOriginalBindable<U>(lookup) as BindableObject<U>;
+            var bindable = GetOriginalBindable<U>(lookup) as BindableObject<U>;
 
             if (bindable == null)
             {
@@ -44,7 +44,7 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
         }
 
         /// <summary>
-        /// get object bindable
+        ///     get object bindable
         /// </summary>
         /// <typeparam name="U"></typeparam>
         /// <param name="lookup"></param>

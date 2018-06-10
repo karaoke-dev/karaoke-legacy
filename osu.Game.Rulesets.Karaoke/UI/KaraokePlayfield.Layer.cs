@@ -18,7 +18,7 @@ namespace osu.Game.Rulesets.Karaoke.UI
         private EffectLayer _effectLayer;
 
         /// <summary>
-        /// Frontend
+        ///     Frontend
         /// </summary>
         public override void InitialFrontendLayer()
         {
@@ -30,7 +30,7 @@ namespace osu.Game.Rulesets.Karaoke.UI
                 Origin = Anchor.BottomCentre,
                 Anchor = Anchor.BottomCentre,
                 Scale = new Vector2(1.0f),
-                Depth = 10f,
+                Depth = 10f
             });
 
             //Input layer
@@ -38,7 +38,7 @@ namespace osu.Game.Rulesets.Karaoke.UI
             {
                 RelativeSizeAxes = Axes.Both,
                 Depth = -2,
-                Clock = new FramedClock(new StopwatchClock(true)),
+                Clock = new FramedClock(new StopwatchClock(true))
             });
 
             Layers.Add(_karaokePanelOverlay);
@@ -46,14 +46,14 @@ namespace osu.Game.Rulesets.Karaoke.UI
         }
 
         /// <summary>
-        /// Ruleset
+        ///     Ruleset
         /// </summary>
         public override void InitialRulesetLayer()
         {
             base.InitialRulesetLayer();
 
             //layer
-            Add(KaraokeLyricPlayField = new KaraokeLyricPlayField()
+            Add(KaraokeLyricPlayField = new KaraokeLyricPlayField
             {
                 KaraokeRulesetContainer = KaraokeRulesetContainer
             });
@@ -62,13 +62,11 @@ namespace osu.Game.Rulesets.Karaoke.UI
         }
 
         /// <summary>
-        /// Backend
+        ///     Backend
         /// </summary>
         public override void InitialBackendLayer()
         {
-            Add(_effectLayer = new EffectLayer()
-            {
-            });
+            Add(_effectLayer = new EffectLayer());
             Layers.Add(_effectLayer);
         }
     }

@@ -6,7 +6,7 @@ using Symcol.Rulesets.Core.Wiki;
 namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
 {
     /// <summary>
-    /// [0] introduce karaoke
+    ///     [0] introduce karaoke
     /// </summary>
     internal class GameplaySection : BaseWikiSection
     {

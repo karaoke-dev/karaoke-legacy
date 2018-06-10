@@ -15,6 +15,11 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
         {
         }
 
+        public override TrackedSettings CreateTrackedSettings()
+        {
+            return new TrackedSettings();
+        }
+
         protected override void InitialiseDefaults()
         {
             base.InitialiseDefaults();
@@ -36,11 +41,11 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
 
             //Style
             SetObject(KaraokeSetting.Template, new LyricTemplate());
-            SetObject(KaraokeSetting.LyricStyle, new KaraokeLyricConfig()
+            SetObject(KaraokeSetting.LyricStyle, new KaraokeLyricConfig
             {
                 SubTextVislbility = true,
                 RomajiVislbility = true,
-                RomajiFirst = false,
+                RomajiFirst = false
             });
 
             //singer
@@ -56,14 +61,10 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
             Set(KaraokeSetting.Device, PlatformType.Desktop);
             SetObject(KaraokeSetting.TouchScreen, new MobileScrollAnixConfig());
         }
-
-        public override TrackedSettings CreateTrackedSettings() => new TrackedSettings
-        {
-        };
     }
 
     /// <summary>
-    /// karaoke setting
+    ///     karaoke setting
     /// </summary>
     public enum KaraokeSetting
     {
@@ -96,6 +97,6 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
 
         //device
         Device = 61, //which device
-        TouchScreen = 62, //touch screen action
+        TouchScreen = 62 //touch screen action
     }
 }

@@ -12,7 +12,7 @@ using OpenTK;
 namespace osu.Game.Rulesets.Karaoke.Mods
 {
     /// <summary>
-    /// snow mod
+    ///     snow mod
     /// </summary>
     public class KaraokeModSnow : Mod, IHasLayer
     {
@@ -30,7 +30,7 @@ namespace osu.Game.Rulesets.Karaoke.Mods
                 Depth = 1,
                 Width = 900,
                 Position = new Vector2(-200, 0),
-                TexturePath = TextureLayer,
+                TexturePath = TextureLayer
             };
         }
     }

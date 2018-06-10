@@ -15,14 +15,13 @@ using OpenTK.Graphics;
 namespace osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel.Mobile.Pieces
 {
     /// <summary>
-    /// use to inherit
-    /// <see cref="ScreenWhiteBox"/>
+    ///     use to inherit
+    ///     <see cref="ScreenWhiteBox" />
     /// </summary>
     public class InfoPiece<T> : Container, IInfoPiece where T : Info
     {
-        private readonly FillFlowContainer textContainer;
-
         public virtual T Value { get; set; }
+        private readonly FillFlowContainer textContainer;
 
         public InfoPiece()
         {
@@ -40,7 +39,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel.Mobile.Pieces
 
                     Colour = getColourFor(GetType()),
                     Alpha = 0.2f,
-                    Blending = BlendingMode.Additive,
+                    Blending = BlendingMode.Additive
                 },
                 textContainer = new FillFlowContainer
                 {
@@ -55,7 +54,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel.Mobile.Pieces
                             Icon = FontAwesome.fa_universal_access,
                             Anchor = Anchor.TopCentre,
                             Origin = Anchor.TopCentre,
-                            Size = new Vector2(50),
+                            Size = new Vector2(50)
                         },
                         new OsuSpriteText
                         {
@@ -63,40 +62,40 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel.Mobile.Pieces
                             Colour = getColourFor(GetType()).Lighten(0.8f),
                             Anchor = Anchor.TopCentre,
                             Origin = Anchor.TopCentre,
-                            TextSize = 50,
+                            TextSize = 50
                         },
                         new OsuSpriteText
                         {
                             Text = "is not yet ready for use!",
                             TextSize = 20,
                             Anchor = Anchor.TopCentre,
-                            Origin = Anchor.TopCentre,
+                            Origin = Anchor.TopCentre
                         },
                         new OsuSpriteText
                         {
                             Text = "please check back a bit later.",
                             TextSize = 14,
                             Anchor = Anchor.TopCentre,
-                            Origin = Anchor.TopCentre,
-                        },
+                            Origin = Anchor.TopCentre
+                        }
                     }
-                },
+                }
             };
         }
 
         private Color4 getColourFor(System.Type type)
         {
-            int hash = type.Name.GetHashCode();
-            byte r = (byte)MathHelper.Clamp(((hash & 0xFF0000) >> 16) * 0.8f, 20, 255);
-            byte g = (byte)MathHelper.Clamp(((hash & 0x00FF00) >> 8) * 0.8f, 20, 255);
-            byte b = (byte)MathHelper.Clamp((hash & 0x0000FF) * 0.8f, 20, 255);
+            var hash = type.Name.GetHashCode();
+            var r = (byte)MathHelper.Clamp(((hash & 0xFF0000) >> 16) * 0.8f, 20, 255);
+            var g = (byte)MathHelper.Clamp(((hash & 0x00FF00) >> 8) * 0.8f, 20, 255);
+            var b = (byte)MathHelper.Clamp((hash & 0x0000FF) * 0.8f, 20, 255);
             return new Color4(r, g, b, 255);
         }
     }
 
     /// <summary>
-    /// use to show the into
-    /// <see cref="ScreenWhiteBox"/>
+    ///     use to show the into
+    ///     <see cref="ScreenWhiteBox" />
     /// </summary>
     public class InfoPiece : InfoPiece<Info>
     {

@@ -9,6 +9,8 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel.Desktop.Pieces
 {
     public class KaraokeIntroduceText : OsuSpriteText, IHasTooltip
     {
+        public string TooltipText { get; set; }
+
         public KaraokeIntroduceText()
         {
             UseFullGlyphHeight = false;
@@ -17,7 +19,5 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel.Desktop.Pieces
             TextSize = 20;
             Alpha = 1;
         }
-
-        public string TooltipText { get; set; }
     }
 }
