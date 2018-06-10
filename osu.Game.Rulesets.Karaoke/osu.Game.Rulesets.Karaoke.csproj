@@ -5,24 +5,9 @@
     <OutputType>Library</OutputType>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <Company>ppy Pty Ltd</Company>
-    <Version>1.0.0.0</Version>
-    <Copyright>ppy Pty Ltd 2007-2017</Copyright>
-    <AssemblyTitle>osu.Game.Rulesets.Osu</AssemblyTitle>
-    <Description>click the circles. to the beat.</Description>
-    <Product>osu.Game.Rulesets.Osu</Product>
+    <Description>osu!Karoake.</Description>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <LangVersion>latest</LangVersion>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <LangVersion>latest</LangVersion>
-  </PropertyGroup>
-  <ItemGroup Label="Service">
-    <Service Include="{82a7f48d-3b50-4b1e-b82e-3ada8210c358}" />
-  </ItemGroup>
   <ItemGroup Label="Project References">
-    <ProjectReference Include="..\osu-framework\osu.Framework\osu.Framework.csproj" />
     <ProjectReference Include="..\osu.Game\osu.Game.csproj" />
     <ProjectReference Include="..\Symcol.Core\Symcol.Core.csproj" />
     <ProjectReference Include="..\Symcol.Rulesets.Core\Symcol.Rulesets.Core.csproj" />
@@ -32,7 +17,7 @@
     <PackageReference Include="LibGit2Sharp-SSH" Version="1.0.22" />
     <PackageReference Include="LibGit2Sharp-SSH.NativeBinaries" Version="1.0.14" />
     <PackageReference Include="LibGit2Sharp.NativeBinaries" Version="1.0.210" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="2.0.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="2.1.0" />
     <PackageReference Include="MusixMatchAPI" Version="1.0.0" />
     <PackageReference Include="NUnit" Version="3.10.1" />
     <PackageReference Include="LibGit2Sharp" Version="0.25.0" />
@@ -47,6 +32,12 @@
     <EmbeddedResource Include="Textures\**\*" />
     <EmbeddedResource Include="Tracks\**\*" />
   </ItemGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <LangVersion>7.1</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <LangVersion>7.1</LangVersion>
+  </PropertyGroup>
   <ItemGroup>
     <Folder Include="Online\API\Git\" />
     <Folder Include="Online\API\Romaj\Github\" />

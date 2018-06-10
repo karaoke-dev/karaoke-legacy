@@ -2,11 +2,9 @@
 // Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
 
 using System.Collections.Generic;
-using System.Linq;
 using osu.Framework.Graphics;
 using osu.Framework.Input.Bindings;
 using osu.Game.Beatmaps;
-using osu.Game.Graphics;
 using osu.Game.Overlays.Settings;
 using osu.Game.Rulesets.Difficulty;
 using osu.Game.Rulesets.Edit;
@@ -17,7 +15,6 @@ using osu.Game.Rulesets.Karaoke.KaraokeDifficulty;
 using osu.Game.Rulesets.Karaoke.Mods;
 using osu.Game.Rulesets.Karaoke.Mods.Mod2017;
 using osu.Game.Rulesets.Karaoke.Mods.Mod2018;
-using osu.Game.Rulesets.Karaoke.Objects;
 using osu.Game.Rulesets.Karaoke.Objects.Drawables.Common.Pieces;
 using osu.Game.Rulesets.Karaoke.Textures;
 using osu.Game.Rulesets.Karaoke.UI;
@@ -50,11 +47,6 @@ namespace osu.Game.Rulesets.Karaoke
             : base(rulesetInfo)
         {
             var karaokeTextureStore = new KaraokeTextureStore();
-        }
-
-        public override RulesetContainer CreateRulesetContainerWith(WorkingBeatmap beatmap, bool isForCurrentRuleset)
-        {
-            return new KaraokeRulesetContainer(this, beatmap, isForCurrentRuleset);
         }
 
         public override IEnumerable<KeyBinding> GetDefaultKeyBindings(int variant = 0)
@@ -161,17 +153,12 @@ namespace osu.Game.Rulesets.Karaoke
             }
         }
 
-        public override Drawable CreateIcon() => new ImagePicec(@"Icon/Icon");
+        public override Drawable CreateIcon()
+        {
+            return new ImagePicec(@"Icon/Icon");
+        }
 
-        public override DifficultyCalculator CreateDifficultyCalculator(IBeatmap beatmap, Mod[] mods = null) => new KaraokeDifficultyCalculator(beatmap, mods);
-
-        public override HitObjectComposer CreateHitObjectComposer() => new KaraokeHitObjectComposer(this);
-
-        public override string Description => "カラオケ!";
-
-        public override string ShortName => "karaoke";
-
-        public override DifficultyCalculator CreateDifficultyCalculator(Beatmap beatmap, Mod[] mods = null)
+        public override DifficultyCalculator CreateDifficultyCalculator(IBeatmap beatmap, Mod[] mods = null)
         {
             return new KaraokeDifficultyCalculator(beatmap, mods);
         }

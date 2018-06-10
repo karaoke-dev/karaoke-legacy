@@ -99,7 +99,7 @@ namespace osu.Game
         private void load()
         {
             //TODO : add for karaoke ruleset
-            Resources.AddStore(new DllResourceStore(@"osu.Game.Rulesets.Karaoke.dll"));ｓ
+            Resources.AddStore(new DllResourceStore(@"osu.Game.Rulesets.Karaoke.dll"));
             Resources.AddStore(new DllResourceStore(@"osu.Game.Resources.dll"));
 
             dependencies.Cache(contextFactory = new DatabaseContextFactory(Host));

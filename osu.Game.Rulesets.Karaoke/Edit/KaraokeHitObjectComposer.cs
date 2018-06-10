@@ -31,11 +31,6 @@ namespace osu.Game.Rulesets.Karaoke.Edit
             //new HitObjectCompositionTool<LyricTranslate>(),//add translate to BaseLyric
         };
 
-        public KaraokeHitObjectComposer(Ruleset ruleset)
-            : base(ruleset)
-        {
-        }
-
         public override HitObjectMask CreateMaskFor(DrawableHitObject hitObject)
         {
             switch (hitObject)
@@ -45,11 +40,6 @@ namespace osu.Game.Rulesets.Karaoke.Edit
             }
 
             return base.CreateMaskFor(hitObject);
-        }
-
-        protected override RulesetContainer CreateRulesetContainer(Ruleset ruleset, WorkingBeatmap beatmap)
-        {
-            return new KaraokeEditRulesetContainer(ruleset, beatmap, true);
         }
 
         protected override ScalableContainer CreateLayerContainer()

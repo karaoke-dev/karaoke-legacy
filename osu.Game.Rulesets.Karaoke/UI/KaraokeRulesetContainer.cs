@@ -36,6 +36,11 @@ namespace osu.Game.Rulesets.Karaoke.UI
             return new KaraokeScoreProcessor(this);
         }
 
+        public override PassThroughInputManager CreateInputManager()
+        {
+            return new KaraokeInputManager(Ruleset.RulesetInfo);
+        }
+
         protected override Playfield CreatePlayfield()
         {
             return new KaraokePlayfield(Ruleset, WorkingBeatmap, this);
