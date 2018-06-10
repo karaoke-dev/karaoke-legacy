@@ -10,6 +10,7 @@ using osu.Framework.Input;
 using osu.Game.Graphics.Sprites;
 using osu.Game.Graphics.UserInterface;
 using osu.Game.Rulesets.Karaoke.Objects;
+using osu.Game.Rulesets.Karaoke.Objects.TimeLine;
 using OpenTK;
 using OpenTK.Graphics;
 using OpenTK.Input;

@@ -1,9 +1,7 @@
 ﻿// Copyright (c) 2007-2018 ppy Pty Ltd <contact@ppy.sh>.
 // Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
 
-using osu.Game.Rulesets.Karaoke.Service.Romaji;
-
-namespace osu.Game.Rulesets.Karaoke.Tools.Romaji
+namespace osu.Game.Rulesets.Karaoke.Service.Romaji
 {
     public class RomajiServiceProvider
     {

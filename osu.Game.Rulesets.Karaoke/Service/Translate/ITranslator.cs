@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using osu.Game.Rulesets.Karaoke.Configuration;
 
-namespace osu.Game.Rulesets.Karaoke.Tools.Translator
+namespace osu.Game.Rulesets.Karaoke.Service.Translate
 {
     /// <summary>
     ///     translator base

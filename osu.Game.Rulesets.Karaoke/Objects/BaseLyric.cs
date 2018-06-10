@@ -9,6 +9,7 @@ using osu.Game.Rulesets.Karaoke.Configuration;
 using osu.Game.Rulesets.Karaoke.Objects.Lyric;
 using osu.Game.Rulesets.Karaoke.Objects.Text;
 using osu.Game.Rulesets.Karaoke.Objects.TimeLine;
+using osu.Game.Rulesets.Karaoke.Objects.Translate;
 using osu.Game.Rulesets.Karaoke.Objects.Types;
 using osu.Game.Rulesets.Objects;
 using osu.Game.Rulesets.Objects.Types;
