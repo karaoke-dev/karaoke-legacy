@@ -35,11 +35,11 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel.Desktop.Pieces
             get => _state;
         }
 
-        private KaraokePlayState _state;
-
         //use as show icon
         //From MusicController.cs
         private readonly IconButton playButton;
+
+        private KaraokePlayState _state;
 
         public KaraokePlayPauseButton()
         {

@@ -232,6 +232,8 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
     public class TableViewCell<TItem> : Container, IFilterable, IDraggable where TItem : IHasPrimaryKey
     {
         public bool IsDraggable => handle.IsHovered;
+
+        public IEnumerable<string> FilterTerms { get; } = new List<string> { "add" };
         public Action<TItem> OnSelect;
         public virtual TItem BeatmapSetInfo { get; set; }
 
@@ -262,8 +264,6 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
                     */
             }
         }
-
-        public IEnumerable<string> FilterTerms { get; } = new List<string> { "add" };
 
         protected Color4 HoverColour;
         protected Color4 ArtistColour;
