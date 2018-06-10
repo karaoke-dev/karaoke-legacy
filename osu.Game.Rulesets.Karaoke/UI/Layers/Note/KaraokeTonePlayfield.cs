@@ -121,8 +121,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Note
             //initial bar lines
             initialBarLine();
 
-            VisibleTimeRange.Value = 6000;
-            //karaokeConfig.BindWith(KaraokeSetting.NoteSpeed, VisibleTimeRange);
+            karaokeConfig.BindWith(KaraokeSetting.NoteSpeed, VisibleTimeRange);
         }
 
         private void initialBarLine()
