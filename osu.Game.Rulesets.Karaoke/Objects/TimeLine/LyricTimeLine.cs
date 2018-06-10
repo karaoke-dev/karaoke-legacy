@@ -1,6 +1,8 @@
 ﻿// Copyright (c) 2007-2018 ppy Pty Ltd <contact@ppy.sh>.
 // Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
 
+using JetBrains.Annotations;
+
 namespace osu.Game.Rulesets.Karaoke.Objects.TimeLine
 {
     /// <summary>
@@ -27,6 +29,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.TimeLine
         ///     Display Text
         ///     If null, will get text from <see cref="MainText" />
         /// </summary>
+        [CanBeNull]
         public string DisplayText { get; set; }
 
         /// <summary>

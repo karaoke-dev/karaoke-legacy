@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
+using osu.Game.Rulesets.Karaoke.Extension;
 using osu.Game.Rulesets.Karaoke.Objects.Drawables.Note.Pieces;
 using osu.Game.Rulesets.Karaoke.Objects.TimeLine;
 using osu.Game.Rulesets.Karaoke.UI.Layers.Note;
@@ -12,7 +14,24 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note
 {
     public class DrawableLyricNote : SkinReloadableDrawable
     {
-        public virtual double Duration => 500;
+        public virtual double Duration
+        {
+            get
+            {
+                var thisTimeLine = TimeLine.Value;
+                var previousTimeLine = HitObject.TimeLines.GetPrevious(TimeLine.Key)?.Value;
+
+                //if next is not empty
+                if (previousTimeLine != null)
+                {
+                    return thisTimeLine.RelativeTime - previousTimeLine.RelativeTime - (thisTimeLine.EarlyTime ?? 0);
+                }
+                else
+                {
+                    return thisTimeLine.RelativeTime;
+                }
+            }
+        }
 
         public virtual Color4 AccentColour
         {
@@ -36,13 +55,37 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note
             set
             {
                 _timeLine = value;
+                //height
                 var noteHeight = (_timeLine.Value.Tone ?? 0) * KaraokeStage.COLUMN_HEIGHT;
                 noteContainer.Y = noteHeight;
+
+                //text
+                if (!string.IsNullOrEmpty(TimeLine.Value.DisplayText))
+                {
+                    text.Text = TimeLine.Value.DisplayText;
+                }
+                else
+                {
+                    var nextTimeLine = HitObject.TimeLines.GetNext(TimeLine.Key)?.Key;
+                    var lyric = HitObject.Lyric.Text;
+                    int take = 0;
+                    if (nextTimeLine != null)
+                    {
+                        take = nextTimeLine.Value - _timeLine.Key;
+                    }
+                    else
+                    {
+                        take = lyric.Length - _timeLine.Key;
+                    }
+                    var displayText = lyric.Substring(_timeLine.Key, take);
+                    text.Text = displayText;
+                }
             }
         }
 
         private readonly DrawableHeadNote head;
         private readonly DrawableTailNote tail;
+        private readonly TextFlowContainer text;
 
         private readonly GlowPiece glowPiece;
         private readonly BodyPiece bodyPiece;
@@ -111,7 +154,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note
                             Anchor = Anchor.CentreLeft,
                             Origin = Anchor.CentreLeft
                         },
-                        new TextFlowContainer
+                        text = new TextFlowContainer
                         {
                             Text = "Hello"
                         }

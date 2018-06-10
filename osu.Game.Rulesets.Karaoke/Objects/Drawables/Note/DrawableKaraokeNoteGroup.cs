@@ -77,7 +77,10 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note
             {
                 _lastWidth = DrawWidth;
                 foreach (var note in ListNote)
-                    note.Width = (float)(NoteSpeed.Value * note.Duration / 1000);
+                {
+                    var precentage = note.Duration / HitObject.Duration;
+                    note.Width = (float)(_lastWidth * precentage);
+                }
             }
         }
 

@@ -23,7 +23,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Note
     /// </summary>
     public class KaraokeStage : ScrollingPlayfield
     {
-        public const float HIT_TARGET_POSITION = 200;
+        public const float HIT_TARGET_POSITION = 600;
 
         public const float COLUMN_HEIGHT = 25;
 
@@ -120,7 +120,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Note
                             Origin = Anchor.Centre,
                             Colour = Color4.Red,
                             Width = 5,
-                            Height = 300,
+                            RelativeSizeAxes = Axes.Y,
                             X = HIT_TARGET_POSITION
                         },
                         judgements = new JudgementContainer<DrawableNoteJudgement>

@@ -102,7 +102,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Note
             stages.ForEach(s => s.Add(barline));
         }
 
-        private KaraokeStage getStageByColumn(int column)
+        protected KaraokeStage getStageByColumn(int column)
         {
             var sum = 0;
             foreach (var stage in stages)
