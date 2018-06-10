@@ -13,32 +13,31 @@ using OpenTK;
 namespace osu.Game.Rulesets.Karaoke.UI
 {
     /// <summary>
-    /// Karaoke base panel
-    /// the design should be like that : 
-    /// |                   |                       |   Kaeakoe Mobile 
-    /// |                   |  [playable Playfield] |   Karaoke Ipad
-    /// |                   |                       |   Karaoke Desktop
-    /// |   base Playfield  |-----------------------|-------------
-    /// |                   |  [editor playField]    
-    /// |                   |                       
+    ///     Karaoke base panel
+    ///     the design should be like that :
+    ///     |                   |                       |   Kaeakoe Mobile
+    ///     |                   |  [playable Playfield] |   Karaoke Ipad
+    ///     |                   |                       |   Karaoke Desktop
+    ///     |   base Playfield  |-----------------------|-------------
+    ///     |                   |  [editor playField]
+    ///     |                   |
     /// </summary>
     public partial class KaraokeBasePlayfield : Playfield, IAmKaraokeField
     {
+        public static readonly Vector2 BASE_SIZE = new Vector2(512, 384);
         public Ruleset Ruleset { get; set; }
         public WorkingBeatmap WorkingBeatmap { get; set; }
         public KaraokeRulesetContainer KaraokeRulesetContainer { get; set; }
 
         public KaraokeConfigManager KaraokeConfigManager { get; set; }
 
-        public static readonly Vector2 BASE_SIZE = new Vector2(512, 384);
-
         /// <summary>
-        /// Default height of a <see cref="KaraokeBasePlayfield"/> when inside a <see cref="KaraokeRulesetContainer"/>.
+        ///     Default height of a <see cref="KaraokeBasePlayfield"/> when inside a <see cref="KaraokeRulesetContainer"/>.
         /// </summary>
         public const float DEFAULT_HEIGHT = 512;
 
         /// <summary>
-        /// Ctor
+        ///     Ctor
         /// </summary>
         /// <param name="ruleset"></param>
         /// <param name="beatmap"></param>
@@ -53,8 +52,36 @@ namespace osu.Game.Rulesets.Karaoke.UI
             Origin = Anchor.Centre;
         }
 
+        /*
+        protected override void LoadComplete()
+        {
+            base.LoadComplete();
+        }
+        */
+
         /// <summary>
-        /// Load
+        ///     Add HitObject
+        /// </summary>
+        /// <param name="h"></param>
+        public override void Add(DrawableHitObject h)
+        {
+            KaraokeLyricPlayField.Add(h);
+
+            //import
+            if (KaraokeTonePlayfield != null)
+            {
+                KaraokeTonePlayfield.Add(h);
+            }
+        }
+
+        //post process
+        public override void PostProcess()
+        {
+            base.PostProcess();
+        }
+
+        /// <summary>
+        ///     Load
         /// </summary>
         /// <param name="manager"></param>
         [BackgroundDependencyLoader(true)]
@@ -73,34 +100,6 @@ namespace osu.Game.Rulesets.Karaoke.UI
 
             //post process
             PostProcessLayer(manager);
-        }
-
-        /*
-        protected override void LoadComplete()
-        {
-            base.LoadComplete();
-        }
-        */
-
-        /// <summary>
-        /// Add HitObject
-        /// </summary>
-        /// <param name="h"></param>
-        public override void Add(DrawableHitObject h)
-        {
-            KaraokeLyricPlayField.Add(h);
-
-            //import
-            if (KaraokeTonePlayfield != null)
-            {
-                KaraokeTonePlayfield.Add(h);
-            }
-        }
-
-        //post process
-        public override void PostProcess()
-        {
-            base.PostProcess();
         }
 
         #region Input

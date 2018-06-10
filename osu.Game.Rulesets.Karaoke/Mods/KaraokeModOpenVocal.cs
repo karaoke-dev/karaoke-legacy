@@ -7,7 +7,7 @@ using osu.Game.Rulesets.Mods;
 namespace osu.Game.Rulesets.Karaoke.Mods
 {
     /// <summary>
-    /// if sound trach has two parts, open the vocal part
+    ///     if sound trach has two parts, open the vocal part
     /// </summary>
     public class KaraokeModOpenVocal : Mod
     {

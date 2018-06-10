@@ -6,7 +6,7 @@ using Symcol.Rulesets.Core.Wiki;
 namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
 {
     /// <summary>
-    /// [6] introduce develpopers
+    ///     [6] introduce develpopers
     /// </summary>
     internal class DeveloperSection : BaseWikiSection
     {

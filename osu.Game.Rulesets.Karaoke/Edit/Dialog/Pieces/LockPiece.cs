@@ -6,7 +6,7 @@ using System.ComponentModel;
 namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
 {
     /// <summary>
-    /// container that shows lock Icon
+    ///     container that shows lock Icon
     /// </summary>
     public class LockPiece : Container
     {

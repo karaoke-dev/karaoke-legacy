@@ -13,7 +13,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit
     public partial class KaraokeEditPlayfield : KaraokeBasePlayfield
     {
         /// <summary>
-        /// Selected karaoke Object
+        ///     Selected karaoke Object
         /// </summary>
         public DrawableEditableKaraokeObject NowSelectedKaraokeObject { get; set; }
 
@@ -24,8 +24,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit
         }
 
         /// <summary>
-        /// Add : Add to editList
-        /// 
+        ///     Add : Add to editList
         /// </summary>
         /// <param name="drawable"></param>
         public override void Add(DrawableHitObject h)
@@ -38,7 +37,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit
         }
 
         /// <summary>
-        /// using hotkay to open dialog
+        ///     using hotkay to open dialog
         /// </summary>
         /// <param name="state"></param>
         /// <param name="args"></param>
@@ -46,7 +45,6 @@ namespace osu.Game.Rulesets.Karaoke.Edit
         protected override bool OnKeyDown(InputState state, KeyDownEventArgs args)
         {
             foreach (var single in state.Keyboard.Keys)
-            {
                 if (single == Key.L)
                 {
                     //Open Lyrics dialog
@@ -59,7 +57,6 @@ namespace osu.Game.Rulesets.Karaoke.Edit
                     OpenListKaraokeTranslateDialog();
                     break;
                 }
-            }
 
             return base.OnKeyDown(state, args);
         }

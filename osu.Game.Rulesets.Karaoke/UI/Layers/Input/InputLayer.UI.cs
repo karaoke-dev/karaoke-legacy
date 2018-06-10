@@ -14,7 +14,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Input
         {
             Children = new Drawable[]
             {
-                new TriangleButton()
+                new TriangleButton
                 {
                     Origin = Anchor.BottomRight,
                     Anchor = Anchor.BottomRight,

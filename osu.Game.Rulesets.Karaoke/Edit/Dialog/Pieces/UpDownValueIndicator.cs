@@ -12,33 +12,27 @@ using OpenTK.Graphics;
 namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
 {
     /// <summary>
-    /// will show : 
-    /// label / (+)button / (-)button
+    ///     will show :
+    ///     label / (+)button / (-)button
     /// </summary>
     public class UpDownValueIndicator : Container
     {
-        public Action<float> OnValueChanged { get; set; }
-
         /// <summary>
-        /// Decrease Button
+        ///     Decrease Button
         /// </summary>
         public KaraokeButton DecreaseButton;
 
         /// <summary>
-        /// Increase button
+        ///     Increase button
         /// </summary>
         public KaraokeButton IncreaseButton;
 
         /// <summary>
-        /// label
+        ///     label
         /// </summary>
         public OsuSpriteText OsuSpriteText;
 
-        protected FillFlowContainer<Drawable> FillFlowContainer;
-
-        protected int ButtonZixe = 25;
-
-        private float _value;
+        public Action<float> OnValueChanged { get; set; }
 
         public float Value
         {
@@ -52,8 +46,6 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
 
         public float Step { get; set; } = 1;
 
-        private string _prefixText;
-
         public string PrefixText
         {
             get => _prefixText;
@@ -63,8 +55,6 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
                 updateText();
             }
         }
-
-        private string _postText;
 
         public string PostfixText
         {
@@ -76,32 +66,42 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
             }
         }
 
+        protected FillFlowContainer<Drawable> FillFlowContainer;
+
+        protected int ButtonZixe = 25;
+
+        private float _value;
+
+        private string _prefixText;
+
+        private string _postText;
+
         public UpDownValueIndicator()
         {
             Width = 100;
             Height = 30;
 
-            Add(new Box()
+            Add(new Box
             {
                 RelativeSizeAxes = Axes.Both,
                 Colour = new Color4(0.0f, 0.0f, 0.0f, 0.5f)
             });
 
 
-            Add(FillFlowContainer = new FillFlowContainer<Drawable>()
+            Add(FillFlowContainer = new FillFlowContainer<Drawable>
             {
                 Direction = FillDirection.Horizontal,
                 Anchor = Anchor.Centre,
                 Origin = Anchor.Centre,
                 Children = new Drawable[]
                 {
-                    OsuSpriteText = new OsuSpriteText()
+                    OsuSpriteText = new OsuSpriteText
                     {
                         Origin = Anchor.Centre,
-                        Anchor = Anchor.Centre,
+                        Anchor = Anchor.Centre
                         //Width = 70,
                     },
-                    DecreaseButton = new KaraokeButton()
+                    DecreaseButton = new KaraokeButton
                     {
                         //Position = new Vector2(-10, 0),
                         Origin = Anchor.Centre,
@@ -117,7 +117,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
                             OnValueChanged?.Invoke(Value);
                         }
                     },
-                    IncreaseButton = new KaraokeButton()
+                    IncreaseButton = new KaraokeButton
                     {
                         //Position = new Vector2(10, 0),
                         Origin = Anchor.Centre,
@@ -141,7 +141,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
 
         private void updateText()
         {
-            OsuSpriteText.Text = PrefixText + Value.ToString() + PostfixText;
+            OsuSpriteText.Text = PrefixText + Value + PostfixText;
         }
     }
 }

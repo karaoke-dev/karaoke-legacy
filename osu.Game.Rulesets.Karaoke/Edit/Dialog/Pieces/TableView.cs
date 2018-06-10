@@ -20,14 +20,46 @@ using OpenTK.Graphics;
 namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
 {
     /// <summary>
-    /// Dragable item source container
+    ///     Dragable item source container
     /// </summary>
     public class TableView<TItem, TDrawable> : OsuScrollContainer where TItem : class, IHasPrimaryKey where TDrawable : TableViewCell<TItem>, new()
     {
+        public TItem FirstVisibleSet => Items.FirstOrDefault(i => i.MatchingFilter)?.BeatmapSetInfo;
+        public TItem NextSet => (Items.SkipWhile(i => !i.Selected).Skip(1).FirstOrDefault() ?? Items.FirstOrDefault())?.BeatmapSetInfo;
+        public TItem PreviousSet => (Items.TakeWhile(i => !i.Selected).LastOrDefault() ?? Items.LastOrDefault())?.BeatmapSetInfo;
         public Action<TItem> OnSelect;
+
+        public IEnumerable<TItem> Sets
+        {
+            get { return Items.Select(x => x.BeatmapSetInfo).ToList(); }
+            set
+            {
+                Items.Clear();
+                value.ForEach(AddBeatmapSet);
+            }
+        }
+
+        public string SearchTerm
+        {
+            get => Search.SearchTerm;
+            set => Search.SearchTerm = value;
+        }
+
+        public TItem SelectedSet
+        {
+            get { return Items.FirstOrDefault(i => i.Selected)?.BeatmapSetInfo; }
+            set
+            {
+                foreach (var s in Items.Children)
+                    s.Selected = s.BeatmapSetInfo.ID == value?.ID;
+            }
+        }
 
         protected readonly SearchContainer Search;
         protected readonly FillFlowContainer<TDrawable> Items;
+
+        private Vector2 nativeDragPosition;
+        private TDrawable draggedItem;
 
         public TableView()
         {
@@ -42,32 +74,16 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
                         Items = new TableViewContainer<TItem, TDrawable>
                         {
                             RelativeSizeAxes = Axes.X,
-                            AutoSizeAxes = Axes.Y,
-                        },
+                            AutoSizeAxes = Axes.Y
+                        }
                     }
                 }
             };
         }
 
-        public IEnumerable<TItem> Sets
-        {
-            get { return Items.Select(x => x.BeatmapSetInfo).ToList(); }
-            set
-            {
-                Items.Clear();
-                value.ForEach(AddBeatmapSet);
-            }
-        }
-
-        public string SearchTerm
-        {
-            get { return Search.SearchTerm; }
-            set { Search.SearchTerm = value; }
-        }
-
         public virtual void AddBeatmapSet(TItem beatmapSet)
         {
-            Items.Add(new TDrawable()
+            Items.Add(new TDrawable
             {
                 BeatmapSetInfo = beatmapSet,
                 OnSelect = set => OnSelect?.Invoke(set),
@@ -81,23 +97,6 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
             if (itemToRemove != null)
                 Items.Remove(itemToRemove);
         }
-
-        public TItem SelectedSet
-        {
-            get { return Items.FirstOrDefault(i => i.Selected)?.BeatmapSetInfo; }
-            set
-            {
-                foreach (TDrawable s in Items.Children)
-                    s.Selected = s.BeatmapSetInfo.ID == value?.ID;
-            }
-        }
-
-        public TItem FirstVisibleSet => Items.FirstOrDefault(i => i.MatchingFilter)?.BeatmapSetInfo;
-        public TItem NextSet => (Items.SkipWhile(i => !i.Selected).Skip(1).FirstOrDefault() ?? Items.FirstOrDefault())?.BeatmapSetInfo;
-        public TItem PreviousSet => (Items.TakeWhile(i => !i.Selected).LastOrDefault() ?? Items.LastOrDefault())?.BeatmapSetInfo;
-
-        private Vector2 nativeDragPosition;
-        private TDrawable draggedItem;
 
         protected override bool OnDragStart(InputState state)
         {
@@ -164,12 +163,12 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
         {
             var itemsPos = Items.ToLocalSpace(nativeDragPosition);
 
-            int srcIndex = (int)draggedItem.Depth;
+            var srcIndex = (int)draggedItem.Depth;
 
             // Find the last item with position < mouse position. Note we can't directly use
             // the item positions as they are being transformed
             float heightAccumulator = 0;
-            int dstIndex = 0;
+            var dstIndex = 0;
             for (; dstIndex < Items.Count; dstIndex++)
             {
                 // Using BoundingBox here takes care of scale, paddings, etc...
@@ -184,25 +183,23 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
                 return;
 
             if (srcIndex < dstIndex)
-            {
-                for (int i = srcIndex + 1; i <= dstIndex; i++)
+                for (var i = srcIndex + 1; i <= dstIndex; i++)
                     Items.ChangeChildDepth(Items[i], i - 1);
-            }
             else
-            {
-                for (int i = dstIndex; i < srcIndex; i++)
+                for (var i = dstIndex; i < srcIndex; i++)
                     Items.ChangeChildDepth(Items[i], i + 1);
-            }
 
             Items.ChangeChildDepth(draggedItem, dstIndex);
         }
 
         /// <summary>
-        /// searchable container
+        ///     searchable container
         /// </summary>
         public class TableViewContainer<TItem, TDrawable> : FillFlowContainer<TDrawable>, IHasFilterableChildren where TDrawable : TableViewCell<TItem> where TItem : IHasPrimaryKey
         {
             public IEnumerable<string> FilterTerms => new string[] { };
+
+            public IEnumerable<IFilterable> FilterableChildren => Children;
 
             public bool MatchingFilter
             {
@@ -213,28 +210,70 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
                 }
             }
 
-            // Compare with reversed ChildID and Depth
-            protected override int Compare(Drawable x, Drawable y) => base.Compare(y, x);
-
-            public IEnumerable<IFilterable> FilterableChildren => Children;
-
             public TableViewContainer()
             {
                 LayoutDuration = 200;
                 LayoutEasing = Easing.OutQuint;
                 Direction = FillDirection.Vertical;
             }
+
+            // Compare with reversed ChildID and Depth
+            protected override int Compare(Drawable x, Drawable y)
+            {
+                return base.Compare(y, x);
+            }
         }
     }
 
     /// <summary>
-    /// drawable Item
-    /// From : osu.Game.Overlays.Music : PlaylistItem.cs
+    ///     drawable Item
+    ///     From : osu.Game.Overlays.Music : PlaylistItem.cs
     /// </summary>
     public class TableViewCell<TItem> : Container, IFilterable, IDraggable where TItem : IHasPrimaryKey
     {
-        private const float fade_duration = 100;
+        public bool IsDraggable => handle.IsHovered;
+        public Action<TItem> OnSelect;
         public virtual TItem BeatmapSetInfo { get; set; }
+
+        public bool MatchingFilter
+        {
+            get => matching;
+            set
+            {
+                if (matching == value) return;
+                matching = value;
+                this.FadeTo(matching ? 1 : 0, 200);
+            }
+        }
+
+        public bool Selected
+        {
+            get => selected;
+            set
+            {
+                if (value == selected) return;
+                selected = value;
+
+                FinishTransforms(true);
+
+                /*
+                foreach (SpriteText s in titleSprites)
+                    s.FadeColour(Selected ? hoverColour : Color4.White, fade_duration);
+                    */
+            }
+        }
+
+        public IEnumerable<string> FilterTerms { get; } = new List<string> { "add" };
+
+        protected Color4 HoverColour;
+        protected Color4 ArtistColour;
+        private const float fade_duration = 100;
+
+        private bool matching = true;
+
+        private bool selected;
+
+        private SpriteIcon handle;
 
 
         public TableViewCell()
@@ -250,57 +289,9 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
             {
                 handle = new PlaylistItemHandle
                 {
-                    Colour = OsuColour.FromHex(@"999"),
-                },
+                    Colour = OsuColour.FromHex(@"999")
+                }
             };
-        }
-
-        private bool matching = true;
-
-        public bool MatchingFilter
-        {
-            get { return matching; }
-            set
-            {
-                if (matching == value) return;
-                matching = value;
-                this.FadeTo(matching ? 1 : 0, 200);
-            }
-        }
-
-        private bool selected;
-
-        public bool Selected
-        {
-            get { return selected; }
-            set
-            {
-                if (value == selected) return;
-                selected = value;
-
-                FinishTransforms(true);
-
-                /*
-                foreach (SpriteText s in titleSprites)
-                    s.FadeColour(Selected ? hoverColour : Color4.White, fade_duration);
-                    */
-            }
-        }
-
-        private SpriteIcon handle;
-        public bool IsDraggable => handle.IsHovered;
-
-        public IEnumerable<string> FilterTerms { get; private set; } = new List<string>() { "add" };
-        public Action<TItem> OnSelect;
-
-        protected Color4 HoverColour;
-        protected Color4 ArtistColour;
-
-        [BackgroundDependencyLoader]
-        private void load(OsuColour colours, LocalisationEngine localisation)
-        {
-            HoverColour = colours.Yellow;
-            ArtistColour = colours.Gray9;
         }
 
         protected override bool OnHover(InputState state)
@@ -318,6 +309,13 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
         {
             OnSelect?.Invoke(BeatmapSetInfo);
             return true;
+        }
+
+        [BackgroundDependencyLoader]
+        private void load(OsuColour colours, LocalisationEngine localisation)
+        {
+            HoverColour = colours.Yellow;
+            ArtistColour = colours.Gray9;
         }
 
         private class PlaylistItemHandle : SpriteIcon

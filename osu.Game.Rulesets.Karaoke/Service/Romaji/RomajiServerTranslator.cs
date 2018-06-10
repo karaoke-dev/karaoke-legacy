@@ -13,33 +13,33 @@ using osu.Game.Rulesets.Karaoke.Online.API.Romaj.RomajiServer;
 namespace osu.Game.Rulesets.Karaoke.Service.Romaji
 {
     /// <summary>
-    /// can translate any langlage to romaji
+    ///     can translate any langlage to romaji
     /// </summary>
     public class RomajiServerTranslator : IRomajiTranslator
     {
-        private RomajiServerApi RomajiServerApi = new RomajiServerApi();
+        private readonly RomajiServerApi RomajiServerApi = new RomajiServerApi();
 
         /// <summary>
-        /// translte list 
+        ///     translte list
         /// </summary>
         /// <param name="sourceLangeCode"></param>
         /// <param name="translateListString"></param>
         /// <returns></returns>
         public async Task<BaseLyric> Translate(TranslateCode code, BaseLyric translateListString)
         {
-            return (await Translate(code, new List<BaseLyric>() { translateListString })).FirstOrDefault();
+            return (await Translate(code, new List<BaseLyric> { translateListString })).FirstOrDefault();
         }
 
 
         /// <summary>
-        /// translte list 
+        ///     translte list
         /// </summary>
         /// <param name="sourceLangeCode"></param>
         /// <param name="translateListString"></param>
         /// <returns></returns>
         public async Task<List<BaseLyric>> Translate(TranslateCode code, List<BaseLyric> translateListString)
         {
-            List<BaseLyric> listTranslate = new List<BaseLyric>();
+            var listTranslate = new List<BaseLyric>();
             var result = await RomajiServerApi.Translate(code, translateListString.Select(x => x.Lyric.Text).ToList());
 
             //convert each sentence
@@ -48,30 +48,24 @@ namespace osu.Game.Rulesets.Karaoke.Service.Romaji
                 var singleTranslate = new BaseLyric();
 
                 //convert from Translatersult to lyruc
-                for (int i = 0; i < single.Result.Count; i++)
+                for (var i = 0; i < single.Result.Count; i++)
                 {
                     var character = single.Result[i];
 
                     //romaji
                     if (singleTranslate is IHasRomaji romajiLyric)
-                    {
-                        romajiLyric.Romaji.Add(i, new RomajiText()
+                        romajiLyric.Romaji.Add(i, new RomajiText
                         {
-                            Text = character.Romaji,
+                            Text = character.Romaji
                         });
-                    }
 
                     //means it is kanji
                     if (character.Type == 0)
-                    {
                         if (singleTranslate is IHasFurigana furiganaLyric)
-                        {
-                            furiganaLyric.Furigana.Add(i, new FuriganaText()
+                            furiganaLyric.Furigana.Add(i, new FuriganaText
                             {
-                                Text = character.Katakana,
+                                Text = character.Katakana
                             });
-                        }
-                    }
                 }
 
                 listTranslate.Add(singleTranslate);

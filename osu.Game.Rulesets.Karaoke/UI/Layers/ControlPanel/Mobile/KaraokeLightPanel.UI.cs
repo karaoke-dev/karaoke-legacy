@@ -23,7 +23,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel.Mobile
         private Box _backgroundDimBox = new Box();
 
         /// <summary>
-        /// prepare the InfoPiece for different action
+        ///     prepare the InfoPiece for different action
         /// </summary>
         protected void PrepareKeyInfoPanel(BaseAction action)
         {
@@ -45,7 +45,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel.Mobile
         }
 
         /// <summary>
-        /// show info panel
+        ///     show info panel
         /// </summary>
         protected void PrepareShowInfoPanel(IInfoPiece boxContainer)
         {

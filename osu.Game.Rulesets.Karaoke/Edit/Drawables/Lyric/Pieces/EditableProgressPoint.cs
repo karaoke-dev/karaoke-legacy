@@ -20,34 +20,10 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Pieces
     {
         public MenuItem[] ContextMenuItems => new MenuItem[]
         {
-            new OsuMenuItem(@"Delete", MenuItemType.Highlighted),
+            new OsuMenuItem(@"Delete", MenuItemType.Highlighted)
         };
 
-        //public 
-        public KeyValuePair<int, LyricTimeLine> LyricProgressPoint { get; set; }
-
-        public DrawableKaraokeThumbnail DrawableKaraokeThumbnail { get; set; } //Parent
         public int IndexOfObject => LyricProgressPoint.Key;
-
-        //Drawable component
-        protected OsuSpriteText ProgressDrawableText { get; set; }
-
-        protected Box Background { get; set; } = new Box() { Height = 50, };
-
-        protected Box StartLine { get; set; } = new Box()
-        {
-            Width = 3,
-            Height = 50,
-        };
-
-        //protected value
-        protected bool IsFocus = false;
-
-        protected float? PressedRelativePositionX;
-        protected Color4 BackgroundIdolColor { get; set; } = Color4.Black;
-        protected Color4 BackgroundHoverColor { get; set; } = Color4.Purple;
-        protected Color4 BackgroundPressColor { get; set; } = Color4.Blue;
-        protected float Ratio = 0.3f;
 
         //protected culculater value
         public string ProgressText
@@ -55,17 +31,17 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Pieces
             get
             {
                 if (IndexOfObject == 0)
-                {
                     return DrawableKaraokeThumbnail.Lyric.Lyric.Text.Substring(0, LyricProgressPoint.Key + 1);
-                }
-                else
-                {
-                    var thisCharIndex = LyricProgressPoint.Key;
-                    var lastTime = DrawableKaraokeThumbnail.Lyric.TimeLines.FindPrevioud(IndexOfObject).Value.Key;
-                    return DrawableKaraokeThumbnail.Lyric.Lyric.Text.Substring(lastTime + 1, thisCharIndex - lastTime);
-                }
+                var thisCharIndex = LyricProgressPoint.Key;
+                var lastTime = DrawableKaraokeThumbnail.Lyric.TimeLines.FindPrevioud(IndexOfObject).Value.Key;
+                return DrawableKaraokeThumbnail.Lyric.Lyric.Text.Substring(lastTime + 1, thisCharIndex - lastTime);
             }
         }
+
+        //public 
+        public KeyValuePair<int, LyricTimeLine> LyricProgressPoint { get; set; }
+
+        public DrawableKaraokeThumbnail DrawableKaraokeThumbnail { get; set; } //Parent
 
         public bool Hover
         {
@@ -91,24 +67,45 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Pieces
             }
         }
 
-        public void ResetColor()
+        //protected value
+        protected bool IsFocus;
+
+        protected float? PressedRelativePositionX;
+        protected float Ratio = 0.3f;
+
+        //Drawable component
+        protected OsuSpriteText ProgressDrawableText { get; set; }
+
+        protected Box Background { get; set; } = new Box { Height = 50 };
+
+        protected Box StartLine { get; set; } = new Box
         {
-            Hover = false;
-            Selected = false;
-        }
+            Width = 3,
+            Height = 50
+        };
+
+        protected Color4 BackgroundIdolColor { get; set; } = Color4.Black;
+        protected Color4 BackgroundHoverColor { get; set; } = Color4.Purple;
+        protected Color4 BackgroundPressColor { get; set; } = Color4.Blue;
 
         public EditableProgressPoint(DrawableKaraokeThumbnail drawableKaraokeThumbnail, KeyValuePair<int, LyricTimeLine> lyricProgressPoin)
         {
             DrawableKaraokeThumbnail = drawableKaraokeThumbnail;
             LyricProgressPoint = lyricProgressPoin;
-            ProgressDrawableText = new OsuSpriteText()
+            ProgressDrawableText = new OsuSpriteText
             {
                 Text = ProgressText,
-                Position = new Vector2(5, 5),
+                Position = new Vector2(5, 5)
             };
             Add(Background);
             Add(StartLine);
             Add(ProgressDrawableText);
+        }
+
+        public void ResetColor()
+        {
+            Hover = false;
+            Selected = false;
         }
 
         #region Input
@@ -133,13 +130,8 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Pieces
         protected override bool OnKeyDown(InputState state, KeyDownEventArgs args)
         {
             if (IsFocus)
-            {
-                //delete itself
                 if (args.Key == Key.Delete)
-                {
                     DrawableKaraokeThumbnail.DeletePoint(LyricProgressPoint);
-                }
-            }
 
             return base.OnKeyDown(state, args);
         }

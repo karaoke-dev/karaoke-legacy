@@ -9,7 +9,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Common.Pieces
 {
     public class ImagePicec : Sprite
     {
-        private string _resource;
+        private readonly string _resource;
 
         public ImagePicec(string resource)
         {

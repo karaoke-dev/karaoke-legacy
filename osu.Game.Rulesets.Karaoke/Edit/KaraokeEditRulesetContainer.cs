@@ -20,23 +20,27 @@ namespace osu.Game.Rulesets.Karaoke.Edit
             Name = "KaraokeEditRulesetContainer";
         }
 
+        public override PassThroughInputManager CreateInputManager()
+        {
+            return new KaraokeEditorInputManager(Ruleset.RulesetInfo);
+        }
+
         /// <summary>
-        /// create editable HitObject
+        ///     create editable HitObject
         /// </summary>
         /// <param name="h"></param>
         /// <returns></returns>
         protected override DrawableHitObject<BaseLyric> GetVisualRepresentation(BaseLyric h)
         {
             if (h is BaseLyric karaokeObject)
-            {
                 return new DrawableEditableKaraokeObject(karaokeObject);
-            }
 
             return null;
         }
 
-        protected override Playfield CreatePlayfield() => new KaraokeEditPlayfield(Ruleset, WorkingBeatmap, this);
-
-        public override PassThroughInputManager CreateInputManager() => new KaraokeEditorInputManager(Ruleset.RulesetInfo);
+        protected override Playfield CreatePlayfield()
+        {
+            return new KaraokeEditPlayfield(Ruleset, WorkingBeatmap, this);
+        }
     }
 }

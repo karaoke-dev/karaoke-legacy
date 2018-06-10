@@ -6,7 +6,7 @@ namespace osu.Game.Rulesets.Karaoke.Service.TranslateEditor
     public class TranslatorServiceProvider
     {
         /// <summary>
-        /// Get translator by providerType
+        ///     Get translator by providerType
         /// </summary>
         /// <param name="providerType"></param>
         /// <returns></returns>
@@ -25,8 +25,8 @@ namespace osu.Game.Rulesets.Karaoke.Service.TranslateEditor
     public enum TranslatorUploaderProvider
     {
         /// <summary>
-        /// The github.
+        ///     The github.
         /// </summary>
-        Github = 1,
+        Github = 1
     }
 }

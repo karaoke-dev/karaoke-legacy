@@ -7,30 +7,27 @@ namespace osu.Game.Rulesets.Karaoke.Online.API.Romaj.Github
 {
     public class GithubRomajiApi
     {
-        public GithubRomajiApi()
-        {
-        }
     }
 
     public class GithubRomajiTranslate
     {
         /// <summary>
-        /// Version
+        ///     Version
         /// </summary>
         public string Ver { get; set; } = "1.0";
 
         /// <summary>
-        /// AuthorId
+        ///     AuthorId
         /// </summary>
         public string AuthorId { get; set; }
 
         /// <summary>
-        /// LangId
+        ///     LangId
         /// </summary>
         public string Lang { get; set; }
 
         /// <summary>
-        /// Lyrics
+        ///     Lyrics
         /// </summary>
         public List<GithubRomajiLyric> Lyrics { get; set; }
     }
@@ -38,12 +35,12 @@ namespace osu.Game.Rulesets.Karaoke.Online.API.Romaj.Github
     public class GithubRomajiLyric
     {
         /// <summary>
-        /// Lyric id
+        ///     Lyric id
         /// </summary>
         public string LyrucId { get; set; }
 
         /// <summary>
-        /// Romajis
+        ///     Romajis
         /// </summary>
         public List<GithubRomaji> Romajis { get; set; }
     }
@@ -51,17 +48,17 @@ namespace osu.Game.Rulesets.Karaoke.Online.API.Romaj.Github
     public class GithubRomaji
     {
         /// <summary>
-        /// Index
+        ///     Index
         /// </summary>
         public int Index { get; set; }
 
         /// <summary>
-        /// Count
+        ///     Count
         /// </summary>
         public int Count { get; set; }
 
         /// <summary>
-        /// Romaji
+        ///     Romaji
         /// </summary>
         public string Romaji { get; set; }
     }

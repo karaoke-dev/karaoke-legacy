@@ -13,17 +13,17 @@ using OpenTK.Graphics;
 namespace osu.Game.Rulesets.Karaoke.Edit.Dialog
 {
     /// <summary>
-    /// before editor can save beatmap ,
-    /// use this to get serialize string from object
-    /// and past json string to unserialize to object
+    ///     before editor can save beatmap ,
+    ///     use this to get serialize string from object
+    ///     and past json string to unserialize to object
     /// </summary>
     public class LoadSaveDialog : DialogContainer
     {
         public override string Title => "Load/Save";
 
-        protected FocusedTextBox LoadSaveTextbox { get; set; }
-
         protected KaraokeBasePlayfield KaraokeBasePlayfield;
+
+        protected FocusedTextBox LoadSaveTextbox { get; set; }
 
         public LoadSaveDialog(KaraokeBasePlayfield karaokeBasePlayfield)
         {
@@ -34,7 +34,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog
 
         public override void InitialDialog()
         {
-            MainContext = new Container()
+            MainContext = new Container
             {
                 Padding = new MarginPadding(0),
                 RelativeSizeAxes = Axes.Y,
@@ -49,8 +49,8 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog
                         Width = 500,
                         //Height=200,
                         Text = "Helloooooooooooooooooooooooooooooooooo!" + '\n' + "World",
-                        Colour = Color4.White,
-                    },
+                        Colour = Color4.White
+                    }
                 }
             };
 
@@ -61,7 +61,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog
         public void ShowSerializeResult()
         {
             //get list object
-            List<BaseLyric> beatmap = new List<BaseLyric>();
+            var beatmap = new List<BaseLyric>();
             //1. get result
             var result = JsonConvert.SerializeObject(beatmap);
             //2. fill in textbox
@@ -70,9 +70,9 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog
 
         public void DeSerializeresult()
         {
-            string textboxString = LoadSaveTextbox.Text;
+            var textboxString = LoadSaveTextbox.Text;
             //1. get result
-            List<BaseLyric> result = JsonConvert.DeserializeObject<List<BaseLyric>>(textboxString);
+            var result = JsonConvert.DeserializeObject<List<BaseLyric>>(textboxString);
             //2. update result to playFiled
         }
     }

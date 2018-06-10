@@ -13,14 +13,6 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric.Pieces
 {
     public class TextsAndMask : Container //BufferedContainer
     {
-        protected virtual TextSets LeftSideText { get; set; } = new TextSets();
-
-        protected virtual TextSets RightSideText { get; set; } = new TextSets();
-
-        private float _maskWidth;
-
-        private float _maskHeight;
-
         //Lyric
         public MainKaraokeText MainText => RightSideText.MainKaraokeText;
 
@@ -33,6 +25,13 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric.Pieces
         public KaraokeText BottomText => BottomTexts?.FirstOrDefault();
 
         public List<KaraokeText> BottomTexts => RightSideText.ListDrawableBottomText;
+        protected virtual TextSets LeftSideText { get; set; } = new TextSets();
+
+        protected virtual TextSets RightSideText { get; set; } = new TextSets();
+
+        private float _maskWidth;
+
+        private float _maskHeight;
 
 
         public TextsAndMask()
@@ -40,7 +39,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric.Pieces
             Children = new Drawable[]
             {
                 RightSideText,
-                LeftSideText,
+                LeftSideText
             };
         }
 

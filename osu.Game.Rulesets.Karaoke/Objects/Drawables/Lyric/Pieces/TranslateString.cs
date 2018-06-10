@@ -7,9 +7,9 @@ using osu.Game.Rulesets.Karaoke.Objects.Text;
 namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric.Pieces
 {
     /// <summary>
-    /// show the translate string 
-    /// just define the format of string ?
-    /// the text will assign from DrawableObject?
+    ///     show the translate string
+    ///     just define the format of string ?
+    ///     the text will assign from DrawableObject?
     /// </summary>
     public class TranslateString : KaraokeText
     {

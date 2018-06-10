@@ -7,21 +7,21 @@ using osu.Framework.Input;
 namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
 {
     /// <summary>
-    /// set the rule to change the input time format to --:--.--
-    /// osu.Game.Screens.Edit.Components : TimeInfoContainer.cs
+    ///     set the rule to change the input time format to --:--.--
+    ///     osu.Game.Screens.Edit.Components : TimeInfoContainer.cs
     /// </summary>
     public class TimeTextBox : RevertableTextbox<double>
     {
         public override double OldValue
         {
             get => base.OldValue;
-            set { base.OldValue = value; }
+            set => base.OldValue = value;
         }
 
         public override double NewValue
         {
             get => base.NewValue;
-            set { base.NewValue = value; }
+            set => base.NewValue = value;
         }
 
         public TimeTextBox()
@@ -32,25 +32,6 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
 
             //update string to new format
             OnCommit += (a, isNewText) => { UpdateTextToFormat(); };
-        }
-
-        //start edit
-        protected override void OnFocus(InputState state)
-        {
-            //disable update new value
-            IsSettingLodValue = true;
-
-            //Convert double to text
-            Text = HasEdited ? (NewValue / 1000).ToString() : (OldValue / 1000).ToString();
-
-            base.OnFocus(state);
-        }
-
-        //EndEdit
-        protected override void OnFocusLost(InputState state)
-        {
-            base.OnFocusLost(state);
-            UpdateTextToFormat();
         }
 
         public override void ConvertOldValueToText()
@@ -70,6 +51,25 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
             catch
             {
             }
+        }
+
+        //start edit
+        protected override void OnFocus(InputState state)
+        {
+            //disable update new value
+            IsSettingLodValue = true;
+
+            //Convert double to text
+            Text = HasEdited ? (NewValue / 1000).ToString() : (OldValue / 1000).ToString();
+
+            base.OnFocus(state);
+        }
+
+        //EndEdit
+        protected override void OnFocusLost(InputState state)
+        {
+            base.OnFocusLost(state);
+            UpdateTextToFormat();
         }
 
         protected override bool OnKeyDown(InputState state, KeyDownEventArgs args)
@@ -97,7 +97,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
         {
             TimeSpan time;
             TimeSpan.TryParse(stringTime, out time);
-            double milliSecond = time.TotalMilliseconds / 60;
+            var milliSecond = time.TotalMilliseconds / 60;
             return milliSecond;
         }
 

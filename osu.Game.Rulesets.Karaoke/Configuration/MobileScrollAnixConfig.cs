@@ -9,30 +9,30 @@ using osu.Game.Rulesets.Karaoke.Objects.Types;
 namespace osu.Game.Rulesets.Karaoke.Configuration
 {
     /// <summary>
-    /// Config
+    ///     Config
     /// </summary>
     public class MobileScrollAnixConfig : RecordChangeObject, ICopyable
     {
         /// <summary>
-        /// Tap Action
+        ///     Tap Action
         /// </summary>
         public Dictionary<TouchScreenTapInteractive, TapConfig> TagConfigs { get; set; } = new Dictionary<TouchScreenTapInteractive, TapConfig>();
 
 
         /// <summary>
-        /// Scroll Action
+        ///     Scroll Action
         /// </summary>
         public Dictionary<TouchScreenScrollInteractive, SingleAnixConfig> ScrollConfigs { get; set; } = new Dictionary<TouchScreenScrollInteractive, SingleAnixConfig>();
 
 
         /// <summary>
-        /// Copy
+        ///     Copy
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
         public T Copy<T>() where T : class, ICopyable, new()
         {
-            T result = new T();
+            var result = new T();
             if (result is MobileScrollAnixConfig mobileScrollAnixConfig)
             {
                 mobileScrollAnixConfig.TagConfigs = TagConfigs;
@@ -45,28 +45,28 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
     }
 
     /// <summary>
-    /// SingleAnixConfig
+    ///     SingleAnixConfig
     /// </summary>
     public class SingleAnixConfig : ICopyable
     {
         /// <summary>
-        /// Anix
+        ///     Anix
         /// </summary>
         public KaraokeScrollAction KaraokeScrollAction { get; set; }
 
         /// <summary>
-        /// Sensitive
+        ///     Sensitive
         /// </summary>
         public double Sensitive { get; set; }
 
         /// <summary>
-        /// Copy
+        ///     Copy
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
         public T Copy<T>() where T : class, ICopyable, new()
         {
-            T result = new T();
+            var result = new T();
             if (result is SingleAnixConfig singleAnixConfig)
             {
                 singleAnixConfig.KaraokeScrollAction = KaraokeScrollAction;
@@ -78,31 +78,29 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
     }
 
     /// <summary>
-    /// TapConfig
+    ///     TapConfig
     /// </summary>
     public class TapConfig : ICopyable
     {
         public KaraokeTapAction KaraokeTapAction { get; set; }
 
         /// <summary>
-        /// Copy
+        ///     Copy
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
         public T Copy<T>() where T : class, ICopyable, new()
         {
-            T result = new T();
+            var result = new T();
             if (result is TapConfig tapConfig)
-            {
                 tapConfig.KaraokeTapAction = KaraokeTapAction;
-            }
 
             return result;
         }
     }
 
     /// <summary>
-    /// Tap action
+    ///     Tap action
     /// </summary>
     public enum TouchScreenTapInteractive
     {
@@ -112,13 +110,13 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
     }
 
     /// <summary>
-    /// Scroll action
+    ///     Scroll action
     /// </summary>
     public enum TouchScreenScrollInteractive
     {
         XAnix,
         YAnix,
         TwoFingerXAnix,
-        TwoFingerYAnix,
+        TwoFingerYAnix
     }
 }

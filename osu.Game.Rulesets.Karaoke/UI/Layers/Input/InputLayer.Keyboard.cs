@@ -7,21 +7,21 @@ using osu.Game.Rulesets.Karaoke.UI.Layers.Input.Action;
 namespace osu.Game.Rulesets.Karaoke.UI.Layers.Input
 {
     /// <summary>
-    /// this container is use for detect HotKey pressing
+    ///     this container is use for detect HotKey pressing
     /// </summary>
     public partial class InputLayer
     {
         /// <summary>
-        /// On Press
+        ///     On Press
         /// </summary>
         /// <returns><c>true</c>, if pressed was oned, <c>false</c> otherwise.</returns>
         /// <param name="action">Action.</param>
         public bool OnPressed(KaraokeKeyAction action)
         {
-            KeyAction keyAction = new KeyAction()
+            var keyAction = new KeyAction
             {
                 KaraokeKeyAction = action,
-                Press = true,
+                Press = true
             };
             InputAction.Value = keyAction;
 
@@ -29,16 +29,16 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Input
         }
 
         /// <summary>
-        /// OnRelease
+        ///     OnRelease
         /// </summary>
         /// <param name="action"></param>
         /// <returns></returns>
         public bool OnReleased(KaraokeKeyAction action)
         {
-            KeyAction keyAction = new KeyAction()
+            var keyAction = new KeyAction
             {
                 KaraokeKeyAction = action,
-                Press = false,
+                Press = false
             };
             InputAction.Value = keyAction;
 

@@ -5,10 +5,6 @@ namespace osu.Game.Rulesets.Karaoke.Service.Object
 {
     public class PublicCheckResult
     {
-        public PublicCheckResult()
-        {
-        }
-
         public PublicCheckResultTyle PublicCheckResultTyle { get; set; }
 
         public string Title { get; set; }
@@ -17,22 +13,22 @@ namespace osu.Game.Rulesets.Karaoke.Service.Object
     }
 
     /// <summary>
-    /// Public check result tyle.
+    ///     Public check result tyle.
     /// </summary>
     public enum PublicCheckResultTyle
     {
         /// <summary>
-        /// Success commit and added to publish
+        ///     Success commit and added to publish
         /// </summary>
         Syccess,
 
         /// <summary>
-        /// Rejected
+        ///     Rejected
         /// </summary>
         Rejected,
 
         /// <summary>
-        /// Other
+        ///     Other
         /// </summary>
         Other
     }

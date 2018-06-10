@@ -4,10 +4,11 @@
 namespace osu.Game.Rulesets.Karaoke.Objects
 {
     /// <summary>
-    /// record what time the 
+    ///     record what time the
     /// </summary>
     public class LyricTimeLine
     {
+
         public LyricTimeLine()
         {
         }

@@ -16,28 +16,24 @@ using OpenTK;
 namespace osu.Game.Rulesets.Karaoke.UI.Layers.Lyric
 {
     /// <summary>
-    /// use to manage karaoke lyric's position arrangement
-    /// 1. 
-    /// |                   |
-    /// |                   |
-    /// |   karaoke         |
-    /// |           karaoke |
-    /// 
-    /// 2.
-    /// |                       |
-    /// |      <!--scrolling--> |
-    /// |  karaoke   karaoke    |
-    /// |                       |
-    /// 
-    /// 3.
-    /// |            ^  |
-    /// |   karaoke  |  |
-    /// |   karaoke  |  |
-    /// |   karaoke  |  |
-    /// 
-    /// 4. more
-    /// 
-    /// 2. 3. 4. will be implement until release
+    ///     use to manage karaoke lyric's position arrangement
+    ///     1.
+    ///     |                   |
+    ///     |                   |
+    ///     |   karaoke         |
+    ///     |           karaoke |
+    ///     2.
+    ///     |                       |
+    ///     |      <!--scrolling--> |
+    ///     |  karaoke   karaoke    |
+    ///     |                       |
+    ///     3.
+    ///     |            ^  |
+    ///     |   karaoke  |  |
+    ///     |   karaoke  |  |
+    ///     |   karaoke  |  |
+    ///     4. more
+    ///     2. 3. 4. will be implement until release
     /// </summary>
     public class KaraokeLyricPlayField : Playfield, IDrawableLyricBindable, ILayer
     {
@@ -50,6 +46,24 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Lyric
         public BindableObject<LyricTemplate> Template { get; set; } = new BindableObject<LyricTemplate>(new LyricTemplate());
         public BindableObject<SingerTemplate> SingerTemplate { get; set; } = new BindableObject<SingerTemplate>(new SingerTemplate());
         public Bindable<TranslateCode> TranslateCode { get; set; } = new Bindable<TranslateCode>();
+
+        /// <summary>
+        ///     update combo by last object
+        /// </summary>
+        /// <param name="karaokeField"></param>
+        /// <param name="lyric"></param>
+        public static void UpdateObjectCombo(BaseLyric lyric)
+        {
+        }
+
+        /// <summary>
+        ///     automatically update preemptive time
+        /// </summary>
+        /// <param name="karaokeField"></param>
+        /// <param name="karaokeObject"></param>
+        public static void UpdateObjectPreemptiveTime(DrawableLyric karaokeObject)
+        {
+        }
 
         public override void Add(DrawableHitObject h)
         {
@@ -95,13 +109,13 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Lyric
         }
 
         /// <summary>
-        /// get list template
+        ///     get list template
         /// </summary>
         /// <param name="karaokeField"></param>
         /// <returns></returns>
         public List<LyricTemplate> GetListKaraokeTemplate()
         {
-            List<LyricTemplate> listTemplates = new List<LyricTemplate>
+            var listTemplates = new List<LyricTemplate>
             {
                 new LyricTemplate()
             };
@@ -109,7 +123,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Lyric
         }
 
         /// <summary>
-        /// update position
+        ///     update position
         /// </summary>
         /// <param name="karaokeField"></param>
         /// <param name="karaokeObject"></param>
@@ -117,7 +131,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Lyric
         {
             //get position
             KaraokePosition position = null;
-            int index = GetListKaraokeObjects().IndexOf(drawableKaraokeObject.HitObject);
+            var index = GetListKaraokeObjects().IndexOf(drawableKaraokeObject.HitObject);
             if (index % 2 == 0)
                 drawableKaraokeObject.Lyric.PositionIndex = 0;
             else
@@ -132,7 +146,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Lyric
         }
 
         /// <summary>
-        /// get list karaoke object
+        ///     get list karaoke object
         /// </summary>
         /// <param name="karaokeField"></param>
         /// <returns></returns>
@@ -142,44 +156,26 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Lyric
         }
 
         /// <summary>
-        /// get list position template
+        ///     get list position template
         /// </summary>
         /// <param name="karaokeField"></param>
         /// <returns></returns>
         public List<KaraokePosition> GetListKaraokePosition()
         {
-            List<KaraokePosition> listTemplates = new List<KaraokePosition>
+            var listTemplates = new List<KaraokePosition>
             {
-                new KaraokePosition()
+                new KaraokePosition
                 {
                     Position = new Vector2(200, 300),
                     Anchor = Anchor.CentreLeft
                 },
-                new KaraokePosition()
+                new KaraokePosition
                 {
                     Position = new Vector2(400, 370),
                     Anchor = Anchor.CentreRight
                 }
             };
             return listTemplates;
-        }
-
-        /// <summary>
-        /// update combo by last object
-        /// </summary>
-        /// <param name="karaokeField"></param>
-        /// <param name="lyric"></param>
-        public static void UpdateObjectCombo(BaseLyric lyric)
-        {
-        }
-
-        /// <summary>
-        /// automatically update preemptive time
-        /// </summary>
-        /// <param name="karaokeField"></param>
-        /// <param name="karaokeObject"></param>
-        public static void UpdateObjectPreemptiveTime(DrawableLyric karaokeObject)
-        {
         }
     }
 }

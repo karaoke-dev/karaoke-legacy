@@ -7,7 +7,7 @@ using osu.Game.Rulesets.Mods;
 namespace osu.Game.Rulesets.Karaoke.Mods
 {
     /// <summary>
-    /// make lytric Transparent.
+    ///     make lytric Transparent.
     /// </summary>
     public class KaraokeModTransparentLyrics : Mod
     {

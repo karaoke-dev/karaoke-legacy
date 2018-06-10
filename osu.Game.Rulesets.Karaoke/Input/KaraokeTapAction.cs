@@ -4,18 +4,18 @@
 namespace osu.Game.Rulesets.Karaoke.Input
 {
     /// <summary>
-    /// action
+    ///     action
     /// </summary>
     public enum KaraokeTapAction
     {
         /// <summary>
-        /// Tap to pause
+        ///     Tap to pause
         /// </summary>
         Pause,
 
         /// <summary>
-        /// Show panel
+        ///     Show panel
         /// </summary>
-        ShowPanel,
+        ShowPanel
     }
 }

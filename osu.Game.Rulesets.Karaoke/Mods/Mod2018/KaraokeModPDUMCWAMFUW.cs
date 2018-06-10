@@ -7,7 +7,7 @@ using osu.Game.Rulesets.Mods;
 namespace osu.Game.Rulesets.Karaoke.Mods.Mod2018
 {
     /// <summary>
-    /// Window$
+    ///     Window$
     /// </summary>
     public class KaraokeModPDUMCWAMFUW : Mod, IApplicableMod
     {

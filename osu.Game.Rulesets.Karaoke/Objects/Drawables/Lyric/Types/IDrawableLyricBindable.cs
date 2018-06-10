@@ -7,27 +7,27 @@ using osu.Game.Rulesets.Karaoke.Configuration;
 namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric.Types
 {
     /// <summary>
-    /// All the bindable things
+    ///     All the bindable things
     /// </summary>
     public interface IDrawableLyricBindable
     {
         /// <summary>
-        /// Style
+        ///     Style
         /// </summary>
         BindableObject<KaraokeLyricConfig> Style { get; set; }
 
         /// <summary>
-        /// Template
+        ///     Template
         /// </summary>
         BindableObject<LyricTemplate> Template { get; set; }
 
         /// <summary>
-        /// SingerTemplate
+        ///     SingerTemplate
         /// </summary>
         BindableObject<SingerTemplate> SingerTemplate { get; set; }
 
         /// <summary>
-        /// Lang
+        ///     Lang
         /// </summary>
         Bindable<TranslateCode> TranslateCode { get; set; }
     }

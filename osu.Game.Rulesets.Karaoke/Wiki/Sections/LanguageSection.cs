@@ -13,7 +13,7 @@ using Symcol.Rulesets.Core.Wiki;
 namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
 {
     /// <summary>
-    /// [1] introduce about translate and romaji
+    ///     [1] introduce about translate and romaji
     ///     1.1 : select language translate API (default is google)
     ///     1.2 : select romaji translator
     /// </summary>

@@ -11,7 +11,7 @@ using osu.Game.Rulesets.Mods;
 namespace osu.Game.Rulesets.Karaoke.UI.Layers.Effect
 {
     /// <summary>
-    /// Effect layer
+    ///     Effect layer
     /// </summary>
     public class EffectLayer : Container, IModLayer
     {
@@ -19,19 +19,15 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Effect
 
         public EffectLayer()
         {
-            Mods.ValueChanged += (newMods) =>
+            Mods.ValueChanged += newMods =>
             {
                 //clean all mod layer
                 Clear();
 
                 //create all layer if contains in mod
                 foreach (var singleMod in Mods.Value)
-                {
                     if (singleMod is IHasLayer iHasLayer)
-                    {
                         Add(iHasLayer.CreateNewLayer());
-                    }
-                }
             };
         }
     }

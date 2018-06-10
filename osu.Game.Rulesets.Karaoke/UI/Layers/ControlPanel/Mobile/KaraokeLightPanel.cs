@@ -10,8 +10,8 @@ using osu.Game.Rulesets.Karaoke.UI.Layers.Input.Action;
 namespace osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel.Mobile
 {
     /// <summary>
-    /// this is the panel designed for mobile
-    /// it is only just show time and time slider 
+    ///     this is the panel designed for mobile
+    ///     it is only just show time and time slider
     /// </summary>
     public partial class KaraokeLightPanel : Container, IControlPanel
     {
@@ -20,7 +20,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel.Mobile
         private IAmKaraokeField _playField;
 
         /// <summary>
-        /// Ctor
+        ///     Ctor
         /// </summary>
         /// <param name="playField"></param>
         public KaraokeLightPanel(IAmKaraokeField playField)
@@ -31,7 +31,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel.Mobile
         }
 
         /// <summary>
-        /// Change the visivility
+        ///     Change the visivility
         /// </summary>
         public void ToggleVisibility()
         {

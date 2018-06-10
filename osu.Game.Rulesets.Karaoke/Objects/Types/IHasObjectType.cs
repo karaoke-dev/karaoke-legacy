@@ -9,11 +9,11 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Types
     }
 
     /// <summary>
-    /// Types
+    ///     Types
     /// </summary>
     public enum KaraokeHitObjectType
     {
         Lyric,
-        Commerial,
+        Commerial
     }
 }

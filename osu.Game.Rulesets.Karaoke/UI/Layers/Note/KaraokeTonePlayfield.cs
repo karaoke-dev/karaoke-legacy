@@ -27,13 +27,13 @@ using OpenTK.Graphics;
 namespace osu.Game.Rulesets.Karaoke.UI.Layers.Note
 {
     /// <summary>
-    /// use to show karaoke tone Playfield
-    /// like : 
-    /// ---------------------------#####
-    /// --------------#####----####-----
-    /// ---------#####-----####---------
-    /// ---######-----------------------
-    /// --------------------------------
+    ///     use to show karaoke tone Playfield
+    ///     like :
+    ///     ---------------------------#####
+    ///     --------------#####----####-----
+    ///     ---------#####-----####---------
+    ///     ---######-----------------------
+    ///     --------------------------------
     /// </summary>
     public class KaraokeTonePlayfield : ScrollingPlayfield, ILayer
     {

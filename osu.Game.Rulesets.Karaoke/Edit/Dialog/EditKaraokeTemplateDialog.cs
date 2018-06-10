@@ -10,7 +10,7 @@ using OpenTK;
 namespace osu.Game.Rulesets.Karaoke.Edit.Dialog
 {
     /// <summary>
-    /// edit karaoke termplate
+    ///     edit karaoke termplate
     /// </summary>
     public class EditKaraokeTemplateDialog : DialogContainer
     {

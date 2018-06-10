@@ -7,8 +7,8 @@ using osu.Game.Graphics.UserInterface;
 namespace osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel.Desktop.Pieces
 {
     /// <summary>
-    /// inherit from osuButton
-    /// Has tooltop
+    ///     inherit from osuButton
+    ///     Has tooltop
     /// </summary>
     public class KaraokeButton : TriangleButton, IHasTooltip
     {

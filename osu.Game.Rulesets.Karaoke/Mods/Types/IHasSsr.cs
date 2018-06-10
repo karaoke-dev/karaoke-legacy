@@ -4,22 +4,22 @@
 namespace osu.Game.Rulesets.Karaoke.Mods.Types
 {
     /// <summary>
-    /// SSR
+    ///     SSR
     /// </summary>
     public interface IHasSsr
     {
         /// <summary>
-        /// Name
+        ///     Name
         /// </summary>
         string SsrAchieveName { get; set; }
 
         /// <summary>
-        /// Id
+        ///     Id
         /// </summary>
         string SsrId { get; set; }
 
         /// <summary>
-        /// Precentage
+        ///     Precentage
         /// </summary>
         string SsrPrecetage { get; set; }
     }

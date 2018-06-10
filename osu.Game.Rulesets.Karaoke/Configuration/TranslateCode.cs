@@ -6,9 +6,9 @@ using System.ComponentModel;
 namespace osu.Game.Rulesets.Karaoke.Configuration
 {
     /// <summary>
-    /// translate language code
-    /// google : 
-    /// https://cloud.google.com/translate/docs/languages
+    ///     translate language code
+    ///     google :
+    ///     https://cloud.google.com/translate/docs/languages
     /// </summary>
     public enum TranslateCode
     {
@@ -222,6 +222,6 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
 
         [Description("Yoruba")] Yoruba, // yo
 
-        [Description("Zulu")] Zulu, //  zu
+        [Description("Zulu")] Zulu //  zu
     }
 }

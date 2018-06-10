@@ -40,32 +40,26 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Pieces
                 }
 
                 if (StartSelectIndex != null)
-                {
                     if (EndSelectIndex != null)
                     {
                         if (StartSelectIndex <= EndSelectIndex)
-                        {
-                            for (int i = StartSelectIndex.Value; i <= EndSelectIndex; i++)
+                            for (var i = StartSelectIndex.Value; i <= EndSelectIndex; i++)
                             {
                                 Children[i].Colour = SelectColor;
                                 Children[i].Alpha = 1;
                             }
-                        }
                         else
-                        {
-                            for (int i = EndSelectIndex.Value; i <= StartSelectIndex; i++)
+                            for (var i = EndSelectIndex.Value; i <= StartSelectIndex; i++)
                             {
                                 Children[i].Colour = SelectColor;
                                 Children[i].Alpha = 1;
                             }
-                        }
                     }
                     else
                     {
                         Children[StartSelectIndex.Value].Colour = SelectColor;
                         Children[StartSelectIndex.Value].Alpha = 1;
                     }
-                }
             }
             catch
             {

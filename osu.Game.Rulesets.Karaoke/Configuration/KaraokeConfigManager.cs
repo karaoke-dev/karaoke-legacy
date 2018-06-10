@@ -15,6 +15,11 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
         {
         }
 
+        public override TrackedSettings CreateTrackedSettings()
+        {
+            return new TrackedSettings();
+        }
+
         protected override void InitialiseDefaults()
         {
             base.InitialiseDefaults();
@@ -36,11 +41,11 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
 
             //Style
             SetObject(KaraokeSetting.Template, new LyricTemplate());
-            SetObject(KaraokeSetting.LyricStyle, new KaraokeLyricConfig()
+            SetObject(KaraokeSetting.LyricStyle, new KaraokeLyricConfig
             {
                 SubTextVislbility = true,
                 RomajiVislbility = true,
-                RomajiFirst = false,
+                RomajiFirst = false
             });
 
             //singer
@@ -59,14 +64,10 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
             //Tone
             Set(KaraokeSetting.NoteSpeed, 1500.0);
         }
-
-        public override TrackedSettings CreateTrackedSettings() => new TrackedSettings
-        {
-        };
     }
 
     /// <summary>
-    /// karaoke setting
+    ///     karaoke setting
     /// </summary>
     public enum KaraokeSetting
     {

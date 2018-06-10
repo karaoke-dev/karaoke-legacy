@@ -14,7 +14,7 @@ using OpenTK.Graphics;
 namespace osu.Game.Rulesets.Karaoke.UI.Layers.Effect.ShowEffect
 {
     /// <summary>
-    /// show Visualisation layer
+    ///     show Visualisation layer
     /// </summary>
     public class SnowLayer : Container
     {
@@ -28,11 +28,11 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Effect.ShowEffect
         public string TexturePath { get; set; } = @"Play/Karaoke/Layer/Snow/Snow";
 
         private TextureStore texture;
-        private Container snowContainer = new Container();
-        Random random;
+        private readonly Container snowContainer = new Container();
+        private readonly Random random;
 
         /// <summary>
-        /// initialize
+        ///     initialize
         /// </summary>
         public SnowLayer(int snowNumber = 600)
         {
@@ -41,14 +41,16 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Effect.ShowEffect
 
             Children = new Drawable[]
             {
-                snowContainer,
+                snowContainer
             };
 
             random = new Random();
         }
 
+        #region Disposal
+
         /// <summary>
-        /// dispose
+        ///     dispose
         /// </summary>
         /// <param name="disposing"></param>
         protected override void Dispose(bool disposing)
@@ -57,8 +59,10 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Effect.ShowEffect
             base.Dispose(disposing);
         }
 
+        #endregion
+
         /// <summary>
-        /// update
+        ///     update
         /// </summary>
         protected override void Update()
         {
@@ -67,15 +71,15 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Effect.ShowEffect
 
             base.Update();
 
-            double currentTime = Time.Current;
+            var currentTime = Time.Current;
 
-            bool isCreateShow = !snowContainer.Children.Any() || (snowContainer.Children.LastOrDefault() as SnowSpitie).CreateTime + 1000 / SnowGenerateParSecond < currentTime;
+            var isCreateShow = !snowContainer.Children.Any() || (snowContainer.Children.LastOrDefault() as SnowSpitie).CreateTime + 1000 / SnowGenerateParSecond < currentTime;
 
             //if can generate new snow
             if (isCreateShow && EnableNewSnow)
             {
-                float currentAlpha = (float)random.Next(0, 255) / 255;
-                SnowSpitie newFlake = new SnowSpitie()
+                var currentAlpha = (float)random.Next(0, 255) / 255;
+                var newFlake = new SnowSpitie
                 {
                     Texture = texture.Get(TexturePath),
                     Origin = Anchor.Centre,
@@ -86,14 +90,13 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Effect.ShowEffect
                     CreateTime = currentTime,
                     Scale = new Vector2(1f, 1f) * SnowSize,
                     Alpha = currentAlpha,
-                    HorizontalSpeed = random.Next(-100, 100) + WingAffection * 10,
+                    HorizontalSpeed = random.Next(-100, 100) + WingAffection * 10
                 };
                 snowContainer.Add(newFlake);
             }
 
             //update each snow position
             foreach (SnowSpitie sprite in snowContainer.Children)
-            {
                 if (sprite is SnowSpitie snow)
                 {
                     snow.X = snow.X + snow.HorizontalSpeed / 1000f;
@@ -101,11 +104,8 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Effect.ShowEffect
 
                     //recycle
                     if (snow.CreateTime + SnowExpireTime < currentTime)
-                    {
                         snowContainer.Children.ToList().Remove(snow);
-                    }
                 }
-            }
         }
 
         [BackgroundDependencyLoader]
@@ -116,17 +116,17 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Effect.ShowEffect
     }
 
     /// <summary>
-    /// show spirit
+    ///     show spirit
     /// </summary>
     public class SnowSpitie : Sprite
     {
         /// <summary>
-        /// Horizontal speed
+        ///     Horizontal speed
         /// </summary>
         public float HorizontalSpeed { get; set; }
 
         /// <summary>
-        /// create time
+        ///     create time
         /// </summary>
         public double CreateTime { get; set; }
     }

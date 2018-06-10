@@ -4,33 +4,33 @@
 namespace osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel.Mobile.Pieces
 {
     /// <summary>
-    /// use to show value 
-    /// Format : (+/-) [Value] (unit)
+    ///     use to show value
+    ///     Format : (+/-) [Value] (unit)
     /// </summary>
     public class ValueInfo : Info
     {
         /// <summary>
-        /// Format
+        ///     Format
         /// </summary>
         public Format Format { get; set; }
 
         /// <summary>
-        /// Value
+        ///     Value
         /// </summary>
         public double Value { get; set; }
 
         /// <summary>
-        /// Unit
+        ///     Unit
         /// </summary>
         public string Unit { get; set; }
     }
 
     /// <summary>
-    /// Format
+    ///     Format
     /// </summary>
     public enum Format
     {
         Number,
-        Time, //HH:MM:SS
+        Time //HH:MM:SS
     }
 }

@@ -12,16 +12,16 @@ namespace osu.Game.Rulesets.Karaoke.Online.API.Romaj.Google
 {
     public class TextToken
     {
-        public TokenType Type { get; private set; }
-        public string Text { get; set; }
-        public string Prefix { get; set; }
-
-        public Dictionary<string, string> PunctuationMap { get; } = new Dictionary<string, string>()
+        public Dictionary<string, string> PunctuationMap { get; } = new Dictionary<string, string>
         {
             { "、", ", " },
             { "“", "\"" },
             { "”", "\"" }
         };
+
+        public TokenType Type { get; }
+        public string Text { get; set; }
+        public string Prefix { get; set; }
 
         public TextToken(TokenType type, string text = "", string prefix = "")
         {
@@ -37,15 +37,15 @@ namespace osu.Game.Rulesets.Karaoke.Online.API.Romaj.Google
                                 List<string> particles = null,
                                 string languagePair = GoogleRomajiApi.LANGUAGE_PAIR)
         {
-            string translation = "";
+            var translation = "";
 
             switch (Type)
             {
                 case TokenType.HiraganaKanji:
                 {
                     // Get phoentic text
-                    HtmlDocument doc = new HtmlWeb().Load(url);
-                    string phoneticText = WebUtility.HtmlDecode(doc.GetElementbyId("src-translit").InnerText);
+                    var doc = new HtmlWeb().Load(url);
+                    var phoneticText = WebUtility.HtmlDecode(doc.GetElementbyId("src-translit").InnerText);
                     translation = formatTranslation(phoneticText, maps, particles);
                     break;
                 }
@@ -53,8 +53,8 @@ namespace osu.Game.Rulesets.Karaoke.Online.API.Romaj.Google
                 case TokenType.Katakana:
                 {
                     // Get translated text
-                    HtmlDocument doc = new HtmlWeb().Load(url);
-                    string translatedText = WebUtility.HtmlDecode(doc.GetElementbyId("result_box").InnerText);
+                    var doc = new HtmlWeb().Load(url);
+                    var translatedText = WebUtility.HtmlDecode(doc.GetElementbyId("result_box").InnerText);
                     translation = formatTranslation(translatedText, maps, particles);
                     break;
                 }
@@ -75,7 +75,7 @@ namespace osu.Game.Rulesets.Karaoke.Online.API.Romaj.Google
                                          List<string> particles = null)
         {
             // Add prefixes, trim whitespace, and capitalise words, etc.
-            string outText = "";
+            var outText = "";
             switch (Type)
             {
                 case TokenType.HiraganaKanji:
@@ -102,13 +102,11 @@ namespace osu.Game.Rulesets.Karaoke.Online.API.Romaj.Google
                 case TokenType.Latin:
                 default:
                     // Replace japanese punctuation
-                    foreach (string s in PunctuationMap.Keys)
+                    foreach (var s in PunctuationMap.Keys)
                     {
                         string sVal;
                         if (PunctuationMap.TryGetValue(s, out sVal))
-                        {
                             translatedText = translatedText.Replace(s, sVal);
-                        }
                     }
 
                     // Join
@@ -121,9 +119,9 @@ namespace osu.Game.Rulesets.Karaoke.Online.API.Romaj.Google
 
         #region Function
 
-        private static char MapSplitChar = ':';
+        private static readonly char MapSplitChar = ':';
 
-        private List<string> Suffixes = new List<string>()
+        private readonly List<string> Suffixes = new List<string>
         {
             "Iru"
         };
@@ -132,9 +130,9 @@ namespace osu.Game.Rulesets.Karaoke.Online.API.Romaj.Google
         {
             if (maps == null) return text;
 
-            foreach (string map in maps)
+            foreach (var map in maps)
             {
-                string[] mapStrings = map.Split(MapSplitChar);
+                var mapStrings = map.Split(MapSplitChar);
 
                 // Make sure mapping is valid
                 if (map.IndexOf(MapSplitChar) == 0 || mapStrings.Length != 1 && mapStrings.Length != 2) continue;
@@ -152,13 +150,11 @@ namespace osu.Game.Rulesets.Karaoke.Online.API.Romaj.Google
         {
             if (particles == null) return text;
 
-            foreach (string particle in particles)
-            {
+            foreach (var particle in particles)
                 text = Regex.Replace(text,
                     @"\b" + particle + @"\b",
                     particle,
                     RegexOptions.IgnoreCase);
-            }
 
             return text;
         }
@@ -170,12 +166,10 @@ namespace osu.Game.Rulesets.Karaoke.Online.API.Romaj.Google
 
         public string AttachSuffixes(string text)
         {
-            foreach (string suffix in Suffixes)
-            {
+            foreach (var suffix in Suffixes)
                 text = Regex.Replace(text,
                     @"\s" + suffix + @"\b",
                     suffix.ToLower());
-            }
 
             return text;
         }
