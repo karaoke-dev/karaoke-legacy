@@ -3,8 +3,8 @@
 
 using osu.Framework.Configuration.Tracking;
 using osu.Game.Configuration;
-using osu.Game.Rulesets.Karaoke.Service.Translator;
-using osu.Game.Rulesets.Karaoke.Tools.Romaji;
+using osu.Game.Rulesets.Karaoke.Service.Romaji;
+using osu.Game.Rulesets.Karaoke.Service.Translate;
 
 namespace osu.Game.Rulesets.Karaoke.Configuration
 {

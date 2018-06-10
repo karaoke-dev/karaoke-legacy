@@ -2,10 +2,9 @@
 // Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
 
 using osu.Framework.Input.Bindings;
-using osu.Game.Rulesets.Karaoke.Input;
 using osu.Game.Rulesets.UI;
 
-namespace osu.Game.Rulesets.Karaoke
+namespace osu.Game.Rulesets.Karaoke.Input
 {
     public class KaraokeInputManager : RulesetInputManager<KaraokeKeyAction>
     {

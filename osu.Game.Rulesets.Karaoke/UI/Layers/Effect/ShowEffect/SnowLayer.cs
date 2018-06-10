@@ -26,10 +26,10 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Effect.ShowEffect
         public float WingAffection { get; set; } = 3; //as wing speed
         public float SnowSize { get; set; } = 0.3f; //snow size
         public string TexturePath { get; set; } = @"Play/Karaoke/Layer/Snow/Snow";
-
-        private TextureStore texture;
         private readonly Container snowContainer = new Container();
         private readonly Random random;
+
+        private TextureStore texture;
 
         /// <summary>
         ///     initialize

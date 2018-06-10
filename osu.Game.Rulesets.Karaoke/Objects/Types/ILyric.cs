@@ -3,6 +3,7 @@
 
 using osu.Game.Rulesets.Karaoke.Objects.Lyric.Types;
 using osu.Game.Rulesets.Karaoke.Objects.TimeLine;
+using osu.Game.Rulesets.Karaoke.Objects.Translate;
 
 namespace osu.Game.Rulesets.Karaoke.Objects.Types
 {

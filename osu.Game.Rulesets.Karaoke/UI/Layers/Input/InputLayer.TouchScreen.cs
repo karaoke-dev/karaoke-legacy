@@ -14,9 +14,6 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Input
         // Touch screen config
         public BindableObject<MobileScrollAnixConfig> MobileScrollAnixConfig { get; set; } = new BindableObject<MobileScrollAnixConfig>(new MobileScrollAnixConfig());
 
-        //mouse move dircetion
-        private Vector2 _moveDirection = Vector2.Zero;
-
         //judge the direction when moving more then this pixal
         private readonly double _judgePixal = 20;
 
@@ -25,6 +22,9 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Input
         {
             Interval = 200
         };
+
+        //mouse move dircetion
+        private Vector2 _moveDirection = Vector2.Zero;
 
         protected void InitialTouchScreen()
         {

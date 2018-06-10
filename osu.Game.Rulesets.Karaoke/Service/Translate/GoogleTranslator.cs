@@ -7,7 +7,7 @@ using System.Linq;
 using osu.Game.Rulesets.Karaoke.Configuration;
 using osu.Game.Rulesets.Karaoke.Online.API.Translate.Google;
 
-namespace osu.Game.Rulesets.Karaoke.Tools.Translator
+namespace osu.Game.Rulesets.Karaoke.Service.Translate
 {
     public class GoogleTranslator : ITranslator
     {
