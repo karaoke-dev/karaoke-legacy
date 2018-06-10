@@ -10,18 +10,18 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Lyric
     public class JpLyric : RomajiLyric, IHasFurigana
     {
         /// <summary>
-        /// Furigana
+        ///     Furigana
         /// </summary>
         public Dictionary<int, FuriganaText> Furigana { get; set; } = new Dictionary<int, FuriganaText>();
     }
 
     /// <summary>
-    /// sub text
+    ///     sub text
     /// </summary>
     public class FuriganaText : TextComponent, IHasEndIndex
     {
         /// <summary>
-        /// relativa to textIndex
+        ///     relativa to textIndex
         /// </summary>
         public int? Length { get; set; }
     }

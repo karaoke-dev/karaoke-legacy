@@ -4,22 +4,22 @@
 namespace osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel.Mobile.Pieces
 {
     /// <summary>
-    /// Info
+    ///     Info
     /// </summary>
     public class Info
     {
         /// <summary>
-        /// Path of icon
+        ///     Path of icon
         /// </summary>
         public string Icon { get; set; }
 
         /// <summary>
-        /// Main text
+        ///     Main text
         /// </summary>
         public string MainText { get; set; }
 
         /// <summary>
-        /// sub text
+        ///     sub text
         /// </summary>
         public string Subtext { get; set; }
     }

@@ -8,16 +8,12 @@ namespace osu.Game.Rulesets.Karaoke.Input
     public enum KaraokeEditorKeyAction
     {
         //open Dialog Hotkey
-        [Description("Template Dialog")]
-        TemplateDialog, //T
+        [Description("Template Dialog")] TemplateDialog, //T
 
-        [Description("Lyrics Dialog")]
-        LyricsDialog, //L
+        [Description("Lyrics Dialog")] LyricsDialog, //L
 
-        [Description("Translate Dialog")]
-        TranslateDialog, //R
+        [Description("Translate Dialog")] TranslateDialog, //R
 
-        [Description("Singer Dialog")]
-        SingerDialog, //P
+        [Description("Singer Dialog")] SingerDialog //P
     }
 }

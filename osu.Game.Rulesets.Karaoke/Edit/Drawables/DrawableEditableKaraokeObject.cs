@@ -1,7 +1,6 @@
 ﻿// Copyright (c) 2007-2018 ppy Pty Ltd <contact@ppy.sh>.
 // Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
 
-using System.Collections.Generic;
 using System.Linq;
 using osu.Framework.Graphics.Cursor;
 using osu.Framework.Graphics.UserInterface;
@@ -12,21 +11,19 @@ using osu.Game.Rulesets.Karaoke.Edit.Drawables.Pieces;
 using osu.Game.Rulesets.Karaoke.Objects;
 using osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric;
 using osu.Game.Rulesets.Karaoke.Objects.Text;
+using osu.Game.Rulesets.Karaoke.Objects.TimeLine;
+using osu.Game.Rulesets.Karaoke.Objects.Translate;
 using OpenTK;
 
 namespace osu.Game.Rulesets.Karaoke.Edit.Drawables
 {
     /// <summary>
-    /// Editable karaoke Drawable Object
-    /// Right click :
-    /// Translate >> Add
+    ///     Editable karaoke Drawable Object
+    ///     Right click :
+    ///     Translate >> Add
     /// </summary>
     public class DrawableEditableKaraokeObject : DrawableLyric, IHasContextMenu
     {
-        protected DrawableKaraokeThumbnail DrawableKaraokeThumbnail { get; set; }
-        protected EditableMainKaraokeText EditableMainKaraokeText { get; set; } = new EditableMainKaraokeText(null, null);
-        protected bool IsDrag = false;
-
         public MenuItem[] ContextMenuItems => new MenuItem[]
         {
             new OsuMenuItem(@"Some option"),
@@ -35,8 +32,12 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables
             new OsuMenuItem(@"Choose me please"),
             new OsuMenuItem(@"And me too"),
             new OsuMenuItem(@"Trying to fill"),
-            new OsuMenuItem(@"Destructive option", MenuItemType.Destructive),
+            new OsuMenuItem(@"Destructive option", MenuItemType.Destructive)
         };
+
+        protected bool IsDrag;
+        protected DrawableKaraokeThumbnail DrawableKaraokeThumbnail { get; set; }
+        protected EditableMainKaraokeText EditableMainKaraokeText { get; set; } = new EditableMainKaraokeText(null, null);
 
         public DrawableEditableKaraokeObject(BaseLyric hitObject)
             : base(hitObject)
@@ -45,10 +46,26 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables
             {
                 Position = new Vector2(0, -100),
                 Width = 300,
-                Height = 100,
+                Height = 100
             };
             AddInternal(EditableMainKaraokeText);
             AddInternal(DrawableKaraokeThumbnail);
+        }
+
+        public void AddPoint(int index)
+        {
+            var previousPoint = Lyric.TimeLines.GetFirstProgressPointByIndex(index);
+            var nextPoint = Lyric.TimeLines.GetLastProgressPointByIndex(index);
+            var deltaTime = ((previousPoint.Value?.RelativeTime ?? 0) + (nextPoint.Value?.RelativeTime ?? (previousPoint.Value?.RelativeTime ?? 0) + 500)) / 2;
+            var point = new LyricTimeLine(deltaTime);
+            Lyric.TimeLines.Add(index, point);
+            DrawableKaraokeThumbnail.UpdateView();
+        }
+
+        public void AddTranslate(TranslateCode code, string translateResult)
+        {
+            //Add it into Karaoke object
+            Lyric.Translates.Add(code, new LyricTranslate(translateResult));
         }
 
         protected override void UpdateDrawable()
@@ -64,7 +81,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables
         protected override bool OnMouseDown(InputState state, MouseDownEventArgs args)
         {
             IsDrag = true;
-            int index = GetPointedText(state);
+            var index = GetPointedText(state);
             EditableMainKaraokeText.StartSelectIndex = index;
 
             return base.OnMouseDown(state, args);
@@ -75,12 +92,12 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables
         {
             if (!IsDrag)
             {
-                int index = GetPointedText(state);
+                var index = GetPointedText(state);
                 EditableMainKaraokeText.HoverIndex = index;
             }
             else
             {
-                int index = GetPointedText(state);
+                var index = GetPointedText(state);
                 EditableMainKaraokeText.EndSelectIndex = index;
             }
 
@@ -90,7 +107,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables
         protected override bool OnMouseUp(InputState state, MouseUpEventArgs args)
         {
             IsDrag = false;
-            int index = GetPointedText(state);
+            var index = GetPointedText(state);
             AddPoint(index);
             EditableMainKaraokeText.StartSelectIndex = null;
             EditableMainKaraokeText.EndSelectIndex = null;
@@ -111,21 +128,5 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables
         }
 
         #endregion
-
-        public void AddPoint(int index)
-        {
-            KeyValuePair<int, LyricTimeLine> previousPoint = Lyric.ProgressPoints.GetFirstProgressPointByIndex(index);
-            KeyValuePair<int, LyricTimeLine> nextPoint = Lyric.ProgressPoints.GetLastProgressPointByIndex(index);
-            double deltaTime = ((previousPoint.Value?.RelativeTime ?? 0) + (nextPoint.Value?.RelativeTime ?? (previousPoint.Value?.RelativeTime ?? 0) + 500)) / 2;
-            LyricTimeLine point = new LyricTimeLine(deltaTime);
-            Lyric.ProgressPoints.Add(index, point);
-            DrawableKaraokeThumbnail.UpdateView();
-        }
-
-        public void AddTranslate(TranslateCode code, string translateResult)
-        {
-            //Add it into Karaoke object
-            Lyric.Translates.Add(code, new LyricTranslate(translateResult));
-        }
     }
 }

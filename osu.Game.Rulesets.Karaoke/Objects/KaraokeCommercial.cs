@@ -4,8 +4,8 @@
 namespace osu.Game.Rulesets.Karaoke.Objects
 {
     /// <summary>
-    /// use to show the song's profile and other
-    /// use for commercial , like the end of youtube's video will appera "subscribe" 
+    ///     use to show the song's profile and other
+    ///     use for commercial , like the end of youtube's video will appera "subscribe"
     /// </summary>
     public class KaraokeCommercial
     {

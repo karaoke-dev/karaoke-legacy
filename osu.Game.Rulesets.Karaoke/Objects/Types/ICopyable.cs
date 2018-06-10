@@ -4,12 +4,12 @@
 namespace osu.Game.Rulesets.Karaoke.Objects.Types
 {
     /// <summary>
-    /// ICopyable
+    ///     ICopyable
     /// </summary>
     public interface ICopyable
     {
         /// <summary>
-        /// copy
+        ///     copy
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>

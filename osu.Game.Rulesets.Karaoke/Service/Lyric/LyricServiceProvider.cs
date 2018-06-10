@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿// Copyright (c) 2007-2018 ppy Pty Ltd <contact@ppy.sh>.
+// Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
 
 namespace osu.Game.Rulesets.Karaoke.Service.Lyric
 {
     public class LyricServiceProvider
     {
         /// <summary>
-        /// Get translator by providerType
+        ///     Get translator by providerType
         /// </summary>
         /// <param name="providerType"></param>
         /// <returns></returns>
@@ -26,9 +25,9 @@ namespace osu.Game.Rulesets.Karaoke.Service.Lyric
     public enum LyricServiceProviderType
     {
         /// <summary>
-        /// The romaji server just for osu!Karaoke
-        /// <see cref="MusixMatchLyric"/>
+        ///     The romaji server just for osu!Karaoke
+        ///     <see cref="MusixMatchLyric" />
         /// </summary>
-        MusixMatch,
+        MusixMatch = 1
     }
 }

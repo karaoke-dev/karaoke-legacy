@@ -1,31 +1,27 @@
-﻿using System;
+﻿// Copyright (c) 2007-2018 ppy Pty Ltd <contact@ppy.sh>.
+// Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
+
+using System;
 using System.Diagnostics;
-using LibGit2Sharp;
-using LibGit2Sharp.Core.Handles;
-using LibGit2Sharp.Handlers;
 using System.IO;
+using LibGit2Sharp;
 
 namespace osu.Game.Rulesets.Karaoke.Online.API.Git
 {
     /// <summary>
-    /// it chntains several finction 
-    /// 1. checkout
-    /// 2. push
-    /// 3. pull 
-    /// 4. commit
+    ///     it chntains several finction
+    ///     1. checkout
+    ///     2. push
+    ///     3. pull
+    ///     4. commit
     /// </summary>
     public class GitApi
     {
-        public GitApi()
-        {
-
-        }
-
         /// <summary>
-        /// Clone project
+        ///     Clone project
         /// </summary>
         /// <returns></returns>
-        public bool CloneProject(string url,string dir,string userName = null,string password = null)
+        public bool CloneProject(string url, string dir, string userName = null, string password = null)
         {
             try
             {
@@ -49,28 +45,27 @@ namespace osu.Game.Rulesets.Karaoke.Online.API.Git
         }
 
         /// <summary>
-        /// Pull project
+        ///     Pull project
         /// </summary>
         /// <param name="dir"></param>
         /// <param name="userName"></param>
         /// <param name="password"></param>
         /// <param name="email"></param>
         /// <returns></returns>
-        public bool PullProject(string dir, string userName = null, string password = null,string email = null)
+        public bool PullProject(string dir, string userName = null, string password = null, string email = null)
         {
             using (var repo = new Repository(dir))
             {
-                LibGit2Sharp.PullOptions options = new LibGit2Sharp.PullOptions();
+                var options = new PullOptions();
 
                 //Create provider
                 options.FetchOptions = new FetchOptions();
-                options.FetchOptions.CredentialsProvider = new CredentialsHandler(
-                    (url, usernameFromUrl, types) =>
-                        new UsernamePasswordCredentials()
-                        {
-                            Username = userName,
-                            Password = password
-                        });
+                options.FetchOptions.CredentialsProvider = (url, usernameFromUrl, types) =>
+                    new UsernamePasswordCredentials
+                    {
+                        Username = userName,
+                        Password = password
+                    };
 
                 //if pull success, create a commit
                 options.MergeOptions.CommitOnSuccess = true;
@@ -86,10 +81,10 @@ namespace osu.Game.Rulesets.Karaoke.Online.API.Git
         }
 
         /// <summary>
-        /// Write a file to working dictionary
+        ///     Write a file to working dictionary
         /// </summary>
         /// <returns></returns>
-        public bool WriteFile(string dir,string filename,string content)
+        public bool WriteFile(string dir, string filename, string content)
         {
             using (var repo = new Repository("path/to/your/repo"))
             {
@@ -100,7 +95,7 @@ namespace osu.Game.Rulesets.Karaoke.Online.API.Git
         }
 
         /// <summary>
-        /// Commit project
+        ///     Commit project
         /// </summary>
         /// <param name="dir"></param>
         /// <param name="userName"></param>
@@ -112,41 +107,38 @@ namespace osu.Game.Rulesets.Karaoke.Online.API.Git
             {
                 // Stage the file
                 foreach (var filename in fileNames)
-                {
-                    LibGit2Sharp.Commands.Stage(repo, filename);
-                }
+                    Commands.Stage(repo, filename);
 
                 // Create the committer's signature and commit
-                Signature author = new Signature("James", "@jugglingnutcase", DateTime.Now);
-                Signature committer = author;
+                var author = new Signature("James", "@jugglingnutcase", DateTime.Now);
+                var committer = author;
 
                 // Commit to the repository
-                Commit commit = repo.Commit("Here's a commit i made!", author, committer);
+                var commit = repo.Commit("Here's a commit i made!", author, committer);
             }
 
             return true;
         }
 
         /// <summary>
-        /// Push
+        ///     Push
         /// </summary>
         /// <param name="dir"></param>
         /// <param name="branchName"></param>
         /// <param name="userName"></param>
         /// <param name="password"></param>
         /// <returns></returns>
-        public bool PushProject(string dir,string branchName, string userName = null, string password = null)
+        public bool PushProject(string dir, string branchName, string userName = null, string password = null)
         {
             using (var repo = new Repository("path/to/your/repo"))
             {
-                LibGit2Sharp.PushOptions options = new LibGit2Sharp.PushOptions();
-                options.CredentialsProvider = new CredentialsHandler(
-                    (url, usernameFromUrl, types) =>
-                        new UsernamePasswordCredentials()
-                        {
-                            Username = userName,
-                            Password = password
-                        });
+                var options = new PushOptions();
+                options.CredentialsProvider = (url, usernameFromUrl, types) =>
+                    new UsernamePasswordCredentials
+                    {
+                        Username = userName,
+                        Password = password
+                    };
                 repo.Network.Push(repo.Branches[branchName], options);
             }
 
@@ -154,15 +146,14 @@ namespace osu.Game.Rulesets.Karaoke.Online.API.Git
         }
 
         /// <summary>
-        /// TODO : I'm not sure it can use as pull request
-        /// 
+        ///     TODO : I'm not sure it can use as pull request
         /// </summary>
         /// <returns></returns>
-        public bool PushToRemote(string dir,string remoteUrl,string branchName, string userName = null, string password = null)
+        public bool PushToRemote(string dir, string remoteUrl, string branchName, string userName = null, string password = null)
         {
             using (var repo = new Repository(dir))
             {
-                Remote remote = repo.Network.Remotes[branchName];
+                var remote = repo.Network.Remotes[branchName];
                 var options = new PushOptions();
                 options.CredentialsProvider = (_url, _user, _cred) =>
                     new UsernamePasswordCredentials { Username = userName, Password = password };

@@ -6,12 +6,12 @@ namespace osu.Game.Rulesets.Karaoke.Beatmaps
     public class KaraokeModeSupport
     {
         /// <summary>
-        /// Show tome visualization
+        ///     Show tome visualization
         /// </summary>
-        public bool Tome { get; set; }
+        public bool Tone { get; set; }
 
         /// <summary>
-        /// Has vocal track that can has off-vocal mod
+        ///     Has vocal track that can has off-vocal mod
         /// </summary>
         public bool VocalTrack { get; set; }
     }

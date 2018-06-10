@@ -7,7 +7,7 @@ using osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces;
 namespace osu.Game.Rulesets.Karaoke.Edit.Dialog
 {
     /// <summary>
-    /// show list singer
+    ///     show list singer
     /// </summary>
     public class ListSingerDialog : DialogContainer
     {
@@ -15,15 +15,9 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog
 
     public class ListSingerScrollContainer : TableView<Singer, SingerCell>
     {
-        public ListSingerScrollContainer()
-        {
-        }
     }
 
     public class SingerCell : KaraokeBaseTableViewCell<Singer>
     {
-        public SingerCell()
-        {
-        }
     }
 }

@@ -7,7 +7,7 @@ using osu.Game.Rulesets.Mods;
 namespace osu.Game.Rulesets.Karaoke.Mods
 {
     /// <summary>
-    /// will hide the lyrics
+    ///     will hide the lyrics
     /// </summary>
     public class KaraokeModHidden : ModHidden
     {

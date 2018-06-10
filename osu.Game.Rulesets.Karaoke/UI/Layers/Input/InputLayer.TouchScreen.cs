@@ -14,17 +14,17 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Input
         // Touch screen config
         public BindableObject<MobileScrollAnixConfig> MobileScrollAnixConfig { get; set; } = new BindableObject<MobileScrollAnixConfig>(new MobileScrollAnixConfig());
 
-        //mouse move dircetion
-        private Vector2 _moveDirection = Vector2.Zero;
-
         //judge the direction when moving more then this pixal
-        private double _judgePixal = 20;
+        private readonly double _judgePixal = 20;
 
         //Hold time
-        private Timer _timer = new Timer()
+        private readonly Timer _timer = new Timer
         {
-            Interval = 200,
+            Interval = 200
         };
+
+        //mouse move dircetion
+        private Vector2 _moveDirection = Vector2.Zero;
 
         protected void InitialTouchScreen()
         {
@@ -123,7 +123,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Input
         }
 
         /// <summary>
-        /// tap
+        ///     tap
         /// </summary>
         /// <returns><c>true</c>, if pressed was oned, <c>false</c> otherwise.</returns>
         /// <param name="config">Action.</param>
@@ -133,16 +133,16 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Input
             if (config == null)
                 return;
 
-            TapAction tapAction = new TapAction()
+            var tapAction = new TapAction
             {
                 KaraokeTapAction = config.KaraokeTapAction,
-                Tap = tap,
+                Tap = tap
             };
             InputAction.Value = tapAction;
         }
 
         /// <summary>
-        /// scroll
+        ///     scroll
         /// </summary>
         /// <param name="config"></param>
         /// <param name="touch"></param>
@@ -154,12 +154,12 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Input
             if (config == null)
                 return;
 
-            ScrollAction scrollAction = new ScrollAction()
+            var scrollAction = new ScrollAction
             {
                 KaraokeScrollAction = config.KaraokeScrollAction,
                 Touch = touch,
                 RelativeMovingPosition = relativePosition,
-                TotalMovingPosition = totalmovingPosition,
+                TotalMovingPosition = totalmovingPosition
             };
             InputAction.Value = scrollAction;
         }

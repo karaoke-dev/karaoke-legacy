@@ -8,7 +8,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Lyric.Types
     public interface IHasLangCode
     {
         /// <summary>
-        /// translate code
+        ///     translate code
         /// </summary>
         TranslateCode Lang { get; set; }
     }

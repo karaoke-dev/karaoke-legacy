@@ -20,7 +20,7 @@ using OpenTK.Graphics;
 namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
 {
     /// <summary>
-    /// Karaoke Text
+    ///     Karaoke Text
     /// </summary>
     public class DrawableLyric : DrawableHitObject<BaseLyric>, IDrawableLyricParameter, IDrawableLyricBindable
     {
@@ -28,89 +28,53 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
         public const float TIME_FADEIN = 100;
 
         public const float TIME_FADEOUT = 100;
-        private double _nowProgress;
-
-        #region Bindable
 
         /// <summary>
-        /// Style
-        /// </summary>
-        public BindableObject<KaraokeLyricConfig> Style { get; set; } = new BindableObject<KaraokeLyricConfig>(new KaraokeLyricConfig());
-
-        /// <summary>
-        /// Template
-        /// </summary>
-        public BindableObject<LyricTemplate> Template { get; set; } = new BindableObject<LyricTemplate>(new LyricTemplate());
-
-        /// <summary>
-        /// SingerTemplate
-        /// </summary>
-        public BindableObject<SingerTemplate> SingerTemplate { get; set; } = new BindableObject<SingerTemplate>(new SingerTemplate());
-
-        /// <summary>
-        /// Lang
-        /// </summary>
-        public Bindable<TranslateCode> TranslateCode { get; set; } = new Bindable<TranslateCode>();
-
-        #endregion
-
-        #region Field
-
-        //Private
-        private KaraokeLyricConfig _config;
-
-        private Singer _singer;
-        private TranslateCode _translateCode;
-
-
-        /// <summary>
-        /// Gets the karaoke object.
-        /// </summary>
-        /// <value>The karaoke object.</value>
-        public BaseLyric Lyric => HitObject;
-
-
-        /// <summary>
-        /// Gets or sets the singer.
-        /// </summary>
-        /// <value>The singer.</value>
-        public Singer Singer
-        {
-            get => _singer;
-            set
-            {
-                _singer = value;
-                UpdateDrawable();
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the preemptive time.
-        /// </summary>
-        /// <value>The preemptive time.</value>
-        public double PreemptiveTime
-        {
-            get => Lyric.PreemptiveTime ?? 600;
-            set
-            {
-                Lyric.PreemptiveTime = value;
-                UpdateDrawable();
-            }
-        }
-
-        public TranslateString TranslateText { get; set; } = new TranslateString(null);
-
-        #endregion
-
-        /// <summary>
-        /// Gets or sets a value indicating whether this
-        /// <see cref="T:osu.Game.Rulesets.Karaoke.Objects.Drawables.BaseLyric.DrawableKaraokeObject"/> progress update by time.
+        ///     Gets or sets a value indicating whether this
+        ///     <see cref="T:osu.Game.Rulesets.Karaoke.Objects.Drawables.BaseLyric.DrawableKaraokeObject" /> progress update by
+        ///     time.
         /// </summary>
         /// <value><c>true</c> if progress update by time; otherwise, <c>false</c>.</value>
         public virtual bool ProgressUpdateByTime { get; set; } = true;
 
         //Drawable
         public TextsAndMask TextsAndMaskPiece { get; set; } = new TextsAndMask();
+
+        public override float Width
+        {
+            get => base.Width;
+            set
+            {
+                base.Width = value;
+                TextsAndMaskPiece.SetWidth(base.Width);
+            }
+        }
+
+        public override float Height
+        {
+            get => base.Height;
+            set
+            {
+                base.Height = value;
+                TextsAndMaskPiece.SetHeight(base.Height);
+            }
+        }
+
+        /// <summary>
+        ///     progress
+        /// </summary>
+        /// <value>The progress.</value>
+        public double Progress
+        {
+            get => _nowProgress;
+            set
+            {
+                _nowProgress = value;
+                TextsAndMaskPiece.MovingMask((float)_nowProgress);
+            }
+        }
+
+        private double _nowProgress;
 
         public DrawableLyric(BaseLyric hitObject)
             : base(hitObject)
@@ -119,13 +83,13 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
             InternalChildren = new Drawable[]
             {
                 TextsAndMaskPiece,
-                TranslateText,
+                TranslateText
             };
 
-            Style.ValueChanged += (style) => { OnStyleChange(); };
-            Template.ValueChanged += (style) => { OnTemplateChange(); };
-            SingerTemplate.ValueChanged += (style) => { OnSingerTemplateChange(); };
-            TranslateCode.ValueChanged += (style) => { OnTranslateCodeChange(); };
+            Style.ValueChanged += style => { OnStyleChange(); };
+            Template.ValueChanged += style => { OnTemplateChange(); };
+            SingerTemplate.ValueChanged += style => { OnSingerTemplateChange(); };
+            TranslateCode.ValueChanged += style => { OnTranslateCodeChange(); };
         }
 
         protected virtual void OnStyleChange()
@@ -149,7 +113,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
         }
 
         /// <summary>
-        /// update view
+        ///     update view
         /// </summary>
         protected virtual void UpdateDrawable()
         {
@@ -167,7 +131,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
 
             if (styleValue != null)
             {
-                string mainTextDelimiter = "";
+                var mainTextDelimiter = "";
                 Dictionary<int, TextComponent> mainText = null;
                 Dictionary<int, FormattedText> bottomTexts = null;
                 Dictionary<int, FormattedText> subTexts = null;
@@ -186,41 +150,33 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
                 }
 
                 //main text
-                TextsAndMaskPiece.AddMainText(templateValue?.MainText, mainText.ToDictionary(k => k.Key, v => (TextComponent)v.Value), mainTextDelimiter);
+                TextsAndMaskPiece.AddMainText(templateValue?.MainText, mainText.ToDictionary(k => k.Key, v => v.Value), mainTextDelimiter);
 
                 //show romaji text
                 if (styleValue.RomajiVislbility)
-                {
                     if (styleValue.RomajiFirst)
                     {
-                        bottomTexts = Lyric.Lyric.ToDictionary(k => k.Key, v => templateValue?.BottomText + v.Value + new FormattedText()
+                        bottomTexts = Lyric.Lyric.ToDictionary(k => k.Key, v => templateValue?.BottomText + v.Value + new FormattedText
                         {
-                            X = getxPosition(v.Key),
+                            X = getxPosition(v.Key)
                         });
                     }
                     else
                     {
                         if (Lyric is IHasRomaji romajiLyric)
-                        {
-                            bottomTexts = romajiLyric.Romaji.ToDictionary(k => k.Key, v => templateValue?.BottomText + v.Value + new FormattedText()
+                            bottomTexts = romajiLyric.Romaji.ToDictionary(k => k.Key, v => templateValue?.BottomText + v.Value + new FormattedText
                             {
-                                X = getxPosition(v.Key),
+                                X = getxPosition(v.Key)
                             });
-                        }
                     }
-                }
 
                 //show subtext
                 if (styleValue.SubTextVislbility)
-                {
                     if (Lyric is IHasFurigana furiganaLyric)
-                    {
-                        subTexts = furiganaLyric.Furigana.ToDictionary(k => k.Key, v => templateValue?.TopText + v.Value + new FormattedText()
+                        subTexts = furiganaLyric.Furigana.ToDictionary(k => k.Key, v => templateValue?.TopText + v.Value + new FormattedText
                         {
-                            X = getxPosition(v.Key),
+                            X = getxPosition(v.Key)
                         });
-                    }
-                }
 
                 //show sub text
                 TextsAndMaskPiece.AddSubText(subTexts?.Select(x => x.Value).ToList());
@@ -249,52 +205,22 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
             if (styleValue != null)
             {
                 if (styleValue.ShowTranslate) //show translate
-                {
                     TranslateText.TextObject = templateValue?.TranslateText + Lyric.Translates.Where(x => x.Key == TranslateCode).FirstOrDefault().Value;
-                }
                 else
-                {
                     TranslateText.TextObject = templateValue?.TranslateText;
-                }
 
                 TranslateText.Colour = templateValue?.TranslateTextColor ?? Color4.White;
             }
 
             //Color
-            Color4 textColor = Singer?.LytricColor ?? Color4.Blue;
-            Color4 backgroundColor = Singer?.LytricBackgroundColor ?? Color4.White;
+            var textColor = Singer?.LytricColor ?? Color4.Blue;
+            var backgroundColor = Singer?.LytricBackgroundColor ?? Color4.White;
             TextsAndMaskPiece.SetColor(textColor, backgroundColor);
 
             Scale = new Vector2(templateValue?.Scale ?? 1);
 
             //update progress
             Progress = Progress;
-        }
-
-        [BackgroundDependencyLoader]
-        private void load(FontStore store)
-        {
-            UpdateDrawable();
-        }
-
-        public override float Width
-        {
-            get => base.Width;
-            set
-            {
-                base.Width = value;
-                TextsAndMaskPiece.SetWidth(base.Width);
-            }
-        }
-
-        public override float Height
-        {
-            get => base.Height;
-            set
-            {
-                base.Height = value;
-                TextsAndMaskPiece.SetHeight(base.Height);
-            }
         }
 
         protected override void Update()
@@ -304,12 +230,12 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
             if (!ProgressUpdateByTime)
                 return;
 
-            double currentRelativeTime = Time.Current - HitObject.StartTime;
+            var currentRelativeTime = Time.Current - HitObject.StartTime;
             if (HitObject.IsInTime(currentRelativeTime))
             {
                 //TODO : get progress point
-                var startProgressPoint = HitObject.ProgressPoints.GetFirstProgressPointByTime(currentRelativeTime);
-                var endProgressPoint = HitObject.ProgressPoints.GetLastProgressPointByTime(currentRelativeTime);
+                var startProgressPoint = HitObject.TimeLines.GetFirstProgressPointByTime(currentRelativeTime);
+                var endProgressPoint = HitObject.TimeLines.GetLastProgressPointByTime(currentRelativeTime);
 
                 var startPosition = TextsAndMaskPiece.MainText.GetEndPositionByIndex(startProgressPoint.Key);
                 var endPosition = TextsAndMaskPiece.MainText.GetEndPositionByIndex(endProgressPoint?.Key ?? -1);
@@ -317,14 +243,10 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
                 var relativeTime = currentRelativeTime - startProgressPoint.Value.RelativeTime;
 
                 if (endProgressPoint?.Value == null)
-                {
                     return;
-                }
 
                 if (startPosition == endPosition)
-                {
                     return;
-                }
 
                 //Update progress
                 Progress = startPosition + (endPosition - startPosition) / (float)(endProgressPoint?.Value.RelativeTime - startProgressPoint.Value.RelativeTime) * (float)relativeTime;
@@ -339,23 +261,9 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
             }
         }
 
-        /// <summary>
-        /// progress
-        /// </summary>
-        /// <value>The progress.</value>
-        public double Progress
-        {
-            get => _nowProgress;
-            set
-            {
-                _nowProgress = value;
-                TextsAndMaskPiece.MovingMask((float)_nowProgress);
-            }
-        }
-
         protected sealed override void UpdateState(ArmedState state)
         {
-            double transformTime = HitObject.StartTime - PreemptiveTime;
+            var transformTime = HitObject.StartTime - PreemptiveTime;
 
             ApplyTransformsAt(transformTime, true);
             ClearTransformsAfter(transformTime, true);
@@ -365,7 +273,9 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
                 UpdatePreemptState();
 
                 using (BeginDelayedSequence(PreemptiveTime + (Judgements.FirstOrDefault()?.TimeOffset ?? 0), true))
+                {
                     UpdateCurrentState(state);
+                }
             }
         }
 
@@ -384,5 +294,83 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
 
             //Expire();
         }
+
+        [BackgroundDependencyLoader]
+        private void load(FontStore store)
+        {
+            UpdateDrawable();
+        }
+
+        #region Bindable
+
+        /// <summary>
+        ///     Style
+        /// </summary>
+        public BindableObject<KaraokeLyricConfig> Style { get; set; } = new BindableObject<KaraokeLyricConfig>(new KaraokeLyricConfig());
+
+        /// <summary>
+        ///     Template
+        /// </summary>
+        public BindableObject<LyricTemplate> Template { get; set; } = new BindableObject<LyricTemplate>(new LyricTemplate());
+
+        /// <summary>
+        ///     SingerTemplate
+        /// </summary>
+        public BindableObject<SingerTemplate> SingerTemplate { get; set; } = new BindableObject<SingerTemplate>(new SingerTemplate());
+
+        /// <summary>
+        ///     Lang
+        /// </summary>
+        public Bindable<TranslateCode> TranslateCode { get; set; } = new Bindable<TranslateCode>();
+
+        #endregion
+
+        #region Field
+
+        //Private
+        private KaraokeLyricConfig _config;
+
+        private Singer _singer;
+        private TranslateCode _translateCode;
+
+
+        /// <summary>
+        ///     Gets the karaoke object.
+        /// </summary>
+        /// <value>The karaoke object.</value>
+        public BaseLyric Lyric => HitObject;
+
+
+        /// <summary>
+        ///     Gets or sets the singer.
+        /// </summary>
+        /// <value>The singer.</value>
+        public Singer Singer
+        {
+            get => _singer;
+            set
+            {
+                _singer = value;
+                UpdateDrawable();
+            }
+        }
+
+        /// <summary>
+        ///     Gets or sets the preemptive time.
+        /// </summary>
+        /// <value>The preemptive time.</value>
+        public double PreemptiveTime
+        {
+            get => Lyric.PreemptiveTime ?? 600;
+            set
+            {
+                Lyric.PreemptiveTime = value;
+                UpdateDrawable();
+            }
+        }
+
+        public TranslateString TranslateText { get; set; } = new TranslateString(null);
+
+        #endregion
     }
 }

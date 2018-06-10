@@ -9,13 +9,13 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
     public class SingerTemplate : RecordChangeObject, ICopyable
     {
         /// <summary>
-        /// Copy
+        ///     Copy
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
         public T Copy<T>() where T : class, ICopyable, new()
         {
-            T result = new T();
+            var result = new T();
             if (result is SingerTemplate singerTemplate)
             {
             }

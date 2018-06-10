@@ -3,17 +3,13 @@
 
 using osu.Game.Rulesets.Karaoke.Configuration;
 
-namespace osu.Game.Rulesets.Karaoke.UI.Layers.Input.TouchScreen
+namespace osu.Game.Rulesets.Karaoke.UI.Layers.Input.Introduce
 {
     /// <summary>
-    /// use to introduce which action is use for
+    ///     use to introduce which action is use for
     /// </summary>
     public class TouchScreenIntroduce
     {
         public MobileScrollAnixConfig Config { get; set; }
-
-        public TouchScreenIntroduce()
-        {
-        }
     }
 }

@@ -11,7 +11,7 @@ using Symcol.Rulesets.Core.Wiki;
 namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
 {
     /// <summary>
-    /// Desktop or mobile device
+    ///     Desktop or mobile device
     /// </summary>
     internal class DeviceSection : BaseWikiSection
     {

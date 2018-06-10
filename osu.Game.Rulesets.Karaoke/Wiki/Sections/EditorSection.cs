@@ -6,7 +6,7 @@ using Symcol.Rulesets.Core.Wiki;
 namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
 {
     /// <summary>
-    /// [5] introduce editor
+    ///     [5] introduce editor
     ///     5.1 : TODO : if has any setting , add in here
     /// </summary>
     internal class EditorSection : BaseWikiSection

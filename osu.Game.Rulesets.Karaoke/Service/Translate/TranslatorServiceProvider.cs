@@ -1,12 +1,12 @@
-﻿using System;
-using osu.Game.Rulesets.Karaoke.Tools.Translator;
+﻿// Copyright (c) 2007-2018 ppy Pty Ltd <contact@ppy.sh>.
+// Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
 
-namespace osu.Game.Rulesets.Karaoke.Service.Translator
+namespace osu.Game.Rulesets.Karaoke.Service.Translate
 {
     public class TranslatorServiceProvider
     {
         /// <summary>
-        /// Get translator by providerType
+        ///     Get translator by providerType
         /// </summary>
         /// <param name="providerType"></param>
         /// <returns></returns>
@@ -25,19 +25,19 @@ namespace osu.Game.Rulesets.Karaoke.Service.Translator
     }
 
     /// <summary>
-    /// Translator providor type
+    ///     Translator providor type
     /// </summary>
     public enum TranslatorProviderType
     {
         /// <summary>
-        /// Google.
-        /// <see cref="GoogleTranslator"/>
+        ///     Google.
+        ///     <see cref="GoogleTranslator" />
         /// </summary>
-        Google,
+        Google = 1,
 
         /// <summary>
-        /// The github.
+        ///     The github.
         /// </summary>
-        Github,
+        Github = 2
     }
 }

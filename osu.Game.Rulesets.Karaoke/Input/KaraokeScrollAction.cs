@@ -4,33 +4,33 @@
 namespace osu.Game.Rulesets.Karaoke.Input
 {
     /// <summary>
-    /// X or Y-anix can be use as...
+    ///     X or Y-anix can be use as...
     /// </summary>
     public enum KaraokeScrollAction
     {
         /// <summary>
-        /// Time
+        ///     Time
         /// </summary>
         Time,
 
         /// <summary>
-        /// Volumn
+        ///     Volumn
         /// </summary>
         Volumn,
 
         /// <summary>
-        /// Dim
+        ///     Dim
         /// </summary>
         BackgroundDim,
 
         /// <summary>
-        /// Tone
+        ///     Tone
         /// </summary>
         Tome,
 
         /// <summary>
-        /// Speed
+        ///     Speed
         /// </summary>
-        Speed,
+        Speed
     }
 }

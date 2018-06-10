@@ -3,6 +3,8 @@
 
 using osu.Framework.Configuration.Tracking;
 using osu.Game.Configuration;
+using osu.Game.Rulesets.Karaoke.Service.Romaji;
+using osu.Game.Rulesets.Karaoke.Service.Translate;
 
 namespace osu.Game.Rulesets.Karaoke.Configuration
 {
@@ -13,29 +15,37 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
         {
         }
 
+        public override TrackedSettings CreateTrackedSettings()
+        {
+            return new TrackedSettings();
+        }
+
         protected override void InitialiseDefaults()
         {
             base.InitialiseDefaults();
 
             //language
-            Set(KaraokeSetting.TranslateService, TranslateService.Google);
+            Set(KaraokeSetting.NeedTranslateService, false);
+            Set(KaraokeSetting.TranslateService, TranslatorProviderType.Google);
             Set(KaraokeSetting.DefaultTranslateLanguage, TranslateCode.English);
-            Set(KaraokeSetting.NeedTranslate, false);
+
 
             //Romaji
-            Set(KaraokeSetting.RomajiService, RomajiService.KoroSiro);
+            Set(KaraokeSetting.NeedRomajiService, false);
+            Set(KaraokeSetting.RomajiService, RomajiServiceProviderType.KaraokeRomajiServer);
 
             //karaoke
+            Set(KaraokeSetting.Platform, PlatformType.Desktop);
             Set(KaraokeSetting.ShowKarokePanel, false);
             Set(KaraokeSetting.DisableHotKay, false);
 
             //Style
             SetObject(KaraokeSetting.Template, new LyricTemplate());
-            SetObject(KaraokeSetting.LyricStyle, new KaraokeLyricConfig()
+            SetObject(KaraokeSetting.LyricStyle, new KaraokeLyricConfig
             {
                 SubTextVislbility = true,
                 RomajiVislbility = true,
-                RomajiFirst = false,
+                RomajiFirst = false
             });
 
             //singer
@@ -51,28 +61,26 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
             Set(KaraokeSetting.Device, PlatformType.Desktop);
             SetObject(KaraokeSetting.TouchScreen, new MobileScrollAnixConfig());
         }
-
-        public override TrackedSettings CreateTrackedSettings() => new TrackedSettings
-        {
-        };
     }
 
     /// <summary>
-    /// karaoke setting
+    ///     karaoke setting
     /// </summary>
     public enum KaraokeSetting
     {
         //language
         TranslateService = 0, //[int]use which api to translate
         DefaultTranslateLanguage = 1, //[enum]
-        NeedTranslate = 2, //[bool]false
+        NeedTranslateService = 2, //[bool]false
 
         //Romaji
+        NeedRomajiService = 12,
         RomajiService = 11, //[int]use which api to get romaji
 
-        //karaoke
+        //karaoke control panel.
+        Platform = 22,
         ShowKarokePanel = 21, //[bool]show panel at the beginning
-        DisableHotKay = 22, //[bool]enable hotkey
+        DisableHotKay = 24, //[bool]enable hotkey
 
         //Style
         Template = 31, //[object]
@@ -89,6 +97,6 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
 
         //device
         Device = 61, //which device
-        TouchScreen = 62, //touch screen action
+        TouchScreen = 62 //touch screen action
     }
 }

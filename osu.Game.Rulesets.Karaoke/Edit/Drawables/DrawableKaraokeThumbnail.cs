@@ -7,32 +7,32 @@ using osu.Framework.Graphics.Containers;
 using osu.Framework.Input;
 using osu.Game.Rulesets.Karaoke.Edit.Drawables.Pieces;
 using osu.Game.Rulesets.Karaoke.Objects;
+using osu.Game.Rulesets.Karaoke.Objects.TimeLine;
 using OpenTK.Input;
 
 namespace osu.Game.Rulesets.Karaoke.Edit.Drawables
 {
     /// <summary>
-    /// Karaoke's Thumbnail
-    /// will show the word's seperate word and seperate time
+    ///     Karaoke's Thumbnail
+    ///     will show the word's seperate word and seperate time
     /// </summary>
     public class DrawableKaraokeThumbnail : Container
     {
-        public BaseLyric Lyric { get; set; }
-
         //if change zoon,call this
         public float Ratio = 0.3f;
 
         public float Zoon = 1;
-
-        protected float PointYPosition = 30;
+        public BaseLyric Lyric { get; set; }
 
         //Start and end selected point
         public EditableProgressPoint HoverSelectedPoint { get; set; }
 
+        protected float PointYPosition = 30;
+
         protected EditableProgressPoint StartSelectedPoint { get; set; }
         protected EditableProgressPoint EndSelectedPoint { get; set; }
         protected bool IsDraging { get; set; }
-        protected bool IsSelecting { get; set; } = false;
+        protected bool IsSelecting { get; set; }
 
         protected FillFlowContainer<EditableProgressPoint> ListEditableProgressPoint { get; set; } = new FillFlowContainer<EditableProgressPoint>();
 
@@ -44,21 +44,21 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables
         }
 
         /// <summary>
-        /// update UI
+        ///     update UI
         /// </summary>
         public void UpdateView()
         {
             //1. show the whole bar with start time and end time
 
             //2. fix time
-            Lyric.ProgressPoints.FixTime();
+            Lyric.TimeLines.FixTime();
 
             //3. show each point with text start and end time
             ListEditableProgressPoint.Direction = FillDirection.Horizontal;
             ListEditableProgressPoint.Clear();
 
 
-            foreach (var single in Lyric.ProgressPoints)
+            foreach (var single in Lyric.TimeLines)
             {
                 var editableProgressPoint = new EditableProgressPoint(this, single);
                 ListEditableProgressPoint.Add(editableProgressPoint);
@@ -71,7 +71,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables
         }
 
         /// <summary>
-        /// just update progresspoint's position and startEndPosition
+        ///     just update progresspoint's position and startEndPosition
         /// </summary>
         public void UpdatePosition()
         {
@@ -91,15 +91,13 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables
         }
 
         /// <summary>
-        /// update selected or dragging color
+        ///     update selected or dragging color
         /// </summary>
         public void UpdateColor()
         {
             //reset color
             foreach (var single in ListEditableProgressPoint)
-            {
                 single.ResetColor();
-            }
 
             //update hover color
             if (!IsDraging && !IsSelecting)
@@ -109,21 +107,17 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables
             //update select color
             var startIndex = GetObjectIndex(StartSelectedPoint);
             var endIndex = GetObjectIndex(EndSelectedPoint);
-            for (int i = 0; i < ListEditableProgressPoint.Count; i++)
-            {
+            for (var i = 0; i < ListEditableProgressPoint.Count; i++)
                 if (i >= startIndex && i <= endIndex)
-                {
                     ListEditableProgressPoint[i].Selected = true;
-                }
-            }
         }
 
         /// <summary>
-        /// update position
+        ///     update position
         /// </summary>
         public void UpdateTime(float deltaPosition)
         {
-            var minimumTime = Lyric.ProgressPoints.MinimumTime;
+            var minimumTime = Lyric.TimeLines.MinimumTime;
 
             double deltaTime = deltaPosition / Ratio / Zoon;
 
@@ -145,27 +139,20 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables
             */
 
             //update time
-            for (int i = 0; i < ListEditableProgressPoint.Count; i++)
-            {
+            for (var i = 0; i < ListEditableProgressPoint.Count; i++)
                 if (i >= startIndex && i <= endIndex)
-                {
-                    //not out of range
                     ListEditableProgressPoint[i].LyricProgressPoint.Value.RelativeTime = ListEditableProgressPoint[i].LyricProgressPoint.Value.RelativeTime + deltaPosition;
-                }
-            }
 
-            Lyric.ProgressPoints.FixTime();
+            Lyric.TimeLines.FixTime();
         }
 
         /// <summary>
-        /// Delete single point
+        ///     Delete single point
         /// </summary>
         public void DeletePoint(KeyValuePair<int, LyricTimeLine> point)
         {
-            if (Lyric.ProgressPoints.Count > 1)
-            {
-                Lyric.ProgressPoints.Remove(point.Key);
-            }
+            if (Lyric.TimeLines.Count > 1)
+                Lyric.TimeLines.Remove(point.Key);
 
             UpdateView();
         }
@@ -175,10 +162,8 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables
             var mousePosition = ToLocalSpace(state.Mouse.NativeState.Position);
 
             foreach (var single in ListEditableProgressPoint)
-            {
                 if (single.Position.X + single.Width > mousePosition.X)
                     return single;
-            }
 
             return null;
         }
@@ -239,7 +224,6 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables
             //get selected point
             var selectedPoint = GetPointedObjectByPosition(state);
             if (selectedPoint != null)
-            {
                 if (IsSelectKeyPressed(state))
                 {
                     PlusSelectedPoint(selectedPoint);
@@ -247,13 +231,10 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables
                 else
                 {
                     if (StartSelectedPoint == null)
-                    {
                         PlusSelectedPoint(selectedPoint);
-                    }
 
                     IsDraging = true;
                 }
-            }
 
             UpdateColor();
 
@@ -261,7 +242,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables
         }
 
         /// <summary>
-        /// moving
+        ///     moving
         /// </summary>
         /// <param name="state"></param>
         /// <returns></returns>

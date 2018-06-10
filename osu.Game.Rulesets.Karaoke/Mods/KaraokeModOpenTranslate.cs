@@ -7,8 +7,8 @@ using osu.Game.Rulesets.Mods;
 namespace osu.Game.Rulesets.Karaoke.Mods
 {
     /// <summary>
-    /// will force open the translate for lyrics
-    /// even you are not open it in the config
+    ///     will force open the translate for lyrics
+    ///     even you are not open it in the config
     /// </summary>
     public class KaraokeModOpenTranslate : Mod
     {

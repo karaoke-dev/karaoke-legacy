@@ -33,7 +33,6 @@ namespace osu.Game.Rulesets.Karaoke.Tests
         /// </summary>
         public TestCaseGithub()
         {
-
         }
     }
 }

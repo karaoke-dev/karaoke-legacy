@@ -5,7 +5,6 @@ using System;
 using System.Diagnostics;
 using osu.Framework.Allocation;
 using osu.Framework.Graphics;
-using osu.Framework.Graphics.Colour;
 using osu.Framework.Graphics.OpenGL.Buffers;
 using osu.Framework.Graphics.OpenGL.Vertices;
 using osu.Framework.Graphics.Primitives;
@@ -20,6 +19,14 @@ namespace osu.Game.Rulesets.Karaoke.UI.Cursor
 {
     internal class CursorTrail : Drawable
     {
+        private Vector2 size => texture.Size * Scale;
+
+        private readonly TrailDrawNodeSharedData trailDrawNodeSharedData = new TrailDrawNodeSharedData();
+        private const int max_sprites = 2048;
+
+        private readonly TrailPart[] parts = new TrailPart[max_sprites];
+
+        private readonly InputResampler resampler = new InputResampler();
         //public override bool HandleInput => true;
 
         private int currentIndex;
@@ -27,38 +34,11 @@ namespace osu.Game.Rulesets.Karaoke.UI.Cursor
         private Shader shader;
         private Texture texture;
 
-        private Vector2 size => texture.Size * Scale;
-
         private double timeOffset;
 
         private float time;
 
-        private readonly TrailDrawNodeSharedData trailDrawNodeSharedData = new TrailDrawNodeSharedData();
-        private const int max_sprites = 2048;
-
-        private readonly TrailPart[] parts = new TrailPart[max_sprites];
-
         private Vector2? lastPosition;
-
-        private readonly InputResampler resampler = new InputResampler();
-
-        protected override DrawNode CreateDrawNode() => new TrailDrawNode();
-
-        protected override void ApplyDrawNode(DrawNode node)
-        {
-            base.ApplyDrawNode(node);
-
-            TrailDrawNode tNode = (TrailDrawNode)node;
-            tNode.Shader = shader;
-            tNode.Texture = texture;
-            tNode.Size = size;
-            tNode.Time = time;
-            tNode.Shared = trailDrawNodeSharedData;
-
-            for (int i = 0; i < parts.Length; ++i)
-                if (parts[i].InvalidationID > tNode.Parts[i].InvalidationID)
-                    tNode.Parts[i] = parts[i];
-        }
 
         public CursorTrail()
         {
@@ -67,21 +47,37 @@ namespace osu.Game.Rulesets.Karaoke.UI.Cursor
 
             RelativeSizeAxes = Axes.Both;
 
-            for (int i = 0; i < max_sprites; i++)
+            for (var i = 0; i < max_sprites; i++)
             {
                 parts[i].InvalidationID = 0;
                 parts[i].WasUpdated = true;
             }
         }
 
-        public override bool ReceiveMouseInputAt(Vector2 screenSpacePos) => true;
-
-        [BackgroundDependencyLoader]
-        private void load(ShaderManager shaders, TextureStore textures)
+        public override bool ReceiveMouseInputAt(Vector2 screenSpacePos)
         {
-            shader = shaders?.Load(@"CursorTrail", FragmentShaderDescriptor.TEXTURE);
-            texture = textures.Get(@"Cursor/cursortrail");
-            Scale = new Vector2(1 / texture.ScaleAdjust);
+            return true;
+        }
+
+        protected override DrawNode CreateDrawNode()
+        {
+            return new TrailDrawNode();
+        }
+
+        protected override void ApplyDrawNode(DrawNode node)
+        {
+            base.ApplyDrawNode(node);
+
+            var tNode = (TrailDrawNode)node;
+            tNode.Shader = shader;
+            tNode.Texture = texture;
+            tNode.Size = size;
+            tNode.Time = time;
+            tNode.Shared = trailDrawNodeSharedData;
+
+            for (var i = 0; i < parts.Length; ++i)
+                if (parts[i].InvalidationID > tNode.Parts[i].InvalidationID)
+                    tNode.Parts[i] = parts[i];
         }
 
         protected override void LoadComplete()
@@ -103,18 +99,6 @@ namespace osu.Game.Rulesets.Karaoke.UI.Cursor
                 resetTime();
         }
 
-        private void resetTime()
-        {
-            for (int i = 0; i < parts.Length; ++i)
-            {
-                parts[i].Time -= time;
-                ++parts[i].InvalidationID;
-            }
-
-            time = 0;
-            timeOffset = Time.Current;
-        }
-
         protected override bool OnMouseMove(InputState state)
         {
             if (lastPosition == null)
@@ -124,18 +108,18 @@ namespace osu.Game.Rulesets.Karaoke.UI.Cursor
                 return base.OnMouseMove(state);
             }
 
-            foreach (Vector2 pos2 in resampler.AddPosition(state.Mouse.NativeState.Position))
+            foreach (var pos2 in resampler.AddPosition(state.Mouse.NativeState.Position))
             {
                 Trace.Assert(lastPosition.HasValue);
 
-                Vector2 pos1 = lastPosition.Value;
-                Vector2 diff = pos2 - pos1;
-                float distance = diff.Length;
-                Vector2 direction = diff / distance;
+                var pos1 = lastPosition.Value;
+                var diff = pos2 - pos1;
+                var distance = diff.Length;
+                var direction = diff / distance;
 
-                float interval = size.X / 2 * 0.9f;
+                var interval = size.X / 2 * 0.9f;
 
-                for (float d = interval; d < distance; d += interval)
+                for (var d = interval; d < distance; d += interval)
                 {
                     lastPosition = pos1 + direction * d;
                     addPosition(lastPosition.Value);
@@ -143,6 +127,26 @@ namespace osu.Game.Rulesets.Karaoke.UI.Cursor
             }
 
             return base.OnMouseMove(state);
+        }
+
+        [BackgroundDependencyLoader]
+        private void load(ShaderManager shaders, TextureStore textures)
+        {
+            shader = shaders?.Load(@"CursorTrail", FragmentShaderDescriptor.TEXTURE);
+            texture = textures.Get(@"Cursor/cursortrail");
+            Scale = new Vector2(1 / texture.ScaleAdjust);
+        }
+
+        private void resetTime()
+        {
+            for (var i = 0; i < parts.Length; ++i)
+            {
+                parts[i].Time -= time;
+                ++parts[i].InvalidationID;
+            }
+
+            time = 0;
+            timeOffset = Time.Current;
         }
 
         private void addPosition(Vector2 pos)
@@ -169,18 +173,17 @@ namespace osu.Game.Rulesets.Karaoke.UI.Cursor
 
         private class TrailDrawNode : DrawNode
         {
+            public readonly TrailPart[] Parts = new TrailPart[max_sprites];
             public Shader Shader;
             public Texture Texture;
 
             public float Time;
             public TrailDrawNodeSharedData Shared;
-
-            public readonly TrailPart[] Parts = new TrailPart[max_sprites];
             public Vector2 Size;
 
             public TrailDrawNode()
             {
-                for (int i = 0; i < max_sprites; i++)
+                for (var i = 0; i < max_sprites; i++)
                 {
                     Parts[i].InvalidationID = 0;
                     Parts[i].WasUpdated = false;
@@ -195,19 +198,18 @@ namespace osu.Game.Rulesets.Karaoke.UI.Cursor
                 Shader.GetUniform<float>("g_FadeClock").Value = Time;
 
                 int updateStart = -1, updateEnd = 0;
-                for (int i = 0; i < Parts.Length; ++i)
-                {
+                for (var i = 0; i < Parts.Length; ++i)
                     if (Parts[i].WasUpdated)
                     {
                         if (updateStart == -1)
                             updateStart = i;
                         updateEnd = i + 1;
 
-                        int start = i * 4;
-                        int end = start;
+                        var start = i * 4;
+                        var end = start;
 
-                        Vector2 pos = Parts[i].Position;
-                        ColourInfo colour = DrawInfo.Colour;
+                        var pos = Parts[i].Position;
+                        var colour = DrawInfo.Colour;
                         colour.TopLeft.Linear.A = Parts[i].Time + colour.TopLeft.Linear.A;
                         colour.TopRight.Linear.A = Parts[i].Time + colour.TopRight.Linear.A;
                         colour.BottomLeft.Linear.A = Parts[i].Time + colour.BottomLeft.Linear.A;
@@ -226,7 +228,6 @@ namespace osu.Game.Rulesets.Karaoke.UI.Cursor
                         Shared.VertexBuffer.UpdateRange(updateStart * 4, updateEnd * 4);
                         updateStart = -1;
                     }
-                }
 
                 // Update all remaining vertices that have been changed.
                 if (updateStart != -1)

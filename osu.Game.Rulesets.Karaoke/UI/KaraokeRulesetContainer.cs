@@ -8,6 +8,7 @@ using osu.Game.Input.Handlers;
 using osu.Game.Rulesets.Configuration;
 using osu.Game.Rulesets.Karaoke.Beatmaps;
 using osu.Game.Rulesets.Karaoke.Configuration;
+using osu.Game.Rulesets.Karaoke.Input;
 using osu.Game.Rulesets.Karaoke.Objects;
 using osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric;
 using osu.Game.Rulesets.Karaoke.Replays;
@@ -30,7 +31,10 @@ namespace osu.Game.Rulesets.Karaoke.UI
             //TODO : add "autoPlay" to Mods to control play speed
         }
 
-        public override ScoreProcessor CreateScoreProcessor() => new KaraokeScoreProcessor(this);
+        public override ScoreProcessor CreateScoreProcessor()
+        {
+            return new KaraokeScoreProcessor(this);
+        }
 
         protected override Playfield CreatePlayfield()
         {
@@ -46,21 +50,23 @@ namespace osu.Game.Rulesets.Karaoke.UI
             */
         }
 
-        public override PassThroughInputManager CreateInputManager() => new KaraokeInputManager(Ruleset.RulesetInfo);
-
         protected override DrawableHitObject<BaseLyric> GetVisualRepresentation(BaseLyric h)
         {
             if (h is BaseLyric karaokeObject)
-            {
                 return new DrawableLyric(karaokeObject);
-            }
 
             return null;
         }
 
-        protected override ReplayInputHandler CreateReplayInputHandler(Replay replay) => new KaraokeReplayInputHandler(replay);
+        protected override ReplayInputHandler CreateReplayInputHandler(Replay replay)
+        {
+            return new KaraokeReplayInputHandler(replay);
+        }
 
-        protected override Vector2 GetAspectAdjustedSize() => new Vector2(0.75f);
+        protected override Vector2 GetAspectAdjustedSize()
+        {
+            return new Vector2(0.75f);
+        }
 
         protected override IRulesetConfigManager CreateConfig(Ruleset ruleset, SettingsStore settings)
         {

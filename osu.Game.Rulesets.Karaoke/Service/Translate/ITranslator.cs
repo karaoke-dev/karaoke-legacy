@@ -5,30 +5,30 @@ using System;
 using System.Collections.Generic;
 using osu.Game.Rulesets.Karaoke.Configuration;
 
-namespace osu.Game.Rulesets.Karaoke.Tools.Translator
+namespace osu.Game.Rulesets.Karaoke.Service.Translate
 {
     /// <summary>
-    /// translator base
+    ///     translator base
     /// </summary>
     public interface ITranslator
     {
         /// <summary>
-        /// notified translate multi string 
+        ///     notified translate multi string
         /// </summary>
         EventHandler<List<string>> OnTranslateMultiStringSuccess { get; set; }
 
         /// <summary>
-        /// notified translate single string 
+        ///     notified translate single string
         /// </summary>
         EventHandler<string> OnTranslateSuccess { get; set; }
 
         /// <summary>
-        /// if fail ,get error message
+        ///     if fail ,get error message
         /// </summary>
         EventHandler<string> OnTranslateFail { get; set; }
 
         /// <summary>
-        /// translate multi string at the same thme
+        ///     translate multi string at the same thme
         /// </summary>
         /// <param name="sourceLangeCode"></param>
         /// <param name="targetLangCode"></param>
@@ -36,7 +36,7 @@ namespace osu.Game.Rulesets.Karaoke.Tools.Translator
         void Translate(TranslateCode sourceLangeCode, TranslateCode targetLangCode, List<string> translateString);
 
         /// <summary>
-        /// translate multi string at the same thme
+        ///     translate multi string at the same thme
         /// </summary>
         /// <param name="sourceLangeCode"></param>
         /// <param name="targetLangCode"></param>

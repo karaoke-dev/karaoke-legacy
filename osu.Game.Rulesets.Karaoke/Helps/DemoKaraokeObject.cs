@@ -5,12 +5,14 @@ using System.Collections.Generic;
 using osu.Game.Rulesets.Karaoke.Configuration;
 using osu.Game.Rulesets.Karaoke.Objects;
 using osu.Game.Rulesets.Karaoke.Objects.Lyric;
+using osu.Game.Rulesets.Karaoke.Objects.TimeLine;
+using osu.Game.Rulesets.Karaoke.Objects.Translate;
 using OpenTK;
 
 namespace osu.Game.Rulesets.Karaoke.Helps
 {
     /// <summary>
-    /// create verious of condition of lyric
+    ///     create verious of condition of lyric
     /// </summary>
     public static class DemoKaraokeObject
     {
@@ -21,18 +23,18 @@ namespace osu.Game.Rulesets.Karaoke.Helps
             karaokeObject.Position = new Vector2(300, 150);
             karaokeObject.Furigana.Add(0, new FuriganaText
             {
-                Text = "お",
+                Text = "お"
             });
             karaokeObject.Furigana.Add(6, new FuriganaText
             {
-                Text = "お",
+                Text = "お"
             });
 
             return karaokeObject;
         }
 
         /// <summary>
-        /// generate normal demo 001
+        ///     generate normal demo 001
         /// </summary>
         /// <returns></returns>
         public static JpLyric GenerateDemo001()
@@ -42,16 +44,16 @@ namespace osu.Game.Rulesets.Karaoke.Helps
             karaokeObject.Position = new Vector2(300, 150);
             karaokeObject.Furigana.Add(0, new FuriganaText
             {
-                Text = "お",
+                Text = "お"
             });
             karaokeObject.Furigana.Add(6, new FuriganaText
             {
-                Text = "お",
+                Text = "お"
             });
-            karaokeObject.ProgressPoints.Add(0, new LyricTimeLine(0));
-            karaokeObject.ProgressPoints.Add(1, new LyricTimeLine(500));
-            karaokeObject.ProgressPoints.Add(5, new LyricTimeLine(1000));
-            karaokeObject.ProgressPoints.Add(11, new LyricTimeLine(1500));
+            karaokeObject.TimeLines.Add(0, new LyricTimeLine(0));
+            karaokeObject.TimeLines.Add(1, new LyricTimeLine(500));
+            karaokeObject.TimeLines.Add(5, new LyricTimeLine(1000));
+            karaokeObject.TimeLines.Add(11, new LyricTimeLine(1500));
 
             return karaokeObject;
         }
@@ -63,17 +65,17 @@ namespace osu.Game.Rulesets.Karaoke.Helps
             karaokeObject.Position = new Vector2(300, 150);
             karaokeObject.Furigana.Add(0, new FuriganaText
             {
-                Text = "お",
+                Text = "お"
             });
             karaokeObject.Furigana.Add(6, new FuriganaText
             {
-                Text = "お",
+                Text = "お"
             });
             karaokeObject.StartTime = startTime;
 
-            karaokeObject.ProgressPoints.Add(0, new LyricTimeLine(duration / 5));
-            karaokeObject.ProgressPoints.Add(9, new LyricTimeLine(duration / 4));
-            karaokeObject.ProgressPoints.Add(11, new LyricTimeLine(duration));
+            karaokeObject.TimeLines.Add(0, new LyricTimeLine(duration / 5));
+            karaokeObject.TimeLines.Add(9, new LyricTimeLine(duration / 4));
+            karaokeObject.TimeLines.Add(11, new LyricTimeLine(duration));
 
             karaokeObject.Romaji.Add(0, new RomajiText("o"));
             karaokeObject.Romaji.Add(1, new RomajiText("wa"));
@@ -93,26 +95,26 @@ namespace osu.Game.Rulesets.Karaoke.Helps
 
         public static JpLyric GenerateDeomKaraokeLyric()
         {
-            return new JpLyric()
+            return new JpLyric
             {
                 Lyric = MainTextList.SetJapaneseLyric("カラオケ"),
-                Furigana = new Dictionary<int, FuriganaText>()
+                Furigana = new Dictionary<int, FuriganaText>
                 {
-                    { 0, new FuriganaText() { Text = "か" } },
-                    { 1, new FuriganaText() { Text = "ら" } },
-                    { 2, new FuriganaText() { Text = "お" } },
-                    { 3, new FuriganaText() { Text = "け" } },
+                    { 0, new FuriganaText { Text = "か" } },
+                    { 1, new FuriganaText { Text = "ら" } },
+                    { 2, new FuriganaText { Text = "お" } },
+                    { 3, new FuriganaText { Text = "け" } }
                 },
-                Romaji = new RomajiTextList()
+                Romaji = new RomajiTextList
                 {
-                    { 0, new RomajiText() { Text = "ka" } },
-                    { 1, new RomajiText() { Text = "ra" } },
-                    { 2, new RomajiText() { Text = "o" } },
-                    { 3, new RomajiText() { Text = "ke" } },
+                    { 0, new RomajiText { Text = "ka" } },
+                    { 1, new RomajiText { Text = "ra" } },
+                    { 2, new RomajiText { Text = "o" } },
+                    { 3, new RomajiText { Text = "ke" } }
                 },
-                Translates = new LyricTranslateList()
+                Translates = new LyricTranslateList
                 {
-                    { TranslateCode.English, new LyricTranslate() { Text = "Karaoke" } },
+                    { TranslateCode.English, new LyricTranslate { Text = "Karaoke" } }
                 }
             };
         }
