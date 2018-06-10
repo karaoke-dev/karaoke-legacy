@@ -7,7 +7,8 @@ using osu.Framework.Graphics.UserInterface;
 using osu.Framework.Input;
 using osu.Game.Graphics.UserInterface;
 using osu.Game.Rulesets.Karaoke.Configuration;
-using osu.Game.Rulesets.Karaoke.Edit.Drawables.Pieces;
+using osu.Game.Rulesets.Karaoke.Edit.Drawables.Lyric.Pieces;
+using osu.Game.Rulesets.Karaoke.Edit.Drawables.Thumbnail;
 using osu.Game.Rulesets.Karaoke.Objects;
 using osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric;
 using osu.Game.Rulesets.Karaoke.Objects.Text;
@@ -15,7 +16,7 @@ using osu.Game.Rulesets.Karaoke.Objects.TimeLine;
 using osu.Game.Rulesets.Karaoke.Objects.Translate;
 using OpenTK;
 
-namespace osu.Game.Rulesets.Karaoke.Edit.Drawables
+namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Lyric
 {
     /// <summary>
     ///     Editable karaoke Drawable Object

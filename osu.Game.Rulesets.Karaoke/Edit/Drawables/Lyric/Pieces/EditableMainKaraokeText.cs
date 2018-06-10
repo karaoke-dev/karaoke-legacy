@@ -6,7 +6,7 @@ using osu.Game.Rulesets.Karaoke.Objects.Drawables.Common.Pieces;
 using osu.Game.Rulesets.Karaoke.Objects.Text;
 using OpenTK.Graphics;
 
-namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Pieces
+namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Lyric.Pieces
 {
     public class EditableMainKaraokeText : MainKaraokeText
     {
