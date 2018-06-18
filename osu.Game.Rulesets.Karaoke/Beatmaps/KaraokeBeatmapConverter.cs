@@ -83,6 +83,11 @@ namespace osu.Game.Rulesets.Karaoke.Beatmaps
                 HitObjects = Convert(original.HitObjects)
             };
             //newBratmaps.HitObjects.BindingAll();
+
+            //slow down the note speed
+            newBratmaps.BeatmapInfo.BaseDifficulty.OverallDifficulty = newBratmaps.BeatmapInfo.BaseDifficulty.OverallDifficulty / 2;
+
+
             return newBratmaps;
         }
 

@@ -3,7 +3,7 @@
 
 using osu.Framework.Input;
 using osu.Game.Beatmaps;
-using osu.Game.Rulesets.Karaoke.Edit.Drawables;
+using osu.Game.Rulesets.Karaoke.Edit.Drawables.Lyric;
 using osu.Game.Rulesets.Karaoke.Input;
 using osu.Game.Rulesets.Karaoke.Objects;
 using osu.Game.Rulesets.Karaoke.UI;

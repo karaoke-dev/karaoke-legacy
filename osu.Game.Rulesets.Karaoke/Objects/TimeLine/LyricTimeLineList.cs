@@ -1,6 +1,7 @@
 ﻿// Copyright (c) 2007-2018 ppy Pty Ltd <contact@ppy.sh>.
 // Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json;
@@ -16,7 +17,6 @@ namespace osu.Game.Rulesets.Karaoke.Objects.TimeLine
     {
         [JsonIgnore]
         public double MinimumTime { get; set; } = 100;
-
 
         /// <summary>
         ///     get first progress point by time
@@ -145,5 +145,11 @@ namespace osu.Game.Rulesets.Karaoke.Objects.TimeLine
                 time = single.Value.RelativeTime;
             }
         }
+
+        //just change value
+        public event Action<LyricTimeLineList> ValueChangerd;
+
+        //change number of time point
+        public event Action<LyricTimeLineList> SizeChanged;
     }
 }

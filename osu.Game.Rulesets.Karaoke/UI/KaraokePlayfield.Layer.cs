@@ -1,12 +1,15 @@
 ﻿// Copyright (c) 2007-2018 ppy Pty Ltd <contact@ppy.sh>.
 // Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
 
+using System.Collections.Generic;
 using osu.Framework.Graphics;
 using osu.Framework.Timing;
+using osu.Game.Rulesets.Karaoke.Beatmaps;
 using osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel;
 using osu.Game.Rulesets.Karaoke.UI.Layers.Effect;
 using osu.Game.Rulesets.Karaoke.UI.Layers.Input;
 using osu.Game.Rulesets.Karaoke.UI.Layers.Lyric;
+using osu.Game.Rulesets.Karaoke.UI.Layers.Note;
 using OpenTK;
 
 namespace osu.Game.Rulesets.Karaoke.UI
@@ -23,7 +26,7 @@ namespace osu.Game.Rulesets.Karaoke.UI
         public override void InitialFrontendLayer()
         {
             //panel
-            KaraokeRulesetContainer.Add(_karaokePanelOverlay = new ControlPanelLayer(this)
+            Add(_karaokePanelOverlay = new ControlPanelLayer(this)
             {
                 Clock = new FramedClock(new StopwatchClock(true)),
                 RelativeSizeAxes = Axes.X,
@@ -34,7 +37,7 @@ namespace osu.Game.Rulesets.Karaoke.UI
             });
 
             //Input layer
-            KaraokeRulesetContainer.Add(_inputLayer = new InputLayer
+            Add(_inputLayer = new InputLayer
             {
                 RelativeSizeAxes = Axes.Both,
                 Depth = -2,
@@ -58,6 +61,16 @@ namespace osu.Game.Rulesets.Karaoke.UI
                 KaraokeRulesetContainer = KaraokeRulesetContainer
             });
 
+            //layer
+            Add(KaraokeTonePlayfield = new KaraokeTonePlayfield(new List<KaraokeStageDefinition>
+            {
+                new KaraokeStageDefinition { Columns = 10 }
+            })
+            {
+                KaraokeRulesetContainer = KaraokeRulesetContainer
+            });
+
+            Layers.Add(KaraokeLyricPlayField);
             Layers.Add(KaraokeLyricPlayField);
         }
 

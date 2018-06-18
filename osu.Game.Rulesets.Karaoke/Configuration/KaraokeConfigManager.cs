@@ -60,6 +60,9 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
             //Device
             Set(KaraokeSetting.Device, PlatformType.Desktop);
             SetObject(KaraokeSetting.TouchScreen, new MobileScrollAnixConfig());
+
+            //Tone
+            Set(KaraokeSetting.NoteSpeed, 6000.0);
         }
     }
 
@@ -97,6 +100,9 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
 
         //device
         Device = 61, //which device
-        TouchScreen = 62 //touch screen action
+        TouchScreen = 62, //touch screen action
+
+        //Note
+        NoteSpeed = 71 //noteSpeed
     }
 }

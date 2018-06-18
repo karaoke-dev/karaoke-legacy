@@ -21,8 +21,9 @@ using OpenTK;
 
 namespace osu.Game.Rulesets.Karaoke.UI
 {
-    public class KaraokeRulesetContainer : RulesetContainer<BaseLyric>
+    public class KaraokeRulesetContainer : BaseRulesetContainer<BaseLyric>
     {
+        protected override Vector2 PlayfieldArea => Vector2.One;
         protected KaraokeConfigManager ConfigManager;
 
         public KaraokeRulesetContainer(Ruleset ruleset, WorkingBeatmap beatmap, bool isForCurrentRuleset)
@@ -80,7 +81,12 @@ namespace osu.Game.Rulesets.Karaoke.UI
 
         protected override Vector2 GetAspectAdjustedSize()
         {
-            return new Vector2(0.75f);
+            const float default_relative_height = KaraokeBasePlayfield.DEFAULT_HEIGHT / 768;
+            const float default_aspect = 16f / 9f;
+
+            var aspectAdjust = MathHelper.Clamp(DrawWidth / DrawHeight, 0.4f, 4) / default_aspect;
+
+            return new Vector2(1, default_relative_height * aspectAdjust);
         }
 
         protected override IRulesetConfigManager CreateConfig(Ruleset ruleset, SettingsStore settings)

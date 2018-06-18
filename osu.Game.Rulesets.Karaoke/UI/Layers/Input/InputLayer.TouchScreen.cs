@@ -32,8 +32,8 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Input
             {
                 _timer.Stop();
 
-                var tapConfig = MobileScrollAnixConfig.Value.TagConfigs[TouchScreenTapInteractive.Hold];
-                OnTap(tapConfig);
+                //var tapConfig = MobileScrollAnixConfig.Value.TagConfigs[TouchScreenTapInteractive.Hold];
+                //OnTap(tapConfig);
             };
         }
 
