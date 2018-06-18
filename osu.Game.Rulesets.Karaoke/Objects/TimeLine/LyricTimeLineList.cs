@@ -32,7 +32,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.TimeLine
                 totalDuration = totalDuration + value.Value.Duration;
 
                 if (totalDuration > relativeTime)
-                    return value;
+                    return this.FindPrevioud(value.Key);
             }
 
             return null;
@@ -55,7 +55,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.TimeLine
                     return totalDuration;
             }
 
-            return totalDuration;
+            return 0;
         }
 
         /// <summary>
@@ -72,7 +72,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.TimeLine
                 totalDuration = totalDuration + value.Value.Duration;
 
                 if (totalDuration > relativeTime)
-                    return this.FindNext(value.Key);
+                    return value;
             }
 
             return null;

@@ -58,18 +58,20 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note
                 }
                 else
                 {
-                    var nextTimeLine = HitObject.TimeLines.GetNext(TimeLine.Key)?.Key;
+                    var prevTimeLine = HitObject.TimeLines.GetPrevious(TimeLine.Key)?.Key;
                     var lyric = HitObject.Lyric.Text;
                     int take = 0;
-                    if (nextTimeLine != null)
+                    var displayText = "";
+                    if (prevTimeLine != null)
                     {
-                        take = nextTimeLine.Value - _timeLine.Key;
+                        take = _timeLine.Key - prevTimeLine.Value;
+                        displayText = lyric.Substring(prevTimeLine.Value, take);
                     }
                     else
                     {
-                        take = lyric.Length - _timeLine.Key;
+                        take = _timeLine.Key;
+                        displayText = lyric.Substring(0, take);
                     }
-                    var displayText = lyric.Substring(_timeLine.Key, take);
                     text.Text = displayText;
                 }
             }

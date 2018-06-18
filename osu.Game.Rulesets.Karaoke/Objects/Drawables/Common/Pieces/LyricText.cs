@@ -54,7 +54,10 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Common.Pieces
                 if (index == 0)
                     return 0;
 
-                return ListCharEndPosition[index -1];
+                if(ListCharEndPosition.TryGetValue(index - 1, out var value))
+                    return value;
+
+                return 0;
             }
             catch
             {
@@ -86,7 +89,10 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Common.Pieces
                 if (index < 0)
                     return 0;
 
-                return ListCharEndPosition[index];
+                if (ListCharEndPosition.TryGetValue(index, out var value))
+                    return value;
+
+                return 0;
             }
             catch
             {

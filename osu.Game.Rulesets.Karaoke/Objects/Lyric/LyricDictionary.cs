@@ -66,8 +66,8 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Lyric
         public KeyValuePair<Key, Value>? FindPrevioud(Key key)
         {
             var result = Keys.Where(x => x.CompareTo(key) < 0);
-            if (result.Count() < 2)
-                return this.First();
+            if (result.Count() <= 1)
+                return null;
 
             var previousKey = result.Max();
             return Find(previousKey);
@@ -81,8 +81,8 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Lyric
         public KeyValuePair<Key, Value>? FindNext(Key key)
         {
             var result = Keys.Where(x => x.CompareTo(key) > 0);
-            if (result.Count() < 2)
-                return this.Last();
+            if (result.Count() <= 1)
+                return null;
             var nextKey = result.Min();
             return Find(nextKey);
         }
