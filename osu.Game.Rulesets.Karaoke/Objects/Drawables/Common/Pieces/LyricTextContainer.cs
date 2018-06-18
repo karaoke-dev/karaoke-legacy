@@ -2,8 +2,11 @@
 // Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
 
 using System.Collections.Generic;
+using System.Linq;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
+using osu.Game.Rulesets.Karaoke.Configuration;
+using osu.Game.Rulesets.Karaoke.Objects.Lyric.Types;
 using osu.Game.Rulesets.Karaoke.Objects.Text;
 using OpenTK;
 using OpenTK.Graphics;
@@ -18,6 +21,10 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Common.Pieces
     /// </summary>
     public class LyricTextContainer : Container
     {
+        private LyricTemplate _template;
+        private KaraokeLyricConfig _config;
+        private BaseLyric _lyric;
+
         /// <summary>
         ///     main text
         /// </summary>
@@ -26,21 +33,137 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Common.Pieces
         /// <summary>
         ///     top text
         /// </summary>
-        public List<KaraokeText> ListDrawableSubText = new List<KaraokeText>();
+        public List<KaraokeText> ListDrawableSubText { get; } = new List<KaraokeText>();
 
         /// <summary>
         ///     bottom text
         /// </summary>
-        public List<KaraokeText> ListDrawableBottomText = new List<KaraokeText>();
+        public List<KaraokeText> ListDrawableBottomText { get; } = new List<KaraokeText>();
 
-        private float _height;
+        /// <summary>
+        /// template
+        /// </summary>
+        public LyricTemplate Template
+        {
+            get => _template;
+            set
+            {
+                _template = value;
+                UpdateDrawable();
+            }
+        }
+
+        /// <summary>
+        /// Config
+        /// </summary>
+        public KaraokeLyricConfig Config
+        {
+            get => _config;
+            set
+            {
+                _config = value;
+                UpdateDrawable();
+            }
+        }
+
+        /// <summary>
+        /// Lyric
+        /// </summary>
+        public BaseLyric Lyric
+        {
+            get => _lyric;
+            set
+            {
+                _lyric = value;
+                UpdateDrawable();
+            }
+        }
 
         public LyricTextContainer()
         {
             Masking = true;
         }
 
-        public virtual void AddMainText(FormattedText formattedText, Dictionary<int, TextComponent> textObject, string delimiter)
+        /// <summary>
+        ///     update view
+        /// </summary>
+        protected virtual void UpdateDrawable()
+        {
+            UpdateText();
+        }
+
+        protected virtual void UpdateText()
+        {
+            if (Config != null && Template!=null && Lyric!=null)
+            {
+                this.ClearAllText();
+
+                var mainTextDelimiter = "";
+                Dictionary<int, TextComponent> mainText = null;
+                Dictionary<int, FormattedText> bottomTexts = null;
+                Dictionary<int, FormattedText> subTexts = null;
+
+                if (Config.RomajiFirst)
+                {
+                    if (Lyric is IHasRomaji romajiLyric)
+                    {
+                        mainText = romajiLyric.Romaji.ToDictionary(k => k.Key, v => (TextComponent)v.Value);
+                        mainTextDelimiter = " ";
+                    }
+                }
+                else
+                {
+                    mainText = Lyric.Lyric.ToDictionary(k => k.Key, v => (TextComponent)v.Value);
+                }
+
+                //main text
+                AddMainText(Template?.MainText, mainText.ToDictionary(k => k.Key, v => v.Value), mainTextDelimiter);
+
+                //show romaji text
+                if (Config.RomajiVislbility)
+                    if (Config.RomajiFirst)
+                    {
+                        bottomTexts = Lyric.Lyric.ToDictionary(k => k.Key, v => Template?.BottomText + v.Value + new FormattedText
+                        {
+                            X = getxPosition(v.Key)
+                        });
+                    }
+                    else
+                    {
+                        if (Lyric is IHasRomaji romajiLyric)
+                            bottomTexts = romajiLyric.Romaji.ToDictionary(k => k.Key, v => Template?.BottomText + v.Value + new FormattedText
+                            {
+                                X = getxPosition(v.Key)
+                            });
+                    }
+
+                //show subtext
+                if (Config.SubTextVislbility)
+                    if (Lyric is IHasFurigana furiganaLyric)
+                        subTexts = furiganaLyric.Furigana.ToDictionary(k => k.Key, v => Template?.TopText + v.Value + new FormattedText
+                        {
+                            X = getxPosition(v.Key)
+                        });
+
+                //show sub text
+                AddSubText(subTexts?.Select(x => x.Value).ToList());
+
+                //show sub text
+                AddBottomText(bottomTexts?.Select(x => x.Value).ToList());
+
+                Width = LyricText.GetTextEndPosition();
+                Height = Lyric.Height ?? 100;
+            }
+
+            float getxPosition(int index)
+            {
+                var positionX = LyricText.GetTextCenterPosition(index);
+
+                return positionX;
+            }
+        }
+
+        protected virtual void AddMainText(FormattedText formattedText, Dictionary<int, TextComponent> textObject, string delimiter)
         {
             if (LyricText == null)
             {
@@ -54,7 +177,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Common.Pieces
             }
         }
 
-        public void AddSubText(List<FormattedText> textObjectsList)
+        protected void AddSubText(List<FormattedText> textObjectsList)
         {
             if (textObjectsList == null)
                 textObjectsList = new List<FormattedText>
@@ -73,7 +196,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Common.Pieces
             }
         }
 
-        public void AddBottomText(List<FormattedText> textObjectsList)
+        protected void AddBottomText(List<FormattedText> textObjectsList)
         {
             if (textObjectsList == null)
                 textObjectsList = new List<FormattedText>
@@ -92,18 +215,12 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Common.Pieces
             }
         }
 
-        public void ClearAllText()
+        protected void ClearAllText()
         {
             ListDrawableSubText.Clear();
             ListDrawableBottomText.Clear();
             LyricText = null;
             Children = new Drawable[] { };
-        }
-
-        public void SetHeight(float height)
-        {
-            _height = height;
-            Height = _height;
         }
 
         public void SetMaskStartAndEndPosition(float startPositionX, float endPositionX)

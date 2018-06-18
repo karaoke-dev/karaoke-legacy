@@ -58,8 +58,9 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Lyric
         {
             var previousPoint = Lyric.TimeLines.GetFirstProgressPointByIndex(index);
             var nextPoint = Lyric.TimeLines.GetLastProgressPointByIndex(index);
-            var deltaTime = ((previousPoint.Value?.RelativeTime ?? 0) + (nextPoint.Value?.RelativeTime ?? (previousPoint.Value?.RelativeTime ?? 0) + 500)) / 2;
-            var point = new LyricTimeLine(deltaTime);
+            //set default duration is 300
+            var duration = 300;
+            var point = new LyricTimeLine(duration);
             Lyric.TimeLines.Add(index, point);
             DrawableKaraokeThumbnail.UpdateView();
         }

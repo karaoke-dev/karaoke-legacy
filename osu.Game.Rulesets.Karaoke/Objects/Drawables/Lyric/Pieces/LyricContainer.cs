@@ -5,14 +5,56 @@ using System.Collections.Generic;
 using System.Linq;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
+using osu.Game.Rulesets.Karaoke.Configuration;
 using osu.Game.Rulesets.Karaoke.Objects.Drawables.Common.Pieces;
 using osu.Game.Rulesets.Karaoke.Objects.Text;
 using OpenTK.Graphics;
 
 namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric.Pieces
 {
+    /*
     public class LyricContainer : Container //BufferedContainer
     {
+
+        /// <summary>
+        /// template
+        /// </summary>
+        public LyricTemplate Template
+        {
+            get => LeftSideText.Template;
+            set
+            {
+                LeftSideText.Template = value;
+                RightSideText.Template = value;
+            }
+        }
+
+        /// <summary>
+        /// Config
+        /// </summary>
+        public KaraokeLyricConfig Config
+        {
+            get => LeftSideText.Config;
+            set
+            {
+                LeftSideText.Config = value;
+                RightSideText.Config = value;
+            }
+        }
+
+        /// <summary>
+        /// Lyric
+        /// </summary>
+        public BaseLyric Lyric
+        {
+            get => LeftSideText.Lyric;
+            set
+            {
+                LeftSideText.Lyric = value;
+                RightSideText.Lyric = value;
+            }
+        }
+
         //Lyric
         public LyricText MainText => RightSideText.LyricText;
 
@@ -25,6 +67,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric.Pieces
         public KaraokeText BottomText => BottomTexts?.FirstOrDefault();
 
         public List<KaraokeText> BottomTexts => RightSideText.ListDrawableBottomText;
+
         protected virtual LyricTextContainer LeftSideText { get; set; } = new LyricTextContainer();
 
         protected virtual LyricTextContainer RightSideText { get; set; } = new LyricTextContainer();
@@ -32,7 +75,6 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric.Pieces
         private float _maskWidth;
 
         private float _maskHeight;
-
 
         public LyricContainer()
         {
@@ -43,40 +85,18 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric.Pieces
             };
         }
 
-        public void AddMainText(FormattedText formattedText, Dictionary<int, TextComponent> textObject, string delimiter)
-        {
-            LeftSideText.AddMainText(formattedText, textObject, delimiter);
-            RightSideText.AddMainText(formattedText, textObject, delimiter);
-        }
-
-        public void AddSubText(List<FormattedText> textObject)
-        {
-            LeftSideText.AddSubText(textObject);
-            RightSideText.AddSubText(textObject);
-        }
-
-        public void AddBottomText(List<FormattedText> textObject)
-        {
-            LeftSideText.AddBottomText(textObject);
-            RightSideText.AddBottomText(textObject);
-        }
-
-        public void ClearAllText()
-        {
-            LeftSideText.ClearAllText();
-            RightSideText.ClearAllText();
-        }
-
         public void SetWidth(float width)
         {
             _maskWidth = width;
+            LeftSideText.Width = _maskWidth;
+            RightSideText.Width = _maskWidth;
         }
 
         public void SetHeight(float height)
         {
             _maskHeight = height;
-            LeftSideText.SetHeight(_maskHeight);
-            RightSideText.SetHeight(_maskHeight);
+            LeftSideText.Height = _maskHeight;
+            RightSideText.Height = _maskHeight;
         }
 
         public void MovingMask(float newValue)
@@ -92,4 +112,5 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric.Pieces
             RightSideText.SetColor(Color4.White);
         }
     }
+    */
 }

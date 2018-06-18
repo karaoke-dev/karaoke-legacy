@@ -19,74 +19,65 @@ namespace osu.Game.Rulesets.Karaoke.Objects.TimeLine
         public double MinimumTime { get; set; } = 100;
 
         /// <summary>
-        ///     get first progress point by time
+        ///     get first Progress by char index
         /// </summary>
-        /// <param name="nowRelativeTime"></param>
+        /// <param name="relativeTime"></param>
         /// <returns></returns>
-        public KeyValuePair<int, LyricTimeLine> GetFirstProgressPointByTime(double nowRelativeTime)
+        public KeyValuePair<int, LyricTimeLine>? GetFirstProgressPointByTime(double relativeTime)
         {
-            /*
-            var index = this.FirstOrDefault(x => x.Value.RelativeTime > nowRelativeTime).Key;
+            double totalDuration = 0;
 
-            LyricProgressPoint result;
-            this.TryGetValue(index - 1, out result);
+            foreach (var value in this)
+            {
+                totalDuration = totalDuration + value.Value.Duration;
 
-            if (result == null)
-                return new KeyValuePair<int, LyricProgressPoint>(-1, new LyricProgressPoint(0));
+                if (totalDuration > relativeTime)
+                    return value;
+            }
 
-            return new KeyValuePair<int, LyricProgressPoint>(index - 1, result);
-            */
-
-
-            var result = this.Where(x => x.Value.RelativeTime <= nowRelativeTime).ToDictionary(x => x.Key, x => x.Value);
-
-            if (result.Count() < 2)
-                return this.First();
-
-            var maxResult = Find(result.Keys.Max());
-
-            if (maxResult.Equals(default(KeyValuePair<int, LyricTimeLine>)))
-                return new KeyValuePair<int, LyricTimeLine>(-1, new LyricTimeLine(0));
-
-            return maxResult.Value;
+            return null;
         }
 
         /// <summary>
-        ///     get last progress point by time
+        ///     get first Progress by char index
         /// </summary>
-        /// <param name="lyric"></param>
-        /// <param name="nowRelativeTime"></param>
+        /// <param name="relativeTime"></param>
         /// <returns></returns>
-        public KeyValuePair<int, LyricTimeLine>? GetLastProgressPointByTime(double nowRelativeTime)
+        public double GetFirstProgressDuration(int untilKey)
         {
-            /*
-            var point = this.FirstOrDefault(x => x.Value.RelativeTime > nowRelativeTime);
+            double totalDuration = 0;
 
-            if (point.Equals(default(KeyValuePair<string, int>)))
-                return this.Last();
-
-            return point;
-            */
-
-            if (Count == 0)
-                return null;
-
-            //result
-            var result = this.Where(x => x.Value.RelativeTime > nowRelativeTime).ToDictionary(x => x.Key, x => x.Value);
-
-            if (result.Count() < 2)
-                return this.Last();
-
-            var maxResult = Find(result.Keys.Max());
-
-            if (maxResult.Equals(default(KeyValuePair<int, LyricTimeLine>)))
+            foreach (var value in this)
             {
-                var key = Keys.Max();
-                return Find(key);
+                totalDuration = totalDuration + value.Value.Duration;
+
+                if (value.Key == untilKey)
+                    return totalDuration;
             }
 
-            return maxResult;
+            return totalDuration;
         }
+
+        /// <summary>
+        ///     get last Progress by char index
+        /// </summary>
+        /// <param name="relativeTime"></param>
+        /// <returns></returns>
+        public KeyValuePair<int, LyricTimeLine>? GetLastProgressPointByTime(double relativeTime)
+        {
+            double totalDuration = 0;
+
+            foreach (var value in this)
+            {
+                totalDuration = totalDuration + value.Value.Duration;
+
+                if (totalDuration > relativeTime)
+                    return this.FindNext(value.Key);
+            }
+
+            return null;
+        }
+
 
         /// <summary>
         ///     get first Progress by char index
@@ -118,11 +109,10 @@ namespace osu.Game.Rulesets.Karaoke.Objects.TimeLine
         /// <summary>
         ///     will check if this progress point is valid
         /// </summary>
-        /// <returns><c>true</c>, if progress point was added, <c>false</c> otherwise.</returns>
-        /// <param name="karaokeObject">Karaoke object.</param>
         public new void Add(int key, LyricTimeLine point)
         {
-            if (this.Any(x => x.Value.RelativeTime == point.RelativeTime))
+            //cannot add same key
+            if (this.Any(x => x.Key == key))
                 return;
 
             base.Add(key, point);
@@ -135,14 +125,10 @@ namespace osu.Game.Rulesets.Karaoke.Objects.TimeLine
         /// </summary>
         public void FixTime()
         {
-            double time = 0;
-
             foreach (var single in this)
             {
-                if (single.Value.RelativeTime < time + MinimumTime)
-                    single.Value.RelativeTime = time + MinimumTime;
-
-                time = single.Value.RelativeTime;
+                if (single.Value.Duration < MinimumTime)
+                    single.Value.Duration = MinimumTime;
             }
         }
 

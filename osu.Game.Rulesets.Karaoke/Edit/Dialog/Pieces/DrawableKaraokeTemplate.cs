@@ -8,6 +8,7 @@ using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Lines;
 using osu.Game.Rulesets.Karaoke.Objects;
+using osu.Game.Rulesets.Karaoke.Objects.Drawables.Common.Pieces;
 using osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric;
 using OpenTK;
 
@@ -145,9 +146,14 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
 
             var templateValue = Template.Value;
 
+            //Lyric
+            LyricText mainText = RightSideText.LyricText;
+            List<KaraokeText> subTexts = RightSideText.ListDrawableSubText;
+            KaraokeText subText = subTexts?.FirstOrDefault();
+
             //1. Get all start Position
-            var subTextSegmentedControlStartPosition = new Vector2(TextsAndMaskPiece.SubTexts.Last().Position.X + 20, TextsAndMaskPiece.SubText.Position.Y);
-            var mainTextSegmentedControlStartPosition = new Vector2(TextsAndMaskPiece.MainText.TotalWidth, TextsAndMaskPiece.MainText.Position.Y);
+            var subTextSegmentedControlStartPosition = new Vector2(subTexts.Last().Position.X + 20, subText.Position.Y);
+            var mainTextSegmentedControlStartPosition = new Vector2(mainText.TotalWidth, mainText.Position.Y);
             var translateTextSegmentedControlStartPosition = new Vector2(TranslateText.Width, TranslateText.Position.Y);
             var subTextToMainTextSegmentedControlStartPosition = new Vector2(-10, (subTextSegmentedControlStartPosition.Y + mainTextSegmentedControlStartPosition.Y) / 2);
             var mainTextToTranslateTextSegmentedControlStartPosition = new Vector2(-10, (mainTextSegmentedControlStartPosition.Y + translateTextSegmentedControlStartPosition.Y) / 2);

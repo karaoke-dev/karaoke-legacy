@@ -13,7 +13,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.TimeLine
         /// <summary>
         ///     relative to word's strt time
         /// </summary>
-        public double RelativeTime { get; set; }
+        public double Duration { get; set; }
 
         /// <summary>
         ///     Tone
@@ -44,7 +44,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.TimeLine
 
         public LyricTimeLine(double time)
         {
-            RelativeTime = time;
+            Duration = time;
         }
     }
 }

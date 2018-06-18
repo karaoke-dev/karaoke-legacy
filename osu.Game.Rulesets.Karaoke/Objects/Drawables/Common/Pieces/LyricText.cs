@@ -44,6 +44,24 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Common.Pieces
             MainTextObject = textObject;
         }
 
+        public float GetStartPositionByIndex(int index)
+        {
+            try
+            {
+                if (ListCharEndPosition.Count == 0)
+                    return 0;
+
+                if (index == 0)
+                    return 0;
+
+                return ListCharEndPosition[index -1];
+            }
+            catch
+            {
+                return GetTextEndPosition();
+            }
+        }
+
         public float GetTextCenterPosition(int index)
         {
             //find this
