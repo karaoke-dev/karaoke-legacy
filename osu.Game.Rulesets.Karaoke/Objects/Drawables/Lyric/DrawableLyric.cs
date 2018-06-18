@@ -80,6 +80,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
             : base(hitObject)
         {
             Alpha = 0;
+            TextsAndMaskPiece.Lyric = hitObject;
             InternalChildren = new Drawable[]
             {
                 TextsAndMaskPiece,
@@ -94,11 +95,13 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
 
         protected virtual void OnStyleChange()
         {
+            TextsAndMaskPiece.Config = Style.Value;
             UpdateDrawable();
         }
 
         protected virtual void OnTemplateChange()
         {
+            TextsAndMaskPiece.Template = Template.Value;
             UpdateDrawable();
         }
 
@@ -124,75 +127,11 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
 
         protected virtual void UpdateText()
         {
-            TextsAndMaskPiece.ClearAllText();
-
-            var styleValue = Style.Value;
-            var templateValue = Template.Value;
-
-            if (styleValue != null)
+            //TODO : fix logic
+            if (Style != null && Template != null && Lyric != null)
             {
-                var mainTextDelimiter = "";
-                Dictionary<int, TextComponent> mainText = null;
-                Dictionary<int, FormattedText> bottomTexts = null;
-                Dictionary<int, FormattedText> subTexts = null;
-
-                if (styleValue.RomajiFirst)
-                {
-                    if (Lyric is IHasRomaji romajiLyric)
-                    {
-                        mainText = romajiLyric.Romaji.ToDictionary(k => k.Key, v => (TextComponent)v.Value);
-                        mainTextDelimiter = " ";
-                    }
-                }
-                else
-                {
-                    mainText = Lyric.Lyric.ToDictionary(k => k.Key, v => (TextComponent)v.Value);
-                }
-
-                //main text
-                TextsAndMaskPiece.AddMainText(templateValue?.MainText, mainText.ToDictionary(k => k.Key, v => v.Value), mainTextDelimiter);
-
-                //show romaji text
-                if (styleValue.RomajiVislbility)
-                    if (styleValue.RomajiFirst)
-                    {
-                        bottomTexts = Lyric.Lyric.ToDictionary(k => k.Key, v => templateValue?.BottomText + v.Value + new FormattedText
-                        {
-                            X = getxPosition(v.Key)
-                        });
-                    }
-                    else
-                    {
-                        if (Lyric is IHasRomaji romajiLyric)
-                            bottomTexts = romajiLyric.Romaji.ToDictionary(k => k.Key, v => templateValue?.BottomText + v.Value + new FormattedText
-                            {
-                                X = getxPosition(v.Key)
-                            });
-                    }
-
-                //show subtext
-                if (styleValue.SubTextVislbility)
-                    if (Lyric is IHasFurigana furiganaLyric)
-                        subTexts = furiganaLyric.Furigana.ToDictionary(k => k.Key, v => templateValue?.TopText + v.Value + new FormattedText
-                        {
-                            X = getxPosition(v.Key)
-                        });
-
-                //show sub text
-                TextsAndMaskPiece.AddSubText(subTexts?.Select(x => x.Value).ToList());
-
-                //show sub text
-                TextsAndMaskPiece.AddBottomText(bottomTexts?.Select(x => x.Value).ToList());
-
-                Width = TextsAndMaskPiece.MainText.GetTextEndPosition();
+                Width = TextsAndMaskPiece?.MainText?.GetTextEndPosition() ?? 200;
                 Height = Lyric.Height ?? 100;
-            }
-
-            float getxPosition(int index)
-            {
-                var positionX = TextsAndMaskPiece.MainText.GetTextCenterPosition(index);
-
-                return positionX;
             }
         }
 
@@ -221,11 +160,9 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
 
             //update progress
             Progress = Progress;
-
-
         }
 
-        
+        /*
         protected override void Update()
         {
             base.Update();
@@ -267,7 +204,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
                 Hide();
                 Alpha = 0;
             }
-        }
+        }*/
         
 
         protected sealed override void UpdateState(ArmedState state)
@@ -307,7 +244,8 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
         [BackgroundDependencyLoader]
         private void load(FontStore store)
         {
-            UpdateDrawable();
+            Style.TriggerChange();
+            Template.TriggerChange();
         }
 
         #region Bindable
