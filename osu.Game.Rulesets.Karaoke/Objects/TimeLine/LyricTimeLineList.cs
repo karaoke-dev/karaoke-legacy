@@ -16,7 +16,68 @@ namespace osu.Game.Rulesets.Karaoke.Objects.TimeLine
     {
         [JsonIgnore]
         public double MinimumTime { get; set; } = 100;
-       
+
+
+        /// <summary>
+        ///     get first Progress by char index
+        /// </summary>
+        /// <param name="relativeTime"></param>
+        /// <returns></returns>
+        public KeyValuePair<int, LyricTimeLine> GetFirstProgressPointByTime(double relativeTime)
+        {
+            double totalDuration = 0;
+
+            foreach (var value in this)
+            {
+                totalDuration = totalDuration + value.Value.Duration;
+
+                if (totalDuration > relativeTime)
+                    return value;
+            }
+
+            return new KeyValuePair<int, LyricTimeLine>(-1,null);
+        }
+
+        /// <summary>
+        ///     get first Progress by char index
+        /// </summary>
+        /// <param name="relativeTime"></param>
+        /// <returns></returns>
+        public double GetFirstProgressDuration(int untilKey)
+        {
+            double totalDuration = 0;
+
+            foreach (var value in this)
+            {
+                totalDuration = totalDuration + value.Value.Duration;
+
+                if (value.Key == untilKey)
+                    return totalDuration;
+            }
+
+            return totalDuration;
+        }
+
+        /// <summary>
+        ///     get last Progress by char index
+        /// </summary>
+        /// <param name="relativeTime"></param>
+        /// <returns></returns>
+        public KeyValuePair<int, LyricTimeLine>? GetLastProgressPointByTime(double relativeTime)
+        {
+            double totalDuration = 0;
+
+            foreach (var value in this)
+            {
+                totalDuration = totalDuration + value.Value.Duration;
+
+                if (totalDuration > relativeTime)
+                    return this.FindNext(value.Key);
+            }
+
+            return null;
+        }
+
 
         /// <summary>
         ///     get first Progress by char index

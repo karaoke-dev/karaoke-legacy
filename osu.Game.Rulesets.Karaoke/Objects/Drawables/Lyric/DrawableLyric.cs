@@ -78,8 +78,8 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
             set
             {
                 _nowProgress = value;
-                //TODO : implement
-                //TextsAndMaskPiece.MovingMask((float)_nowProgress);
+                LeftSideText.SetMaskStartAndEndPosition(0, (float)Progress);
+                RightSideText.SetMaskStartAndEndPosition((float)Progress, Width);
             }
         }
 
@@ -184,7 +184,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
             Progress = Progress;
         }
 
-        /*
+        
         protected override void Update()
         {
             base.Update();
@@ -200,14 +200,16 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
                     
                 }
 
-                //TODO : get progress point
+                //get range progress point
                 var startProgressPoint = HitObject.TimeLines.GetFirstProgressPointByTime(currentRelativeTime);
                 var endProgressPoint = HitObject.TimeLines.GetLastProgressPointByTime(currentRelativeTime);
 
-                var startPosition = TextsAndMaskPiece.MainText.GetEndPositionByIndex(startProgressPoint.Key);
-                var endPosition = TextsAndMaskPiece.MainText.GetEndPositionByIndex(endProgressPoint?.Key ?? -1);
+                //get position
+                var startPosition = LeftSideText.LyricText.GetEndPositionByIndex(startProgressPoint.Key);
+                var endPosition = LeftSideText.LyricText.GetEndPositionByIndex(endProgressPoint?.Key ?? -1);
 
-                var relativeTime = currentRelativeTime - startProgressPoint.Value.RelativeTime;
+                //duration
+                var relativeTime = currentRelativeTime - HitObject.TimeLines.GetFirstProgressDuration(startProgressPoint.Key);
 
                 if (endProgressPoint?.Value == null)
                     return;
@@ -216,7 +218,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
                     return;
 
                 //Update progress
-                Progress = startPosition + (endPosition - startPosition) / (float)(endProgressPoint?.Value.RelativeTime - startProgressPoint.Value.RelativeTime) * (float)relativeTime;
+                Progress = startPosition + (endPosition - startPosition) / (float)(endProgressPoint?.Value.Duration) * (float)relativeTime;
 
                 Show();
                 Alpha = 1;
@@ -226,7 +228,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
                 Hide();
                 Alpha = 0;
             }
-        }*/
+        }
         
 
         protected sealed override void UpdateState(ArmedState state)
