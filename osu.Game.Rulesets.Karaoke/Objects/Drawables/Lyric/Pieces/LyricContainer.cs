@@ -11,7 +11,7 @@ using OpenTK.Graphics;
 
 namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric.Pieces
 {
-    public class TextsAndMask : Container //BufferedContainer
+    public class LyricContainer : Container //BufferedContainer
     {
         //Lyric
         public LyricText MainText => RightSideText.LyricText;
@@ -34,7 +34,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric.Pieces
         private float _maskHeight;
 
 
-        public TextsAndMask()
+        public LyricContainer()
         {
             Children = new Drawable[]
             {

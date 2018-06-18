@@ -38,7 +38,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
         public virtual bool ProgressUpdateByTime { get; set; } = true;
 
         //Drawable
-        public TextsAndMask TextsAndMaskPiece { get; set; } = new TextsAndMask();
+        public LyricContainer TextsAndMaskPiece { get; set; } = new LyricContainer();
 
         public override float Width
         {
