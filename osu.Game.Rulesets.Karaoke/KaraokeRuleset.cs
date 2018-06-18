@@ -101,44 +101,16 @@ namespace osu.Game.Rulesets.Karaoke
                     return new Mod[]
                     {
                         new KaraokeModTutorial(),
-                        new MultiMod
-                        {
-                            Mods = new Mod[]
-                            {
-                                new KaraokeModOpenTranslate(),
-                                new KaraokeModCloseTranslate()
-                            }
-                        },
-                        new MultiMod
-                        {
-                            Mods = new Mod[]
-                            {
-                                new KaraokeModEasy(),
-                                new KaraokeModDoubleTime()
-                            }
-                        },
-                        new MultiMod
-                        {
-                            Mods = new Mod[]
-                            {
-                                new KaraokeModCloseVocal(),
-                                new KaraokeModOpenVocal()
-                            }
-                        }
+                        new MultiMod(new KaraokeModOpenTranslate(),new KaraokeModCloseTranslate()),
+                        new MultiMod( new KaraokeModEasy(),new KaraokeModDoubleTime()),
+                        new MultiMod( new KaraokeModCloseVocal(),new KaraokeModOpenVocal())
                     };
 
                 case ModType.DifficultyIncrease: // pecial setting or effect
                     return new Mod[]
                     {
                         new KaraokeModHidden(),
-                        new MultiMod
-                        {
-                            Mods = new Mod[]
-                            {
-                                new KaraokeModTransparentLyrics(),
-                                new KaraokeModCloseLyrics()
-                            }
-                        }
+                        new MultiMod(new KaraokeModTransparentLyrics(),new KaraokeModCloseLyrics())
                     };
 
                 case ModType.Special: //only event mod
@@ -158,9 +130,9 @@ namespace osu.Game.Rulesets.Karaoke
             return new ImagePicec(@"Icon/Icon");
         }
 
-        public override DifficultyCalculator CreateDifficultyCalculator(IBeatmap beatmap, Mod[] mods = null)
+        public override DifficultyCalculator CreateDifficultyCalculator(WorkingBeatmap beatmap)
         {
-            return new KaraokeDifficultyCalculator(beatmap, mods);
+            return new KaraokeDifficultyCalculator(this,beatmap);
         }
 
         public override HitObjectComposer CreateHitObjectComposer()
@@ -168,9 +140,9 @@ namespace osu.Game.Rulesets.Karaoke
             return new KaraokeHitObjectComposer(this);
         }
 
-        public override SettingsSubsection CreateSettings()
+        public override RulesetSettingsSubsection CreateSettings()
         {
-            return new KaraokeSettings();
+            return new KaraokeSettings(this);
         }
     }
 }

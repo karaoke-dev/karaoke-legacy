@@ -79,10 +79,12 @@ namespace osu.Game.Rulesets.Karaoke.UI
             return new Vector2(1, default_relative_height * aspectAdjust);
         }
 
+        /*
         protected override IRulesetConfigManager CreateConfig(Ruleset ruleset, SettingsStore settings)
         {
             ConfigManager = new KaraokeConfigManager(settings, Ruleset.RulesetInfo, Variant);
             return ConfigManager;
         }
+        */
     }
 }

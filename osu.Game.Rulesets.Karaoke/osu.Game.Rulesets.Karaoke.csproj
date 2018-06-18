@@ -38,9 +38,4 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <LangVersion>7.1</LangVersion>
   </PropertyGroup>
-  <ItemGroup>
-    <Folder Include="Online\API\Git\" />
-    <Folder Include="Online\API\Romaj\Github\" />
-    <Folder Include="Online\API\Translate\Github\" />
-  </ItemGroup>
 </Project>

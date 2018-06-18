@@ -4,14 +4,20 @@ using osu.Game.Overlays.Settings;
 using Symcol.Rulesets.Core.Wiki;
 using osu.Framework.Graphics.Containers;
 using System.Threading.Tasks;
+using osu.Game.Rulesets;
 
 namespace Symcol.Rulesets.Core
 {
-    public abstract class SymcolSettingsSubsection<T> : SettingsSubsection where T : WikiOverlay , new()
+    public abstract class SymcolSettingsSubsection<T> : RulesetSettingsSubsection where T : WikiOverlay , new()
     {
         public T Wiki { get; set; }
 
         private OsuGame osu;
+
+        protected SymcolSettingsSubsection(Ruleset ruleset)
+            : base(ruleset)
+        {
+        }
 
         [BackgroundDependencyLoader]
         private void load(OsuGame osu)
