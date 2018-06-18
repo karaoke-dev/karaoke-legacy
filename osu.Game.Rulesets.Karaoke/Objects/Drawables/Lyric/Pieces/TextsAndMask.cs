@@ -25,9 +25,9 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric.Pieces
         public KaraokeText BottomText => BottomTexts?.FirstOrDefault();
 
         public List<KaraokeText> BottomTexts => RightSideText.ListDrawableBottomText;
-        protected virtual TextSets LeftSideText { get; set; } = new TextSets();
+        protected virtual LyricTextContainer LeftSideText { get; set; } = new LyricTextContainer();
 
-        protected virtual TextSets RightSideText { get; set; } = new TextSets();
+        protected virtual LyricTextContainer RightSideText { get; set; } = new LyricTextContainer();
 
         private float _maskWidth;
 

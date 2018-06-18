@@ -16,7 +16,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Common.Pieces
     ///     2. main text
     ///     3. bottom text
     /// </summary>
-    public class TextSets : Container
+    public class LyricTextContainer : Container
     {
         /// <summary>
         ///     main text
@@ -35,7 +35,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Common.Pieces
 
         private float _height;
 
-        public TextSets()
+        public LyricTextContainer()
         {
             Masking = true;
         }
