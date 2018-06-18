@@ -10,6 +10,7 @@ using osu.Framework.Input;
 using osu.Game.Graphics.Sprites;
 using osu.Game.Graphics.UserInterface;
 using osu.Game.Rulesets.Karaoke.Edit.Drawables.Thumbnail;
+using osu.Game.Rulesets.Karaoke.Extension;
 using osu.Game.Rulesets.Karaoke.Objects.TimeLine;
 using OpenTK;
 using OpenTK.Graphics;
@@ -24,23 +25,38 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Lyric.Pieces
             new OsuMenuItem(@"Delete", MenuItemType.Highlighted)
         };
 
-        public int IndexOfObject => LyricProgressPoint.Key;
+        public int IndexOfObject => TimeLine.Key;
 
         //protected culculater value
         public string ProgressText
         {
             get
             {
-                if (IndexOfObject == 0)
-                    return DrawableKaraokeThumbnail.Lyric.Lyric.Text.Substring(0, LyricProgressPoint.Key + 1);
-                var thisCharIndex = LyricProgressPoint.Key;
-                var lastTime = DrawableKaraokeThumbnail.Lyric.TimeLines.FindPrevioud(IndexOfObject).Value.Key;
-                return DrawableKaraokeThumbnail.Lyric.Lyric.Text.Substring(lastTime + 1, thisCharIndex - lastTime);
+                if (!string.IsNullOrEmpty(TimeLine.Value.DisplayText))
+                {
+                    return TimeLine.Value.DisplayText;
+                }
+                else
+                {
+                    var nextTimeLine = DrawableKaraokeThumbnail.Lyric.TimeLines.GetNext(TimeLine.Key)?.Key;
+                    var lyric = DrawableKaraokeThumbnail.Lyric.Lyric.Text;
+                    int take = 0;
+                    if (nextTimeLine != null)
+                    {
+                        take = nextTimeLine.Value - TimeLine.Key;
+                    }
+                    else
+                    {
+                        take = lyric.Length - TimeLine.Key;
+                    }
+                    var displayText = lyric.Substring(TimeLine.Key, take);
+                    return displayText;
+                }
             }
         }
 
         //public 
-        public KeyValuePair<int, LyricTimeLine> LyricProgressPoint { get; set; }
+        public KeyValuePair<int, LyricTimeLine> TimeLine { get; set; }
 
         public DrawableKaraokeThumbnail DrawableKaraokeThumbnail { get; set; } //Parent
 
@@ -92,7 +108,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Lyric.Pieces
         public EditableProgressPoint(DrawableKaraokeThumbnail drawableKaraokeThumbnail, KeyValuePair<int, LyricTimeLine> lyricProgressPoin)
         {
             DrawableKaraokeThumbnail = drawableKaraokeThumbnail;
-            LyricProgressPoint = lyricProgressPoin;
+            TimeLine = lyricProgressPoin;
             ProgressDrawableText = new OsuSpriteText
             {
                 Text = ProgressText,
@@ -132,7 +148,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Lyric.Pieces
         {
             if (IsFocus)
                 if (args.Key == Key.Delete)
-                    DrawableKaraokeThumbnail.DeletePoint(LyricProgressPoint);
+                    DrawableKaraokeThumbnail.DeletePoint(TimeLine);
 
             return base.OnKeyDown(state, args);
         }

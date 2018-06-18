@@ -19,7 +19,6 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note
             get
             {
                 var thisTimeLine = TimeLine.Value;
-                var previousTimeLine = HitObject.TimeLines.GetPrevious(TimeLine.Key)?.Value;
 
                 //if next is not empty
                 return thisTimeLine.Duration - (thisTimeLine.EarlyTime ?? 0);

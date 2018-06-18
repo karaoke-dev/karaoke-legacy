@@ -81,7 +81,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Thumbnail
             foreach (var single in ListEditableProgressPoint)
             {
                 //update position
-                var progressPoint = single.LyricProgressPoint;
+                var progressPoint = single.TimeLine;
                 single.Width = ((float)progressPoint.Value.Duration) * Ratio * Zoon;
                 single.Height = 30;
                 totalRelativeTime = totalRelativeTime + (float)progressPoint.Value.Duration;
@@ -141,7 +141,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Thumbnail
             //update time
             for (var i = 0; i < ListEditableProgressPoint.Count; i++)
                 if (i >= startIndex && i <= endIndex)
-                    ListEditableProgressPoint[i].LyricProgressPoint.Value.Duration = ListEditableProgressPoint[i].LyricProgressPoint.Value.Duration + deltaPosition;
+                    ListEditableProgressPoint[i].TimeLine.Value.Duration = ListEditableProgressPoint[i].TimeLine.Value.Duration + deltaPosition;
 
             Lyric.TimeLines.FixTime();
         }
