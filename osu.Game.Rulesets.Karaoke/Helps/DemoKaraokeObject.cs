@@ -58,6 +58,12 @@ namespace osu.Game.Rulesets.Karaoke.Helps
             return karaokeObject;
         }
 
+        /// <summary>
+        /// use this in convertor
+        /// </summary>
+        /// <param name="startTime"></param>
+        /// <param name="duration"></param>
+        /// <returns></returns>
         public static JpLyric GenerateWithStartAndDuration(double startTime, double duration)
         {
             var karaokeObject = new JpLyric();
@@ -73,15 +79,15 @@ namespace osu.Game.Rulesets.Karaoke.Helps
             });
             karaokeObject.StartTime = startTime;
 
-            karaokeObject.TimeLines.Add(0, new LyricTimeLine(duration / 5)
+            karaokeObject.TimeLines.Add(0, new LyricTimeLine(duration*1 / 6)
             {
                 Tone = 3
             });
-            karaokeObject.TimeLines.Add(9, new LyricTimeLine(duration / 4)
+            karaokeObject.TimeLines.Add(9, new LyricTimeLine(duration*2 / 6)
             {
                 Tone = 5
             });
-            karaokeObject.TimeLines.Add(11, new LyricTimeLine(duration)
+            karaokeObject.TimeLines.Add(11, new LyricTimeLine(duration*3 / 6)
             {
                 Tone = -3
             });

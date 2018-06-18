@@ -22,14 +22,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note
                 var previousTimeLine = HitObject.TimeLines.GetPrevious(TimeLine.Key)?.Value;
 
                 //if next is not empty
-                if (previousTimeLine != null)
-                {
-                    return thisTimeLine.RelativeTime - previousTimeLine.RelativeTime - (thisTimeLine.EarlyTime ?? 0);
-                }
-                else
-                {
-                    return thisTimeLine.RelativeTime;
-                }
+                return thisTimeLine.Duration - (thisTimeLine.EarlyTime ?? 0);
             }
         }
 
