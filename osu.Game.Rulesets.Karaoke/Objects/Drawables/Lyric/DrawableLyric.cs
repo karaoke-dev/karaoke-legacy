@@ -15,6 +15,7 @@ using osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric.Pieces;
 using osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric.Types;
 using osu.Game.Rulesets.Karaoke.Objects.Lyric.Types;
 using osu.Game.Rulesets.Karaoke.Objects.Text;
+using osu.Game.Rulesets.Karaoke.Objects.TimeLine;
 using osu.Game.Rulesets.Objects.Drawables;
 using OpenTK;
 using OpenTK.Graphics;
@@ -27,9 +28,9 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
     public class DrawableLyric : DrawableHitObject<BaseLyric>, IDrawableLyricParameter, IDrawableLyricBindable
     {
         //Const
-        public const float TIME_FADEIN = 100;
+        public const float TIME_FADEIN = 0;
 
-        public const float TIME_FADEOUT = 100;
+        public const float TIME_FADEOUT = 0;
 
         /// <summary>
         ///     Gets or sets a value indicating whether this
@@ -196,23 +197,27 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
             if (HitObject.IsInTime(currentRelativeTime))
             {
                 //get range progress point
-                var point = HitObject.TimeLines.GetFirstProgressPointByTime(currentRelativeTime);
+                var startPoint = HitObject.TimeLines.GetFirstProgressPointByTime(currentRelativeTime);
+                var endPoint = HitObject.TimeLines.GetLastProgressPointByTime(currentRelativeTime);
 
-                if(point==null)
+                if (startPoint == null)
+                    startPoint = new KeyValuePair<int, LyricTimeLine>(0,new LyricTimeLine());
+
+                if (endPoint == null)
                     return;
 
                 //get position
-                var startPosition = LeftSideText.LyricText.GetStartPositionByIndex(point.Value.Key);
-                var endPosition = LeftSideText.LyricText.GetEndPositionByIndex(point.Value.Key);
+                var startPosition = LeftSideText.LyricText.GetStartPositionByIndex(startPoint.Value.Key);
+                var endPosition = LeftSideText.LyricText.GetStartPositionByIndex(endPoint.Value.Key);
 
                 //duration
-                var relativeTime = currentRelativeTime - HitObject.TimeLines.GetFirstProgressDuration(point.Value.Key);
+                var relativeTime = currentRelativeTime - HitObject.TimeLines.GetFirstProgressDuration(startPoint.Value.Key);
 
                 if (startPosition == endPosition)
                     return;
 
                 //Update progress
-                Progress = startPosition + (endPosition - startPosition) / (float)(point.Value.Value.Duration) * (float)relativeTime;
+                Progress = startPosition + (endPosition - startPosition) / (float)(endPoint.Value.Value.Duration) * (float)relativeTime;
 
                 Show();
                 Alpha = 1;
