@@ -33,7 +33,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         ///     The duration of the HitObject.
         /// </summary>
         [JsonIgnore]
-        public double Duration => TimeLines.LastOrDefault().Value?.RelativeTime ?? 0;
+        public double Duration => TimeLines?.Sum(x=>x.Value.Duration) ??0;
 
         /// <summary>
         ///     ID

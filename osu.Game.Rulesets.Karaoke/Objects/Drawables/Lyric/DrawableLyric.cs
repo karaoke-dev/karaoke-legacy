@@ -221,8 +221,11 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
 
             //update progress
             Progress = Progress;
+
+
         }
 
+        
         protected override void Update()
         {
             base.Update();
@@ -233,6 +236,11 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
             var currentRelativeTime = Time.Current - HitObject.StartTime;
             if (HitObject.IsInTime(currentRelativeTime))
             {
+                foreach (var timeline in HitObject.TimeLines)
+                {
+                    
+                }
+
                 //TODO : get progress point
                 var startProgressPoint = HitObject.TimeLines.GetFirstProgressPointByTime(currentRelativeTime);
                 var endProgressPoint = HitObject.TimeLines.GetLastProgressPointByTime(currentRelativeTime);
@@ -260,6 +268,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
                 Alpha = 0;
             }
         }
+        
 
         protected sealed override void UpdateState(ArmedState state)
         {
