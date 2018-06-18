@@ -9,9 +9,9 @@ using OpenTK.Graphics;
 
 namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note
 {
-    public class DrawableKaraokeNoteGroup : DrawableKaraokeNoteGroup<DrawableLyricNote>
+    public class DrawableLyricNoteGroup : DrawableLyricNoteGroup<DrawableLyricNote>
     {
-        public DrawableKaraokeNoteGroup(BaseLyric hitObject)
+        public DrawableLyricNoteGroup(BaseLyric hitObject)
             : base(hitObject)
         {
         }
@@ -20,7 +20,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note
     /// <summary>
     ///     list of DrawableLyricNote
     /// </summary>
-    public class DrawableKaraokeNoteGroup<T> : DrawableBaseNote<BaseLyric> where T : DrawableLyricNote, new()
+    public class DrawableLyricNoteGroup<T> : DrawableBaseNote<BaseLyric> where T : DrawableLyricNote, new()
     {
         public BindableDouble NoteSpeed = new BindableDouble();
 
@@ -36,7 +36,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note
         protected FillFlowContainer<T> ListNote;
         private float _lastWidth;
 
-        public DrawableKaraokeNoteGroup(BaseLyric hitObject)
+        public DrawableLyricNoteGroup(BaseLyric hitObject)
             : base(hitObject)
         {
             RelativeSizeAxes = Axes.Y;

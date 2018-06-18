@@ -19,7 +19,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Common.Pieces
     ///     2. main text
     ///     3. bottom text
     /// </summary>
-    public class LyricTextContainer : Container
+    public class LyricContainer : Container
     {
         private LyricTemplate _template;
         private KaraokeLyricConfig _config;
@@ -79,7 +79,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Common.Pieces
             }
         }
 
-        public LyricTextContainer()
+        public LyricContainer()
         {
             Masking = true;
         }

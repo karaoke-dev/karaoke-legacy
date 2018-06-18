@@ -43,9 +43,9 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
         //Drawable
         public Container TextsAndMaskPiece { get; }
 
-        protected virtual LyricTextContainer LeftSideText { get; set; } = new LyricTextContainer();
+        protected virtual LyricContainer LeftSideText { get; set; } = new LyricContainer();
 
-        protected virtual LyricTextContainer RightSideText { get; set; } = new LyricTextContainer();
+        protected virtual LyricContainer RightSideText { get; set; } = new LyricContainer();
 
         public override float Width
         {

@@ -94,7 +94,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note
         private readonly BodyPiece bodyPiece;
         private readonly Container fullHeightContainer;
 
-        private readonly Container<DrawableKaraokeNoteTick> tickContainer;
+        private readonly Container<DrawableLyricNoteTick> tickContainer;
 
         /// <summary>
         ///     Time at which the user started holding this hold note. Null if the user is not holding this hold note.
@@ -139,7 +139,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note
                             Origin = Anchor.CentreLeft,
                             RelativeSizeAxes = Axes.Y
                         },
-                        tickContainer = new Container<DrawableKaraokeNoteTick>
+                        tickContainer = new Container<DrawableLyricNoteTick>
                         {
                             RelativeSizeAxes = Axes.Both
                             //ChildrenEnumerable = HitObject.NestedHitObjects.OfType<BaseLyric>().Select(tick => new DrawableKaraokeNoteTick(tick)

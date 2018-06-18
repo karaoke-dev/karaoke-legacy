@@ -14,7 +14,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note
     /// <summary>
     ///     Visualises a <see cref="HoldNoteTick" /> hit object.
     /// </summary>
-    public class DrawableKaraokeNoteTick : DrawableBaseNote<BaseLyric>
+    public class DrawableLyricNoteTick : DrawableBaseNote<BaseLyric>
     {
         /// <summary>
         ///     References the time at which the user started holding the hold note.
@@ -40,7 +40,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note
 
         private readonly Container glowContainer;
 
-        public DrawableKaraokeNoteTick(BaseLyric hitObject)
+        public DrawableLyricNoteTick(BaseLyric hitObject)
             : base(hitObject)
         {
             Anchor = Anchor.TopCentre;
