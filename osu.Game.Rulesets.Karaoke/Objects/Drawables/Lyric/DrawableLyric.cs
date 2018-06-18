@@ -25,9 +25,9 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
     public class DrawableLyric : DrawableHitObject<BaseLyric>, IDrawableLyricParameter, IDrawableLyricBindable
     {
         //Const
-        public const float TIME_FADEIN = 100;
+        public const float TIME_FADEIN = 0;
 
-        public const float TIME_FADEOUT = 100;
+        public const float TIME_FADEOUT = 0;
 
         /// <summary>
         ///     Gets or sets a value indicating whether this
