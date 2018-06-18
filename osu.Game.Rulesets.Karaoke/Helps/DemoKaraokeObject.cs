@@ -79,17 +79,19 @@ namespace osu.Game.Rulesets.Karaoke.Helps
             });
             karaokeObject.StartTime = startTime;
 
-            karaokeObject.TimeLines.Add(0, new LyricTimeLine(duration*1 / 6)
+            //it means
+            //move to index 5 (0,1,2,3,4),tone 3, duration is (duration*1 / 6)
+            karaokeObject.TimeLines.Add(5, new LyricTimeLine(duration*1 / 12)
             {
                 Tone = 3
             });
-            karaokeObject.TimeLines.Add(9, new LyricTimeLine(duration*2 / 6)
+            karaokeObject.TimeLines.Add(9, new LyricTimeLine(duration*6 / 12)
             {
                 Tone = 5
             });
-            karaokeObject.TimeLines.Add(11, new LyricTimeLine(duration*3 / 6)
+            karaokeObject.TimeLines.Add(12, new LyricTimeLine(duration*5 / 12)
             {
-                Tone = -3
+                Tone = 0
             });
 
             karaokeObject.Romaji.Add(0, new RomajiText("o"));
