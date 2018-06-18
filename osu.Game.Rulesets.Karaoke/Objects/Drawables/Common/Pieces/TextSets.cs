@@ -21,7 +21,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Common.Pieces
         /// <summary>
         ///     main text
         /// </summary>
-        public MainKaraokeText MainKaraokeText;
+        public LyricText LyricText;
 
         /// <summary>
         ///     top text
@@ -42,15 +42,15 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Common.Pieces
 
         public virtual void AddMainText(FormattedText formattedText, Dictionary<int, TextComponent> textObject, string delimiter)
         {
-            if (MainKaraokeText == null)
+            if (LyricText == null)
             {
-                MainKaraokeText = new MainKaraokeText(formattedText, textObject, delimiter);
-                Add(MainKaraokeText);
+                LyricText = new LyricText(formattedText, textObject, delimiter);
+                Add(LyricText);
             }
             else
             {
-                MainKaraokeText.TextObject = formattedText;
-                MainKaraokeText.MainTextObject = textObject;
+                LyricText.TextObject = formattedText;
+                LyricText.MainTextObject = textObject;
             }
         }
 
@@ -96,7 +96,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Common.Pieces
         {
             ListDrawableSubText.Clear();
             ListDrawableBottomText.Clear();
-            MainKaraokeText = null;
+            LyricText = null;
             Children = new Drawable[] { };
         }
 

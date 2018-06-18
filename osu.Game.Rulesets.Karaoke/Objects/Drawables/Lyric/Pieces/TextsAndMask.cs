@@ -14,7 +14,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric.Pieces
     public class TextsAndMask : Container //BufferedContainer
     {
         //Lyric
-        public MainKaraokeText MainText => RightSideText.MainKaraokeText;
+        public LyricText MainText => RightSideText.LyricText;
 
         //TopText
         public KaraokeText SubText => SubTexts?.FirstOrDefault();
