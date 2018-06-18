@@ -6,9 +6,11 @@ using System.Linq;
 using osu.Framework.Allocation;
 using osu.Framework.Configuration;
 using osu.Framework.Graphics;
+using osu.Framework.Graphics.Containers;
 using osu.Framework.IO.Stores;
 using osu.Game.Rulesets.Karaoke.Beatmaps;
 using osu.Game.Rulesets.Karaoke.Configuration;
+using osu.Game.Rulesets.Karaoke.Objects.Drawables.Common.Pieces;
 using osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric.Pieces;
 using osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric.Types;
 using osu.Game.Rulesets.Karaoke.Objects.Lyric.Types;
@@ -38,7 +40,11 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
         public virtual bool ProgressUpdateByTime { get; set; } = true;
 
         //Drawable
-        public LyricContainer TextsAndMaskPiece { get; set; } = new LyricContainer();
+        public Container TextsAndMaskPiece { get; }
+
+        protected virtual LyricTextContainer LeftSideText { get; set; } = new LyricTextContainer();
+
+        protected virtual LyricTextContainer RightSideText { get; set; } = new LyricTextContainer();
 
         public override float Width
         {
@@ -46,7 +52,8 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
             set
             {
                 base.Width = value;
-                TextsAndMaskPiece.SetWidth(base.Width);
+                LeftSideText.Width = Width;
+                RightSideText.Width = Width;
             }
         }
 
@@ -56,7 +63,8 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
             set
             {
                 base.Height = value;
-                TextsAndMaskPiece.SetHeight(base.Height);
+                LeftSideText.Height = Height;
+                RightSideText.Height = Height;
             }
         }
 
@@ -70,7 +78,8 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
             set
             {
                 _nowProgress = value;
-                TextsAndMaskPiece.MovingMask((float)_nowProgress);
+                //TODO : implement
+                //TextsAndMaskPiece.MovingMask((float)_nowProgress);
             }
         }
 
@@ -80,10 +89,19 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
             : base(hitObject)
         {
             Alpha = 0;
-            TextsAndMaskPiece.Lyric = hitObject;
+            LeftSideText.Lyric = hitObject;
+            RightSideText.Lyric = hitObject;
+
             InternalChildren = new Drawable[]
             {
-                TextsAndMaskPiece,
+                TextsAndMaskPiece = new Container()
+                {
+                    Children = new Drawable[]
+                    {
+                        RightSideText,
+                        LeftSideText
+                    },
+                },
                 TranslateText
             };
 
@@ -95,13 +113,15 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
 
         protected virtual void OnStyleChange()
         {
-            TextsAndMaskPiece.Config = Style.Value;
+            LeftSideText.Config = Style.Value;
+            RightSideText.Config = Style.Value;
             UpdateDrawable();
         }
 
         protected virtual void OnTemplateChange()
         {
-            TextsAndMaskPiece.Template = Template.Value;
+            LeftSideText.Template = Template.Value;
+            RightSideText.Template = Template.Value;
             UpdateDrawable();
         }
 
@@ -130,7 +150,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
             //TODO : fix logic
             if (Style != null && Template != null && Lyric != null)
             {
-                Width = TextsAndMaskPiece?.MainText?.GetTextEndPosition() ?? 200;
+                Width = LeftSideText?.LyricText?.GetTextEndPosition() ?? 200;
                 Height = Lyric.Height ?? 100;
             }
         }
@@ -154,7 +174,9 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
             //Color
             var textColor = Singer?.LytricColor ?? Color4.Blue;
             var backgroundColor = Singer?.LytricBackgroundColor ?? Color4.White;
-            TextsAndMaskPiece.SetColor(textColor, backgroundColor);
+            //
+            LeftSideText.SetColor(textColor);
+            RightSideText.SetColor(backgroundColor);
 
             Scale = new Vector2(templateValue?.Scale ?? 1);
 

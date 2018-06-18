@@ -12,6 +12,7 @@ using OpenTK.Graphics;
 
 namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric.Pieces
 {
+    /*
     public class LyricContainer : Container //BufferedContainer
     {
 
@@ -111,4 +112,5 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric.Pieces
             RightSideText.SetColor(Color4.White);
         }
     }
+    */
 }
