@@ -9,7 +9,7 @@ using osu.Game.Rulesets.Karaoke.Objects.Text;
 
 namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Common.Pieces
 {
-    public class MainKaraokeText : KaraokeText
+    public class LyricText : KaraokeText
     {
         public float TotalWidth { get; protected set; }
 
@@ -37,7 +37,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Common.Pieces
         protected FontStore FontStore;
         private Dictionary<int, TextComponent> _mainTextObject;
 
-        public MainKaraokeText(FormattedText formattedText, Dictionary<int, TextComponent> textObject, string delimiter)
+        public LyricText(FormattedText formattedText, Dictionary<int, TextComponent> textObject, string delimiter)
             : base(formattedText)
         {
             Delimiter = delimiter;

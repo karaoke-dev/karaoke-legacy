@@ -11,10 +11,10 @@ using OpenTK.Graphics;
 
 namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric.Pieces
 {
-    public class TextsAndMask : Container //BufferedContainer
+    public class LyricContainer : Container //BufferedContainer
     {
         //Lyric
-        public MainKaraokeText MainText => RightSideText.MainKaraokeText;
+        public LyricText MainText => RightSideText.LyricText;
 
         //TopText
         public KaraokeText SubText => SubTexts?.FirstOrDefault();
@@ -25,16 +25,16 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric.Pieces
         public KaraokeText BottomText => BottomTexts?.FirstOrDefault();
 
         public List<KaraokeText> BottomTexts => RightSideText.ListDrawableBottomText;
-        protected virtual TextSets LeftSideText { get; set; } = new TextSets();
+        protected virtual LyricTextContainer LeftSideText { get; set; } = new LyricTextContainer();
 
-        protected virtual TextSets RightSideText { get; set; } = new TextSets();
+        protected virtual LyricTextContainer RightSideText { get; set; } = new LyricTextContainer();
 
         private float _maskWidth;
 
         private float _maskHeight;
 
 
-        public TextsAndMask()
+        public LyricContainer()
         {
             Children = new Drawable[]
             {
