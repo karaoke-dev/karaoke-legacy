@@ -23,7 +23,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.TimeLine
         /// </summary>
         /// <param name="relativeTime"></param>
         /// <returns></returns>
-        public KeyValuePair<int, LyricTimeLine> GetFirstProgressPointByTime(double relativeTime)
+        public KeyValuePair<int, LyricTimeLine>? GetFirstProgressPointByTime(double relativeTime)
         {
             double totalDuration = 0;
 
@@ -35,7 +35,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.TimeLine
                     return value;
             }
 
-            return new KeyValuePair<int, LyricTimeLine>(-1,null);
+            return null;
         }
 
         /// <summary>

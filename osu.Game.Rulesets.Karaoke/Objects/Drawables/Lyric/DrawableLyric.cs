@@ -195,30 +195,24 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
             var currentRelativeTime = Time.Current - HitObject.StartTime;
             if (HitObject.IsInTime(currentRelativeTime))
             {
-                foreach (var timeline in HitObject.TimeLines)
-                {
-                    
-                }
-
                 //get range progress point
-                var startProgressPoint = HitObject.TimeLines.GetFirstProgressPointByTime(currentRelativeTime);
-                var endProgressPoint = HitObject.TimeLines.GetLastProgressPointByTime(currentRelativeTime);
+                var point = HitObject.TimeLines.GetFirstProgressPointByTime(currentRelativeTime);
+
+                if(point==null)
+                    return;
 
                 //get position
-                var startPosition = LeftSideText.LyricText.GetEndPositionByIndex(startProgressPoint.Key);
-                var endPosition = LeftSideText.LyricText.GetEndPositionByIndex(endProgressPoint?.Key ?? -1);
+                var startPosition = LeftSideText.LyricText.GetStartPositionByIndex(point.Value.Key);
+                var endPosition = LeftSideText.LyricText.GetEndPositionByIndex(point.Value.Key);
 
                 //duration
-                var relativeTime = currentRelativeTime - HitObject.TimeLines.GetFirstProgressDuration(startProgressPoint.Key);
-
-                if (endProgressPoint?.Value == null)
-                    return;
+                var relativeTime = currentRelativeTime - HitObject.TimeLines.GetFirstProgressDuration(point.Value.Key);
 
                 if (startPosition == endPosition)
                     return;
 
                 //Update progress
-                Progress = startPosition + (endPosition - startPosition) / (float)(endProgressPoint?.Value.Duration) * (float)relativeTime;
+                Progress = startPosition + (endPosition - startPosition) / (float)(point.Value.Value.Duration) * (float)relativeTime;
 
                 Show();
                 Alpha = 1;
