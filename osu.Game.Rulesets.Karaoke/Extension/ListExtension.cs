@@ -1,16 +1,17 @@
 ﻿// Copyright (c) 2007-2018 ppy Pty Ltd <contact@ppy.sh>.
 // Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using osu.Framework.Extensions;
 
 namespace osu.Game.Rulesets.Karaoke.Extension
 {
     public static class ListExtension
     {
         /// <summary>
-        ///     把list 拆分
-        ///     暴力解決法
+        ///     Split
         ///     http://www.jscto.net/html/31946.html
         /// </summary>
         /// <typeparam name="T"></typeparam>
@@ -30,6 +31,42 @@ namespace osu.Game.Rulesets.Karaoke.Extension
             }
 
             return listGroup;
+        }
+
+        /// <summary>
+        /// Get previous
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="list"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static T GetPrevious<T>(this List<T> list, T value) where T : class 
+        {
+            var index = list.IndexOf(value);
+            var targetIndex = index - 1;
+
+            if (list.IsValidIndex(targetIndex))
+                return list[targetIndex];
+
+            return null;
+        }
+
+        /// <summary>
+        /// Get next
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="list"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static T GetNext<T>(this List<T> list, T value) where T : class
+        {
+            var index = list.IndexOf(value);
+            var targetIndex = index + 1;
+
+            if (list.IsValidIndex(targetIndex))
+                return list[targetIndex];
+
+            return null;
         }
     }
 }

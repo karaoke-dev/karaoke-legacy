@@ -9,12 +9,13 @@ using osu.Framework.Graphics.UserInterface;
 using osu.Framework.Input;
 using osu.Game.Graphics.Sprites;
 using osu.Game.Graphics.UserInterface;
+using osu.Game.Rulesets.Karaoke.Edit.Drawables.Thumbnail;
 using osu.Game.Rulesets.Karaoke.Objects.TimeLine;
 using OpenTK;
 using OpenTK.Graphics;
 using OpenTK.Input;
 
-namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Pieces
+namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Lyric.Pieces
 {
     public class EditableProgressPoint : Container, IHasContextMenu
     {

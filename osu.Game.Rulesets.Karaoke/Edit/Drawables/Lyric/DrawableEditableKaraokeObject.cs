@@ -7,7 +7,9 @@ using osu.Framework.Graphics.UserInterface;
 using osu.Framework.Input;
 using osu.Game.Graphics.UserInterface;
 using osu.Game.Rulesets.Karaoke.Configuration;
+using osu.Game.Rulesets.Karaoke.Edit.Drawables.Lyric.Pieces;
 using osu.Game.Rulesets.Karaoke.Edit.Drawables.Pieces;
+using osu.Game.Rulesets.Karaoke.Edit.Drawables.Thumbnail;
 using osu.Game.Rulesets.Karaoke.Objects;
 using osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric;
 using osu.Game.Rulesets.Karaoke.Objects.Text;
@@ -15,7 +17,7 @@ using osu.Game.Rulesets.Karaoke.Objects.TimeLine;
 using osu.Game.Rulesets.Karaoke.Objects.Translate;
 using OpenTK;
 
-namespace osu.Game.Rulesets.Karaoke.Edit.Drawables
+namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Lyric
 {
     /// <summary>
     ///     Editable karaoke Drawable Object
@@ -37,7 +39,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables
 
         protected bool IsDrag;
         protected DrawableKaraokeThumbnail DrawableKaraokeThumbnail { get; set; }
-        protected EditableMainKaraokeText EditableMainKaraokeText { get; set; } = new EditableMainKaraokeText(null, null);
+        protected EditableLyricText EditableLyricText { get; set; } = new EditableLyricText(null, null);
 
         public DrawableEditableKaraokeObject(BaseLyric hitObject)
             : base(hitObject)
@@ -48,7 +50,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables
                 Width = 300,
                 Height = 100
             };
-            AddInternal(EditableMainKaraokeText);
+            AddInternal(EditableLyricText);
             AddInternal(DrawableKaraokeThumbnail);
         }
 
@@ -71,9 +73,9 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables
         protected override void UpdateDrawable()
         {
             base.UpdateDrawable();
-            EditableMainKaraokeText.MainTextObject = Lyric.Lyric.ToDictionary(k => k.Key, v => (TextComponent)v.Value);
-            EditableMainKaraokeText.TextObject = Template?.Value?.MainText;
-            EditableMainKaraokeText.Alpha = 1f;
+            EditableLyricText.MainTextObject = Lyric.Lyric.ToDictionary(k => k.Key, v => (TextComponent)v.Value);
+            EditableLyricText.TextObject = Template?.Value?.MainText;
+            EditableLyricText.Alpha = 1f;
         }
 
         #region Input
@@ -82,7 +84,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables
         {
             IsDrag = true;
             var index = GetPointedText(state);
-            EditableMainKaraokeText.StartSelectIndex = index;
+            EditableLyricText.StartSelectIndex = index;
 
             return base.OnMouseDown(state, args);
         }
@@ -93,12 +95,12 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables
             if (!IsDrag)
             {
                 var index = GetPointedText(state);
-                EditableMainKaraokeText.HoverIndex = index;
+                EditableLyricText.HoverIndex = index;
             }
             else
             {
                 var index = GetPointedText(state);
-                EditableMainKaraokeText.EndSelectIndex = index;
+                EditableLyricText.EndSelectIndex = index;
             }
 
             return base.OnMouseMove(state);
@@ -109,8 +111,8 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables
             IsDrag = false;
             var index = GetPointedText(state);
             AddPoint(index);
-            EditableMainKaraokeText.StartSelectIndex = null;
-            EditableMainKaraokeText.EndSelectIndex = null;
+            EditableLyricText.StartSelectIndex = null;
+            EditableLyricText.EndSelectIndex = null;
 
             return base.OnMouseUp(state, args);
         }
@@ -118,13 +120,13 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables
         protected override void OnHoverLost(InputState state)
         {
             base.OnHoverLost(state);
-            EditableMainKaraokeText.HoverIndex = null;
+            EditableLyricText.HoverIndex = null;
         }
 
         protected int GetPointedText(InputState state)
         {
             var mousePosition = ToLocalSpace(state.Mouse.NativeState.Position);
-            return EditableMainKaraokeText.GetIndexByPosition(mousePosition.X);
+            return EditableLyricText.GetIndexByPosition(mousePosition.X);
         }
 
         #endregion

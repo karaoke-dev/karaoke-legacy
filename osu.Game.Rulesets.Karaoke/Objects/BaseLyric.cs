@@ -132,18 +132,23 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         /// <summary>
         ///     if value is null ,use automatically generated preemptive time;
         /// </summary>
-        public double? PreemptiveTime { get; set; } = 600;
+        public double? PreemptiveTime { get; set; } = 0;
 
         /// <summary>
         ///     End preemptive time
         /// </summary>
-        public double? EndPreemptiveTime { get; set; } = 600;
+        public double? EndPreemptiveTime { get; set; } = 0;
 
         /// <summary>
         ///     get translate code
         /// </summary>
         /// <value>The translate code.</value>
         public TranslateCode Lang { get; set; }
+
+        /// <summary>
+        ///     Stage Index
+        /// </summary>
+        public int StageIndex { get; set; }
 
         /// <summary>
         ///     Version of the lyric
