@@ -5,10 +5,13 @@ using System.Collections.Generic;
 using osu.Framework.Graphics;
 using osu.Framework.Input.Bindings;
 using osu.Game.Beatmaps;
+using osu.Game.Configuration;
 using osu.Game.Overlays.Settings;
+using osu.Game.Rulesets.Configuration;
 using osu.Game.Rulesets.Difficulty;
 using osu.Game.Rulesets.Edit;
 using osu.Game.Rulesets.Karaoke.Beatmaps;
+using osu.Game.Rulesets.Karaoke.Configuration;
 using osu.Game.Rulesets.Karaoke.Edit;
 using osu.Game.Rulesets.Karaoke.Input;
 using osu.Game.Rulesets.Karaoke.KaraokeDifficulty;
@@ -42,6 +45,8 @@ namespace osu.Game.Rulesets.Karaoke
 
         //TODO : give it a id temporatory
         public override int? LegacyID => 0;
+
+        public override IRulesetConfigManager CreateConfig(SettingsStore settings) => new KaraokeConfigManager(settings, RulesetInfo);
 
         public KaraokeRuleset(RulesetInfo rulesetInfo = null)
             : base(rulesetInfo)
