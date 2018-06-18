@@ -72,7 +72,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note
         {
             base.Update();
 
-            //means width channged
+            //means width changed
             if (Math.Abs(_lastWidth - DrawWidth) > 0)
             {
                 _lastWidth = DrawWidth;

@@ -58,6 +58,12 @@ namespace osu.Game.Rulesets.Karaoke.Helps
             return karaokeObject;
         }
 
+        /// <summary>
+        /// use this in convertor
+        /// </summary>
+        /// <param name="startTime"></param>
+        /// <param name="duration"></param>
+        /// <returns></returns>
         public static JpLyric GenerateWithStartAndDuration(double startTime, double duration)
         {
             var karaokeObject = new JpLyric();
