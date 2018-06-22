@@ -1,7 +1,6 @@
 ﻿// Copyright (c) 2007-2018 ppy Pty Ltd <contact@ppy.sh>.
 // Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
 
-using System.Collections.Generic;
 using System.Linq;
 using osu.Framework.Allocation;
 using osu.Framework.Configuration;
@@ -13,9 +12,6 @@ using osu.Game.Rulesets.Karaoke.Configuration;
 using osu.Game.Rulesets.Karaoke.Objects.Drawables.Common.Pieces;
 using osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric.Pieces;
 using osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric.Types;
-using osu.Game.Rulesets.Karaoke.Objects.Lyric.Types;
-using osu.Game.Rulesets.Karaoke.Objects.Text;
-using osu.Game.Rulesets.Karaoke.Objects.TimeLine;
 using osu.Game.Rulesets.Objects.Drawables;
 using OpenTK;
 using OpenTK.Graphics;
@@ -32,6 +28,9 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
 
         public const float TIME_FADEOUT = 0;
 
+        //Drawable
+        public Container TextsAndMaskPiece { get; }
+
         /// <summary>
         ///     Gets or sets a value indicating whether this
         ///     <see cref="T:osu.Game.Rulesets.Karaoke.Objects.Drawables.BaseLyric.DrawableKaraokeObject" /> progress update by
@@ -39,13 +38,6 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
         /// </summary>
         /// <value><c>true</c> if progress update by time; otherwise, <c>false</c>.</value>
         public virtual bool ProgressUpdateByTime { get; set; } = true;
-
-        //Drawable
-        public Container TextsAndMaskPiece { get; }
-
-        protected virtual LyricContainer LeftSideText { get; set; } = new LyricContainer();
-
-        protected virtual LyricContainer RightSideText { get; set; } = new LyricContainer();
 
         public override float Width
         {
@@ -84,6 +76,10 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
             }
         }
 
+        protected virtual LyricContainer LeftSideText { get; set; } = new LyricContainer();
+
+        protected virtual LyricContainer RightSideText { get; set; } = new LyricContainer();
+
         private double _nowProgress;
 
         public DrawableLyric(BaseLyric hitObject)
@@ -95,13 +91,13 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
 
             InternalChildren = new Drawable[]
             {
-                TextsAndMaskPiece = new Container()
+                TextsAndMaskPiece = new Container
                 {
                     Children = new Drawable[]
                     {
                         RightSideText,
                         LeftSideText
-                    },
+                    }
                 },
                 TranslateText
             };
@@ -185,7 +181,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
             Progress = Progress;
         }
 
-        
+
         protected override void Update()
         {
             base.Update();
@@ -223,7 +219,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
                 Alpha = 0;
             }
         }
-        
+
 
         protected sealed override void UpdateState(ArmedState state)
         {

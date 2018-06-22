@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using osu.Framework.Extensions;
 
 namespace osu.Game.Rulesets.Karaoke.Extension
@@ -9,14 +8,14 @@ namespace osu.Game.Rulesets.Karaoke.Extension
     public static class DictionaryExtension
     {
         /// <summary>
-        /// Get pervious
+        ///     Get pervious
         /// </summary>
         /// <typeparam name="K"></typeparam>
         /// <typeparam name="V"></typeparam>
         /// <param name="dictionary"></param>
         /// <param name="key"></param>
         /// <returns></returns>
-        public static KeyValuePair<K,V>? GetPrevious<K, V>(this Dictionary<K, V> dictionary, K key) where K: IComparable where V : class
+        public static KeyValuePair<K, V>? GetPrevious<K, V>(this Dictionary<K, V> dictionary, K key) where K : IComparable where V : class
         {
             var list = dictionary.ToList();
 
@@ -32,7 +31,7 @@ namespace osu.Game.Rulesets.Karaoke.Extension
         }
 
         /// <summary>
-        /// Get next
+        ///     Get next
         /// </summary>
         /// <typeparam name="K"></typeparam>
         /// <typeparam name="V"></typeparam>

@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Game.Rulesets.Karaoke.Extension;
@@ -23,13 +22,8 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note
 
                 //if next is not empty
                 if (previousTimeLine != null)
-                {
                     return thisTimeLine.RelativeTime - previousTimeLine.RelativeTime - (thisTimeLine.EarlyTime ?? 0);
-                }
-                else
-                {
-                    return thisTimeLine.RelativeTime;
-                }
+                return thisTimeLine.RelativeTime;
             }
         }
 
@@ -68,7 +62,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note
                 {
                     var prevTimeLine = HitObject.TimeLines.GetPrevious(TimeLine.Key);
                     var lyric = HitObject.Lyric.Text;
-                    int take = 0;
+                    var take = 0;
                     var displayText = "";
                     if (prevTimeLine != null)
                     {
@@ -80,7 +74,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note
                         take = _timeLine.Key;
                         displayText = lyric.Substring(0, take + 1);
                     }
-                    
+
                     text.Text = displayText;
                 }
             }
@@ -96,6 +90,8 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note
 
         private readonly Container<DrawableLyricNoteTick> tickContainer;
 
+        private readonly Container noteContainer;
+
         /// <summary>
         ///     Time at which the user started holding this hold note. Null if the user is not holding this hold note.
         /// </summary>
@@ -105,8 +101,6 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note
         ///     Whether the hold note has been released too early and shouldn't give full score for the release.
         /// </summary>
         private bool hasBroken;
-
-        private readonly Container noteContainer;
 
         private Color4 accentColour;
 

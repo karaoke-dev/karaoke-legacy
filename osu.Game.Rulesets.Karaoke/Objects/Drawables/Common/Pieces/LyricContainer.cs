@@ -21,15 +21,6 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Common.Pieces
     /// </summary>
     public class LyricContainer : Container
     {
-        private LyricTemplate _template;
-        private KaraokeLyricConfig _config;
-        private BaseLyric _lyric;
-
-        /// <summary>
-        ///     main text
-        /// </summary>
-        public LyricText LyricText;
-
         /// <summary>
         ///     top text
         /// </summary>
@@ -41,7 +32,12 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Common.Pieces
         public List<KaraokeText> ListDrawableBottomText { get; } = new List<KaraokeText>();
 
         /// <summary>
-        /// template
+        ///     main text
+        /// </summary>
+        public LyricText LyricText;
+
+        /// <summary>
+        ///     template
         /// </summary>
         public LyricTemplate Template
         {
@@ -54,7 +50,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Common.Pieces
         }
 
         /// <summary>
-        /// Config
+        ///     Config
         /// </summary>
         public KaraokeLyricConfig Config
         {
@@ -67,7 +63,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Common.Pieces
         }
 
         /// <summary>
-        /// Lyric
+        ///     Lyric
         /// </summary>
         public BaseLyric Lyric
         {
@@ -79,9 +75,30 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Common.Pieces
             }
         }
 
+        private LyricTemplate _template;
+        private KaraokeLyricConfig _config;
+        private BaseLyric _lyric;
+
         public LyricContainer()
         {
             Masking = true;
+        }
+
+        public void SetMaskStartAndEndPosition(float startPositionX, float endPositionX)
+        {
+            Position = new Vector2(startPositionX, 0);
+
+            if (startPositionX != 0)
+                foreach (var singleText in Children)
+                    if (singleText is KaraokeText terxtObject)
+                        terxtObject.Position = terxtObject.TextObject.Position - Position;
+
+            Width = endPositionX - startPositionX;
+        }
+
+        public void SetColor(Color4 color)
+        {
+            Colour = color;
         }
 
         /// <summary>
@@ -94,9 +111,9 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Common.Pieces
 
         protected virtual void UpdateText()
         {
-            if (Config != null && Template!=null && Lyric!=null)
+            if (Config != null && Template != null && Lyric != null)
             {
-                this.ClearAllText();
+                ClearAllText();
 
                 var mainTextDelimiter = "";
                 Dictionary<int, TextComponent> mainText = null;
@@ -221,23 +238,6 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Common.Pieces
             ListDrawableBottomText.Clear();
             LyricText = null;
             Children = new Drawable[] { };
-        }
-
-        public void SetMaskStartAndEndPosition(float startPositionX, float endPositionX)
-        {
-            Position = new Vector2(startPositionX, 0);
-
-            if (startPositionX != 0)
-                foreach (var singleText in Children)
-                    if (singleText is KaraokeText terxtObject)
-                        terxtObject.Position = terxtObject.TextObject.Position - Position;
-
-            Width = endPositionX - startPositionX;
-        }
-
-        public void SetColor(Color4 color)
-        {
-            Colour = color;
         }
     }
 }

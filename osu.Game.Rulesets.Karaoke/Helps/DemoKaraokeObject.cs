@@ -59,7 +59,7 @@ namespace osu.Game.Rulesets.Karaoke.Helps
         }
 
         /// <summary>
-        /// use this in convertor
+        ///     use this in convertor
         /// </summary>
         /// <param name="startTime"></param>
         /// <param name="duration"></param>

@@ -68,7 +68,10 @@ namespace osu.Game.Rulesets.Karaoke.Beatmaps
             */
         }
 
-        protected override Beatmap<BaseLyric> CreateBeatmap() => beatmap = new KaraokeBeatmap();
+        protected override Beatmap<BaseLyric> CreateBeatmap()
+        {
+            return beatmap = new KaraokeBeatmap();
+        }
 
         /// <summary>
         ///     Performs the conversion of a Beatmap using this Beatmap Converter.

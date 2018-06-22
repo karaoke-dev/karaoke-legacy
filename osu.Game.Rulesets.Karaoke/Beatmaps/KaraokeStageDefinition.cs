@@ -17,6 +17,5 @@ namespace osu.Game.Rulesets.Karaoke.Beatmaps
         ///     if <see cref="LyricTimeLine" /> does not assign tone, use default
         /// </summary>
         public int DefaultIndex = 0;
-
     }
 }

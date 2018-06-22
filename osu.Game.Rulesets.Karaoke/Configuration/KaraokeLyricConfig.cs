@@ -24,7 +24,7 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
         /// <summary>
         ///     romaji first
         /// </summary>
-        public bool RomajiFirst { get; set; } = false;
+        public bool RomajiFirst { get; set; }
 
         /// <summary>
         ///     Show translate

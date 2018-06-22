@@ -8,7 +8,6 @@ using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Lines;
 using osu.Game.Rulesets.Karaoke.Objects;
-using osu.Game.Rulesets.Karaoke.Objects.Drawables.Common.Pieces;
 using osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric;
 using OpenTK;
 
@@ -147,9 +146,9 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
             var templateValue = Template.Value;
 
             //Lyric
-            LyricText mainText = RightSideText.LyricText;
-            List<KaraokeText> subTexts = RightSideText.ListDrawableSubText;
-            KaraokeText subText = subTexts?.FirstOrDefault();
+            var mainText = RightSideText.LyricText;
+            var subTexts = RightSideText.ListDrawableSubText;
+            var subText = subTexts?.FirstOrDefault();
 
             //1. Get all start Position
             var subTextSegmentedControlStartPosition = new Vector2(subTexts.Last().Position.X + 20, subText.Position.Y);
