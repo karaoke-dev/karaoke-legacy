@@ -34,7 +34,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit
                 },
                 KaraokeTonePlayfield = new KaraokeToneEditPlayfield(new List<KaraokeStageDefinition>
                 {
-                    new KaraokeStageDefinition { Columns = 10 }
+                    new KaraokeStageDefinition { Columns = 11 }
                 })
                 {
                     KaraokeRulesetContainer = KaraokeRulesetContainer

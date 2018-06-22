@@ -56,7 +56,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note
             {
                 _timeLine = value;
                 //height
-                var noteHeight = (_timeLine.Value.Tone ?? 0) * KaraokeStage.COLUMN_HEIGHT;
+                var noteHeight = (_timeLine.Value.Tone ?? 0) * (KaraokeStage.COLUMN_HEIGHT + KaraokeStage.COLUMN_SPACING);
                 noteContainer.Y = noteHeight;
 
                 //text
@@ -123,6 +123,8 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note
             {
                 noteContainer = new Container
                 {
+                    Anchor = Anchor.CentreLeft,
+                    Origin = Anchor.CentreLeft,
                     Height = KaraokeStage.COLUMN_HEIGHT,
                     Children = new Drawable[]
                     {

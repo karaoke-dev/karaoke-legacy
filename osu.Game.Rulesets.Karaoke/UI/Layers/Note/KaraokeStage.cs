@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using osu.Framework.Allocation;
 using osu.Framework.Configuration;
@@ -51,6 +52,12 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Note
         public KaraokeStage(int singerIndex, KaraokeStageDefinition definition)
             : base(ScrollingDirection.Left)
         {
+            if (definition == null)
+                throw new ArgumentNullException(nameof(definition) + "cannot be null");
+
+            if (definition.Columns <=0 || definition.Columns % 2 ==0)
+                throw new ArgumentException(nameof(definition.Columns) + "cannot be even.");
+
             this.singerIndex = singerIndex;
 
             Name = "Stage";
@@ -137,7 +144,6 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Note
 
             for (var i = 0; i < definition.Columns; i++)
             {
-                var isSpecial = definition.IsSpecialColumn(i);
                 var column = new Background
                 {
                     Height = COLUMN_HEIGHT,
