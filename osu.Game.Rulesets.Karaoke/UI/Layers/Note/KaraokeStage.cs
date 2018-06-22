@@ -55,7 +55,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Note
             if (definition == null)
                 throw new ArgumentNullException(nameof(definition) + "cannot be null");
 
-            if (definition.Columns <=0 && definition.Columns % 2 ==0)
+            if (definition.Columns <=0 || definition.Columns % 2 ==0)
                 throw new ArgumentException(nameof(definition.Columns) + "cannot be even.");
 
             this.singerIndex = singerIndex;
