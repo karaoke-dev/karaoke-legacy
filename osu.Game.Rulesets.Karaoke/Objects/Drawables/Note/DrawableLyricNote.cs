@@ -123,6 +123,8 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note
             {
                 noteContainer = new Container
                 {
+                    Anchor = Anchor.Centre,
+                    Origin = Anchor.Centre,
                     Height = KaraokeStage.COLUMN_HEIGHT,
                     Children = new Drawable[]
                     {
