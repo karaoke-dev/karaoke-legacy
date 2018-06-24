@@ -2,6 +2,7 @@
 // Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
 
 using JetBrains.Annotations;
+using osu.Game.Rulesets.Karaoke.Objects.Note;
 
 namespace osu.Game.Rulesets.Karaoke.Objects.TimeLine
 {
@@ -18,12 +19,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.TimeLine
         /// <summary>
         ///     Tone
         /// </summary>
-        public int? Tone { get; set; }
-
-        /// <summary>
-        ///     Add helf tone
-        /// </summary>
-        public bool HelfTone { get; set; }
+        public Tone Tone { get; set; }
 
         /// <summary>
         ///     Display Text

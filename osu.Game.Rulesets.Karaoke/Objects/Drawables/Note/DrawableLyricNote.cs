@@ -3,6 +3,7 @@ using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Game.Rulesets.Karaoke.Extension;
 using osu.Game.Rulesets.Karaoke.Objects.Drawables.Note.Pieces;
+using osu.Game.Rulesets.Karaoke.Objects.Note;
 using osu.Game.Rulesets.Karaoke.Objects.TimeLine;
 using osu.Game.Rulesets.Karaoke.UI.Layers.Note;
 using osu.Game.Rulesets.Objects.Drawables;
@@ -49,8 +50,11 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note
             set
             {
                 _timeLine = value;
+
+                var tone = (_timeLine.Value.Tone ?? new Tone());
+
                 //height
-                var noteHeight = (_timeLine.Value.Tone ?? 0) * (KaraokeStage.COLUMN_HEIGHT + KaraokeStage.COLUMN_SPACING);
+                var noteHeight = (float)(tone.Scale + (tone.Helf ? 0.5 : 0)) * (KaraokeStage.COLUMN_HEIGHT + KaraokeStage.COLUMN_SPACING);
                 noteContainer.Y = noteHeight;
 
                 //text
