@@ -1,4 +1,4 @@
-﻿using osu.Game.Rulesets.Karaoke.Objects.TimeLine;
+﻿using osu.Game.Rulesets.Karaoke.Objects.Note;
 using osu.Game.Rulesets.Karaoke.UI.Layers.Note;
 
 namespace osu.Game.Rulesets.Karaoke.Beatmaps
@@ -14,8 +14,8 @@ namespace osu.Game.Rulesets.Karaoke.Beatmaps
         public int Columns;
 
         /// <summary>
-        ///     if <see cref="LyricTimeLine" /> does not assign tone, use default
+        /// Set default tone
         /// </summary>
-        public int DefaultIndex = 0;
+        public Tone DefaultTone { get; set; }
     }
 }

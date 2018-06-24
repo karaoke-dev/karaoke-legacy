@@ -36,5 +36,57 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Note
 
             Helf = !Helf;
         }
+
+        /// <summary>
+        ///     operator
+        /// </summary>
+        /// <param name="object1"></param>
+        /// <param name="object2"></param>
+        /// <returns></returns>
+        public static Tone operator +(Tone object1, Tone object2)
+        {
+            if (object1 == null && object2 == null)
+                return null;
+
+            if (object1 == null)
+                return object2;
+
+            if (object2 == null)
+                return object1;
+
+            return new Tone
+            {
+                Scale = object1.Scale + object2.Scale + ((object1.Helf && object2.Helf) ? 1 : 0),
+                Helf = object1.Helf ^ object2.Helf
+            };
+        }
+
+        /// <summary>
+        ///     operator
+        /// </summary>
+        /// <param name="object1"></param>
+        /// <param name="object2"></param>
+        /// <returns></returns>
+        public static Tone operator -(Tone object1, Tone object2)
+        {
+            return object1 + (-object2);
+        }
+
+        /// <summary>
+        ///     operator
+        /// </summary>
+        /// <param name="object1"></param>
+        /// <returns></returns>
+        public static Tone operator -(Tone object1)
+        {
+            if (object1 == null)
+                return null;
+
+            return new Tone
+            {
+                Scale = -object1.Scale,
+                Helf = object1.Helf
+            };
+        }
     }
 }
