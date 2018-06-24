@@ -44,7 +44,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note
 
         public virtual BaseLyric HitObject { get; set; }
 
-        public virtual KeyValuePair<int, TimeLine.TimeLine> TimeLine
+        public virtual KeyValuePair<TimeLinePoint, TimeLine.TimeLine> TimeLine
         {
             get => _timeLine;
             set
@@ -69,12 +69,12 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note
                     var displayText = "";
                     if (prevTimeLine != null)
                     {
-                        take = _timeLine.Key - prevTimeLine.Value.Key;
-                        displayText = lyric.Substring(prevTimeLine.Value.Key + 1, take);
+                        take = _timeLine.Key.Index - prevTimeLine.Value.Key.Index;
+                        displayText = lyric.Substring(prevTimeLine.Value.Key.Index + 1, take);
                     }
                     else
                     {
-                        take = _timeLine.Key;
+                        take = _timeLine.Key.Index;
                         displayText = lyric.Substring(0, take + 1);
                     }
 
@@ -107,7 +107,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note
 
         private Color4 accentColour;
 
-        private KeyValuePair<int, TimeLine.TimeLine> _timeLine;
+        private KeyValuePair<TimeLinePoint, TimeLine.TimeLine> _timeLine;
 
         public DrawableLyricNote()
             : base(null)

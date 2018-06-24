@@ -13,7 +13,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.TimeLine
     ///     list Progress point
     ///     [Note : key is mapped in Char index, not Dictionary's index]
     /// </summary>
-    public class TimeLineList : LyricDictionary<int, TimeLine>
+    public class TimeLineList : LyricDictionary<TimeLinePoint, TimeLine>
     {
         [JsonIgnore]
         public double MinimumTime { get; set; } = 100;
@@ -23,7 +23,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.TimeLine
         /// </summary>
         /// <param name="nowRelativeTime"></param>
         /// <returns></returns>
-        public KeyValuePair<int, TimeLine> GetFirstProgressPointByTime(double nowRelativeTime)
+        public KeyValuePair<TimeLinePoint, TimeLine> GetFirstProgressPointByTime(double nowRelativeTime)
         {
             /*
             var index = this.FirstOrDefault(x => x.Value.RelativeTime > nowRelativeTime).Key;
@@ -46,7 +46,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.TimeLine
             var maxResult = Find(result.Keys.Max());
 
             if (maxResult.Equals(default(KeyValuePair<int, TimeLine>)))
-                return new KeyValuePair<int, TimeLine>(-1, new TimeLine(0));
+                return new KeyValuePair<TimeLinePoint, TimeLine>(new TimeLinePoint(-1), new TimeLine(0));
 
             return maxResult.Value;
         }
@@ -57,7 +57,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.TimeLine
         /// <param name="lyric"></param>
         /// <param name="nowRelativeTime"></param>
         /// <returns></returns>
-        public KeyValuePair<int, TimeLine>? GetLastProgressPointByTime(double nowRelativeTime)
+        public KeyValuePair<TimeLinePoint, TimeLine>? GetLastProgressPointByTime(double nowRelativeTime)
         {
             /*
             var point = this.FirstOrDefault(x => x.Value.RelativeTime > nowRelativeTime);
@@ -93,7 +93,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.TimeLine
         /// </summary>
         /// <param name="charIndex"></param>
         /// <returns></returns>
-        public KeyValuePair<int, TimeLine> GetFirstProgressPointByIndex(int charIndex)
+        public KeyValuePair<TimeLinePoint, TimeLine> GetFirstProgressPointByIndex(TimeLinePoint charIndex)
         {
             var result = FindPrevioud(charIndex).Value;
             return result;
@@ -104,7 +104,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.TimeLine
         /// </summary>
         /// <param name="charIndex"></param>
         /// <returns></returns>
-        public KeyValuePair<int, TimeLine> GetLastProgressPointByIndex(int charIndex)
+        public KeyValuePair<TimeLinePoint, TimeLine> GetLastProgressPointByIndex(TimeLinePoint charIndex)
         {
             /*
             var point = this.FirstOrDefault(x => x.Key > charIndex);
@@ -120,7 +120,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.TimeLine
         /// </summary>
         /// <returns><c>true</c>, if progress point was added, <c>false</c> otherwise.</returns>
         /// <param name="karaokeObject">Karaoke object.</param>
-        public new void Add(int key, TimeLine point)
+        public new void Add(TimeLinePoint key, TimeLine point)
         {
             if (this.Any(x => x.Value.RelativeTime == point.RelativeTime))
                 return;
