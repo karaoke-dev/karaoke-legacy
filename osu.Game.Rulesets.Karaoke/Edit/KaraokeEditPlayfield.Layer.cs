@@ -8,6 +8,7 @@ using osu.Game.Rulesets.Karaoke.Beatmaps;
 using osu.Game.Rulesets.Karaoke.Edit.Dialog;
 using osu.Game.Rulesets.Karaoke.Edit.Layers.Lyric;
 using osu.Game.Rulesets.Karaoke.Edit.Layers.Note;
+using osu.Game.Rulesets.Karaoke.Objects.Note;
 
 namespace osu.Game.Rulesets.Karaoke.Edit
 {
@@ -34,7 +35,11 @@ namespace osu.Game.Rulesets.Karaoke.Edit
                 },
                 KaraokeTonePlayfield = new KaraokeToneEditPlayfield(new List<KaraokeStageDefinition>
                 {
-                    new KaraokeStageDefinition { Columns = 10 }
+                    new KaraokeStageDefinition
+                    {
+                        Columns = 11,
+                        DefaultTone = new Tone()
+                    }
                 })
                 {
                     KaraokeRulesetContainer = KaraokeRulesetContainer

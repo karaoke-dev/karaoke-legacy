@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using osu.Framework.Allocation;
 using osu.Framework.Configuration;
@@ -34,27 +35,43 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Note
         /// </summary>
         public readonly Bindable<bool> Inverted = new Bindable<bool>(true);
 
-        public IReadOnlyList<Background> Columns => columnFlow.Children;
+        /// <summary>
+        ///     Trigger if column is changed
+        /// </summary>
+        public readonly Bindable<KaraokeStageDefinition> TriggerColumnChanged = new Bindable<KaraokeStageDefinition>(new KaraokeStageDefinition());
 
+        /// <summary>
+        ///     Trigger if user changed the tone
+        /// </summary>
+        public readonly Bindable<Tone> Tone = new Bindable<Tone>(new Tone());
+
+        public IReadOnlyList<Background> Columns => columnFlow.Children;
         public Container<DrawableNoteJudgement> Judgements => judgements;
 
         protected override Container<Drawable> Content => content;
         private readonly FillFlowContainer<Background> columnFlow;
         private readonly Container<Drawable> content;
         private readonly JudgementContainer<DrawableNoteJudgement> judgements;
-
-        private readonly int singerIndex;
+        private readonly Background toneBackground;
 
         private List<Color4> normalColumnColours = new List<Color4>();
         private Color4 specialColumnColour;
+        private KaraokeStageDefinition _definition;
 
-        public KaraokeStage(int singerIndex, KaraokeStageDefinition definition)
+
+        public KaraokeStage(KaraokeStageDefinition definition)
             : base(ScrollingDirection.Left)
         {
-            this.singerIndex = singerIndex;
+            if (definition == null)
+                throw new ArgumentNullException(nameof(definition) + "cannot be null");
+
+            if (definition.Columns <= 0 || definition.Columns % 2 == 0)
+                throw new ArgumentException(nameof(definition.Columns) + "cannot be even.");
+
+            if(definition.DefaultTone == null)
+                throw new ArgumentNullException(nameof(definition.DefaultTone) + "cannot be null");
 
             Name = "Stage";
-
             Anchor = Anchor.Centre;
             Origin = Anchor.Centre;
             RelativeSizeAxes = Axes.X;
@@ -93,6 +110,16 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Note
                                     Direction = FillDirection.Vertical,
                                     Padding = new MarginPadding { Top = COLUMN_SPACING, Bottom = COLUMN_SPACING },
                                     Spacing = new Vector2(0, COLUMN_SPACING)
+                                },
+                                toneBackground = new Background()
+                                {
+                                    Name = "ToneIndicator",
+                                    RelativeSizeAxes = Axes.X,
+                                    Anchor = Anchor.Centre,
+                                    Origin = Anchor.Centre,
+                                    Height = COLUMN_HEIGHT,
+                                    AccentColour = Color4.Red,
+                                    Alpha = 0.15f
                                 }
                             }
                         },
@@ -135,19 +162,49 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Note
                 }
             };
 
-            for (var i = 0; i < definition.Columns; i++)
-            {
-                var isSpecial = definition.IsSpecialColumn(i);
-                var column = new Background
-                {
-                    Height = COLUMN_HEIGHT,
-                    Alpha = 0.15f
-                };
-                AddBackground(column);
-            }
+            StateDefinition = definition;
 
             Inverted.ValueChanged += invertedChanged;
             Inverted.TriggerChange();
+
+            Tone.ValueChanged += ToneChanged;
+            Tone.TriggerChange();
+        }
+
+        protected void ToneChanged(Tone tone)
+        {
+            //Change tone
+            var realTone = StateDefinition.DefaultTone + tone;
+            toneBackground.Y = NoteStageHelper.GetPositionByTone(realTone);
+        }
+
+        /// <summary>
+        ///     Notified note if definition changed
+        /// </summary>
+        public KaraokeStageDefinition StateDefinition
+        {
+            get => _definition;
+            set
+            {
+                _definition = value;
+
+                //columns
+                for (var i = 0; i < StateDefinition.Columns; i++)
+                {
+                    var column = new Background
+                    {
+                        Height = COLUMN_HEIGHT,
+                        Alpha = 0.15f
+                    };
+                    AddBackground(column);
+                }
+
+                //TODO : tone
+
+
+                //TODO : trigger change
+                TriggerColumnChanged.TriggerChange();
+            }
         }
 
         public void AddBackground(Background c)

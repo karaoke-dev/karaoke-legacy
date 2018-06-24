@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using osu.Game.Rulesets.Karaoke.Configuration;
 using osu.Game.Rulesets.Karaoke.Objects;
 using osu.Game.Rulesets.Karaoke.Objects.Lyric;
+using osu.Game.Rulesets.Karaoke.Objects.Note;
 using osu.Game.Rulesets.Karaoke.Objects.TimeLine;
 using osu.Game.Rulesets.Karaoke.Objects.Translate;
 using OpenTK;
@@ -58,6 +59,12 @@ namespace osu.Game.Rulesets.Karaoke.Helps
             return karaokeObject;
         }
 
+        /// <summary>
+        ///     use this in convertor
+        /// </summary>
+        /// <param name="startTime"></param>
+        /// <param name="duration"></param>
+        /// <returns></returns>
         public static JpLyric GenerateWithStartAndDuration(double startTime, double duration)
         {
             var karaokeObject = new JpLyric();
@@ -75,15 +82,15 @@ namespace osu.Game.Rulesets.Karaoke.Helps
 
             karaokeObject.TimeLines.Add(0, new LyricTimeLine(duration / 5)
             {
-                Tone = 3
+                Tone = new Tone(3)
             });
             karaokeObject.TimeLines.Add(9, new LyricTimeLine(duration / 4)
             {
-                Tone = 5
+                Tone = new Tone(-3)
             });
             karaokeObject.TimeLines.Add(11, new LyricTimeLine(duration)
             {
-                Tone = 0
+                Tone = new Tone(0,true)
             });
 
             karaokeObject.Romaji.Add(0, new RomajiText("o"));

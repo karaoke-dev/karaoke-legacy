@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Game.Rulesets.Karaoke.Extension;
 using osu.Game.Rulesets.Karaoke.Objects.Drawables.Note.Pieces;
+using osu.Game.Rulesets.Karaoke.Objects.Note;
 using osu.Game.Rulesets.Karaoke.Objects.TimeLine;
 using osu.Game.Rulesets.Karaoke.UI.Layers.Note;
 using osu.Game.Rulesets.Objects.Drawables;
@@ -23,13 +23,8 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note
 
                 //if next is not empty
                 if (previousTimeLine != null)
-                {
                     return thisTimeLine.RelativeTime - previousTimeLine.RelativeTime - (thisTimeLine.EarlyTime ?? 0);
-                }
-                else
-                {
-                    return thisTimeLine.RelativeTime;
-                }
+                return thisTimeLine.RelativeTime;
             }
         }
 
@@ -55,9 +50,11 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note
             set
             {
                 _timeLine = value;
+
+                var tone = (_timeLine.Value.Tone ?? new Tone());
+
                 //height
-                var noteHeight = (_timeLine.Value.Tone ?? 0) * KaraokeStage.COLUMN_HEIGHT;
-                noteContainer.Y = noteHeight;
+                noteContainer.Y = NoteStageHelper.GetPositionByTone(tone);
 
                 //text
                 if (!string.IsNullOrEmpty(TimeLine.Value.DisplayText))
@@ -68,7 +65,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note
                 {
                     var prevTimeLine = HitObject.TimeLines.GetPrevious(TimeLine.Key);
                     var lyric = HitObject.Lyric.Text;
-                    int take = 0;
+                    var take = 0;
                     var displayText = "";
                     if (prevTimeLine != null)
                     {
@@ -80,7 +77,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note
                         take = _timeLine.Key;
                         displayText = lyric.Substring(0, take + 1);
                     }
-                    
+
                     text.Text = displayText;
                 }
             }
@@ -94,7 +91,9 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note
         private readonly BodyPiece bodyPiece;
         private readonly Container fullHeightContainer;
 
-        private readonly Container<DrawableKaraokeNoteTick> tickContainer;
+        private readonly Container<DrawableLyricNoteTick> tickContainer;
+
+        private readonly Container noteContainer;
 
         /// <summary>
         ///     Time at which the user started holding this hold note. Null if the user is not holding this hold note.
@@ -105,8 +104,6 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note
         ///     Whether the hold note has been released too early and shouldn't give full score for the release.
         /// </summary>
         private bool hasBroken;
-
-        private readonly Container noteContainer;
 
         private Color4 accentColour;
 
@@ -123,6 +120,8 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note
             {
                 noteContainer = new Container
                 {
+                    Anchor = Anchor.CentreLeft,
+                    Origin = Anchor.CentreLeft,
                     Height = KaraokeStage.COLUMN_HEIGHT,
                     Children = new Drawable[]
                     {
@@ -139,7 +138,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note
                             Origin = Anchor.CentreLeft,
                             RelativeSizeAxes = Axes.Y
                         },
-                        tickContainer = new Container<DrawableKaraokeNoteTick>
+                        tickContainer = new Container<DrawableLyricNoteTick>
                         {
                             RelativeSizeAxes = Axes.Both
                             //ChildrenEnumerable = HitObject.NestedHitObjects.OfType<BaseLyric>().Select(tick => new DrawableKaraokeNoteTick(tick)

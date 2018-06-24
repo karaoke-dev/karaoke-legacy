@@ -1,18 +1,17 @@
 ﻿// Copyright (c) 2007-2018 ppy Pty Ltd <contact@ppy.sh>.
 // Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
 
-using System.Collections.Generic;
 using System.Linq;
 using osu.Framework.Allocation;
 using osu.Framework.Configuration;
 using osu.Framework.Graphics;
+using osu.Framework.Graphics.Containers;
 using osu.Framework.IO.Stores;
 using osu.Game.Rulesets.Karaoke.Beatmaps;
 using osu.Game.Rulesets.Karaoke.Configuration;
+using osu.Game.Rulesets.Karaoke.Objects.Drawables.Common.Pieces;
 using osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric.Pieces;
 using osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric.Types;
-using osu.Game.Rulesets.Karaoke.Objects.Lyric.Types;
-using osu.Game.Rulesets.Karaoke.Objects.Text;
 using osu.Game.Rulesets.Objects.Drawables;
 using OpenTK;
 using OpenTK.Graphics;
@@ -29,6 +28,9 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
 
         public const float TIME_FADEOUT = 0;
 
+        //Drawable
+        public Container TextsAndMaskPiece { get; }
+
         /// <summary>
         ///     Gets or sets a value indicating whether this
         ///     <see cref="T:osu.Game.Rulesets.Karaoke.Objects.Drawables.BaseLyric.DrawableKaraokeObject" /> progress update by
@@ -37,16 +39,14 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
         /// <value><c>true</c> if progress update by time; otherwise, <c>false</c>.</value>
         public virtual bool ProgressUpdateByTime { get; set; } = true;
 
-        //Drawable
-        public LyricContainer TextsAndMaskPiece { get; set; } = new LyricContainer();
-
         public override float Width
         {
             get => base.Width;
             set
             {
                 base.Width = value;
-                TextsAndMaskPiece.SetWidth(base.Width);
+                LeftSideText.Width = Width;
+                RightSideText.Width = Width;
             }
         }
 
@@ -56,7 +56,8 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
             set
             {
                 base.Height = value;
-                TextsAndMaskPiece.SetHeight(base.Height);
+                LeftSideText.Height = Height;
+                RightSideText.Height = Height;
             }
         }
 
@@ -70,9 +71,14 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
             set
             {
                 _nowProgress = value;
-                TextsAndMaskPiece.MovingMask((float)_nowProgress);
+                LeftSideText.SetMaskStartAndEndPosition(0, (float)Progress);
+                RightSideText.SetMaskStartAndEndPosition((float)Progress, Width);
             }
         }
+
+        protected virtual LyricContainer LeftSideText { get; set; } = new LyricContainer();
+
+        protected virtual LyricContainer RightSideText { get; set; } = new LyricContainer();
 
         private double _nowProgress;
 
@@ -80,9 +86,19 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
             : base(hitObject)
         {
             Alpha = 0;
+            LeftSideText.Lyric = hitObject;
+            RightSideText.Lyric = hitObject;
+
             InternalChildren = new Drawable[]
             {
-                TextsAndMaskPiece,
+                TextsAndMaskPiece = new Container
+                {
+                    Children = new Drawable[]
+                    {
+                        RightSideText,
+                        LeftSideText
+                    }
+                },
                 TranslateText
             };
 
@@ -94,11 +110,15 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
 
         protected virtual void OnStyleChange()
         {
+            LeftSideText.Config = Style.Value;
+            RightSideText.Config = Style.Value;
             UpdateDrawable();
         }
 
         protected virtual void OnTemplateChange()
         {
+            LeftSideText.Template = Template.Value;
+            RightSideText.Template = Template.Value;
             UpdateDrawable();
         }
 
@@ -124,75 +144,11 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
 
         protected virtual void UpdateText()
         {
-            TextsAndMaskPiece.ClearAllText();
-
-            var styleValue = Style.Value;
-            var templateValue = Template.Value;
-
-            if (styleValue != null)
+            //TODO : fix logic
+            if (Style != null && Template != null && Lyric != null)
             {
-                var mainTextDelimiter = "";
-                Dictionary<int, TextComponent> mainText = null;
-                Dictionary<int, FormattedText> bottomTexts = null;
-                Dictionary<int, FormattedText> subTexts = null;
-
-                if (styleValue.RomajiFirst)
-                {
-                    if (Lyric is IHasRomaji romajiLyric)
-                    {
-                        mainText = romajiLyric.Romaji.ToDictionary(k => k.Key, v => (TextComponent)v.Value);
-                        mainTextDelimiter = " ";
-                    }
-                }
-                else
-                {
-                    mainText = Lyric.Lyric.ToDictionary(k => k.Key, v => (TextComponent)v.Value);
-                }
-
-                //main text
-                TextsAndMaskPiece.AddMainText(templateValue?.MainText, mainText.ToDictionary(k => k.Key, v => v.Value), mainTextDelimiter);
-
-                //show romaji text
-                if (styleValue.RomajiVislbility)
-                    if (styleValue.RomajiFirst)
-                    {
-                        bottomTexts = Lyric.Lyric.ToDictionary(k => k.Key, v => templateValue?.BottomText + v.Value + new FormattedText
-                        {
-                            X = getxPosition(v.Key)
-                        });
-                    }
-                    else
-                    {
-                        if (Lyric is IHasRomaji romajiLyric)
-                            bottomTexts = romajiLyric.Romaji.ToDictionary(k => k.Key, v => templateValue?.BottomText + v.Value + new FormattedText
-                            {
-                                X = getxPosition(v.Key)
-                            });
-                    }
-
-                //show subtext
-                if (styleValue.SubTextVislbility)
-                    if (Lyric is IHasFurigana furiganaLyric)
-                        subTexts = furiganaLyric.Furigana.ToDictionary(k => k.Key, v => templateValue?.TopText + v.Value + new FormattedText
-                        {
-                            X = getxPosition(v.Key)
-                        });
-
-                //show sub text
-                TextsAndMaskPiece.AddSubText(subTexts?.Select(x => x.Value).ToList());
-
-                //show sub text
-                TextsAndMaskPiece.AddBottomText(bottomTexts?.Select(x => x.Value).ToList());
-
-                Width = TextsAndMaskPiece.MainText.GetTextEndPosition();
+                Width = LeftSideText?.LyricText?.GetTextEndPosition() ?? 200;
                 Height = Lyric.Height ?? 100;
-            }
-
-            float getxPosition(int index)
-            {
-                var positionX = TextsAndMaskPiece.MainText.GetTextCenterPosition(index);
-
-                return positionX;
             }
         }
 
@@ -215,13 +171,16 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
             //Color
             var textColor = Singer?.LytricColor ?? Color4.Blue;
             var backgroundColor = Singer?.LytricBackgroundColor ?? Color4.White;
-            TextsAndMaskPiece.SetColor(textColor, backgroundColor);
+            //
+            LeftSideText.SetColor(textColor);
+            RightSideText.SetColor(backgroundColor);
 
             Scale = new Vector2(templateValue?.Scale ?? 1);
 
             //update progress
             Progress = Progress;
         }
+
 
         protected override void Update()
         {
@@ -237,8 +196,8 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
                 var startProgressPoint = HitObject.TimeLines.GetFirstProgressPointByTime(currentRelativeTime);
                 var endProgressPoint = HitObject.TimeLines.GetLastProgressPointByTime(currentRelativeTime);
 
-                var startPosition = TextsAndMaskPiece.MainText.GetEndPositionByIndex(startProgressPoint.Key);
-                var endPosition = TextsAndMaskPiece.MainText.GetEndPositionByIndex(endProgressPoint?.Key ?? -1);
+                var startPosition = LeftSideText.LyricText.GetEndPositionByIndex(startProgressPoint.Key);
+                var endPosition = LeftSideText.LyricText.GetEndPositionByIndex(endProgressPoint?.Key ?? -1);
 
                 var relativeTime = currentRelativeTime - startProgressPoint.Value.RelativeTime;
 
@@ -260,6 +219,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
                 Alpha = 0;
             }
         }
+
 
         protected sealed override void UpdateState(ArmedState state)
         {
@@ -298,7 +258,8 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
         [BackgroundDependencyLoader]
         private void load(FontStore store)
         {
-            UpdateDrawable();
+            Style.TriggerChange();
+            Template.TriggerChange();
         }
 
         #region Bindable

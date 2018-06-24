@@ -54,8 +54,8 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
             //Style
             Set(KaraokeSetting.Microphone, -1);
             Set(KaraokeSetting.MicrophoneVolumn, 0.5);
-            Set(KaraokeSetting.Echo, 0.5);
-            Set(KaraokeSetting.Tone, 0);
+            Set(KaraokeSetting.MicrophoneEcho, 0.5);
+            Set(KaraokeSetting.MicrophoneTone, 0);
 
             //Device
             Set(KaraokeSetting.Device, PlatformType.Desktop);
@@ -63,6 +63,7 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
 
             //Tone
             Set(KaraokeSetting.NoteSpeed, 6000.0);
+            Set(KaraokeSetting.PlayFieldAdjustPositioByTome, true);
         }
     }
 
@@ -95,14 +96,15 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
         //Microphone (V2 system)
         Microphone = 51, //[int]select microphone device
         MicrophoneVolumn = 52, //[double]Volumn
-        Echo = 53, //[double]Echo
-        Tone = 54, //Future work ,adjust how voice microphone sounds like
+        MicrophoneEcho = 53, //[double]Echo
+        MicrophoneTone = 54, //Future work ,adjust how voice microphone sounds like
 
         //device
         Device = 61, //which device
         TouchScreen = 62, //touch screen action
 
         //Note
-        NoteSpeed = 71 //noteSpeed
+        NoteSpeed = 71, //noteSpeed
+        PlayFieldAdjustPositioByTome = 72,//adjust position while change tone
     }
 }

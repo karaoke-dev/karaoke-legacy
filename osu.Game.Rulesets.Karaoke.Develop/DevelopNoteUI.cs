@@ -106,7 +106,7 @@ namespace osu.Game.Rulesets.Karaoke.Develop
                 var note = DemoKaraokeObject.GenerateWithStartAndDuration(0, 10000);
                 note.ApplyDefaults(new ControlPointInfo(), new BeatmapDifficulty());
 
-                var drawableNote = new DrawableKaraokeNoteGroup(note)
+                var drawableNote = new DrawableLyricNoteGroup(note)
                 {
                     //AccentColour = playfield.Columns.ElementAt(col).AccentColour
                 };
@@ -123,7 +123,7 @@ namespace osu.Game.Rulesets.Karaoke.Develop
 
                 note.ApplyDefaults(new ControlPointInfo(), new BeatmapDifficulty());
 
-                var drawableNote = new DrawableKaraokeNoteGroup(note)
+                var drawableNote = new DrawableLyricNoteGroup(note)
                 {
                     //AccentColour = playfield.Columns.ElementAt(col).AccentColour
                 };
@@ -132,7 +132,7 @@ namespace osu.Game.Rulesets.Karaoke.Develop
             });
         }
 
-        protected DrawableKaraokeNoteGroup CreateDrawableHitObject(int column = -1)
+        protected DrawableLyricNoteGroup CreateDrawableHitObject(int column = -1)
         {
             if (column == -1)
             {
@@ -142,7 +142,7 @@ namespace osu.Game.Rulesets.Karaoke.Develop
 
             var note = DemoKaraokeObject.GenerateWithStartAndDuration(0, 10000);
             note.ApplyDefaults(new ControlPointInfo(), new BeatmapDifficulty());
-            var drawableNote = new DrawableKaraokeNoteGroup(note)
+            var drawableNote = new DrawableLyricNoteGroup(note)
             {
                 X = 100,
                 Width = 100,
