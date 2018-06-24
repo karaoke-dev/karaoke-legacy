@@ -90,7 +90,7 @@ namespace osu.Game.Rulesets.Karaoke.Helps
             });
             karaokeObject.TimeLines.Add(11, new LyricTimeLine(duration)
             {
-                Tone = new Tone(0,true)
+                Tone = new Tone(0, true)
             });
 
             karaokeObject.Romaji.Add(0, new RomajiText("o"));

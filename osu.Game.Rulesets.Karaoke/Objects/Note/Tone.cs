@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace osu.Game.Rulesets.Karaoke.Objects.Note
+﻿namespace osu.Game.Rulesets.Karaoke.Objects.Note
 {
-    public class Tone 
+    public class Tone
     {
         public int Scale { get; set; }
 
@@ -12,29 +8,12 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Note
 
         public Tone()
         {
-
         }
 
-        public Tone(int scale,bool helf = false)
+        public Tone(int scale, bool helf = false)
         {
             Scale = scale;
             Helf = helf;
-        }
-
-        public void RaiseScale()
-        {
-            if (Helf)
-                Scale++;
-
-            Helf = !Helf;
-        }
-
-        public void ReduceScales()
-        {
-            if (Helf)
-                Scale--;
-
-            Helf = !Helf;
         }
 
         /// <summary>
@@ -56,7 +35,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Note
 
             return new Tone
             {
-                Scale = object1.Scale + object2.Scale + ((object1.Helf && object2.Helf) ? 1 : 0),
+                Scale = object1.Scale + object2.Scale + (object1.Helf && object2.Helf ? 1 : 0),
                 Helf = object1.Helf ^ object2.Helf
             };
         }
@@ -69,7 +48,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Note
         /// <returns></returns>
         public static Tone operator -(Tone object1, Tone object2)
         {
-            return object1 + (-object2);
+            return object1 + -object2;
         }
 
         /// <summary>
@@ -87,6 +66,22 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Note
                 Scale = -object1.Scale,
                 Helf = object1.Helf
             };
+        }
+
+        public void RaiseScale()
+        {
+            if (Helf)
+                Scale++;
+
+            Helf = !Helf;
+        }
+
+        public void ReduceScales()
+        {
+            if (Helf)
+                Scale--;
+
+            Helf = !Helf;
         }
     }
 }

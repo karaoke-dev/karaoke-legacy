@@ -48,6 +48,35 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Note
         public IReadOnlyList<Background> Columns => columnFlow.Children;
         public Container<DrawableNoteJudgement> Judgements => judgements;
 
+        /// <summary>
+        ///     Notified note if definition changed
+        /// </summary>
+        public KaraokeStageDefinition StateDefinition
+        {
+            get => _definition;
+            set
+            {
+                _definition = value;
+
+                //columns
+                for (var i = 0; i < StateDefinition.Columns; i++)
+                {
+                    var column = new Background
+                    {
+                        Height = COLUMN_HEIGHT,
+                        Alpha = 0.15f
+                    };
+                    AddBackground(column);
+                }
+
+                //Tone
+                Tone.TriggerChange();
+
+                //trigger change
+                TriggerColumnChanged.TriggerChange();
+            }
+        }
+
         protected override Container<Drawable> Content => content;
         private readonly FillFlowContainer<Background> columnFlow;
         private readonly Container<Drawable> content;
@@ -68,7 +97,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Note
             if (definition.Columns <= 0 || definition.Columns % 2 == 0)
                 throw new ArgumentException(nameof(definition.Columns) + "cannot be even.");
 
-            if(definition.DefaultTone == null)
+            if (definition.DefaultTone == null)
                 throw new ArgumentNullException(nameof(definition.DefaultTone) + "cannot be null");
 
             Name = "Stage";
@@ -111,14 +140,14 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Note
                                     Padding = new MarginPadding { Top = COLUMN_SPACING, Bottom = COLUMN_SPACING },
                                     Spacing = new Vector2(0, COLUMN_SPACING)
                                 },
-                                toneBackground = new Background()
+                                toneBackground = new Background
                                 {
                                     Name = "ToneIndicator",
                                     RelativeSizeAxes = Axes.X,
                                     Anchor = Anchor.Centre,
                                     Origin = Anchor.Centre,
                                     Height = COLUMN_HEIGHT,
-                                    AccentColour = Color4.Red,
+                                    AccentColour = Color4.Red
                                 }
                             }
                         },
@@ -170,44 +199,6 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Note
             Tone.TriggerChange();
         }
 
-        protected void ToneChanged(Tone tone)
-        {
-            //Change tone
-            var realTone = StateDefinition.DefaultTone + tone;
-            toneBackground.Y = NoteStageHelper.GetPositionByTone(realTone);
-            toneBackground.Height = realTone.Helf ? COLUMN_SPACING * 4 : COLUMN_HEIGHT;
-            toneBackground.Alpha = realTone.Helf ? 0.3f : 0.15f;
-        }
-
-        /// <summary>
-        ///     Notified note if definition changed
-        /// </summary>
-        public KaraokeStageDefinition StateDefinition
-        {
-            get => _definition;
-            set
-            {
-                _definition = value;
-
-                //columns
-                for (var i = 0; i < StateDefinition.Columns; i++)
-                {
-                    var column = new Background
-                    {
-                        Height = COLUMN_HEIGHT,
-                        Alpha = 0.15f
-                    };
-                    AddBackground(column);
-                }
-
-                //TODO : tone
-
-
-                //TODO : trigger change
-                TriggerColumnChanged.TriggerChange();
-            }
-        }
-
         public void AddBackground(Background c)
         {
             columnFlow.Add(c);
@@ -234,6 +225,15 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Note
                 Anchor = Anchor.Centre,
                 Origin = Anchor.Centre
             });
+        }
+
+        protected void ToneChanged(Tone tone)
+        {
+            //Change tone
+            var realTone = StateDefinition.DefaultTone + tone;
+            toneBackground.Y = NoteStageHelper.GetPositionByTone(realTone);
+            toneBackground.Height = realTone.Helf ? COLUMN_SPACING * 4 : COLUMN_HEIGHT;
+            toneBackground.Alpha = realTone.Helf ? 0.3f : 0.15f;
         }
 
         protected override void Update()

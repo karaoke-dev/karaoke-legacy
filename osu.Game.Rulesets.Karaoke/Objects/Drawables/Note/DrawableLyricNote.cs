@@ -51,7 +51,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note
             {
                 _timeLine = value;
 
-                var tone = (_timeLine.Value.Tone ?? new Tone());
+                var tone = _timeLine.Value.Tone ?? new Tone();
 
                 //height
                 noteContainer.Y = NoteStageHelper.GetPositionByTone(tone);
