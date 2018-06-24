@@ -119,7 +119,6 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Note
                                     Origin = Anchor.Centre,
                                     Height = COLUMN_HEIGHT,
                                     AccentColour = Color4.Red,
-                                    Alpha = 0.15f
                                 }
                             }
                         },
@@ -155,7 +154,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Note
                             Anchor = Anchor.CentreLeft,
                             Origin = Anchor.Centre,
                             AutoSizeAxes = Axes.Both,
-                            X = HIT_TARGET_POSITION + 150,
+                            X = HIT_TARGET_POSITION - 150,
                             BypassAutoSizeAxes = Axes.Both
                         }
                     }
@@ -176,6 +175,8 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Note
             //Change tone
             var realTone = StateDefinition.DefaultTone + tone;
             toneBackground.Y = NoteStageHelper.GetPositionByTone(realTone);
+            toneBackground.Height = realTone.Helf ? COLUMN_SPACING * 4 : COLUMN_HEIGHT;
+            toneBackground.Alpha = realTone.Helf ? 0.3f : 0.15f;
         }
 
         /// <summary>
