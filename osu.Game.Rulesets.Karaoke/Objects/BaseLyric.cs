@@ -111,7 +111,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         /// <summary>
         ///     record list time where position goes
         /// </summary>
-        public LyricTimeLineList TimeLines { get; set; } = new LyricTimeLineList();
+        public TimeLineList TimeLines { get; set; } = new TimeLineList();
 
         /// <summary>
         ///     all the translate for a single language
