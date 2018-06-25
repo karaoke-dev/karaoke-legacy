@@ -9,7 +9,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.TimeLine
     /// <summary>
     ///     record what time the
     /// </summary>
-    public class LyricTimeLine
+    public class TimeLine
     {
         /// <summary>
         ///     relative to word's strt time
@@ -34,11 +34,11 @@ namespace osu.Game.Rulesets.Karaoke.Objects.TimeLine
         /// </summary>
         public double? EarlyTime { get; set; }
 
-        public LyricTimeLine()
+        public TimeLine()
         {
         }
 
-        public LyricTimeLine(double time)
+        public TimeLine(double time)
         {
             RelativeTime = time;
         }

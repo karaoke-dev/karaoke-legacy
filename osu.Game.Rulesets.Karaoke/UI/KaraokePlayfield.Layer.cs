@@ -68,7 +68,7 @@ namespace osu.Game.Rulesets.Karaoke.UI
                 new KaraokeStageDefinition
                 {
                     Columns = 11,
-                    DefaultTone = new Tone(0,true)
+                    DefaultTone = new Tone(0, true)
                 }
             })
             {

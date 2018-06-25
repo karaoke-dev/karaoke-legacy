@@ -105,6 +105,6 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
 
         //Note
         NoteSpeed = 71, //noteSpeed
-        PlayFieldAdjustPositioByTome = 72,//adjust position while change tone
+        PlayFieldAdjustPositioByTome = 72 //adjust position while change tone
     }
 }

@@ -51,10 +51,10 @@ namespace osu.Game.Rulesets.Karaoke.Helps
             {
                 Text = "お"
             });
-            karaokeObject.TimeLines.Add(0, new LyricTimeLine(0));
-            karaokeObject.TimeLines.Add(1, new LyricTimeLine(500));
-            karaokeObject.TimeLines.Add(5, new LyricTimeLine(1000));
-            karaokeObject.TimeLines.Add(11, new LyricTimeLine(1500));
+            karaokeObject.TimeLines.Add(new TimeLineIndex(0), new TimeLine(0));
+            karaokeObject.TimeLines.Add(new TimeLineIndex(1), new TimeLine(500));
+            karaokeObject.TimeLines.Add(new TimeLineIndex(5), new TimeLine(1000));
+            karaokeObject.TimeLines.Add(new TimeLineIndex(11), new TimeLine(1500));
 
             return karaokeObject;
         }
@@ -80,17 +80,17 @@ namespace osu.Game.Rulesets.Karaoke.Helps
             });
             karaokeObject.StartTime = startTime;
 
-            karaokeObject.TimeLines.Add(0, new LyricTimeLine(duration / 5)
+            karaokeObject.TimeLines.Add(new TimeLineIndex(0), new TimeLine(duration / 5)
             {
                 Tone = new Tone(3)
             });
-            karaokeObject.TimeLines.Add(9, new LyricTimeLine(duration / 4)
+            karaokeObject.TimeLines.Add(new TimeLineIndex(9), new TimeLine(duration / 4)
             {
                 Tone = new Tone(-3)
             });
-            karaokeObject.TimeLines.Add(11, new LyricTimeLine(duration)
+            karaokeObject.TimeLines.Add(new TimeLineIndex(11), new TimeLine(duration)
             {
-                Tone = new Tone(0,true)
+                Tone = new Tone(0, true)
             });
 
             karaokeObject.Romaji.Add(0, new RomajiText("o"));

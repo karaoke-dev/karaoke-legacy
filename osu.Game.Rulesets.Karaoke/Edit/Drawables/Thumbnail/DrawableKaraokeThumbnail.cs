@@ -148,7 +148,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Thumbnail
         /// <summary>
         ///     Delete single point
         /// </summary>
-        public void DeletePoint(KeyValuePair<int, LyricTimeLine> point)
+        public void DeletePoint(KeyValuePair<TimeLineIndex, TimeLine> point)
         {
             if (Lyric.TimeLines.Count > 1)
                 Lyric.TimeLines.Remove(point.Key);

@@ -14,7 +14,7 @@ namespace osu.Game.Rulesets.Karaoke.Beatmaps
         public int Columns;
 
         /// <summary>
-        /// Set default tone
+        ///     Set default tone
         /// </summary>
         public Tone DefaultTone { get; set; }
     }

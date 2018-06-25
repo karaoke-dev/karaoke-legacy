@@ -42,6 +42,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Lyric
 
         //bindable
         public BindableObject<KaraokeLyricConfig> Style { get; set; } = new BindableObject<KaraokeLyricConfig>(new KaraokeLyricConfig());
+
         public BindableObject<LyricTemplate> Template { get; set; } = new BindableObject<LyricTemplate>(new LyricTemplate());
         public BindableObject<SingerTemplate> SingerTemplate { get; set; } = new BindableObject<SingerTemplate>(new SingerTemplate());
         public Bindable<TranslateCode> TranslateCode { get; set; } = new Bindable<TranslateCode>();
