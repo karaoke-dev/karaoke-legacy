@@ -5,7 +5,7 @@ using Newtonsoft.Json;
 
 namespace osu.Game.Rulesets.Karaoke.Objects.TimeLine
 {
-    public class TimeLinePoint : IComparable , IEquatable<TimeLinePoint>
+    public class TimeLineIndex : IComparable , IEquatable<TimeLineIndex>
     {
         [JsonIgnore]
         public static int MaxCharNumber = 10;
@@ -14,12 +14,12 @@ namespace osu.Game.Rulesets.Karaoke.Objects.TimeLine
 
         public float? Percentage { get; set; }
 
-        public TimeLinePoint()
+        public TimeLineIndex()
         {
 
         }
 
-        public TimeLinePoint(int index, float? percentage = null)
+        public TimeLineIndex(int index, float? percentage = null)
         {
             Index = index;
             Percentage = percentage;
@@ -32,11 +32,11 @@ namespace osu.Game.Rulesets.Karaoke.Objects.TimeLine
         /// <returns></returns>
         public int CompareTo(object obj)
         {
-            if (obj is TimeLinePoint point)
+            if (obj is TimeLineIndex point)
             {
                 return this.GetHashCode() - point.GetHashCode();
             }
-            throw new InvalidCastException(nameof(obj) + " is not "+ nameof(TimeLinePoint));
+            throw new InvalidCastException(nameof(obj) + " is not "+ nameof(TimeLineIndex));
         }
 
         /// <summary>
@@ -44,7 +44,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.TimeLine
         /// </summary>
         /// <param name="other"></param>
         /// <returns></returns>
-        public bool Equals(TimeLinePoint other)
+        public bool Equals(TimeLineIndex other)
         {
             if (other?.Index == Index && other.Percentage == Index)
                 return true;
@@ -62,7 +62,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.TimeLine
             if (ReferenceEquals(null, obj)) return false;
             if (ReferenceEquals(this, obj)) return true;
             if (obj.GetType() != this.GetType()) return false;
-            return Equals((TimeLinePoint)obj);
+            return Equals((TimeLineIndex)obj);
         }
 
         /// <summary>

@@ -44,7 +44,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note
 
         public virtual BaseLyric HitObject { get; set; }
 
-        public virtual KeyValuePair<TimeLinePoint, TimeLine.TimeLine> TimeLine
+        public virtual KeyValuePair<TimeLineIndex, TimeLine.TimeLine> TimeLine
         {
             get => _timeLine;
             set
@@ -107,7 +107,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note
 
         private Color4 accentColour;
 
-        private KeyValuePair<TimeLinePoint, TimeLine.TimeLine> _timeLine;
+        private KeyValuePair<TimeLineIndex, TimeLine.TimeLine> _timeLine;
 
         public DrawableLyricNote()
             : base(null)

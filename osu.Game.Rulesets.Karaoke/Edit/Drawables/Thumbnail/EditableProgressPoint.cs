@@ -23,7 +23,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Thumbnail
             new OsuMenuItem(@"Delete", MenuItemType.Highlighted)
         };
 
-        public TimeLinePoint IndexOfObject => LyricProgressPoint.Key;
+        public TimeLineIndex IndexOfObject => LyricProgressPoint.Key;
 
         //protected culculater value
         public string ProgressText
@@ -39,7 +39,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Thumbnail
         }
 
         //public 
-        public KeyValuePair<TimeLinePoint, TimeLine> LyricProgressPoint { get; set; }
+        public KeyValuePair<TimeLineIndex, TimeLine> LyricProgressPoint { get; set; }
 
         public DrawableKaraokeThumbnail DrawableKaraokeThumbnail { get; set; } //Parent
 
@@ -88,7 +88,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Thumbnail
         protected Color4 BackgroundHoverColor { get; set; } = Color4.Purple;
         protected Color4 BackgroundPressColor { get; set; } = Color4.Blue;
 
-        public EditableProgressPoint(DrawableKaraokeThumbnail drawableKaraokeThumbnail, KeyValuePair<TimeLinePoint, TimeLine> lyricProgressPoin)
+        public EditableProgressPoint(DrawableKaraokeThumbnail drawableKaraokeThumbnail, KeyValuePair<TimeLineIndex, TimeLine> lyricProgressPoin)
         {
             DrawableKaraokeThumbnail = drawableKaraokeThumbnail;
             LyricProgressPoint = lyricProgressPoin;

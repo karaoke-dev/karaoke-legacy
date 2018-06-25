@@ -53,7 +53,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Lyric
             AddInternal(DrawableKaraokeThumbnail);
         }
 
-        public void AddPoint(TimeLinePoint index)
+        public void AddPoint(TimeLineIndex index)
         {
             var previousPoint = Lyric.TimeLines.GetFirstProgressPointByIndex(index);
             var nextPoint = Lyric.TimeLines.GetLastProgressPointByIndex(index);
@@ -108,7 +108,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Lyric
         protected override bool OnMouseUp(InputState state, MouseUpEventArgs args)
         {
             IsDrag = false;
-            var index = new TimeLinePoint(GetPointedText(state));
+            var index = new TimeLineIndex(GetPointedText(state));
             AddPoint(index);
             EditableLyricText.StartSelectIndex = null;
             EditableLyricText.EndSelectIndex = null;
