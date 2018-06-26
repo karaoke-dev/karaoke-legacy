@@ -12,7 +12,7 @@
   </ItemGroup>
   <ItemGroup Label="Package References">
     <PackageReference Include="HtmlAgilityPack" Version="1.7.2" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="2.1.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="2.1.1" />
   </ItemGroup>
   <ItemGroup Label="Resources">
     <EmbeddedResource Include="Resources\**\*.*" />
