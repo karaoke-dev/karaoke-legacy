@@ -20,8 +20,8 @@ namespace osu.Game.Tests.Visual
         [BackgroundDependencyLoader]
         private void load(OsuColour colours)
         {
-            WaveContainer container;
             Add(container = new WaveContainer
+            WaveContainer container;
             {
                 Anchor = Anchor.Centre,
                 Origin = Anchor.Centre,

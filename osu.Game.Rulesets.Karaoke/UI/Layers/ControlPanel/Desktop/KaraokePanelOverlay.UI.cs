@@ -5,6 +5,7 @@ using osu.Framework.Extensions.Color4Extensions;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Shapes;
+using osu.Game.Graphics;
 using osu.Game.Rulesets.Karaoke.UI.Extension;
 using osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel.Desktop.Pieces;
 using OpenTK;
@@ -48,11 +49,10 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel.Desktop
 
         protected void InitialPanel()
         {
-            //FirstWaveColour = OsuColour.FromHex(@"19b0e2").Opacity(50);
-            //SecondWaveColour = OsuColour.FromHex(@"2280a2").Opacity(50);
-            //ThirdWaveColour = OsuColour.FromHex(@"005774").Opacity(50);
-            //FourthWaveColour = OsuColour.FromHex(@"003a4e").Opacity(50);
-            //FourthWaveColour = new Color4(0, 0, 0, 0);
+            FirstWaveColour = OsuColour.FromHex(@"19b0e2").Opacity(50);
+            SecondWaveColour = OsuColour.FromHex(@"2280a2").Opacity(50);
+            ThirdWaveColour = OsuColour.FromHex(@"005774").Opacity(50);
+            FourthWaveColour = OsuColour.FromHex(@"003a4e").Opacity(50);
 
             Height = height;
             Content.RelativeSizeAxes = Axes.X;
