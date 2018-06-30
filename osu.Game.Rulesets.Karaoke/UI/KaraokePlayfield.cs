@@ -7,13 +7,13 @@ using osu.Game.Beatmaps;
 using osu.Game.Rulesets.Judgements;
 using osu.Game.Rulesets.Karaoke.Configuration;
 using osu.Game.Rulesets.Karaoke.Judgements;
-using osu.Game.Rulesets.Karaoke.Objects;
+using osu.Game.Rulesets.Karaoke.Objects.Translate;
 using osu.Game.Rulesets.Objects.Drawables;
 
 namespace osu.Game.Rulesets.Karaoke.UI
 {
     /// <summary>
-    /// Karaoke PlayField
+    ///     Karaoke PlayField
     /// </summary>
     public partial class KaraokePlayfield : KaraokeBasePlayfield
     {
@@ -22,12 +22,37 @@ namespace osu.Game.Rulesets.Karaoke.UI
         {
             KaraokeFieldTool.Translateor.OnTranslateMultiStringSuccess += (a, multiSting) =>
             {
-                for (int i = 0; i < multiSting.Count; i++)
-                {
+                for (var i = 0; i < multiSting.Count; i++)
                     //assign language
                     KaraokeLyricPlayField.ListDrawableKaraokeObject[i].Lyric.Translates.Add(TranslateCode.Chinese_Traditional, new LyricTranslate(multiSting[i]));
-                }
             };
+        }
+
+        public override void Add(DrawableHitObject h)
+        {
+            base.Add(h);
+        }
+
+        public override void PostProcess()
+        {
+            var needTranslate = true;
+            if (needTranslate)
+            {
+                var listTranslateString = new List<string>();
+                foreach (var singleKaraokeObject in KaraokeLyricPlayField.ListDrawableKaraokeObject)
+                    listTranslateString.Add(singleKaraokeObject.Lyric.Lyric.Text);
+
+                //translate list string 
+                KaraokeFieldTool.Translateor.Translate(TranslateCode.Default, TranslateCode.Chinese_Traditional, listTranslateString);
+            }
+        }
+
+        public void OnJudgement(DrawableHitObject judgedObject, Judgement judgement)
+        {
+            var karaokeJudgement = (KaraokeJudgement)judgement;
+
+            if (!judgedObject.DisplayJudgement)
+                return;
         }
 
         /*
@@ -42,35 +67,6 @@ namespace osu.Game.Rulesets.Karaoke.UI
         {
             base.LoadComplete();
             //AddInternal(new GameplayCursor());
-        }
-
-        public override void Add(DrawableHitObject h)
-        {
-            base.Add(h);
-        }
-
-        public override void PostProcess()
-        {
-            bool needTranslate = true;
-            if (needTranslate)
-            {
-                var listTranslateString = new List<string>();
-                foreach (var singleKaraokeObject in KaraokeLyricPlayField.ListDrawableKaraokeObject)
-                {
-                    listTranslateString.Add(singleKaraokeObject.Lyric.Lyric.Text);
-                }
-
-                //translate list string 
-                KaraokeFieldTool.Translateor.Translate(TranslateCode.Default, TranslateCode.Chinese_Traditional, listTranslateString);
-            }
-        }
-
-        public void OnJudgement(DrawableHitObject judgedObject, Judgement judgement)
-        {
-            var karaokeJudgement = (KaraokeJudgement)judgement;
-
-            if (!judgedObject.DisplayJudgement)
-                return;
         }
 
         [BackgroundDependencyLoader]

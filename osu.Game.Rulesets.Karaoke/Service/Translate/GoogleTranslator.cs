@@ -7,7 +7,7 @@ using System.Linq;
 using osu.Game.Rulesets.Karaoke.Configuration;
 using osu.Game.Rulesets.Karaoke.Online.API.Translate.Google;
 
-namespace osu.Game.Rulesets.Karaoke.Tools.Translator
+namespace osu.Game.Rulesets.Karaoke.Service.Translate
 {
     public class GoogleTranslator : ITranslator
     {
@@ -16,7 +16,7 @@ namespace osu.Game.Rulesets.Karaoke.Tools.Translator
         public EventHandler<string> OnTranslateFail { get; set; }
 
         /// <summary>
-        /// translate multi string
+        ///     translate multi string
         /// </summary>
         /// <param name="sourceLangeCode"></param>
         /// <param name="targetLangCode"></param>
@@ -25,14 +25,12 @@ namespace osu.Game.Rulesets.Karaoke.Tools.Translator
         {
             try
             {
-                GoogleTranslateApi transpateApi = new GoogleTranslateApi();
+                var transpateApi = new GoogleTranslateApi();
                 var result = await transpateApi.Translate(sourceLangeCode, targetLangCode, translateListString);
 
-                List<string> returnString = new List<string>();
+                var returnString = new List<string>();
                 foreach (var single in result)
-                {
                     returnString.Add(single.TranslatedText);
-                }
 
                 OnTranslateMultiStringSuccess?.Invoke(this, returnString);
             }
@@ -46,8 +44,8 @@ namespace osu.Game.Rulesets.Karaoke.Tools.Translator
         {
             try
             {
-                GoogleTranslateApi transpateApi = new GoogleTranslateApi();
-                var result = await transpateApi.Translate(sourceLangeCode, targetLangCode, new List<string>() { translateString });
+                var transpateApi = new GoogleTranslateApi();
+                var result = await transpateApi.Translate(sourceLangeCode, targetLangCode, new List<string> { translateString });
 
                 var translateText = result.FirstOrDefault()?.TranslatedText;
 

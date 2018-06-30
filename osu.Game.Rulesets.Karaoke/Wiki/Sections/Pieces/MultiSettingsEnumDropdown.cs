@@ -14,8 +14,8 @@ using Symcol.Rulesets.Core.Wiki;
 namespace osu.Game.Rulesets.Karaoke.Wiki.Sections.Pieces
 {
     /// <summary>
-    /// create multi selection 
-    /// Filter cannot select same
+    ///     create multi selection
+    ///     Filter cannot select same
     /// </summary>
     /// <typeparam name="T"></typeparam>
     public class MultiSettingsEnumDropdown<T> : FillFlowContainer
@@ -33,15 +33,11 @@ namespace osu.Game.Rulesets.Karaoke.Wiki.Sections.Pieces
 
         public bool EnableAddMore { get; set; } = true;
 
-        /// <summary>
-        /// Ctor
-        /// </summary>
-        public MultiSettingsEnumDropdown()
-        {
-        }
+        //List selection
+        protected List<DropDownSelectionSection<T>> ListSelectin = new List<DropDownSelectionSection<T>>();
 
         /// <summary>
-        /// Loads the complete.
+        ///     Loads the complete.
         /// </summary>
         protected override void LoadComplete()
         {
@@ -51,7 +47,7 @@ namespace osu.Game.Rulesets.Karaoke.Wiki.Sections.Pieces
     }
 
     /// <summary>
-    /// Drop down section.
+    ///     Drop down section.
     /// </summary>
     public class DropDownSelectionSection<T> : FillFlowContainer
     {
@@ -93,7 +89,7 @@ namespace osu.Game.Rulesets.Karaoke.Wiki.Sections.Pieces
     }
 
     /// <summary>
-    /// Alert Selection
+    ///     Alert Selection
     /// </summary>
     public class AlertSection : FillFlowContainer
     {
@@ -120,7 +116,7 @@ namespace osu.Game.Rulesets.Karaoke.Wiki.Sections.Pieces
     }
 
     /// <summary>
-    /// Add more drop down selection section. button
+    ///     Add more drop down selection section. button
     /// </summary>
     public class AddMoreDropDownSelectionSection : FillFlowContainer
     {

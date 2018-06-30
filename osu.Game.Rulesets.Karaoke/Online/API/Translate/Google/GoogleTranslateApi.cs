@@ -12,14 +12,6 @@ namespace osu.Game.Rulesets.Karaoke.Online.API.Translate.Google
 {
     public class GoogleTranslateApi
     {
-        //我勸你不要亂幹人家的API Key喔
-        protected string ApiKey = "AIzaSyB9tomdvp8WmySkEWIhjhVYO3rkhzKOPMc";
-
-        //max translate at time
-        protected int MaxThanslateSentenceAtTime => 70; //max is 73
-
-        private Dictionary<TranslateCode, string> _langCode;
-
         public Dictionary<TranslateCode, string> LangToCodeDictionary
         {
             get
@@ -30,8 +22,16 @@ namespace osu.Game.Rulesets.Karaoke.Online.API.Translate.Google
             }
         }
 
+        //max translate at time
+        protected int MaxThanslateSentenceAtTime => 70; //max is 73
+
+        //我勸你不要亂幹人家的API Key喔
+        protected string ApiKey = "AIzaSyB9tomdvp8WmySkEWIhjhVYO3rkhzKOPMc";
+
+        private Dictionary<TranslateCode, string> _langCode;
+
         /// <summary>
-        /// translate api
+        ///     translate api
         /// </summary>
         /// <param name="sourceLangeCode"></param>
         /// <param name="targetLangCode"></param>
@@ -39,30 +39,28 @@ namespace osu.Game.Rulesets.Karaoke.Online.API.Translate.Google
         /// <returns></returns>
         public async Task<List<Translation>> Translate(TranslateCode sourceLangeCode, TranslateCode targetLangCode, List<string> translateListString)
         {
-            List<Translation> listTranslate = new List<Translation>();
+            var listTranslate = new List<Translation>();
 
-            int translateTime = translateListString.Count / MaxThanslateSentenceAtTime + 1;
-            for (int i = 0; i < translateTime; i++)
+            var translateTime = translateListString.Count / MaxThanslateSentenceAtTime + 1;
+            for (var i = 0; i < translateTime; i++)
             {
-                int startIndex = i * MaxThanslateSentenceAtTime;
-                int count = (i + 1) * MaxThanslateSentenceAtTime >= translateListString.Count ? translateListString.Count - startIndex : MaxThanslateSentenceAtTime;
+                var startIndex = i * MaxThanslateSentenceAtTime;
+                var count = (i + 1) * MaxThanslateSentenceAtTime >= translateListString.Count ? translateListString.Count - startIndex : MaxThanslateSentenceAtTime;
                 var partialTranslateString = translateListString.GetRange(startIndex, count);
 
-                string url = "https://translation.googleapis.com/language/translate/";
+                var url = "https://translation.googleapis.com/language/translate/";
                 url += "v2?key=" + ApiKey;
                 url += "&source=" + LangToCodeDictionary[sourceLangeCode];
                 url += "&target=" + LangToCodeDictionary[targetLangCode];
 
                 foreach (var singleString in partialTranslateString)
-                {
                     url += "&q=" + singleString;
-                }
 
-                WebClient client = new WebClient();
+                var client = new WebClient();
                 client.Encoding = Encoding.UTF8;
 
-                string json = await client.DownloadStringTaskAsync(url);
-                RootObject rootObject = JsonConvert.DeserializeObject<RootObject>(json);
+                var json = await client.DownloadStringTaskAsync(url);
+                var rootObject = JsonConvert.DeserializeObject<RootObject>(json);
 
                 var listParttranslateResult = rootObject.Data.Translations;
 
@@ -74,7 +72,7 @@ namespace osu.Game.Rulesets.Karaoke.Online.API.Translate.Google
     }
 
     /// <summary>
-    /// root object
+    ///     root object
     /// </summary>
     public class RootObject
     {
@@ -82,7 +80,7 @@ namespace osu.Game.Rulesets.Karaoke.Online.API.Translate.Google
     }
 
     /// <summary>
-    /// data
+    ///     data
     /// </summary>
     public class Data
     {
@@ -97,7 +95,7 @@ namespace osu.Game.Rulesets.Karaoke.Online.API.Translate.Google
 
     public static class LangTagConvertor
     {
-        public static Dictionary<TranslateCode, string> ListTranslateCode = new Dictionary<TranslateCode, string>()
+        public static Dictionary<TranslateCode, string> ListTranslateCode = new Dictionary<TranslateCode, string>
         {
             { TranslateCode.Default, "" },
             { TranslateCode.Afrikaans, "af" },
@@ -202,7 +200,7 @@ namespace osu.Game.Rulesets.Karaoke.Online.API.Translate.Google
             { TranslateCode.Xhosa, "xh" },
             { TranslateCode.Yiddish, "yi" },
             { TranslateCode.Yoruba, "yo" },
-            { TranslateCode.Zulu, "zu" },
+            { TranslateCode.Zulu, "zu" }
         };
     }
 }

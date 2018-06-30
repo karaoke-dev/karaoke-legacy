@@ -10,64 +10,64 @@ using OpenTK.Graphics;
 namespace osu.Game.Rulesets.Karaoke.Configuration
 {
     /// <summary>
-    /// define the position of karaoke
+    ///     define the position of karaoke
     /// </summary>
     public class LyricTemplate : RecordChangeObject, ICopyable
     {
         /// <summary>
-        /// top text
+        ///     top text
         /// </summary>
-        public FormattedText TopText { get; set; } = new FormattedText()
+        public FormattedText TopText { get; set; } = new FormattedText
         {
             FontSize = 20, //default Main text Size is 20
-            Position = new Vector2(0, 15), //default position
+            Position = new Vector2(0, 15) //default position
         };
 
         /// <summary>
-        /// main text
+        ///     main text
         /// </summary>
-        public FormattedText MainText { get; set; } = new FormattedText()
+        public FormattedText MainText { get; set; } = new FormattedText
         {
             FontSize = 50, //default Main text Size is 50
-            Position = new Vector2(0, 50), //default position
+            Position = new Vector2(0, 50) //default position
         };
 
         /// <summary>
-        /// bottom text
+        ///     bottom text
         /// </summary>
-        public FormattedText BottomText { get; set; } = new FormattedText()
+        public FormattedText BottomText { get; set; } = new FormattedText
         {
             FontSize = 20, //default Main text Size is 20
-            Position = new Vector2(0, 70), //default position
+            Position = new Vector2(0, 70) //default position
         };
 
         /// <summary>
-        /// translate text
+        ///     translate text
         /// </summary>
-        public FormattedText TranslateText { get; set; } = new FormattedText()
+        public FormattedText TranslateText { get; set; } = new FormattedText
         {
             FontSize = 20, //default Main text Size is 50
-            Position = new Vector2(0, 85), //default position
+            Position = new Vector2(0, 85) //default position
         };
 
         /// <summary>
-        /// translate text color
+        ///     translate text color
         /// </summary>
         public Color4 TranslateTextColor { get; set; } = Color4.White;
 
         /// <summary>
-        /// Scale
+        ///     Scale
         /// </summary>
         public float Scale { get; set; } = 1;
 
         /// <summary>
-        /// Copy
+        ///     Copy
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
         public T Copy<T>() where T : class, ICopyable, new()
         {
-            T result = new T();
+            var result = new T();
             if (result is LyricTemplate lyricTemplate)
             {
                 lyricTemplate.TopText = TopText.Copy<FormattedText>();

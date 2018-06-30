@@ -7,12 +7,12 @@ using osu.Game.Rulesets.Karaoke.UI.Layers.Input.Action;
 namespace osu.Game.Rulesets.Karaoke.UI.Layers.Type
 {
     /// <summary>
-    /// The Layer is accept Control by <see cref="IControlLayer"/>
+    ///     The Layer is accept Control by <see cref="IControlLayer" />
     /// </summary>
     public interface IAcceptControlLayer : ILayer
     {
         /// <summary>
-        /// Key action
+        ///     Key action
         /// </summary>
         BindableObject<BaseAction> InputAction { get; set; }
     }

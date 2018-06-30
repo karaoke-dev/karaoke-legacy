@@ -6,12 +6,12 @@ using osu.Game.Rulesets.Karaoke.Configuration;
 namespace osu.Game.Rulesets.Karaoke.Beatmaps
 {
     /// <summary>
-    /// Karaoke info
+    ///     Karaoke info
     /// </summary>
     public class KaraokeInfo
     {
         /// <summary>
-        /// override the origin Template
+        ///     override the origin Template
         /// </summary>
         public LyricTemplate LyricTemplate { get; set; } = new LyricTemplate();
     }

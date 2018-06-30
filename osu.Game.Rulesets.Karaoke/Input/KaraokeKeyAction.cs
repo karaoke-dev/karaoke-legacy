@@ -34,6 +34,6 @@ namespace osu.Game.Rulesets.Karaoke.Input
 
         [Description("Reset BaseLyric Appear Time")] ResetLyricAppearTime, //C
 
-        [Description("Panel key")] OpenPanel, //P
+        [Description("Panel key")] OpenPanel //P
     }
 }

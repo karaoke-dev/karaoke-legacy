@@ -8,7 +8,7 @@ using osu.Game.Rulesets.Mods;
 namespace osu.Game.Rulesets.Karaoke.Mods
 {
     /// <summary>
-    /// just make slower
+    ///     just make slower
     /// </summary>
     public class KaraokeModEasy : ModHalfTime
     {

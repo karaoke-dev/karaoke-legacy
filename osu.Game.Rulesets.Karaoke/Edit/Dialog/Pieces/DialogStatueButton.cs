@@ -8,14 +8,14 @@ using OpenTK.Graphics;
 namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
 {
     /// <summary>
-    /// manage button
+    ///     manage button
     /// </summary>
     public class DialogStatueButton : FillFlowContainer<StatueButton>
     {
     }
 
     /// <summary>
-    /// statueButton
+    ///     statueButton
     /// </summary>
     public class StatueButton : TriangleButton
     {
@@ -27,7 +27,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
     }
 
     /// <summary>
-    /// Ok button
+    ///     Ok button
     /// </summary>
     public class OkButton : TriangleButton
     {
@@ -39,7 +39,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
     }
 
     /// <summary>
-    /// ApplyButton
+    ///     ApplyButton
     /// </summary>
     public class ApplyButton : OkButton
     {
@@ -50,7 +50,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
     }
 
     /// <summary>
-    /// cancel Button
+    ///     cancel Button
     /// </summary>
     public class CancelButton : StatueButton
     {

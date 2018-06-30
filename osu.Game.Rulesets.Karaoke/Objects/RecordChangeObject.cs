@@ -8,7 +8,7 @@ using System.Linq;
 namespace osu.Game.Rulesets.Karaoke.Objects
 {
     /// <summary>
-    /// Inherit this object can record the number of property has changed
+    ///     Inherit this object can record the number of property has changed
     /// </summary>
     public class RecordChangeObject : ICloneable
     {

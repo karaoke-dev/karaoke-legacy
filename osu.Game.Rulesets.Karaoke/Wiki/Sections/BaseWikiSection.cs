@@ -15,6 +15,11 @@ namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
 
         protected KaraokeConfigManager RulesetConfig { get; set; }
 
+        /// <summary>
+        ///     Initial view
+        /// </summary>
+        protected abstract void InitialView();
+
         [BackgroundDependencyLoader(true)]
         private void load(RulesetStore rulesetStore, SettingsStore settings)
         {
@@ -24,10 +29,5 @@ namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
             //initial view
             InitialView();
         }
-
-        /// <summary>
-        /// Initial view
-        /// </summary>
-        protected abstract void InitialView();
     }
 }

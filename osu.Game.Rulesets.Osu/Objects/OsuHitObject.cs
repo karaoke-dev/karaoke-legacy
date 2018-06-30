@@ -54,9 +54,9 @@ namespace osu.Game.Rulesets.Osu.Objects
 
         public virtual bool NewCombo { get; set; }
 
-        public int IndexInCurrentCombo { get; set; }
+        public virtual int IndexInCurrentCombo { get; set; }
 
-        public int ComboIndex { get; set; }
+        public virtual int ComboIndex { get; set; }
 
         public bool LastInCombo { get; set; }
 
@@ -71,5 +71,7 @@ namespace osu.Game.Rulesets.Osu.Objects
         }
 
         public virtual void OffsetPosition(Vector2 offset) => Position += offset;
+
+        protected override HitWindows CreateHitWindows() => new OsuHitWindows();
     }
 }

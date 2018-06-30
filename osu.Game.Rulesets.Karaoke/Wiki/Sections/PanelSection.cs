@@ -6,7 +6,7 @@ using Symcol.Rulesets.Core.Wiki;
 namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
 {
     /// <summary>
-    /// [2]introduce panel(app the panel, contain normal panel and microphone panel)
+    ///     [2]introduce panel(app the panel, contain normal panel and microphone panel)
     ///     2.1 : setting need to show panel at startup
     /// </summary>
     internal class PanelSection : BaseWikiSection

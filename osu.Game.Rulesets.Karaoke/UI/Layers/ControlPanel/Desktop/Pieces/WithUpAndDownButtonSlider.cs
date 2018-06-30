@@ -9,67 +9,60 @@ using OpenTK;
 namespace osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel.Desktop.Pieces
 {
     /// <summary>
-    /// it's a slider with up and down button
+    ///     it's a slider with up and down button
     /// </summary>
     public class WithUpAndDownButtonSlider : OsuSliderBar<double>
     {
+        public override string TooltipText => Current.Value.ToString(@"0.##");
+
         public EventHandler<double> OnValueChanged;
 
-        protected int ButtonZixe = 25;
-
         /// <summary>
-        /// Decrease Button
+        ///     Decrease Button
         /// </summary>
         public KaraokeButton DecreaseButton;
 
         /// <summary>
-        /// Increase button
+        ///     Increase button
         /// </summary>
         public KaraokeButton IncreaseButton;
 
         /// <summary>
-        /// max value
+        ///     max value
         /// </summary>
         public double MinValue
         {
             get => CurrentNumber.MinValue;
-            set { CurrentNumber.MinValue = value; }
+            set => CurrentNumber.MinValue = value;
         }
 
         /// <summary>
-        /// min value
+        ///     min value
         /// </summary>
         public double MaxValue
         {
             get => CurrentNumber.MaxValue;
-            set { CurrentNumber.MaxValue = value; }
+            set => CurrentNumber.MaxValue = value;
         }
 
         /// <summary>
-        /// now value
+        ///     now value
         /// </summary>
         public double Value
         {
             get => CurrentNumber.Value;
-            set { CurrentNumber.Value = value; }
+            set => CurrentNumber.Value = value;
         }
 
         /// <summary>
-        /// default value
+        ///     default value
         /// </summary>
         public float DefauleValue { get; set; }
 
-        /// <summary>
-        /// reset to defaule value
-        /// </summary>
-        /// <returns></returns>
-        public void ResetToDefauleValue()
-        {
-            Value = DefauleValue;
-        }
+        protected int ButtonZixe = 25;
 
         /// <summary>
-        /// Constructor
+        ///     Constructor
         /// </summary>
         public WithUpAndDownButtonSlider()
         {
@@ -83,7 +76,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel.Desktop.Pieces
 
             //TODO : tp add button in here ?
 
-            Add(DecreaseButton = new KaraokeButton()
+            Add(DecreaseButton = new KaraokeButton
             {
                 Position = new Vector2(-10, 0),
                 Origin = Anchor.CentreRight,
@@ -94,12 +87,12 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel.Desktop.Pieces
                 TooltipText = "Decrease",
                 Action = () =>
                 {
-                    double newValue = Value - KeyboardStep;
+                    var newValue = Value - KeyboardStep;
                     Value = newValue;
                 }
             });
 
-            Add(IncreaseButton = new KaraokeButton()
+            Add(IncreaseButton = new KaraokeButton
             {
                 Position = new Vector2(10, 0),
                 Origin = Anchor.CentreLeft,
@@ -110,19 +103,22 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel.Desktop.Pieces
                 TooltipText = "Increase",
                 Action = () =>
                 {
-                    double newValue = Value + KeyboardStep;
+                    var newValue = Value + KeyboardStep;
                     Value = newValue;
                 }
             });
         }
 
-        public override string TooltipText
+        /// <summary>
+        ///     reset to defaule value
+        /// </summary>
+        /// <returns></returns>
+        public void ResetToDefauleValue()
         {
-            get { return Current.Value.ToString(@"0.##"); }
+            Value = DefauleValue;
         }
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="value"></param>
         protected override void UpdateValue(float value)

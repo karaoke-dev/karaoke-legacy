@@ -6,10 +6,10 @@ using osu.Game.Rulesets.Mods;
 namespace osu.Game.Rulesets.Karaoke.Mods
 {
     /// <summary>
-    /// if click this mod
-    /// will introduce how to use karaoke panel and other setting
-    /// will ignore the songs you select
-    /// maybe
+    ///     if click this mod
+    ///     will introduce how to use karaoke panel and other setting
+    ///     will ignore the songs you select
+    ///     maybe
     /// </summary>
     public class KaraokeModTutorial : ModNoFail
     {

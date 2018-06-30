@@ -5,15 +5,15 @@ using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Game.Overlays.Settings;
 using osu.Game.Rulesets.Karaoke.Configuration;
-using osu.Game.Rulesets.Karaoke.Service.Translator;
-using osu.Game.Rulesets.Karaoke.Tools.Romaji;
+using osu.Game.Rulesets.Karaoke.Service.Romaji;
+using osu.Game.Rulesets.Karaoke.Service.Translate;
 using OpenTK;
 using Symcol.Rulesets.Core.Wiki;
 
 namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
 {
     /// <summary>
-    /// [1] introduce about translate and romaji
+    ///     [1] introduce about translate and romaji
     ///     1.1 : select language translate API (default is google)
     ///     1.2 : select romaji translator
     /// </summary>

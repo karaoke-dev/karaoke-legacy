@@ -11,7 +11,7 @@ using Symcol.Rulesets.Core.Wiki;
 namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
 {
     /// <summary>
-    /// [4] introduce v2 system
+    ///     [4] introduce v2 system
     ///     4.1 : open the microphone button
     ///     4.1 : device
     ///     4.2 : volumn
@@ -23,15 +23,13 @@ namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
 
         public SettingsButton OpenMicrophoneButton;
 
-        private bool _microphoneOpen;
-
         public bool IsMicrophoneOpen
         {
             get => _microphoneOpen;
             set
             {
                 _microphoneOpen = value;
-                if (_microphoneOpen == true)
+                if (_microphoneOpen)
                 {
                     OpenMicrophoneButton.Text = "Close Microphone";
                     OpenMicrophone();
@@ -43,6 +41,8 @@ namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
                 }
             }
         }
+
+        private bool _microphoneOpen;
 
         protected override void InitialView()
         {
@@ -71,7 +71,7 @@ namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
 
                         Child = OpenMicrophoneButton = new SettingsButton
                         {
-                            Action = () => { IsMicrophoneOpen = !IsMicrophoneOpen; },
+                            Action = () => { IsMicrophoneOpen = !IsMicrophoneOpen; }
                         }
                     },
                     new Container
@@ -109,9 +109,7 @@ namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
                         AutoSizeAxes = Axes.Y,
                         Width = 200,
 
-                        Child = new SettingsDropdown<int>
-                        {
-                        }
+                        Child = new SettingsDropdown<int>()
                     },
                     new Container
                     {
@@ -150,13 +148,13 @@ namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
 
                         Child = new SettingsSlider<double>
                         {
-                            Bindable = new BindableDouble()
+                            Bindable = new BindableDouble
                             {
                                 MinValue = 0,
                                 MaxValue = 1,
-                                Value = 1,
+                                Value = 1
                             },
-                            KeyboardStep = 0.1f,
+                            KeyboardStep = 0.1f
                         }
                     },
                     new Container

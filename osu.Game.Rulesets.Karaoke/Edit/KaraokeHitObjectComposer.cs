@@ -17,21 +17,17 @@ namespace osu.Game.Rulesets.Karaoke.Edit
 {
     public class KaraokeHitObjectComposer : HitObjectComposer
     {
-        public KaraokeHitObjectComposer(Ruleset ruleset)
-            : base(ruleset)
-        {
-        }
-
-        protected override RulesetContainer CreateRulesetContainer(Ruleset ruleset, WorkingBeatmap beatmap) => new KaraokeEditRulesetContainer(ruleset, beatmap, true);
-
         protected override IReadOnlyList<ICompositionTool> CompositionTools => new ICompositionTool[]
         {
-            new HitObjectCompositionTool<BaseLyric>(), //karaoke object
+            new HitObjectCompositionTool<BaseLyric>() //karaoke object
             //new HitObjectCompositionTool<FormattedText>(),//add subtext to karaoke Object
             //new HitObjectCompositionTool<LyricTranslate>(),//add translate to BaseLyric
         };
 
-        protected override ScalableContainer CreateLayerContainer() => new ScalableContainer(KaraokeBasePlayfield.BASE_SIZE.X) { RelativeSizeAxes = Axes.Both };
+        public KaraokeHitObjectComposer(Ruleset ruleset)
+            : base(ruleset)
+        {
+        }
 
         public override HitObjectMask CreateMaskFor(DrawableHitObject hitObject)
         {
@@ -42,6 +38,16 @@ namespace osu.Game.Rulesets.Karaoke.Edit
             }
 
             return base.CreateMaskFor(hitObject);
+        }
+
+        protected override RulesetContainer CreateRulesetContainer(Ruleset ruleset, WorkingBeatmap beatmap)
+        {
+            return new KaraokeEditRulesetContainer(ruleset, beatmap);
+        }
+
+        protected override ScalableContainer CreateLayerContainer()
+        {
+            return new ScalableContainer(KaraokeBasePlayfield.BASE_SIZE.X) { RelativeSizeAxes = Axes.Both };
         }
     }
 }

@@ -17,7 +17,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel
         private IControlPanel _panelLayer;
 
         /// <summary>
-        /// On platform change
+        ///     On platform change
         /// </summary>
         /// <param name="platformType"></param>
         protected void OnPlatformChanged(PlatformType platformType)
@@ -33,7 +33,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel
                         Origin = Anchor.BottomCentre,
                         Anchor = Anchor.BottomCentre,
                         Scale = new Vector2(1.0f),
-                        Depth = 10f,
+                        Depth = 10f
                     };
                     break;
                 default:
@@ -44,7 +44,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel
                         Origin = Anchor.BottomCentre,
                         Anchor = Anchor.BottomCentre,
                         Scale = new Vector2(1.0f),
-                        Depth = 10f,
+                        Depth = 10f
                     };
                     break;
             }

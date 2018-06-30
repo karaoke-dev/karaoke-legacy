@@ -8,7 +8,7 @@ namespace osu.Game.Rulesets.Karaoke.Helps
     public class DIctionaryHelper
     {
         /// <summary>
-        /// use this method to re-assign new ID(Key),sort from small to large
+        ///     use this method to re-assign new ID(Key),sort from small to large
         /// </summary>
         /// <typeparam name="U"></typeparam>
         /// <typeparam name="V"></typeparam>

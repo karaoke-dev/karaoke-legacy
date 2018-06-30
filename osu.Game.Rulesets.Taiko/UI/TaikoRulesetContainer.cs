@@ -8,7 +8,6 @@ using osu.Game.Rulesets.Objects.Drawables;
 using osu.Game.Rulesets.Objects.Types;
 using osu.Game.Rulesets.Replays;
 using osu.Game.Rulesets.Scoring;
-using osu.Game.Rulesets.Taiko.Beatmaps;
 using osu.Game.Rulesets.Taiko.Objects;
 using osu.Game.Rulesets.Taiko.Objects.Drawables;
 using osu.Game.Rulesets.Taiko.Scoring;
@@ -24,8 +23,8 @@ namespace osu.Game.Rulesets.Taiko.UI
 {
     public class TaikoRulesetContainer : ScrollingRulesetContainer<TaikoPlayfield, TaikoHitObject>
     {
-        public TaikoRulesetContainer(Ruleset ruleset, WorkingBeatmap beatmap, bool isForCurrentRuleset)
-            : base(ruleset, beatmap, isForCurrentRuleset)
+        public TaikoRulesetContainer(Ruleset ruleset, WorkingBeatmap beatmap)
+            : base(ruleset, beatmap)
         {
         }
 
@@ -70,11 +69,7 @@ namespace osu.Game.Rulesets.Taiko.UI
                 bool isMajor = currentBeat % (int)currentPoint.TimeSignature == 0;
                 Playfield.Add(isMajor ? new DrawableBarLineMajor(barLine) : new DrawableBarLine(barLine));
 
-                double bl = currentPoint.BeatLength;
-                if (bl < 800)
-                    bl *= (int)currentPoint.TimeSignature;
-
-                time += bl;
+                time += currentPoint.BeatLength * (int)currentPoint.TimeSignature;
                 currentBeat++;
             }
         }
@@ -92,8 +87,6 @@ namespace osu.Game.Rulesets.Taiko.UI
         protected override Vector2 PlayfieldArea => Vector2.One;
 
         public override ScoreProcessor CreateScoreProcessor() => new TaikoScoreProcessor(this);
-
-        protected override BeatmapConverter<TaikoHitObject> CreateBeatmapConverter() => new TaikoBeatmapConverter(IsForCurrentRuleset);
 
         public override PassThroughInputManager CreateInputManager() => new TaikoInputManager(Ruleset.RulesetInfo);
 

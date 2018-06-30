@@ -8,21 +8,21 @@ using OpenTK;
 namespace osu.Game.Rulesets.Karaoke.Objects.Text
 {
     /// <summary>
-    /// Text objects
+    ///     Text objects
     /// </summary>
     public class FormattedText : TextComponent, IHasPosition
     {
         // <inheritdoc />
         /// <summary>
-        /// if template !=null will relative to template's position
-        /// else, will be absolute position
+        ///     if template !=null will relative to template's position
+        ///     else, will be absolute position
         /// </summary>
         [JsonIgnore]
         public Vector2 Position { get; set; }
 
         /// <inheritdoc />
         /// <summary>
-        /// X position
+        ///     X position
         /// </summary>
 
         public float X
@@ -33,7 +33,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Text
 
         /// <inheritdoc />
         /// <summary>
-        /// Y position
+        ///     Y position
         /// </summary>
         public float Y
         {
@@ -43,12 +43,12 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Text
 
 
         /// <summary>
-        /// size of the font
+        ///     size of the font
         /// </summary>
         public virtual int? FontSize { get; set; }
 
         /// <summary>
-        /// operator
+        ///     operator
         /// </summary>
         /// <param name="object1"></param>
         /// <param name="object2"></param>
@@ -64,16 +64,16 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Text
             if (object2 == null)
                 return object1;
 
-            return new FormattedText()
+            return new FormattedText
             {
                 Position = object1.Position + object2.Position,
                 Text = object1.Text + object2.Text,
-                FontSize = object2?.FontSize ?? object1.FontSize,
+                FontSize = object2?.FontSize ?? object1.FontSize
             };
         }
 
         /// <summary>
-        /// operator
+        ///     operator
         /// </summary>
         /// <param name="object1"></param>
         /// <param name="object2"></param>
@@ -84,7 +84,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Text
         }
 
         /// <summary>
-        /// operator
+        ///     operator
         /// </summary>
         /// <param name="object1"></param>
         /// <param name="object2"></param>
@@ -95,30 +95,30 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Text
         }
 
         /// <summary>
-        /// cast from string to FormattedText
+        ///     cast from string to FormattedText
         /// </summary>
         /// <param name="textObject"></param>
         public static explicit operator FormattedText(string textObject)
         {
-            return new FormattedText()
+            return new FormattedText
             {
-                Text = textObject,
+                Text = textObject
             };
         }
 
         public static FormattedText FromText(string textObject)
         {
-            return new FormattedText()
+            return new FormattedText
             {
-                Text = textObject,
+                Text = textObject
             };
         }
 
         public static FormattedText FromText(TextComponent textObject)
         {
-            return new FormattedText()
+            return new FormattedText
             {
-                Text = textObject?.Text,
+                Text = textObject?.Text
             };
         }
     }

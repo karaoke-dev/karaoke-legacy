@@ -12,63 +12,23 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel.Desktop.Pieces
 {
     public class KaraokeTimerSliderBar : OsuSliderBar<double>
     {
+        public override string TooltipText => GetTimeFormat((int)CurrentNumber.Value / 1000);
+
         public EventHandler<double> OnValueChanged;
 
         /// <summary>
-        /// Now time label
+        ///     Now time label
         /// </summary>
         public OsuSpriteText NowTimeSpriteText;
 
         /// <summary>
-        /// total time label
+        ///     total time label
         /// </summary>
         public OsuSpriteText TotalTimeSpriteText;
 
-        /// <summary>
-        /// constructor
-        /// </summary>
-        public KaraokeTimerSliderBar()
-        {
-            CurrentNumber.MinValue = 0;
-            CurrentNumber.MaxValue = 1;
-            //RelativeSizeAxes = Axes.X;
-            KeyboardStep = 1000f;
-
-            //now time
-            Add(NowTimeSpriteText = new OsuSpriteText
-            {
-                //Position = new Vector2(startXPositin + 240, oneLayerYPosition),
-                Position = new Vector2(-10, -2),
-                Text = "--:--",
-                UseFullGlyphHeight = false,
-                Origin = Anchor.CentreRight,
-                Anchor = Anchor.CentreLeft,
-                TextSize = 15,
-                Alpha = 1,
-                //ShadowColour = _textColor,
-                //BorderColour = _textColor,
-            });
-
-            //end time
-            Add(TotalTimeSpriteText = new OsuSpriteText
-            {
-                //Position = new Vector2(startXPositin + 240, oneLayerYPosition),
-                //Position = new Vector2(startXPositin + 600, oneLayerYPosition),
-                Position = new Vector2(35, -2),
-                Text = "--:--",
-                UseFullGlyphHeight = false,
-                Origin = Anchor.CentreRight,
-                Anchor = Anchor.CentreRight,
-                TextSize = 15,
-                Alpha = 1,
-                //ShadowColour = _textColor,
-                //BorderColour = _textColor,
-            });
-        }
-
         public double StartTime
         {
-            set { CurrentNumber.MinValue = value; }
+            set => CurrentNumber.MinValue = value;
         }
 
         public double EndTime
@@ -90,13 +50,49 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel.Desktop.Pieces
             }
         }
 
-        public override string TooltipText
+        /// <summary>
+        ///     constructor
+        /// </summary>
+        public KaraokeTimerSliderBar()
         {
-            get { return GetTimeFormat((int)CurrentNumber.Value / 1000); }
+            CurrentNumber.MinValue = 0;
+            CurrentNumber.MaxValue = 1;
+            //RelativeSizeAxes = Axes.X;
+            KeyboardStep = 1000f;
+
+            //now time
+            Add(NowTimeSpriteText = new OsuSpriteText
+            {
+                //Position = new Vector2(startXPositin + 240, oneLayerYPosition),
+                Position = new Vector2(-10, -2),
+                Text = "--:--",
+                UseFullGlyphHeight = false,
+                Origin = Anchor.CentreRight,
+                Anchor = Anchor.CentreLeft,
+                TextSize = 15,
+                Alpha = 1
+                //ShadowColour = _textColor,
+                //BorderColour = _textColor,
+            });
+
+            //end time
+            Add(TotalTimeSpriteText = new OsuSpriteText
+            {
+                //Position = new Vector2(startXPositin + 240, oneLayerYPosition),
+                //Position = new Vector2(startXPositin + 600, oneLayerYPosition),
+                Position = new Vector2(35, -2),
+                Text = "--:--",
+                UseFullGlyphHeight = false,
+                Origin = Anchor.CentreRight,
+                Anchor = Anchor.CentreRight,
+                TextSize = 15,
+                Alpha = 1
+                //ShadowColour = _textColor,
+                //BorderColour = _textColor,
+            });
         }
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="value"></param>
         protected override void UpdateValue(float value)
@@ -118,16 +114,16 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel.Desktop.Pieces
             return (second / 60).ToString("D2") + ":" + (second % 60).ToString("D2");
         }
 
+        /*
         protected override bool OnWheel(InputState state)
         {
             if (state.Mouse.WheelDelta != 0)
-            {
                 CurrentTime = CurrentTime + state.Mouse.WheelDelta * 500;
-            }
 
             //eat this event and not pass to next
             return true;
             //return base.OnWheel(state);
         }
+        */
     }
 }

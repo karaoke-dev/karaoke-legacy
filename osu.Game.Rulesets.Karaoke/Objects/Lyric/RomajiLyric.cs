@@ -11,7 +11,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Lyric
     public class RomajiLyric : BaseLyric, IHasRomaji
     {
         /// <summary>
-        /// list romaji text
+        ///     list romaji text
         /// </summary>
         // TODO : [set] cannot set here
         // TODO : [get] get the value is combine from list
@@ -21,7 +21,27 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Lyric
     public class RomajiTextList : LyricDictionary<int, RomajiText>
     {
         /// <summary>
-        /// get romaji start position from main text's text index
+        ///     collect all romaji in list
+        /// </summary>
+        public string Romaji
+        {
+            get
+            {
+                var list = this.Select(x => x.Value.Text);
+                var result = string.Join(SeperateText, list);
+                return result;
+            }
+        }
+
+        public string SeperateText { get; set; }
+
+        /// <summary>
+        ///     collect list
+        /// </summary>
+        private List<int> listRomajiTextCount => this.Select(x => x.Value.Text.Length).ToList();
+
+        /// <summary>
+        ///     get romaji start position from main text's text index
         /// </summary>
         /// <param name="mainTextIndex"></param>
         /// <returns></returns>
@@ -31,7 +51,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Lyric
         }
 
         /// <summary>
-        /// get romaji start position from main text's text index
+        ///     get romaji start position from main text's text index
         /// </summary>
         /// <param name="mainTextIndex"></param>
         /// <returns></returns>
@@ -40,33 +60,18 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Lyric
             var take = mainTextIndex >= listRomajiTextCount.Count ? mainTextIndex + 1 : mainTextIndex;
             return listRomajiTextCount.Take(take).Sum() - 1;
         }
-
-        public string SeperateText { get; set; }
-
-        /// <summary>
-        /// collect all romaji in list
-        /// </summary>
-        public string Romaji
-        {
-            get
-            {
-                var list = this.Select(x => x.Value.Text);
-                string result = string.Join(SeperateText, list);
-                return result;
-            }
-        }
-
-        /// <summary>
-        /// collect list 
-        /// </summary>
-        private List<int> listRomajiTextCount => this.Select(x => x.Value.Text.Length).ToList();
     }
 
     /// <summary>
-    /// use to record romaji
+    ///     use to record romaji
     /// </summary>
     public class RomajiText : TextComponent, IHasEndIndex
     {
+        /// <summary>
+        ///     relativa to textIndex
+        /// </summary>
+        public int? Length { get; set; }
+
         public RomajiText()
         {
         }
@@ -75,10 +80,5 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Lyric
         {
             Text = str;
         }
-
-        /// <summary>
-        /// relativa to textIndex
-        /// </summary>
-        public int? Length { get; set; }
     }
 }

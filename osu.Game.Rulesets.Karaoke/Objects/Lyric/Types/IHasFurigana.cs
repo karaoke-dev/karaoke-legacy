@@ -6,12 +6,12 @@ using System.Collections.Generic;
 namespace osu.Game.Rulesets.Karaoke.Objects.Lyric.Types
 {
     /// <summary>
-    /// In japanese lyric it is common has Furigana
+    ///     In japanese lyric it is common has Furigana
     /// </summary>
     public interface IHasFurigana
     {
         /// <summary>
-        /// Furigana
+        ///     Furigana
         /// </summary>
         Dictionary<int, FuriganaText> Furigana { get; }
     }

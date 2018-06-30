@@ -6,10 +6,15 @@ using osu.Game.Rulesets.Karaoke.Objects.Types;
 namespace osu.Game.Rulesets.Karaoke.Objects.Text
 {
     /// <summary>
-    /// TextComponent
+    ///     TextComponent
     /// </summary>
     public class TextComponent : RecordChangeObject, IHasText, ICopyable
     {
+        /// <summary>
+        ///     text
+        /// </summary>
+        public virtual string Text { get; set; }
+
         public TextComponent()
         {
         }
@@ -20,18 +25,27 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Text
         }
 
         /// <summary>
-        /// text
+        ///     operator
         /// </summary>
-        public virtual string Text { get; set; }
+        /// <param name="object1"></param>
+        /// <param name="object2"></param>
+        /// <returns></returns>
+        public static TextComponent operator +(TextComponent object1, TextComponent object2)
+        {
+            return new TextComponent
+            {
+                Text = object1.Text + object2.Text
+            };
+        }
 
         /// <summary>
-        /// copy
+        ///     copy
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
         public T Copy<T>() where T : class, ICopyable, new()
         {
-            T result = new T();
+            var result = new T();
             if (result is TextComponent textComponent)
             {
                 textComponent.Text = Text;
@@ -39,20 +53,6 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Text
             }
 
             return result;
-        }
-
-        /// <summary>
-        /// operator
-        /// </summary>
-        /// <param name="object1"></param>
-        /// <param name="object2"></param>
-        /// <returns></returns>
-        public static TextComponent operator +(TextComponent object1, TextComponent object2)
-        {
-            return new TextComponent()
-            {
-                Text = object1.Text + object2.Text,
-            };
         }
     }
 }

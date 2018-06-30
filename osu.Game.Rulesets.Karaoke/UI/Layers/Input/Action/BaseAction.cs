@@ -8,7 +8,7 @@ using osu.Game.Rulesets.Karaoke.Objects.Types;
 namespace osu.Game.Rulesets.Karaoke.UI.Layers.Input.Action
 {
     /// <summary>
-    /// Base action
+    ///     Base action
     /// </summary>
     public class BaseAction : RecordChangeObject, ICopyable
     {

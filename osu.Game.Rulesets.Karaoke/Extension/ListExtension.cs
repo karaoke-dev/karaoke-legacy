@@ -3,15 +3,15 @@
 
 using System.Collections.Generic;
 using System.Linq;
+using osu.Framework.Extensions;
 
 namespace osu.Game.Rulesets.Karaoke.Extension
 {
     public static class ListExtension
     {
         /// <summary>
-        /// 把list 拆分
-        /// 暴力解決法
-        /// http://www.jscto.net/html/31946.html
+        ///     Split
+        ///     http://www.jscto.net/html/31946.html
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="list"></param>
@@ -19,17 +19,53 @@ namespace osu.Game.Rulesets.Karaoke.Extension
         /// <returns></returns>
         public static List<List<T>> Split<T>(this List<T> list, int splitNumber)
         {
-            List<List<T>> listGroup = new List<List<T>>();
-            int j = splitNumber;
-            for (int i = 0; i < list.Count; i += splitNumber)
+            var listGroup = new List<List<T>>();
+            var j = splitNumber;
+            for (var i = 0; i < list.Count; i += splitNumber)
             {
-                List<T> cList = new List<T>();
+                var cList = new List<T>();
                 cList = list.Take(j).Skip(i).ToList();
                 j += splitNumber;
                 listGroup.Add(cList);
             }
 
             return listGroup;
+        }
+
+        /// <summary>
+        ///     Get previous
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="list"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static T GetPrevious<T>(this List<T> list, T value) where T : class
+        {
+            var index = list.IndexOf(value);
+            var targetIndex = index - 1;
+
+            if (list.IsValidIndex(targetIndex))
+                return list[targetIndex];
+
+            return null;
+        }
+
+        /// <summary>
+        ///     Get next
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="list"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static T GetNext<T>(this List<T> list, T value) where T : class
+        {
+            var index = list.IndexOf(value);
+            var targetIndex = index + 1;
+
+            if (list.IsValidIndex(targetIndex))
+                return list[targetIndex];
+
+            return null;
         }
     }
 }

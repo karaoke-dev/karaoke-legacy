@@ -6,7 +6,7 @@ namespace osu.Game.Rulesets.Karaoke.Service.Lyric
     public class LyricServiceProvider
     {
         /// <summary>
-        /// Get translator by providerType
+        ///     Get translator by providerType
         /// </summary>
         /// <param name="providerType"></param>
         /// <returns></returns>
@@ -25,9 +25,9 @@ namespace osu.Game.Rulesets.Karaoke.Service.Lyric
     public enum LyricServiceProviderType
     {
         /// <summary>
-        /// The romaji server just for osu!Karaoke
-        /// <see cref="MusixMatchLyric"/>
+        ///     The romaji server just for osu!Karaoke
+        ///     <see cref="MusixMatchLyric" />
         /// </summary>
-        MusixMatch = 1,
+        MusixMatch = 1
     }
 }

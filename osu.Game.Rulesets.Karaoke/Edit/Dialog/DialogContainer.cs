@@ -15,18 +15,18 @@ using OpenTK.Graphics;
 namespace osu.Game.Rulesets.Karaoke.Edit.Dialog
 {
     /// <summary>
-    /// windows type
+    ///     windows type
     /// </summary>
     public enum DialogContainerStatus
     {
         Onscreen, //using this Dialog
         Offscreen, //mouse does not focus on this Dialoh
-        Lock, //Cannot use this Dialog until other Dialog Closed
+        Lock //Cannot use this Dialog until other Dialog Closed
     }
 
     /// <summary>
-    /// use as windows type dialog
-    /// refrence : osu.Framework.Graphics.Visualisation
+    ///     use as windows type dialog
+    ///     refrence : osu.Framework.Graphics.Visualisation
     /// </summary>
     public class DialogContainer : Container, IStateful<DialogContainerStatus>
     {
@@ -36,7 +36,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog
         public virtual string Title { get; set; }
 
         //content of dialog should be write in here
-        public virtual Container MainContext { get; set; } = new Container()
+        public virtual Container MainContext { get; set; } = new Container
         {
             Padding = new MarginPadding(0),
             RelativeSizeAxes = Axes.Y,
@@ -46,24 +46,15 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog
                 new ScrollContainer
                 {
                     Padding = new MarginPadding(10),
-                    RelativeSizeAxes = Axes.Y,
+                    RelativeSizeAxes = Axes.Y
                     //Width = this.Width
-                },
+                }
             }
         };
 
-        //Context
-        protected override Container<Drawable> Content => this;
-
-
-        protected Container TitleBar;
-
-        private DialogContainerStatus state;
-        public event Action<DialogContainerStatus> StateChanged;
-
         public DialogContainerStatus State
         {
-            get { return state; }
+            get => state;
 
             set
             {
@@ -85,6 +76,14 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog
             }
         }
 
+        //Context
+        protected override Container<Drawable> Content => this;
+
+
+        protected Container TitleBar;
+
+        private DialogContainerStatus state;
+
         public DialogContainer()
         {
             //can be modified
@@ -100,8 +99,19 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog
             InitialDialog();
         }
 
+        #region Disposal
+
+        protected override void Dispose(bool isDisposing)
+        {
+            //before close, do some effect in here
+
+            base.Dispose(isDisposing);
+        }
+
+        #endregion
+
         /// <summary>
-        /// Dialog will be initialize in here
+        ///     Dialog will be initialize in here
         /// </summary>
         public virtual void InitialDialog()
         {
@@ -129,14 +139,14 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog
                                 new Box
                                 {
                                     RelativeSizeAxes = Axes.Both,
-                                    Colour = Color4.BlueViolet,
+                                    Colour = Color4.BlueViolet
                                 },
                                 new SpriteText
                                 {
                                     Anchor = Anchor.Centre,
                                     Origin = Anchor.Centre,
                                     Text = Title,
-                                    Alpha = 0.8f,
+                                    Alpha = 0.8f
                                 },
                                 new TriangleButton
                                 {
@@ -149,16 +159,14 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog
                                     Action = () =>
                                     {
                                         if (Parent is Container container)
-                                        {
                                             container.Remove(this);
-                                        }
 
                                         CloseAction?.Invoke();
-                                    },
+                                    }
                                 }
                             }
-                        },
-                    },
+                        }
+                    }
                 },
                 new FillFlowContainer
                 {
@@ -168,31 +176,32 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog
                     Padding = new MarginPadding { Top = 25 },
                     Children = new Drawable[]
                     {
-                        MainContext,
+                        MainContext
                     }
-                },
+                }
             });
         }
 
         /// <summary>
-        /// Show Dialog
+        ///     Show Dialog
         /// </summary>
         public virtual void ShowDialog()
         {
             //TODO : Adding Dialog effect in here
         }
 
-        protected override void Dispose(bool isDisposing)
-        {
-            //before close, do some effect in here
-
-            base.Dispose(isDisposing);
-        }
-
         protected override void Update()
         {
             base.Update();
         }
+
+        protected override void LoadComplete()
+        {
+            base.LoadComplete();
+            State = DialogContainerStatus.Offscreen;
+        }
+
+        public event Action<DialogContainerStatus> StateChanged;
 
         #region Input
 
@@ -208,7 +217,10 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog
             base.OnHoverLost(state);
         }
 
-        protected override bool OnDragStart(InputState state) => TitleBar.ReceiveMouseInputAt(state.Mouse.NativeState.Position);
+        protected override bool OnDragStart(InputState state)
+        {
+            return TitleBar.ReceiveMouseInputAt(state.Mouse.NativeState.Position);
+        }
 
         protected override bool OnDrag(InputState state)
         {
@@ -216,16 +228,16 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog
             return base.OnDrag(state);
         }
 
-        protected override bool OnMouseDown(InputState state, MouseDownEventArgs args) => true;
+        protected override bool OnMouseDown(InputState state, MouseDownEventArgs args)
+        {
+            return true;
+        }
 
-        protected override bool OnClick(InputState state) => true;
+        protected override bool OnClick(InputState state)
+        {
+            return true;
+        }
 
         #endregion
-
-        protected override void LoadComplete()
-        {
-            base.LoadComplete();
-            State = DialogContainerStatus.Offscreen;
-        }
     }
 }

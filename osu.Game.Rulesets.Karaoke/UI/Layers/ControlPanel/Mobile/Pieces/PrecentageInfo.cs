@@ -4,22 +4,22 @@
 namespace osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel.Mobile.Pieces
 {
     /// <summary>
-    /// use to show precentage
+    ///     use to show precentage
     /// </summary>
     public class PrecentageInfo : Info
     {
         /// <summary>
-        /// value
+        ///     value
         /// </summary>
         public double Value { get; set; }
 
         /// <summary>
-        /// min value
+        ///     min value
         /// </summary>
         public double MinValue { get; set; }
 
         /// <summary>
-        /// max value
+        ///     max value
         /// </summary>
         public double MaxValue { get; set; }
     }

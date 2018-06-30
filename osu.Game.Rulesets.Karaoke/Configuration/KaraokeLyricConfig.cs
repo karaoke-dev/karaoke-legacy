@@ -7,38 +7,38 @@ using osu.Game.Rulesets.Karaoke.Objects.Types;
 namespace osu.Game.Rulesets.Karaoke.Configuration
 {
     /// <summary>
-    /// karaoke lyric config
+    ///     karaoke lyric config
     /// </summary>
     public class KaraokeLyricConfig : RecordChangeObject, ICopyable
     {
         /// <summary>
-        /// show subText
+        ///     show subText
         /// </summary>
         public bool SubTextVislbility { get; set; } = true;
 
         /// <summary>
-        /// show romaji
+        ///     show romaji
         /// </summary>
         public bool RomajiVislbility { get; set; } = true;
 
         /// <summary>
-        /// romaji first
+        ///     romaji first
         /// </summary>
-        public bool RomajiFirst { get; set; } = true;
+        public bool RomajiFirst { get; set; }
 
         /// <summary>
-        /// Show translate
+        ///     Show translate
         /// </summary>
         public bool ShowTranslate { get; set; } = true;
 
         /// <summary>
-        /// Copy
+        ///     Copy
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
         public T Copy<T>() where T : class, ICopyable, new()
         {
-            T result = new T();
+            var result = new T();
             if (result is KaraokeLyricConfig karaokeLyricConfig)
             {
                 karaokeLyricConfig.SubTextVislbility = SubTextVislbility;

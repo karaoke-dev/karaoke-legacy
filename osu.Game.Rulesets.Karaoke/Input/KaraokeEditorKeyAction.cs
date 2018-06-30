@@ -14,6 +14,6 @@ namespace osu.Game.Rulesets.Karaoke.Input
 
         [Description("Translate Dialog")] TranslateDialog, //R
 
-        [Description("Singer Dialog")] SingerDialog, //P
+        [Description("Singer Dialog")] SingerDialog //P
     }
 }

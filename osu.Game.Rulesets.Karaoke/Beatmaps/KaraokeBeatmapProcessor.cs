@@ -6,9 +6,18 @@ using osu.Game.Rulesets.Karaoke.Objects;
 
 namespace osu.Game.Rulesets.Karaoke.Beatmaps
 {
-    internal class KaraokeBeatmapProcessor : BeatmapProcessor<BaseLyric>
+    internal class KaraokeBeatmapProcessor : BeatmapProcessor
     {
-        public override void PostProcess(Beatmap<BaseLyric> beatmap)
+        /// <summary>
+        /// Ctor
+        /// </summary>
+        /// <param name="beatmap">Beatmap.</param>
+        public KaraokeBeatmapProcessor(IBeatmap beatmap) : base(beatmap)
+        {
+            
+        }
+
+        public override void PostProcess()
         {
             //applyStacking(beatmap);
         }

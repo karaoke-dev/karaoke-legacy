@@ -7,7 +7,6 @@ using osu.Game.Rulesets.Karaoke.UI.Layers.Type;
 namespace osu.Game.Rulesets.Karaoke.UI.Layers.Dialog
 {
     /// <summary>
-    /// 
     /// </summary>
     public class DialogLayer : Container, ILayer
     {

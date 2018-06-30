@@ -4,8 +4,8 @@
 namespace osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel.Mobile.Pieces
 {
     /// <summary>
-    /// use to show value 
-    /// Format : (+/-) [Value] (unit)
+    ///     use to show value
+    ///     Format : (+/-) [Value] (unit)
     /// </summary>
     public class ValueInfoPiece : InfoPiece<ValueInfo>
     {

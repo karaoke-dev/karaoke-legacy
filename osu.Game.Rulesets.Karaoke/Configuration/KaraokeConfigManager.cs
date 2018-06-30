@@ -3,8 +3,8 @@
 
 using osu.Framework.Configuration.Tracking;
 using osu.Game.Configuration;
-using osu.Game.Rulesets.Karaoke.Service.Translator;
-using osu.Game.Rulesets.Karaoke.Tools.Romaji;
+using osu.Game.Rulesets.Karaoke.Service.Romaji;
+using osu.Game.Rulesets.Karaoke.Service.Translate;
 
 namespace osu.Game.Rulesets.Karaoke.Configuration
 {
@@ -13,6 +13,11 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
         public KaraokeConfigManager(SettingsStore settings, RulesetInfo ruleset, int variant = 0)
             : base(settings, ruleset, variant)
         {
+        }
+
+        public override TrackedSettings CreateTrackedSettings()
+        {
+            return new TrackedSettings();
         }
 
         protected override void InitialiseDefaults()
@@ -36,11 +41,11 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
 
             //Style
             SetObject(KaraokeSetting.Template, new LyricTemplate());
-            SetObject(KaraokeSetting.LyricStyle, new KaraokeLyricConfig()
+            SetObject(KaraokeSetting.LyricStyle, new KaraokeLyricConfig
             {
                 SubTextVislbility = true,
                 RomajiVislbility = true,
-                RomajiFirst = false,
+                RomajiFirst = false
             });
 
             //singer
@@ -49,21 +54,21 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
             //Style
             Set(KaraokeSetting.Microphone, -1);
             Set(KaraokeSetting.MicrophoneVolumn, 0.5);
-            Set(KaraokeSetting.Echo, 0.5);
-            Set(KaraokeSetting.Tone, 0);
+            Set(KaraokeSetting.MicrophoneEcho, 0.5);
+            Set(KaraokeSetting.MicrophoneTone, 0);
 
             //Device
             Set(KaraokeSetting.Device, PlatformType.Desktop);
             SetObject(KaraokeSetting.TouchScreen, new MobileScrollAnixConfig());
-        }
 
-        public override TrackedSettings CreateTrackedSettings() => new TrackedSettings
-        {
-        };
+            //Tone
+            Set(KaraokeSetting.NoteSpeed, 6000.0);
+            Set(KaraokeSetting.PlayFieldAdjustPositioByTome, true);
+        }
     }
 
     /// <summary>
-    /// karaoke setting
+    ///     karaoke setting
     /// </summary>
     public enum KaraokeSetting
     {
@@ -79,7 +84,7 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
         //karaoke control panel.
         Platform = 22,
         ShowKarokePanel = 21, //[bool]show panel at the beginning
-        DisableHotKay = 22, //[bool]enable hotkey
+        DisableHotKay = 24, //[bool]enable hotkey
 
         //Style
         Template = 31, //[object]
@@ -91,11 +96,15 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
         //Microphone (V2 system)
         Microphone = 51, //[int]select microphone device
         MicrophoneVolumn = 52, //[double]Volumn
-        Echo = 53, //[double]Echo
-        Tone = 54, //Future work ,adjust how voice microphone sounds like
+        MicrophoneEcho = 53, //[double]Echo
+        MicrophoneTone = 54, //Future work ,adjust how voice microphone sounds like
 
         //device
         Device = 61, //which device
         TouchScreen = 62, //touch screen action
+
+        //Note
+        NoteSpeed = 71, //noteSpeed
+        PlayFieldAdjustPositioByTome = 72 //adjust position while change tone
     }
 }

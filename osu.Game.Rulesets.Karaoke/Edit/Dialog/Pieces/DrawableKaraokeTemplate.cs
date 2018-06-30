@@ -14,10 +14,13 @@ using OpenTK;
 namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
 {
     /// <summary>
-    /// use to show the size and spacing of the template / single Karaoke object
+    ///     use to show the size and spacing of the template / single Karaoke object
     /// </summary>
     public class DrawableKaraokeTemplate : DrawableLyric
     {
+        //don't update by time
+        public override bool ProgressUpdateByTime => false;
+
         //single part
         protected UpDownValueIndicator SubTextSegmentedControl;
 
@@ -39,97 +42,94 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
 
         protected Container SegmentedControlContainer;
 
-        //don't update by time
-        public override bool ProgressUpdateByTime => false;
-
         public DrawableKaraokeTemplate(BaseLyric hitObject)
             : base(hitObject)
         {
             var templateValue = Template.Value;
-            SegmentedControlContainer = new Container()
+            SegmentedControlContainer = new Container
             {
                 Children = new Drawable[]
                 {
-                    SubTextPath = new Path() { PathWidth = 1 },
-                    SubTextToMainTextPath = new Path() { PathWidth = 1 },
-                    MainTextPath = new Path() { PathWidth = 1 },
-                    MainTextToTranslateTextPath = new Path() { PathWidth = 1 },
-                    TranslateTextPath = new Path() { PathWidth = 1 },
+                    SubTextPath = new Path { PathWidth = 1 },
+                    SubTextToMainTextPath = new Path { PathWidth = 1 },
+                    MainTextPath = new Path { PathWidth = 1 },
+                    MainTextToTranslateTextPath = new Path { PathWidth = 1 },
+                    TranslateTextPath = new Path { PathWidth = 1 },
 
-                    SubTextSegmentedControl = new UpDownValueIndicator()
+                    SubTextSegmentedControl = new UpDownValueIndicator
                     {
                         Origin = Anchor.BottomLeft,
                         Value = templateValue.TopText.FontSize ?? 0,
                         PostfixText = "px",
-                        OnValueChanged = (newValue) =>
+                        OnValueChanged = newValue =>
                         {
                             templateValue.TopText.FontSize = (int)newValue;
                             UpdateDrawable();
                             Template.TriggerChange();
-                        },
+                        }
                     },
-                    SubTextToMainTextSegmentedControl = new UpDownValueIndicator()
+                    SubTextToMainTextSegmentedControl = new UpDownValueIndicator
                     {
                         Origin = Anchor.BottomRight,
                         Value = templateValue.TopText.Position.Y,
                         PostfixText = "px",
-                        OnValueChanged = (newValue) =>
+                        OnValueChanged = newValue =>
                         {
                             templateValue.TopText.Position = new Vector2(0, newValue);
                             UpdateDrawable();
                             Template.TriggerChange();
-                        },
+                        }
                     },
-                    MainTextSegmentedControl = new UpDownValueIndicator()
+                    MainTextSegmentedControl = new UpDownValueIndicator
                     {
                         Origin = Anchor.BottomLeft,
                         Value = templateValue.MainText.FontSize ?? 0,
                         PostfixText = "px",
-                        OnValueChanged = (newValue) =>
+                        OnValueChanged = newValue =>
                         {
                             templateValue.MainText.FontSize = (int)newValue;
                             UpdateDrawable();
                             Template.TriggerChange();
-                        },
+                        }
                     },
-                    MainTextToTranslateTextSegmentedControl = new UpDownValueIndicator()
+                    MainTextToTranslateTextSegmentedControl = new UpDownValueIndicator
                     {
                         Origin = Anchor.BottomRight,
                         Value = templateValue.TranslateText.Position.Y,
                         PostfixText = "px",
-                        OnValueChanged = (newValue) =>
+                        OnValueChanged = newValue =>
                         {
                             templateValue.TranslateText.Position = new Vector2(0, newValue);
                             UpdateDrawable();
                             Template.TriggerChange();
-                        },
+                        }
                     },
-                    TranslateTextSegmentedControl = new UpDownValueIndicator()
+                    TranslateTextSegmentedControl = new UpDownValueIndicator
                     {
                         Origin = Anchor.BottomLeft,
                         Value = templateValue.TranslateText.FontSize ?? 0,
                         PostfixText = "px",
-                        OnValueChanged = (newValue) =>
+                        OnValueChanged = newValue =>
                         {
                             templateValue.TranslateText.FontSize = (int)newValue;
                             UpdateDrawable();
                             Template.TriggerChange();
-                        },
+                        }
                     },
-                    ScaleSegmentedControl = new UpDownValueIndicator()
+                    ScaleSegmentedControl = new UpDownValueIndicator
                     {
                         Origin = Anchor.BottomCentre,
                         Step = 0.1f,
                         Position = new Vector2(50, 150),
                         Value = templateValue.Scale,
                         PostfixText = "x",
-                        OnValueChanged = (newValue) =>
+                        OnValueChanged = newValue =>
                         {
                             templateValue.Scale = newValue;
                             UpdateDrawable();
                             Template.TriggerChange();
-                        },
-                    },
+                        }
+                    }
                 }
             };
 
@@ -145,19 +145,24 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
 
             var templateValue = Template.Value;
 
+            //Lyric
+            var mainText = RightSideText.LyricText;
+            var subTexts = RightSideText.ListDrawableSubText;
+            var subText = subTexts?.FirstOrDefault();
+
             //1. Get all start Position
-            Vector2 subTextSegmentedControlStartPosition = new Vector2(TextsAndMaskPiece.SubTexts.Last().Position.X + 20, TextsAndMaskPiece.SubText.Position.Y);
-            Vector2 mainTextSegmentedControlStartPosition = new Vector2(TextsAndMaskPiece.MainText.TotalWidth, TextsAndMaskPiece.MainText.Position.Y);
-            Vector2 translateTextSegmentedControlStartPosition = new Vector2(TranslateText.Width, TranslateText.Position.Y);
-            Vector2 subTextToMainTextSegmentedControlStartPosition = new Vector2(-10, (subTextSegmentedControlStartPosition.Y + mainTextSegmentedControlStartPosition.Y) / 2);
-            Vector2 mainTextToTranslateTextSegmentedControlStartPosition = new Vector2(-10, (mainTextSegmentedControlStartPosition.Y + translateTextSegmentedControlStartPosition.Y) / 2);
+            var subTextSegmentedControlStartPosition = new Vector2(subTexts.Last().Position.X + 20, subText.Position.Y);
+            var mainTextSegmentedControlStartPosition = new Vector2(mainText.TotalWidth, mainText.Position.Y);
+            var translateTextSegmentedControlStartPosition = new Vector2(TranslateText.Width, TranslateText.Position.Y);
+            var subTextToMainTextSegmentedControlStartPosition = new Vector2(-10, (subTextSegmentedControlStartPosition.Y + mainTextSegmentedControlStartPosition.Y) / 2);
+            var mainTextToTranslateTextSegmentedControlStartPosition = new Vector2(-10, (mainTextSegmentedControlStartPosition.Y + translateTextSegmentedControlStartPosition.Y) / 2);
 
             //2. get all end position (s mainText and subText and translate text position)
-            Vector2 subTextSegmentedControlEndPosition = subTextSegmentedControlStartPosition + new Vector2(100, -50) / templateValue.Scale;
-            Vector2 subTextToMainTextSegmentedControlEndPosition = subTextToMainTextSegmentedControlStartPosition + new Vector2(-50, -50) / templateValue.Scale;
-            Vector2 mainTextSegmentedControlEndPosition = mainTextSegmentedControlStartPosition + new Vector2(100, -10) / templateValue.Scale;
-            Vector2 mainTextToTranslateTextSegmentedControlEndPosition = mainTextToTranslateTextSegmentedControlStartPosition + new Vector2(-50, 10) / templateValue.Scale;
-            Vector2 translateTextSegmentedControlEndPosition = translateTextSegmentedControlStartPosition + new Vector2(100, 30) / templateValue.Scale;
+            var subTextSegmentedControlEndPosition = subTextSegmentedControlStartPosition + new Vector2(100, -50) / templateValue.Scale;
+            var subTextToMainTextSegmentedControlEndPosition = subTextToMainTextSegmentedControlStartPosition + new Vector2(-50, -50) / templateValue.Scale;
+            var mainTextSegmentedControlEndPosition = mainTextSegmentedControlStartPosition + new Vector2(100, -10) / templateValue.Scale;
+            var mainTextToTranslateTextSegmentedControlEndPosition = mainTextToTranslateTextSegmentedControlStartPosition + new Vector2(-50, 10) / templateValue.Scale;
+            var translateTextSegmentedControlEndPosition = translateTextSegmentedControlStartPosition + new Vector2(100, 30) / templateValue.Scale;
 
             //3. update position
             SubTextSegmentedControl.Position = subTextSegmentedControlEndPosition;
@@ -178,10 +183,10 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
                 var x = Math.Max(0, path1.X - path2.X);
                 var y = Math.Max(0, path1.Y - path2.Y);
                 line.Position = path1 - new Vector2(x, y);
-                line.Positions = new List<Vector2>()
+                line.Positions = new List<Vector2>
                 {
                     new Vector2(),
-                    path2 - path1,
+                    path2 - path1
                 };
             }
         }

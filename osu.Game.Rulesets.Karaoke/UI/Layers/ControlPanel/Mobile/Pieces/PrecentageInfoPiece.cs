@@ -4,7 +4,7 @@
 namespace osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel.Mobile.Pieces
 {
     /// <summary>
-    /// use to show precentage
+    ///     use to show precentage
     /// </summary>
     public class PrecentageInfoPiece : InfoPiece<PrecentageInfo>
     {

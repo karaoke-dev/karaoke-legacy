@@ -12,14 +12,14 @@ using osu.Game.Rulesets.Karaoke.UI.Layers.Type;
 namespace osu.Game.Rulesets.Karaoke.UI.Layers.Input
 {
     /// <summary>
-    /// Input layer
+    ///     Input layer
     /// </summary>
     public partial class InputLayer : Container, IKeyBindingHandler<KaraokeKeyAction>, IControlLayer
     {
         public BindableObject<BaseAction> InputAction { get; set; } = new BindableObject<BaseAction>(null);
 
         /// <summary>
-        /// Ctor
+        ///     Ctor
         /// </summary>
         public InputLayer()
         {

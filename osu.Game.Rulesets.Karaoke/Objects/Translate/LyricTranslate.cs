@@ -3,10 +3,10 @@
 
 using osu.Game.Rulesets.Karaoke.Objects.Text;
 
-namespace osu.Game.Rulesets.Karaoke.Objects
+namespace osu.Game.Rulesets.Karaoke.Objects.Translate
 {
     /// <summary>
-    /// to record the string ,and which language
+    ///     to record the string ,and which language
     /// </summary>
     public class LyricTranslate : TextComponent
     {

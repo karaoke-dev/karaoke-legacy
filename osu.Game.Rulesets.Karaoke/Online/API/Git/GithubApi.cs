@@ -8,21 +8,17 @@ using System.Threading.Tasks;
 namespace osu.Game.Rulesets.Karaoke.Online.API.Git
 {
     /// <summary>
-    /// it chntains several finction 
-    /// 1. login and get auth code
-    /// 2. download target file
-    /// 3. pull request
-    /// 4. get pull request commit message
-    /// 5. commit pull request message 
+    ///     it chntains several finction
+    ///     1. login and get auth code
+    ///     2. download target file
+    ///     3. pull request
+    ///     4. get pull request commit message
+    ///     5. commit pull request message
     /// </summary>
     public class GithubApi
     {
-        public GithubApi()
-        {
-        }
-
         /// <summary>
-        /// Fork file
+        ///     Fork file
         /// </summary>
         /// <param name="orgination"></param>
         /// <param name="repositoryName"></param>
@@ -37,7 +33,7 @@ namespace osu.Game.Rulesets.Karaoke.Online.API.Git
         }
 
         /// <summary>
-        /// Get file
+        ///     Get file
         /// </summary>
         /// <param name="organization"></param>
         /// <param name="repositoryName"></param>
@@ -45,11 +41,11 @@ namespace osu.Game.Rulesets.Karaoke.Online.API.Git
         /// <returns></returns>
         public async Task<string> GetFileFrom(string organization, string repositoryName, string path)
         {
-            WebClient client = new WebClient();
+            var client = new WebClient();
             client.Encoding = Encoding.UTF8;
 
-            string url = "https://raw.githubusercontent.com/" + organization + "/" + repositoryName + "/" + path;
-            string json = await client.DownloadStringTaskAsync(url);
+            var url = "https://raw.githubusercontent.com/" + organization + "/" + repositoryName + "/" + path;
+            var json = await client.DownloadStringTaskAsync(url);
             return json;
         }
     }

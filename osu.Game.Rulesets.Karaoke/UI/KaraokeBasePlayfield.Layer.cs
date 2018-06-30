@@ -9,22 +9,34 @@ using osu.Game.Rulesets.Karaoke.Configuration;
 using osu.Game.Rulesets.Karaoke.Edit.Dialog;
 using osu.Game.Rulesets.Karaoke.UI.Layers.Dialog;
 using osu.Game.Rulesets.Karaoke.UI.Layers.Lyric;
+using osu.Game.Rulesets.Karaoke.UI.Layers.Note;
 using osu.Game.Rulesets.Karaoke.UI.Layers.Type;
 
 namespace osu.Game.Rulesets.Karaoke.UI
 {
     public partial class KaraokeBasePlayfield
     {
+        public KaraokeLyricPlayField KaraokeLyricPlayField;
+        public KaraokeTonePlayfield KaraokeTonePlayfield;
         protected List<ILayer> Layers = new List<ILayer>();
 
         protected DialogLayer DialogLayer;
-        public KaraokeLyricPlayField KaraokeLyricPlayField;
+
+        #region Dialog
+
+        public void OpenLoadSaveDialog()
+        {
+            if (!DialogLayer.Children.OfType<LoadSaveDialog>().Any())
+                DialogLayer.Add(new LoadSaveDialog(this));
+        }
+
+        #endregion
 
 
         #region Layer
 
         /// <summary>
-        /// Dialog
+        ///     Dialog
         /// </summary>
         public virtual void InitialDialogLayer()
         {
@@ -33,34 +45,34 @@ namespace osu.Game.Rulesets.Karaoke.UI
                 Name = "DialogLayer",
                 Clock = new FramedClock(new StopwatchClock(true)),
                 RelativeSizeAxes = Axes.Both,
-                Depth = 10,
+                Depth = 10
             });
             Layers.Add(DialogLayer);
         }
 
         /// <summary>
-        /// Frontend
+        ///     Frontend
         /// </summary>
         public virtual void InitialFrontendLayer()
         {
         }
 
         /// <summary>
-        /// Ruleset
+        ///     Ruleset
         /// </summary>
         public virtual void InitialRulesetLayer()
         {
         }
 
         /// <summary>
-        /// Backend
+        ///     Backend
         /// </summary>
         public virtual void InitialBackendLayer()
         {
         }
 
         /// <summary>
-        /// PostProcessLayer
+        ///     PostProcessLayer
         /// </summary>
         public virtual void PostProcessLayer(KaraokeConfigManager manager)
         {
@@ -70,9 +82,7 @@ namespace osu.Game.Rulesets.Karaoke.UI
             {
                 var acceeptsControlLayers = Layers.OfType<IAcceptControlLayer>();
                 foreach (var singleLayer in acceeptsControlLayers)
-                {
                     singleLayer.InputAction.BindTo(inputLayer.InputAction);
-                }
             }
 
             //processPlatform
@@ -89,21 +99,7 @@ namespace osu.Game.Rulesets.Karaoke.UI
 
             var modLayers = Layers.OfType<IModLayer>();
             foreach (var singleLayer in modLayers)
-            {
                 singleLayer.Mods.BindTo(WorkingBeatmap?.Mods);
-            }
-        }
-
-        #endregion
-
-        #region Dialog
-
-        public void OpenLoadSaveDialog()
-        {
-            if (!DialogLayer.Children.OfType<LoadSaveDialog>().Any())
-            {
-                DialogLayer.Add(new LoadSaveDialog(this));
-            }
         }
 
         #endregion
