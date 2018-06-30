@@ -17,7 +17,6 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel.Desktop
     {
         //TODO : all the setting object
         public KaraokeButton FirstLyricButton;
-
         public KaraokeButton PreviousLyricButton;
         public KaraokeButton NextLyricButton;
         public KaraokePlayPauseButton PlayPauseButton;
@@ -28,14 +27,10 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel.Desktop
 
         public bool LoadComplete;
         private const float content_width = 0.8f;
-
-        //define the position of object
-        private const int one_layer_y_position = 30;
-
-        private const int two_layer_y_position = 75;
         private const int object_height = 30;
-        private const int start_x_positin = 60;
         private const int height = 130;
+        private const int horizontal_conponent_spacing = 10;
+        private const int margin_padding = 10;
 
         protected override void Update()
         {
@@ -70,191 +65,280 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel.Desktop
                             RelativeSizeAxes = Axes.Both,
                             Colour = Color4.Black.Opacity(0.4f)
                         }
-                        //new Triangles
-                        //{
-                        //    TriangleScale = 5,
-                        //    RelativeSizeAxes = Axes.X,
-                        //    Height = Height, //set the height from the start to ensure correct triangle density.
-                        //    ColourLight = new Color4(53, 66, 82, 150),
-                        //    ColourDark = new Color4(41, 54, 70, 150),
-                        //},
                     }
                 },
-                new FillFlowContainer
+                new Container
                 {
                     RelativeSizeAxes = Axes.X,
                     AutoSizeAxes = Axes.Y,
                     Anchor = Anchor.BottomCentre,
                     Origin = Anchor.BottomCentre,
-                    Direction = FillDirection.Vertical,
-                    Spacing = new Vector2(0f, 10f),
                     Children = new Drawable[]
                     {
                         // Body
                         new Container
                         {
+                            Name = "Panel Container",
                             Origin = Anchor.TopCentre,
                             Anchor = Anchor.TopCentre,
                             RelativeSizeAxes = Axes.X,
                             Width = content_width,
                             Height = height,
                             Scale = new Vector2(1.0f), // if on playfield , make UI smaller
+                            Padding = new MarginPadding(margin_padding),
                             Children = new Drawable[]
                             {
-                                //"sentence" introduce text
-                                new KaraokeIntroduceText
+                                new GridContainer
                                 {
-                                    Position = new Vector2(start_x_positin - 35, one_layer_y_position),
-                                    Text = "Sentence",
-                                    TooltipText = "Choose the sentence you want to sing."
-                                },
-
-                                //switch to first sentence
-                                FirstLyricButton = new KaraokeButton
-                                {
-                                    Position = new Vector2(start_x_positin + 40, one_layer_y_position),
-                                    Origin = Anchor.CentreLeft,
-                                    Width = object_height,
-                                    Height = object_height,
-                                    Text = "1",
-                                    TooltipText = "Move to first sentence",
-                                    Action = () => { _playField?.NavigationToFirst(); }
-                                },
-
-                                //switch to previous sentence
-                                PreviousLyricButton = new KaraokeButton
-                                {
-                                    Position = new Vector2(start_x_positin + 80, one_layer_y_position),
-                                    Origin = Anchor.CentreLeft,
-                                    Width = object_height,
-                                    Height = object_height,
-                                    Text = "<-",
-                                    TooltipText = "Move to previous sentence",
-                                    Action = () => { _playField?.NavigationToPrevious(); }
-                                },
-
-                                //switch to next sentence
-                                NextLyricButton = new KaraokeButton
-                                {
-                                    Position = new Vector2(start_x_positin + 120, one_layer_y_position),
-                                    Origin = Anchor.CentreLeft,
-                                    Width = object_height,
-                                    Height = object_height,
-                                    Text = "->",
-                                    TooltipText = "Move to next sentence",
-                                    Action = () => { _playField?.NavigationToNext(); }
-                                },
-
-                                //"play" introduce text
-                                new KaraokeIntroduceText
-                                {
-                                    Position = new Vector2(start_x_positin + 160, one_layer_y_position),
-                                    Text = "Play",
-                                    TooltipText = "Pause,play the song and adjust time"
-                                },
-
-                                //Play and pause
-                                PlayPauseButton = new KaraokePlayPauseButton
-                                {
-                                    Position = new Vector2(start_x_positin + 200, one_layer_y_position),
-                                    Origin = Anchor.CentreLeft,
-                                    Width = object_height,
-                                    Height = object_height,
-                                    //Text="P",
-                                    KaraokeShowingState = KaraokePlayState.Pause,
-                                    Action = () =>
+                                    RelativeSizeAxes = Axes.Both,
+                                    Content = new Drawable[][]
                                     {
-                                        //TODO :
-                                        if (_playField != null)
-                                            if (PlayPauseButton.KaraokeShowingState == KaraokePlayState.Pause)
+                                        new Drawable[]
+                                        {
+                                            new Container()
                                             {
-                                                _playField?.Pause();
-                                                PlayPauseButton.KaraokeShowingState = KaraokePlayState.Play;
-                                            }
-                                            else
+                                                Name = "Time Section",
+                                                RelativeSizeAxes = Axes.Both,
+                                                Anchor = Anchor.CentreLeft,
+                                                Origin = Anchor.CentreLeft,
+                                                Children = new Drawable[]
+                                                {
+                                                    new FillFlowContainer()
+                                                    {
+                                                        Name = "Sentence",
+                                                        Anchor = Anchor.CentreLeft,
+                                                        Origin = Anchor.CentreLeft,
+                                                        Direction =  FillDirection.Horizontal,
+                                                        Spacing = new Vector2(horizontal_conponent_spacing),
+                                                        AutoSizeAxes = Axes.X,
+                                                        Children = new Drawable[]
+                                                        {
+                                                            //"sentence" introduce text
+                                                            new KaraokeIntroduceText
+                                                            {
+                                                                Text = "Sentence",
+                                                                TooltipText = "Choose the sentence you want to sing."
+                                                            },
+
+                                                            //switch to first sentence
+                                                            FirstLyricButton = new KaraokeButton
+                                                            {
+                                                                Origin = Anchor.CentreLeft,
+                                                                Width = object_height,
+                                                                Height = object_height,
+                                                                Text = "1",
+                                                                TooltipText = "Move to first sentence",
+                                                                Action = () => { _playField?.NavigationToFirst(); }
+                                                            },
+
+                                                            //switch to previous sentence
+                                                            PreviousLyricButton = new KaraokeButton
+                                                            {
+                                                                Origin = Anchor.CentreLeft,
+                                                                Width = object_height,
+                                                                Height = object_height,
+                                                                Text = "<-",
+                                                                TooltipText = "Move to previous sentence",
+                                                                Action = () => { _playField?.NavigationToPrevious(); }
+                                                            },
+
+                                                            //switch to next sentence
+                                                            NextLyricButton = new KaraokeButton
+                                                            {
+                                                                Origin = Anchor.CentreLeft,
+                                                                Width = object_height,
+                                                                Height = object_height,
+                                                                Text = "->",
+                                                                TooltipText = "Move to next sentence",
+                                                                Action = () => { _playField?.NavigationToNext(); }
+                                                            },
+
+                                                             //"play" introduce text
+                                                            new KaraokeIntroduceText
+                                                            {
+                                                                Text = "Play",
+                                                                TooltipText = "Pause,play the song and adjust time"
+                                                            },
+
+                                                            //Play and pause
+                                                            PlayPauseButton = new KaraokePlayPauseButton
+                                                            {
+                                                                Origin = Anchor.CentreLeft,
+                                                                Width = object_height,
+                                                                Height = object_height,
+                                                                //Text="P",
+                                                                KaraokeShowingState = KaraokePlayState.Pause,
+                                                                Action = () =>
+                                                                {
+                                                                    //TODO :
+                                                                    if (_playField != null)
+                                                                        if (PlayPauseButton.KaraokeShowingState == KaraokePlayState.Pause)
+                                                                        {
+                                                                            _playField?.Pause();
+                                                                            PlayPauseButton.KaraokeShowingState = KaraokePlayState.Play;
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            _playField?.Play();
+                                                                            PlayPauseButton.KaraokeShowingState = KaraokePlayState.Pause;
+                                                                        }
+                                                                }
+                                                            },
+                                                        }
+                                                    },
+                                                    new Container
+                                                    {
+                                                        Name = "Time Section",
+                                                        RelativeSizeAxes = Axes.X,
+                                                        Anchor = Anchor.CentreLeft,
+                                                        Origin = Anchor.CentreLeft,
+                                                        Padding = new MarginPadding(){Left = 320, Right = 50},
+                                                        Children = new Drawable[]
+                                                        {
+                                                            //time slider
+                                                            TimeSlideBar = new KaraokeTimerSliderBar
+                                                            {
+                                                                RelativeSizeAxes = Axes.X,
+                                                                Origin = Anchor.CentreLeft,
+                                                                StartTime = _playField != null ? (_playField?.FirstObjectTime()).Value : 0,
+                                                                EndTime = _playField != null ? (_playField?.LastObjectTime()).Value : 100000, //1:40
+                                                                OnValueChanged = (eaa, newValue) => { _playField?.NavigateToTime(newValue); }
+                                                            },
+                                                        }
+                                                    }
+
+                                                }
+                                            },
+                                        },
+                                        new Drawable[]
+                                        {
+                                            new GridContainer
                                             {
-                                                _playField?.Play();
-                                                PlayPauseButton.KaraokeShowingState = KaraokePlayState.Pause;
+                                                RelativeSizeAxes = Axes.X,
+                                                Anchor = Anchor.CentreLeft,
+                                                Origin = Anchor.CentreLeft,
+                                                Content = new Drawable[][]
+                                                {
+                                                    new Drawable[]
+                                                    {
+                                                        new Container()
+                                                        {
+                                                            Name = "Speed Section",
+                                                            RelativeSizeAxes = Axes.X,
+                                                            Anchor = Anchor.CentreLeft,
+                                                            Origin = Anchor.CentreLeft,
+                                                            Children = new Drawable[]
+                                                            {
+                                                                //"speed" introduce
+                                                                new KaraokeIntroduceText
+                                                                {
+                                                                    Text = "Speed",
+                                                                    TooltipText = "Adjust song speed."
+                                                                },
+
+                                                                new Container
+                                                                {
+                                                                    RelativeSizeAxes = Axes.X,
+                                                                    Padding = new MarginPadding(){Left = 100, Right = 50},
+                                                                    Children = new Drawable[]
+                                                                    {
+                                                                        //speed
+                                                                        SpeedSlider = new WithUpAndDownButtonSlider
+                                                                        {
+                                                                            Origin = Anchor.CentreLeft,
+                                                                            RelativeSizeAxes = Axes.X,
+
+                                                                            MinValue = 0.5f,
+                                                                            MaxValue = 1.5f,
+                                                                            Value = 1,
+                                                                            DefauleValue = 1,
+                                                                            KeyboardStep = 0.05f,
+                                                                            OnValueChanged = (eaa, newValue) => { _playField?.AdjustSpeed(newValue); }
+                                                                        },
+                                                                    }
+                                                                }
+                                                            }
+                                                        },
+                                                        new Container()
+                                                        {
+                                                            Name = "Tone Section",
+                                                            RelativeSizeAxes = Axes.X,
+                                                            Anchor = Anchor.CentreLeft,
+                                                            Origin = Anchor.CentreLeft,
+                                                            Children = new Drawable[]
+                                                            {
+                                                                //"tone" introduce
+                                                                new KaraokeIntroduceText
+                                                                {
+                                                                    Text = "Tone",
+                                                                    TooltipText = "Adjust song tone."
+                                                                },
+
+                                                                new Container
+                                                                {
+                                                                    RelativeSizeAxes = Axes.X,
+                                                                    Padding = new MarginPadding(){Left = 100, Right = 50},
+                                                                    Children = new Drawable[]
+                                                                    {
+                                                                        //Tone
+                                                                        ToneSlider = new WithUpAndDownButtonSlider
+                                                                        {
+                                                                            Origin = Anchor.CentreLeft,
+                                                                            RelativeSizeAxes = Axes.X,
+                                                                            MinValue = 0.5f,
+                                                                            MaxValue = 1.5f,
+                                                                            Value = 1.0f,
+                                                                            DefauleValue = 1,
+                                                                            KeyboardStep = 0.05f,
+                                                                            OnValueChanged = (eaa, newValue) => { _playField?.AdjustTone(newValue); }
+                                                                        },
+                                                                    }
+                                                                }
+                                                            }
+                                                        },
+                                                        new Container()
+                                                        {
+                                                            Name = "Offset Section",
+                                                            RelativeSizeAxes = Axes.X,
+                                                            Anchor = Anchor.CentreLeft,
+                                                            Origin = Anchor.CentreLeft,
+                                                            Children = new Drawable[]
+                                                            {
+                                                                //"offset" introduce
+                                                                new KaraokeIntroduceText
+                                                                {
+                                                                    Text = "Offset",
+                                                                    TooltipText = "Adjust lyrics appear offset."
+                                                                },
+
+                                                                new Container
+                                                                {
+                                                                    RelativeSizeAxes = Axes.X,
+                                                                    Padding = new MarginPadding(){Left = 100, Right = 50},
+                                                                    Children = new Drawable[]
+                                                                    {
+                                                                        //offset
+                                                                        LyricOffectSlider = new WithUpAndDownButtonSlider
+                                                                        {
+                                                                            Origin = Anchor.CentreLeft,
+                                                                            RelativeSizeAxes = Axes.X,
+                                                                            MinValue = -5.0f,
+                                                                            MaxValue = 5.0f,
+                                                                            Value = 0,
+                                                                            DefauleValue = 0,
+                                                                            KeyboardStep = 0.5f,
+                                                                            OnValueChanged = (eaa, newValue) => { _playField?.AdjustlyricsOffset(newValue); }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
                                             }
+                                        }
                                     }
                                 },
-
-                                //time slider
-                                TimeSlideBar = new KaraokeTimerSliderBar
-                                {
-                                    Position = new Vector2(start_x_positin + 280, one_layer_y_position),
-                                    Origin = Anchor.CentreLeft,
-                                    Width = 500,
-                                    StartTime = _playField != null ? (_playField?.FirstObjectTime()).Value : 0,
-                                    EndTime = _playField != null ? (_playField?.LastObjectTime()).Value : 100000, //1:40
-                                    OnValueChanged = (eaa, newValue) => { _playField?.NavigateToTime(newValue); }
-                                },
-
-                                //"speed" introduce
-                                new KaraokeIntroduceText
-                                {
-                                    Position = new Vector2(start_x_positin - 30, two_layer_y_position),
-                                    Text = "Speed",
-                                    TooltipText = "Adjust song speed."
-                                },
-
-                                //speed
-                                SpeedSlider = new WithUpAndDownButtonSlider
-                                {
-                                    Position = new Vector2(start_x_positin + 60, two_layer_y_position),
-                                    Origin = Anchor.CentreLeft,
-                                    Width = 150,
-                                    MinValue = 0.5f,
-                                    MaxValue = 1.5f,
-                                    Value = 1,
-                                    DefauleValue = 1,
-                                    KeyboardStep = 0.05f,
-                                    OnValueChanged = (eaa, newValue) => { _playField?.AdjustSpeed(newValue); }
-                                },
-
-                                //"tone" introduce
-                                new KaraokeIntroduceText
-                                {
-                                    Position = new Vector2(start_x_positin + 255, two_layer_y_position),
-                                    Text = "Tone",
-                                    TooltipText = "Adjust song tone."
-                                },
-
-                                //Tone
-                                ToneSlider = new WithUpAndDownButtonSlider
-                                {
-                                    Position = new Vector2(start_x_positin + 340, two_layer_y_position),
-                                    Origin = Anchor.CentreLeft,
-                                    Width = 150,
-                                    MinValue = 0.5f,
-                                    MaxValue = 1.5f,
-                                    Value = 1.0f,
-                                    DefauleValue = 1,
-                                    KeyboardStep = 0.05f,
-                                    OnValueChanged = (eaa, newValue) => { _playField?.AdjustTone(newValue); }
-                                },
-
-                                //"offset" introduce
-                                new KaraokeIntroduceText
-                                {
-                                    Position = new Vector2(start_x_positin + 535, two_layer_y_position),
-                                    Text = "Offset",
-                                    TooltipText = "Adjust lyrics appear offset."
-                                },
-
-                                //offset
-                                LyricOffectSlider = new WithUpAndDownButtonSlider
-                                {
-                                    Position = new Vector2(start_x_positin + 630, two_layer_y_position),
-                                    Origin = Anchor.CentreLeft,
-                                    Width = 150,
-                                    MinValue = -5.0f,
-                                    MaxValue = 5.0f,
-                                    Value = 0,
-                                    DefauleValue = 0,
-                                    KeyboardStep = 0.5f,
-                                    OnValueChanged = (eaa, newValue) => { _playField?.AdjustlyricsOffset(newValue); }
-                                }
                             }
                         }
                     }

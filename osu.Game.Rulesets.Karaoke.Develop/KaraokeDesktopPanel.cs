@@ -43,7 +43,6 @@ namespace osu.Game.Rulesets.Karaoke.Develop
     {
         //TODO : all the setting object
         public KaraokeButton FirstLyricButton;
-
         public KaraokeButton PreviousLyricButton;
         public KaraokeButton NextLyricButton;
         public KaraokePlayPauseButton PlayPauseButton;
@@ -54,21 +53,9 @@ namespace osu.Game.Rulesets.Karaoke.Develop
 
         public bool LoadComplete;
         private const float content_width = 0.8f;
-
-        //define the position of object
-        private const int one_layer_y_position = 30;
-
-        private const int two_layer_y_position = 75;
         private const int object_height = 30;
-        private const int start_x_positin = 60;
         private const int height = 130;
-
-        private const int horizontal_spacing = 30;
-
-        private const int vertical_spacing = 30;
-
         private const int horizontal_conponent_spacing = 10;
-
         private const int margin_padding = 10;
 
 
@@ -131,6 +118,7 @@ namespace osu.Game.Rulesets.Karaoke.Develop
                         // Body
                         new Container
                         {
+                            Name = "Panel Container",
                             Origin = Anchor.TopCentre,
                             Anchor = Anchor.TopCentre,
                             RelativeSizeAxes = Axes.X,
@@ -143,7 +131,6 @@ namespace osu.Game.Rulesets.Karaoke.Develop
                                 new GridContainer
                                 {
                                     RelativeSizeAxes = Axes.Both,
-                                    
                                     Content = new Drawable[][]
                                     {
                                         new Drawable[]
