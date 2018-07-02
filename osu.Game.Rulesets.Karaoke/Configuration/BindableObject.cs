@@ -19,6 +19,9 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
             get => base.Value;
             set
             {
+                if (value == null && base.Value == null)
+                    return;
+
                 //create clone object
                 var cloneValue = (T)value?.Clone();
 
@@ -67,11 +70,7 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
         public BindableObject(T value)
             : base(value)
         {
-        }
 
-        public static implicit operator T(BindableObject<T> value)
-        {
-            return value.Value;
         }
 
         /// <summary>
@@ -81,9 +80,14 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
         /// </summary>
         public override void TriggerChange()
         {
+            base.TriggerChange();
+            /*
             TriggerValueChange(false);
             TriggerDisabledChange(false);
+            */
         }
+
+        public static implicit operator T(BindableObject<T> value) => value?.Value ?? throw new InvalidCastException($"Casting a null {nameof(BindableObject<T>)} to a {nameof(T)} is likely a mistake");
 
         public override string ToString()
         {

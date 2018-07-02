@@ -150,44 +150,47 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
             var subTexts = RightSideText.ListDrawableSubText;
             var subText = subTexts?.FirstOrDefault();
 
-            //1. Get all start Position
-            var subTextSegmentedControlStartPosition = new Vector2(subTexts.Last().Position.X + 20, subText.Position.Y);
-            var mainTextSegmentedControlStartPosition = new Vector2(mainText.TotalWidth, mainText.Position.Y);
-            var translateTextSegmentedControlStartPosition = new Vector2(TranslateText.Width, TranslateText.Position.Y);
-            var subTextToMainTextSegmentedControlStartPosition = new Vector2(-10, (subTextSegmentedControlStartPosition.Y + mainTextSegmentedControlStartPosition.Y) / 2);
-            var mainTextToTranslateTextSegmentedControlStartPosition = new Vector2(-10, (mainTextSegmentedControlStartPosition.Y + translateTextSegmentedControlStartPosition.Y) / 2);
-
-            //2. get all end position (s mainText and subText and translate text position)
-            var subTextSegmentedControlEndPosition = subTextSegmentedControlStartPosition + new Vector2(100, -50) / templateValue.Scale;
-            var subTextToMainTextSegmentedControlEndPosition = subTextToMainTextSegmentedControlStartPosition + new Vector2(-50, -50) / templateValue.Scale;
-            var mainTextSegmentedControlEndPosition = mainTextSegmentedControlStartPosition + new Vector2(100, -10) / templateValue.Scale;
-            var mainTextToTranslateTextSegmentedControlEndPosition = mainTextToTranslateTextSegmentedControlStartPosition + new Vector2(-50, 10) / templateValue.Scale;
-            var translateTextSegmentedControlEndPosition = translateTextSegmentedControlStartPosition + new Vector2(100, 30) / templateValue.Scale;
-
-            //3. update position
-            SubTextSegmentedControl.Position = subTextSegmentedControlEndPosition;
-            SubTextToMainTextSegmentedControl.Position = subTextToMainTextSegmentedControlEndPosition;
-            MainTextSegmentedControl.Position = mainTextSegmentedControlEndPosition;
-            MainTextToTranslateTextSegmentedControl.Position = mainTextToTranslateTextSegmentedControlEndPosition;
-            TranslateTextSegmentedControl.Position = translateTextSegmentedControlEndPosition;
-
-            //4.update path positions
-            drawLine(SubTextPath, subTextSegmentedControlStartPosition, subTextSegmentedControlEndPosition);
-            drawLine(SubTextToMainTextPath, subTextToMainTextSegmentedControlStartPosition, subTextToMainTextSegmentedControlEndPosition);
-            drawLine(MainTextPath, mainTextSegmentedControlStartPosition, mainTextSegmentedControlEndPosition);
-            drawLine(MainTextToTranslateTextPath, mainTextToTranslateTextSegmentedControlStartPosition, mainTextToTranslateTextSegmentedControlEndPosition);
-            drawLine(TranslateTextPath, translateTextSegmentedControlStartPosition, translateTextSegmentedControlEndPosition);
-
-            void drawLine(Path line, Vector2 path1, Vector2 path2)
+            if (subText != null)
             {
-                var x = Math.Max(0, path1.X - path2.X);
-                var y = Math.Max(0, path1.Y - path2.Y);
-                line.Position = path1 - new Vector2(x, y);
-                line.Positions = new List<Vector2>
+                //1. Get all start Position
+                var subTextSegmentedControlStartPosition = new Vector2(subTexts.Last().Position.X + 20, subText.Position.Y);
+                var mainTextSegmentedControlStartPosition = new Vector2(mainText.TotalWidth, mainText.Position.Y);
+                var translateTextSegmentedControlStartPosition = new Vector2(TranslateText.Width, TranslateText.Position.Y);
+                var subTextToMainTextSegmentedControlStartPosition = new Vector2(-10, (subTextSegmentedControlStartPosition.Y + mainTextSegmentedControlStartPosition.Y) / 2);
+                var mainTextToTranslateTextSegmentedControlStartPosition = new Vector2(-10, (mainTextSegmentedControlStartPosition.Y + translateTextSegmentedControlStartPosition.Y) / 2);
+
+                //2. get all end position (s mainText and subText and translate text position)
+                var subTextSegmentedControlEndPosition = subTextSegmentedControlStartPosition + new Vector2(100, -50) / templateValue.Scale;
+                var subTextToMainTextSegmentedControlEndPosition = subTextToMainTextSegmentedControlStartPosition + new Vector2(-50, -50) / templateValue.Scale;
+                var mainTextSegmentedControlEndPosition = mainTextSegmentedControlStartPosition + new Vector2(100, -10) / templateValue.Scale;
+                var mainTextToTranslateTextSegmentedControlEndPosition = mainTextToTranslateTextSegmentedControlStartPosition + new Vector2(-50, 10) / templateValue.Scale;
+                var translateTextSegmentedControlEndPosition = translateTextSegmentedControlStartPosition + new Vector2(100, 30) / templateValue.Scale;
+
+                //3. update position
+                SubTextSegmentedControl.Position = subTextSegmentedControlEndPosition;
+                SubTextToMainTextSegmentedControl.Position = subTextToMainTextSegmentedControlEndPosition;
+                MainTextSegmentedControl.Position = mainTextSegmentedControlEndPosition;
+                MainTextToTranslateTextSegmentedControl.Position = mainTextToTranslateTextSegmentedControlEndPosition;
+                TranslateTextSegmentedControl.Position = translateTextSegmentedControlEndPosition;
+
+                //4.update path positions
+                drawLine(SubTextPath, subTextSegmentedControlStartPosition, subTextSegmentedControlEndPosition);
+                drawLine(SubTextToMainTextPath, subTextToMainTextSegmentedControlStartPosition, subTextToMainTextSegmentedControlEndPosition);
+                drawLine(MainTextPath, mainTextSegmentedControlStartPosition, mainTextSegmentedControlEndPosition);
+                drawLine(MainTextToTranslateTextPath, mainTextToTranslateTextSegmentedControlStartPosition, mainTextToTranslateTextSegmentedControlEndPosition);
+                drawLine(TranslateTextPath, translateTextSegmentedControlStartPosition, translateTextSegmentedControlEndPosition);
+
+                void drawLine(Path line, Vector2 path1, Vector2 path2)
                 {
-                    new Vector2(),
-                    path2 - path1
-                };
+                    var x = Math.Max(0, path1.X - path2.X);
+                    var y = Math.Max(0, path1.Y - path2.Y);
+                    line.Position = path1 - new Vector2(x, y);
+                    line.Positions = new List<Vector2>
+                    {
+                        new Vector2(),
+                        path2 - path1
+                    };
+                }
             }
         }
     }

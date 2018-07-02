@@ -49,11 +49,10 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
         /// </summary>
         /// <typeparam name="U"></typeparam>
         /// <param name="lookup"></param>
-        /// <param name="value"></param>
         /// <returns></returns>
-        public Bindable<U> GetObjectBindable<U>(T lookup) where U : class
+        public BindableObject<U> GetObjectBindable<U>(T lookup) where U : class, IEquatable<U>, ICloneable, new()
         {
-            var bindable = GetBindable<U>(lookup);
+            var bindable = GetOriginalBindable<U>(lookup) as BindableObject<U>;
             return bindable;
         }
     }
