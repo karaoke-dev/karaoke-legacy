@@ -1,6 +1,7 @@
 ﻿// Copyright (c) 2007-2018 ppy Pty Ltd <contact@ppy.sh>.
 // Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
 
+using System;
 using osu.Game.Rulesets.Karaoke.Objects;
 using osu.Game.Rulesets.Karaoke.Objects.Text;
 using osu.Game.Rulesets.Karaoke.Objects.Types;
@@ -12,7 +13,7 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
     /// <summary>
     ///     define the position of karaoke
     /// </summary>
-    public class LyricTemplate : RecordChangeObject, ICopyable
+    public class LyricTemplate : ICloneable, IEquatable<LyricTemplate>
     {
         /// <summary>
         ///     top text
@@ -60,26 +61,39 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
         /// </summary>
         public float Scale { get; set; } = 1;
 
-        /// <summary>
-        ///     Copy
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <returns></returns>
-        public T Copy<T>() where T : class, ICopyable, new()
+        public object Clone()
         {
-            var result = new T();
-            if (result is LyricTemplate lyricTemplate)
-            {
-                lyricTemplate.TopText = TopText.Copy<FormattedText>();
-                lyricTemplate.MainText = MainText.Copy<FormattedText>();
-                lyricTemplate.BottomText = BottomText.Copy<FormattedText>();
-                lyricTemplate.TranslateText = TranslateText.Copy<FormattedText>();
-                lyricTemplate.TranslateTextColor = TranslateTextColor;
-                lyricTemplate.Scale = Scale;
-                lyricTemplate.Initialize();
-            }
+            return this.MemberwiseClone();
+        }
 
-            return result;
+        public bool Equals(LyricTemplate other)
+        {
+            return Equals(TopText, other.TopText)
+                && Equals(MainText, other.MainText)
+                && Equals(BottomText, other.BottomText)
+                && Equals(TranslateText, other.TranslateText)
+                && TranslateTextColor.Equals(other.TranslateTextColor)
+                && Scale.Equals(other.Scale);
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj.GetType() != this.GetType()) return false;
+            return Equals((LyricTemplate)obj);
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                var hashCode = (TopText != null ? TopText.GetHashCode() : 0);
+                hashCode = (hashCode * 397) ^ (MainText != null ? MainText.GetHashCode() : 0);
+                hashCode = (hashCode * 397) ^ (BottomText != null ? BottomText.GetHashCode() : 0);
+                hashCode = (hashCode * 397) ^ (TranslateText != null ? TranslateText.GetHashCode() : 0);
+                hashCode = (hashCode * 397) ^ TranslateTextColor.GetHashCode();
+                hashCode = (hashCode * 397) ^ Scale.GetHashCode();
+                return hashCode;
+            }
         }
     }
 }

@@ -1,26 +1,37 @@
 ﻿// Copyright (c) 2007-2018 ppy Pty Ltd <contact@ppy.sh>.
 // Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
 
+using System;
 using osu.Game.Rulesets.Karaoke.Objects;
 using osu.Game.Rulesets.Karaoke.Objects.Types;
 
 namespace osu.Game.Rulesets.Karaoke.Configuration
 {
-    public class SingerTemplate : RecordChangeObject, ICopyable
+    public class SingerTemplate : ICloneable, IEquatable<SingerTemplate>
     {
-        /// <summary>
-        ///     Copy
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <returns></returns>
-        public T Copy<T>() where T : class, ICopyable, new()
+        public object Clone()
         {
-            var result = new T();
-            if (result is SingerTemplate singerTemplate)
-            {
-            }
-
-            return result;
+            return MemberwiseClone();
         }
+
+        public bool Equals(SingerTemplate other)
+        {
+            return true;
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj)) return false;
+            if (ReferenceEquals(this, obj)) return true;
+            if (obj.GetType() != this.GetType()) return false;
+            return Equals((SingerTemplate)obj);
+        }
+
+        /*
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
+        */
     }
 }

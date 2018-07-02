@@ -10,11 +10,18 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Input.Action
     /// <summary>
     ///     Base action
     /// </summary>
-    public class BaseAction : RecordChangeObject, ICopyable
+    public class BaseAction : ICloneable, IEquatable<BaseAction>
     {
-        public virtual T Copy<T>() where T : class, ICopyable, new()
+        public DateTime ActionTime = DateTime.Now;
+
+        public object Clone()
         {
-            throw new NotImplementedException();
+            return this.MemberwiseClone();
+        }
+
+        public virtual bool Equals(BaseAction other)
+        {
+            return ActionTime == other.ActionTime;
         }
     }
 }

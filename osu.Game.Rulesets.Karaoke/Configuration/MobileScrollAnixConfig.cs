@@ -1,6 +1,7 @@
 ﻿// Copyright (c) 2007-2018 ppy Pty Ltd <contact@ppy.sh>.
 // Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
 
+using System;
 using System.Collections.Generic;
 using osu.Game.Rulesets.Karaoke.Input;
 using osu.Game.Rulesets.Karaoke.Objects;
@@ -11,7 +12,7 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
     /// <summary>
     ///     Config
     /// </summary>
-    public class MobileScrollAnixConfig : RecordChangeObject, ICopyable
+    public class MobileScrollAnixConfig : ICloneable, IEquatable<MobileScrollAnixConfig>
     {
         /// <summary>
         ///     Tap Action
@@ -24,23 +25,30 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
         /// </summary>
         public Dictionary<TouchScreenScrollInteractive, SingleAnixConfig> ScrollConfigs { get; set; } = new Dictionary<TouchScreenScrollInteractive, SingleAnixConfig>();
 
-
-        /// <summary>
-        ///     Copy
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <returns></returns>
-        public T Copy<T>() where T : class, ICopyable, new()
+        public object Clone()
         {
-            var result = new T();
-            if (result is MobileScrollAnixConfig mobileScrollAnixConfig)
-            {
-                mobileScrollAnixConfig.TagConfigs = TagConfigs;
-                mobileScrollAnixConfig.ScrollConfigs = ScrollConfigs;
-                mobileScrollAnixConfig.Initialize();
-            }
+            return MemberwiseClone();
+        }
 
-            return result;
+        public bool Equals(MobileScrollAnixConfig other)
+        {
+            return Equals(TagConfigs, other.TagConfigs) && Equals(ScrollConfigs, other.ScrollConfigs);
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj)) return false;
+            if (ReferenceEquals(this, obj)) return true;
+            if (obj.GetType() != this.GetType()) return false;
+            return Equals((MobileScrollAnixConfig)obj);
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                return ((TagConfigs != null ? TagConfigs.GetHashCode() : 0) * 397) ^ (ScrollConfigs != null ? ScrollConfigs.GetHashCode() : 0);
+            }
         }
     }
 

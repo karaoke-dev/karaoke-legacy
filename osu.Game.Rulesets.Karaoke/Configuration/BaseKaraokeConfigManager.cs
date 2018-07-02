@@ -1,6 +1,7 @@
 ﻿// Copyright (c) 2007-2018 ppy Pty Ltd <contact@ppy.sh>.
 // Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
 
+using System;
 using osu.Framework.Configuration;
 using osu.Game.Configuration;
 using osu.Game.Rulesets.Configuration;
@@ -24,7 +25,7 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
         /// <param name="lookup"></param>
         /// <param name="value"></param>
         /// <returns></returns>
-        public BindableObject<U> SetObject<U>(T lookup, U value) where U : RecordChangeObject, ICopyable, new()
+        public BindableObject<U> SetObject<U>(T lookup, U value) where U :class, IEquatable<U>, ICloneable, new()
         {
             var bindable = GetOriginalBindable<U>(lookup) as BindableObject<U>;
 
