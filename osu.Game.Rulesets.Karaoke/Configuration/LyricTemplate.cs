@@ -2,6 +2,8 @@
 // Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
 
 using System;
+using Newtonsoft.Json;
+using osu.Game.Rulesets.Karaoke.Configuration.Types;
 using osu.Game.Rulesets.Karaoke.Objects;
 using osu.Game.Rulesets.Karaoke.Objects.Text;
 using osu.Game.Rulesets.Karaoke.Objects.Types;
@@ -13,7 +15,7 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
     /// <summary>
     ///     define the position of karaoke
     /// </summary>
-    public class LyricTemplate : ICloneable, IEquatable<LyricTemplate>
+    public class LyricTemplate : ICloneable, IEquatable<LyricTemplate> ,IJsonString
     {
         /// <summary>
         ///     top text
@@ -63,7 +65,15 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
 
         public object Clone()
         {
-            return this.MemberwiseClone();
+            return new LyricTemplate()
+            {
+                TopText = TopText.Clone() as FormattedText,
+                MainText = TopText.Clone() as FormattedText,
+                BottomText = TopText.Clone() as FormattedText,
+                TranslateText = TopText.Clone() as FormattedText,
+                TranslateTextColor = TranslateTextColor
+            };
+
         }
 
         public bool Equals(LyricTemplate other)
@@ -94,6 +104,11 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
                 hashCode = (hashCode * 397) ^ Scale.GetHashCode();
                 return hashCode;
             }
+        }
+
+        public override string ToString()
+        {
+            return JsonConvert.SerializeObject(this);
         }
     }
 }

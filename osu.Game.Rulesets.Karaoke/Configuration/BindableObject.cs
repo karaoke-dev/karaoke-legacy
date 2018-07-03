@@ -6,13 +6,14 @@ using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json;
 using osu.Framework.Configuration;
+using osu.Game.Rulesets.Karaoke.Configuration.Types;
 using osu.Game.Rulesets.Karaoke.Objects;
 using osu.Game.Rulesets.Karaoke.Objects.Types;
 
 namespace osu.Game.Rulesets.Karaoke.Configuration
 {
     public class BindableObject<T> : Bindable<T>
-        where T :class, IEquatable<T> , ICloneable, new() 
+        where T :class, IEquatable<T> , ICloneable, IJsonString, new() 
     {
         public override T Value
         {
@@ -26,6 +27,7 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
                 var cloneValue = (T)value?.Clone();
 
                 //if class priperty changed
+
                 /*
                 if(!PublicInstancePropertiesEqual<T>(base.Value, cloneValue))
                 {
@@ -33,10 +35,12 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
                 }
                 */
                 
+                
                 if (!(base.Value?.Equals(cloneValue) ?? false)) 
                 {
                     base.Value = cloneValue;
                 }
+                
             }
         }
 
@@ -104,6 +108,7 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
             catch (Exception e)
             {
                 Console.WriteLine(e);
+                Value = new T();
                 //throw;
             }
         }

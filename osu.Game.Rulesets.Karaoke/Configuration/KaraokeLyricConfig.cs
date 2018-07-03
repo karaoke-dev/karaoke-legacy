@@ -2,6 +2,8 @@
 // Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
 
 using System;
+using Newtonsoft.Json;
+using osu.Game.Rulesets.Karaoke.Configuration.Types;
 using osu.Game.Rulesets.Karaoke.Objects;
 using osu.Game.Rulesets.Karaoke.Objects.Types;
 
@@ -10,7 +12,7 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
     /// <summary>
     ///     karaoke lyric config
     /// </summary>
-    public class KaraokeLyricConfig : ICloneable , IEquatable<KaraokeLyricConfig>
+    public class KaraokeLyricConfig : ICloneable , IEquatable<KaraokeLyricConfig> , IJsonString
     {
         /// <summary>
         ///     show subText
@@ -63,6 +65,11 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
                 hashCode = (hashCode * 397) ^ ShowTranslate.GetHashCode();
                 return hashCode;
             }
+        }
+
+        public override string ToString()
+        {
+            return JsonConvert.SerializeObject(this);
         }
     }
 }

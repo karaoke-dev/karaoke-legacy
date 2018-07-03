@@ -2,6 +2,7 @@
 // Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
 
 using System;
+using osu.Game.Rulesets.Karaoke.Configuration.Types;
 using osu.Game.Rulesets.Karaoke.Objects;
 using osu.Game.Rulesets.Karaoke.Objects.Types;
 
@@ -10,7 +11,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Input.Action
     /// <summary>
     ///     Base action
     /// </summary>
-    public class BaseAction : ICloneable, IEquatable<BaseAction>
+    public class BaseAction : ICloneable, IEquatable<BaseAction> , IJsonString
     {
         public DateTime ActionTime = DateTime.Now;
 

@@ -7,6 +7,7 @@ using System.Linq;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Lines;
+using osu.Game.Rulesets.Karaoke.Configuration;
 using osu.Game.Rulesets.Karaoke.Objects;
 using osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric;
 using OpenTK;
@@ -45,7 +46,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
         public DrawableKaraokeTemplate(BaseLyric hitObject)
             : base(hitObject)
         {
-            var templateValue = Template.Value;
+            var templateValue = Template.Value?.Clone() as LyricTemplate;
             SegmentedControlContainer = new Container
             {
                 Children = new Drawable[]
@@ -63,9 +64,9 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
                         PostfixText = "px",
                         OnValueChanged = newValue =>
                         {
-                            templateValue.TopText.FontSize = (int)newValue;
-                            UpdateDrawable();
-                            Template.TriggerChange();
+                            var value = Template.Value?.Clone() as LyricTemplate;
+                            value.TopText.FontSize = (int)newValue;
+                            Template.Value = value;
                         }
                     },
                     SubTextToMainTextSegmentedControl = new UpDownValueIndicator
@@ -75,9 +76,9 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
                         PostfixText = "px",
                         OnValueChanged = newValue =>
                         {
-                            templateValue.TopText.Position = new Vector2(0, newValue);
-                            UpdateDrawable();
-                            Template.TriggerChange();
+                            var value = Template.Value?.Clone() as LyricTemplate;
+                            value.TopText.Position = new Vector2(0, newValue);
+                            Template.Value = value;
                         }
                     },
                     MainTextSegmentedControl = new UpDownValueIndicator
@@ -87,9 +88,9 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
                         PostfixText = "px",
                         OnValueChanged = newValue =>
                         {
-                            templateValue.MainText.FontSize = (int)newValue;
-                            UpdateDrawable();
-                            Template.TriggerChange();
+                            var value = Template.Value?.Clone() as LyricTemplate;
+                            value.MainText.FontSize = (int)newValue;
+                            Template.Value = value;
                         }
                     },
                     MainTextToTranslateTextSegmentedControl = new UpDownValueIndicator
@@ -99,9 +100,10 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
                         PostfixText = "px",
                         OnValueChanged = newValue =>
                         {
-                            templateValue.TranslateText.Position = new Vector2(0, newValue);
+                            var value = Template.Value?.Clone() as LyricTemplate;
+                            value.TranslateText.Position = new Vector2(0, newValue);
                             UpdateDrawable();
-                            Template.TriggerChange();
+                            Template.Value = value;
                         }
                     },
                     TranslateTextSegmentedControl = new UpDownValueIndicator
@@ -111,9 +113,9 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
                         PostfixText = "px",
                         OnValueChanged = newValue =>
                         {
-                            templateValue.TranslateText.FontSize = (int)newValue;
-                            UpdateDrawable();
-                            Template.TriggerChange();
+                            var value = Template.Value?.Clone() as LyricTemplate;
+                            value.TranslateText.FontSize = (int)newValue;
+                            Template.Value = value;
                         }
                     },
                     ScaleSegmentedControl = new UpDownValueIndicator
@@ -125,13 +127,20 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
                         PostfixText = "x",
                         OnValueChanged = newValue =>
                         {
-                            templateValue.Scale = newValue;
-                            UpdateDrawable();
-                            Template.TriggerChange();
+                            var value = Template.Value?.Clone() as LyricTemplate;
+                            value.Scale = newValue;
+                            Template.Value = value;
                         }
                     }
                 }
             };
+
+            /*
+            Template.ValueChanged += (b) =>
+            {
+                UpdateDrawable();
+            };
+            */
 
             AddInternal(SegmentedControlContainer);
         }

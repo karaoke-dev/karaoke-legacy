@@ -5,6 +5,7 @@ using System;
 using osu.Framework.Configuration;
 using osu.Game.Configuration;
 using osu.Game.Rulesets.Configuration;
+using osu.Game.Rulesets.Karaoke.Configuration.Types;
 using osu.Game.Rulesets.Karaoke.Objects;
 using osu.Game.Rulesets.Karaoke.Objects.Types;
 
@@ -25,7 +26,7 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
         /// <param name="lookup"></param>
         /// <param name="value"></param>
         /// <returns></returns>
-        public BindableObject<U> SetObject<U>(T lookup, U value) where U :class, IEquatable<U>, ICloneable, new()
+        public BindableObject<U> SetObject<U>(T lookup, U value) where U :class, IEquatable<U>, ICloneable,IJsonString, new()
         {
             var bindable = GetOriginalBindable<U>(lookup) as BindableObject<U>;
 
@@ -50,7 +51,7 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
         /// <typeparam name="U"></typeparam>
         /// <param name="lookup"></param>
         /// <returns></returns>
-        public BindableObject<U> GetObjectBindable<U>(T lookup) where U : class, IEquatable<U>, ICloneable, new()
+        public BindableObject<U> GetObjectBindable<U>(T lookup) where U : class, IEquatable<U>, ICloneable,IJsonString, new()
         {
             var bindable = GetOriginalBindable<U>(lookup) as BindableObject<U>;
             return bindable;
