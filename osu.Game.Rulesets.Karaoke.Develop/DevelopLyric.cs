@@ -12,6 +12,8 @@ using osu.Game.Rulesets.Karaoke.Configuration;
 using osu.Game.Rulesets.Karaoke.Helps;
 using osu.Game.Rulesets.Karaoke.Objects;
 using osu.Game.Tests.Visual;
+using osu.Framework.Graphics.Shapes;
+using osu.Game.Rulesets.Karaoke.Objects.Lyric.Types;
 
 namespace osu.Game.Rulesets.Karaoke.Develop
 {
@@ -20,16 +22,58 @@ namespace osu.Game.Rulesets.Karaoke.Develop
     {
         public DevelopLyric()
         {
-            /*
-            var drawableLuyric = new DrawableLyric
+            LyricContainer drawableLyric = null;
+
+            Add(new Container
             {
-                Lyric = DemoKaraokeObject.GenerateWithStartAndDuration(1000, 3000)
-            };
+                Padding = new MarginPadding(25f),
+                RelativeSizeAxes = Axes.Both,
+                Children = new Drawable[]
+                {
+                    drawableLyric = new LyricContainer
+                    {
+                        Lyric = DemoKaraokeObject.GenerateWithStartAndDuration(1000, 3000),
+                        RelativeSizeAxes = Axes.Both,
+                        AutoSizeAxes = Axes.None,
+                    },
+                    new Box
+                    {
+                        Anchor = Anchor.CentreLeft,
+                        Origin = Anchor.Centre,
+                        RelativeSizeAxes = Axes.Y,
+                        Size = new Vector2(3, 1),
+                        Colour = Color4.HotPink,
+                    },
+                    new Box
+                    {
+                        Anchor = Anchor.CentreRight,
+                        Origin = Anchor.Centre,
+                        RelativeSizeAxes = Axes.Y,
+                        Size = new Vector2(3, 1),
+                        Colour = Color4.HotPink,
+                    },
+                    new Box
+                    {
+                        Anchor = Anchor.TopCentre,
+                        Origin = Anchor.Centre,
+                        RelativeSizeAxes = Axes.X,
+                        Size = new Vector2(1, 3),
+                        Colour = Color4.HotPink,
+                    },
+                    new Box
+                    {
+                        Anchor = Anchor.BottomCentre,
+                        Origin = Anchor.Centre,
+                        RelativeSizeAxes = Axes.X,
+                        Size = new Vector2(1, 3),
+                        Colour = Color4.HotPink,
+                    }
+                }
+            });
+            
 
-            Add(drawableLuyric);
-            */
-
-             var drawableMasktext = new PartialLyric
+            /*
+            var drawableMasktext = new PartialLyric
             {
                 TopText = "Hello",
                 MainText = "Hello",
@@ -41,6 +85,8 @@ namespace osu.Game.Rulesets.Karaoke.Develop
             };
 
             Add(drawableMasktext);
+            */
+            
 
             /*
              var drawableMasktext = new MaskText
@@ -60,13 +106,65 @@ namespace osu.Game.Rulesets.Karaoke.Develop
     }
 
 
-    public class DrawableLyric : FillFlowContainer
+    public class LyricContainer : FillFlowContainer<PartialLyric>
     {
-        public BaseLyric Lyric { get; set; }
-
-        public DrawableLyric()
+        private LyricTemplate _template = new LyricTemplate();
+        public LyricTemplate Template
         {
+            get => _template;
+            set
+            {
+                _template = value;
+                foreach(var parcialLyric in Children)
+                {
+                    parcialLyric.Template = _template;
+                }
+            }
+        }
 
+        private BaseLyric _lyric;
+        public BaseLyric Lyric 
+        { 
+            get => _lyric;
+            set
+            {
+                _lyric = value;
+                this.Clear();
+                foreach(var single in Lyric.Lyric)
+                {
+                    var key = single.Key;
+                    var lyricValue = single.Value;
+
+                    ((IHasFurigana)Lyric).Furigana.TryGetValue(key,out var furigana);
+                    ((IHasRomaji)Lyric).Romaji.TryGetValue(key,out var romaji);
+
+                    this.Add(new PartialLyric()
+                    {
+                        TopText = furigana?.Text ?? " ",
+                        MainText = lyricValue.Text,
+                        BottomText = romaji?.Text ?? " ",
+                        Origin = Anchor.TopLeft,
+                        Anchor = Anchor.TopLeft,
+                        FrontTextColor = Color4.Blue
+                    });
+                }
+            } 
+        }
+
+        private double _relativeTime;
+        public double RelativeTime
+        {
+            get => _relativeTime;
+            set
+            {
+                _relativeTime = value;
+                //TODO : implement
+            }
+        }
+
+        public LyricContainer()
+        {
+            Direction = FillDirection.Full;
         }
     }
 
@@ -76,7 +174,7 @@ namespace osu.Game.Rulesets.Karaoke.Develop
     /// 2. main text(Lyric)
     /// 3. romaji
     /// </summary>
-    internal class PartialLyric : FillFlowContainer
+    public class PartialLyric : FillFlowContainer
     {
         public float Progress
         {
@@ -136,6 +234,11 @@ namespace osu.Game.Rulesets.Karaoke.Develop
                 _topText.TextSize = _template?.TopText?.FontSize ?? 20;
                 _mainText.TextSize = _template?.MainText?.FontSize ?? 50;
                 _bottomText.TextSize = _template?.BottomText?.FontSize ?? 20;
+
+                _topText.Height = _template?.TopText?.FontSize ?? 20;
+                _mainText.Height = _template?.MainText?.FontSize ?? 50;
+                _bottomText.Height = _template?.BottomText?.FontSize ?? 20;
+
                 _topToMainBorderContainer.Height = 10;//TODO : real value
                 _mainToBottomBorderContainer.Height = 10;//TODO : real value
             }
@@ -161,7 +264,7 @@ namespace osu.Game.Rulesets.Karaoke.Develop
                 _topText = new MaskText
                 {
                     Anchor = Anchor.TopCentre,
-                    Origin = Anchor.TopCentre
+                    Origin = Anchor.TopCentre,
                 },
                 _topToMainBorderContainer = new Container(),
                 _mainText = new MaskText
@@ -251,7 +354,7 @@ namespace osu.Game.Rulesets.Karaoke.Develop
 
         public MaskText()
         {
-            AutoSizeAxes = Axes.Both;
+            AutoSizeAxes = Axes.X;
             Direction = FillDirection.Horizontal;
             Spacing = new Vector2(0);
             this.Children = new Drawable[]
@@ -264,7 +367,7 @@ namespace osu.Game.Rulesets.Karaoke.Develop
                     {
                         _frontText = new SpriteText
                         {
-                            
+                            UseFullGlyphHeight = false
                         }
                     }
                     
@@ -277,6 +380,7 @@ namespace osu.Game.Rulesets.Karaoke.Develop
                     {
                         _backtext = new SpriteText
                         {
+                            UseFullGlyphHeight = false,
                             Anchor = Anchor.TopRight,
                             Origin = Anchor.TopRight,
                         }
