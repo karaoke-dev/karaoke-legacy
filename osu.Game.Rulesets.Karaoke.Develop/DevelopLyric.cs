@@ -8,6 +8,7 @@ using OpenTK.Graphics;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Sprites;
+using osu.Game.Rulesets.Karaoke.Configuration;
 using osu.Game.Rulesets.Karaoke.Helps;
 using osu.Game.Rulesets.Karaoke.Objects;
 using osu.Game.Tests.Visual;
@@ -28,7 +29,21 @@ namespace osu.Game.Rulesets.Karaoke.Develop
             Add(drawableLuyric);
             */
 
-            var drawableMasktext = new MaskText
+             var drawableMasktext = new PartialLyric
+            {
+                TopText = "Hello",
+                MainText = "Hello",
+                BottomText = "Hello",
+                Progress = 0.6f,
+                Origin = Anchor.Centre,
+                Anchor = Anchor.Centre,
+                FrontTextColor = Color4.Blue
+            };
+
+            Add(drawableMasktext);
+
+            /*
+             var drawableMasktext = new MaskText
             {
                 Text = "Hello",
                 Progress = 0.6f,
@@ -39,15 +54,20 @@ namespace osu.Game.Rulesets.Karaoke.Develop
             };
 
             Add(drawableMasktext);
+             */
+           
         }
     }
 
 
-    public class DrawableLyric : CustomizableTextContainer
+    public class DrawableLyric : FillFlowContainer
     {
         public BaseLyric Lyric { get; set; }
 
+        public DrawableLyric()
+        {
 
+        }
     }
 
     /// <summary>
@@ -56,9 +76,116 @@ namespace osu.Game.Rulesets.Karaoke.Develop
     /// 2. main text(Lyric)
     /// 3. romaji
     /// </summary>
-    public class PartialLyric : FillFlowContainer<MaskText>
+    internal class PartialLyric : FillFlowContainer
     {
-        
+        public float Progress
+        {
+            set
+            {
+                _topText.Progress = value;
+                _mainText.Progress = value;
+                _bottomText.Progress = value;
+            }
+        }
+
+        public Color4 FrontTextColor
+        {
+            set
+            {
+                _topText.FrontTextColor = value;
+                _mainText.FrontTextColor = value;
+                _bottomText.FrontTextColor = value;
+            }
+        }
+
+        public Color4 BackTextColor
+        {
+            set
+            {
+                _topText.BackTextColor = value;
+                _mainText.BackTextColor = value;
+                _bottomText.BackTextColor = value;
+            }
+        }
+
+        public string TopText
+        {
+            get => _topText.Text;
+            set => _topText.Text = value;
+        }
+
+        public string MainText
+        {
+            get => _mainText.Text;
+            set => _mainText.Text = value;
+        }
+
+        public string BottomText
+        {
+            get => _bottomText.Text;
+            set => _bottomText.Text = value;
+        }
+
+        private LyricTemplate _template;
+        public LyricTemplate Template
+        {
+            get => _template;
+            set
+            {
+                _template = value;
+                _topText.TextSize = _template?.TopText?.FontSize ?? 20;
+                _mainText.TextSize = _template?.MainText?.FontSize ?? 50;
+                _bottomText.TextSize = _template?.BottomText?.FontSize ?? 20;
+                _topToMainBorderContainer.Height = 10;//TODO : real value
+                _mainToBottomBorderContainer.Height = 10;//TODO : real value
+            }
+        }
+
+        private readonly MaskText _topText;
+
+        private readonly Container _topToMainBorderContainer;
+
+        private readonly MaskText _mainText;
+
+        private readonly Container _mainToBottomBorderContainer;
+
+        private readonly MaskText _bottomText;
+
+        public PartialLyric()
+        {
+            AutoSizeAxes = Axes.Both;
+            Direction = FillDirection.Vertical;
+            Spacing = new Vector2(-10);
+            Children = new Drawable[]
+            {
+                _topText = new MaskText
+                {
+                    Anchor = Anchor.TopCentre,
+                    Origin = Anchor.TopCentre
+                },
+                _topToMainBorderContainer = new Container(),
+                _mainText = new MaskText
+                {
+                    Anchor = Anchor.TopCentre,
+                    Origin = Anchor.TopCentre
+                },
+                _mainToBottomBorderContainer = new Container(),
+                _bottomText = new MaskText
+                {
+                    Anchor = Anchor.TopCentre,
+                    Origin = Anchor.TopCentre
+                }
+            };
+        }
+
+        protected override void LoadComplete()
+        {
+            base.LoadComplete();
+
+            //use default template if null
+            if(Template == null)
+                Template = new LyricTemplate();
+        }
     }
 
     /// <summary>
@@ -67,7 +194,7 @@ namespace osu.Game.Rulesets.Karaoke.Develop
     /// 2. front text
     /// 2. back text
     /// </summary>
-    public class MaskText : FillFlowContainer
+    internal class MaskText : FillFlowContainer
     {
         private float _progress;
         public float Progress 
