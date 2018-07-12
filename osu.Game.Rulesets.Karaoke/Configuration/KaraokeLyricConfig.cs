@@ -1,6 +1,9 @@
 ﻿// Copyright (c) 2007-2018 ppy Pty Ltd <contact@ppy.sh>.
 // Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
 
+using System;
+using Newtonsoft.Json;
+using osu.Game.Rulesets.Karaoke.Configuration.Types;
 using osu.Game.Rulesets.Karaoke.Objects;
 using osu.Game.Rulesets.Karaoke.Objects.Types;
 
@@ -9,7 +12,7 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
     /// <summary>
     ///     karaoke lyric config
     /// </summary>
-    public class KaraokeLyricConfig : RecordChangeObject, ICopyable
+    public class KaraokeLyricConfig : ICloneable , IEquatable<KaraokeLyricConfig> , IJsonString
     {
         /// <summary>
         ///     show subText
@@ -31,24 +34,42 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
         /// </summary>
         public bool ShowTranslate { get; set; } = true;
 
-        /// <summary>
-        ///     Copy
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <returns></returns>
-        public T Copy<T>() where T : class, ICopyable, new()
+        public object Clone()
         {
-            var result = new T();
-            if (result is KaraokeLyricConfig karaokeLyricConfig)
-            {
-                karaokeLyricConfig.SubTextVislbility = SubTextVislbility;
-                karaokeLyricConfig.RomajiVislbility = RomajiVislbility;
-                karaokeLyricConfig.RomajiFirst = RomajiFirst;
-                karaokeLyricConfig.ShowTranslate = ShowTranslate;
-                karaokeLyricConfig.Initialize();
-            }
+            return this.MemberwiseClone();
+        }
 
-            return result;
+        public bool Equals(KaraokeLyricConfig other)
+        {
+            return SubTextVislbility == other.SubTextVislbility
+                && RomajiVislbility == other.RomajiVislbility
+                && RomajiFirst == other.RomajiFirst
+                && ShowTranslate == other.ShowTranslate;
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj)) return false;
+            if (ReferenceEquals(this, obj)) return true;
+            if (obj.GetType() != this.GetType()) return false;
+            return Equals((KaraokeLyricConfig)obj);
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                var hashCode = SubTextVislbility.GetHashCode();
+                hashCode = (hashCode * 397) ^ RomajiVislbility.GetHashCode();
+                hashCode = (hashCode * 397) ^ RomajiFirst.GetHashCode();
+                hashCode = (hashCode * 397) ^ ShowTranslate.GetHashCode();
+                return hashCode;
+            }
+        }
+
+        public override string ToString()
+        {
+            return JsonConvert.SerializeObject(this);
         }
     }
 }

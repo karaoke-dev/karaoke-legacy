@@ -10,23 +10,5 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Input.Action
         public KaraokeTapAction KaraokeTapAction { get; set; }
 
         public bool Tap { get; set; }
-
-        /// <summary>
-        ///     Copy
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <returns></returns>
-        public override T Copy<T>()
-        {
-            var result = new T();
-            if (result is TapAction keyAction)
-            {
-                keyAction.KaraokeTapAction = KaraokeTapAction;
-                keyAction.Tap = Tap;
-                keyAction.Initialize();
-            }
-
-            return result;
-        }
     }
 }
