@@ -149,6 +149,8 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
         {
             base.UpdateValue();
 
+            //TODO
+            /*
             if (SubTextSegmentedControl == null)
                 return;
 
@@ -201,6 +203,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
                     };
                 }
             }
+            */
         }
     }
 }
