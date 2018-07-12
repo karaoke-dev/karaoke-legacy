@@ -14,25 +14,5 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Input.Action
         public double TotalMovingPosition { get; set; }
 
         public double RelativeMovingPosition { get; set; }
-
-        /// <summary>
-        ///     Copy
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <returns></returns>
-        public override T Copy<T>()
-        {
-            var result = new T();
-            if (result is ScrollAction keyAction)
-            {
-                keyAction.KaraokeScrollAction = KaraokeScrollAction;
-                keyAction.Touch = Touch;
-                keyAction.TotalMovingPosition = TotalMovingPosition;
-                keyAction.RelativeMovingPosition = RelativeMovingPosition;
-                keyAction.Initialize();
-            }
-
-            return result;
-        }
     }
 }

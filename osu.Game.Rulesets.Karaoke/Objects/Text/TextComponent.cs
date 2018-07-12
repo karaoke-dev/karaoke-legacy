@@ -1,6 +1,7 @@
 ﻿// Copyright (c) 2007-2018 ppy Pty Ltd <contact@ppy.sh>.
 // Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
 
+using System;
 using osu.Game.Rulesets.Karaoke.Objects.Types;
 
 namespace osu.Game.Rulesets.Karaoke.Objects.Text
@@ -8,7 +9,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Text
     /// <summary>
     ///     TextComponent
     /// </summary>
-    public class TextComponent : RecordChangeObject, IHasText, ICopyable
+    public class TextComponent : IHasText , ICloneable, IEquatable<TextComponent>
     {
         /// <summary>
         ///     text
@@ -38,21 +39,27 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Text
             };
         }
 
-        /// <summary>
-        ///     copy
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <returns></returns>
-        public T Copy<T>() where T : class, ICopyable, new()
+        public object Clone()
         {
-            var result = new T();
-            if (result is TextComponent textComponent)
-            {
-                textComponent.Text = Text;
-                textComponent.Initialize();
-            }
+            return this.MemberwiseClone();
+        }
 
-            return result;
+        public bool Equals(TextComponent other)
+        {
+            return string.Equals(Text, other.Text);
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj)) return false;
+            if (ReferenceEquals(this, obj)) return true;
+            if (obj.GetType() != this.GetType()) return false;
+            return Equals((TextComponent)obj);
+        }
+
+        public override int GetHashCode()
+        {
+            return (Text != null ? Text.GetHashCode() : 0);
         }
     }
 }

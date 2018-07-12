@@ -1,9 +1,11 @@
 ﻿// Copyright (c) 2007-2018 ppy Pty Ltd <contact@ppy.sh>.
 // Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
 
+using System;
 using osu.Framework.Configuration;
 using osu.Game.Configuration;
 using osu.Game.Rulesets.Configuration;
+using osu.Game.Rulesets.Karaoke.Configuration.Types;
 using osu.Game.Rulesets.Karaoke.Objects;
 using osu.Game.Rulesets.Karaoke.Objects.Types;
 
@@ -24,7 +26,7 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
         /// <param name="lookup"></param>
         /// <param name="value"></param>
         /// <returns></returns>
-        public BindableObject<U> SetObject<U>(T lookup, U value) where U : RecordChangeObject, ICopyable, new()
+        public BindableObject<U> SetObject<U>(T lookup, U value) where U :class, IEquatable<U>, ICloneable,IJsonString, new()
         {
             var bindable = GetOriginalBindable<U>(lookup) as BindableObject<U>;
 
@@ -48,11 +50,10 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
         /// </summary>
         /// <typeparam name="U"></typeparam>
         /// <param name="lookup"></param>
-        /// <param name="value"></param>
         /// <returns></returns>
-        public Bindable<U> GetObjectBindable<U>(T lookup) where U : class
+        public BindableObject<U> GetObjectBindable<U>(T lookup) where U : class, IEquatable<U>, ICloneable,IJsonString, new()
         {
-            var bindable = GetBindable<U>(lookup);
+            var bindable = GetOriginalBindable<U>(lookup) as BindableObject<U>;
             return bindable;
         }
     }

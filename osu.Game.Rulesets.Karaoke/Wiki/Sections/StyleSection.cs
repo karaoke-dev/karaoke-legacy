@@ -33,7 +33,7 @@ namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
             Content.Add(new WikiSubSectionHeader("Template"));
 
             var karaokeLyricConfig = RulesetConfig.GetObjectBindable<KaraokeLyricConfig>(KaraokeSetting.LyricStyle);
-            var lyricTemplate = RulesetConfig.GetBindable<LyricTemplate>(KaraokeSetting.Template);
+            var lyricTemplate = RulesetConfig.GetObjectBindable<LyricTemplate>(KaraokeSetting.Template);
 
             //show settingTemplate
             Content.Add(new Container
@@ -139,23 +139,27 @@ namespace osu.Game.Rulesets.Karaoke.Wiki.Sections
             };
             _topTextVisibleCheckBox.Bindable.ValueChanged += a =>
             {
-                Bindnig.Value.SubTextVislbility = a;
-                Bindnig.Value = Bindnig.Value;
+                var value = (Bindnig.Value?.Clone() ?? new KaraokeLyricConfig()) as KaraokeLyricConfig;
+                value.SubTextVislbility = a;
+                Bindnig.Value = value;
             };
             _romajiVisibleCheckBox.Bindable.ValueChanged += a =>
             {
-                Bindnig.Value.RomajiVislbility = a;
-                Bindnig.Value = Bindnig.Value;
+                var value = (Bindnig.Value?.Clone() ?? new KaraokeLyricConfig()) as KaraokeLyricConfig;
+                value.RomajiVislbility = a;
+                Bindnig.Value = value;
             };
             _romajiFirstCheckBox.Bindable.ValueChanged += a =>
             {
-                Bindnig.Value.RomajiFirst = a;
-                Bindnig.Value = Bindnig.Value;
+                var value = (Bindnig.Value?.Clone() ?? new KaraokeLyricConfig()) as KaraokeLyricConfig;
+                value.RomajiFirst = a;
+                Bindnig.Value = value;
             };
             _translateCheckBox.Bindable.ValueChanged += a =>
             {
-                Bindnig.Value.ShowTranslate = a;
-                Bindnig.Value = Bindnig.Value;
+                var value = (Bindnig.Value?.Clone() ?? new KaraokeLyricConfig()) as KaraokeLyricConfig;
+                value.ShowTranslate = a;
+                Bindnig.Value = value;
             };
         }
 
