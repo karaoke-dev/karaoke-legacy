@@ -1,19 +1,45 @@
-﻿// Copyright (c) 2007-2018 ppy Pty Ltd <contact@ppy.sh>.
-// Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
-
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using NUnit.Framework;
 using osu.Framework.Extensions.Color4Extensions;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Shapes;
+using osu.Framework.Timing;
 using osu.Game.Graphics;
+using osu.Game.Graphics.Containers;
 using osu.Game.Rulesets.Karaoke.UI.Extension;
+using osu.Game.Rulesets.Karaoke.UI.Interface;
 using osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel.Desktop.Pieces;
+using osu.Game.Tests.Visual;
 using OpenTK;
 using OpenTK.Graphics;
 
-namespace osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel.Desktop
+namespace osu.Game.Rulesets.Karaoke.Develop
 {
-    public partial class KaraokePanelOverlay
+    [TestFixture]
+    public class KaraokeDesktopPanel : OsuTestCase
+    {
+        public KaraokeDesktopPanel()
+        {
+            KaraokePanelOverlay panel = new KaraokePanelOverlay()
+            {
+                Clock = new FramedClock(new StopwatchClock(true)),
+                RelativeSizeAxes = Axes.X,
+                Origin = Anchor.BottomCentre,
+                Anchor = Anchor.BottomCentre,
+                Scale = new Vector2(1.0f),
+                Depth = 10f
+            };
+            Add(panel);
+
+            //open panel
+            AddStep("open panel", ()=> panel.ToggleVisibility());
+        }
+    }
+
+    public partial class KaraokePanelOverlay : WaveContainer
     {
         //TODO : all the setting object
         public KaraokeButton FirstLyricButton;
@@ -32,6 +58,9 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel.Desktop
         private const int horizontal_conponent_spacing = 10;
         private const int margin_padding = 10;
 
+
+        private readonly IAmKaraokeField _playField;
+
         protected override void Update()
         {
             if (_playField != null && LoadComplete)
@@ -40,6 +69,17 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel.Desktop
                 var current = _playField.GetCurrentTime();
                 TimeSlideBar.CurrentTime = current;
             }
+        }
+
+        /// <summary>
+        ///     Ctor
+        /// </summary>
+        /// <param name="playField"></param>
+        public KaraokePanelOverlay(IAmKaraokeField playField = null)
+        {
+            _playField = playField;
+
+            InitialPanel();
         }
 
         protected void InitialPanel()
@@ -206,7 +246,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel.Desktop
                                                             },
                                                         }
                                                     }
-
+                                                   
                                                 }
                                             },
                                         },
@@ -247,7 +287,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel.Desktop
                                                                         {
                                                                             Origin = Anchor.CentreLeft,
                                                                             RelativeSizeAxes = Axes.X,
-
+                                                                            
                                                                             MinValue = 0.5f,
                                                                             MaxValue = 1.5f,
                                                                             Value = 1,

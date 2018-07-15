@@ -88,8 +88,16 @@ namespace osu.Game.Rulesets.Karaoke.Develop
                 //add playfield
                 var stages = new List<KaraokeStageDefinition>
                 {
-                    new KaraokeStageDefinition { Columns = 10 },
-                    new KaraokeStageDefinition { Columns = 10 },
+                    new KaraokeStageDefinition
+                    {
+                        Columns = 11,
+                        DefaultTone = new Tone(),
+                    },
+                    new KaraokeStageDefinition
+                    {
+                        Columns = 11,
+                        DefaultTone = new Tone(),
+                    },
                 };
                 playfield = createPlayfield(stages);
 
@@ -213,7 +221,7 @@ namespace osu.Game.Rulesets.Karaoke.Develop
             var content = new Drawable[stageDefinitions.Count][];
             for (int i = 0; i < stageDefinitions.Count; i++)
             {
-                var newStage = new KaraokeStage(firstColumnIndex, stageDefinitions[i]);
+                var newStage = new KaraokeStage(stageDefinitions[i]);
                 newStage.VisibleTimeRange.BindTo(VisibleTimeRange);
                 newStage.Inverted.BindTo(Inverted);
 

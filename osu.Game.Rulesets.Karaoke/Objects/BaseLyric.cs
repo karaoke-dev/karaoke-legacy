@@ -201,22 +201,6 @@ namespace osu.Game.Rulesets.Karaoke.Objects
 
         [JsonIgnore] public string Delimiter = "";
 
-        public static MainTextList SetJapaneseLyric(string str)
-        {
-            var returnList = new MainTextList();
-            var startCharIndex = 0;
-            foreach (var singleCharacter in str)
-            {
-                returnList.Add(startCharIndex, new MainText
-                {
-                    Text = singleCharacter.ToString()
-                });
-                startCharIndex++;
-            }
-
-            return returnList;
-        }
-
         public static MainTextList SetEnglishLyric(string str)
         {
             var returnList = new MainTextList();
