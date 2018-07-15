@@ -6,6 +6,7 @@ using System.Linq;
 using Newtonsoft.Json;
 using osu.Game.Database;
 using osu.Game.Rulesets.Karaoke.Configuration;
+using osu.Game.Rulesets.Karaoke.Objects.Helps;
 using osu.Game.Rulesets.Karaoke.Objects.Lyric;
 using osu.Game.Rulesets.Karaoke.Objects.Text;
 using osu.Game.Rulesets.Karaoke.Objects.TimeLine;
@@ -21,20 +22,8 @@ namespace osu.Game.Rulesets.Karaoke.Objects
     ///     base karaoke object
     ///     contain single sentence , a main text and several additional text
     /// </summary>
-    public class BaseLyric : HitObject, ILyric, IHasPosition, IHasCombo, IHasEndTime, IHasPrimaryKey
+    public class BaseLyric : HitObject, ILyric, IHasCombo, IHasEndTime, IHasPrimaryKey
     {
-        /// <summary>
-        ///     The time at which the HitObject ends.
-        /// </summary>
-        [JsonIgnore]
-        public double EndTime => StartTime + Duration + (EndPreemptiveTime ?? 0);
-
-        /// <summary>
-        ///     The duration of the HitObject.
-        /// </summary>
-        [JsonIgnore]
-        public double Duration => TimeLines.LastOrDefault().Value?.RelativeTime ?? 0;
-
         /// <summary>
         ///     ID
         /// </summary>
@@ -47,12 +36,6 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         public int? TemplateIndex { get; set; } = 0;
 
         /// <summary>
-        ///     position Index
-        ///     if null , will be auto allogate
-        /// </summary>
-        public int? PositionIndex { get; set; } = null;
-
-        /// <summary>
         ///     the index of singer
         ///     Default is singler1;
         ///     Each singer has different Text color
@@ -60,58 +43,10 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         public int? SingerIndex { get; set; } = 0;
 
         /// <summary>
-        ///     if template !=null will relative to template's position
-        ///     else, will be absolute position
-        /// </summary>
-        public Vector2 Position { get; set; }
-
-        /// <inheritdoc />
-        /// <summary>
-        ///     X position
-        /// </summary>
-        [JsonIgnore]
-        public float X
-        {
-            get => Position.X;
-            set => Position = new Vector2(value, Y);
-        }
-
-        /// <inheritdoc />
-        /// <summary>
-        ///     Y position
-        /// </summary>
-        [JsonIgnore]
-        public float Y
-        {
-            get => Position.Y;
-            set => Position = new Vector2(X, value);
-        }
-
-        /// <summary>
-        ///     width
-        /// </summary>
-        [JsonIgnore]
-        public float? Width { get; set; }
-
-        /// <summary>
-        ///     height
-        /// </summary>
-        [JsonIgnore]
-        public float? Height { get; set; }
-
-        /// <summary>
         ///     Main text
         /// </summary>
-        // TODO : list format
-        // TODO : [set] if change the value here, will generate the list
-        // TODO : [get] get the value is combine from list
         [JsonIgnore]
         public MainTextList Lyric { get; set; } = new MainTextList();
-
-        /// <summary>
-        ///     record list time where position goes
-        /// </summary>
-        public TimeLineList TimeLines { get; set; } = new TimeLineList();
 
         /// <summary>
         ///     all the translate for a single language
@@ -146,11 +81,6 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         public TranslateCode Lang { get; set; }
 
         /// <summary>
-        ///     Stage Index
-        /// </summary>
-        public int StageIndex { get; set; }
-
-        /// <summary>
         ///     Version of the lyric
         /// </summary>
         public virtual int Ver { get; set; } = 0;
@@ -159,20 +89,9 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         #region Function
 
         /// <summary>
-        ///     Splits the by progress point.
-        /// </summary>
-        /// <returns>The by progress point.</returns>
-        public List<BaseLyric> SplitByProgressPoint()
-        {
-            //TODO : implement
-            return null;
-        }
-
-        /// <summary>
         ///     Times the is in time.
         /// </summary>
         /// <returns><c>true</c>, if is in time was timed, <c>false</c> otherwise.</returns>
-        /// <param name="lyric">Karaoke object.</param>
         /// <param name="nowRelativeTime">Now time.</param>
         public bool IsInTime(double nowRelativeTime)
         {
@@ -182,19 +101,31 @@ namespace osu.Game.Rulesets.Karaoke.Objects
             return false;
         }
 
+        /// <summary>
+        ///     The time at which the HitObject ends.
+        /// </summary>
+        [JsonIgnore]
+        public double EndTime => StartTime + Duration + (EndPreemptiveTime ?? 0);
+
+        /// <summary>
+        ///     The duration of the HitObject.
+        /// </summary>
+        [JsonIgnore]
+        public double Duration => LyricHelper.GetLyricTimeLines(this).LastOrDefault().Value.RelativeTime;
+
         #endregion
     }
 
     /// <summary>
     ///     Main Text List
     /// </summary>
-    public class MainTextList : LyricDictionary<int, MainText>, IHasText
+    public class MainTextList : LyricDictionary<int, LyricText.LyricText>, IHasText
     {
         public string Text
         {
             get
             {
-                var result = this.Select(i => i.Value.Text).Aggregate((i, j) => i + Delimiter + j);
+                var result = this.Select(i => i.Value.MainText).Aggregate((i, j) => i + Delimiter + j);
                 return result;
             }
         }
@@ -207,9 +138,9 @@ namespace osu.Game.Rulesets.Karaoke.Objects
             var startCharIndex = 0;
             foreach (var singleCharacter in str)
             {
-                returnList.Add(startCharIndex, new MainText
+                returnList.Add(startCharIndex, new LyricText.LyricText
                 {
-                    Text = singleCharacter.ToString()
+                    MainText = singleCharacter.ToString()
                 });
                 startCharIndex++;
             }
@@ -225,12 +156,5 @@ namespace osu.Game.Rulesets.Karaoke.Objects
 
             return returnList;
         }
-    }
-
-    /// <summary>
-    ///     Main Text
-    /// </summary>
-    public class MainText : TextComponent
-    {
     }
 }

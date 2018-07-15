@@ -2,7 +2,6 @@
 // Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
 
 using osu.Game.Rulesets.Karaoke.Objects.Lyric.Types;
-using osu.Game.Rulesets.Karaoke.Objects.TimeLine;
 using osu.Game.Rulesets.Karaoke.Objects.Translate;
 
 namespace osu.Game.Rulesets.Karaoke.Objects.Types
@@ -16,11 +15,6 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Types
         ///     Main Text list
         /// </summary>
         MainTextList Lyric { get; set; }
-
-        /// <summary>
-        ///     list progress point
-        /// </summary>
-        TimeLineList TimeLines { get; set; }
 
         /// <summary>
         ///     list translate
