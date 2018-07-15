@@ -3,6 +3,7 @@
 
 using System.Collections.Generic;
 using osu.Game.Rulesets.Karaoke.Configuration;
+using osu.Game.Rulesets.Karaoke.Edit.Tools;
 using osu.Game.Rulesets.Karaoke.Objects;
 using osu.Game.Rulesets.Karaoke.Objects.Lyric;
 using osu.Game.Rulesets.Karaoke.Objects.Note;
@@ -19,8 +20,8 @@ namespace osu.Game.Rulesets.Karaoke.Helps
     {
         public static JpLyric WithoutProgressPoint()
         {
-            var karaokeObject = new JpLyric();
-            karaokeObject.Lyric = MainTextList.SetJapaneseLyric("終わるまでは終わらないよ");
+            LyricCreator creator = new LyricCreator();
+            var karaokeObject = creator.Create("終わるまでは終わらないよ") as JpLyric;
             karaokeObject.Position = new Vector2(300, 150);
             karaokeObject.Furigana.Add(0, new FuriganaText
             {
@@ -40,8 +41,8 @@ namespace osu.Game.Rulesets.Karaoke.Helps
         /// <returns></returns>
         public static JpLyric GenerateDemo001()
         {
-            var karaokeObject = new JpLyric();
-            karaokeObject.Lyric = MainTextList.SetJapaneseLyric("終わるまでは終わらないよ");
+            LyricCreator creator = new LyricCreator();
+            var karaokeObject = creator.Create("終わるまでは終わらないよ") as JpLyric;
             karaokeObject.Position = new Vector2(300, 150);
             karaokeObject.Furigana.Add(0, new FuriganaText
             {
@@ -67,8 +68,8 @@ namespace osu.Game.Rulesets.Karaoke.Helps
         /// <returns></returns>
         public static JpLyric GenerateWithStartAndDuration(double startTime, double duration)
         {
-            var karaokeObject = new JpLyric();
-            karaokeObject.Lyric = MainTextList.SetJapaneseLyric("終わるまでは終わらないよ");
+            LyricCreator creator = new LyricCreator();
+            var karaokeObject = creator.Create("終わるまでは終わらないよ") as JpLyric;
             karaokeObject.Position = new Vector2(300, 150);
             karaokeObject.Furigana.Add(0, new FuriganaText
             {
@@ -111,9 +112,11 @@ namespace osu.Game.Rulesets.Karaoke.Helps
 
         public static JpLyric GenerateDeomKaraokeLyric()
         {
+            LyricCreator creator = new LyricCreator();
+            var karaokeObject = creator.Create("カラオケ") as JpLyric;
             return new JpLyric
             {
-                Lyric = MainTextList.SetJapaneseLyric("カラオケ"),
+                Lyric = karaokeObject.Lyric,
                 Furigana = new Dictionary<int, FuriganaText>
                 {
                     { 0, new FuriganaText { Text = "か" } },
