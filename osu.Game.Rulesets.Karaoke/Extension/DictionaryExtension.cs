@@ -52,5 +52,31 @@ namespace osu.Game.Rulesets.Karaoke.Extension
 
             return null;
         }
+
+        /// <summary>
+        /// Get key if value is exist
+        /// </summary>
+        /// <typeparam name="K"></typeparam>
+        /// <typeparam name="V"></typeparam>
+        /// <param name="dictionary"></param>
+        /// <param name="value"></param>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        public static bool TryGetKey<K, V>(this Dictionary<K, V> dictionary, V value, out K key)
+        {
+            
+            foreach (var keyValuePair in dictionary)
+            {
+                if (keyValuePair.Value.Equals(value))
+                {
+                    key = keyValuePair.Key;
+                    return true;
+                }
+            }
+
+            //if not found
+            key = default;
+            return false;
+        }
     }
 }
