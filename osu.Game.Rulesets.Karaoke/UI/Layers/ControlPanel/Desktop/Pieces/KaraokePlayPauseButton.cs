@@ -49,7 +49,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel.Desktop.Pieces
                 Origin = Anchor.Centre,
                 Scale = new Vector2(1.0f),
                 IconScale = new Vector2(1.0f),
-                HoverColour = Color4.Yellow.Opacity(0.2f)
+                //HoverColour = Color4.Yellow.Opacity(0.2f)
                 //Action = play,
             });
         }

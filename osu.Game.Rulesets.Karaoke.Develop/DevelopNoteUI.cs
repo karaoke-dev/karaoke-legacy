@@ -162,8 +162,8 @@ namespace osu.Game.Rulesets.Karaoke.Develop
             return drawableNote;
         }
 
-        protected override IReadOnlyDependencyContainer CreateLocalDependencies(IReadOnlyDependencyContainer parent)
-            => dependencies = new DependencyContainer(base.CreateLocalDependencies(parent));
+        //protected override IReadOnlyDependencyContainer CreateLocalDependencies(IReadOnlyDependencyContainer parent)
+        //    => dependencies = new DependencyContainer(base.CreateLocalDependencies(parent));
 
         [BackgroundDependencyLoader]
         private void load(RulesetStore rulesets, SettingsStore settings)
@@ -204,8 +204,9 @@ namespace osu.Game.Rulesets.Karaoke.Develop
         private readonly List<KaraokeStage> stages = new List<KaraokeStage>();
 
         public KaraokePlayfield(List<KaraokeStageDefinition> stageDefinitions)
-            : base(ScrollingDirection.Left)
         {
+            Direction.Value = ScrollingDirection.Left;
+
             if (stageDefinitions == null)
                 throw new ArgumentNullException(nameof(stageDefinitions));
 

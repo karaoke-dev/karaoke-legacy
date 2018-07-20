@@ -46,8 +46,9 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Note
         private readonly List<KaraokeStage> stages = new List<KaraokeStage>();
 
         public KaraokeTonePlayfield(List<KaraokeStageDefinition> stageDefinitions)
-            : base(ScrollingDirection.Left)
         {
+            Direction.Value = ScrollingDirection.Left;
+
             if (stageDefinitions == null)
                 throw new ArgumentNullException(nameof(stageDefinitions));
 
