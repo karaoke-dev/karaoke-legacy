@@ -109,7 +109,7 @@ namespace osu.Game
             Resources.AddStore(new DllResourceStore(@"osu.Game.Rulesets.Karaoke.dll"));
             Resources.AddStore(new DllResourceStore(@"osu.Game.Resources.dll"));
 
-            dependencies.Cache(contextFactory = new DatabaseContextFactory(Host));
+            dependencies.Cache(contextFactory = new DatabaseContextFactory(Host.Storage));
 
             dependencies.Cache(new LargeTextureStore(new RawTextureLoaderStore(new NamespacedResourceStore<byte[]>(Resources, @"Textures"))));
 
