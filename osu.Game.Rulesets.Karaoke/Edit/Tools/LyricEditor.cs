@@ -75,19 +75,30 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Tools
 
         }
 
-        public void AddTimeline(BaseLyric lyric, MainText addIn, TimeLine timeline)
+        public void AddTimeline(MainText addIn, TimeLineIndex index)
         {
-
+            var previousPoint = TargetLyric.TimeLines.GetFirstProgressPointByIndex(index);
+            var nextPoint = TargetLyric.TimeLines.GetLastProgressPointByIndex(index);
+            var deltaTime = ((previousPoint.Value?.RelativeTime ?? 0) + (nextPoint.Value?.RelativeTime ?? (previousPoint.Value?.RelativeTime ?? 0) + 500)) / 2;
+            var point = new TimeLine(deltaTime);
         }
+
+        public void AddTimeline(MainText addIn, TimeLine timeline)
+        {
+            //TargetLyric.TimeLines.Add();
+        }
+
+       
 
         public void RemoveTimeline(BaseLyric lyric, TimeLine timeline)
         {
 
         }
 
-        public void AdjustTime(BaseLyric lyric, TimeLine timeline,double newTime)
+        public void AdjustTime(TimeLine timeline,double newTime)
         {
 
+            AutoFixTime(TargetLyric);
         }
 
         protected void ReArrangeKey(BaseLyric lyric)
@@ -115,5 +126,10 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Tools
         {
 
         }
+
+        protected void AutoFixTime(BaseLyric lyric)
+        {
+
+        } 
     }
 }
