@@ -14,6 +14,7 @@ using osu.Game.Rulesets.Karaoke.Objects;
 using osu.Game.Tests.Visual;
 using osu.Framework.Graphics.Shapes;
 using osu.Game.Rulesets.Karaoke.Objects.Lyric.Types;
+using osu.Game.Graphics.UserInterface;
 
 namespace osu.Game.Rulesets.Karaoke.Develop
 {
@@ -23,6 +24,11 @@ namespace osu.Game.Rulesets.Karaoke.Develop
         public DevelopLyric()
         {
             LyricContainer drawableLyric = null;
+
+            Add(new OsuSliderBar<double>()
+            {
+                Width = 300,
+            });
 
             Add(new Container
             {
@@ -115,7 +121,7 @@ namespace osu.Game.Rulesets.Karaoke.Develop
             set
             {
                 _template = value;
-                foreach(var parcialLyric in Children)
+                foreach (var parcialLyric in Children)
                 {
                     parcialLyric.Template = _template;
                 }
@@ -123,20 +129,20 @@ namespace osu.Game.Rulesets.Karaoke.Develop
         }
 
         private BaseLyric _lyric;
-        public BaseLyric Lyric 
-        { 
+        public BaseLyric Lyric
+        {
             get => _lyric;
             set
             {
                 _lyric = value;
                 this.Clear();
-                foreach(var single in Lyric.Lyric)
+                foreach (var single in Lyric.Lyric)
                 {
                     var key = single.Key;
                     var lyricValue = single.Value;
 
-                    ((IHasFurigana)Lyric).Furigana.TryGetValue(key,out var furigana);
-                    ((IHasRomaji)Lyric).Romaji.TryGetValue(key,out var romaji);
+                    ((IHasFurigana)Lyric).Furigana.TryGetValue(key, out var furigana);
+                    ((IHasRomaji)Lyric).Romaji.TryGetValue(key, out var romaji);
 
                     this.Add(new PartialLyric()
                     {
@@ -145,10 +151,11 @@ namespace osu.Game.Rulesets.Karaoke.Develop
                         BottomText = romaji?.Text ?? " ",
                         Origin = Anchor.TopLeft,
                         Anchor = Anchor.TopLeft,
-                        FrontTextColor = Color4.Blue
+                        FrontTextColor = Color4.Blue,
+                        Index = key,
                     });
                 }
-            } 
+            }
         }
 
         private double _relativeTime;
@@ -158,7 +165,25 @@ namespace osu.Game.Rulesets.Karaoke.Develop
             set
             {
                 _relativeTime = value;
-                //TODO : implement
+                var startProgressPoint = Lyric.TimeLines.GetFirstProgressPointByTime(_relativeTime);
+                var endProgressPoint = Lyric.TimeLines.GetLastProgressPointByTime(_relativeTime);
+
+                foreach (var partialLyric in Children)
+                {
+                    if (partialLyric.Index <= startProgressPoint.Key.Index)
+                    {
+                        partialLyric.Progress = 1;
+                    }
+                    else if (partialLyric.Index > endProgressPoint?.Key.Index)
+                    {
+                        partialLyric.Progress = 0;
+                    }
+                    else
+                    {
+                        //TODO : cal
+                        partialLyric.Progress = 0.5f;
+                    }
+                }
             }
         }
 
@@ -185,6 +210,8 @@ namespace osu.Game.Rulesets.Karaoke.Develop
                 _bottomText.Progress = value;
             }
         }
+
+        public int Index { get; set; }
 
         public Color4 FrontTextColor
         {
@@ -286,7 +313,7 @@ namespace osu.Game.Rulesets.Karaoke.Develop
             base.LoadComplete();
 
             //use default template if null
-            if(Template == null)
+            if (Template == null)
                 Template = new LyricTemplate();
         }
     }
@@ -300,19 +327,19 @@ namespace osu.Game.Rulesets.Karaoke.Develop
     internal class MaskText : FillFlowContainer
     {
         private float _progress;
-        public float Progress 
-        { 
+        public float Progress
+        {
             get => _progress;
             set
             {
                 _progress = value;
                 UpdateProgress();
-            } 
+            }
         }
 
         private string _text;
-        public string Text 
-        { 
+        public string Text
+        {
             get => _text;
             set
             {
@@ -320,30 +347,30 @@ namespace osu.Game.Rulesets.Karaoke.Develop
                 _frontText.Text = _text;
                 _backtext.Text = _text;
                 UpdateProgress();
-            } 
+            }
         }
 
         private float _testSize;
-        public float TextSize 
-        { 
+        public float TextSize
+        {
             get => _testSize;
             set
             {
                 _testSize = value;
                 _frontText.TextSize = _testSize;
                 _backtext.TextSize = _testSize;
-            } 
+            }
         }
 
         public Color4 FrontTextColor
         {
-            get=> _frontText.Colour;
+            get => _frontText.Colour;
             set => _frontText.Colour = value;
         }
 
         public Color4 BackTextColor
         {
-            get=> _backtext.Colour;
+            get => _backtext.Colour;
             set => _backtext.Colour = value;
         }
 
@@ -370,7 +397,7 @@ namespace osu.Game.Rulesets.Karaoke.Develop
                             UseFullGlyphHeight = false
                         }
                     }
-                    
+
                 },
                 _rightMask = new Container
                 {
