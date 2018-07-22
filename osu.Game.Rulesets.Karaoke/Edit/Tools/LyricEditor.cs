@@ -15,6 +15,11 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Tools
 
         }
 
+        public LyricEditor(BaseLyric lyric)
+        {
+            TargetLyric = lyric;
+        }
+
         private BaseLyric _lyric;
         public BaseLyric TargetLyric
         {
@@ -55,6 +60,14 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Tools
             ReArrangeKey(TargetLyric);
         }
 
+        public void AddFurigana(int index,FuriganaText furiganaText)
+        {
+            if(TargetLyric is JpLyric jpLyric)
+            {
+                jpLyric.Furigana.Add(index, furiganaText);
+            }
+        }
+
         public void AddFurigana(BaseLyric lyric, MainText addIn, FuriganaText furiganaText)
         {
 
@@ -65,6 +78,14 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Tools
 
         }
 
+        public void AddRomaji(int index,RomajiText romajiText)
+        {
+            if(TargetLyric is RomajiLyric RomajiLyric)
+            {
+                RomajiLyric.Romaji.Add(index,romajiText);
+            }
+        }
+
         public void AddRomaji(BaseLyric lyric, MainText addIn, RomajiText romajiText)
         {
 
@@ -73,6 +94,11 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Tools
         public void RemoveRomaji(BaseLyric lyric, MainText addIn)
         {
 
+        }
+
+        public void AddTimeline(TimeLineIndex index,TimeLine  timeline)
+        {
+            TargetLyric.TimeLines.Add(index, timeline);
         }
 
         public void AddTimeline(MainText addIn, TimeLineIndex index)
