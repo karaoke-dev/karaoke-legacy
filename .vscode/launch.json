@@ -68,6 +68,23 @@
                 }
             },
             "console": "internalConsole"
+        },
+        {
+            "name": "Karaoke Develop (Debug)",
+            "type": "coreclr",
+            "request": "launch",
+            "program": "dotnet",
+            "args": [
+                "${workspaceRoot}/osu.Game.Rulesets.Karaoke.Develop/bin/Debug/netcoreapp2.1/osu.Game.Rulesets.Karaoke.Develop.dll"
+            ],
+            "cwd": "${workspaceRoot}",
+            "preLaunchTask": "Build tests (Debug)",
+            "linux": {
+                "env": {
+                    "LD_LIBRARY_PATH": "${workspaceRoot}/osu.Game.Rulesets.Karaoke.Develop/bin/Debug/netcoreapp2.1:${env:LD_LIBRARY_PATH}"
+                }
+            },
+            "console": "internalConsole"
         }
     ]
 }
