@@ -184,9 +184,12 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
                 Progress = startPosition + (endPosition - startPosition) / (float)(endProgressPoint?.Value.RelativeTime - startProgressPoint.Value.RelativeTime) * (float)relativeTime;
                 */
 
+                LyricContainer.RelativeTime = currentRelativeTime;
+
                 Show();
                 Alpha = 1;
 
+                
             }
             else
             {

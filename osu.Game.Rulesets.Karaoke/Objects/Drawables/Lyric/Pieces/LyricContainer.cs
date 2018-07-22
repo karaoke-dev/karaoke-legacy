@@ -1,8 +1,11 @@
-﻿using osu.Framework.Graphics;
+﻿using System.Collections.Generic;
+using System.Linq;
+using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Sprites;
 using osu.Game.Rulesets.Karaoke.Configuration;
 using osu.Game.Rulesets.Karaoke.Objects.Lyric.Types;
+using osu.Game.Rulesets.Karaoke.Objects.TimeLine;
 using OpenTK;
 using OpenTK.Graphics;
 
@@ -47,7 +50,8 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric.Pieces
                         BottomText = romaji?.Text ?? " ",
                         Origin = Anchor.TopLeft,
                         Anchor = Anchor.TopLeft,
-                        FrontTextColor = Color4.Blue
+                        FrontTextColor = Color4.Blue,
+                        Index = key,
                     });
                 }
             }
@@ -60,7 +64,25 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric.Pieces
             set
             {
                 _relativeTime = value;
-                //TODO : implement
+                var startProgressPoint = Lyric.TimeLines.GetFirstProgressPointByTime(_relativeTime);
+                var endProgressPoint = Lyric.TimeLines.GetLastProgressPointByTime(_relativeTime);
+
+                foreach (var partialLyric in Children)
+                {
+                    if (partialLyric.Index <= startProgressPoint.Key.Index)
+                    {
+                        partialLyric.Progress = 1;
+                    }
+                    else if (partialLyric.Index > endProgressPoint?.Key.Index)
+                    {
+                        partialLyric.Progress = 0;
+                    }
+                    else
+                    {
+                        //TODO : cal
+                        partialLyric.Progress = 0.5f;
+                    }
+                }
             }
         }
 
@@ -87,6 +109,8 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric.Pieces
                 _bottomText.Progress = value;
             }
         }
+
+        public int Index { get; set; }
 
         public Color4 FrontTextColor
         {
