@@ -25,11 +25,6 @@ namespace osu.Game.Rulesets.Karaoke.Develop
         {
             LyricContainer drawableLyric = null;
 
-            Add(new OsuSliderBar<double>()
-            {
-                Width = 300,
-            });
-
             Add(new Container
             {
                 Padding = new MarginPadding(25f),
