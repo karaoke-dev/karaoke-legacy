@@ -69,7 +69,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.TimeLine
         {
             unchecked
             {
-                return (Index * MaxCharNumber) + (int)((Percentage ?? 1) * MaxCharNumber);
+                return (Index * MaxCharNumber) + (int)((Percentage) * MaxCharNumber);
             }
         }
     }
