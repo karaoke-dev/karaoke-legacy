@@ -1,4 +1,6 @@
-﻿using osu.Framework.Graphics;
+﻿using System.Collections.Generic;
+using System.Linq;
+using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Sprites;
 using osu.Game.Rulesets.Karaoke.Configuration;
@@ -94,9 +96,27 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric.Pieces
             }
         }
 
+        protected float NewLineXPosition { get; set; }
+
+        protected override IEnumerable<Vector2> ComputeLayoutPositions()
+        {
+            var points = base.ComputeLayoutPositions().ToArray();
+            for (int i = 0; i < points.Length; i++)
+            {
+                if (points[i].Y != points[0].Y)
+                {
+                    points[i].X = points[i].X + NewLineXPosition;
+                }
+               
+            }
+
+            return points;
+        }
+
         public LyricContainer()
         {
             Direction = FillDirection.Full;
+            NewLineXPosition = 50;
         }
     }
 
@@ -165,13 +185,13 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric.Pieces
             set
             {
                 _template = value;
-                _topText.TextSize = _template?.TopText?.FontSize ?? 20;
-                _mainText.TextSize = _template?.MainText?.FontSize ?? 50;
-                _bottomText.TextSize = _template?.BottomText?.FontSize ?? 20;
+                _topText.TextSize = _template?.TopText?.FontSize ?? 30;
+                _mainText.TextSize = _template?.MainText?.FontSize ?? 80;
+                _bottomText.TextSize = _template?.BottomText?.FontSize ?? 30;
 
-                _topText.Height = _template?.TopText?.FontSize ?? 20;
-                _mainText.Height = _template?.MainText?.FontSize ?? 50;
-                _bottomText.Height = _template?.BottomText?.FontSize ?? 20;
+                _topText.Height = _template?.TopText?.FontSize ?? 30;
+                _mainText.Height = _template?.MainText?.FontSize ?? 100;
+                _bottomText.Height = _template?.BottomText?.FontSize ?? 140;
 
                 _topToMainBorderContainer.Height = 10;//TODO : real value
                 _mainToBottomBorderContainer.Height = 10;//TODO : real value

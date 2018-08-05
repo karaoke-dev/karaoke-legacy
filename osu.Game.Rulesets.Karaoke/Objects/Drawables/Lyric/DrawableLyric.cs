@@ -69,7 +69,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
                 TranslateText
             };
 
-            Width = 300;
+            Width = 1000;
 
             LyricContainer.Lyric = hitObject;
 
