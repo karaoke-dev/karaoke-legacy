@@ -40,15 +40,15 @@ namespace osu.Game.Rulesets.Karaoke.Objects.TimeLine
 
             var result = this.Where(x => x.Value.RelativeTime <= nowRelativeTime).ToDictionary(x => x.Key, x => x.Value);
 
-            if (result.Count() < 2)
-                return this.First();
+            if (!result.Any())
+                return new KeyValuePair<TimeLineIndex, TimeLine>(new TimeLineIndex(-1,0), new TimeLine(0));
 
             var maxResult = Find(result.Keys.Max());
 
-            if (maxResult.Equals(default(KeyValuePair<int, TimeLine>)))
-                return new KeyValuePair<TimeLineIndex, TimeLine>(new TimeLineIndex(-1), new TimeLine(0));
+            if(maxResult!=null)
+                return maxResult.Value;
 
-            return maxResult.Value;
+            return new KeyValuePair<TimeLineIndex, TimeLine>(new TimeLineIndex(-1, 0), new TimeLine(0));
         }
 
         /// <summary>
@@ -77,9 +77,9 @@ namespace osu.Game.Rulesets.Karaoke.Objects.TimeLine
             if (result.Count() < 2)
                 return this.Last();
 
-            var maxResult = Find(result.Keys.Max());
+            var maxResult = Find(result.Keys.Min());
 
-            if (maxResult.Equals(default(KeyValuePair<int, TimeLine>)))
+            if (maxResult.Equals(default(KeyValuePair<TimeLineIndex, TimeLine>)))
             {
                 var key = Keys.Max();
                 return Find(key);

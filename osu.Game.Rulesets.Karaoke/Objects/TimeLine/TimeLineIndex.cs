@@ -12,14 +12,9 @@ namespace osu.Game.Rulesets.Karaoke.Objects.TimeLine
 
         public int Index { get; set; }
 
-        public float? Percentage { get; set; }
+        public float Percentage { get; set; }
 
-        public TimeLineIndex()
-        {
-
-        }
-
-        public TimeLineIndex(int index, float? percentage = null)
+        public TimeLineIndex(int index, float percentage = 1)
         {
             Index = index;
             Percentage = percentage;
@@ -46,7 +41,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.TimeLine
         /// <returns></returns>
         public bool Equals(TimeLineIndex other)
         {
-            if (other?.Index == Index && other.Percentage == Index)
+            if (other?.Index == Index && other.Percentage == Percentage)
                 return true;
 
             return false;
@@ -59,9 +54,9 @@ namespace osu.Game.Rulesets.Karaoke.Objects.TimeLine
         /// <returns></returns>
         public override bool Equals(object obj)
         {
-            if (ReferenceEquals(null, obj)) return false;
-            if (ReferenceEquals(this, obj)) return true;
-            if (obj.GetType() != this.GetType()) return false;
+            //if (ReferenceEquals(null, obj)) return false;
+            //if (ReferenceEquals(this, obj)) return true;
+            //if (obj.GetType() != this.GetType()) return false;
             return Equals((TimeLineIndex)obj);
         }
 
@@ -74,8 +69,9 @@ namespace osu.Game.Rulesets.Karaoke.Objects.TimeLine
         {
             unchecked
             {
-                return (Index * MaxCharNumber) + (int)((Percentage ?? 1) * MaxCharNumber);
+                return (Index * MaxCharNumber) + (int)((Percentage) * MaxCharNumber);
             }
         }
+        
     }
 }

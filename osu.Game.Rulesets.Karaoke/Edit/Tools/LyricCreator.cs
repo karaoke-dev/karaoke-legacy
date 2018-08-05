@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using osu.Game.Rulesets.Karaoke.Objects;
 using osu.Game.Rulesets.Karaoke.Objects.Lyric;
+using osu.Game.Rulesets.Karaoke.Objects.TimeLine;
 
 namespace osu.Game.Rulesets.Karaoke.Edit.Tools
 {
@@ -11,6 +12,8 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Tools
     /// </summary>
     public class LyricCreator
     {
+        #region Method
+
         /// <summary>
         /// Create
         /// TODO : add another language support
@@ -31,7 +34,38 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Tools
                 startCharIndex++;
             }
 
+            CreateDefaultTimelines(lyric);
+
+            var editor = new LyricEditor();
+            editor.TargetLyric = lyric;
+            //fix lyric format
+            if (!editor.LyricFormatIsValid())
+            {
+                editor.FixLyricFormat();
+            }
+
             return lyric;
         }
+
+        #endregion
+
+        #region Utilities
+
+        protected void CreateDefaultTimelines(BaseLyric lyric)
+        {
+            var relativeTime = 0;
+            foreach (var lyricPart in lyric.Lyric)
+            {
+                relativeTime = relativeTime + 200;
+                lyric.TimeLines.Add(new TimeLineIndex(lyricPart.Key), new TimeLine()
+                {
+                    RelativeTime = relativeTime
+                });
+            }
+        }
+
+        #endregion
+
+
     }
 }

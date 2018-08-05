@@ -79,8 +79,19 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric.Pieces
                     }
                     else
                     {
+                        var startPercentage = startProgressPoint.Key.Index != partialLyric.Index ? 0 : startProgressPoint.Key.Percentage;
+                        var endPercentage = endProgressPoint?.Key.Percentage;
+
+                        var startRelativeTime = startProgressPoint.Value.RelativeTime;
+                        var endRelativeTime = endProgressPoint?.Value.RelativeTime;
+
+                        var startTime = startProgressPoint.Value.RelativeTime;
+
+                        var relativePercentage = (_relativeTime - startTime) / (endRelativeTime - startRelativeTime);
+                        var percantage = startPercentage + (relativePercentage) / (endPercentage - startPercentage);
+
                         //TODO : cal
-                        partialLyric.Progress = 0.5f;
+                        partialLyric.Progress = (float)percantage;
                     }
                 }
             }
