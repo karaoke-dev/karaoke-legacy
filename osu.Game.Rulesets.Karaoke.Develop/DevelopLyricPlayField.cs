@@ -20,7 +20,7 @@ namespace osu.Game.Rulesets.Karaoke.Develop
             var field = new KaraokeLyricPlayField()
             {
                 RelativeSizeAxes = Axes.Both,
-                Padding = new MarginPadding{Left = 30,Right = 30}
+                Padding = new MarginPadding{Left = 30,Right = 30, Top = 30, Bottom = 30}
             };
 
             for (int i = 0; i < 4; i++)
@@ -60,6 +60,8 @@ namespace osu.Game.Rulesets.Karaoke.Develop
         {
             return base.Remove(drawable);
         }
+
+        //protected void Adjust Mar
         
         protected override IEnumerable<Vector2> ComputeLayoutPositions()
         {
@@ -71,8 +73,8 @@ namespace osu.Game.Rulesets.Karaoke.Develop
 
                 //TODO : compute layout
                 var layoutIndex = i % LineSpacing.Count;
-
-                Children[i].Margin
+                positions[i].Y = positions[layoutIndex].Y;
+                lyric.Margin
                 = new MarginPadding{Left = LineSpacing[layoutIndex], Right = 0};
             }
             return positions;

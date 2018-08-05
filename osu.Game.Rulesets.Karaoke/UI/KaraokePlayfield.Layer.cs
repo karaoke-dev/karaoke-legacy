@@ -59,7 +59,14 @@ namespace osu.Game.Rulesets.Karaoke.UI
             //layer
             Add(KaraokeLyricPlayField = new KaraokeLyricPlayField
             {
-                KaraokeRulesetContainer = KaraokeRulesetContainer
+                KaraokeRulesetContainer = KaraokeRulesetContainer,
+                Margin = new MarginPadding
+                {
+                    Left = 100,
+                    Right = 100,
+                    Top = 350,
+                    Bottom = 40,
+                }
             });
 
             //layer

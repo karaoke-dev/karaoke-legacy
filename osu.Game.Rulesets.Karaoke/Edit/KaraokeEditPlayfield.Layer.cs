@@ -9,6 +9,7 @@ using osu.Game.Rulesets.Karaoke.Edit.Dialog;
 using osu.Game.Rulesets.Karaoke.Edit.Layers.Lyric;
 using osu.Game.Rulesets.Karaoke.Edit.Layers.Note;
 using osu.Game.Rulesets.Karaoke.Objects.Note;
+using OpenTK;
 
 namespace osu.Game.Rulesets.Karaoke.Edit
 {
@@ -31,7 +32,17 @@ namespace osu.Game.Rulesets.Karaoke.Edit
                 //layer
                 KaraokeLyricPlayField = new KaraokeLyricEditPlayField
                 {
-                    KaraokeRulesetContainer = KaraokeRulesetContainer
+                    KaraokeRulesetContainer = KaraokeRulesetContainer,
+                    Scale = new Vector2(0.8f),
+                    Anchor =  Anchor.Centre,
+                    Origin = Anchor.Centre,
+                    Padding = new MarginPadding
+                    {
+                        Left = 100,
+                        Right = 100,
+                        Top = 300,
+                        Bottom = 40,
+                    }
                 },
                 KaraokeTonePlayfield = new KaraokeToneEditPlayfield(new List<KaraokeStageDefinition>
                 {

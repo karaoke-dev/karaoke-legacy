@@ -5,6 +5,7 @@ using osu.Framework.Allocation;
 using osu.Framework.Graphics;
 using osu.Game.Beatmaps;
 using osu.Game.Rulesets.Karaoke.Configuration;
+using osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric;
 using osu.Game.Rulesets.Karaoke.UI.Interface;
 using osu.Game.Rulesets.Objects.Drawables;
 using osu.Game.Rulesets.UI;
@@ -66,11 +67,10 @@ namespace osu.Game.Rulesets.Karaoke.UI
         /// <param name="h"></param>
         public override void Add(DrawableHitObject h)
         {
-            KaraokeLyricPlayField.Add(h);
+            KaraokeLyricPlayField.Add(h as DrawableLyric);
 
             //import
-            if (KaraokeTonePlayfield != null)
-                KaraokeTonePlayfield.Add(h);
+            KaraokeTonePlayfield?.Add(h);
         }
 
         //post process
