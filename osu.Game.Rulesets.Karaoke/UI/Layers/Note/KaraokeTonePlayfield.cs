@@ -90,7 +90,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Note
             drawableNote.NoteSpeed.BindTo(VisibleTimeRange);
 
             //然後根據事件去做物件的加減
-            getStageByColumn(drawableNote.HitObject.SingerIndex ?? 0).Add(drawableNote);
+            GetStageByColumn(drawableNote.HitObject.SingerIndex ?? 0).Add(drawableNote);
         }
 
         public void Add(BarLine barline)
@@ -98,7 +98,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Note
             stages.ForEach(s => s.Add(barline));
         }
 
-        protected KaraokeStage getStageByColumn(int column)
+        protected KaraokeStage GetStageByColumn(int column)
         {
             var sum = 0;
             foreach (var stage in stages)

@@ -21,19 +21,21 @@ namespace osu.Game.Rulesets.Karaoke.Online.API.Git
         ///     Clone project
         /// </summary>
         /// <returns></returns>
-        public bool CloneProject(string url, string dir, string userName = null, string password = null)
+        public bool CloneProject(string cloneUrl, string cloneDir, string userName = null, string password = null)
         {
             try
             {
                 if (userName != null)
                 {
-                    var co = new CloneOptions();
-                    co.CredentialsProvider = (_url, _user, _cred) => new UsernamePasswordCredentials { Username = userName, Password = password };
-                    Repository.Clone(url, dir, co);
+                    var co = new CloneOptions
+                    {
+                        CredentialsProvider = (url, user, cred) => new UsernamePasswordCredentials { Username = userName, Password = password }
+                    };
+                    Repository.Clone(cloneUrl, cloneDir, co);
                 }
                 else
                 {
-                    Repository.Clone(url, dir);
+                    Repository.Clone(cloneUrl, cloneDir);
                 }
                 return true;
             }
@@ -59,13 +61,15 @@ namespace osu.Game.Rulesets.Karaoke.Online.API.Git
                 var options = new PullOptions();
 
                 //Create provider
-                options.FetchOptions = new FetchOptions();
-                options.FetchOptions.CredentialsProvider = (url, usernameFromUrl, types) =>
-                    new UsernamePasswordCredentials
-                    {
-                        Username = userName,
-                        Password = password
-                    };
+                options.FetchOptions = new FetchOptions
+                {
+                    CredentialsProvider = (url, usernameFromUrl, types) =>
+                        new UsernamePasswordCredentials
+                        {
+                            Username = userName,
+                            Password = password
+                        }
+                };
 
                 //if pull success, create a commit
                 options.MergeOptions.CommitOnSuccess = true;
@@ -154,9 +158,11 @@ namespace osu.Game.Rulesets.Karaoke.Online.API.Git
             using (var repo = new Repository(dir))
             {
                 var remote = repo.Network.Remotes[branchName];
-                var options = new PushOptions();
-                options.CredentialsProvider = (_url, _user, _cred) =>
-                    new UsernamePasswordCredentials { Username = userName, Password = password };
+                var options = new PushOptions
+                {
+                    CredentialsProvider = (url, user, cred) =>
+                        new UsernamePasswordCredentials { Username = userName, Password = password }
+                };
                 repo.Network.Push(remote, @"refs/heads/master", options);
             }
 

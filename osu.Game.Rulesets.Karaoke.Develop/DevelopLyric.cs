@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using NUnit.Framework;
-using osu.Framework.Allocation;
+﻿using NUnit.Framework;
 using OpenTK;
 using OpenTK.Graphics;
 using osu.Framework.Graphics;
@@ -14,7 +10,6 @@ using osu.Game.Rulesets.Karaoke.Objects;
 using osu.Game.Tests.Visual;
 using osu.Framework.Graphics.Shapes;
 using osu.Game.Rulesets.Karaoke.Objects.Lyric.Types;
-using osu.Game.Graphics.UserInterface;
 
 namespace osu.Game.Rulesets.Karaoke.Develop
 {
@@ -130,7 +125,7 @@ namespace osu.Game.Rulesets.Karaoke.Develop
             set
             {
                 _lyric = value;
-                this.Clear();
+                Clear();
                 foreach (var single in Lyric.Lyric)
                 {
                     var key = single.Key;

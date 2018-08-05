@@ -4,8 +4,6 @@
 using System;
 using Newtonsoft.Json;
 using osu.Game.Rulesets.Karaoke.Configuration.Types;
-using osu.Game.Rulesets.Karaoke.Objects;
-using osu.Game.Rulesets.Karaoke.Objects.Types;
 
 namespace osu.Game.Rulesets.Karaoke.Configuration
 {

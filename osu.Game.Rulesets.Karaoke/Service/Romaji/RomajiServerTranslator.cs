@@ -17,7 +17,7 @@ namespace osu.Game.Rulesets.Karaoke.Service.Romaji
     /// </summary>
     public class RomajiServerTranslator : IRomajiTranslator
     {
-        private readonly RomajiServerApi RomajiServerApi = new RomajiServerApi();
+        private readonly RomajiServerApi romajiServerApi = new RomajiServerApi();
 
         /// <summary>
         ///     translte list
@@ -40,7 +40,7 @@ namespace osu.Game.Rulesets.Karaoke.Service.Romaji
         public async Task<List<BaseLyric>> Translate(TranslateCode code, List<BaseLyric> translateListString)
         {
             var listTranslate = new List<BaseLyric>();
-            var result = await RomajiServerApi.Translate(code, translateListString.Select(x => x.Lyric.Text).ToList());
+            var result = await romajiServerApi.Translate(code, translateListString.Select(x => x.Lyric.Text).ToList());
 
             //convert each sentence
             foreach (var single in result)
