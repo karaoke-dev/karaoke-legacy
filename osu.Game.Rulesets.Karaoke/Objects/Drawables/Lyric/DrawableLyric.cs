@@ -1,7 +1,6 @@
 ﻿// Copyright (c) 2007-2018 ppy Pty Ltd <contact@ppy.sh>.
 // Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
 
-using System.Collections.Generic;
 using System.Linq;
 using osu.Framework.Allocation;
 using osu.Framework.Configuration;
@@ -13,9 +12,12 @@ using osu.Game.Rulesets.Karaoke.Configuration;
 using osu.Game.Rulesets.Karaoke.Objects.Drawables.Common.Pieces;
 using osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric.Pieces;
 using osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric.Types;
+<<<<<<< HEAD
 using osu.Game.Rulesets.Karaoke.Objects.Lyric.Types;
 using osu.Game.Rulesets.Karaoke.Objects.Text;
 using osu.Game.Rulesets.Karaoke.Objects.TimeLine;
+=======
+>>>>>>> 1b01f6105edd982a10b68d9a5e5f8fa8709be1db
 using osu.Game.Rulesets.Objects.Drawables;
 using OpenTK;
 using OpenTK.Graphics;
@@ -40,6 +42,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
         /// <value><c>true</c> if progress update by time; otherwise, <c>false</c>.</value>
         public virtual bool ProgressUpdateByTime { get; set; } = true;
 
+<<<<<<< HEAD
         //Drawable
         public Container TextsAndMaskPiece { get; }
 
@@ -69,6 +72,8 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
             }
         }
 
+=======
+>>>>>>> 1b01f6105edd982a10b68d9a5e5f8fa8709be1db
         /// <summary>
         ///     progress
         /// </summary>
@@ -79,10 +84,18 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
             set
             {
                 _nowProgress = value;
+<<<<<<< HEAD
                 LeftSideText.SetMaskStartAndEndPosition(0, (float)Progress);
                 RightSideText.SetMaskStartAndEndPosition((float)Progress, Width);
+=======
+
+                //TODO : 
+>>>>>>> 1b01f6105edd982a10b68d9a5e5f8fa8709be1db
             }
         }
+
+        protected LyricContainer LyricContainer ;
+
 
         private double _nowProgress;
 
@@ -90,6 +103,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
             : base(hitObject)
         {
             Alpha = 0;
+<<<<<<< HEAD
             LeftSideText.Lyric = hitObject;
             RightSideText.Lyric = hitObject;
 
@@ -102,9 +116,22 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
                         RightSideText,
                         LeftSideText
                     },
+=======
+
+            InternalChildren = new Drawable[]
+            {
+                LyricContainer = new LyricContainer
+                {
+                    RelativeSizeAxes = Axes.Both,
+                    AutoSizeAxes = Axes.None,
+>>>>>>> 1b01f6105edd982a10b68d9a5e5f8fa8709be1db
                 },
                 TranslateText
             };
+
+            Width = 300;
+
+            LyricContainer.Lyric = hitObject;
 
             Style.ValueChanged += style => { OnStyleChange(); };
             Template.ValueChanged += style => { OnTemplateChange(); };
@@ -114,15 +141,24 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
 
         protected virtual void OnStyleChange()
         {
+<<<<<<< HEAD
             LeftSideText.Config = Style.Value;
             RightSideText.Config = Style.Value;
+=======
+            //LeftSideText.Config = Style.Value;
+            //RightSideText.Config = Style.Value;
+>>>>>>> 1b01f6105edd982a10b68d9a5e5f8fa8709be1db
             UpdateDrawable();
         }
 
         protected virtual void OnTemplateChange()
         {
+<<<<<<< HEAD
             LeftSideText.Template = Template.Value;
             RightSideText.Template = Template.Value;
+=======
+            LyricContainer.Template = Template.Value;
+>>>>>>> 1b01f6105edd982a10b68d9a5e5f8fa8709be1db
             UpdateDrawable();
         }
 
@@ -151,8 +187,13 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
             //TODO : fix logic
             if (Style != null && Template != null && Lyric != null)
             {
+<<<<<<< HEAD
                 Width = LeftSideText?.LyricText?.GetTextEndPosition() ?? 200;
                 Height = Lyric.Height ?? 100;
+=======
+                //Width = LeftSideText?.LyricText?.GetTextEndPosition() ?? 200;
+                //Height = Lyric.Height ?? 100;
+>>>>>>> 1b01f6105edd982a10b68d9a5e5f8fa8709be1db
             }
         }
 
@@ -176,8 +217,12 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
             var textColor = Singer?.LytricColor ?? Color4.Blue;
             var backgroundColor = Singer?.LytricBackgroundColor ?? Color4.White;
             //
+<<<<<<< HEAD
             LeftSideText.SetColor(textColor);
             RightSideText.SetColor(backgroundColor);
+=======
+            //LyricContainer
+>>>>>>> 1b01f6105edd982a10b68d9a5e5f8fa8709be1db
 
             Scale = new Vector2(templateValue?.Scale ?? 1);
 
@@ -185,10 +230,15 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
             Progress = Progress;
         }
 
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> 1b01f6105edd982a10b68d9a5e5f8fa8709be1db
         protected override void Update()
         {
             base.Update();
+
 
             if (!ProgressUpdateByTime)
                 return;
@@ -196,9 +246,19 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
             var currentRelativeTime = Time.Current - HitObject.StartTime;
             if (HitObject.IsInTime(currentRelativeTime))
             {
+<<<<<<< HEAD
                 //get range progress point
                 var startPoint = HitObject.TimeLines.GetFirstProgressPointByTime(currentRelativeTime);
                 var endPoint = HitObject.TimeLines.GetLastProgressPointByTime(currentRelativeTime);
+=======
+                //TODO : get progress point
+                /*
+                var startProgressPoint = HitObject.TimeLines.GetFirstProgressPointByTime(currentRelativeTime);
+                var endProgressPoint = HitObject.TimeLines.GetLastProgressPointByTime(currentRelativeTime);
+
+                var startPosition = LeftSideText.LyricText.GetEndPositionByIndex(startProgressPoint.Key.Index);
+                var endPosition = LeftSideText.LyricText.GetEndPositionByIndex(endProgressPoint?.Key.Index ?? -1);
+>>>>>>> 1b01f6105edd982a10b68d9a5e5f8fa8709be1db
 
                 if (startPoint == null)
                     startPoint = new KeyValuePair<int, LyricTimeLine>(0,new LyricTimeLine());
@@ -217,10 +277,19 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
                     return;
 
                 //Update progress
+<<<<<<< HEAD
                 Progress = startPosition + (endPosition - startPosition) / (float)(endPoint.Value.Value.Duration) * (float)relativeTime;
+=======
+                Progress = startPosition + (endPosition - startPosition) / (float)(endProgressPoint?.Value.RelativeTime - startProgressPoint.Value.RelativeTime) * (float)relativeTime;
+                */
+
+                LyricContainer.RelativeTime = currentRelativeTime;
+>>>>>>> 1b01f6105edd982a10b68d9a5e5f8fa8709be1db
 
                 Show();
                 Alpha = 1;
+
+                
             }
             else
             {
@@ -229,6 +298,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
             }
         }
         
+
 
         protected sealed override void UpdateState(ArmedState state)
         {

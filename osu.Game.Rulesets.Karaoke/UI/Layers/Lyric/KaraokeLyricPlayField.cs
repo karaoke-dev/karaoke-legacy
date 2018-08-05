@@ -50,7 +50,6 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Lyric
         /// <summary>
         ///     update combo by last object
         /// </summary>
-        /// <param name="karaokeField"></param>
         /// <param name="lyric"></param>
         public static void UpdateObjectCombo(BaseLyric lyric)
         {

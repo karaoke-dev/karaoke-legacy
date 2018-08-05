@@ -2,7 +2,9 @@
 // Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
 
 using System.Collections.Generic;
+using osu.Game.Beatmaps;
 using osu.Game.Rulesets.Karaoke.Configuration;
+using osu.Game.Rulesets.Karaoke.Objects;
 
 namespace osu.Game.Rulesets.Karaoke.Beatmaps
 {
@@ -10,7 +12,7 @@ namespace osu.Game.Rulesets.Karaoke.Beatmaps
     ///     karaoke beatmap
     ///     will contain the basic karaoke song info
     /// </summary>
-    public class KaraokeBeatmap
+    public class KaraokeBeatmap : Beatmap<BaseLyric>
     {
         #region SongInfo
 

@@ -9,13 +9,14 @@ using osu.Game.Rulesets.Karaoke.Objects;
 using osu.Game.Rulesets.Karaoke.UI;
 using osu.Game.Rulesets.Objects.Drawables;
 using osu.Game.Rulesets.UI;
+using OpenTK;
 
 namespace osu.Game.Rulesets.Karaoke.Edit
 {
     public class KaraokeEditRulesetContainer : KaraokeRulesetContainer
     {
-        public KaraokeEditRulesetContainer(Ruleset ruleset, WorkingBeatmap beatmap, bool isForCurrentRuleset)
-            : base(ruleset, beatmap, isForCurrentRuleset)
+        public KaraokeEditRulesetContainer(Ruleset ruleset, WorkingBeatmap beatmap)
+            : base(ruleset, beatmap)
         {
             Name = "KaraokeEditRulesetContainer";
         }
@@ -23,6 +24,16 @@ namespace osu.Game.Rulesets.Karaoke.Edit
         public override PassThroughInputManager CreateInputManager()
         {
             return new KaraokeEditorInputManager(Ruleset.RulesetInfo);
+        }
+
+        protected override Vector2 GetAspectAdjustedSize()
+        {
+            const float default_relative_height = KaraokeBasePlayfield.DEFAULT_HEIGHT / 512;
+            const float default_aspect = 16f / 9f;
+
+            var aspectAdjust = MathHelper.Clamp(DrawWidth / DrawHeight, 0.4f, 4) / default_aspect;
+
+            return new Vector2(1, default_relative_height * aspectAdjust);
         }
 
         /// <summary>

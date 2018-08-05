@@ -15,14 +15,15 @@ using osu.Game.Rulesets.Replays.Types;
 using osu.Game.Rulesets.Scoring;
 using osu.Game.Rulesets.UI;
 using osu.Game.Beatmaps.Legacy;
+using osu.Game.Configuration;
+using osu.Game.Rulesets.Configuration;
+using osu.Game.Rulesets.Difficulty;
 
 namespace osu.Game.Rulesets
 {
     public abstract class Ruleset
     {
         public readonly RulesetInfo RulesetInfo;
-
-        public virtual IEnumerable<BeatmapStatistic> GetBeatmapStatistics(WorkingBeatmap beatmap) => new BeatmapStatistic[] { };
 
         public IEnumerable<Mod> GetAllMods() => Enum.GetValues(typeof(ModType)).Cast<ModType>()
                                                     // Confine all mods of each mod type into a single IEnumerable<Mod>
@@ -52,14 +53,27 @@ namespace osu.Game.Rulesets
         /// Attempt to create a hit renderer for a beatmap
         /// </summary>
         /// <param name="beatmap">The beatmap to create the hit renderer for.</param>
-        /// <param name="isForCurrentRuleset">Whether the hit renderer should assume the beatmap is for the current ruleset.</param>
         /// <exception cref="BeatmapInvalidForRulesetException">Unable to successfully load the beatmap to be usable with this ruleset.</exception>
         /// <returns></returns>
-        public abstract RulesetContainer CreateRulesetContainerWith(WorkingBeatmap beatmap, bool isForCurrentRuleset);
+        public abstract RulesetContainer CreateRulesetContainerWith(WorkingBeatmap beatmap);
 
-        public abstract DifficultyCalculator CreateDifficultyCalculator(Beatmap beatmap, Mod[] mods = null);
+        /// <summary>
+        /// Creates a <see cref="IBeatmapConverter"/> to convert a <see cref="IBeatmap"/> to one that is applicable for this <see cref="Ruleset"/>.
+        /// </summary>
+        /// <param name="beatmap">The <see cref="IBeatmap"/> to be converted.</param>
+        /// <returns>The <see cref="IBeatmapConverter"/>.</returns>
+        public abstract IBeatmapConverter CreateBeatmapConverter(IBeatmap beatmap);
 
-        public virtual PerformanceCalculator CreatePerformanceCalculator(Beatmap beatmap, Score score) => null;
+        /// <summary>
+        /// Optionally creates a <see cref="IBeatmapProcessor"/> to alter a <see cref="IBeatmap"/> after it has been converted.
+        /// </summary>
+        /// <param name="beatmap">The <see cref="IBeatmap"/> to be processed.</param>
+        /// <returns>The <see cref="IBeatmapProcessor"/>.</returns>
+        public virtual IBeatmapProcessor CreateBeatmapProcessor(IBeatmap beatmap) => null;
+
+        public abstract DifficultyCalculator CreateDifficultyCalculator(WorkingBeatmap beatmap);
+
+        public virtual PerformanceCalculator CreatePerformanceCalculator(WorkingBeatmap beatmap, Score score) => null;
 
         public virtual HitObjectComposer CreateHitObjectComposer() => null;
 
@@ -67,7 +81,13 @@ namespace osu.Game.Rulesets
 
         public abstract string Description { get; }
 
-        public virtual SettingsSubsection CreateSettings() => null;
+        public virtual RulesetSettingsSubsection CreateSettings() => null;
+
+        /// <summary>
+        /// Creates the <see cref="IRulesetConfigManager"/> for this <see cref="Ruleset"/>.
+        /// </summary>
+        /// <param name="settings">The <see cref="SettingsStore"/> to store the settings.</param>
+        public virtual IRulesetConfigManager CreateConfig(SettingsStore settings) => null;
 
         /// <summary>
         /// Do not override this unless you are a legacy mode.
@@ -114,7 +134,8 @@ namespace osu.Game.Rulesets
             Name = Description,
             ShortName = ShortName,
             InstantiationInfo = GetType().AssemblyQualifiedName,
-            ID = LegacyID
+            ID = LegacyID,
+            Available = true
         };
     }
 }

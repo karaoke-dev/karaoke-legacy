@@ -58,12 +58,10 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Note
 
             GridContainer playfieldGrid;
 
-            var firstColumnIndex = 0;
-
             var content = new Drawable[2][];
             for (var i = 0; i < stageDefinitions.Count; i++)
             {
-                var newStage = new KaraokeStage(firstColumnIndex, stageDefinitions[i]);
+                var newStage = new KaraokeStage(stageDefinitions[i]);
                 newStage.VisibleTimeRange.BindTo(VisibleTimeRange);
                 newStage.Inverted.BindTo(Inverted);
 
@@ -71,8 +69,6 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Note
 
                 stages.Add(newStage);
                 AddNested(newStage);
-
-                firstColumnIndex += newStage.Columns.Count;
             }
 
             InternalChild = playfieldGrid = new GridContainer
@@ -85,7 +81,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Note
         public override void Add(DrawableHitObject h)
         {
             //Create object
-            var drawableNote = new DrawableKaraokeNoteGroup(h.HitObject as BaseLyric)
+            var drawableNote = new DrawableLyricNoteGroup(h.HitObject as BaseLyric)
             {
                 AccentColour = Color4.Blue
             };

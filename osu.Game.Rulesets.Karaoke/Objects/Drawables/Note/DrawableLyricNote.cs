@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Game.Rulesets.Karaoke.Extension;
 using osu.Game.Rulesets.Karaoke.Objects.Drawables.Note.Pieces;
+using osu.Game.Rulesets.Karaoke.Objects.Note;
 using osu.Game.Rulesets.Karaoke.Objects.TimeLine;
 using osu.Game.Rulesets.Karaoke.UI.Layers.Note;
 using osu.Game.Rulesets.Objects.Drawables;
@@ -21,7 +21,13 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note
                 var thisTimeLine = TimeLine.Value;
 
                 //if next is not empty
+<<<<<<< HEAD
                 return thisTimeLine.Duration - (thisTimeLine.EarlyTime ?? 0);
+=======
+                if (previousTimeLine != null)
+                    return thisTimeLine.RelativeTime - previousTimeLine.RelativeTime - (thisTimeLine.EarlyTime ?? 0);
+                return thisTimeLine.RelativeTime;
+>>>>>>> 1b01f6105edd982a10b68d9a5e5f8fa8709be1db
             }
         }
 
@@ -41,15 +47,17 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note
 
         public virtual BaseLyric HitObject { get; set; }
 
-        public virtual KeyValuePair<int, LyricTimeLine> TimeLine
+        public virtual KeyValuePair<TimeLineIndex, TimeLine.TimeLine> TimeLine
         {
             get => _timeLine;
             set
             {
                 _timeLine = value;
+
+                var tone = _timeLine.Value.Tone ?? new Tone();
+
                 //height
-                var noteHeight = (_timeLine.Value.Tone ?? 0) * KaraokeStage.COLUMN_HEIGHT;
-                noteContainer.Y = noteHeight;
+                noteContainer.Y = NoteStageHelper.GetPositionByTone(tone);
 
                 //text
                 if (!string.IsNullOrEmpty(TimeLine.Value.DisplayText))
@@ -58,6 +66,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note
                 }
                 else
                 {
+<<<<<<< HEAD
                     var prevTimeLine = HitObject.TimeLines.GetPrevious(TimeLine.Key)?.Key;
                     var lyric = HitObject.Lyric.Text;
                     int take = 0;
@@ -72,6 +81,23 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note
                         take = _timeLine.Key;
                         displayText = lyric.Substring(0, take);
                     }
+=======
+                    var prevTimeLine = HitObject.TimeLines.GetPrevious(TimeLine.Key);
+                    var lyric = HitObject.Lyric.Text;
+                    var take = 0;
+                    var displayText = "";
+                    if (prevTimeLine != null)
+                    {
+                        take = _timeLine.Key.Index - prevTimeLine.Value.Key.Index;
+                        displayText = lyric.Substring(prevTimeLine.Value.Key.Index + 1, take);
+                    }
+                    else
+                    {
+                        take = _timeLine.Key.Index;
+                        displayText = lyric.Substring(0, take + 1);
+                    }
+
+>>>>>>> 1b01f6105edd982a10b68d9a5e5f8fa8709be1db
                     text.Text = displayText;
                 }
             }
@@ -85,7 +111,9 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note
         private readonly BodyPiece bodyPiece;
         private readonly Container fullHeightContainer;
 
-        private readonly Container<DrawableKaraokeNoteTick> tickContainer;
+        private readonly Container<DrawableLyricNoteTick> tickContainer;
+
+        private readonly Container noteContainer;
 
         /// <summary>
         ///     Time at which the user started holding this hold note. Null if the user is not holding this hold note.
@@ -97,11 +125,9 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note
         /// </summary>
         private bool hasBroken;
 
-        private readonly Container noteContainer;
-
         private Color4 accentColour;
 
-        private KeyValuePair<int, LyricTimeLine> _timeLine;
+        private KeyValuePair<TimeLineIndex, TimeLine.TimeLine> _timeLine;
 
         public DrawableLyricNote()
             : base(null)
@@ -114,6 +140,8 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note
             {
                 noteContainer = new Container
                 {
+                    Anchor = Anchor.CentreLeft,
+                    Origin = Anchor.CentreLeft,
                     Height = KaraokeStage.COLUMN_HEIGHT,
                     Children = new Drawable[]
                     {
@@ -130,7 +158,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note
                             Origin = Anchor.CentreLeft,
                             RelativeSizeAxes = Axes.Y
                         },
-                        tickContainer = new Container<DrawableKaraokeNoteTick>
+                        tickContainer = new Container<DrawableLyricNoteTick>
                         {
                             RelativeSizeAxes = Axes.Both
                             //ChildrenEnumerable = HitObject.NestedHitObjects.OfType<BaseLyric>().Select(tick => new DrawableKaraokeNoteTick(tick)

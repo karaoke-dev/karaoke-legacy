@@ -32,8 +32,8 @@ namespace osu.Game.Rulesets.Karaoke.UI
         /// <returns></returns>
         protected readonly SortedList<MultiplierControlPoint> DefaultControlPoints = new SortedList<MultiplierControlPoint>(Comparer<MultiplierControlPoint>.Default);
 
-        public BaseRulesetContainer(Ruleset ruleset, WorkingBeatmap workingBeatmap, bool isForCurrentRuleset)
-            : base(ruleset, workingBeatmap, isForCurrentRuleset)
+        public BaseRulesetContainer(Ruleset ruleset, WorkingBeatmap workingBeatmap)
+            : base(ruleset, workingBeatmap)
         {
         }
 
@@ -43,11 +43,6 @@ namespace osu.Game.Rulesets.Karaoke.UI
         }
 
         protected override Playfield CreatePlayfield()
-        {
-            throw new NotImplementedException();
-        }
-
-        protected override BeatmapConverter<T> CreateBeatmapConverter()
         {
             throw new NotImplementedException();
         }

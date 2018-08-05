@@ -3,8 +3,10 @@
 
 using System.Collections.Generic;
 using osu.Game.Rulesets.Karaoke.Configuration;
+using osu.Game.Rulesets.Karaoke.Edit.Tools;
 using osu.Game.Rulesets.Karaoke.Objects;
 using osu.Game.Rulesets.Karaoke.Objects.Lyric;
+using osu.Game.Rulesets.Karaoke.Objects.Note;
 using osu.Game.Rulesets.Karaoke.Objects.TimeLine;
 using osu.Game.Rulesets.Karaoke.Objects.Translate;
 using OpenTK;
@@ -18,14 +20,14 @@ namespace osu.Game.Rulesets.Karaoke.Helps
     {
         public static JpLyric WithoutProgressPoint()
         {
-            var karaokeObject = new JpLyric();
-            karaokeObject.Lyric = MainTextList.SetJapaneseLyric("終わるまでは終わらないよ");
-            karaokeObject.Position = new Vector2(300, 150);
-            karaokeObject.Furigana.Add(0, new FuriganaText
+            LyricCreator creator = new LyricCreator();
+            var karaokeObject = creator.Create("終わるまでは終わらないよ") as JpLyric;
+            LyricEditor editor = new LyricEditor(karaokeObject);
+            editor.AddFurigana(0, new FuriganaText
             {
                 Text = "お"
             });
-            karaokeObject.Furigana.Add(6, new FuriganaText
+            editor.AddFurigana(6, new FuriganaText
             {
                 Text = "お"
             });
@@ -39,82 +41,101 @@ namespace osu.Game.Rulesets.Karaoke.Helps
         /// <returns></returns>
         public static JpLyric GenerateDemo001()
         {
-            var karaokeObject = new JpLyric();
-            karaokeObject.Lyric = MainTextList.SetJapaneseLyric("終わるまでは終わらないよ");
-            karaokeObject.Position = new Vector2(300, 150);
-            karaokeObject.Furigana.Add(0, new FuriganaText
+            LyricCreator creator = new LyricCreator();
+            var karaokeObject = creator.Create("終わるまでは終わらないよ") as JpLyric;
+            LyricEditor editor = new LyricEditor(karaokeObject);
+            editor.AddFurigana(0, new FuriganaText
             {
                 Text = "お"
             });
-            karaokeObject.Furigana.Add(6, new FuriganaText
+            editor.AddFurigana(6, new FuriganaText
             {
                 Text = "お"
             });
-            karaokeObject.TimeLines.Add(0, new LyricTimeLine(0));
-            karaokeObject.TimeLines.Add(1, new LyricTimeLine(500));
-            karaokeObject.TimeLines.Add(5, new LyricTimeLine(1000));
-            karaokeObject.TimeLines.Add(11, new LyricTimeLine(1500));
+            editor.AddTimeline(new TimeLineIndex(0), new TimeLine(0));
+            editor.AddTimeline(new TimeLineIndex(1), new TimeLine(500));
+            editor.AddTimeline(new TimeLineIndex(5), new TimeLine(1000));
+            editor.AddTimeline(new TimeLineIndex(11), new TimeLine(1500));
 
             return karaokeObject;
         }
 
         /// <summary>
+<<<<<<< HEAD
         /// use this in convertor
+=======
+        ///     use this in convertor
+>>>>>>> 1b01f6105edd982a10b68d9a5e5f8fa8709be1db
         /// </summary>
         /// <param name="startTime"></param>
         /// <param name="duration"></param>
         /// <returns></returns>
         public static JpLyric GenerateWithStartAndDuration(double startTime, double duration)
         {
-            var karaokeObject = new JpLyric();
-            karaokeObject.Lyric = MainTextList.SetJapaneseLyric("終わるまでは終わらないよ");
-            karaokeObject.Position = new Vector2(300, 150);
-            karaokeObject.Furigana.Add(0, new FuriganaText
+            LyricCreator creator = new LyricCreator();
+            var karaokeObject = creator.Create("終わるまでは終わらないよ") as JpLyric;
+            LyricEditor editor = new LyricEditor(karaokeObject);
+            editor.AddFurigana(0, new FuriganaText
             {
                 Text = "お"
             });
-            karaokeObject.Furigana.Add(6, new FuriganaText
+            editor.AddFurigana(6, new FuriganaText
             {
                 Text = "お"
             });
             karaokeObject.StartTime = startTime;
+<<<<<<< HEAD
 
             //it means
             //move to index 5 (0,1,2,3,4),tone 3, duration is (duration*1 / 6)
             karaokeObject.TimeLines.Add(5, new LyricTimeLine(duration*1 / 12)
+=======
+            editor.AddTimeline(new TimeLineIndex(0), new TimeLine(duration / 5)
+>>>>>>> 1b01f6105edd982a10b68d9a5e5f8fa8709be1db
             {
-                Tone = 3
+                Tone = new Tone(3)
             });
+<<<<<<< HEAD
             karaokeObject.TimeLines.Add(9, new LyricTimeLine(duration*6 / 12)
+=======
+            editor.AddTimeline(new TimeLineIndex(9), new TimeLine(duration / 4)
+>>>>>>> 1b01f6105edd982a10b68d9a5e5f8fa8709be1db
             {
-                Tone = 5
+                Tone = new Tone(-3)
             });
+<<<<<<< HEAD
             karaokeObject.TimeLines.Add(12, new LyricTimeLine(duration*5 / 12)
             {
                 Tone = 0
+=======
+            editor.AddTimeline(new TimeLineIndex(11), new TimeLine(duration)
+            {
+                Tone = new Tone(0, true)
+>>>>>>> 1b01f6105edd982a10b68d9a5e5f8fa8709be1db
             });
-
-            karaokeObject.Romaji.Add(0, new RomajiText("o"));
-            karaokeObject.Romaji.Add(1, new RomajiText("wa"));
-            karaokeObject.Romaji.Add(2, new RomajiText("ru"));
-            karaokeObject.Romaji.Add(3, new RomajiText("ma"));
-            karaokeObject.Romaji.Add(4, new RomajiText("de"));
-            karaokeObject.Romaji.Add(5, new RomajiText("wa"));
-            karaokeObject.Romaji.Add(6, new RomajiText("o"));
-            karaokeObject.Romaji.Add(7, new RomajiText("wa"));
-            karaokeObject.Romaji.Add(8, new RomajiText("ra"));
-            karaokeObject.Romaji.Add(9, new RomajiText("na"));
-            karaokeObject.Romaji.Add(10, new RomajiText("i"));
-            karaokeObject.Romaji.Add(11, new RomajiText("yo"));
+            editor.AddRomaji(0, new RomajiText("o"));
+            editor.AddRomaji(1, new RomajiText("wa"));
+            editor.AddRomaji(2, new RomajiText("ru"));
+            editor.AddRomaji(3, new RomajiText("ma"));
+            editor.AddRomaji(4, new RomajiText("de"));
+            editor.AddRomaji(5, new RomajiText("wa"));
+            editor.AddRomaji(6, new RomajiText("o"));
+            editor.AddRomaji(7, new RomajiText("wa"));
+            editor.AddRomaji(8, new RomajiText("ra"));
+            editor.AddRomaji(9, new RomajiText("na"));
+            editor.AddRomaji(10, new RomajiText("i"));
+            editor.AddRomaji(11, new RomajiText("yo"));
 
             return karaokeObject;
         }
 
         public static JpLyric GenerateDeomKaraokeLyric()
         {
+            LyricCreator creator = new LyricCreator();
+            var karaokeObject = creator.Create("カラオケ") as JpLyric;
             return new JpLyric
             {
-                Lyric = MainTextList.SetJapaneseLyric("カラオケ"),
+                Lyric = karaokeObject.Lyric,
                 Furigana = new Dictionary<int, FuriganaText>
                 {
                     { 0, new FuriganaText { Text = "か" } },

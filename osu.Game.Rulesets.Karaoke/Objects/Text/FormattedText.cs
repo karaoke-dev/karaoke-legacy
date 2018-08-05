@@ -1,6 +1,7 @@
 ﻿// Copyright (c) 2007-2018 ppy Pty Ltd <contact@ppy.sh>.
 // Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
 
+using System;
 using Newtonsoft.Json;
 using osu.Game.Rulesets.Objects.Types;
 using OpenTK;
@@ -10,7 +11,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Text
     /// <summary>
     ///     Text objects
     /// </summary>
-    public class FormattedText : TextComponent, IHasPosition
+    public class FormattedText : TextComponent, IHasPosition , IEquatable<FormattedText>
     {
         // <inheritdoc />
         /// <summary>
@@ -120,6 +121,32 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Text
             {
                 Text = textObject?.Text
             };
+        }
+
+        public bool Equals(FormattedText other)
+        {
+            if (ReferenceEquals(null, other)) return false;
+            if (ReferenceEquals(this, other)) return true;
+            return base.Equals(other) && Position.Equals(other.Position) && FontSize == other.FontSize;
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj)) return false;
+            if (ReferenceEquals(this, obj)) return true;
+            if (obj.GetType() != this.GetType()) return false;
+            return Equals((FormattedText)obj);
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                int hashCode = base.GetHashCode();
+                hashCode = (hashCode * 397) ^ Position.GetHashCode();
+                hashCode = (hashCode * 397) ^ FontSize.GetHashCode();
+                return hashCode;
+            }
         }
     }
 }

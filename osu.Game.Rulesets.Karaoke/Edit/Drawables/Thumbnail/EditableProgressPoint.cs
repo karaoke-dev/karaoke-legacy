@@ -9,14 +9,17 @@ using osu.Framework.Graphics.UserInterface;
 using osu.Framework.Input;
 using osu.Game.Graphics.Sprites;
 using osu.Game.Graphics.UserInterface;
+<<<<<<< HEAD:osu.Game.Rulesets.Karaoke/Edit/Drawables/Thumbnail/EditableProgressPoint.cs
 using osu.Game.Rulesets.Karaoke.Edit.Drawables.Thumbnail;
 using osu.Game.Rulesets.Karaoke.Extension;
+=======
+>>>>>>> 1b01f6105edd982a10b68d9a5e5f8fa8709be1db:osu.Game.Rulesets.Karaoke/Edit/Drawables/Thumbnail/EditableProgressPoint.cs
 using osu.Game.Rulesets.Karaoke.Objects.TimeLine;
 using OpenTK;
 using OpenTK.Graphics;
 using OpenTK.Input;
 
-namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Lyric.Pieces
+namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Thumbnail
 {
     public class EditableProgressPoint : Container, IHasContextMenu
     {
@@ -25,13 +28,18 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Lyric.Pieces
             new OsuMenuItem(@"Delete", MenuItemType.Highlighted)
         };
 
+<<<<<<< HEAD:osu.Game.Rulesets.Karaoke/Edit/Drawables/Thumbnail/EditableProgressPoint.cs
         public int IndexOfObject => TimeLine.Key;
+=======
+        public TimeLineIndex IndexOfObject => LyricProgressPoint.Key;
+>>>>>>> 1b01f6105edd982a10b68d9a5e5f8fa8709be1db:osu.Game.Rulesets.Karaoke/Edit/Drawables/Thumbnail/EditableProgressPoint.cs
 
         //protected culculater value
         public string ProgressText
         {
             get
             {
+<<<<<<< HEAD:osu.Game.Rulesets.Karaoke/Edit/Drawables/Thumbnail/EditableProgressPoint.cs
                 if (!string.IsNullOrEmpty(TimeLine.Value.DisplayText))
                 {
                     return TimeLine.Value.DisplayText;
@@ -52,11 +60,22 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Lyric.Pieces
                     var displayText = lyric.Substring(TimeLine.Key, take);
                     return displayText;
                 }
+=======
+                if (IndexOfObject.Index == 0)
+                    return DrawableKaraokeThumbnail.Lyric.Lyric.Text.Substring(0, LyricProgressPoint.Key.Index + 1);
+                var thisCharIndex = LyricProgressPoint.Key.Index;
+                var lastTime = DrawableKaraokeThumbnail.Lyric.TimeLines.FindPrevioud(IndexOfObject).Value.Key.Index;
+                return DrawableKaraokeThumbnail.Lyric.Lyric.Text.Substring(lastTime + 1, thisCharIndex - lastTime);
+>>>>>>> 1b01f6105edd982a10b68d9a5e5f8fa8709be1db:osu.Game.Rulesets.Karaoke/Edit/Drawables/Thumbnail/EditableProgressPoint.cs
             }
         }
 
         //public 
+<<<<<<< HEAD:osu.Game.Rulesets.Karaoke/Edit/Drawables/Thumbnail/EditableProgressPoint.cs
         public KeyValuePair<int, LyricTimeLine> TimeLine { get; set; }
+=======
+        public KeyValuePair<TimeLineIndex, TimeLine> LyricProgressPoint { get; set; }
+>>>>>>> 1b01f6105edd982a10b68d9a5e5f8fa8709be1db:osu.Game.Rulesets.Karaoke/Edit/Drawables/Thumbnail/EditableProgressPoint.cs
 
         public DrawableKaraokeThumbnail DrawableKaraokeThumbnail { get; set; } //Parent
 
@@ -105,7 +124,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Lyric.Pieces
         protected Color4 BackgroundHoverColor { get; set; } = Color4.Purple;
         protected Color4 BackgroundPressColor { get; set; } = Color4.Blue;
 
-        public EditableProgressPoint(DrawableKaraokeThumbnail drawableKaraokeThumbnail, KeyValuePair<int, LyricTimeLine> lyricProgressPoin)
+        public EditableProgressPoint(DrawableKaraokeThumbnail drawableKaraokeThumbnail, KeyValuePair<TimeLineIndex, TimeLine> lyricProgressPoin)
         {
             DrawableKaraokeThumbnail = drawableKaraokeThumbnail;
             TimeLine = lyricProgressPoin;

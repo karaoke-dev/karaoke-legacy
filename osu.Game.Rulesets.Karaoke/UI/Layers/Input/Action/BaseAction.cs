@@ -2,6 +2,7 @@
 // Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
 
 using System;
+using osu.Game.Rulesets.Karaoke.Configuration.Types;
 using osu.Game.Rulesets.Karaoke.Objects;
 using osu.Game.Rulesets.Karaoke.Objects.Types;
 
@@ -10,11 +11,18 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Input.Action
     /// <summary>
     ///     Base action
     /// </summary>
-    public class BaseAction : RecordChangeObject, ICopyable
+    public class BaseAction : ICloneable, IEquatable<BaseAction> , IJsonString
     {
-        public virtual T Copy<T>() where T : class, ICopyable, new()
+        public DateTime ActionTime = DateTime.Now;
+
+        public object Clone()
         {
-            throw new NotImplementedException();
+            return this.MemberwiseClone();
+        }
+
+        public virtual bool Equals(BaseAction other)
+        {
+            return ActionTime == other.ActionTime;
         }
     }
 }

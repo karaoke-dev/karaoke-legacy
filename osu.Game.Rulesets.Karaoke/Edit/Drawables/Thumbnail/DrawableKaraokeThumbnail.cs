@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Linq;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Input;
-using osu.Game.Rulesets.Karaoke.Edit.Drawables.Lyric.Pieces;
 using osu.Game.Rulesets.Karaoke.Objects;
 using osu.Game.Rulesets.Karaoke.Objects.TimeLine;
 using OpenTK.Input;
@@ -149,7 +148,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Thumbnail
         /// <summary>
         ///     Delete single point
         /// </summary>
-        public void DeletePoint(KeyValuePair<int, LyricTimeLine> point)
+        public void DeletePoint(KeyValuePair<TimeLineIndex, TimeLine> point)
         {
             if (Lyric.TimeLines.Count > 1)
                 Lyric.TimeLines.Remove(point.Key);

@@ -26,8 +26,8 @@ namespace osu.Game.Rulesets.Karaoke.UI
         protected override Vector2 PlayfieldArea => Vector2.One;
         protected KaraokeConfigManager ConfigManager;
 
-        public KaraokeRulesetContainer(Ruleset ruleset, WorkingBeatmap beatmap, bool isForCurrentRuleset)
-            : base(ruleset, beatmap, isForCurrentRuleset)
+        public KaraokeRulesetContainer(Ruleset ruleset, WorkingBeatmap beatmap)
+            : base(ruleset, beatmap)
         {
             //TODO : add "autoPlay" to Mods to control play speed
         }
@@ -40,16 +40,6 @@ namespace osu.Game.Rulesets.Karaoke.UI
         public override PassThroughInputManager CreateInputManager()
         {
             return new KaraokeInputManager(Ruleset.RulesetInfo);
-        }
-
-        protected override BeatmapConverter<BaseLyric> CreateBeatmapConverter()
-        {
-            return new KaraokeBeatmapConverter();
-        }
-
-        protected override BeatmapProcessor<BaseLyric> CreateBeatmapProcessor()
-        {
-            return new KaraokeBeatmapProcessor();
         }
 
         protected override Playfield CreatePlayfield()
@@ -79,20 +69,12 @@ namespace osu.Game.Rulesets.Karaoke.UI
             return new KaraokeReplayInputHandler(replay);
         }
 
-        protected override Vector2 GetAspectAdjustedSize()
-        {
-            const float default_relative_height = KaraokeBasePlayfield.DEFAULT_HEIGHT / 768;
-            const float default_aspect = 16f / 9f;
-
-            var aspectAdjust = MathHelper.Clamp(DrawWidth / DrawHeight, 0.4f, 4) / default_aspect;
-
-            return new Vector2(1, default_relative_height * aspectAdjust);
-        }
-
+        /* 
         protected override IRulesetConfigManager CreateConfig(Ruleset ruleset, SettingsStore settings)
         {
             ConfigManager = new KaraokeConfigManager(settings, Ruleset.RulesetInfo, Variant);
             return ConfigManager;
         }
+        */
     }
 }

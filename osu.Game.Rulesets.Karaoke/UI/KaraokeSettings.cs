@@ -52,5 +52,10 @@ namespace osu.Game.Rulesets.Karaoke.UI
                 }
             };
         }
+
+        public KaraokeSettings(Ruleset ruleset)
+            : base(ruleset)
+        {
+        }
     }
 }

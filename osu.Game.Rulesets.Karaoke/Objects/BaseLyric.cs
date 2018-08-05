@@ -111,7 +111,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         /// <summary>
         ///     record list time where position goes
         /// </summary>
-        public LyricTimeLineList TimeLines { get; set; } = new LyricTimeLineList();
+        public TimeLineList TimeLines { get; set; } = new TimeLineList();
 
         /// <summary>
         ///     all the translate for a single language
@@ -200,22 +200,6 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         }
 
         [JsonIgnore] public string Delimiter = "";
-
-        public static MainTextList SetJapaneseLyric(string str)
-        {
-            var returnList = new MainTextList();
-            var startCharIndex = 0;
-            foreach (var singleCharacter in str)
-            {
-                returnList.Add(startCharIndex, new MainText
-                {
-                    Text = singleCharacter.ToString()
-                });
-                startCharIndex++;
-            }
-
-            return returnList;
-        }
 
         public static MainTextList SetEnglishLyric(string str)
         {

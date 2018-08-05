@@ -114,6 +114,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel.Desktop.Pieces
             return (second / 60).ToString("D2") + ":" + (second % 60).ToString("D2");
         }
 
+        /*
         protected override bool OnWheel(InputState state)
         {
             if (state.Mouse.WheelDelta != 0)
@@ -123,5 +124,6 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel.Desktop.Pieces
             return true;
             //return base.OnWheel(state);
         }
+        */
     }
 }

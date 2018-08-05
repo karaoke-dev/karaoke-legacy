@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using osu.Framework.Graphics;
 using osu.Framework.Timing;
 using osu.Game.Rulesets.Karaoke.Beatmaps;
+using osu.Game.Rulesets.Karaoke.Objects.Note;
 using osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel;
 using osu.Game.Rulesets.Karaoke.UI.Layers.Effect;
 using osu.Game.Rulesets.Karaoke.UI.Layers.Input;
@@ -64,7 +65,11 @@ namespace osu.Game.Rulesets.Karaoke.UI
             //layer
             Add(KaraokeTonePlayfield = new KaraokeTonePlayfield(new List<KaraokeStageDefinition>
             {
-                new KaraokeStageDefinition { Columns = 10 }
+                new KaraokeStageDefinition
+                {
+                    Columns = 11,
+                    DefaultTone = new Tone(0, true)
+                }
             })
             {
                 KaraokeRulesetContainer = KaraokeRulesetContainer
