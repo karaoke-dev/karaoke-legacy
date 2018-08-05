@@ -4,9 +4,7 @@
 using System;
 using Newtonsoft.Json;
 using osu.Game.Rulesets.Karaoke.Configuration.Types;
-using osu.Game.Rulesets.Karaoke.Objects;
 using osu.Game.Rulesets.Karaoke.Objects.Text;
-using osu.Game.Rulesets.Karaoke.Objects.Types;
 using OpenTK;
 using OpenTK.Graphics;
 
@@ -22,8 +20,8 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
         /// </summary>
         public FormattedText TopText { get; set; } = new FormattedText
         {
-            FontSize = 20, //default Main text Size is 20
-            Position = new Vector2(0, 15) //default position
+            FontSize = 30, //default Main text Size is 20
+            Position = new Vector2(0, 30) //default position
         };
 
         /// <summary>
@@ -31,8 +29,8 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
         /// </summary>
         public FormattedText MainText { get; set; } = new FormattedText
         {
-            FontSize = 50, //default Main text Size is 50
-            Position = new Vector2(0, 50) //default position
+            FontSize = 80, //default Main text Size is 50
+            Position = new Vector2(0, 100) //default position
         };
 
         /// <summary>
@@ -40,8 +38,8 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
         /// </summary>
         public FormattedText BottomText { get; set; } = new FormattedText
         {
-            FontSize = 20, //default Main text Size is 20
-            Position = new Vector2(0, 70) //default position
+            FontSize = 30, //default Main text Size is 20
+            Position = new Vector2(0, 140) //default position
         };
 
         /// <summary>
@@ -49,8 +47,8 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
         /// </summary>
         public FormattedText TranslateText { get; set; } = new FormattedText
         {
-            FontSize = 20, //default Main text Size is 50
-            Position = new Vector2(0, 85) //default position
+            FontSize = 30, //default Main text Size is 50
+            Position = new Vector2(0, 200) //default position
         };
 
         /// <summary>

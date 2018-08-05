@@ -21,62 +21,15 @@ namespace osu.Game.Rulesets.Karaoke.Beatmaps
         }
 
         protected override IEnumerable<Type> ValidConversionTypes { get; } = new[] { typeof(IHasPosition) };
-        private KaraokeBeatmap beatmap;
 
         protected override IEnumerable<BaseLyric> ConvertHitObject(HitObject original, IBeatmap beatmap)
         {
-            var curveData = original as IHasCurve;
-            var endTimeData = original as IHasEndTime;
-            var positionData = original as IHasPosition;
-            var comboData = original as IHasCombo;
-
-
             yield return (BaseLyric)original;
-
-            /*
-            if (curveData != null)
-            {
-                yield return new Slider
-                {
-                    StartTime = original.StartTime,
-                    Samples = original.Samples,
-                    ControlPoints = curveData.ControlPoints,
-                    CurveType = curveData.CurveType,
-                    Distance = curveData.Distance,
-                    RepeatSamples = curveData.RepeatSamples,
-                    RepeatCount = curveData.RepeatCount,
-                    Position = positionData?.Position ?? Vector2.Zero,
-                    NewCombo = comboData?.NewCombo ?? false
-                };
-            }
-            else if (endTimeData != null)
-            {
-                yield return new Spinner
-                {
-                    StartTime = original.StartTime,
-                    Samples = original.Samples,
-                    EndTime = endTimeData.EndTime,
-
-                    Position = positionData?.Position ?? KaraokePlayfield.BASE_SIZE / 2,
-                };
-            }
-            else
-            {
-                yield return new HitCircle
-                {
-                    StartTime = original.StartTime,
-                    Samples = original.Samples,
-                    Position = positionData?.Position ?? Vector2.Zero,
-                    NewCombo = comboData?.NewCombo ?? false
-                };
-            }
-            
-            */
         }
 
         protected override Beatmap<BaseLyric> CreateBeatmap()
         {
-            return beatmap = new KaraokeBeatmap();
+            return new KaraokeBeatmap();
         }
 
         /// <summary>
@@ -86,18 +39,16 @@ namespace osu.Game.Rulesets.Karaoke.Beatmaps
         /// <returns>The converted Beatmap.</returns>
         protected override Beatmap<BaseLyric> ConvertBeatmap(IBeatmap original)
         {
-            //TODO : ・ｽﾒ考Mania・ｽ・ｽ・ｽ・ｽ・ｽ・ｽ・ｽ
+            
             var newBratmaps = new Beatmap<BaseLyric>
             {
                 BeatmapInfo = original.BeatmapInfo,
                 ControlPointInfo = original.ControlPointInfo,
                 HitObjects = Convert(original.HitObjects.ToList()),
             };
-            //newBratmaps.HitObjects.BindingAll();
 
             //slow down the note speed
             newBratmaps.BeatmapInfo.BaseDifficulty.OverallDifficulty = newBratmaps.BeatmapInfo.BaseDifficulty.OverallDifficulty / 2;
-
 
             return newBratmaps;
         }
@@ -116,7 +67,5 @@ namespace osu.Game.Rulesets.Karaoke.Beatmaps
 
             return listRerturn;
         }
-
-       
     }
 }

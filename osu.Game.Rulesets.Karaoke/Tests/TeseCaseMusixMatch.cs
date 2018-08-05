@@ -1,11 +1,10 @@
-﻿using System;
+﻿// Copyright (c) 2007-2018 ppy Pty Ltd <contact@ppy.sh>.
+// Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
+
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Text;
 using MusixMatch_API;
-using MusixMatch_API.APIMethods.Artist;
-using MusixMatch_API.APIMethods.Matcher;
 using MusixMatch_API.APIMethods.Track;
 using MusixMatch_API.ReturnTypes;
 using NUnit.Framework;

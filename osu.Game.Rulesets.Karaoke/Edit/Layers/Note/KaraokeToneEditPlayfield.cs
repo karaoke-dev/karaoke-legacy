@@ -27,7 +27,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Layers.Note
             drawableNote.NoteSpeed.BindTo(VisibleTimeRange);
 
             //然後根據事件去做物件的加減
-            getStageByColumn(drawableNote.HitObject.SingerIndex ?? 0).Add(drawableNote);
+            GetStageByColumn(drawableNote.HitObject.SingerIndex ?? 0).Add(drawableNote);
         }
     }
 }

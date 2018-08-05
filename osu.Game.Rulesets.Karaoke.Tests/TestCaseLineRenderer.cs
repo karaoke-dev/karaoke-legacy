@@ -1,15 +1,12 @@
 ﻿// Copyright (c) 2007-2018 ppy Pty Ltd <contact@ppy.sh>.
 // Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
 
-using System;
 using System.Collections.Generic;
 using NUnit.Framework;
 using osu.Framework.Allocation;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Lines;
-using osu.Framework.Graphics.OpenGL.Textures;
-using osu.Framework.Graphics.Textures;
 using osu.Game.Rulesets.Objects;
 using osu.Game.Tests.Visual;
 using OpenTK;
@@ -110,6 +107,7 @@ namespace osu.Game.Rulesets.Karaoke.Tests
 
         private void initialTexture()
         {
+            /*
             int textureWidth = (int)path.PathWidth * 2;
 
             var texture = new Texture(textureWidth, 1);
@@ -145,6 +143,7 @@ namespace osu.Game.Rulesets.Karaoke.Tests
             texture.SetData(upload);
             path.Texture = texture;
             path2.Texture = texture;
+            */
 
 
             /*

@@ -121,7 +121,7 @@ namespace osu.Game.Rulesets.Karaoke.Online.API.Romaj.Google
 
         private static readonly char MapSplitChar = ':';
 
-        private readonly List<string> Suffixes = new List<string>
+        private readonly List<string> suffixes = new List<string>
         {
             "Iru"
         };
@@ -166,7 +166,7 @@ namespace osu.Game.Rulesets.Karaoke.Online.API.Romaj.Google
 
         public string AttachSuffixes(string text)
         {
-            foreach (var suffix in Suffixes)
+            foreach (var suffix in suffixes)
                 text = Regex.Replace(text,
                     @"\s" + suffix + @"\b",
                     suffix.ToLower());

@@ -70,6 +70,22 @@
             "problemMatcher": "$msCompile"
         },
         {
+            "label": "karaoke develop (Debug)",
+            "type": "shell",
+            "command": "dotnet",
+            "args": [
+                "build",
+                "--no-restore",
+                "osu.Game.Rulesets.Karaoke.Develop",
+                "/p:TargetFramework=netcoreapp2.1",
+                "/p:GenerateFullPaths=true",
+                "/m",
+                "/verbosity:m"
+            ],
+            "group": "build",
+            "problemMatcher": "$msCompile"
+        },
+        {
             "label": "Restore (netcoreapp2.1)",
             "type": "shell",
             "command": "dotnet",

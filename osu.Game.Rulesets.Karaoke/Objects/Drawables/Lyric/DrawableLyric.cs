@@ -5,11 +5,9 @@ using System.Linq;
 using osu.Framework.Allocation;
 using osu.Framework.Configuration;
 using osu.Framework.Graphics;
-using osu.Framework.Graphics.Containers;
 using osu.Framework.IO.Stores;
 using osu.Game.Rulesets.Karaoke.Beatmaps;
 using osu.Game.Rulesets.Karaoke.Configuration;
-using osu.Game.Rulesets.Karaoke.Objects.Drawables.Common.Pieces;
 using osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric.Pieces;
 using osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric.Types;
 using osu.Game.Rulesets.Objects.Drawables;
@@ -28,9 +26,6 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
 
         public const float TIME_FADEOUT = 0;
 
-        //Drawable
-        public Container TextsAndMaskPiece { get; }
-
         /// <summary>
         ///     Gets or sets a value indicating whether this
         ///     <see cref="T:osu.Game.Rulesets.Karaoke.Objects.Drawables.BaseLyric.DrawableKaraokeObject" /> progress update by
@@ -38,28 +33,6 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
         /// </summary>
         /// <value><c>true</c> if progress update by time; otherwise, <c>false</c>.</value>
         public virtual bool ProgressUpdateByTime { get; set; } = true;
-
-        public override float Width
-        {
-            get => base.Width;
-            set
-            {
-                base.Width = value;
-                LeftSideText.Width = Width;
-                RightSideText.Width = Width;
-            }
-        }
-
-        public override float Height
-        {
-            get => base.Height;
-            set
-            {
-                base.Height = value;
-                LeftSideText.Height = Height;
-                RightSideText.Height = Height;
-            }
-        }
 
         /// <summary>
         ///     progress
@@ -71,14 +44,13 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
             set
             {
                 _nowProgress = value;
-                LeftSideText.SetMaskStartAndEndPosition(0, (float)Progress);
-                RightSideText.SetMaskStartAndEndPosition((float)Progress, Width);
+
+                //TODO : 
             }
         }
 
-        protected virtual LyricContainer LeftSideText { get; set; } = new LyricContainer();
+        protected LyricContainer LyricContainer ;
 
-        protected virtual LyricContainer RightSideText { get; set; } = new LyricContainer();
 
         private double _nowProgress;
 
@@ -86,21 +58,20 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
             : base(hitObject)
         {
             Alpha = 0;
-            LeftSideText.Lyric = hitObject;
-            RightSideText.Lyric = hitObject;
 
             InternalChildren = new Drawable[]
             {
-                TextsAndMaskPiece = new Container
+                LyricContainer = new LyricContainer
                 {
-                    Children = new Drawable[]
-                    {
-                        RightSideText,
-                        LeftSideText
-                    }
+                    RelativeSizeAxes = Axes.Both,
+                    AutoSizeAxes = Axes.None,
                 },
                 TranslateText
             };
+
+            Width = 1000;
+
+            LyricContainer.Lyric = hitObject;
 
             Style.ValueChanged += style => { OnStyleChange(); };
             Template.ValueChanged += style => { OnTemplateChange(); };
@@ -110,15 +81,14 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
 
         protected virtual void OnStyleChange()
         {
-            LeftSideText.Config = Style.Value;
-            RightSideText.Config = Style.Value;
+            //LeftSideText.Config = Style.Value;
+            //RightSideText.Config = Style.Value;
             UpdateDrawable();
         }
 
         protected virtual void OnTemplateChange()
         {
-            LeftSideText.Template = Template.Value;
-            RightSideText.Template = Template.Value;
+            LyricContainer.Template = Template.Value;
             UpdateDrawable();
         }
 
@@ -147,8 +117,8 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
             //TODO : fix logic
             if (Style != null && Template != null && Lyric != null)
             {
-                Width = LeftSideText?.LyricText?.GetTextEndPosition() ?? 200;
-                Height = Lyric.Height ?? 100;
+                //Width = LeftSideText?.LyricText?.GetTextEndPosition() ?? 200;
+                //Height = Lyric.Height ?? 100;
             }
         }
 
@@ -172,8 +142,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
             var textColor = Singer?.LytricColor ?? Color4.Blue;
             var backgroundColor = Singer?.LytricBackgroundColor ?? Color4.White;
             //
-            LeftSideText.SetColor(textColor);
-            RightSideText.SetColor(backgroundColor);
+            //LyricContainer
 
             Scale = new Vector2(templateValue?.Scale ?? 1);
 
@@ -186,6 +155,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
         {
             base.Update();
 
+
             if (!ProgressUpdateByTime)
                 return;
 
@@ -193,6 +163,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
             if (HitObject.IsInTime(currentRelativeTime))
             {
                 //TODO : get progress point
+                /*
                 var startProgressPoint = HitObject.TimeLines.GetFirstProgressPointByTime(currentRelativeTime);
                 var endProgressPoint = HitObject.TimeLines.GetLastProgressPointByTime(currentRelativeTime);
 
@@ -209,9 +180,14 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
 
                 //Update progress
                 Progress = startPosition + (endPosition - startPosition) / (float)(endProgressPoint?.Value.RelativeTime - startProgressPoint.Value.RelativeTime) * (float)relativeTime;
+                */
+
+                LyricContainer.RelativeTime = currentRelativeTime;
 
                 Show();
                 Alpha = 1;
+
+                
             }
             else
             {

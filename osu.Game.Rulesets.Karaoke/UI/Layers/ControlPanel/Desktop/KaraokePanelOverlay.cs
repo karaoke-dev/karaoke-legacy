@@ -2,7 +2,6 @@
 // Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
 
 using osu.Game.Graphics.Containers;
-using osu.Game.Overlays;
 using osu.Game.Rulesets.Karaoke.Configuration;
 using osu.Game.Rulesets.Karaoke.UI.Interface;
 using osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel.Type;

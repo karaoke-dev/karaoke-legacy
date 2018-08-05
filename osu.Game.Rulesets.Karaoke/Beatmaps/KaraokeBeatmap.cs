@@ -9,8 +9,8 @@ using osu.Game.Rulesets.Karaoke.Objects;
 namespace osu.Game.Rulesets.Karaoke.Beatmaps
 {
     /// <summary>
-    ///     karaoke beatmap
-    ///     will contain the basic karaoke song info
+    /// Karaoke beatmap
+    /// Will contain the basic karaoke song info
     /// </summary>
     public class KaraokeBeatmap : Beatmap<BaseLyric>
     {
@@ -25,6 +25,10 @@ namespace osu.Game.Rulesets.Karaoke.Beatmaps
         ///     song author
         /// </summary>
         public string AuthorName { get; set; }
+
+        #endregion
+
+        #region GameField
 
         /// <summary>
         ///     list singer
@@ -77,5 +81,27 @@ namespace osu.Game.Rulesets.Karaoke.Beatmaps
         public string PublishKey { get; set; }
 
         #endregion
+
+        #region Override Parameter
+
+        /// <summary>
+        ///     override the origin Template
+        /// </summary>
+        public LyricTemplate LyricTemplate { get; set; }
+
+        #endregion
+    }
+
+    public class KaraokeModeSupport
+    {
+        /// <summary>
+        ///     Show tome visualization
+        /// </summary>
+        public bool Tone { get; set; }
+
+        /// <summary>
+        ///     Has vocal track that can has off-vocal mod
+        /// </summary>
+        public bool VocalTrack { get; set; }
     }
 }
