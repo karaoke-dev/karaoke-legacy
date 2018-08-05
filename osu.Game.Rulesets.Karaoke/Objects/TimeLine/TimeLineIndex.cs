@@ -12,14 +12,9 @@ namespace osu.Game.Rulesets.Karaoke.Objects.TimeLine
 
         public int Index { get; set; }
 
-        public float? Percentage { get; set; }
+        public float Percentage { get; set; }
 
-        public TimeLineIndex()
-        {
-
-        }
-
-        public TimeLineIndex(int index, float? percentage = null)
+        public TimeLineIndex(int index, float percentage = 1)
         {
             Index = index;
             Percentage = percentage;
