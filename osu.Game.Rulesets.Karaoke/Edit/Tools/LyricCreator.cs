@@ -11,6 +11,8 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Tools
     /// </summary>
     public class LyricCreator
     {
+        private readonly LyricEditor _editor = new LyricEditor();
+
         /// <summary>
         /// Create
         /// TODO : add another language support
@@ -29,6 +31,13 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Tools
                     Text = singleCharacter.ToString()
                 });
                 startCharIndex++;
+            }
+
+            _editor.TargetLyric = lyric;
+            //fix lyric format
+            if (!_editor.LyricFormatIsValid())
+            {
+                _editor.FixLyricFormat();
             }
 
             return lyric;

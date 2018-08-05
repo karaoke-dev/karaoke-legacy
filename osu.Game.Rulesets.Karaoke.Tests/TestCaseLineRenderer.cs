@@ -110,6 +110,7 @@ namespace osu.Game.Rulesets.Karaoke.Tests
 
         private void initialTexture()
         {
+            /*
             int textureWidth = (int)path.PathWidth * 2;
 
             var texture = new Texture(textureWidth, 1);
@@ -145,6 +146,7 @@ namespace osu.Game.Rulesets.Karaoke.Tests
             texture.SetData(upload);
             path.Texture = texture;
             path2.Texture = texture;
+            */
 
 
             /*

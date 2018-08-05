@@ -45,7 +45,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.TimeLine
 
             var maxResult = Find(result.Keys.Max());
 
-            if (maxResult.Equals(default(KeyValuePair<int, TimeLine>)))
+            if (maxResult.Equals(default(KeyValuePair<TimeLineIndex, TimeLine>)))
                 return new KeyValuePair<TimeLineIndex, TimeLine>(new TimeLineIndex(-1), new TimeLine(0));
 
             return maxResult.Value;
@@ -79,7 +79,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.TimeLine
 
             var maxResult = Find(result.Keys.Max());
 
-            if (maxResult.Equals(default(KeyValuePair<int, TimeLine>)))
+            if (maxResult.Equals(default(KeyValuePair<TimeLineIndex, TimeLine>)))
             {
                 var key = Keys.Max();
                 return Find(key);
