@@ -48,20 +48,13 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Lyric
         public Bindable<TranslateCode> TranslateCode { get; set; } = new Bindable<TranslateCode>();
 
         /// <summary>
-        ///     update combo by last object
-        /// </summary>
-        /// <param name="lyric"></param>
-        public static void UpdateObjectCombo(BaseLyric lyric)
-        {
-        }
-
-        /// <summary>
         ///     automatically update preemptive time
         /// </summary>
         /// <param name="karaokeField"></param>
         /// <param name="karaokeObject"></param>
         public static void UpdateObjectPreemptiveTime(DrawableLyric karaokeObject)
         {
+
         }
 
         public override void Add(DrawableHitObject h)
@@ -105,20 +98,6 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Lyric
                 drawableKaraokeObject.Template = template;
             }
             */
-        }
-
-        /// <summary>
-        ///     get list template
-        /// </summary>
-        /// <param name="karaokeField"></param>
-        /// <returns></returns>
-        public List<LyricTemplate> GetListKaraokeTemplate()
-        {
-            var listTemplates = new List<LyricTemplate>
-            {
-                new LyricTemplate()
-            };
-            return listTemplates;
         }
 
         /// <summary>

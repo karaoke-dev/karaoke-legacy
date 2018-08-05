@@ -22,10 +22,5 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric.Types
         ///     set preemptive time
         /// </summary>
         double PreemptiveTime { get; set; }
-
-        /// <summary>
-        ///     translate text
-        /// </summary>
-        TranslateString TranslateText { get; set; }
     }
 }

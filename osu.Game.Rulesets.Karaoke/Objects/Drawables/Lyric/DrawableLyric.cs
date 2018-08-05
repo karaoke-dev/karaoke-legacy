@@ -5,6 +5,7 @@ using System.Linq;
 using osu.Framework.Allocation;
 using osu.Framework.Configuration;
 using osu.Framework.Graphics;
+using osu.Framework.Graphics.Containers;
 using osu.Framework.IO.Stores;
 using osu.Game.Rulesets.Karaoke.Beatmaps;
 using osu.Game.Rulesets.Karaoke.Configuration;
@@ -50,6 +51,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
         }
 
         protected LyricContainer LyricContainer ;
+        protected TranslateString TranslateText ;
 
 
         private double _nowProgress;
@@ -59,17 +61,29 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
         {
             Alpha = 0;
 
+            AutoSizeAxes = Axes.Y;
+            RelativeSizeAxes = Axes.X;
             InternalChildren = new Drawable[]
             {
-                LyricContainer = new LyricContainer
+                new FillFlowContainer
                 {
-                    RelativeSizeAxes = Axes.Both,
-                    AutoSizeAxes = Axes.None,
-                },
-                TranslateText
+                    AutoSizeAxes = Axes.Y,
+                    RelativeSizeAxes = Axes.X,
+                    Children = new Drawable[]
+                    {
+                        LyricContainer = new LyricContainer
+                        {
+                            AutoSizeAxes = Axes.Y,
+                            RelativeSizeAxes = Axes.X,
+                        },
+                        TranslateText = new TranslateString(null)
+                        {
+                            AutoSizeAxes = Axes.Y,
+                            RelativeSizeAxes = Axes.X,
+                        }
+                    }
+                }
             };
-
-            Width = 1000;
 
             LyricContainer.Lyric = hitObject;
 
@@ -81,8 +95,6 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
 
         protected virtual void OnStyleChange()
         {
-            //LeftSideText.Config = Style.Value;
-            //RightSideText.Config = Style.Value;
             UpdateDrawable();
         }
 
@@ -305,8 +317,6 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
                 UpdateDrawable();
             }
         }
-
-        public TranslateString TranslateText { get; set; } = new TranslateString(null);
 
         #endregion
     }
