@@ -54,11 +54,29 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Lyric
         public KaraokeLyricPlayField()
         {
             RelativeSizeAxes = Axes.Both;
-
-            LineSpacing = new List<float>()
+            Direction = FillDirection.Vertical;
+            LineSpacing = new List<float>
             {
                 0,100
             };
+        }
+
+        public override void Add(DrawableLyric drawable)
+        {
+            int index = Children.Count - 1;
+            int spacingCount = LineSpacing.Count;
+            if (index >= spacingCount)
+            {
+                var targetLyricEndTime = Children[index - spacingCount].Lyric.EndTime;
+
+                //set preemptive time
+                Children[index].PreemptiveTime = Children[index].Lyric.StartTime - targetLyricEndTime - 10;
+            }
+            else if(index >= 0)
+            {
+                Children[index].PreemptiveTime = Children[index].Lyric.StartTime - 10;
+            }
+            base.Add(drawable);
         }
 
         protected override IEnumerable<Vector2> ComputeLayoutPositions()

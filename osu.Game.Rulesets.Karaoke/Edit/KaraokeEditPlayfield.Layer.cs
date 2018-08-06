@@ -40,7 +40,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit
                     {
                         Left = 100,
                         Right = 100,
-                        Top = 300,
+                        Top = 100,
                         Bottom = 40,
                     }
                 },
