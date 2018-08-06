@@ -4,7 +4,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using osu.Framework.Graphics.Containers;
-using osu.Framework.Input;
+using osu.Framework.Input.EventArgs;
+using osu.Framework.Input.States;
 using osu.Game.Rulesets.Karaoke.Objects;
 using osu.Game.Rulesets.Karaoke.Objects.TimeLine;
 using OpenTK.Input;
