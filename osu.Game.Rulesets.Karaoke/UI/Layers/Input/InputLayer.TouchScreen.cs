@@ -2,7 +2,6 @@
 // Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
 
 using System.Timers;
-using osu.Framework.Input;
 using osu.Framework.Input.EventArgs;
 using osu.Framework.Input.States;
 using osu.Game.Rulesets.Karaoke.Configuration;
