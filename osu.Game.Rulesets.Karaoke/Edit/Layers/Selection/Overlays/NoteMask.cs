@@ -31,6 +31,11 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Layers.Selection.Overlays
         public NoteMask(DrawableEditableKaraokeNoteGroup hitObject)
             : base(hitObject)
         {
+            Scale = hitObject.Scale;
+
+            CornerRadius = 5;
+            Masking = true;
+
             RelativeSizeAxes = Axes.Y;
 
             InternalChildren = new Drawable[]
@@ -75,6 +80,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Layers.Selection.Overlays
             base.Update();
 
             Size = new Vector2(HitObject.DrawSize.X / 2.367f, HitObject.DrawSize.Y / 505);
+            Scale = HitObject.Scale;
 
             //means width changed
             if (Math.Abs(_lastWidth - DrawWidth) > 0)

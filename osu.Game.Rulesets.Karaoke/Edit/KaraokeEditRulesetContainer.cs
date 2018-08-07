@@ -26,6 +26,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit
             return new KaraokeEditorInputManager(Ruleset.RulesetInfo);
         }
 
+        /*
         protected override Vector2 GetAspectAdjustedSize()
         {
             const float default_relative_height = KaraokeBasePlayfield.DEFAULT_HEIGHT / 512;
@@ -35,6 +36,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit
 
             return new Vector2(1, default_relative_height * aspectAdjust);
         }
+        */
 
         /// <summary>
         ///     create editable HitObject
