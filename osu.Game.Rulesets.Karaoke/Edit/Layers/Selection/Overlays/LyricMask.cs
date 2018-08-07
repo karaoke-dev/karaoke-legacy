@@ -2,7 +2,7 @@
 // Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
 
 using osu.Game.Rulesets.Edit;
-using osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric;
+using osu.Game.Rulesets.Karaoke.Edit.Drawables.Lyric;
 
 namespace osu.Game.Rulesets.Karaoke.Edit.Layers.Selection.Overlays
 {
@@ -11,7 +11,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Layers.Selection.Overlays
     /// </summary>
     public class LyricMask : HitObjectMask
     {
-        public LyricMask(DrawableLyric drawableLyric)
+        public LyricMask(DrawableEditableKaraokeObject drawableLyric)
             : base(drawableLyric)
         {
         }

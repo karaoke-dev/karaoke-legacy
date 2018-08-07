@@ -22,19 +22,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit
         public KaraokeEditPlayfield(Ruleset ruleset, WorkingBeatmap beatmap, KaraokeEditRulesetContainer container)
             : base(ruleset, beatmap, container)
         {
-        }
 
-        /// <summary>
-        ///     Add : Add to editList
-        /// </summary>
-        /// <param name="drawable"></param>
-        public override void Add(DrawableHitObject h)
-        {
-            if (h is DrawableEditableKaraokeObject drawableEditableKaraokeObject)
-            {
-            }
-
-            base.Add(h);
         }
 
         /// <summary>

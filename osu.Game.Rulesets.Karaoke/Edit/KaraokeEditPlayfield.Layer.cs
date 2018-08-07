@@ -47,7 +47,10 @@ namespace osu.Game.Rulesets.Karaoke.Edit
             });
 
             Layers.Add(KaraokeLyricPlayField);
-            Layers.Add(KaraokeLyricPlayField);
+            Layers.Add(KaraokeTonePlayfield);
+
+            AddNested(KaraokeLyricPlayField);
+            AddNested(KaraokeTonePlayfield);
         }
 
         /// <summary>

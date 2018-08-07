@@ -1,14 +1,19 @@
 ﻿// Copyright (c) 2007-2018 ppy Pty Ltd <contact@ppy.sh>.
 // Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
 
+using System.Collections.Generic;
+using System.Linq;
 using osu.Framework.Allocation;
 using osu.Framework.Graphics;
 using osu.Game.Beatmaps;
 using osu.Game.Rulesets.Karaoke.Configuration;
+using osu.Game.Rulesets.Karaoke.Objects;
+using osu.Game.Rulesets.Karaoke.Objects.Drawables.Note;
 using osu.Game.Rulesets.Karaoke.UI.Interface;
 using osu.Game.Rulesets.Objects.Drawables;
 using osu.Game.Rulesets.UI;
 using OpenTK;
+using OpenTK.Graphics;
 
 namespace osu.Game.Rulesets.Karaoke.UI
 {
@@ -66,11 +71,20 @@ namespace osu.Game.Rulesets.Karaoke.UI
         /// <param name="h"></param>
         public override void Add(DrawableHitObject h)
         {
+            //Add Lyric
             KaraokeLyricPlayField.Add(h);
+            base.Add(h);
 
-            //import
+            //Add note
             if (KaraokeTonePlayfield != null)
-                KaraokeTonePlayfield.Add(h);
+            {
+                var drawableNote = new DrawableLyricNoteGroup(h.HitObject as BaseLyric)
+                {
+                    AccentColour = Color4.Blue
+                };
+                KaraokeTonePlayfield.Add(drawableNote);
+                base.Add(drawableNote);
+            }
         }
 
         //post process
@@ -118,5 +132,18 @@ namespace osu.Game.Rulesets.Karaoke.UI
         */
 
         #endregion
+
+        protected override HitObjectContainer CreateHitObjectContainer() => new KaraokeHitObjectContainer();
+
+        private class KaraokeHitObjectContainer : HitObjectContainer
+        {
+            private List<DrawableHitObject> _hitObjects = new List<DrawableHitObject>();
+
+            public new IEnumerable<DrawableHitObject> Objects => _hitObjects.OrderBy(h => h.HitObject.StartTime);
+            public new IEnumerable<DrawableHitObject> AliveObjects => _hitObjects.OrderBy(h => h.HitObject.StartTime);
+
+            public override void Add(DrawableHitObject hitObject) => _hitObjects.Add(hitObject);
+            public override bool Remove(DrawableHitObject hitObject) => _hitObjects.Remove(hitObject);
+        }
     }
 }
