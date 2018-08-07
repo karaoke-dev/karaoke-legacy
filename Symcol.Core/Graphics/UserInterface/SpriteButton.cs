@@ -3,7 +3,7 @@ using osu.Framework.Graphics;
 using osu.Framework.Graphics.Shapes;
 using osu.Framework.Graphics.Sprites;
 using osu.Framework.Graphics.Textures;
-using osu.Framework.Input;
+using osu.Framework.Input.States;
 using Symcol.Core.Graphics.Containers;
 
 namespace Symcol.Core.Graphics.UserInterface

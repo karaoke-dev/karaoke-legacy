@@ -118,7 +118,7 @@ namespace osu.Game.Rulesets.Karaoke
                         new MultiMod(new KaraokeModTransparentLyrics(),new KaraokeModCloseLyrics())
                     };
 
-                case ModType.Special: //only event mod
+                case ModType.Fun: //only event mod
                     return new Mod[]
                     {
                         new KaraokeMod2017_Christmas(),

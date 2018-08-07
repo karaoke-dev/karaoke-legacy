@@ -46,8 +46,9 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Note
         private readonly List<KaraokeStage> stages = new List<KaraokeStage>();
 
         public KaraokeTonePlayfield(List<KaraokeStageDefinition> stageDefinitions)
-            : base(ScrollingDirection.Left)
         {
+            Direction.Value = ScrollingDirection.Left;
+
             if (stageDefinitions == null)
                 throw new ArgumentNullException(nameof(stageDefinitions));
 
@@ -80,17 +81,14 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Note
 
         public override void Add(DrawableHitObject h)
         {
-            //Create object
-            var drawableNote = new DrawableLyricNoteGroup(h.HitObject as BaseLyric)
+            if (h is DrawableLyricNoteGroup note)
             {
-                AccentColour = Color4.Blue
-            };
+                //regist event
+                note.NoteSpeed.BindTo(VisibleTimeRange);
 
-            //regist event
-            drawableNote.NoteSpeed.BindTo(VisibleTimeRange);
-
-            //然後根據事件去做物件的加減
-            GetStageByColumn(drawableNote.HitObject.SingerIndex ?? 0).Add(drawableNote);
+                //然後根據事件去做物件的加減
+                GetStageByColumn(note.HitObject.SingerIndex ?? 0).Add(note);
+            }
         }
 
         public void Add(BarLine barline)

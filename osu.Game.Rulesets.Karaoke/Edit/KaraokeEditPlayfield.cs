@@ -1,7 +1,8 @@
 ﻿// Copyright (c) 2007-2018 ppy Pty Ltd <contact@ppy.sh>.
 // Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
 
-using osu.Framework.Input;
+using osu.Framework.Input.EventArgs;
+using osu.Framework.Input.States;
 using osu.Game.Beatmaps;
 using osu.Game.Rulesets.Karaoke.Edit.Drawables.Lyric;
 using osu.Game.Rulesets.Karaoke.UI;
@@ -21,19 +22,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit
         public KaraokeEditPlayfield(Ruleset ruleset, WorkingBeatmap beatmap, KaraokeEditRulesetContainer container)
             : base(ruleset, beatmap, container)
         {
-        }
 
-        /// <summary>
-        ///     Add : Add to editList
-        /// </summary>
-        /// <param name="drawable"></param>
-        public override void Add(DrawableHitObject h)
-        {
-            if (h is DrawableEditableKaraokeObject drawableEditableKaraokeObject)
-            {
-            }
-
-            base.Add(h);
         }
 
         /// <summary>

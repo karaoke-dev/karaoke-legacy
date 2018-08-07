@@ -2,7 +2,8 @@
 // Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
 
 using System;
-using osu.Framework.Input;
+using osu.Framework.Input.EventArgs;
+using osu.Framework.Input.States;
 
 namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
 {
