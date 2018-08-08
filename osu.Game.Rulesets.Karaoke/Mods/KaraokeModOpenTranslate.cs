@@ -16,7 +16,7 @@ namespace osu.Game.Rulesets.Karaoke.Mods
         public override string ShortenedName => "Tr";
         public override double ScoreMultiplier => 1;
         public override string Description => "Will force open the translate for lyrics, even you are not open it in the config.";
-        public override FontAwesome Icon => FontAwesome.fa_osu_mod_nofail;
+        public override FontAwesome Icon => FontAwesome.fa_language;
         public override bool Ranked => true;
     }
 }

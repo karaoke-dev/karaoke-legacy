@@ -4,6 +4,7 @@
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Timing;
+using osu.Game.Graphics;
 using osu.Game.Rulesets.Karaoke.Mods.Types;
 using osu.Game.Rulesets.Karaoke.UI.Layers.Effect.ShowEffect;
 using osu.Game.Rulesets.Mods;
@@ -20,6 +21,7 @@ namespace osu.Game.Rulesets.Karaoke.Mods
         public override string ShortenedName => "SW";
         public override double ScoreMultiplier => 1.0f;
         public virtual string TextureLayer => @"Play/Karaoke/Layer/Snow/Snow";
+        public override FontAwesome Icon => FontAwesome.fa_snowflake_o;
 
         public Container CreateNewLayer()
         {

@@ -105,23 +105,33 @@ namespace osu.Game.Rulesets.Karaoke
                 case ModType.DifficultyReduction: //general setting of karaoke
                     return new Mod[]
                     {
-                        new KaraokeModTutorial(),
-                        new MultiMod( new KaraokeModOpenTranslate(),new KaraokeModCloseTranslate()),
-                        new MultiMod( new KaraokeModEasy(),new KaraokeModDoubleTime()),
-                        new MultiMod( new KaraokeModCloseVocal(),new KaraokeModOpenVocal())
+                        new KaraokeModEasy(),
                     };
 
                 case ModType.DifficultyIncrease: // pecial setting or effect
                     return new Mod[]
                     {
                         new KaraokeModHidden(),
+                        new KaraokeModDoubleTime(),
                         new MultiMod(new KaraokeModTransparentLyrics(),new KaraokeModCloseLyrics())
                     };
 
+                case ModType.Automation:
+                    return new Mod[]
+                    {
+                        new KaraokeModTutorial(),
+                        new KaraokeModPractice()
+                    };
+                case ModType.Conversion:
+                    return new Mod[]
+                    {
+                        new MultiMod( new KaraokeModOpenTranslate(),new KaraokeModCloseTranslate()),
+                        new MultiMod( new KaraokeModCloseVocal(),new KaraokeModOpenVocal())
+                    };
+                    break;
                 case ModType.Fun: //only event mod
                     return new Mod[]
                     {
-                        new KaraokeModPractice(),
                         new KaraokeMod2017_Christmas(),
                         new KaraokeModPDUMCWAMFUW()
                     };

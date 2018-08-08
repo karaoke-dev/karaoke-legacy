@@ -15,7 +15,7 @@ namespace osu.Game.Rulesets.Karaoke.Mods
         public override string ShortenedName => "CloseVocal";
         public override double ScoreMultiplier => 1;
         public override string Description => "if sound trach has two parts, close the vocal part.";
-        public override FontAwesome Icon => FontAwesome.fa_osu_mod_easy;
+        public override FontAwesome Icon => FontAwesome.fa_times;
         public override bool Ranked => true;
     }
 }
