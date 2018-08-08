@@ -106,7 +106,7 @@ namespace osu.Game.Rulesets.Karaoke
                     return new Mod[]
                     {
                         new KaraokeModTutorial(),
-                        new MultiMod(new KaraokeModOpenTranslate(),new KaraokeModCloseTranslate()),
+                        new MultiMod( new KaraokeModOpenTranslate(),new KaraokeModCloseTranslate()),
                         new MultiMod( new KaraokeModEasy(),new KaraokeModDoubleTime()),
                         new MultiMod( new KaraokeModCloseVocal(),new KaraokeModOpenVocal())
                     };
@@ -121,6 +121,7 @@ namespace osu.Game.Rulesets.Karaoke
                 case ModType.Fun: //only event mod
                     return new Mod[]
                     {
+                        new KaraokeModPractice(),
                         new KaraokeMod2017_Christmas(),
                         new KaraokeModPDUMCWAMFUW()
                     };
