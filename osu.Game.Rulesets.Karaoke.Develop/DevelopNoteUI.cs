@@ -151,15 +151,18 @@ namespace osu.Game.Rulesets.Karaoke.Develop
             return drawableNote;
         }
 
-        //protected override IReadOnlyDependencyContainer CreateLocalDependencies(IReadOnlyDependencyContainer parent)
-        //    => dependencies = new DependencyContainer(base.CreateLocalDependencies(parent));
+        protected override IReadOnlyDependencyContainer CreateChildDependencies(IReadOnlyDependencyContainer parent)
+            => dependencies = new DependencyContainer(base.CreateChildDependencies(parent));
 
         [BackgroundDependencyLoader]
         private void load(RulesetStore rulesets, SettingsStore settings)
         {
-            maniaRuleset = rulesets.GetRuleset(3);
+            maniaRuleset = rulesets.GetRuleset(0);
 
-            dependencies.Cache(new KaraokeConfigManager(settings, maniaRuleset, 0));
+            if (maniaRuleset != null)
+            {
+                dependencies.Cache(new KaraokeConfigManager(settings, maniaRuleset, 0));
+            }
         }
 
         private KaraokePlayfield createPlayfield(List<KaraokeStageDefinition> stages, bool inverted = false)
