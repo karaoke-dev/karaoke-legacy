@@ -72,7 +72,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Layers.Selection.Overlays
         {
             base.Update();
             
-            Size = new Vector2(HitObject.DrawSize.X / 2.367f, HitObject.DrawSize.Y / 505);
+            Size = new Vector2(HitObject.DrawSize.X, HitObject.DrawSize.Y / 540);
             Scale = HitObject.Scale;
             Position = Parent.ToLocalSpace(HitObject.ScreenSpaceDrawQuad.TopLeft);
 
@@ -141,8 +141,6 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Layers.Selection.Overlays
                         RelativeSizeAxes = Axes.X,
                         Children = new Drawable[]
                         {
-                            // The hit object itself cannot be used for various elements because the tail overshoots it
-                            // So a specialized container that is updated to contain the tail height is used
                             fullHeightContainer = new Container
                             {
                                 RelativeSizeAxes = Axes.Both,
@@ -152,7 +150,6 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Layers.Selection.Overlays
                     }
                 };
             }
-
 
             public virtual KeyValuePair<TimeLineIndex, TimeLine> TimeLine
             {

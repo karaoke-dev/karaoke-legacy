@@ -49,10 +49,5 @@ namespace osu.Game.Rulesets.Karaoke.Edit
         {
             return new KaraokeEditRulesetContainer(ruleset, beatmap);
         }
-
-        protected override ScalableContainer CreateLayerContainer()
-        {
-            return new ScalableContainer(KaraokeBasePlayfield.BASE_SIZE.X) { RelativeSizeAxes = Axes.Both };
-        }
     }
 }
