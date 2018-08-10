@@ -15,7 +15,7 @@ namespace osu.Game.Rulesets.Karaoke.Mods
         public override string ShortenedName => "OpenVocal";
         public override double ScoreMultiplier => 1;
         public override string Description => "if sound trach has two parts, open the vocal part.";
-        public override FontAwesome Icon => FontAwesome.fa_osu_mod_relax;
+        public override FontAwesome Icon => FontAwesome.fa_commenting_o;
         public override bool Ranked => true;
     }
 }

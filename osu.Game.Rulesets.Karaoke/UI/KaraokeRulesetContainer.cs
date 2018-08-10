@@ -26,7 +26,7 @@ namespace osu.Game.Rulesets.Karaoke.UI
         public KaraokeRulesetContainer(Ruleset ruleset, WorkingBeatmap beatmap)
             : base(ruleset, beatmap)
         {
-            //TODO : add "autoPlay" to Mods to control play speed
+
         }
 
         public override ScoreProcessor CreateScoreProcessor()

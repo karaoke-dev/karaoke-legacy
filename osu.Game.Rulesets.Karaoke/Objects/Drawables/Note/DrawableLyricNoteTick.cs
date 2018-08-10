@@ -94,6 +94,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note
             }
         }
 
+        /*
         protected override void Update()
         {
             if (AllJudged)
@@ -104,5 +105,6 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note
 
             UpdateJudgement(true);
         }
+        */
     }
 }

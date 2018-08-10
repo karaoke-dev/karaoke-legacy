@@ -16,7 +16,7 @@ namespace osu.Game.Rulesets.Karaoke.Mods
         public override string ShortenedName => "Tr_Close";
         public override double ScoreMultiplier => 1;
         public override string Description => "will force close the translate for lyrics, even you are open it in the config.";
-        public override FontAwesome Icon => FontAwesome.fa_osu_mod_hardrock;
+        public override FontAwesome Icon => FontAwesome.fa_times;
         public override bool Ranked => true;
     }
 }

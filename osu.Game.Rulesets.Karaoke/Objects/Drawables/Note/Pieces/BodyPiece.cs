@@ -98,6 +98,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note.Pieces
         {
             base.Update();
 
+            /*
             if (!subtractionCache.IsValid)
             {
                 subtractionLayer.Width = 5;
@@ -114,6 +115,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note.Pieces
 
                 subtractionCache.Validate();
             }
+            */
         }
 
         private void updateAccentColour()
