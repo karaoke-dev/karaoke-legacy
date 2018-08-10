@@ -14,6 +14,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note
         public DrawableLyricNoteGroup(BaseLyric hitObject)
             : base(hitObject)
         {
+
         }
     }
 
@@ -28,8 +29,11 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note
         {
             set
             {
-                foreach (var single in ListNote)
-                    single.AccentColour = value;
+                if (ListNote != null)
+                {
+                    foreach (var single in ListNote)
+                        single.AccentColour = value;
+                }
             }
         }
 
@@ -48,7 +52,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note
                     Name = "Background",
                     Direction = FillDirection.Horizontal,
                     RelativeSizeAxes = Axes.Both
-                }
+                },
             };
 
             //initial note
