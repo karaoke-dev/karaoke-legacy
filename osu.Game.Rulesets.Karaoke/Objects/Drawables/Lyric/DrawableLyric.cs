@@ -50,6 +50,12 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
             }
         }
 
+        public new MarginPadding Padding
+        {
+            get => base.Padding;
+            set => base.Padding = value;
+        }
+
         protected LyricContainer LyricContainer ;
         protected TranslateString TranslateText ;
 
@@ -60,7 +66,6 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
             : base(hitObject)
         {
             Alpha = 0;
-
             AutoSizeAxes = Axes.Y;
             RelativeSizeAxes = Axes.X;
             InternalChildren = new Drawable[]

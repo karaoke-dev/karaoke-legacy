@@ -9,6 +9,9 @@ using osu.Game.Rulesets.Karaoke.Helps;
 using osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric;
 using osu.Game.Tests.Visual;
 using OpenTK;
+using osu.Framework.Graphics.Shapes;
+using OpenTK.Graphics;
+using osu.Game.Rulesets.Karaoke.Objects;
 
 namespace osu.Game.Rulesets.Karaoke.Develop
 {
@@ -20,7 +23,7 @@ namespace osu.Game.Rulesets.Karaoke.Develop
             var field = new KaraokeLyricPlayField()
             {
                 RelativeSizeAxes = Axes.Both,
-                Padding = new MarginPadding{Left = 30,Right = 30, Top = 30, Bottom = 30}
+                Padding = new MarginPadding{Left = 100,Right = 100, Top =100, Bottom = 100}
             };
 
             for (int i = 0; i < 4; i++)
@@ -35,10 +38,28 @@ namespace osu.Game.Rulesets.Karaoke.Develop
         }
     }
 
+    public class FakeLyricContainer : Container
+    {
+        public virtual bool ProgressUpdateByTime{get;set;}
+        public FakeLyricContainer(BaseLyric lyric)
+        {
+            RelativeSizeAxes = Axes.X;
+            Height = 100;
+            Children = new Drawable[]
+            {
+                new Box
+                {
+                    RelativeSizeAxes = Axes.Both,
+                    Colour = Color4.White,
+                }
+            };
+        }
+    }
+
     /// <summary>
     /// Playfield
     /// </summary>
-    public class KaraokeLyricPlayField : FillFlowContainer<DrawableLyric>
+    public class KaraokeLyricPlayField : Container<DrawableLyric>
     {
         public List<float> LineSpacing { get; set; }
 
@@ -52,19 +73,57 @@ namespace osu.Game.Rulesets.Karaoke.Develop
 
         public override void Add(DrawableLyric drawable)
         {
-            //drawable.RelativeSizeAxes = Axes.X;
             base.Add(drawable);
+
+            if (IsLoaded)
+                ComputeLyricLayout();
+
         }
 
         public override bool Remove(DrawableLyric drawable)
         {
-            return base.Remove(drawable);
+            var remove = base.Remove(drawable);
+
+            if (IsLoaded)
+                ComputeLyricLayout();
+
+            return remove;
         }
 
-        //protected void Adjust Mar
+        protected override void LoadComplete()
+        {
+            base.LoadComplete();
+            ComputeLyricLayout();
+        }
+
+        /// <summary>
+        /// Set object's margin and padding(left and right)
+        /// </summary>
+        protected virtual void ComputeLyricLayout()
+        {
+            for (int i = 0; i < Children.Count; i++)
+            {
+                var lyric = Children[i];
+
+                var layoutIndex = i % LineSpacing.Count;
+                lyric.Padding
+                = new MarginPadding{Left = LineSpacing[layoutIndex], Top = layoutIndex * 150, Right = 100};
+            }
+        }
         
+        /*
+        /// <summary>
+        /// re-compute layout
+        /// </summary>
         protected override IEnumerable<Vector2> ComputeLayoutPositions()
         {
+            var children = FlowingChildren.ToArray();
+            if (children.Length == 0)
+                return new List<Vector2>();
+
+            Vector2[] result = new Vector2[children.Length];
+            return result;
+            
             var positions = base.ComputeLayoutPositions().ToArray();
 
             for (int i = 0; i < positions.Length; i++)
@@ -78,7 +137,8 @@ namespace osu.Game.Rulesets.Karaoke.Develop
                 = new MarginPadding{Left = LineSpacing[layoutIndex], Right = 0};
             }
             return positions;
+            
         }
-        
+         */
     }
 }

@@ -7,12 +7,9 @@ using osu.Framework.Allocation;
 using osu.Framework.Graphics;
 using osu.Game.Beatmaps;
 using osu.Game.Rulesets.Karaoke.Configuration;
-<<<<<<< HEAD
 using osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric;
-=======
 using osu.Game.Rulesets.Karaoke.Objects;
 using osu.Game.Rulesets.Karaoke.Objects.Drawables.Note;
->>>>>>> 59e0bd1397f580410f6405944d71f70f69adf461
 using osu.Game.Rulesets.Karaoke.UI.Interface;
 using osu.Game.Rulesets.Objects.Drawables;
 using osu.Game.Rulesets.UI;

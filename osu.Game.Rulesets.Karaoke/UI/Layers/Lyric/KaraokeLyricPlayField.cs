@@ -37,7 +37,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Lyric
     ///     4. more
     ///     2. 3. 4. will be implement until release
     /// </summary>
-    public class KaraokeLyricPlayField : FillFlowContainer<DrawableLyric>, IDrawableLyricBindable, ILayer
+    public class KaraokeLyricPlayField : Playfield, IDrawableLyricBindable, ILayer
     {
         public KaraokeRulesetContainer KaraokeRulesetContainer { get; set; }
         public List<IDrawableLyricParameter> ListDrawableKaraokeObject { get; set; } = new List<IDrawableLyricParameter>();
@@ -54,13 +54,14 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Lyric
         public KaraokeLyricPlayField()
         {
             RelativeSizeAxes = Axes.Both;
-            Direction = FillDirection.Vertical;
+            //Direction = FillDirection.Vertical;
             LineSpacing = new List<float>
             {
                 0,100
             };
         }
 
+        /*
         public override void Add(DrawableLyric drawable)
         {
             int index = Children.Count - 1;
@@ -95,5 +96,6 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Lyric
             }
             return positions;
         }
+        */
     }
 }
