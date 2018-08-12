@@ -3,7 +3,6 @@
 
 using System.Collections.Generic;
 using System.Linq;
-using osu.Framework.Extensions;
 
 namespace osu.Game.Rulesets.Karaoke.Extension
 {
@@ -39,15 +38,9 @@ namespace osu.Game.Rulesets.Karaoke.Extension
         /// <param name="list"></param>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static T GetPrevious<T>(this List<T> list, T value) where T : class
+        public static T GetPrevious<T>(this IEnumerable<T> list, T value) where T : class
         {
-            var index = list.IndexOf(value);
-            var targetIndex = index - 1;
-
-            if (list.IsValidIndex(targetIndex))
-                return list[targetIndex];
-
-            return null;
+            return list.TakeWhile(i => !i.Equals(value)).LastOrDefault();
         }
 
         /// <summary>
@@ -57,15 +50,9 @@ namespace osu.Game.Rulesets.Karaoke.Extension
         /// <param name="list"></param>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static T GetNext<T>(this List<T> list, T value) where T : class
+        public static T GetNext<T>(this IEnumerable<T> list, T value) where T : class
         {
-            var index = list.IndexOf(value);
-            var targetIndex = index + 1;
-
-            if (list.IsValidIndex(targetIndex))
-                return list[targetIndex];
-
-            return null;
+            return list.SkipWhile(i => !i.Equals(value)).Skip(1).FirstOrDefault();
         }
     }
 }

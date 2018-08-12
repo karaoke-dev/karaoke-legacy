@@ -6,6 +6,7 @@ using osu.Framework.Graphics;
 using osu.Game.Graphics;
 using osu.Game.Rulesets.Edit;
 using osu.Game.Rulesets.Karaoke.Edit.Drawables.Lyric;
+using OpenTK;
 
 namespace osu.Game.Rulesets.Karaoke.Edit.Layers.Selection.Overlays
 {
@@ -17,16 +18,11 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Layers.Selection.Overlays
         public LyricMask(DrawableEditableKaraokeObject drawableLyric)
             : base(drawableLyric)
         {
-            Origin = Anchor.Centre;
+            Anchor = Anchor.CentreLeft;
+            Origin = Anchor.CentreLeft;
             Position = drawableLyric.Position;
             
             Scale = drawableLyric.Scale;
-
-            CornerRadius = Size.X / 2;
-
-            //AddInternal(new RingPiece());
-
-            //drawableLyric.HitObject.PositionChanged += _ => Position = hitCircle.Position;
         }
 
         [BackgroundDependencyLoader]
@@ -38,7 +34,8 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Layers.Selection.Overlays
         protected override void Update()
         {
             base.Update();
-            Position = Parent.ToLocalSpace(HitObject.ScreenSpaceDrawQuad.TopLeft);
+            var rowPosition = Parent.ToLocalSpace(HitObject.ScreenSpaceDrawQuad.TopLeft);
+            Position = new Vector2(rowPosition.X, rowPosition.Y - 200);
             Size = HitObject.DrawSize;
         }
     }

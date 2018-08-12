@@ -49,53 +49,31 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Lyric
         public BindableObject<SingerTemplate> SingerTemplate { get; set; } = new BindableObject<SingerTemplate>(new SingerTemplate());
         public Bindable<TranslateCode> TranslateCode { get; set; } = new Bindable<TranslateCode>();
 
-        public List<float> LineSpacing { get; set; }
-
         public KaraokeLyricPlayField()
         {
             RelativeSizeAxes = Axes.Both;
-            //Direction = FillDirection.Vertical;
-            LineSpacing = new List<float>
-            {
-                0,100
-            };
+            Margin = new MarginPadding{Top = 350};
         }
 
-        /*
-        public override void Add(DrawableLyric drawable)
+        protected override HitObjectContainer CreateHitObjectContainer() => new LyricPlayFieldContainer();
+
+        private class LyricPlayFieldContainer : HitObjectContainer
         {
-            int index = Children.Count - 1;
-            int spacingCount = LineSpacing.Count;
-            if (index >= spacingCount)
-            {
-                var targetLyricEndTime = Children[index - spacingCount].Lyric.EndTime;
 
-                //set preemptive time
-                Children[index].PreemptiveTime = Children[index].Lyric.StartTime - targetLyricEndTime - 10;
-            }
-            else if(index >= 0)
+            public readonly LyricLagacyLayoutContainer LyricLagacyLayoutContainer;
+            public LyricPlayFieldContainer()
             {
-                Children[index].PreemptiveTime = Children[index].Lyric.StartTime - 10;
+                InternalChild = LyricLagacyLayoutContainer = new LyricLagacyLayoutContainer()
+                {
+                    RelativeSizeAxes = Axes.Both
+                };
             }
-            base.Add(drawable);
+
+            public override IEnumerable<DrawableHitObject> Objects => LyricLagacyLayoutContainer.Children.Cast<DrawableHitObject>().OrderBy(h => h.HitObject.StartTime);
+            public override IEnumerable<DrawableHitObject> AliveObjects => LyricLagacyLayoutContainer.FlowingChildren.Cast<DrawableHitObject>().OrderBy(h => h.HitObject.StartTime);
+
+            public override void Add(DrawableHitObject hitObject) => LyricLagacyLayoutContainer.Add(hitObject as DrawableLyric);
+            public override bool Remove(DrawableHitObject hitObject) => LyricLagacyLayoutContainer.Remove(hitObject as DrawableLyric);
         }
-
-        protected override IEnumerable<Vector2> ComputeLayoutPositions()
-        {
-            var positions = base.ComputeLayoutPositions().ToArray();
-
-            for (int i = 0; i < positions.Length; i++)
-            {
-                var lyric = Children[i];
-
-                //TODO : compute layout
-                var layoutIndex = i % LineSpacing.Count;
-                positions[i].Y = positions[layoutIndex].Y;
-                lyric.Margin
-                    = new MarginPadding { Left = LineSpacing[layoutIndex], Right = 0 };
-            }
-            return positions;
-        }
-        */
     }
 }

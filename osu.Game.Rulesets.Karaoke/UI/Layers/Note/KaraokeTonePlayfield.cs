@@ -12,14 +12,12 @@ using osu.Framework.Graphics.Containers;
 using osu.Framework.MathUtils;
 using osu.Game.Rulesets.Karaoke.Beatmaps;
 using osu.Game.Rulesets.Karaoke.Configuration;
-using osu.Game.Rulesets.Karaoke.Objects;
 using osu.Game.Rulesets.Karaoke.Objects.Drawables.Note;
 using osu.Game.Rulesets.Karaoke.Objects.Note;
 using osu.Game.Rulesets.Karaoke.UI.Layers.Type;
 using osu.Game.Rulesets.Objects.Drawables;
 using osu.Game.Rulesets.Objects.Types;
 using osu.Game.Rulesets.UI.Scrolling;
-using OpenTK.Graphics;
 
 namespace osu.Game.Rulesets.Karaoke.UI.Layers.Note
 {

@@ -1,63 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using NUnit.Framework;
+using System.Text;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
-using osu.Game.Rulesets.Karaoke.Helps;
-using osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric;
-using osu.Game.Tests.Visual;
-using OpenTK;
-using osu.Framework.Graphics.Shapes;
-using OpenTK.Graphics;
-using osu.Game.Rulesets.Karaoke.Objects;
 using osu.Game.Rulesets.Karaoke.Extension;
+using osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric;
+using OpenTK;
 
-namespace osu.Game.Rulesets.Karaoke.Develop
+namespace osu.Game.Rulesets.Karaoke.UI.Layers.Lyric
 {
-    [TestFixture]
-    public class DevelopLyricPlayField : OsuTestCase
-    {
-        public DevelopLyricPlayField()
-        {
-            var field = new LyricLagacyLayoutContainer()
-            {
-                RelativeSizeAxes = Axes.Both,
-                Padding = new MarginPadding{Left = 100,Right = 100, Top =100, Bottom = 100}
-            };
-
-            for (int i = 0; i < 4; i++)
-            {
-                var lyric = DemoKaraokeObject.GenerateDemo001();
-                field.Add(new DrawableLyric(lyric)
-                {
-                    ProgressUpdateByTime = false
-                });
-            }
-            Add(field);
-        }
-    }
-
-    public class FakeLyricContainer : Container
-    {
-        public virtual bool ProgressUpdateByTime{get;set;}
-        public FakeLyricContainer(BaseLyric lyric)
-        {
-            RelativeSizeAxes = Axes.X;
-            Height = 100;
-            Children = new Drawable[]
-            {
-                new Box
-                {
-                    RelativeSizeAxes = Axes.Both,
-                    Colour = Color4.White,
-                }
-            };
-        }
-    }
-
     /// <summary>
-    /// Playfield
+    /// Lacagy lyric arrangement.
     /// </summary>
     public class LyricLagacyLayoutContainer : FlowContainer<DrawableLyric>
     {
@@ -77,7 +31,6 @@ namespace osu.Game.Rulesets.Karaoke.Develop
 
             if (IsLoaded)
                 ComputeLyricLayout();
-
         }
 
         public override bool Remove(DrawableLyric drawable)
@@ -108,11 +61,11 @@ namespace osu.Game.Rulesets.Karaoke.Develop
 
                 lyric.DisplayLayer = layoutIndex;
                 lyric.Padding
-                = new MarginPadding{Left = LineSpacing[layoutIndex], Right = 100};
+                = new MarginPadding { Left = LineSpacing[layoutIndex], Right = 100 };
             }
         }
-        
-        
+
+
         /// <summary>
         /// re-compute layout
         /// </summary>
@@ -124,12 +77,12 @@ namespace osu.Game.Rulesets.Karaoke.Develop
                 return new List<Vector2>();
 
             Vector2[] result = new Vector2[children.Length];
-            for(int i=0;i<children.Length;i++)
+            for (int i = 0; i < children.Length; i++)
             {
                 var drawableLyric = Children.FirstOrDefault(x => x == children[i]);
-                if(drawableLyric!=null)
+                if (drawableLyric != null)
                 {
-                    if(drawableLyric.DisplayLayer != 0)
+                    if (drawableLyric.DisplayLayer != 0)
                     {
                         var pervous = Children.GetPrevious(drawableLyric);
                         var next = Children.GetNext(drawableLyric);
@@ -140,7 +93,7 @@ namespace osu.Game.Rulesets.Karaoke.Develop
                 }
             }
 
-            
+
             return result;
         }
     }

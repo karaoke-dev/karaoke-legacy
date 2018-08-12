@@ -323,6 +323,11 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
             }
         }
 
+        /// <summary>
+        /// Display layer
+        /// </summary>
+        public int DisplayLayer { get; set; }
+
         #endregion
     }
 }
