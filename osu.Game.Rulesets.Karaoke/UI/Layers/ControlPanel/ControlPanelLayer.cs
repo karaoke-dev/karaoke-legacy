@@ -10,7 +10,7 @@ using osu.Game.Rulesets.Karaoke.UI.Layers.Type;
 
 namespace osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel
 {
-    public partial class ControlPanelLayer : Container, IAcceptControlLayer, IPlatformLayer
+    public partial class ControlPanelLayer : Container, IAcceptControlLayer, IPlatformLayer , IModLayer
     {
         public BindableObject<BaseAction> InputAction { get; set; } = new BindableObject<BaseAction>(null);
         public Bindable<PlatformType> PlatformType { get; set; } = new Bindable<PlatformType>();

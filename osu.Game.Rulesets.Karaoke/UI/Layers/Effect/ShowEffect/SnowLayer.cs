@@ -8,6 +8,7 @@ using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Sprites;
 using osu.Framework.Graphics.Textures;
+using osu.Game.Rulesets.Karaoke.UI.Layers.Type;
 using OpenTK;
 using OpenTK.Graphics;
 
@@ -16,7 +17,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Effect.ShowEffect
     /// <summary>
     ///     show Visualisation layer
     /// </summary>
-    public class SnowLayer : Container
+    public class SnowLayer : Container , IModLayer
     {
         public int SnowGenerateParSecond { get; set; } = 5; //max can have 1000 snow at the scene
         public bool EnableNewSnow { get; set; } = true; //if disable ,will stop snow

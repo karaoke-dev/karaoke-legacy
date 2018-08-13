@@ -1,18 +1,17 @@
 ﻿// Copyright (c) 2007-2018 ppy Pty Ltd <contact@ppy.sh>.
 // Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
 
-using osu.Framework.Graphics.Containers;
+using osu.Game.Rulesets.Karaoke.UI.Layers.Type;
 using osu.Game.Rulesets.Mods;
 using osu.Game.Rulesets.UI;
 
-namespace osu.Game.Rulesets.Karaoke.Mods.Types
+namespace osu.Game.Rulesets.Karaoke.Mods
 {
     /// <summary>
-    ///     if this mod has new layer
-    ///     use this
+    /// 
     /// </summary>
-    public interface IHasLayer : IApplicableMod
+    public interface IApplicableCreatePlayfieldLayer : IApplicableMod
     {
-        Container CreateNewLayer(Playfield playfield);
+        IModLayer CreateNewLayer(Playfield playfield);
     }
 }

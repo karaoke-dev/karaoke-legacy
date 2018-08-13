@@ -6,7 +6,6 @@ using osu.Framework.Graphics;
 using osu.Framework.Timing;
 using osu.Game.Rulesets.Karaoke.Beatmaps;
 using osu.Game.Rulesets.Karaoke.Objects.Note;
-using osu.Game.Rulesets.Karaoke.UI.Layers.Effect;
 using osu.Game.Rulesets.Karaoke.UI.Layers.Input;
 using osu.Game.Rulesets.Karaoke.UI.Layers.Lyric;
 using osu.Game.Rulesets.Karaoke.UI.Layers.Note;

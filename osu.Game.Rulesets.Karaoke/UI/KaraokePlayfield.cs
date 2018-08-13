@@ -2,14 +2,15 @@
 // Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
 
 using System.Collections.Generic;
-using System.Linq;
 using osu.Framework.Allocation;
+using osu.Framework.Graphics.Containers;
 using osu.Game.Beatmaps;
 using osu.Game.Rulesets.Judgements;
 using osu.Game.Rulesets.Karaoke.Configuration;
 using osu.Game.Rulesets.Karaoke.Judgements;
-using osu.Game.Rulesets.Karaoke.Mods.Types;
+using osu.Game.Rulesets.Karaoke.Mods;
 using osu.Game.Rulesets.Karaoke.Objects.Translate;
+using osu.Game.Rulesets.Karaoke.UI.Layers.Type;
 using osu.Game.Rulesets.Objects.Drawables;
 
 namespace osu.Game.Rulesets.Karaoke.UI
@@ -29,20 +30,27 @@ namespace osu.Game.Rulesets.Karaoke.UI
                     KaraokeLyricPlayField.ListDrawableKaraokeObject[i].Lyric.Translates.Add(TranslateCode.Chinese_Traditional, new LyricTranslate(multiSting[i]));
             };
 
+            //TODO : remove ?
+            /*
             WorkingBeatmap.Mods.ValueChanged += newMods =>
             {
                 ApplyMod();
             };
+            */
+
             ApplyMod();
         }
 
         public virtual void ApplyMod()
         {
+            //remove all Created ModLayer
+            RemoveAll(x => x is IModLayer);
+
             //create all layer if contains in mod
             foreach (var singleMod in WorkingBeatmap.Mods.Value)
             {
-                if (singleMod is IHasLayer iHasLayer)
-                    Add(iHasLayer.CreateNewLayer(this));
+                if (singleMod is IApplicableCreatePlayfieldLayer iHasLayer)
+                    Add(iHasLayer.CreateNewLayer(this) as Container);
             }
         }
 
