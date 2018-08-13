@@ -1,6 +1,7 @@
 ﻿// Copyright (c) 2007-2018 ppy Pty Ltd <contact@ppy.sh>.
 // Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
 
+using System;
 using osu.Framework.Timing;
 using osu.Game.Graphics;
 using osu.Game.Rulesets.Mods;
@@ -18,6 +19,7 @@ namespace osu.Game.Rulesets.Karaoke.Mods
         public override string Description => "just make defult song speed faster.";
         public override FontAwesome Icon => FontAwesome.fa_osu_mod_doubletime;
         public override bool Ranked => true;
+        public override Type[] IncompatibleMods => new[] { typeof(KaraokeModPractice), typeof(ModHalfTime) };
 
         public override void ApplyToClock(IAdjustableClock clock)
         {

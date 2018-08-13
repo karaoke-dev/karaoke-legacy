@@ -74,7 +74,9 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Effect.ShowEffect
 
             var currentTime = Time.Current;
 
-            var isCreateShow = !snowContainer.Children.Any() || (snowContainer.Children.LastOrDefault() as SnowSpitie).CreateTime + 1000 / SnowGenerateParSecond < currentTime;
+            var isCreateShow = !snowContainer.Children.Any() ||
+                (snowContainer.Children.LastOrDefault() as SnowSpitie).CreateTime
+                + 1000 / SnowGenerateParSecond < currentTime;
 
             //if can generate new snow
             if (isCreateShow && EnableNewSnow)
