@@ -30,8 +30,6 @@ namespace osu.Game.Rulesets.Karaoke.Mods
                 Clock = new FramedClock(new StopwatchClock(true)),
                 RelativeSizeAxes = Axes.Both,
                 Depth = 1,
-                Width = 900,
-                Position = new Vector2(-200, 0),
                 TexturePath = TextureLayer
             };
         }
