@@ -6,7 +6,6 @@ using osu.Framework.Input.States;
 using osu.Game.Beatmaps;
 using osu.Game.Rulesets.Karaoke.Edit.Drawables.Lyric;
 using osu.Game.Rulesets.Karaoke.UI;
-using osu.Game.Rulesets.Objects.Drawables;
 using OpenTK.Input;
 
 namespace osu.Game.Rulesets.Karaoke.Edit

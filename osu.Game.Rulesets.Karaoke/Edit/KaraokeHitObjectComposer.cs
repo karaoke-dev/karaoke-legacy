@@ -2,7 +2,6 @@
 // Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
 
 using System.Collections.Generic;
-using osu.Framework.Graphics;
 using osu.Game.Beatmaps;
 using osu.Game.Rulesets.Edit;
 using osu.Game.Rulesets.Edit.Tools;
@@ -10,9 +9,6 @@ using osu.Game.Rulesets.Karaoke.Edit.Drawables.Lyric;
 using osu.Game.Rulesets.Karaoke.Edit.Drawables.Note;
 using osu.Game.Rulesets.Karaoke.Edit.Layers.Selection.Overlays;
 using osu.Game.Rulesets.Karaoke.Objects;
-using osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric;
-using osu.Game.Rulesets.Karaoke.Objects.Drawables.Note;
-using osu.Game.Rulesets.Karaoke.UI;
 using osu.Game.Rulesets.Objects.Drawables;
 using osu.Game.Rulesets.UI;
 

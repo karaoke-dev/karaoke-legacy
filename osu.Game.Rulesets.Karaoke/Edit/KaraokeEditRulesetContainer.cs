@@ -9,7 +9,6 @@ using osu.Game.Rulesets.Karaoke.Objects;
 using osu.Game.Rulesets.Karaoke.UI;
 using osu.Game.Rulesets.Objects.Drawables;
 using osu.Game.Rulesets.UI;
-using OpenTK;
 
 namespace osu.Game.Rulesets.Karaoke.Edit
 {
