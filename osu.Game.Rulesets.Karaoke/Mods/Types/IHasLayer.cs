@@ -3,6 +3,7 @@
 
 using osu.Framework.Graphics.Containers;
 using osu.Game.Rulesets.Mods;
+using osu.Game.Rulesets.UI;
 
 namespace osu.Game.Rulesets.Karaoke.Mods.Types
 {
@@ -12,6 +13,6 @@ namespace osu.Game.Rulesets.Karaoke.Mods.Types
     /// </summary>
     public interface IHasLayer : IApplicableMod
     {
-        Container CreateNewLayer();
+        Container CreateNewLayer(Playfield playfield);
     }
 }

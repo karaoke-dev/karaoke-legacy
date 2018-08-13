@@ -18,7 +18,6 @@ namespace osu.Game.Rulesets.Karaoke.UI
     {
         public KaraokeLyricPlayField KaraokeLyricPlayField;
         public KaraokeTonePlayfield KaraokeTonePlayfield;
-        protected List<ILayer> Layers = new List<ILayer>();
 
         protected DialogLayer DialogLayer;
 
@@ -47,7 +46,6 @@ namespace osu.Game.Rulesets.Karaoke.UI
                 RelativeSizeAxes = Axes.Both,
                 Depth = 10
             });
-            Layers.Add(DialogLayer);
         }
 
         /// <summary>
@@ -76,17 +74,18 @@ namespace osu.Game.Rulesets.Karaoke.UI
         /// </summary>
         public virtual void PostProcessLayer(KaraokeConfigManager manager)
         {
+
             //ProcessInput
-            var inputLayer = Layers.OfType<IControlLayer>().FirstOrDefault();
+            var inputLayer = Children.OfType<IControlLayer>().FirstOrDefault();
             if (inputLayer != null)
             {
-                var acceeptsControlLayers = Layers.OfType<IAcceptControlLayer>();
+                var acceeptsControlLayers = Children.OfType<IAcceptControlLayer>();
                 foreach (var singleLayer in acceeptsControlLayers)
                     singleLayer.InputAction.BindTo(inputLayer.InputAction);
             }
 
             //processPlatform
-            var platformLayers = Layers.OfType<IPlatformLayer>();
+            var platformLayers = Children.OfType<IPlatformLayer>();
             foreach (var singleLayer in platformLayers)
             {
                 var bindable = manager.GetBindable<PlatformType>(KaraokeSetting.Device);
@@ -96,10 +95,6 @@ namespace osu.Game.Rulesets.Karaoke.UI
                 if (singleLayer.PlatformType == bindable.Value)
                     singleLayer.PlatformType.TriggerChange();
             }
-
-            var modLayers = Layers.OfType<IModLayer>();
-            foreach (var singleLayer in modLayers)
-                singleLayer.Mods.BindTo(WorkingBeatmap?.Mods);
         }
 
         #endregion
