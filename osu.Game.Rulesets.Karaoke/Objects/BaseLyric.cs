@@ -5,7 +5,9 @@ using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json;
 using osu.Game.Database;
+using osu.Game.Rulesets.Judgements;
 using osu.Game.Rulesets.Karaoke.Configuration;
+using osu.Game.Rulesets.Karaoke.Judgements;
 using osu.Game.Rulesets.Karaoke.Objects.Lyric;
 using osu.Game.Rulesets.Karaoke.Objects.Text;
 using osu.Game.Rulesets.Karaoke.Objects.TimeLine;
@@ -155,6 +157,11 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         /// </summary>
         public virtual int Ver { get; set; } = 0;
 
+        /// <summary>
+        /// Judgemnent
+        /// </summary>
+        /// <returns></returns>
+        public override Judgement CreateJudgement() => new KaraokeJudgement();
 
         #region Function
 

@@ -1,6 +1,7 @@
 ﻿// Copyright (c) 2007-2018 ppy Pty Ltd <contact@ppy.sh>.
 // Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
 
+using System;
 using System.Linq;
 using osu.Framework.Allocation;
 using osu.Framework.Configuration;
@@ -12,6 +13,7 @@ using osu.Game.Rulesets.Karaoke.Configuration;
 using osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric.Pieces;
 using osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric.Types;
 using osu.Game.Rulesets.Objects.Drawables;
+using osu.Game.Rulesets.Scoring;
 using OpenTK;
 using OpenTK.Graphics;
 
@@ -214,19 +216,19 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
 
         protected sealed override void UpdateState(ArmedState state)
         {
-            var transformTime = HitObject.StartTime - PreemptiveTime;
+            double transformTime = HitObject.StartTime - PreemptiveTime;
 
-            ApplyTransformsAt(transformTime, true);
-            ClearTransformsAfter(transformTime, true);
+            base.ApplyTransformsAt(transformTime, true);
+            base.ClearTransformsAfter(transformTime, true);
 
             using (BeginAbsoluteSequence(transformTime, true))
             {
                 UpdatePreemptState();
 
-                using (BeginDelayedSequence(PreemptiveTime + (Judgements.FirstOrDefault()?.TimeOffset ?? 0), true))
-                {
+                var judgementOffset = Math.Min(HitObject.HitWindows.HalfWindowFor(HitResult.Miss), Result?.TimeOffset ?? 0);
+
+                using (BeginDelayedSequence(PreemptiveTime + judgementOffset, true))
                     UpdateCurrentState(state);
-                }
             }
         }
 

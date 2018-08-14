@@ -5,6 +5,7 @@ using System;
 using osu.Framework.Configuration;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
+using osu.Game.Rulesets.Judgements;
 using osu.Game.Rulesets.Karaoke.Judgements;
 using osu.Game.Rulesets.Objects.Drawables;
 using osu.Game.Rulesets.Scoring;
@@ -102,11 +103,6 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note
                 //    this.Delay(2000).Expire();
                 //    break;
             }
-        }
-
-        protected override void CheckForJudgements(bool userTriggered, double timeOffset)
-        {
-            AddJudgement(new KaraokeJudgement { Result = HitResult.Perfect });
         }
     }
 }

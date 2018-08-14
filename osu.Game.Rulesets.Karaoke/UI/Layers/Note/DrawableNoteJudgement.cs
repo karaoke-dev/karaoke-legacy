@@ -10,8 +10,8 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Note
 {
     public class DrawableNoteJudgement : DrawableJudgement
     {
-        public DrawableNoteJudgement(Judgement judgement, DrawableHitObject judgedObject)
-            : base(judgement, judgedObject)
+        public DrawableNoteJudgement(JudgementResult result, DrawableHitObject judgedObject)
+            : base(result, judgedObject)
         {
         }
 
@@ -21,7 +21,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Note
 
             this.FadeInFromZero(50, Easing.OutQuint);
 
-            if (Judgement.IsHit)
+            if (Result.IsHit)
             {
                 this.ScaleTo(0.8f);
                 this.ScaleTo(1, 250, Easing.OutElastic);

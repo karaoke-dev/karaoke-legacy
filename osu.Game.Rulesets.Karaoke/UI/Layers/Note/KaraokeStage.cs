@@ -211,7 +211,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Note
         public override void Add(DrawableHitObject h)
         {
             h.Y = 0;
-            h.OnJudgement += OnJudgement;
+            h.OnNewResult += OnNewResult;
             //add
             base.Add(h);
         }
@@ -221,10 +221,13 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Note
             base.Add(new DrawableBarLine(barline));
         }
 
-        public void OnJudgement(DrawableHitObject judgedObject, Judgement judgement)
+        public void OnNewResult(DrawableHitObject judgedObject, JudgementResult result)
         {
+            if (!judgedObject.DisplayResult || !DisplayJudgements)
+                return;
+
             judgements.Clear();
-            judgements.Add(new DrawableNoteJudgement(judgement, judgedObject)
+            judgements.Add(new DrawableNoteJudgement(result, judgedObject)
             {
                 Anchor = Anchor.Centre,
                 Origin = Anchor.Centre

@@ -38,15 +38,14 @@ namespace osu.Game.Rulesets.Karaoke.Scoring
 
         protected override void SimulateAutoplay(Beatmap<BaseLyric> beatmap)
         {
-            hpDrainRate = beatmap.BeatmapInfo.BaseDifficulty.DrainRate;
-
-            foreach (var obj in beatmap.HitObjects)
+            while (true)
             {
-                var slider = obj;
-                if (slider != null)
-                    AddJudgement(new KaraokeJudgement { Result = HitResult.Great });
+                base.SimulateAutoplay(beatmap);
 
-                AddJudgement(new KaraokeJudgement { Result = HitResult.Great });
+                if (!HasFailed)
+                    break;
+
+                Reset(false);
             }
         }
 
@@ -57,16 +56,14 @@ namespace osu.Game.Rulesets.Karaoke.Scoring
             scoreResultCounts.Clear();
         }
 
-        protected override void OnNewJudgement(Judgement judgement)
+        protected override void ApplyResult(JudgementResult result)
         {
-            base.OnNewJudgement(judgement);
+            base.ApplyResult(result);
 
-            var osuJudgement = (KaraokeJudgement)judgement;
+            if (result.Type != HitResult.None)
+                scoreResultCounts[result.Type] = scoreResultCounts.GetOrDefault(result.Type) + 1;
 
-            if (judgement.Result != HitResult.None)
-                scoreResultCounts[judgement.Result] = scoreResultCounts.GetOrDefault(judgement.Result) + 1;
-
-            switch (judgement.Result)
+            switch (result.Type)
             {
                 case HitResult.Great:
                     Health.Value += (10.2 - hpDrainRate) * 0.02;

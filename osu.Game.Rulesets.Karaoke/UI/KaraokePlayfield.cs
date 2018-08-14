@@ -73,14 +73,6 @@ namespace osu.Game.Rulesets.Karaoke.UI
             }
         }
 
-        public void OnJudgement(DrawableHitObject judgedObject, Judgement judgement)
-        {
-            var karaokeJudgement = (KaraokeJudgement)judgement;
-
-            if (!judgedObject.DisplayJudgement)
-                return;
-        }
-
         /*
         protected override void Dispose(bool isDisposing)
         {
