@@ -23,11 +23,11 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Layers.Selection.Overlays
 {
     public class NoteMask : HitObjectMask
     {
-        public new DrawableEditableKaraokeNoteGroup HitObject => (DrawableEditableKaraokeNoteGroup)base.HitObject;
+        public new DrawableEditableNotes HitObject => (DrawableEditableNotes)base.HitObject;
 
         private readonly FillFlowContainer<SingleNoteMask> listNote;
 
-        public NoteMask(DrawableEditableKaraokeNoteGroup hitObject)
+        public NoteMask(DrawableEditableNotes hitObject)
             : base(hitObject)
         {
             Scale = hitObject.Scale;

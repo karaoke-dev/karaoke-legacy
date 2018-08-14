@@ -15,7 +15,7 @@ using OpenTK.Graphics;
 
 namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note
 {
-    public class DrawableLyricNote : Container
+    public class DrawableSingleNote : Container
     {
         public virtual double Duration
         {
@@ -96,7 +96,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note
 
         private KeyValuePair<TimeLineIndex, TimeLine.TimeLine> _timeLine;
 
-        public DrawableLyricNote()
+        public DrawableSingleNote()
         {
             Anchor = Anchor.CentreLeft;
             Origin = Anchor.CentreLeft;
