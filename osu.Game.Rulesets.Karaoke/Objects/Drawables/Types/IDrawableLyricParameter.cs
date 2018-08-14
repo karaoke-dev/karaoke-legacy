@@ -2,7 +2,6 @@
 // Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
 
 using osu.Game.Rulesets.Karaoke.Beatmaps;
-using osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric.Pieces;
 
 namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric.Types
 {

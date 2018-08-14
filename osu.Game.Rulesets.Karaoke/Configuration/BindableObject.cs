@@ -2,6 +2,7 @@
 // Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
 
 using System;
+using System.Reflection;
 using Newtonsoft.Json;
 using osu.Framework.Configuration;
 using osu.Game.Rulesets.Karaoke.Configuration.Types;
@@ -9,7 +10,7 @@ using osu.Game.Rulesets.Karaoke.Configuration.Types;
 namespace osu.Game.Rulesets.Karaoke.Configuration
 {
     public class BindableObject<T> : Bindable<T>
-        where T :class, IEquatable<T> , ICloneable, IJsonString, new() 
+        where T : class, IEquatable<T>, ICloneable, IJsonString, new()
     {
         public override T Value
         {
@@ -30,13 +31,12 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
                     base.Value = cloneValue;
                 }
                 */
-                
-                
-                if (!(base.Value?.Equals(cloneValue) ?? false)) 
+
+
+                if (!(base.Value?.Equals(cloneValue) ?? false))
                 {
                     base.Value = cloneValue;
                 }
-                
             }
         }
 
@@ -52,7 +52,7 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
             if (self != null && to != null)
             {
                 Type type = typeof(T);
-                foreach (System.Reflection.PropertyInfo pi in type.GetProperties(System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance))
+                foreach (PropertyInfo pi in type.GetProperties(BindingFlags.Public | BindingFlags.Instance))
                 {
                     object selfValue = type.GetProperty(pi.Name).GetValue(self, null);
                     object toValue = type.GetProperty(pi.Name).GetValue(to, null);
@@ -70,7 +70,6 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
         public BindableObject(T value)
             : base(value)
         {
-
         }
 
         /// <summary>
@@ -87,7 +86,8 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
             */
         }
 
-        public static implicit operator T(BindableObject<T> value) => value?.Value ?? throw new InvalidCastException($"Casting a null {nameof(BindableObject<T>)} to a {nameof(T)} is likely a mistake");
+        public static implicit operator T(BindableObject<T> value) =>
+            value?.Value ?? throw new InvalidCastException($"Casting a null {nameof(BindableObject<T>)} to a {nameof(T)} is likely a mistake");
 
         public override string ToString()
         {

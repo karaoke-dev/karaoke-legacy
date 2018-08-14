@@ -12,9 +12,9 @@ using osu.Framework.Input.Bindings;
 using osu.Game.Beatmaps;
 using osu.Game.Configuration;
 using osu.Game.Rulesets.Karaoke.Input;
+using osu.Game.Skinning;
 using OpenTK;
 using OpenTK.Graphics;
-using osu.Game.Skinning;
 
 namespace osu.Game.Rulesets.Karaoke.UI.Cursor
 {

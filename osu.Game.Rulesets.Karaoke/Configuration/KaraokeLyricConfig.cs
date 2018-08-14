@@ -10,7 +10,7 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
     /// <summary>
     ///     karaoke lyric config
     /// </summary>
-    public class KaraokeLyricConfig : ICloneable , IEquatable<KaraokeLyricConfig> , IJsonString
+    public class KaraokeLyricConfig : ICloneable, IEquatable<KaraokeLyricConfig>, IJsonString
     {
         /// <summary>
         ///     show subText
@@ -34,22 +34,22 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
 
         public object Clone()
         {
-            return this.MemberwiseClone();
+            return MemberwiseClone();
         }
 
         public bool Equals(KaraokeLyricConfig other)
         {
             return SubTextVislbility == other.SubTextVislbility
-                && RomajiVislbility == other.RomajiVislbility
-                && RomajiFirst == other.RomajiFirst
-                && ShowTranslate == other.ShowTranslate;
+                   && RomajiVislbility == other.RomajiVislbility
+                   && RomajiFirst == other.RomajiFirst
+                   && ShowTranslate == other.ShowTranslate;
         }
 
         public override bool Equals(object obj)
         {
             if (ReferenceEquals(null, obj)) return false;
             if (ReferenceEquals(this, obj)) return true;
-            if (obj.GetType() != this.GetType()) return false;
+            if (obj.GetType() != GetType()) return false;
             return Equals((KaraokeLyricConfig)obj);
         }
 

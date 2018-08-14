@@ -17,6 +17,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel.Desktop
     {
         //TODO : all the setting object
         public KaraokeButton FirstLyricButton;
+
         public KaraokeButton PreviousLyricButton;
         public KaraokeButton NextLyricButton;
         public KaraokePlayPauseButton PlayPauseButton;
@@ -108,7 +109,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel.Desktop
                                                         Name = "Sentence",
                                                         Anchor = Anchor.CentreLeft,
                                                         Origin = Anchor.CentreLeft,
-                                                        Direction =  FillDirection.Horizontal,
+                                                        Direction = FillDirection.Horizontal,
                                                         Spacing = new Vector2(horizontal_conponent_spacing),
                                                         AutoSizeAxes = Axes.X,
                                                         Children = new Drawable[]
@@ -153,7 +154,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel.Desktop
                                                                 Action = () => { _playField?.NavigationToNext(); }
                                                             },
 
-                                                             //"play" introduce text
+                                                            //"play" introduce text
                                                             new KaraokeIntroduceText
                                                             {
                                                                 Text = "Play",
@@ -192,7 +193,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel.Desktop
                                                         RelativeSizeAxes = Axes.X,
                                                         Anchor = Anchor.CentreLeft,
                                                         Origin = Anchor.CentreLeft,
-                                                        Padding = new MarginPadding(){Left = 320, Right = 50},
+                                                        Padding = new MarginPadding() { Left = 320, Right = 50 },
                                                         Children = new Drawable[]
                                                         {
                                                             //time slider
@@ -206,7 +207,6 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel.Desktop
                                                             },
                                                         }
                                                     }
-
                                                 }
                                             },
                                         },
@@ -239,7 +239,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel.Desktop
                                                                 new Container
                                                                 {
                                                                     RelativeSizeAxes = Axes.X,
-                                                                    Padding = new MarginPadding(){Left = 100, Right = 50},
+                                                                    Padding = new MarginPadding() { Left = 100, Right = 50 },
                                                                     Children = new Drawable[]
                                                                     {
                                                                         //speed
@@ -277,7 +277,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel.Desktop
                                                                 new Container
                                                                 {
                                                                     RelativeSizeAxes = Axes.X,
-                                                                    Padding = new MarginPadding(){Left = 100, Right = 50},
+                                                                    Padding = new MarginPadding() { Left = 100, Right = 50 },
                                                                     Children = new Drawable[]
                                                                     {
                                                                         //Tone
@@ -314,7 +314,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel.Desktop
                                                                 new Container
                                                                 {
                                                                     RelativeSizeAxes = Axes.X,
-                                                                    Padding = new MarginPadding(){Left = 100, Right = 50},
+                                                                    Padding = new MarginPadding() { Left = 100, Right = 50 },
                                                                     Children = new Drawable[]
                                                                     {
                                                                         //offset

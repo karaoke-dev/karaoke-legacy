@@ -1,12 +1,14 @@
-﻿using System;
+﻿// Copyright (c) 2007-2018 ppy Pty Ltd <contact@ppy.sh>.
+// Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
+
+using System;
 using Newtonsoft.Json;
 
 namespace osu.Game.Rulesets.Karaoke.Objects.TimeLine
 {
-    public class TimeLineIndex : IComparable , IEquatable<TimeLineIndex>
+    public class TimeLineIndex : IComparable, IEquatable<TimeLineIndex>
     {
-        [JsonIgnore]
-        public static int MaxCharNumber = 10;
+        [JsonIgnore] public static int MaxCharNumber = 10;
 
         public int Index { get; set; }
 
@@ -27,9 +29,9 @@ namespace osu.Game.Rulesets.Karaoke.Objects.TimeLine
         {
             if (obj is TimeLineIndex point)
             {
-                return this.GetHashCode() - point.GetHashCode();
+                return GetHashCode() - point.GetHashCode();
             }
-            throw new InvalidCastException(nameof(obj) + " is not "+ nameof(TimeLineIndex));
+            throw new InvalidCastException(nameof(obj) + " is not " + nameof(TimeLineIndex));
         }
 
         /// <summary>
@@ -67,9 +69,8 @@ namespace osu.Game.Rulesets.Karaoke.Objects.TimeLine
         {
             unchecked
             {
-                return (Index * MaxCharNumber) + (int)((Percentage) * MaxCharNumber);
+                return Index * MaxCharNumber + (int)(Percentage * MaxCharNumber);
             }
         }
-        
     }
 }

@@ -21,7 +21,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Layers.Selection.Overlays
             Anchor = Anchor.CentreLeft;
             Origin = Anchor.CentreLeft;
             Position = drawableLyric.Position;
-            
+
             Scale = drawableLyric.Scale;
         }
 

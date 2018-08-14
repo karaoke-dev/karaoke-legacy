@@ -1,4 +1,7 @@
-﻿using System;
+﻿// Copyright (c) 2007-2018 ppy Pty Ltd <contact@ppy.sh>.
+// Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
+
+using System;
 using System.Collections.Generic;
 using osu.Framework.Allocation;
 using osu.Framework.Graphics;
@@ -68,10 +71,11 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Layers.Selection.Overlays
         }
 
         private float _lastWidth;
+
         protected override void Update()
         {
             base.Update();
-            
+
             Size = new Vector2(HitObject.DrawSize.X, HitObject.DrawSize.Y / 540);
             Scale = HitObject.Scale;
             Position = Parent.ToLocalSpace(HitObject.ScreenSpaceDrawQuad.TopLeft);
@@ -114,6 +118,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Layers.Selection.Overlays
             }
 
             private Color4 accentColour;
+
             public virtual Color4 AccentColour
             {
                 get => accentColour;

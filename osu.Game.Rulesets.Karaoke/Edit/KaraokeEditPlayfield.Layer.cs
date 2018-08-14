@@ -34,7 +34,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit
                 {
                     KaraokeRulesetContainer = KaraokeRulesetContainer,
                     Scale = new Vector2(0.8f),
-                    Anchor =  Anchor.Centre,
+                    Anchor = Anchor.Centre,
                     Origin = Anchor.Centre,
                     Padding = new MarginPadding
                     {
@@ -56,9 +56,6 @@ namespace osu.Game.Rulesets.Karaoke.Edit
                     KaraokeRulesetContainer = KaraokeRulesetContainer
                 }
             });
-
-            Layers.Add(KaraokeLyricPlayField);
-            Layers.Add(KaraokeTonePlayfield);
 
             AddNested(KaraokeLyricPlayField);
             AddNested(KaraokeTonePlayfield);

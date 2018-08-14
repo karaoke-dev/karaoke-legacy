@@ -24,32 +24,24 @@ namespace osu.Game.Rulesets.Karaoke.Tests
             List<TrackList> listResult = new List<TrackList>();
 
             api.TrackSearch(new TrackSearch()
-            {
-                Query = "宝石の国",
-            },
-            list =>
-            {
-                listResult = list;
-                var first = listResult.FirstOrDefault();
-                if (first!=null)
                 {
-                    api.TrackLyricsGet(new MusixMatch_API.APIMethods.Track.TrackLyricsGet()
+                    Query = "宝石の国",
+                },
+                list =>
+                {
+                    listResult = list;
+                    var first = listResult.FirstOrDefault();
+                    if (first != null)
                     {
-                        MusixMatchId = first.Track.TrackId,
-                    }, lyrics =>
-                    {
-                        var lyric = lyrics;
-
-                    }, falls =>
-                    {
-
-                    });
-                }
-
-            }, s =>
-            {
-                
-            });
+                        api.TrackLyricsGet(new TrackLyricsGet()
+                        {
+                            MusixMatchId = first.Track.TrackId,
+                        }, lyrics =>
+                        {
+                            var lyric = lyrics;
+                        }, falls => { });
+                    }
+                }, s => { });
 
 
             Debug.WriteLine(listResult.Count);

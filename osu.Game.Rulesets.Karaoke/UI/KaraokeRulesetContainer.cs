@@ -26,7 +26,6 @@ namespace osu.Game.Rulesets.Karaoke.UI
         public KaraokeRulesetContainer(Ruleset ruleset, WorkingBeatmap beatmap)
             : base(ruleset, beatmap)
         {
-
         }
 
         public override ScoreProcessor CreateScoreProcessor()

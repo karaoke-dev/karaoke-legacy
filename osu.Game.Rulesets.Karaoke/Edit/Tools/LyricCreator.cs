@@ -65,7 +65,5 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Tools
         }
 
         #endregion
-
-
     }
 }

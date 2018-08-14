@@ -13,7 +13,7 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
     /// <summary>
     ///     define the position of karaoke
     /// </summary>
-    public class LyricTemplate : ICloneable, IEquatable<LyricTemplate> ,IJsonString
+    public class LyricTemplate : ICloneable, IEquatable<LyricTemplate>, IJsonString
     {
         /// <summary>
         ///     top text
@@ -71,22 +71,21 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
                 TranslateText = TopText.Clone() as FormattedText,
                 TranslateTextColor = TranslateTextColor
             };
-
         }
 
         public bool Equals(LyricTemplate other)
         {
             return Equals(TopText, other.TopText)
-                && Equals(MainText, other.MainText)
-                && Equals(BottomText, other.BottomText)
-                && Equals(TranslateText, other.TranslateText)
-                && TranslateTextColor.Equals(other.TranslateTextColor)
-                && Scale.Equals(other.Scale);
+                   && Equals(MainText, other.MainText)
+                   && Equals(BottomText, other.BottomText)
+                   && Equals(TranslateText, other.TranslateText)
+                   && TranslateTextColor.Equals(other.TranslateTextColor)
+                   && Scale.Equals(other.Scale);
         }
 
         public override bool Equals(object obj)
         {
-            if (obj.GetType() != this.GetType()) return false;
+            if (obj.GetType() != GetType()) return false;
             return Equals((LyricTemplate)obj);
         }
 
@@ -94,7 +93,7 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
         {
             unchecked
             {
-                var hashCode = (TopText != null ? TopText.GetHashCode() : 0);
+                var hashCode = TopText != null ? TopText.GetHashCode() : 0;
                 hashCode = (hashCode * 397) ^ (MainText != null ? MainText.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ (BottomText != null ? BottomText.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ (TranslateText != null ? TranslateText.GetHashCode() : 0);

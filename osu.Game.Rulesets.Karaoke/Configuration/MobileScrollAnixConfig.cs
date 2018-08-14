@@ -12,7 +12,7 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
     /// <summary>
     ///     Config
     /// </summary>
-    public class MobileScrollAnixConfig : ICloneable, IEquatable<MobileScrollAnixConfig> , IJsonString
+    public class MobileScrollAnixConfig : ICloneable, IEquatable<MobileScrollAnixConfig>, IJsonString
     {
         /// <summary>
         ///     Tap Action
@@ -39,7 +39,7 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
         {
             if (ReferenceEquals(null, obj)) return false;
             if (ReferenceEquals(this, obj)) return true;
-            if (obj.GetType() != this.GetType()) return false;
+            if (obj.GetType() != GetType()) return false;
             return Equals((MobileScrollAnixConfig)obj);
         }
 

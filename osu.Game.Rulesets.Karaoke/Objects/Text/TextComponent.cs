@@ -9,7 +9,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Text
     /// <summary>
     ///     TextComponent
     /// </summary>
-    public class TextComponent : IHasText , ICloneable, IEquatable<TextComponent>
+    public class TextComponent : IHasText, ICloneable, IEquatable<TextComponent>
     {
         /// <summary>
         ///     text
@@ -41,7 +41,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Text
 
         public object Clone()
         {
-            return this.MemberwiseClone();
+            return MemberwiseClone();
         }
 
         public bool Equals(TextComponent other)
@@ -53,13 +53,13 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Text
         {
             if (ReferenceEquals(null, obj)) return false;
             if (ReferenceEquals(this, obj)) return true;
-            if (obj.GetType() != this.GetType()) return false;
+            if (obj.GetType() != GetType()) return false;
             return Equals((TextComponent)obj);
         }
 
         public override int GetHashCode()
         {
-            return (Text != null ? Text.GetHashCode() : 0);
+            return Text != null ? Text.GetHashCode() : 0;
         }
     }
 }

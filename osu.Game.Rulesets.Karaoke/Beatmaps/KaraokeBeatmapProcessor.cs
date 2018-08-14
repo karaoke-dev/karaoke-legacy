@@ -11,14 +11,13 @@ namespace osu.Game.Rulesets.Karaoke.Beatmaps
         /// Ctor
         /// </summary>
         /// <param name="beatmap">Beatmap.</param>
-        public KaraokeBeatmapProcessor(IBeatmap beatmap) : base(beatmap)
+        public KaraokeBeatmapProcessor(IBeatmap beatmap)
+            : base(beatmap)
         {
-            
         }
 
         public override void PostProcess()
         {
-            
         }
     }
 }

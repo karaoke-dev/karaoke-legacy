@@ -1,4 +1,7 @@
-﻿using System.Collections.Generic;
+﻿// Copyright (c) 2007-2018 ppy Pty Ltd <contact@ppy.sh>.
+// Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
+
+using System.Collections.Generic;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Shapes;
@@ -35,7 +38,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note
             {
                 accentColour = value;
 
-                if(glowPiece==null)
+                if (glowPiece == null)
                     return;
 
                 glowPiece.AccentColour = value;
