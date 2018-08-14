@@ -23,7 +23,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note
     /// <summary>
     ///     list of DrawableLyricNote
     /// </summary>
-    public class DrawableLyricNoteGroup<T> : DrawableBaseNote<BaseLyric> where T : DrawableLyricNote, new()
+    public class DrawableLyricNoteGroup<T> : DrawableHitObject<BaseLyric> where T : DrawableLyricNote, new()
     {
         public BindableDouble NoteSpeed = new BindableDouble();
 
@@ -45,6 +45,9 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note
         public DrawableLyricNoteGroup(BaseLyric hitObject)
             : base(hitObject)
         {
+            Anchor = Anchor.CentreLeft;
+            Origin = Anchor.CentreLeft;
+
             RelativeSizeAxes = Axes.Y;
 
             InternalChildren = new Drawable[]
