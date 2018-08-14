@@ -74,7 +74,6 @@ namespace osu.Game.Rulesets.Karaoke.UI
         {
             //Add Lyric
             KaraokeLyricPlayField.Add(h as DrawableLyric);
-            base.Add(h);
 
             //Add note
             if (KaraokeTonePlayfield != null)
@@ -84,7 +83,6 @@ namespace osu.Game.Rulesets.Karaoke.UI
                     AccentColour = Color4.Blue
                 };
                 KaraokeTonePlayfield.Add(drawableNote);
-                base.Add(drawableNote);
             }
         }
 
@@ -133,18 +131,5 @@ namespace osu.Game.Rulesets.Karaoke.UI
         */
 
         #endregion
-
-        protected override HitObjectContainer CreateHitObjectContainer() => new KaraokeHitObjectContainer();
-
-        private class KaraokeHitObjectContainer : HitObjectContainer
-        {
-            private List<DrawableHitObject> _hitObjects = new List<DrawableHitObject>();
-
-            public new IEnumerable<DrawableHitObject> Objects => _hitObjects.OrderBy(h => h.HitObject.StartTime);
-            public new IEnumerable<DrawableHitObject> AliveObjects => _hitObjects.OrderBy(h => h.HitObject.StartTime);
-
-            public override void Add(DrawableHitObject hitObject) => _hitObjects.Add(hitObject);
-            public override bool Remove(DrawableHitObject hitObject) => _hitObjects.Remove(hitObject);
-        }
     }
 }
