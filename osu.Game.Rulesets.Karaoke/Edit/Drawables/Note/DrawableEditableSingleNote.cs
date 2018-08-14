@@ -12,7 +12,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Note
     ///     Eeditable note
     ///     TODO : make it editable
     /// </summary>
-    public class DrawableEditableLyricNote : DrawableSingleNote, IHasContextMenu
+    public class DrawableEditableSingleNote : DrawableSingleNote, IHasContextMenu
     {
         public MenuItem[] ContextMenuItems => new MenuItem[]
         {

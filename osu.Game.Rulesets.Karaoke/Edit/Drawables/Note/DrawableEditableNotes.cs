@@ -9,9 +9,9 @@ using OpenTK.Graphics;
 
 namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Note
 {
-    public class DrawableEditableKaraokeNoteGroup : DrawableNotes<DrawableEditableLyricNote>
+    public class DrawableEditableNotes : DrawableNotes<DrawableEditableSingleNote>
     {
-        public DrawableEditableKaraokeNoteGroup(BaseLyric hitObject)
+        public DrawableEditableNotes(BaseLyric hitObject)
             : base(hitObject)
         {
             //add background

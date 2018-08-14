@@ -21,7 +21,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Layers.Note
         public override void Add(DrawableHitObject h)
         {
             //Create object
-            var drawableNote = new DrawableEditableKaraokeNoteGroup(h.HitObject as BaseLyric)
+            var drawableNote = new DrawableEditableNotes(h.HitObject as BaseLyric)
             {
                 AccentColour = Color4.Blue
             };

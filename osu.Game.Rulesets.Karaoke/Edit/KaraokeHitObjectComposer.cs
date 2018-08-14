@@ -34,7 +34,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit
             {
                 case DrawableEditableKaraokeObject lyric:
                     return new LyricMask(lyric);
-                case DrawableEditableKaraokeNoteGroup note:
+                case DrawableEditableNotes note:
                     return new NoteMask(note);
             }
 
