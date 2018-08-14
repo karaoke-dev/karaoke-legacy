@@ -56,8 +56,8 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
             set => base.Padding = value;
         }
 
-        protected LyricContainer LyricContainer ;
-        protected TranslateString TranslateText ;
+        protected LyricContainer LyricContainer;
+        protected TranslateString TranslateText;
 
 
         private double _nowProgress;
@@ -203,8 +203,6 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
 
                 Show();
                 Alpha = 1;
-
-                
             }
             else
             {

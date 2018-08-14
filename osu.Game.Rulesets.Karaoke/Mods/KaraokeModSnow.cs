@@ -8,7 +8,6 @@ using osu.Game.Rulesets.Karaoke.UI.Layers.Effect.ShowEffect;
 using osu.Game.Rulesets.Karaoke.UI.Layers.Type;
 using osu.Game.Rulesets.Mods;
 using osu.Game.Rulesets.UI;
-using OpenTK;
 
 namespace osu.Game.Rulesets.Karaoke.Mods
 {

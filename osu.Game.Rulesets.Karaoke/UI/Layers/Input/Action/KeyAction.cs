@@ -10,6 +10,5 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Input.Action
         public KaraokeKeyAction KaraokeKeyAction { get; set; }
 
         public bool Press { get; set; }
-
     }
 }

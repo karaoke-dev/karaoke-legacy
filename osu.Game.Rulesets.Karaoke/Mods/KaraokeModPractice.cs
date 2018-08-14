@@ -1,4 +1,7 @@
-﻿using System;
+﻿// Copyright (c) 2007-2018 ppy Pty Ltd <contact@ppy.sh>.
+// Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
+
+using System;
 using osu.Framework.Graphics;
 using osu.Framework.Timing;
 using osu.Game.Graphics;
@@ -11,7 +14,7 @@ using OpenTK;
 
 namespace osu.Game.Rulesets.Karaoke.Mods
 {
-    public class KaraokeModPractice : Mod , IApplicableCreatePlayfieldLayer
+    public class KaraokeModPractice : Mod, IApplicableCreatePlayfieldLayer
     {
         public override string Name => "Practice";
         public override string ShortenedName => "Practice";

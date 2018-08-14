@@ -23,7 +23,6 @@ namespace osu.Game.Rulesets.Karaoke.KaraokeDifficulty
             //TODO : implement
             return new KaraokeDifficultyAttributes(mods, timeRate)
             {
-                
             };
         }
 

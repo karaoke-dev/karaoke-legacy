@@ -1,4 +1,7 @@
-﻿using System;
+﻿// Copyright (c) 2007-2018 ppy Pty Ltd <contact@ppy.sh>.
+// Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using osu.Framework.Extensions;
@@ -64,7 +67,6 @@ namespace osu.Game.Rulesets.Karaoke.Extension
         /// <returns></returns>
         public static bool TryGetKey<K, V>(this Dictionary<K, V> dictionary, V value, out K key)
         {
-            
             foreach (var keyValuePair in dictionary)
             {
                 if (keyValuePair.Value.Equals(value))
@@ -108,7 +110,7 @@ namespace osu.Game.Rulesets.Karaoke.Extension
                 dictionary.Add(key, value);
                 return true;
             }
-            else if(replaceIfExist)
+            else if (replaceIfExist)
             {
                 dictionary[key] = value;
                 return true;

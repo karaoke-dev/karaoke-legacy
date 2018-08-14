@@ -23,7 +23,7 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
         /// <param name="lookup"></param>
         /// <param name="value"></param>
         /// <returns></returns>
-        public BindableObject<U> SetObject<U>(T lookup, U value) where U :class, IEquatable<U>, ICloneable,IJsonString, new()
+        public BindableObject<U> SetObject<U>(T lookup, U value) where U : class, IEquatable<U>, ICloneable, IJsonString, new()
         {
             var bindable = GetOriginalBindable<U>(lookup) as BindableObject<U>;
 
@@ -48,7 +48,7 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
         /// <typeparam name="U"></typeparam>
         /// <param name="lookup"></param>
         /// <returns></returns>
-        public BindableObject<U> GetObjectBindable<U>(T lookup) where U : class, IEquatable<U>, ICloneable,IJsonString, new()
+        public BindableObject<U> GetObjectBindable<U>(T lookup) where U : class, IEquatable<U>, ICloneable, IJsonString, new()
         {
             var bindable = GetOriginalBindable<U>(lookup) as BindableObject<U>;
             return bindable;

@@ -19,7 +19,7 @@ namespace osu.Game.Rulesets.Karaoke.Mods
         public override string Description => "just make defult song speed slower.";
         public override FontAwesome Icon => FontAwesome.fa_osu_mod_halftime;
         public override bool Ranked => true;
-        public override Type[] IncompatibleMods => new[] { typeof(KaraokeModPractice),  typeof(ModDoubleTime)};
+        public override Type[] IncompatibleMods => new[] { typeof(KaraokeModPractice), typeof(ModDoubleTime) };
 
         public override void ApplyToClock(IAdjustableClock clock)
         {

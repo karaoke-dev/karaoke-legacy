@@ -1,4 +1,7 @@
-﻿using System.Collections.Generic;
+﻿// Copyright (c) 2007-2018 ppy Pty Ltd <contact@ppy.sh>.
+// Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
+
+using System.Collections.Generic;
 using System.Linq;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
@@ -13,6 +16,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric.Pieces
     public class LyricContainer : FillFlowContainer<PartialLyric>
     {
         private LyricTemplate _template = new LyricTemplate();
+
         public LyricTemplate Template
         {
             get => _template;
@@ -27,13 +31,14 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric.Pieces
         }
 
         private BaseLyric _lyric;
+
         public BaseLyric Lyric
         {
             get => _lyric;
             set
             {
                 _lyric = value;
-                this.Clear();
+                Clear();
                 foreach (var single in Lyric.Lyric)
                 {
                     var key = single.Key;
@@ -42,7 +47,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric.Pieces
                     ((IHasFurigana)Lyric).Furigana.TryGetValue(key, out var furigana);
                     ((IHasRomaji)Lyric).Romaji.TryGetValue(key, out var romaji);
 
-                    this.Add(new PartialLyric()
+                    Add(new PartialLyric()
                     {
                         TopText = furigana?.Text ?? " ",
                         MainText = lyricValue.Text,
@@ -57,6 +62,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric.Pieces
         }
 
         private double _relativeTime;
+
         public double RelativeTime
         {
             get => _relativeTime;
@@ -87,7 +93,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric.Pieces
                         var startTime = startProgressPoint.Value.RelativeTime;
 
                         var relativePercentage = (_relativeTime - startTime) / (endRelativeTime - startRelativeTime);
-                        var percantage = startPercentage + (relativePercentage) / (endPercentage - startPercentage);
+                        var percantage = startPercentage + relativePercentage / (endPercentage - startPercentage);
 
                         //TODO : cal
                         partialLyric.Progress = (float)percantage;
@@ -107,7 +113,6 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric.Pieces
                 {
                     points[i].X = points[i].X + NewLineXPosition;
                 }
-               
             }
 
             return points;
@@ -179,6 +184,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric.Pieces
         }
 
         private LyricTemplate _template;
+
         public LyricTemplate Template
         {
             get => _template;
@@ -193,8 +199,8 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric.Pieces
                 _mainText.Height = _template?.MainText?.FontSize ?? 100;
                 _bottomText.Height = _template?.BottomText?.FontSize ?? 140;
 
-                _topToMainBorderContainer.Height = 10;//TODO : real value
-                _mainToBottomBorderContainer.Height = 10;//TODO : real value
+                _topToMainBorderContainer.Height = 10; //TODO : real value
+                _mainToBottomBorderContainer.Height = 10; //TODO : real value
             }
         }
 
@@ -254,6 +260,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric.Pieces
     internal class MaskText : FillFlowContainer
     {
         private float _progress;
+
         public float Progress
         {
             get => _progress;
@@ -265,6 +272,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric.Pieces
         }
 
         private string _text;
+
         public string Text
         {
             get => _text;
@@ -278,6 +286,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric.Pieces
         }
 
         private float _testSize;
+
         public float TextSize
         {
             get => _testSize;
@@ -311,7 +320,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric.Pieces
             AutoSizeAxes = Axes.X;
             Direction = FillDirection.Horizontal;
             Spacing = new Vector2(0);
-            this.Children = new Drawable[]
+            Children = new Drawable[]
             {
                 _leftMask = new Container
                 {
@@ -324,7 +333,6 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric.Pieces
                             UseFullGlyphHeight = false
                         }
                     }
-
                 },
                 _rightMask = new Container
                 {
@@ -352,6 +360,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric.Pieces
         }
 
         private bool updated;
+
         protected override void UpdateAfterAutoSize()
         {
             if (!updated)

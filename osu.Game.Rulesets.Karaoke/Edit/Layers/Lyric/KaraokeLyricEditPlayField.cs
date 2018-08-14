@@ -10,7 +10,6 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Layers.Lyric
         public KaraokeLyricEditPlayField()
             : base()
         {
-            
         }
     }
 }

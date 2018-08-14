@@ -17,7 +17,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Effect.ShowEffect
     /// <summary>
     ///     show Visualisation layer
     /// </summary>
-    public class SnowLayer : Container , IModLayer
+    public class SnowLayer : Container, IModLayer
     {
         public int SnowGenerateParSecond { get; set; } = 5; //max can have 1000 snow at the scene
         public bool EnableNewSnow { get; set; } = true; //if disable ,will stop snow
@@ -65,8 +65,8 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Effect.ShowEffect
             var currentTime = Time.Current;
 
             var isCreateShow = !Children.Any() ||
-                (Children.LastOrDefault() as SnowSpitie).CreateTime
-                + 1000 / SnowGenerateParSecond < currentTime;
+                               (Children.LastOrDefault() as SnowSpitie).CreateTime
+                               + 1000 / SnowGenerateParSecond < currentTime;
 
             //if can generate new snow
             if (isCreateShow && EnableNewSnow)
@@ -79,7 +79,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Effect.ShowEffect
                     Origin = Anchor.Centre,
                     Anchor = Anchor.Centre,
                     Colour = Color4.White,
-                    Position = new Vector2(random.Next( - width/2, width / 2), -20 - DrawHeight/2),
+                    Position = new Vector2(random.Next(-width / 2, width / 2), -20 - DrawHeight / 2),
                     Depth = 1,
                     CreateTime = currentTime,
                     Scale = new Vector2(1f, 1f) * SnowSize,

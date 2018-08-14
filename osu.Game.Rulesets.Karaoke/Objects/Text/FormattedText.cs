@@ -11,7 +11,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Text
     /// <summary>
     ///     Text objects
     /// </summary>
-    public class FormattedText : TextComponent, IHasPosition , IEquatable<FormattedText>
+    public class FormattedText : TextComponent, IHasPosition, IEquatable<FormattedText>
     {
         // <inheritdoc />
         /// <summary>
@@ -134,7 +134,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Text
         {
             if (ReferenceEquals(null, obj)) return false;
             if (ReferenceEquals(this, obj)) return true;
-            if (obj.GetType() != this.GetType()) return false;
+            if (obj.GetType() != GetType()) return false;
             return Equals((FormattedText)obj);
         }
 

@@ -51,7 +51,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Lyric
         public KaraokeLyricPlayField()
         {
             RelativeSizeAxes = Axes.Both;
-            Margin = new MarginPadding{Top = 350};
+            Margin = new MarginPadding { Top = 350 };
         }
 
         protected override HitObjectContainer CreateHitObjectContainer() => new LyricPlayFieldContainer();
@@ -66,7 +66,8 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Lyric
             {
                 LineSpacing = new List<float>()
                 {
-                    0,100
+                    0,
+                    100
                 };
             }
 

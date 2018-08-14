@@ -17,7 +17,6 @@ namespace osu.Game.Rulesets.Karaoke.Beatmaps
         public KaraokeBeatmapConverter(IBeatmap beatmap)
             : base(beatmap)
         {
-
         }
 
         protected override IEnumerable<Type> ValidConversionTypes { get; } = new[] { typeof(IHasPosition) };
@@ -39,7 +38,6 @@ namespace osu.Game.Rulesets.Karaoke.Beatmaps
         /// <returns>The converted Beatmap.</returns>
         protected override Beatmap<BaseLyric> ConvertBeatmap(IBeatmap original)
         {
-            
             var newBratmaps = new Beatmap<BaseLyric>
             {
                 BeatmapInfo = original.BeatmapInfo,

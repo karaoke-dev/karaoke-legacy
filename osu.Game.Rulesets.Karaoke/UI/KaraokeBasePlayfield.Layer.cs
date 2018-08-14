@@ -73,7 +73,6 @@ namespace osu.Game.Rulesets.Karaoke.UI
         /// </summary>
         public virtual void PostProcessLayer(KaraokeConfigManager manager)
         {
-
             //ProcessInput
             var inputLayer = Children.OfType<IControlLayer>().FirstOrDefault();
             if (inputLayer != null)

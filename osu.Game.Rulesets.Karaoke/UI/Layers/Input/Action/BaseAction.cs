@@ -9,13 +9,13 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Input.Action
     /// <summary>
     ///     Base action
     /// </summary>
-    public class BaseAction : ICloneable, IEquatable<BaseAction> , IJsonString
+    public class BaseAction : ICloneable, IEquatable<BaseAction>, IJsonString
     {
         public DateTime ActionTime = DateTime.Now;
 
         public object Clone()
         {
-            return this.MemberwiseClone();
+            return MemberwiseClone();
         }
 
         public virtual bool Equals(BaseAction other)

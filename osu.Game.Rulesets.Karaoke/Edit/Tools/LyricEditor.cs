@@ -1,4 +1,7 @@
-﻿using System;
+﻿// Copyright (c) 2007-2018 ppy Pty Ltd <contact@ppy.sh>.
+// Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
+
+using System;
 using System.Linq;
 using osu.Game.Rulesets.Karaoke.Extension;
 using osu.Game.Rulesets.Karaoke.Objects;
@@ -12,7 +15,6 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Tools
     {
         public LyricEditor()
         {
-
         }
 
         public LyricEditor(BaseLyric lyric)
@@ -21,6 +23,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Tools
         }
 
         private BaseLyric _lyric;
+
         public BaseLyric TargetLyric
         {
             get => _lyric;
@@ -38,7 +41,6 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Tools
                 CreateSingleTimeLine(TargetLyric, index);
                 ReArrangeKey(TargetLyric);
             }
-           
         }
 
         public void RemoveText(MainText removeValue)
@@ -146,7 +148,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Tools
         {
             if (TargetLyric.TimeLines.ContainsKey(index))
             {
-                if(index.Percentage == 1)
+                if (index.Percentage == 1)
                     return;
 
                 var keysInLyricPart = TargetLyric.TimeLines.Keys.Where(x => x.Index != index.Index);
@@ -155,7 +157,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Tools
             }
         }
 
-        public void AdjustTime(TimeLineIndex index,double newTime)
+        public void AdjustTime(TimeLineIndex index, double newTime)
         {
             if (TargetLyric.TimeLines.ContainsKey(index))
             {
@@ -261,7 +263,5 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Tools
         }
 
         #endregion
-
-
     }
 }

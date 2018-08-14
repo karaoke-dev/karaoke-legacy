@@ -21,7 +21,6 @@ namespace osu.Game.Rulesets.Karaoke.Edit
         public KaraokeEditPlayfield(Ruleset ruleset, WorkingBeatmap beatmap, KaraokeEditRulesetContainer container)
             : base(ruleset, beatmap, container)
         {
-
         }
 
         /// <summary>

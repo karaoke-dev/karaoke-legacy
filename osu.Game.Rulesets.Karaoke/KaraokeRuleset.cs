@@ -113,7 +113,7 @@ namespace osu.Game.Rulesets.Karaoke
                     {
                         new KaraokeModHidden(),
                         new KaraokeModDoubleTime(),
-                        new MultiMod(new KaraokeModTransparentLyrics(),new KaraokeModCloseLyrics())
+                        new MultiMod(new KaraokeModTransparentLyrics(), new KaraokeModCloseLyrics())
                     };
 
                 case ModType.Automation:
@@ -125,8 +125,8 @@ namespace osu.Game.Rulesets.Karaoke
                 case ModType.Conversion:
                     return new Mod[]
                     {
-                        new MultiMod( new KaraokeModOpenTranslate(),new KaraokeModCloseTranslate()),
-                        new MultiMod( new KaraokeModCloseVocal(),new KaraokeModOpenVocal())
+                        new MultiMod(new KaraokeModOpenTranslate(), new KaraokeModCloseTranslate()),
+                        new MultiMod(new KaraokeModCloseVocal(), new KaraokeModOpenVocal())
                     };
                     break;
                 case ModType.Fun: //only event mod
@@ -148,7 +148,7 @@ namespace osu.Game.Rulesets.Karaoke
 
         public override DifficultyCalculator CreateDifficultyCalculator(WorkingBeatmap beatmap)
         {
-            return new KaraokeDifficultyCalculator(this,beatmap);
+            return new KaraokeDifficultyCalculator(this, beatmap);
         }
 
         public override HitObjectComposer CreateHitObjectComposer()

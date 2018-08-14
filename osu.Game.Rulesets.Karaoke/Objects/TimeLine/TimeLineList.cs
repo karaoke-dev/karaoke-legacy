@@ -41,11 +41,11 @@ namespace osu.Game.Rulesets.Karaoke.Objects.TimeLine
             var result = this.Where(x => x.Value.RelativeTime <= nowRelativeTime).ToDictionary(x => x.Key, x => x.Value);
 
             if (!result.Any())
-                return new KeyValuePair<TimeLineIndex, TimeLine>(new TimeLineIndex(-1,0), new TimeLine(0));
+                return new KeyValuePair<TimeLineIndex, TimeLine>(new TimeLineIndex(-1, 0), new TimeLine(0));
 
             var maxResult = Find(result.Keys.Max());
 
-            if(maxResult!=null)
+            if (maxResult != null)
                 return maxResult.Value;
 
             return new KeyValuePair<TimeLineIndex, TimeLine>(new TimeLineIndex(-1, 0), new TimeLine(0));
