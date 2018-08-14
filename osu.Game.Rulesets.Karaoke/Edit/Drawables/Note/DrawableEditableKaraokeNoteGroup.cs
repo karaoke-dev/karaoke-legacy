@@ -9,7 +9,7 @@ using OpenTK.Graphics;
 
 namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Note
 {
-    public class DrawableEditableKaraokeNoteGroup : DrawableLyricNoteGroup<DrawableEditableLyricNote>
+    public class DrawableEditableKaraokeNoteGroup : DrawableNotes<DrawableEditableLyricNote>
     {
         public DrawableEditableKaraokeNoteGroup(BaseLyric hitObject)
             : base(hitObject)

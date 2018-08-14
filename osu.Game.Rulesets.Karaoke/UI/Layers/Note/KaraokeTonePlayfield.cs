@@ -79,7 +79,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Note
 
         public override void Add(DrawableHitObject h)
         {
-            if (h is DrawableLyricNoteGroup note)
+            if (h is DrawableNotes note)
             {
                 //regist event
                 note.NoteSpeed.BindTo(VisibleTimeRange);
