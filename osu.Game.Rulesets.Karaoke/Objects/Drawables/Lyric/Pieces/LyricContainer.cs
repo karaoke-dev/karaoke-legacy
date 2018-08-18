@@ -13,7 +13,12 @@ using OpenTK.Graphics;
 
 namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric.Pieces
 {
-    public class LyricContainer : FillFlowContainer<PartialLyric>
+    public class LyricContainer : LyricContainer<PartialLyric>
+    {
+
+    }
+
+    public class LyricContainer<T> : FillFlowContainer<T> where T : Drawable, IPartialLyric, new() 
     {
         private LyricTemplate _template = new LyricTemplate();
 
@@ -47,7 +52,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric.Pieces
                     ((IHasFurigana)Lyric).Furigana.TryGetValue(key, out var furigana);
                     ((IHasRomaji)Lyric).Romaji.TryGetValue(key, out var romaji);
 
-                    Add(new PartialLyric()
+                    Add(new T
                     {
                         TopText = furigana?.Text ?? " ",
                         MainText = lyricValue.Text,
@@ -125,13 +130,38 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric.Pieces
         }
     }
 
+    public interface IPartialLyric
+    {
+        float Progress { set; }
+
+        int Index { get; set; }
+
+        Color4 FrontTextColor { set; }
+
+        Color4 BackTextColor { set; }
+
+        string TopText { get; set; }
+
+        string MainText { get; set; }
+
+        string BottomText { get; set; }
+
+        LyricTemplate Template { get; set; }
+    }
+
     /// <summary>
     /// Contains
     /// 1. sub text(like Furigana)
     /// 2. main text(Lyric)
     /// 3. romaji
     /// </summary>
-    public class PartialLyric : FillFlowContainer
+    public class PartialLyric : PartialLyric<MaskText>
+    {
+
+    }
+
+   
+    public class PartialLyric<T> : FillFlowContainer , IPartialLyric where T : Drawable , IMaskText ,new()
     {
         public float Progress
         {
@@ -204,15 +234,15 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric.Pieces
             }
         }
 
-        private readonly MaskText _topText;
+        private readonly T _topText;
 
         private readonly Container _topToMainBorderContainer;
 
-        private readonly MaskText _mainText;
+        private readonly T _mainText;
 
         private readonly Container _mainToBottomBorderContainer;
 
-        private readonly MaskText _bottomText;
+        private readonly T _bottomText;
 
         public PartialLyric()
         {
@@ -221,19 +251,19 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric.Pieces
             Spacing = new Vector2(-10);
             Children = new Drawable[]
             {
-                _topText = new MaskText
+                _topText = new T
                 {
                     Anchor = Anchor.TopCentre,
                     Origin = Anchor.TopCentre,
                 },
                 _topToMainBorderContainer = new Container(),
-                _mainText = new MaskText
+                _mainText = new T
                 {
                     Anchor = Anchor.TopCentre,
                     Origin = Anchor.TopCentre
                 },
                 _mainToBottomBorderContainer = new Container(),
-                _bottomText = new MaskText
+                _bottomText = new T
                 {
                     Anchor = Anchor.TopCentre,
                     Origin = Anchor.TopCentre
@@ -251,13 +281,26 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric.Pieces
         }
     }
 
+    public interface IMaskText
+    {
+        float Progress { get; set; }
+
+        string Text { get; set; }
+
+        Color4 FrontTextColor { get; set; }
+
+        Color4 BackTextColor { get; set; }
+
+        float TextSize { get; set; }
+    }
+
     /// <summary>
     /// Contains : 
     /// 1. mask
     /// 2. front text
     /// 2. back text
     /// </summary>
-    internal class MaskText : FillFlowContainer
+    public class MaskText : FillFlowContainer , IMaskText
     {
         private float _progress;
 

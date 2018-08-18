@@ -91,7 +91,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Layers.Selection.Overlays
             }
         }
 
-        private class SingleNoteMask : Container
+        public class SingleNoteMask : Container
         {
             public virtual BaseLyric HitObject { get; set; }
 
