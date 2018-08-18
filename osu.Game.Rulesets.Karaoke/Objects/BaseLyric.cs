@@ -126,6 +126,8 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         /// </summary>
         public virtual bool NewCombo { get; set; }
 
+        public int ComboOffset { get; }
+
         /// <summary>
         ///     combo index，will be assign by beatmap post process or other extension?
         /// </summary>

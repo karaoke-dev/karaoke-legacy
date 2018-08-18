@@ -108,7 +108,7 @@ namespace osu.Game.Rulesets.Karaoke.Develop
                     //AccentColour = playfield.Columns.ElementAt(col).AccentColour
                 };
 
-                playfield.OnJudgement(drawableNote, new KaraokeJudgement { Result = HitResult.Perfect });
+                //playfield.OnJudgement(drawableNote, new KaraokeJudgement { Result = HitResult.Perfect });
                 //playfield.Columns[col].OnJudgement(drawableNote, new ManiaJudgement { Result = HitResult.Perfect });
             });
 
@@ -256,10 +256,12 @@ namespace osu.Game.Rulesets.Karaoke.Develop
             maniaConfig.BindWith(KaraokeSetting.NoteSpeed, VisibleTimeRange);
         }
 
+        /*
         internal void OnJudgement(DrawableHitObject judgedObject, Judgement judgement)
         {
             getStageByColumn(((BaseLyric)judgedObject.HitObject).SingerIndex ?? 0).OnJudgement(judgedObject, judgement);
         }
+        */
     }
 
     
