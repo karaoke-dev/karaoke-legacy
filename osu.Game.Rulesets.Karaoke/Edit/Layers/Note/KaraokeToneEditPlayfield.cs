@@ -23,7 +23,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Layers.Note
             //Create object
             var drawableNote = new DrawableEditableNotes(h.HitObject as BaseLyric)
             {
-                AccentColour = Color4.Blue
+                AccentColour = Color4.BlueViolet
             };
 
             //regist event

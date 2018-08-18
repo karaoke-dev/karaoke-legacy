@@ -12,7 +12,6 @@ using osu.Game.Rulesets.Edit;
 using osu.Game.Rulesets.Karaoke.Edit.Drawables.Note;
 using osu.Game.Rulesets.Karaoke.Extension;
 using osu.Game.Rulesets.Karaoke.Objects;
-using osu.Game.Rulesets.Karaoke.Objects.Drawables.Note.Pieces;
 using osu.Game.Rulesets.Karaoke.Objects.Note;
 using osu.Game.Rulesets.Karaoke.Objects.TimeLine;
 using osu.Game.Rulesets.Karaoke.UI.Layers.Note;
@@ -99,9 +98,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Layers.Selection.Overlays
             private KeyValuePair<TimeLineIndex, TimeLine> _timeLine;
 
             private readonly Container noteContainer;
-            private readonly Box bodyPiece;
-            private readonly Container fullHeightContainer;
-            private readonly GlowPiece glowPiece;
+            private readonly NoteMask fullHeightContainer;
 
             public virtual double Duration
             {
@@ -125,8 +122,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Layers.Selection.Overlays
                 set
                 {
                     accentColour = value;
-
-                    glowPiece.AccentColour = value;
+                    fullHeightContainer.AccentColour = accentColour;
                 }
             }
 
@@ -146,10 +142,9 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Layers.Selection.Overlays
                         RelativeSizeAxes = Axes.X,
                         Children = new Drawable[]
                         {
-                            fullHeightContainer = new Container
+                            fullHeightContainer = new NoteMask
                             {
                                 RelativeSizeAxes = Axes.Both,
-                                Child = glowPiece = new GlowPiece()
                             },
                         }
                     }
@@ -167,6 +162,58 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Layers.Selection.Overlays
 
                     //height
                     noteContainer.Y = NoteStageHelper.GetPositionByTone(tone);
+                }
+            }
+
+            public class NoteMask : CompositeDrawable, IHasAccentColour
+            {
+                public Color4 AccentColour
+                {
+                    get => accentColour;
+                    set
+                    {
+                        if (accentColour == value)
+                            return;
+                        accentColour = value;
+
+                        updateGlow();
+                    }
+                }
+
+                private Color4 accentColour;
+
+                public NoteMask()
+                {
+                    RelativeSizeAxes = Axes.Both;
+                    Masking = true;
+                    CornerRadius = 5f;
+
+                    InternalChild = new Box
+                    {
+                        RelativeSizeAxes = Axes.Both,
+                        Alpha = 0,
+                        AlwaysPresent = true
+                    };
+                }
+
+                protected override void LoadComplete()
+                {
+                    base.LoadComplete();
+                    updateGlow();
+                }
+
+                private void updateGlow()
+                {
+                    if (!IsLoaded)
+                        return;
+
+                    EdgeEffect = new EdgeEffectParameters
+                    {
+                        Type = EdgeEffectType.Shadow,
+                        Colour = AccentColour,
+                        Radius = 2,
+                        Hollow = true
+                    };
                 }
             }
         }

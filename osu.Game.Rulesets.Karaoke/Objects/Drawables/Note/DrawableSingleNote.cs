@@ -6,7 +6,6 @@ using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Shapes;
 using osu.Game.Rulesets.Karaoke.Extension;
-using osu.Game.Rulesets.Karaoke.Objects.Drawables.Note.Pieces;
 using osu.Game.Rulesets.Karaoke.Objects.Note;
 using osu.Game.Rulesets.Karaoke.Objects.TimeLine;
 using osu.Game.Rulesets.Karaoke.UI.Layers.Note;
@@ -38,10 +37,6 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note
             {
                 accentColour = value;
 
-                if (glowPiece == null)
-                    return;
-
-                glowPiece.AccentColour = value;
                 bodyPiece.Colour = value;
             }
         }
@@ -88,9 +83,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note
         }
 
         private readonly TextFlowContainer text;
-        private readonly GlowPiece glowPiece;
         private readonly Box bodyPiece;
-        private readonly Container fullHeightContainer;
         private readonly Container noteContainer;
         private Color4 accentColour;
 
@@ -110,20 +103,18 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note
                     Origin = Anchor.CentreLeft,
                     Height = KaraokeStage.COLUMN_HEIGHT,
                     RelativeSizeAxes = Axes.X,
+                    Masking = true,
+                    CornerRadius = 5,
                     Children = new Drawable[]
                     {
-                        fullHeightContainer = new Container
-                        {
-                            RelativeSizeAxes = Axes.Both,
-                            Child = glowPiece = new GlowPiece()
-                        },
                         bodyPiece = new Box
                         {
                             RelativeSizeAxes = Axes.Both,
-                            Alpha = 0.3f
+                            Alpha = 0.6f
                         },
                         text = new TextFlowContainer
                         {
+                            Padding = new MarginPadding{Left = 5 , Top = 2},
                             Text = "Hello"
                         }
                     }

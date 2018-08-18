@@ -78,7 +78,7 @@ namespace osu.Game.Rulesets.Karaoke.UI
             {
                 var drawableNote = new DrawableNotes(h.HitObject as BaseLyric)
                 {
-                    AccentColour = Color4.Blue
+                    AccentColour = Color4.BlueViolet
                 };
                 KaraokeTonePlayfield.Add(drawableNote);
             }
