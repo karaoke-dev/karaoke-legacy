@@ -35,7 +35,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit
                 case DrawableEditableKaraokeObject lyric:
                     return new LyricMask(lyric);
                 case DrawableEditableNotes note:
-                    return new NoteMask(note);
+                    return new NotesMask(note);
             }
 
             return base.CreateMaskFor(hitObject);

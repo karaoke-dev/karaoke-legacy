@@ -20,13 +20,13 @@ using OpenTK.Graphics;
 
 namespace osu.Game.Rulesets.Karaoke.Edit.Layers.Selection.Overlays
 {
-    public class NoteMask : HitObjectMask
+    public class NotesMask : HitObjectMask
     {
         public new DrawableEditableNotes HitObject => (DrawableEditableNotes)base.HitObject;
 
         private readonly FillFlowContainer<SingleNoteMask> listNote;
 
-        public NoteMask(DrawableEditableNotes hitObject)
+        public NotesMask(DrawableEditableNotes hitObject)
             : base(hitObject)
         {
             Scale = hitObject.Scale;
@@ -98,7 +98,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Layers.Selection.Overlays
             private KeyValuePair<TimeLineIndex, TimeLine> _timeLine;
 
             private readonly Container noteContainer;
-            private readonly NoteMask fullHeightContainer;
+            private readonly NotesMask fullHeightContainer;
 
             public virtual double Duration
             {
@@ -142,7 +142,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Layers.Selection.Overlays
                         RelativeSizeAxes = Axes.X,
                         Children = new Drawable[]
                         {
-                            fullHeightContainer = new NoteMask
+                            fullHeightContainer = new NotesMask
                             {
                                 RelativeSizeAxes = Axes.Both,
                             },
@@ -165,7 +165,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Layers.Selection.Overlays
                 }
             }
 
-            public class NoteMask : CompositeDrawable, IHasAccentColour
+            public class NotesMask : CompositeDrawable, IHasAccentColour
             {
                 public Color4 AccentColour
                 {
@@ -182,7 +182,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Layers.Selection.Overlays
 
                 private Color4 accentColour;
 
-                public NoteMask()
+                public NotesMask()
                 {
                     RelativeSizeAxes = Axes.Both;
                     Masking = true;
