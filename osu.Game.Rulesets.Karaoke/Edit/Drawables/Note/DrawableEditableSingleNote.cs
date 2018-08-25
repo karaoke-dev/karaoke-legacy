@@ -18,5 +18,15 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Note
         {
             new OsuMenuItem(@"Delete", MenuItemType.Highlighted)
         };
+
+        protected override void InitialKiai()
+        {
+            //Do not show kiai in editor
+        }
+
+        protected override void InitialKiaiEffect()
+        {
+            //Do not show kiai in editor
+        }
     }
 }

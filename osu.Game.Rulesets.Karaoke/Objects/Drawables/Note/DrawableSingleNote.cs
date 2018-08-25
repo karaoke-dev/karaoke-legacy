@@ -125,11 +125,12 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note
                             Masking = true,
                             CornerRadius = 5,
                             RelativeSizeAxes = Axes.Both,
+                            Alpha = 0.6f,
                             Children = new Drawable[]
                             {
                                 new Box
                                 {
-                                    Alpha = 0.6f,
+                                    
                                     RelativeSizeAxes = Axes.Both,
                                 }
                             }
@@ -147,7 +148,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note
         }
 
         private const float edge_alpha_kiai = 0.5f;
-        private const double pre_beat_transition_time = 80;
+        private const double pre_beat_transition_time = 0;
 
         protected virtual void InitialKiai()
         {
@@ -156,13 +157,11 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note
                 if (!effectPoint.KiaiMode)
                     return;
 
-                if (beatIndex % (int)timingPoint.TimeSignature != 0)
-                    return;
+                double duration = timingPoint.BeatLength * 4;
 
-                double duration = timingPoint.BeatLength * 2;
-
+                var alpha = (beatIndex % (int)timingPoint.TimeSignature != 0) ? 0.8f : 1;
                 background
-                    .FadeEdgeEffectTo(1, pre_beat_transition_time, Easing.OutQuint)
+                    .FadeEdgeEffectTo(alpha, pre_beat_transition_time, Easing.OutQuint)
                     .Then()
                     .FadeEdgeEffectTo(edge_alpha_kiai, duration, Easing.OutQuint);
             };
@@ -174,8 +173,8 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note
             background.EdgeEffect = new EdgeEffectParameters
             {
                 Type = EdgeEffectType.Glow,
-                Colour = AccentColour.Opacity(kiai ? edge_alpha_kiai : 1f),
-                Radius = kiai ? 32 : 8
+                Colour = AccentColour.Opacity(kiai ? edge_alpha_kiai : 1.0f),
+                Radius = kiai ? 15 : 1
             };
         }
 
