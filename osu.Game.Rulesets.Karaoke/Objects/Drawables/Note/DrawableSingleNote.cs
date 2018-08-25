@@ -1,10 +1,15 @@
 ﻿// Copyright (c) 2007-2018 ppy Pty Ltd <contact@ppy.sh>.
 // Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
 
+using System;
 using System.Collections.Generic;
+using osu.Framework.Audio.Track;
+using osu.Framework.Extensions.Color4Extensions;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Shapes;
+using osu.Game.Beatmaps.ControlPoints;
+using osu.Game.Graphics.Containers;
 using osu.Game.Rulesets.Karaoke.Extension;
 using osu.Game.Rulesets.Karaoke.Objects.Note;
 using osu.Game.Rulesets.Karaoke.Objects.TimeLine;
@@ -36,12 +41,22 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note
             set
             {
                 accentColour = value;
-
-                bodyPiece.Colour = value;
+                background.Colour = value;
+                InitialKiaiEffect();
             }
         }
 
-        public virtual BaseLyric HitObject { get; set; }
+        private BaseLyric lyric;
+
+        public virtual BaseLyric HitObject
+        {
+            get => lyric;
+            set
+            {
+                lyric = value;
+                InitialKiaiEffect();
+            }
+        }
 
         public virtual KeyValuePair<TimeLineIndex, TimeLine.TimeLine> TimeLine
         {
@@ -83,8 +98,8 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note
         }
 
         private readonly TextFlowContainer text;
-        private readonly Box bodyPiece;
-        private readonly Container noteContainer;
+        private readonly Container background;
+        private readonly DrawableSingleNoteContainer noteContainer;
         private Color4 accentColour;
 
         private KeyValuePair<TimeLineIndex, TimeLine.TimeLine> _timeLine;
@@ -97,20 +112,27 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note
             RelativeSizeAxes = Axes.Y;
             InternalChildren = new Drawable[]
             {
-                noteContainer = new Container
+                noteContainer = new DrawableSingleNoteContainer
                 {
                     Anchor = Anchor.CentreLeft,
                     Origin = Anchor.CentreLeft,
                     Height = KaraokeStage.COLUMN_HEIGHT,
                     RelativeSizeAxes = Axes.X,
-                    Masking = true,
-                    CornerRadius = 5,
                     Children = new Drawable[]
                     {
-                        bodyPiece = new Box
+                        background = new Container
                         {
+                            Masking = true,
+                            CornerRadius = 5,
                             RelativeSizeAxes = Axes.Both,
-                            Alpha = 0.6f
+                            Children = new Drawable[]
+                            {
+                                new Box
+                                {
+                                    Alpha = 0.6f,
+                                    RelativeSizeAxes = Axes.Both,
+                                }
+                            }
                         },
                         text = new TextFlowContainer
                         {
@@ -119,6 +141,41 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note
                         }
                     }
                 }
+            };
+
+            InitialKiai();
+        }
+
+        private const float edge_alpha_kiai = 0.5f;
+        private const double pre_beat_transition_time = 80;
+
+        protected virtual void InitialKiai()
+        {
+            noteContainer.OnBeatAction += (beatIndex, timingPoint, effectPoint, amplitudes) =>
+            {
+                if (!effectPoint.KiaiMode)
+                    return;
+
+                if (beatIndex % (int)timingPoint.TimeSignature != 0)
+                    return;
+
+                double duration = timingPoint.BeatLength * 2;
+
+                background
+                    .FadeEdgeEffectTo(1, pre_beat_transition_time, Easing.OutQuint)
+                    .Then()
+                    .FadeEdgeEffectTo(edge_alpha_kiai, duration, Easing.OutQuint);
+            };
+        }
+
+        protected virtual void InitialKiaiEffect()
+        {
+            bool kiai = HitObject.Kiai;
+            background.EdgeEffect = new EdgeEffectParameters
+            {
+                Type = EdgeEffectType.Glow,
+                Colour = AccentColour.Opacity(kiai ? edge_alpha_kiai : 1f),
+                Radius = kiai ? 32 : 8
             };
         }
 
@@ -130,6 +187,15 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note
                 // Good enough for now, we just want them to have a lifetime end
                 //    this.Delay(2000).Expire();
                 //    break;
+            }
+        }
+
+        protected class DrawableSingleNoteContainer : BeatSyncedContainer
+        {
+            public Action<int, TimingControlPoint, EffectControlPoint, TrackAmplitudes> OnBeatAction;
+            protected override void OnNewBeat(int beatIndex, TimingControlPoint timingPoint, EffectControlPoint effectPoint, TrackAmplitudes amplitudes)
+            {
+                OnBeatAction?.Invoke(beatIndex, timingPoint, effectPoint, amplitudes);
             }
         }
     }
