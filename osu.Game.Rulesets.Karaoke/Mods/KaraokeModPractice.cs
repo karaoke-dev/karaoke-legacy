@@ -3,10 +3,14 @@
 
 using System;
 using osu.Framework.Graphics;
+using osu.Framework.Graphics.UserInterface;
 using osu.Framework.Timing;
 using osu.Game.Graphics;
+using osu.Game.Graphics.UserInterface;
+using osu.Game.Rulesets.Karaoke.Input;
 using osu.Game.Rulesets.Karaoke.UI.Interface;
 using osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel;
+using osu.Game.Rulesets.Karaoke.UI.Layers.Input;
 using osu.Game.Rulesets.Karaoke.UI.Layers.Type;
 using osu.Game.Rulesets.Mods;
 using osu.Game.Rulesets.UI;
@@ -14,7 +18,7 @@ using OpenTK;
 
 namespace osu.Game.Rulesets.Karaoke.Mods
 {
-    public class KaraokeModPractice : Mod, IApplicableCreatePlayfieldLayer
+    public class KaraokeModPractice : Mod, IApplicableCreatePlayfieldLayer , IApplicableCreateRightSideButton
     {
         public override string Name => "Practice";
         public override string ShortenedName => "Practice";
@@ -32,6 +36,21 @@ namespace osu.Game.Rulesets.Karaoke.Mods
                 Anchor = Anchor.BottomCentre,
                 Scale = new Vector2(1.0f),
                 Depth = 10f
+            };
+        }
+
+        public Button CreateButton(InputLayer inputLayer)
+        {
+            return new TriangleButton
+            {
+                Width = 60,
+                Height = 60,
+                Text = "Panel",
+                Action = () =>
+                {
+                    //as press openPanel hotkey
+                    inputLayer.OnPressed(KaraokeKeyAction.OpenPanel);
+                }
             };
         }
     }

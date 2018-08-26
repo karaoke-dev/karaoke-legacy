@@ -28,18 +28,10 @@ namespace osu.Game.Rulesets.Karaoke.UI
                     KaraokeLyricPlayField.ListDrawableKaraokeObject[i].Lyric.Translates.Add(TranslateCode.Chinese_Traditional, new LyricTranslate(multiSting[i]));
             };
 
-            //TODO : remove ?
-            /*
-            WorkingBeatmap.Mods.ValueChanged += newMods =>
-            {
-                ApplyMod();
-            };
-            */
-
-            ApplyMod();
+            ApplyLayerMod();
         }
 
-        public virtual void ApplyMod()
+        public virtual void ApplyLayerMod()
         {
             //remove all Created ModLayer
             RemoveAll(x => x is IModLayer);
@@ -49,6 +41,19 @@ namespace osu.Game.Rulesets.Karaoke.UI
             {
                 if (singleMod is IApplicableCreatePlayfieldLayer iHasLayer)
                     Add(iHasLayer.CreateNewLayer(this) as Container);
+            }
+        }
+
+        public virtual void ApplyMod()
+        {
+            foreach (var singleMod in WorkingBeatmap.Mods.Value)
+            {
+
+                if (singleMod is IApplicableCreateRightSideButton ihasSideButton)
+                {
+                    var button = ihasSideButton.CreateButton(_inputLayer);
+                    _inputLayer.AddRightSideButton(button);
+                }
             }
         }
 
@@ -71,20 +76,6 @@ namespace osu.Game.Rulesets.Karaoke.UI
             }
         }
 
-        /*
-        protected override void Dispose(bool isDisposing)
-        {
-            base.Dispose(isDisposing);
-            KaraokeLyricPlayField.Dispose();
-        }
-        */
-
-        protected override void LoadComplete()
-        {
-            base.LoadComplete();
-            //AddInternal(new GameplayCursor());
-        }
-
         [BackgroundDependencyLoader]
         private void load(KaraokeConfigManager karaokeConfig)
         {
@@ -100,6 +91,8 @@ namespace osu.Game.Rulesets.Karaoke.UI
                 KaraokeLyricPlayField.SingerTemplate.BindTo(singerTemplate);
                 KaraokeLyricPlayField.TranslateCode.BindTo(translateCode);
             }
+
+            ApplyMod();
         }
     }
 }

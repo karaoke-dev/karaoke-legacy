@@ -107,7 +107,6 @@ namespace osu.Game.Rulesets.Karaoke.UI
             InitialRulesetLayer();
             //Backend
             InitialBackendLayer();
-
             //post process
             PostProcessLayer(manager);
         }
