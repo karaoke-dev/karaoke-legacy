@@ -11,7 +11,7 @@ using osu.Framework.IO.Stores;
 using osu.Game.Rulesets.Karaoke.Beatmaps;
 using osu.Game.Rulesets.Karaoke.Configuration;
 using osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric.Pieces;
-using osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric.Types;
+using osu.Game.Rulesets.Karaoke.Objects.Drawables.Types;
 using osu.Game.Rulesets.Objects.Drawables;
 using osu.Game.Rulesets.Scoring;
 using OpenTK;

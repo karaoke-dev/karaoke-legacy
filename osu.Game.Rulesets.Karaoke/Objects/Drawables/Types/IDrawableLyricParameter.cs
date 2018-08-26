@@ -3,7 +3,7 @@
 
 using osu.Game.Rulesets.Karaoke.Beatmaps;
 
-namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric.Types
+namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Types
 {
     public interface IDrawableLyricParameter
     {

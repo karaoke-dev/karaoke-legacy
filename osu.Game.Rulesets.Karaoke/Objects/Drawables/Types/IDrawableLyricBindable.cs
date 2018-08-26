@@ -4,7 +4,7 @@
 using osu.Framework.Configuration;
 using osu.Game.Rulesets.Karaoke.Configuration;
 
-namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric.Types
+namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Types
 {
     /// <summary>
     ///     All the bindable things
