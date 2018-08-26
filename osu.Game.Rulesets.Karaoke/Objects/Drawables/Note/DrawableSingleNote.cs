@@ -130,14 +130,13 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note
                             {
                                 new Box
                                 {
-                                    
                                     RelativeSizeAxes = Axes.Both,
                                 }
                             }
                         },
                         text = new TextFlowContainer
                         {
-                            Padding = new MarginPadding{Left = 5 , Top = 2},
+                            Padding = new MarginPadding { Left = 5, Top = 2 },
                             Text = "Hello"
                         }
                     }
@@ -159,7 +158,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note
 
                 double duration = timingPoint.BeatLength * 4;
 
-                var alpha = (beatIndex % (int)timingPoint.TimeSignature != 0) ? 0.8f : 1;
+                var alpha = beatIndex % (int)timingPoint.TimeSignature != 0 ? 0.8f : 1;
                 background
                     .FadeEdgeEffectTo(alpha, pre_beat_transition_time, Easing.OutQuint)
                     .Then()
@@ -192,6 +191,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note
         protected class DrawableSingleNoteContainer : BeatSyncedContainer
         {
             public Action<int, TimingControlPoint, EffectControlPoint, TrackAmplitudes> OnBeatAction;
+
             protected override void OnNewBeat(int beatIndex, TimingControlPoint timingPoint, EffectControlPoint effectPoint, TrackAmplitudes amplitudes)
             {
                 OnBeatAction?.Invoke(beatIndex, timingPoint, effectPoint, amplitudes);

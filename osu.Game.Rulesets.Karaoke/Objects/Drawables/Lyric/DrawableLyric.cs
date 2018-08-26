@@ -218,8 +218,8 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
         {
             double transformTime = HitObject.StartTime - PreemptiveTime;
 
-            base.ApplyTransformsAt(transformTime, true);
-            base.ClearTransformsAfter(transformTime, true);
+            ApplyTransformsAt(transformTime, true);
+            ClearTransformsAfter(transformTime, true);
 
             using (BeginAbsoluteSequence(transformTime, true))
             {

@@ -66,7 +66,6 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Layers.Selection.Overlays
 
         public class MaskLyricContainer : LyricContainer<PartialLyric<MaskText>>
         {
-            
         }
 
         public class MaskText : Container, IMaskText

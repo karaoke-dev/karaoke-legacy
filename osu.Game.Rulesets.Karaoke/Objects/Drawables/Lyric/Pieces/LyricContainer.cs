@@ -15,10 +15,9 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric.Pieces
 {
     public class LyricContainer : LyricContainer<PartialLyric>
     {
-
     }
 
-    public class LyricContainer<T> : FillFlowContainer<T> where T : Drawable, IPartialLyric, new() 
+    public class LyricContainer<T> : FillFlowContainer<T> where T : Drawable, IPartialLyric, new()
     {
         private LyricTemplate _template = new LyricTemplate();
 
@@ -157,11 +156,10 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric.Pieces
     /// </summary>
     public class PartialLyric : PartialLyric<MaskText>
     {
-
     }
 
-   
-    public class PartialLyric<T> : FillFlowContainer , IPartialLyric where T : Drawable , IMaskText ,new()
+
+    public class PartialLyric<T> : FillFlowContainer, IPartialLyric where T : Drawable, IMaskText, new()
     {
         public float Progress
         {
@@ -300,7 +298,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric.Pieces
     /// 2. front text
     /// 2. back text
     /// </summary>
-    public class MaskText : FillFlowContainer , IMaskText
+    public class MaskText : FillFlowContainer, IMaskText
     {
         private float _progress;
 
