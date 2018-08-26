@@ -18,7 +18,7 @@ using OpenTK;
 
 namespace osu.Game.Rulesets.Karaoke.Mods
 {
-    public class KaraokeModPractice : Mod, IApplicableCreatePlayfieldLayer , IApplicableCreateRightSideButton
+    public class KaraokeModPractice : Mod, IApplicableCreatePlayfieldLayer, IApplicableCreateRightSideButton
     {
         public override string Name => "Practice";
         public override string ShortenedName => "Practice";

@@ -48,7 +48,6 @@ namespace osu.Game.Rulesets.Karaoke.UI
         {
             foreach (var singleMod in WorkingBeatmap.Mods.Value)
             {
-
                 if (singleMod is IApplicableCreateRightSideButton ihasSideButton)
                 {
                     var button = ihasSideButton.CreateButton(_inputLayer);

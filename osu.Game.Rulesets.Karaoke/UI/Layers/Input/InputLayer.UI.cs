@@ -10,6 +10,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Input
     public partial class InputLayer
     {
         private FillFlowContainer<Button> _fillFlowContainer;
+
         private void initialUi()
         {
             _fillFlowContainer = new FillFlowContainer<Button>
@@ -22,7 +23,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Input
             var content = new Drawable[2][];
             content[0] = new[] { new Container() };
             content[1] = new[] { _fillFlowContainer };
-            InternalChild  = new GridContainer
+            InternalChild = new GridContainer
             {
                 RelativeSizeAxes = Axes.Both,
                 Content = content
