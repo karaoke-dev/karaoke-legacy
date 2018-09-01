@@ -137,7 +137,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Common.Pieces
             foreach (var single in str)
             {
                 //get single char width
-                var singleCharWhdth = single == ' ' ? 15 : CreateCharacterDrawable(single).Result.Width * TextSize;
+                var singleCharWhdth = single == ' ' ? 15 : CreateCharacterDrawable(single).Width * TextSize;
                 totalWidth += singleCharWhdth;
             }
 
