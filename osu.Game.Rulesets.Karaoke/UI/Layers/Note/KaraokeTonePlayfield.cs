@@ -56,25 +56,23 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Note
             Inverted.Value = true;
 
             GridContainer playfieldGrid;
+            AddInternal(playfieldGrid = new GridContainer
+            {
+                RelativeSizeAxes = Axes.Both,
+                Content = new Drawable[Math.Max(stageDefinitions.Count, 2)][]
+            });
 
-            var content = new Drawable[2][];
             for (var i = 0; i < stageDefinitions.Count; i++)
             {
                 var newStage = new KaraokeStage(stageDefinitions[i]);
                 newStage.VisibleTimeRange.BindTo(VisibleTimeRange);
                 newStage.Inverted.BindTo(Inverted);
 
-                content[i] = new[] { newStage };
+                playfieldGrid.Content[i] = new Drawable[] { newStage };
 
                 stages.Add(newStage);
                 AddNested(newStage);
             }
-
-            InternalChild = playfieldGrid = new GridContainer
-            {
-                RelativeSizeAxes = Axes.Both,
-                Content = content
-            };
         }
 
         public override void Add(DrawableHitObject h)
