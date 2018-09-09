@@ -2,10 +2,10 @@
 // Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
 
 using System.Collections.Generic;
-using osu.Game.Rulesets.Karaoke.Objects.Lyric.Types;
+using osu.Game.Rulesets.Karaoke.Objects.Localization.Types;
 using osu.Game.Rulesets.Karaoke.Objects.Text;
 
-namespace osu.Game.Rulesets.Karaoke.Objects.Lyric
+namespace osu.Game.Rulesets.Karaoke.Objects.Localization
 {
     public class JpLyric : RomajiLyric, IHasFurigana
     {
