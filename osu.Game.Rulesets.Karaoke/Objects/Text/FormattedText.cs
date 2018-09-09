@@ -25,7 +25,6 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Text
         /// <summary>
         ///     X position
         /// </summary>
-
         public float X
         {
             get => Position.X;

@@ -54,7 +54,7 @@ namespace osu.Game.Rulesets.Karaoke.Tests
             lyric.StartTime = framedClock.CurrentTime + 160;
             playfieldContainer.Add(new DrawableLyric(lyric)
             {
-                Position = lyric.Position + appearPosition,
+                Position =  appearPosition,
             });
 
             appearPosition = appearPosition + new Vector2(0, 100);
