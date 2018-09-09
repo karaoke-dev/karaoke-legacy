@@ -21,7 +21,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects
     ///     base karaoke object
     ///     contain single sentence , a main text and several additional text
     /// </summary>
-    public class Lyric : HitObject, ILyric, IHasEndTime, IHasPrimaryKey
+    public class Lyric : HitObject, ILyric, IHasEndTime, IHasPrimaryKey , IHasStage
     {
         /// <summary>
         ///     The time at which the HitObject ends.
@@ -89,7 +89,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         /// <summary>
         ///     Stage Index
         /// </summary>
-        public int StageIndex { get; set; }
+        public int Stageindex { get; set; }
 
         /// <summary>
         ///     Version of the lyric
