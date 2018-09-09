@@ -5,8 +5,8 @@ using System;
 using System.Linq;
 using osu.Game.Rulesets.Karaoke.Extension;
 using osu.Game.Rulesets.Karaoke.Objects;
-using osu.Game.Rulesets.Karaoke.Objects.Lyric;
-using osu.Game.Rulesets.Karaoke.Objects.Lyric.Types;
+using osu.Game.Rulesets.Karaoke.Objects.Localization;
+using osu.Game.Rulesets.Karaoke.Objects.Localization.Types;
 using osu.Game.Rulesets.Karaoke.Objects.TimeLine;
 
 namespace osu.Game.Rulesets.Karaoke.Edit.Tools

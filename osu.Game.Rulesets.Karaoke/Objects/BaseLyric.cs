@@ -7,7 +7,7 @@ using osu.Game.Database;
 using osu.Game.Rulesets.Judgements;
 using osu.Game.Rulesets.Karaoke.Configuration;
 using osu.Game.Rulesets.Karaoke.Judgements;
-using osu.Game.Rulesets.Karaoke.Objects.Lyric;
+using osu.Game.Rulesets.Karaoke.Objects.Localization;
 using osu.Game.Rulesets.Karaoke.Objects.Text;
 using osu.Game.Rulesets.Karaoke.Objects.TimeLine;
 using osu.Game.Rulesets.Karaoke.Objects.Translate;

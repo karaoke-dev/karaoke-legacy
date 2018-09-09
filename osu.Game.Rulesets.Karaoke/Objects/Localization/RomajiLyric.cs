@@ -3,10 +3,10 @@
 
 using System.Collections.Generic;
 using System.Linq;
-using osu.Game.Rulesets.Karaoke.Objects.Lyric.Types;
+using osu.Game.Rulesets.Karaoke.Objects.Localization.Types;
 using osu.Game.Rulesets.Karaoke.Objects.Text;
 
-namespace osu.Game.Rulesets.Karaoke.Objects.Lyric
+namespace osu.Game.Rulesets.Karaoke.Objects.Localization
 {
     public class RomajiLyric : BaseLyric, IHasRomaji
     {

@@ -6,8 +6,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using osu.Game.Rulesets.Karaoke.Configuration;
 using osu.Game.Rulesets.Karaoke.Objects;
-using osu.Game.Rulesets.Karaoke.Objects.Lyric;
-using osu.Game.Rulesets.Karaoke.Objects.Lyric.Types;
+using osu.Game.Rulesets.Karaoke.Objects.Localization;
+using osu.Game.Rulesets.Karaoke.Objects.Localization.Types;
 using osu.Game.Rulesets.Karaoke.Online.API.Romaj.RomajiServer;
 
 namespace osu.Game.Rulesets.Karaoke.Service.Romaji

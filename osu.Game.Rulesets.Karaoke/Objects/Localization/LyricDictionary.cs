@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace osu.Game.Rulesets.Karaoke.Objects.Lyric
+namespace osu.Game.Rulesets.Karaoke.Objects.Localization
 {
     /// <summary>
     ///     BaseLyric Dictionary

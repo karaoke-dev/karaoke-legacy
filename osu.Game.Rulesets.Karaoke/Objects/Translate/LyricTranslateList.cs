@@ -2,7 +2,7 @@
 // Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
 
 using osu.Game.Rulesets.Karaoke.Configuration;
-using osu.Game.Rulesets.Karaoke.Objects.Lyric;
+using osu.Game.Rulesets.Karaoke.Objects.Localization;
 
 namespace osu.Game.Rulesets.Karaoke.Objects.Translate
 {

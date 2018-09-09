@@ -7,7 +7,7 @@ using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Sprites;
 using osu.Game.Rulesets.Karaoke.Configuration;
-using osu.Game.Rulesets.Karaoke.Objects.Lyric.Types;
+using osu.Game.Rulesets.Karaoke.Objects.Localization.Types;
 using OpenTK;
 using OpenTK.Graphics;
 

@@ -3,7 +3,7 @@
 
 using osu.Game.Rulesets.Karaoke.Configuration;
 
-namespace osu.Game.Rulesets.Karaoke.Objects.Lyric.Types
+namespace osu.Game.Rulesets.Karaoke.Objects.Localization.Types
 {
     public interface IHasLangCode
     {

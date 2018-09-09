@@ -2,7 +2,6 @@
 // Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
 
 using osu.Game.Rulesets.Karaoke.Objects;
-using osu.Game.Rulesets.Karaoke.Objects.Lyric;
 using osu.Game.Rulesets.Karaoke.Objects.TimeLine;
 
 namespace osu.Game.Rulesets.Karaoke.Edit.Tools

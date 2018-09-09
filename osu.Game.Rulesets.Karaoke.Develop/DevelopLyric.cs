@@ -9,7 +9,7 @@ using osu.Game.Rulesets.Karaoke.Helps;
 using osu.Game.Rulesets.Karaoke.Objects;
 using osu.Game.Tests.Visual;
 using osu.Framework.Graphics.Shapes;
-using osu.Game.Rulesets.Karaoke.Objects.Lyric.Types;
+using osu.Game.Rulesets.Karaoke.Objects.Localization.Types;
 
 namespace osu.Game.Rulesets.Karaoke.Develop
 {
