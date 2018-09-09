@@ -85,7 +85,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
                         },
                         TranslateText = new TranslateString(null)
                         {
-                            AutoSizeAxes = Axes.Y,
+                            //AutoSizeAxes = Axes.Y,
                             RelativeSizeAxes = Axes.X,
                         }
                     }

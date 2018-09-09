@@ -33,7 +33,7 @@ namespace Symcol.Rulesets.Core.Skinning
             {
                 loadedSkin = skin.ToString();
                 skinResources = new ResourceStore<byte[]>(new StorageBackedResourceStore(skinStorage));
-                skinTextures = new TextureStore(new RawTextureLoaderStore(skinResources));
+                //skinTextures = new TextureStore(new RawTextureLoaderStore(skinResources));
             }
 
             if (skinStorage.Exists(fileNameHd + ".png"))
@@ -68,7 +68,7 @@ namespace Symcol.Rulesets.Core.Skinning
             {
                 loadedSkin = skin.ToString();
                 skinResources = new ResourceStore<byte[]>(new StorageBackedResourceStore(skinStorage));
-                skinTextures = new TextureStore(new RawTextureLoaderStore(skinResources));
+                //skinTextures = new TextureStore(new RawTextureLoaderStore(skinResources));
             }
 
             if (skinStorage.Exists(fileNameHd + ".png"))

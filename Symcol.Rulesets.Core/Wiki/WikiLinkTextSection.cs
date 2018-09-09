@@ -29,9 +29,9 @@ namespace Symcol.Rulesets.Core.Wiki
 
             Text = text;
 
-            texContainer.AutoSizeAxes = Axes.None;
+            //texContainer.AutoSizeAxes = Axes.None;
             texContainer.RelativeSizeAxes = Axes.None;
-            texContainer.AutoSizeAxes = Axes.Y;
+            //texContainer.AutoSizeAxes = Axes.Y;
             texContainer.RelativeSizeAxes = Axes.X;
         }
 
