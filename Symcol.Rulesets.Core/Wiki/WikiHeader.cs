@@ -139,16 +139,15 @@ namespace Symcol.Rulesets.Core.Wiki
         public override bool HandleKeyboardInput => content.Action != null;
         public override bool HandleMouseInput => content.Action != null;
 
-        protected override Container<Drawable> Content => content ?? (Container<Drawable>)this;
-
-        public override IEnumerable<Drawable> FlowingChildren => Children;
+        //protected override Container<Drawable> Content => content ?? (Container<Drawable>)this;
+        //public override IEnumerable<Drawable> FlowingChildren => Children;
 
         public string Url
         {
             set
             {
-                if (value != null)
-                    content.Action = () => Process.Start(value);
+                //if (value != null)
+                //    content.Action = () => Process.Start(value);
             }
         }
 
@@ -156,10 +155,12 @@ namespace Symcol.Rulesets.Core.Wiki
 
         public LinkText()
         {
-            AddInternal(content = new OsuHoverContainer
+            /*
+            add(content = new OsuHoverContainer
             {
                 AutoSizeAxes = Axes.Both,
             });
+            */
         }
     }
 }
