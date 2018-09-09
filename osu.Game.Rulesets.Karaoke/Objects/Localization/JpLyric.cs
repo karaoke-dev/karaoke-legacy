@@ -3,7 +3,7 @@
 
 using System.Collections.Generic;
 using osu.Game.Rulesets.Karaoke.Objects.Localization.Types;
-using osu.Game.Rulesets.Karaoke.Objects.Text;
+using osu.Game.Rulesets.Karaoke.Objects.Types;
 
 namespace osu.Game.Rulesets.Karaoke.Objects.Localization
 {
@@ -18,11 +18,16 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Localization
     /// <summary>
     ///     sub text
     /// </summary>
-    public class FuriganaText : TextComponent, IHasEndIndex
+    public class FuriganaText : IHasText, IHasEndIndex
     {
         /// <summary>
         ///     relativa to textIndex
         /// </summary>
         public int? Length { get; set; }
+
+        /// <summary>
+        /// Text
+        /// </summary>
+        public string Text { get; set; }
     }
 }

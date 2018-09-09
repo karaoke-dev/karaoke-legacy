@@ -139,7 +139,11 @@ namespace osu.Game.Rulesets.Karaoke.Objects
     /// <summary>
     ///     Main Text
     /// </summary>
-    public class MainText : TextComponent
+    public class MainText : IHasText
     {
+        /// <summary>
+        /// Text
+        /// </summary>
+        public string Text { get; set; }
     }
 }

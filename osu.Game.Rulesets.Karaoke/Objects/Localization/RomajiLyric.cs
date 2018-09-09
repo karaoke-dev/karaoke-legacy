@@ -4,7 +4,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using osu.Game.Rulesets.Karaoke.Objects.Localization.Types;
-using osu.Game.Rulesets.Karaoke.Objects.Text;
+using osu.Game.Rulesets.Karaoke.Objects.Types;
 
 namespace osu.Game.Rulesets.Karaoke.Objects.Localization
 {
@@ -65,12 +65,14 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Localization
     /// <summary>
     ///     use to record romaji
     /// </summary>
-    public class RomajiText : TextComponent, IHasEndIndex
+    public class RomajiText : IHasText, IHasEndIndex
     {
         /// <summary>
         ///     relativa to textIndex
         /// </summary>
         public int? Length { get; set; }
+
+        public string Text { get; set; }
 
         public RomajiText()
         {
