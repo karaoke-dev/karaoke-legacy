@@ -4,11 +4,9 @@
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Cursor;
 using osu.Framework.Graphics.UserInterface;
-using osu.Framework.Input.EventArgs;
-using osu.Framework.Input.States;
 using osu.Game.Graphics.UserInterface;
 using osu.Game.Rulesets.Karaoke.Configuration;
-using osu.Game.Rulesets.Karaoke.Edit.Drawables.Pieces;
+using osu.Game.Rulesets.Karaoke.Edit.Drawables.Lyric.Pieces;
 using osu.Game.Rulesets.Karaoke.Edit.Drawables.Thumbnail;
 using osu.Game.Rulesets.Karaoke.Objects;
 using osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric;
@@ -37,7 +35,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Lyric
         };
 
         protected DrawableKaraokeThumbnail DrawableKaraokeThumbnail { get; set; }
-        protected EditableLyricText EditableLyricText { get; set; }
+        protected EditableLyricContainer EditableLyricText { get; set; }
 
         public DrawableEditableKaraokeObject(BaseLyric hitObject)
             : base(hitObject)
@@ -49,7 +47,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Lyric
                 Height = 100
             };
 
-            EditableLyricText = new EditableLyricText
+            EditableLyricText = new EditableLyricContainer
             {
                 AutoSizeAxes = Axes.Y,
                 RelativeSizeAxes = Axes.X,

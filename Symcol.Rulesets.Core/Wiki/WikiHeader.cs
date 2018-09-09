@@ -6,8 +6,6 @@ using osu.Game.Users;
 using osu.Framework.Graphics.Cursor;
 using osu.Game.Graphics.Sprites;
 using osu.Game.Graphics.Containers;
-using System.Collections.Generic;
-using System.Diagnostics;
 using OpenTK;
 using osu.Framework.Graphics.Shapes;
 using OpenTK.Graphics;

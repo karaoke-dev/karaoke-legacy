@@ -8,9 +8,9 @@ using osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric.Pieces;
 using osu.Game.Rulesets.Karaoke.Objects.TimeLine;
 using OpenTK.Graphics;
 
-namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Pieces
+namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Lyric.Pieces
 {
-    public class EditableLyricText : LyricContainer
+    public class EditableLyricContainer : LyricContainer
     {
         public int? HoverIndex { get; set; }
         public int? StartSelectIndex { get; set; }

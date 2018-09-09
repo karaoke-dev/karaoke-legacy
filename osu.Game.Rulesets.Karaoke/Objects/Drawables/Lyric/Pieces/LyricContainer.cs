@@ -158,7 +158,6 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric.Pieces
     {
     }
 
-
     public class PartialLyric<T> : FillFlowContainer, IPartialLyric where T : Drawable, IMaskText, new()
     {
         public float Progress
