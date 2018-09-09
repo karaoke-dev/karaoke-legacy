@@ -24,7 +24,7 @@ namespace osu.Game.Rulesets.Karaoke.Tests
         /// </summary>
         public DrawableLyric DrawableKaraokeObject { get; set; }
 
-        public BaseLyric Lyric { get; set; }
+        public Lyric Lyric { get; set; }
 
         [BackgroundDependencyLoader]
         private void load(RulesetStore rulesets)

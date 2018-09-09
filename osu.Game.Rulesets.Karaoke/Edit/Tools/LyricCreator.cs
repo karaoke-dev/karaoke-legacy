@@ -8,7 +8,7 @@ using osu.Game.Rulesets.Karaoke.Objects.TimeLine;
 namespace osu.Game.Rulesets.Karaoke.Edit.Tools
 {
     /// <summary>
-    /// used to convert <see cref="string"/> to <see cref="BaseLyric"/>
+    /// used to convert <see cref="string"/> to <see cref="Lyric"/>
     /// </summary>
     public class LyricCreator
     {
@@ -20,14 +20,14 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Tools
         /// </summary>
         /// <param name="lyricText"></param>
         /// <returns></returns>
-        public BaseLyric Create(string lyricText)
+        public Lyric Create(string lyricText)
         {
             var lyric = new JpLyric();
-            lyric.Lyric.Clear();
+            lyric.MainLyric.Clear();
             var startCharIndex = 0;
             foreach (var singleCharacter in lyricText)
             {
-                lyric.Lyric.Add(startCharIndex, new MainText
+                lyric.MainLyric.Add(startCharIndex, new MainText
                 {
                     Text = singleCharacter.ToString()
                 });
@@ -51,10 +51,10 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Tools
 
         #region Utilities
 
-        protected void CreateDefaultTimelines(BaseLyric lyric)
+        protected void CreateDefaultTimelines(Lyric lyric)
         {
             var relativeTime = 0;
-            foreach (var lyricPart in lyric.Lyric)
+            foreach (var lyricPart in lyric.MainLyric)
             {
                 relativeTime = relativeTime + 200;
                 lyric.TimeLines.Add(new TimeLineIndex(lyricPart.Key), new TimeLine()

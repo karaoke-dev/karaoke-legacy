@@ -21,7 +21,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects
     ///     base karaoke object
     ///     contain single sentence , a main text and several additional text
     /// </summary>
-    public class BaseLyric : HitObject, ILyric, IHasEndTime, IHasPrimaryKey
+    public class Lyric : HitObject, ILyric, IHasEndTime, IHasPrimaryKey
     {
         /// <summary>
         ///     The time at which the HitObject ends.
@@ -57,7 +57,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         ///     Main text
         /// </summary>
         [JsonIgnore]
-        public MainTextList Lyric { get; set; } = new MainTextList();
+        public MainTextList MainLyric { get; set; } = new MainTextList();
 
         /// <summary>
         ///     record list time where position goes

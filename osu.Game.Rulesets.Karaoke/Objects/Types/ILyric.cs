@@ -15,7 +15,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Types
         /// <summary>
         ///     Main Text list
         /// </summary>
-        MainTextList Lyric { get; set; }
+        MainTextList MainLyric { get; set; }
 
         /// <summary>
         ///     list progress point

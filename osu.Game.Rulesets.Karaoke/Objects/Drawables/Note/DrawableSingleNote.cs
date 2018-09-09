@@ -46,9 +46,9 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note
             }
         }
 
-        private BaseLyric lyric;
+        private Objects.Lyric lyric;
 
-        public virtual BaseLyric HitObject
+        public virtual Objects.Lyric HitObject
         {
             get => lyric;
             set
@@ -78,7 +78,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note
                 else
                 {
                     var prevTimeLine = HitObject.TimeLines.GetPrevious(TimeLine.Key);
-                    var lyric = HitObject.Lyric.Text;
+                    var lyric = HitObject.MainLyric.Text;
                     var take = 0;
                     var displayText = "";
                     if (prevTimeLine != null)

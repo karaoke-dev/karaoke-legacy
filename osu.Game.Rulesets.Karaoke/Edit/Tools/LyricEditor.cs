@@ -17,14 +17,14 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Tools
         {
         }
 
-        public LyricEditor(BaseLyric lyric)
+        public LyricEditor(Lyric lyric)
         {
             TargetLyric = lyric;
         }
 
-        private BaseLyric _lyric;
+        private Lyric _lyric;
 
-        public BaseLyric TargetLyric
+        public Lyric TargetLyric
         {
             get => _lyric;
             set { _lyric = value; }
@@ -34,9 +34,9 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Tools
 
         public void AddText(MainText insertAfter, MainText insertValue)
         {
-            var index = TargetLyric.Lyric.Count;
+            var index = TargetLyric.MainLyric.Count;
 
-            if (TargetLyric.Lyric.AddOrReplace(index, insertValue))
+            if (TargetLyric.MainLyric.AddOrReplace(index, insertValue))
             {
                 CreateSingleTimeLine(TargetLyric, index);
                 ReArrangeKey(TargetLyric);
@@ -45,9 +45,9 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Tools
 
         public void RemoveText(MainText removeValue)
         {
-            if (TargetLyric.Lyric.TryGetKey(removeValue, out int key))
+            if (TargetLyric.MainLyric.TryGetKey(removeValue, out int key))
             {
-                TargetLyric.Lyric.Remove(key);
+                TargetLyric.MainLyric.Remove(key);
 
                 //TODO : timelines
 
@@ -64,19 +64,19 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Tools
             }
         }
 
-        public void ReArrangedByText(BaseLyric lyric, string lyricArrangementText, string seperator)
+        public void ReArrangedByText(Lyric lyric, string lyricArrangementText, string seperator)
         {
             //TODO : to complex
 
             ReArrangeKey(TargetLyric);
         }
 
-        public void CombineText(BaseLyric lyric, MainText combineFrom, MainText combineTo)
+        public void CombineText(Lyric lyric, MainText combineFrom, MainText combineTo)
         {
             ReArrangeKey(TargetLyric);
         }
 
-        public void SeperateText(BaseLyric lyric, MainText seperateText, int from)
+        public void SeperateText(Lyric lyric, MainText seperateText, int from)
         {
             ReArrangeKey(TargetLyric);
         }
@@ -85,7 +85,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Tools
         {
             if (TargetLyric is IHasFurigana furiganaLric)
             {
-                if (TargetLyric.Lyric.ContainsKey(key))
+                if (TargetLyric.MainLyric.ContainsKey(key))
                 {
                     furiganaLric.Furigana.AddOrReplace(key, furiganaText);
                 }
@@ -96,7 +96,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Tools
         {
             if (TargetLyric is IHasFurigana furiganaLric)
             {
-                if (TargetLyric.Lyric.TryGetKey(removeIn, out int key))
+                if (TargetLyric.MainLyric.TryGetKey(removeIn, out int key))
                 {
                     furiganaLric.Furigana.Remove(key);
                 }
@@ -107,7 +107,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Tools
         {
             if (TargetLyric is IHasRomaji romajiLyric)
             {
-                if (TargetLyric.Lyric.ContainsKey(key))
+                if (TargetLyric.MainLyric.ContainsKey(key))
                 {
                     romajiLyric.Romaji.Add(key, romajiText);
                 }
@@ -118,7 +118,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Tools
         {
             if (TargetLyric is IHasRomaji romajiLyric)
             {
-                if (TargetLyric.Lyric.TryGetKey(removeIn, out int key))
+                if (TargetLyric.MainLyric.TryGetKey(removeIn, out int key))
                 {
                     romajiLyric.Romaji.Remove(key);
                 }
@@ -189,11 +189,11 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Tools
 
         #region Utilities
 
-        protected void ReArrangeKey(BaseLyric lyric)
+        protected void ReArrangeKey(Lyric lyric)
         {
             //move to new index
             int moveIndexFrom = 1000;
-            foreach (var singleLyric in lyric.Lyric)
+            foreach (var singleLyric in lyric.MainLyric)
             {
                 ReassignKey(lyric, singleLyric.Value, moveIndexFrom);
                 moveIndexFrom++;
@@ -201,7 +201,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Tools
 
             //rearrange new index
             int newStartIndex = 0;
-            foreach (var singleLyric in lyric.Lyric)
+            foreach (var singleLyric in lyric.MainLyric)
             {
                 ReassignKey(lyric, singleLyric.Value, newStartIndex);
                 newStartIndex++;
@@ -210,12 +210,12 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Tools
             //TODO : notified list changed
         }
 
-        protected void ReassignKey(BaseLyric lyric, MainText text, int newIndex)
+        protected void ReassignKey(Lyric lyric, MainText text, int newIndex)
         {
             //if old key is in Lyrics
-            if (TargetLyric.Lyric.TryGetKey(text, out int key))
+            if (TargetLyric.MainLyric.TryGetKey(text, out int key))
             {
-                TargetLyric.Lyric.ReassignKey(key, newIndex);
+                TargetLyric.MainLyric.ReassignKey(key, newIndex);
 
                 //TODO : timelines
 
@@ -230,13 +230,13 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Tools
             }
             else
             {
-                throw new ArgumentNullException(nameof(text) + "does not in the Lyric");
+                throw new ArgumentNullException(nameof(text) + "does not in the MainLyric");
             }
         }
 
-        protected void AutoFixTime(BaseLyric lyric)
+        protected void AutoFixTime(Lyric lyric)
         {
-            foreach (var lyricPart in lyric.Lyric)
+            foreach (var lyricPart in lyric.MainLyric)
             {
                 var keysInLyricPart = lyric.TimeLines.Keys.Where(x => x.Index != lyricPart.Key);
 
@@ -251,7 +251,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Tools
             }
         }
 
-        protected void CreateSingleTimeLine(BaseLyric lyric, int key)
+        protected void CreateSingleTimeLine(Lyric lyric, int key)
         {
             var newTimeLine = new TimeLineIndex(key);
             var previusRelativeTime = lyric.TimeLines.GetPrevious(newTimeLine)?.Value.RelativeTime ?? 0;

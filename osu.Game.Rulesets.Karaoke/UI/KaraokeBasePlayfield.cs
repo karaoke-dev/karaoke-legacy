@@ -70,13 +70,13 @@ namespace osu.Game.Rulesets.Karaoke.UI
         /// <param name="h"></param>
         public override void Add(DrawableHitObject h)
         {
-            //Add Lyric
+            //Add MainLyric
             KaraokeLyricPlayField.Add(h as DrawableLyric);
 
             //Add note
             if (KaraokeTonePlayfield != null)
             {
-                var drawableNote = new DrawableNotes(h.HitObject as BaseLyric)
+                var drawableNote = new DrawableNotes(h.HitObject as Lyric)
                 {
                     AccentColour = Color4.BlueViolet
                 };

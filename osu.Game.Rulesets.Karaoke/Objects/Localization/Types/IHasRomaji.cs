@@ -4,7 +4,7 @@
 namespace osu.Game.Rulesets.Karaoke.Objects.Localization.Types
 {
     /// <summary>
-    ///     most non-english Lyric , might need romaji for foreign people
+    ///     most non-english MainLyric , might need romaji for foreign people
     /// </summary>
     public interface IHasRomaji
     {

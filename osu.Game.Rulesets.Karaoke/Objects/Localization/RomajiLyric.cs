@@ -8,7 +8,7 @@ using osu.Game.Rulesets.Karaoke.Objects.Text;
 
 namespace osu.Game.Rulesets.Karaoke.Objects.Localization
 {
-    public class RomajiLyric : BaseLyric, IHasRomaji
+    public class RomajiLyric : Lyric, IHasRomaji
     {
         /// <summary>
         ///     list romaji text

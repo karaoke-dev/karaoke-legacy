@@ -34,16 +34,16 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric.Pieces
             }
         }
 
-        private BaseLyric _lyric;
+        private Objects.Lyric _lyric;
 
-        public BaseLyric Lyric
+        public Objects.Lyric Lyric
         {
             get => _lyric;
             set
             {
                 _lyric = value;
                 Clear();
-                foreach (var single in Lyric.Lyric)
+                foreach (var single in Lyric.MainLyric)
                 {
                     var key = single.Key;
                     var lyricValue = single.Value;
@@ -151,7 +151,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric.Pieces
     /// <summary>
     /// Contains
     /// 1. sub text(like Furigana)
-    /// 2. main text(Lyric)
+    /// 2. main text(MainLyric)
     /// 3. romaji
     /// </summary>
     public class PartialLyric : PartialLyric<MaskText>

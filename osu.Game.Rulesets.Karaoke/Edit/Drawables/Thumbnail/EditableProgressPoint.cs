@@ -32,10 +32,10 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Thumbnail
             get
             {
                 if (IndexOfObject.Index == 0)
-                    return DrawableKaraokeThumbnail.Lyric.Lyric.Text.Substring(0, LyricProgressPoint.Key.Index + 1);
+                    return DrawableKaraokeThumbnail.Lyric.MainLyric.Text.Substring(0, LyricProgressPoint.Key.Index + 1);
                 var thisCharIndex = LyricProgressPoint.Key.Index;
                 var lastTime = DrawableKaraokeThumbnail.Lyric.TimeLines.FindPrevioud(IndexOfObject).Value.Key.Index;
-                return DrawableKaraokeThumbnail.Lyric.Lyric.Text.Substring(lastTime + 1, thisCharIndex - lastTime);
+                return DrawableKaraokeThumbnail.Lyric.MainLyric.Text.Substring(lastTime + 1, thisCharIndex - lastTime);
             }
         }
 

@@ -40,7 +40,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
 
         protected Container SegmentedControlContainer;
 
-        public DrawableKaraokeTemplate(BaseLyric hitObject)
+        public DrawableKaraokeTemplate(Lyric hitObject)
             : base(hitObject)
         {
             var templateValue = Template.Value?.Clone() as LyricTemplate;
@@ -153,7 +153,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
 
             var templateValue = Template.Value;
 
-            //Lyric
+            //MainLyric
             var mainText = RightSideText.LyricText;
             var subTexts = RightSideText.ListDrawableSubText;
             var subText = subTexts?.FirstOrDefault();

@@ -41,7 +41,7 @@ namespace osu.Game.Rulesets.Karaoke.Develop
     public class FakeLyricContainer : Container
     {
         public virtual bool ProgressUpdateByTime{get;set;}
-        public FakeLyricContainer(BaseLyric lyric)
+        public FakeLyricContainer(Lyric lyric)
         {
             RelativeSizeAxes = Axes.X;
             Height = 100;

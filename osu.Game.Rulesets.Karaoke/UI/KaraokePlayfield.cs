@@ -68,7 +68,7 @@ namespace osu.Game.Rulesets.Karaoke.UI
             {
                 var listTranslateString = new List<string>();
                 foreach (var singleKaraokeObject in KaraokeLyricPlayField.ListDrawableKaraokeObject)
-                    listTranslateString.Add(singleKaraokeObject.Lyric.Lyric.Text);
+                    listTranslateString.Add(singleKaraokeObject.Lyric.MainLyric.Text);
 
                 //translate list string 
                 KaraokeFieldTool.Translateor.Translate(TranslateCode.Default, TranslateCode.Chinese_Traditional, listTranslateString);

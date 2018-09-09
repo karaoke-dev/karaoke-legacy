@@ -22,7 +22,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
     /// <summary>
     ///     Karaoke Text
     /// </summary>
-    public class DrawableLyric : DrawableHitObject<BaseLyric>, IDrawableLyricParameter, IDrawableLyricBindable
+    public class DrawableLyric : DrawableHitObject<Objects.Lyric>, IDrawableLyricParameter, IDrawableLyricBindable
     {
         //Const
         public const float TIME_FADEIN = 0;
@@ -64,7 +64,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
 
         private double _nowProgress;
 
-        public DrawableLyric(BaseLyric hitObject)
+        public DrawableLyric(Objects.Lyric hitObject)
             : base(hitObject)
         {
             Alpha = 0;
@@ -137,7 +137,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
             if (Style != null && Template != null && Lyric != null)
             {
                 //Width = LeftSideText?.LyricText?.GetTextEndPosition() ?? 200;
-                //Height = Lyric.Height ?? 100;
+                //Height = MainLyric.Height ?? 100;
             }
         }
 
@@ -292,7 +292,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
         ///     Gets the karaoke object.
         /// </summary>
         /// <value>The karaoke object.</value>
-        public BaseLyric Lyric => HitObject;
+        public Objects.Lyric Lyric => HitObject;
 
 
         /// <summary>

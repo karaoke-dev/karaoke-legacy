@@ -18,7 +18,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit
     {
         protected override IReadOnlyList<ICompositionTool> CompositionTools => new ICompositionTool[]
         {
-            new HitObjectCompositionTool<BaseLyric>("Lyric")
+            new HitObjectCompositionTool<Lyric>("MainLyric")
             //new HitObjectCompositionTool<FormattedText>(),//add subtext to karaoke Object
             //new HitObjectCompositionTool<LyricTranslate>(),//add translate to BaseLyric
         };

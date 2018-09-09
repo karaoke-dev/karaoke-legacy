@@ -18,7 +18,7 @@ using OpenTK;
 
 namespace osu.Game.Rulesets.Karaoke.UI
 {
-    public class KaraokeRulesetContainer : BaseRulesetContainer<BaseLyric>
+    public class KaraokeRulesetContainer : BaseRulesetContainer<Lyric>
     {
         protected override Vector2 PlayfieldArea => Vector2.One;
         protected KaraokeConfigManager ConfigManager;
@@ -52,9 +52,9 @@ namespace osu.Game.Rulesets.Karaoke.UI
             */
         }
 
-        protected override DrawableHitObject<BaseLyric> GetVisualRepresentation(BaseLyric h)
+        protected override DrawableHitObject<Lyric> GetVisualRepresentation(Lyric h)
         {
-            if (h is BaseLyric karaokeObject)
+            if (h is Lyric karaokeObject)
                 return new DrawableLyric(karaokeObject);
 
             return null;

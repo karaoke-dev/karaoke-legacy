@@ -3,7 +3,7 @@
 
 namespace osu.Game.Rulesets.Karaoke.Objects.Localization
 {
-    public class EnLyric : BaseLyric
+    public class EnLyric : Lyric
     {
     }
 }

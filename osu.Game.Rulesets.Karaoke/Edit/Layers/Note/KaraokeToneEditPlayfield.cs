@@ -4,7 +4,6 @@
 using System.Collections.Generic;
 using osu.Game.Rulesets.Karaoke.Beatmaps;
 using osu.Game.Rulesets.Karaoke.Edit.Drawables.Note;
-using osu.Game.Rulesets.Karaoke.Objects;
 using osu.Game.Rulesets.Karaoke.UI.Layers.Note;
 using osu.Game.Rulesets.Objects.Drawables;
 using OpenTK.Graphics;
@@ -21,7 +20,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Layers.Note
         public override void Add(DrawableHitObject h)
         {
             //Create object
-            var drawableNote = new DrawableEditableNotes(h.HitObject as BaseLyric)
+            var drawableNote = new DrawableEditableNotes(h.HitObject as Objects.Lyric)
             {
                 AccentColour = Color4.BlueViolet
             };

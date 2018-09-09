@@ -118,15 +118,15 @@ namespace osu.Game.Rulesets.Karaoke.Develop
             }
         }
 
-        private BaseLyric _lyric;
-        public BaseLyric Lyric
+        private Lyric _lyric;
+        public Lyric Lyric
         {
             get => _lyric;
             set
             {
                 _lyric = value;
                 Clear();
-                foreach (var single in Lyric.Lyric)
+                foreach (var single in Lyric.MainLyric)
                 {
                     var key = single.Key;
                     var lyricValue = single.Value;
@@ -186,7 +186,7 @@ namespace osu.Game.Rulesets.Karaoke.Develop
     /// <summary>
     /// Contains
     /// 1. sub text(like Furigana)
-    /// 2. main text(Lyric)
+    /// 2. main text(MainLyric)
     /// 3. romaji
     /// </summary>
     public class PartialLyric : FillFlowContainer

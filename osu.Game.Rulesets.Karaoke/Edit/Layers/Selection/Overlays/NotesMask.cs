@@ -11,7 +11,6 @@ using osu.Game.Graphics;
 using osu.Game.Rulesets.Edit;
 using osu.Game.Rulesets.Karaoke.Edit.Drawables.Note;
 using osu.Game.Rulesets.Karaoke.Extension;
-using osu.Game.Rulesets.Karaoke.Objects;
 using osu.Game.Rulesets.Karaoke.Objects.Note;
 using osu.Game.Rulesets.Karaoke.Objects.TimeLine;
 using osu.Game.Rulesets.Karaoke.UI.Layers.Note;
@@ -93,7 +92,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Layers.Selection.Overlays
 
         public class SingleNoteMask : Container
         {
-            public virtual BaseLyric HitObject { get; set; }
+            public virtual Objects.Lyric HitObject { get; set; }
 
             private KeyValuePair<TimeLineIndex, TimeLine> _timeLine;
 
