@@ -30,7 +30,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.TimeLine
 
         /// <summary>
         ///     Duration
-        ///     Default is -1 , means duration is next.RelativeTime -  this.RelativeTime
+        ///     Default is null , means duration is next.RelativeTime -  this.RelativeTime
         /// </summary>
         public double? EarlyTime { get; set; }
 
