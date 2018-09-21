@@ -126,7 +126,7 @@ namespace osu.Game.Rulesets.Karaoke.Develop
             {
                 _lyric = value;
                 Clear();
-                foreach (var single in Lyric.MainLyric)
+                foreach (var single in Lyric.TimeLines)
                 {
                     var key = single.Key;
                     var lyricValue = single.Value;
@@ -137,7 +137,7 @@ namespace osu.Game.Rulesets.Karaoke.Develop
                     this.Add(new PartialLyric()
                     {
                         TopText = furigana?.Text ?? " ",
-                        MainText = lyricValue.Text,
+                        MainText = lyricValue.LyricText,
                         BottomText = romaji?.Text ?? " ",
                         Origin = Anchor.TopLeft,
                         Anchor = Anchor.TopLeft,
@@ -160,11 +160,11 @@ namespace osu.Game.Rulesets.Karaoke.Develop
 
                 foreach (var partialLyric in Children)
                 {
-                    if (partialLyric.Index <= startProgressPoint.Key.Index)
+                    if (partialLyric.Index <= startProgressPoint.Key)
                     {
                         partialLyric.Progress = 1;
                     }
-                    else if (partialLyric.Index > endProgressPoint?.Key.Index)
+                    else if (partialLyric.Index > endProgressPoint?.Key)
                     {
                         partialLyric.Progress = 0;
                     }
