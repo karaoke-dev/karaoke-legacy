@@ -78,17 +78,17 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric.Pieces
 
                 foreach (var partialLyric in Children)
                 {
-                    if (partialLyric.Index <= startProgressPoint.Key.Index)
+                    if (partialLyric.Index <= startProgressPoint.Key)
                     {
                         partialLyric.Progress = 1;
                     }
-                    else if (partialLyric.Index > endProgressPoint?.Key.Index)
+                    else if (partialLyric.Index > endProgressPoint?.Key)
                     {
                         partialLyric.Progress = 0;
                     }
                     else
                     {
-                        var startPercentage = startProgressPoint.Key.Index != partialLyric.Index ? 0 : startProgressPoint.Key.Percentage;
+                        var startPercentage = startProgressPoint.Key != partialLyric.Index ? 0 : startProgressPoint.Key.Percentage;
                         var endPercentage = endProgressPoint?.Key.Percentage;
 
                         var startRelativeTime = startProgressPoint.Value.RelativeTime;

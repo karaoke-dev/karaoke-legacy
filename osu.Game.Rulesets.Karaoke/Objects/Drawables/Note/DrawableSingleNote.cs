@@ -58,7 +58,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note
             }
         }
 
-        public virtual KeyValuePair<TimeLineIndex, TimeLine.TimeLine> TimeLine
+        public virtual KeyValuePair<int, TimeLine.TimeLine> TimeLine
         {
             get => _timeLine;
             set
@@ -83,12 +83,12 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note
                     var displayText = "";
                     if (prevTimeLine != null)
                     {
-                        take = _timeLine.Key.Index - prevTimeLine.Value.Key.Index;
-                        displayText = lyric.Substring(prevTimeLine.Value.Key.Index + 1, take);
+                        take = _timeLine.Key - prevTimeLine.Value.Key;
+                        displayText = lyric.Substring(prevTimeLine.Value.Key + 1, take);
                     }
                     else
                     {
-                        take = _timeLine.Key.Index;
+                        take = _timeLine.Key;
                         displayText = lyric.Substring(0, take + 1);
                     }
 
@@ -102,7 +102,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note
         private readonly DrawableSingleNoteContainer noteContainer;
         private Color4 accentColour;
 
-        private KeyValuePair<TimeLineIndex, TimeLine.TimeLine> _timeLine;
+        private KeyValuePair<int, TimeLine.TimeLine> _timeLine;
 
         public DrawableSingleNote()
         {

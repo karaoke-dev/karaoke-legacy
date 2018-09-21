@@ -59,7 +59,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Lyric
             AddInternal(DrawableKaraokeThumbnail);
         }
 
-        public void AddPoint(TimeLineIndex index)
+        public void AddPoint(int index)
         {
             var previousPoint = Lyric.TimeLines.GetFirstProgressPointByIndex(index);
             var nextPoint = Lyric.TimeLines.GetLastProgressPointByIndex(index);

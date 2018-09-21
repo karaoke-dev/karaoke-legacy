@@ -94,7 +94,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Layers.Selection.Overlays
         {
             public virtual Objects.Lyric HitObject { get; set; }
 
-            private KeyValuePair<TimeLineIndex, TimeLine> _timeLine;
+            private KeyValuePair<int, TimeLine> _timeLine;
 
             private readonly Container noteContainer;
             private readonly NotesMask fullHeightContainer;
@@ -150,7 +150,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Layers.Selection.Overlays
                 };
             }
 
-            public virtual KeyValuePair<TimeLineIndex, TimeLine> TimeLine
+            public virtual KeyValuePair<int, TimeLine> TimeLine
             {
                 get => _timeLine;
                 set

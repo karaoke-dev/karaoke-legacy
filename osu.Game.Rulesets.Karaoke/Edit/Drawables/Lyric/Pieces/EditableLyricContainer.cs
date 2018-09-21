@@ -5,7 +5,6 @@ using System;
 using osu.Framework.Input.EventArgs;
 using osu.Framework.Input.States;
 using osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric.Pieces;
-using osu.Game.Rulesets.Karaoke.Objects.TimeLine;
 using OpenTK.Graphics;
 
 namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Lyric.Pieces
@@ -19,7 +18,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Lyric.Pieces
         public Color4 HoverColor { get; set; } = Color4.Red;
         public Color4 SelectColor { get; set; } = Color4.Purple;
 
-        public Action<TimeLineIndex> AddPointAction;
+        public Action<int> AddPointAction;
 
 
         #region Input
@@ -54,7 +53,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Lyric.Pieces
         protected override bool OnMouseUp(InputState state, MouseUpEventArgs args)
         {
             IsDrag = false;
-            var index = new TimeLineIndex(GetPointedText(state));
+            var index = GetPointedText(state);
             AddPointAction.Invoke(index);
             StartSelectIndex = null;
             EndSelectIndex = null;

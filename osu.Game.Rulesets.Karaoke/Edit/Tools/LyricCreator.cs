@@ -57,7 +57,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Tools
             foreach (var lyricPart in lyric.MainLyric)
             {
                 relativeTime = relativeTime + 200;
-                lyric.TimeLines.Add(new TimeLineIndex(lyricPart.Key), new TimeLine()
+                lyric.TimeLines.Add(lyricPart.Key, new TimeLine
                 {
                     RelativeTime = relativeTime
                 });

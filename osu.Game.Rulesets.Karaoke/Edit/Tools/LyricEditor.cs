@@ -125,7 +125,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Tools
             }
         }
 
-        public void AddTimeline(TimeLineIndex index)
+        public void AddTimeline(int index)
         {
             var previousPoint = TargetLyric.TimeLines.GetFirstProgressPointByIndex(index);
             var nextPoint = TargetLyric.TimeLines.GetLastProgressPointByIndex(index);
@@ -134,7 +134,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Tools
             AddTimeline(index, point);
         }
 
-        public void AddTimeline(TimeLineIndex index, TimeLine timeline)
+        public void AddTimeline(int index, TimeLine timeline)
         {
             if (!TargetLyric.TimeLines.ContainsKey(index))
             {
@@ -144,20 +144,20 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Tools
             }
         }
 
-        public void RemoveTimeline(TimeLineIndex index)
+        public void RemoveTimeline(int index)
         {
             if (TargetLyric.TimeLines.ContainsKey(index))
             {
                 if (index.Percentage == 1)
                     return;
 
-                var keysInLyricPart = TargetLyric.TimeLines.Keys.Where(x => x.Index != index.Index);
+                var keysInLyricPart = TargetLyric.TimeLines.Keys.Where(x => x != index);
                 if (keysInLyricPart.Count() >= 2)
                     TargetLyric.TimeLines.Remove(index);
             }
         }
 
-        public void AdjustTime(TimeLineIndex index, double newTime)
+        public void AdjustTime(int index, double newTime)
         {
             if (TargetLyric.TimeLines.ContainsKey(index))
             {
@@ -238,7 +238,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Tools
         {
             foreach (var lyricPart in lyric.MainLyric)
             {
-                var keysInLyricPart = lyric.TimeLines.Keys.Where(x => x.Index != lyricPart.Key);
+                var keysInLyricPart = lyric.TimeLines.Keys.Where(x => x != lyricPart.Key);
 
                 if (keysInLyricPart.Any())
                 {
@@ -253,7 +253,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Tools
 
         protected void CreateSingleTimeLine(Lyric lyric, int key)
         {
-            var newTimeLine = new TimeLineIndex(key);
+            var newTimeLine = key;
             var previusRelativeTime = lyric.TimeLines.GetPrevious(newTimeLine)?.Value.RelativeTime ?? 0;
             var nextRelativeTime = lyric.TimeLines.GetPrevious(newTimeLine)?.Value.RelativeTime ?? previusRelativeTime + 100;
             lyric.TimeLines.Add(newTimeLine, new TimeLine
