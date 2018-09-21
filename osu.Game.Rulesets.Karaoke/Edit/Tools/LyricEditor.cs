@@ -148,9 +148,6 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Tools
         {
             if (TargetLyric.TimeLines.ContainsKey(index))
             {
-                if (index.Percentage == 1)
-                    return;
-
                 var keysInLyricPart = TargetLyric.TimeLines.Keys.Where(x => x != index);
                 if (keysInLyricPart.Count() >= 2)
                     TargetLyric.TimeLines.Remove(index);
@@ -243,10 +240,6 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Tools
                 if (keysInLyricPart.Any())
                 {
                     CreateSingleTimeLine(lyric, lyricPart.Key);
-                }
-                else if (keysInLyricPart.Last().Percentage != 1)
-                {
-                    keysInLyricPart.Last().Percentage = 1;
                 }
             }
         }

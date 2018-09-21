@@ -88,8 +88,8 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric.Pieces
                     }
                     else
                     {
-                        var startPercentage = startProgressPoint.Key != partialLyric.Index ? 0 : startProgressPoint.Key.Percentage;
-                        var endPercentage = endProgressPoint?.Key.Percentage;
+                        var startPercentage = 0;
+                        var endPercentage = 1;
 
                         var startRelativeTime = startProgressPoint.Value.RelativeTime;
                         var endRelativeTime = endProgressPoint?.Value.RelativeTime;
