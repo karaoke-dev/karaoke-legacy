@@ -23,13 +23,13 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Tools
         public Lyric Create(string lyricText)
         {
             var lyric = new JpLyric();
-            lyric.MainLyric.Clear();
+            lyric.TimeLines.Clear();
             var startCharIndex = 0;
             foreach (var singleCharacter in lyricText)
             {
-                lyric.MainLyric.Add(startCharIndex, new MainText
+                lyric.TimeLines.Add(startCharIndex, new TimeLine
                 {
-                    Text = singleCharacter.ToString()
+                    LyricText = singleCharacter.ToString()
                 });
                 startCharIndex++;
             }
@@ -54,7 +54,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Tools
         protected void CreateDefaultTimelines(Lyric lyric)
         {
             var relativeTime = 0;
-            foreach (var lyricPart in lyric.MainLyric)
+            foreach (var lyricPart in lyric.TimeLines)
             {
                 relativeTime = relativeTime + 200;
                 lyric.TimeLines.Add(lyricPart.Key, new TimeLine

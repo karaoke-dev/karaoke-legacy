@@ -43,7 +43,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric.Pieces
             {
                 _lyric = value;
                 Clear();
-                foreach (var single in Lyric.MainLyric)
+                foreach (var single in Lyric.TimeLines)
                 {
                     var key = single.Key;
                     var lyricValue = single.Value;
@@ -54,7 +54,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric.Pieces
                     Add(new T
                     {
                         TopText = furigana?.Text ?? " ",
-                        MainText = lyricValue.Text,
+                        MainText = lyricValue.LyricText,
                         BottomText = romaji?.Text ?? " ",
                         Origin = Anchor.TopLeft,
                         Anchor = Anchor.TopLeft,

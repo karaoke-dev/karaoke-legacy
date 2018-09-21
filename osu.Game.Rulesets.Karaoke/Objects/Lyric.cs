@@ -7,7 +7,6 @@ using osu.Game.Database;
 using osu.Game.Rulesets.Judgements;
 using osu.Game.Rulesets.Karaoke.Configuration;
 using osu.Game.Rulesets.Karaoke.Judgements;
-using osu.Game.Rulesets.Karaoke.Objects.Localization;
 using osu.Game.Rulesets.Karaoke.Objects.TimeLine;
 using osu.Game.Rulesets.Karaoke.Objects.Translate;
 using osu.Game.Rulesets.Karaoke.Objects.Types;
@@ -51,12 +50,6 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         ///     Each singer has different Text color
         /// </summary>
         public int? SingerIndex { get; set; }
-
-        /// <summary>
-        ///     Main text
-        /// </summary>
-        [JsonIgnore]
-        public MainTextList MainLyric { get; set; } = new MainTextList();
 
         /// <summary>
         ///     record list time where position goes
@@ -116,33 +109,16 @@ namespace osu.Game.Rulesets.Karaoke.Objects
             return false;
         }
 
-        #endregion
-    }
-
-    /// <summary>
-    ///     Main Text List
-    /// </summary>
-    public class MainTextList : LyricDictionary<int, MainText>, IHasText
-    {
         public const string DELIMITER = "";
         public string Text
         {
             get
             {
-                var result = this.Select(i => i.Value.Text).Aggregate((i, j) => i + DELIMITER + j);
+                var result = TimeLines.Select(i => i.Value.LyricText).Aggregate((i, j) => i + DELIMITER + j);
                 return result;
             }
         }
-    }
 
-    /// <summary>
-    ///     Main Text
-    /// </summary>
-    public class MainText : IHasText
-    {
-        /// <summary>
-        /// Text
-        /// </summary>
-        public string Text { get; set; }
+        #endregion
     }
 }

@@ -39,7 +39,7 @@ namespace osu.Game.Rulesets.Karaoke.Service.Romaji
         public async Task<List<Objects.Lyric>> Translate(TranslateCode code, List<Objects.Lyric> translateListString)
         {
             var listTranslate = new List<Objects.Lyric>();
-            var result = await romajiServerApi.Translate(code, translateListString.Select(x => x.MainLyric.Text).ToList());
+            var result = await romajiServerApi.Translate(code, translateListString.Select(x => x.Text).ToList());
 
             //convert each sentence
             foreach (var single in result)

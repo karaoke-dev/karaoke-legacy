@@ -13,11 +13,6 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Types
     public interface ILyric : IHasLangCode, IHasLyricVersion
     {
         /// <summary>
-        ///     Main Text list
-        /// </summary>
-        MainTextList MainLyric { get; set; }
-
-        /// <summary>
         ///     list progress point
         /// </summary>
         TimeLineList TimeLines { get; set; }

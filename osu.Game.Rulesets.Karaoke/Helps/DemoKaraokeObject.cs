@@ -112,7 +112,7 @@ namespace osu.Game.Rulesets.Karaoke.Helps
             var karaokeObject = creator.Create("カラオケ") as JpLyric;
             return new JpLyric
             {
-                MainLyric = karaokeObject.MainLyric,
+                TimeLines = karaokeObject.TimeLines,
                 Furigana = new Dictionary<int, FuriganaText>
                 {
                     { 0, new FuriganaText { Text = "か" } },

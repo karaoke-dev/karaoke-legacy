@@ -32,22 +32,22 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Tools
 
         #region Method
 
-        public void AddText(MainText insertAfter, MainText insertValue)
+        public void AddText(TimeLine insertAfter, TimeLine insertValue)
         {
-            var index = TargetLyric.MainLyric.Count;
+            var index = TargetLyric.TimeLines.Count;
 
-            if (TargetLyric.MainLyric.AddOrReplace(index, insertValue))
+            if (TargetLyric.TimeLines.AddOrReplace(index, insertValue))
             {
                 CreateSingleTimeLine(TargetLyric, index);
                 ReArrangeKey(TargetLyric);
             }
         }
 
-        public void RemoveText(MainText removeValue)
+        public void RemoveText(TimeLine removeValue)
         {
-            if (TargetLyric.MainLyric.TryGetKey(removeValue, out int key))
+            if (TargetLyric.TimeLines.TryGetKey(removeValue, out int key))
             {
-                TargetLyric.MainLyric.Remove(key);
+                TargetLyric.TimeLines.Remove(key);
 
                 //TODO : timelines
 
@@ -71,12 +71,12 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Tools
             ReArrangeKey(TargetLyric);
         }
 
-        public void CombineText(Lyric lyric, MainText combineFrom, MainText combineTo)
+        public void CombineText(Lyric lyric, TimeLine combineFrom, TimeLine combineTo)
         {
             ReArrangeKey(TargetLyric);
         }
 
-        public void SeperateText(Lyric lyric, MainText seperateText, int from)
+        public void SeperateText(Lyric lyric, TimeLine seperateText, int from)
         {
             ReArrangeKey(TargetLyric);
         }
@@ -85,18 +85,18 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Tools
         {
             if (TargetLyric is IHasFurigana furiganaLric)
             {
-                if (TargetLyric.MainLyric.ContainsKey(key))
+                if (TargetLyric.TimeLines.ContainsKey(key))
                 {
                     furiganaLric.Furigana.AddOrReplace(key, furiganaText);
                 }
             }
         }
 
-        public void RemoveFurigana(MainText removeIn)
+        public void RemoveFurigana(TimeLine removeIn)
         {
             if (TargetLyric is IHasFurigana furiganaLric)
             {
-                if (TargetLyric.MainLyric.TryGetKey(removeIn, out int key))
+                if (TargetLyric.TimeLines.TryGetKey(removeIn, out int key))
                 {
                     furiganaLric.Furigana.Remove(key);
                 }
@@ -107,18 +107,18 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Tools
         {
             if (TargetLyric is IHasRomaji romajiLyric)
             {
-                if (TargetLyric.MainLyric.ContainsKey(key))
+                if (TargetLyric.TimeLines.ContainsKey(key))
                 {
                     romajiLyric.Romaji.Add(key, romajiText);
                 }
             }
         }
 
-        public void RemoveRomaji(MainText removeIn)
+        public void RemoveRomaji(TimeLine removeIn)
         {
             if (TargetLyric is IHasRomaji romajiLyric)
             {
-                if (TargetLyric.MainLyric.TryGetKey(removeIn, out int key))
+                if (TargetLyric.TimeLines.TryGetKey(removeIn, out int key))
                 {
                     romajiLyric.Romaji.Remove(key);
                 }
@@ -190,7 +190,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Tools
         {
             //move to new index
             int moveIndexFrom = 1000;
-            foreach (var singleLyric in lyric.MainLyric)
+            foreach (var singleLyric in lyric.TimeLines)
             {
                 ReassignKey(lyric, singleLyric.Value, moveIndexFrom);
                 moveIndexFrom++;
@@ -198,7 +198,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Tools
 
             //rearrange new index
             int newStartIndex = 0;
-            foreach (var singleLyric in lyric.MainLyric)
+            foreach (var singleLyric in lyric.TimeLines)
             {
                 ReassignKey(lyric, singleLyric.Value, newStartIndex);
                 newStartIndex++;
@@ -207,12 +207,12 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Tools
             //TODO : notified list changed
         }
 
-        protected void ReassignKey(Lyric lyric, MainText text, int newIndex)
+        protected void ReassignKey(Lyric lyric, TimeLine text, int newIndex)
         {
             //if old key is in Lyrics
-            if (TargetLyric.MainLyric.TryGetKey(text, out int key))
+            if (TargetLyric.TimeLines.TryGetKey(text, out int key))
             {
-                TargetLyric.MainLyric.ReassignKey(key, newIndex);
+                TargetLyric.TimeLines.ReassignKey(key, newIndex);
 
                 //TODO : timelines
 
@@ -233,7 +233,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Tools
 
         protected void AutoFixTime(Lyric lyric)
         {
-            foreach (var lyricPart in lyric.MainLyric)
+            foreach (var lyricPart in lyric.TimeLines)
             {
                 var keysInLyricPart = lyric.TimeLines.Keys.Where(x => x != lyricPart.Key);
 

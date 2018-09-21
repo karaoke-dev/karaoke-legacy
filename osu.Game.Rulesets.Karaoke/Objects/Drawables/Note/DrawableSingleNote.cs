@@ -78,7 +78,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note
                 else
                 {
                     var prevTimeLine = HitObject.TimeLines.GetPrevious(TimeLine.Key);
-                    var lyric = HitObject.MainLyric.Text;
+                    var lyric = HitObject.Text;
                     var take = 0;
                     var displayText = "";
                     if (prevTimeLine != null)
