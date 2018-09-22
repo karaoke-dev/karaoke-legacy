@@ -24,6 +24,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Lyric.Pieces
         #region Input
 
         protected bool IsDrag;
+
         protected override bool OnMouseDown(InputState state, MouseDownEventArgs args)
         {
             IsDrag = true;
@@ -130,7 +131,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Lyric.Pieces
         protected int GetIndexByPosition(float xPosition)
         {
             float sum = 0;
-            for(int i=0;i< Children.Count;i++)
+            for (int i = 0; i < Children.Count; i++)
             {
                 var width = Children[i].Width;
                 if (sum + width > xPosition)

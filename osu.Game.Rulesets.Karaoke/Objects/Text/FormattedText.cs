@@ -12,7 +12,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Text
     /// <summary>
     ///     Text objects
     /// </summary>
-    public class FormattedText : IHasText, IHasPosition, IEquatable<FormattedText> , ICloneable
+    public class FormattedText : IHasText, IHasPosition, IEquatable<FormattedText>, ICloneable
     {
         // <inheritdoc />
         /// <summary>
@@ -156,7 +156,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Text
 
         public object Clone()
         {
-            return this.MemberwiseClone();
+            return MemberwiseClone();
         }
     }
 }

@@ -19,7 +19,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects
     ///     base karaoke object
     ///     contain single sentence , a main text and several additional text
     /// </summary>
-    public class Lyric : HitObject, ILyric, IHasEndTime, IHasPrimaryKey , IHasStage
+    public class Lyric : HitObject, ILyric, IHasEndTime, IHasPrimaryKey, IHasStage
     {
         /// <summary>
         ///     The time at which the HitObject ends.
@@ -110,6 +110,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects
         }
 
         public const string DELIMITER = "";
+
         public string Text
         {
             get

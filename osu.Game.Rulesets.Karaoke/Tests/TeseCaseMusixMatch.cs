@@ -36,7 +36,7 @@ namespace osu.Game.Rulesets.Karaoke.Tests
                         api.TrackLyricsGet(new TrackLyricsGet
                         {
                             MusixMatchId = first.Track.TrackId,
-                        }, lyrics =>{ }, falls => { });
+                        }, lyrics => { }, falls => { });
                     }
                 }, s => { });
 

@@ -225,7 +225,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
             {
                 UpdatePreemptState();
 
-                var judgementOffset = Math.Min(HitObject.HitWindows?.HalfWindowFor(HitResult.Miss)??0, Result?.TimeOffset ?? 0);
+                var judgementOffset = Math.Min(HitObject.HitWindows?.HalfWindowFor(HitResult.Miss) ?? 0, Result?.TimeOffset ?? 0);
 
                 using (BeginDelayedSequence(PreemptiveTime + judgementOffset, true))
                     UpdateCurrentState(state);

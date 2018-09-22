@@ -17,7 +17,6 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Translate
 
         public LyricTranslate()
         {
-
         }
 
         public LyricTranslate(string translateText)
