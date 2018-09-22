@@ -12,7 +12,6 @@ using osu.Game.Beatmaps.ControlPoints;
 using osu.Game.Graphics.Containers;
 using osu.Game.Rulesets.Karaoke.Extension;
 using osu.Game.Rulesets.Karaoke.Objects.Note;
-using osu.Game.Rulesets.Karaoke.Objects.TimeLine;
 using osu.Game.Rulesets.Karaoke.UI.Layers.Note;
 using osu.Game.Rulesets.Objects.Drawables;
 using OpenTK.Graphics;

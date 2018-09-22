@@ -9,7 +9,6 @@ using osu.Framework.Extensions.IEnumerableExtensions;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Input.States;
-using osu.Framework.Localisation;
 using osu.Game.Database;
 using osu.Game.Graphics;
 using osu.Game.Graphics.Containers;
@@ -312,7 +311,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
         }
 
         [BackgroundDependencyLoader]
-        private void load(OsuColour colours, LocalisationEngine localisation)
+        private void load(OsuColour colours)
         {
             HoverColour = colours.Yellow;
             ArtistColour = colours.Gray9;
