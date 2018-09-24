@@ -9,15 +9,15 @@ namespace osu.Game.Rulesets.Karaoke.Textures
     public class KaraokeTextureStore
     {
         public static ResourceStore<byte[]> KaraokeResources;
-        public static TextureStore KaraokeTexture;
+        public static LargeTextureStore KaraokeTexture;
 
 
         public KaraokeTextureStore()
         {
             KaraokeResources = new ResourceStore<byte[]>();
             KaraokeResources.AddStore(new DllResourceStore("osu.Game.Rulesets.Karaoke.dll"));
-            //KaraokeTexture = new TextureStore(new RawTextureLoaderStore(new NamespacedResourceStore<byte[]>(KaraokeResources, @"Textures")));
-            //KaraokeTexture.AddStore(new RawTextureLoaderStore(new OnlineStore()));
+            KaraokeTexture = new LargeTextureStore(new TextureLoaderStore(new NamespacedResourceStore<byte[]>(KaraokeResources, @"Textures")));
+            KaraokeTexture.AddStore(new TextureLoaderStore(new OnlineStore()));
         }
     }
 }

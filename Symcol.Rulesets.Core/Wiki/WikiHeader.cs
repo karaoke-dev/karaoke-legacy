@@ -132,10 +132,10 @@ namespace Symcol.Rulesets.Core.Wiki
 
     public class LinkText : OsuSpriteText, IHasTooltip
     {
-        private readonly OsuHoverContainer content;
+        //private readonly OsuHoverContainer content;
 
-        public override bool HandleKeyboardInput => content.Action != null;
-        public override bool HandleMouseInput => content.Action != null;
+        //public override bool HandleKeyboardInput => content.Action != null;
+        //public override bool HandleMouseInput => content.Action != null;
 
         //protected override Container<Drawable> Content => content ?? (Container<Drawable>)this;
         //public override IEnumerable<Drawable> FlowingChildren => Children;
