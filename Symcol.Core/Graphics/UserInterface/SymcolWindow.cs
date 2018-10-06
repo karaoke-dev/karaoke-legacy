@@ -4,8 +4,7 @@
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Shapes;
 using osu.Framework.Graphics.Sprites;
-using osu.Framework.Input.EventArgs;
-using osu.Framework.Input.States;
+using osu.Framework.Input.Events;
 using OpenTK;
 using OpenTK.Graphics;
 using OpenTK.Input;
@@ -117,32 +116,32 @@ namespace Symcol.Core.Graphics.UserInterface
                 this.FadeIn(200);
         }
 
-        protected override bool OnDragStart(InputState state) => true;
+        protected override bool OnDragStart(DragStartEvent e) => true;
 
         private bool drag;
 
-        protected override bool OnMouseDown(InputState state, MouseDownEventArgs args)
+        protected override bool OnMouseDown(MouseDownEvent e)
         {
-            if (args.Button == MouseButton.Left)
+            if (e.Button == MouseButton.Left)
                 drag = true;
 
-            return base.OnMouseDown(state, args);
+            return base.OnMouseDown(e);
         }
 
-        protected override bool OnDrag(InputState state)
+        protected override bool OnDrag(DragEvent e)
         {
             if (drag)
-                Position += state.Mouse.Delta;
+                Position += e.Delta;
 
-            return base.OnDrag(state);
+            return base.OnDrag(e);
         }
 
-        protected override bool OnMouseUp(InputState state, MouseUpEventArgs args)
+        protected override bool OnMouseUp(MouseUpEvent e)
         {
-            if (args.Button == MouseButton.Left)
+            if (e.Button == MouseButton.Left)
                 drag = false;
 
-            return base.OnMouseUp(state, args);
+            return base.OnMouseUp(e);
         }
 
         public void Maximize()

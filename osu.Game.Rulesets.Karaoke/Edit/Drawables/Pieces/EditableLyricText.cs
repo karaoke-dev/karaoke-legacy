@@ -2,7 +2,7 @@
 // Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
 
 using System;
-using osu.Framework.Input.EventArgs;
+using osu.Framework.Input.Events;
 using osu.Framework.Input.States;
 using osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric.Pieces;
 using osu.Game.Rulesets.Karaoke.Objects.TimeLine;
@@ -25,54 +25,54 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Pieces
         #region Input
 
         protected bool IsDrag;
-        protected override bool OnMouseDown(InputState state, MouseDownEventArgs args)
+        protected override bool OnMouseDown(MouseDownEvent e)
         {
             IsDrag = true;
-            var index = GetPointedText(state);
+            var index = GetPointedText(e);
             StartSelectIndex = index;
 
-            return base.OnMouseDown(state, args);
+            return base.OnMouseDown(e);
         }
 
         //detect whith text is picked
-        protected override bool OnMouseMove(InputState state)
+        protected override bool OnMouseMove(MouseMoveEvent e)
         {
             if (!IsDrag)
             {
-                var index = GetPointedText(state);
+                var index = GetPointedText(e);
                 HoverIndex = index;
             }
             else
             {
-                var index = GetPointedText(state);
+                var index = GetPointedText(e);
                 EndSelectIndex = index;
             }
 
-            return base.OnMouseMove(state);
+            return base.OnMouseMove(e);
         }
 
-        protected override bool OnMouseUp(InputState state, MouseUpEventArgs args)
+        protected override bool OnMouseUp(MouseUpEvent e)
         {
             IsDrag = false;
-            var index = new TimeLineIndex(GetPointedText(state));
+            var index = new TimeLineIndex(GetPointedText(e));
             AddPointAction.Invoke(index);
             StartSelectIndex = null;
             EndSelectIndex = null;
-            return base.OnMouseUp(state, args);
+            return base.OnMouseUp(e);
         }
 
-        protected override void OnHoverLost(InputState state)
+        protected override void OnHoverLost(HoverLostEvent e)
         {
-            base.OnHoverLost(state);
+            base.OnHoverLost(e);
             HoverIndex = null;
 
             //reset drawable status
             Reset();
         }
 
-        protected int GetPointedText(InputState state)
+        protected int GetPointedText(MouseEvent e)
         {
-            var mousePosition = ToLocalSpace(state.Mouse.NativeState.Position);
+            var mousePosition = ToLocalSpace(e.ScreenSpaceMousePosition);
             return GetIndexByPosition(mousePosition.X);
         }
 

@@ -6,7 +6,7 @@ using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Cursor;
 using osu.Framework.Graphics.Shapes;
 using osu.Framework.Graphics.UserInterface;
-using osu.Framework.Input.EventArgs;
+using osu.Framework.Input.Events;
 using osu.Framework.Input.States;
 using osu.Game.Graphics.Sprites;
 using osu.Game.Graphics.UserInterface;
@@ -111,30 +111,30 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Thumbnail
 
         #region Input
 
-        protected override bool OnHover(InputState state)
+        protected override bool OnHover(HoverEvent e)
         {
             IsFocus = true;
             DrawableKaraokeThumbnail.HoverSelectedPoint = this;
             DrawableKaraokeThumbnail.UpdateColor();
-            return base.OnHover(state);
+            return base.OnHover(e);
         }
 
-        protected override void OnHoverLost(InputState state)
+        protected override void OnHoverLost(HoverLostEvent e)
         {
             IsFocus = false;
             if (DrawableKaraokeThumbnail.HoverSelectedPoint == this)
                 DrawableKaraokeThumbnail.HoverSelectedPoint = null;
             DrawableKaraokeThumbnail.UpdateColor();
-            base.OnHoverLost(state);
+            base.OnHoverLost(e);
         }
 
-        protected override bool OnKeyDown(InputState state, KeyDownEventArgs args)
+        protected override bool OnKeyDown(KeyDownEvent e)
         {
             if (IsFocus)
-                if (args.Key == Key.Delete)
+                if (e.Key == Key.Delete)
                     DrawableKaraokeThumbnail.DeletePoint(LyricProgressPoint);
 
-            return base.OnKeyDown(state, args);
+            return base.OnKeyDown(e);
         }
 
         #endregion

@@ -4,7 +4,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using osu.Framework.Graphics.Containers;
-using osu.Framework.Input.EventArgs;
+using osu.Framework.Input.Events;
 using osu.Framework.Input.States;
 using osu.Game.Rulesets.Karaoke.Objects;
 using osu.Game.Rulesets.Karaoke.Objects.TimeLine;
@@ -157,9 +157,9 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Thumbnail
             UpdateView();
         }
 
-        public EditableProgressPoint GetPointedObjectByPosition(InputState state)
+        public EditableProgressPoint GetPointedObjectByPosition(KeyboardEvent e)
         {
-            var mousePosition = ToLocalSpace(state.Mouse.NativeState.Position);
+            var mousePosition = ToLocalSpace(e.ScreenSpaceMousePosition);
 
             foreach (var single in ListEditableProgressPoint)
                 if (single.Position.X + single.Width > mousePosition.X)
@@ -168,16 +168,10 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Thumbnail
             return null;
         }
 
-        protected float GetXPointPosition(InputState state)
-        {
-            var mousePosition = ToLocalSpace(state.Mouse.NativeState.Position);
-            return mousePosition.X;
-        }
-
-        protected bool IsSelectKeyPressed(InputState state)
+        protected bool IsSelectKeyPressed(KeyboardEvent e)
         {
             //if press control,return true
-            return state.Keyboard.Keys.Contains(Key.LShift);
+            return e.PressedKeys.Contains(Key.LShift);
         }
 
         //add s single point
@@ -219,12 +213,12 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Thumbnail
 
         #region Input
 
-        protected override bool OnMouseDown(InputState state, MouseDownEventArgs args)
+        protected override bool OnMouseDown(MouseDownEvent e)
         {
             //get selected point
-            var selectedPoint = GetPointedObjectByPosition(state);
+            var selectedPoint = GetPointedObjectByPosition(e);
             if (selectedPoint != null)
-                if (IsSelectKeyPressed(state))
+                if (IsSelectKeyPressed(e))
                 {
                     PlusSelectedPoint(selectedPoint);
                 }
@@ -238,7 +232,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Thumbnail
 
             UpdateColor();
 
-            return base.OnMouseDown(state, args);
+            return base.OnMouseDown(e);
         }
 
         /// <summary>
@@ -246,23 +240,23 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Thumbnail
         /// </summary>
         /// <param name="state"></param>
         /// <returns></returns>
-        protected override bool OnMouseMove(InputState state)
+        protected override bool OnMouseMove(MouseMoveEvent e)
         {
             //not selecting point,means moving
-            if (!IsSelectKeyPressed(state) && IsDraging)
+            if (!IsSelectKeyPressed(e) && IsDraging)
             {
                 //Adjust position
-                UpdateTime(state.Mouse.Delta.X * 3);
+                UpdateTime(e.Delta.X * 3);
                 UpdatePosition();
             }
 
-            return base.OnMouseMove(state);
+            return base.OnMouseMove(e);
         }
 
-        protected override bool OnMouseUp(InputState state, MouseUpEventArgs args)
+        protected override bool OnMouseUp(MouseUpEvent e)
         {
             //if didn't in choose mode
-            if (!IsSelectKeyPressed(state))
+            if (!IsSelectKeyPressed(e))
             {
                 IsDraging = false;
                 ClearSelectedPoint();
@@ -270,21 +264,21 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Thumbnail
                 UpdateColor();
             }
 
-            return base.OnMouseUp(state, args);
+            return base.OnMouseUp(e);
         }
 
-        protected override bool OnKeyDown(InputState state, KeyDownEventArgs args)
+        protected override bool OnKeyDown(KeyDownEvent e)
         {
-            IsSelecting = IsSelectKeyPressed(state);
+            IsSelecting = IsSelectKeyPressed(e);
             UpdateColor();
-            return base.OnKeyDown(state, args);
+            return base.OnKeyDown(e);
         }
 
-        protected override bool OnKeyUp(InputState state, KeyUpEventArgs args)
+        protected override bool OnKeyUp(KeyUpEvent e)
         {
-            IsSelecting = IsSelectKeyPressed(state);
+            IsSelecting = IsSelectKeyPressed(e);
             UpdateColor();
-            return base.OnKeyUp(state, args);
+            return base.OnKeyUp(e);
         }
 
         #endregion

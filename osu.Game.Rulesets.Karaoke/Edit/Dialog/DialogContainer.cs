@@ -7,7 +7,7 @@ using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Shapes;
 using osu.Framework.Graphics.Sprites;
-using osu.Framework.Input.EventArgs;
+using osu.Framework.Input.Events;
 using osu.Framework.Input.States;
 using osu.Game.Graphics.UserInterface;
 using OpenTK;
@@ -206,35 +206,35 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog
 
         #region Input
 
-        protected override bool OnHover(InputState state)
+        protected override bool OnHover(HoverEvent e)
         {
             State = DialogContainerStatus.Onscreen;
             return true;
         }
 
-        protected override void OnHoverLost(InputState state)
+        protected override void OnHoverLost(HoverLostEvent e)
         {
             State = DialogContainerStatus.Offscreen;
-            base.OnHoverLost(state);
+            base.OnHoverLost(e);
         }
 
-        protected override bool OnDragStart(InputState state)
+        protected override bool OnDragStart(DragStartEvent e)
         {
-            return TitleBar.ReceiveMouseInputAt(state.Mouse.NativeState.Position);
+            return TitleBar.ReceiveMouseInputAt(e.ScreenSpaceMousePosition);
         }
 
-        protected override bool OnDrag(InputState state)
+        protected override bool OnDrag(DragEvent e)
         {
-            Position += state.Mouse.Delta;
-            return base.OnDrag(state);
+            Position += e.Delta;
+            return base.OnDrag(e);
         }
 
-        protected override bool OnMouseDown(InputState state, MouseDownEventArgs args)
+        protected override bool OnMouseDown(MouseDownEvent e)
         {
             return true;
         }
 
-        protected override bool OnClick(InputState state)
+        protected override bool OnClick(ClickEvent e)
         {
             return true;
         }

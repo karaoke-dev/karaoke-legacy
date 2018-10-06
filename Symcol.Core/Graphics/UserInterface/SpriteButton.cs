@@ -3,7 +3,7 @@ using osu.Framework.Graphics;
 using osu.Framework.Graphics.Shapes;
 using osu.Framework.Graphics.Sprites;
 using osu.Framework.Graphics.Textures;
-using osu.Framework.Input.States;
+using osu.Framework.Input.Events;
 using Symcol.Core.Graphics.Containers;
 
 namespace Symcol.Core.Graphics.UserInterface
@@ -54,7 +54,7 @@ namespace Symcol.Core.Graphics.UserInterface
             sprite.Texture = textures.Get(textureName);
         }
 
-        protected override bool OnClick(InputState state)
+        protected override bool OnClick(ClickEvent e)
         {
             if (Enabled.Value)
             {
@@ -71,7 +71,7 @@ namespace Symcol.Core.Graphics.UserInterface
                 flash.Expire();
             }
 
-            return base.OnClick(state);
+            return base.OnClick(e);
         }
     }
 }

@@ -1,8 +1,7 @@
 ﻿// Copyright (c) 2007-2018 ppy Pty Ltd <contact@ppy.sh>.
 // Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
 
-using osu.Framework.Input.EventArgs;
-using osu.Framework.Input.States;
+using osu.Framework.Input.Events;
 using OpenTK;
 using OpenTK.Input;
 
@@ -10,7 +9,7 @@ namespace Symcol.Core.Graphics.Containers
 {
     public class SymcolDragContainer : SymcolContainer
     {
-        protected override bool OnDragStart(InputState state) => true;
+        protected override bool OnDragStart(DragStartEvent state) => true;
 
         public bool AllowLeftClickDrag { get; set; } = true;
 
@@ -18,30 +17,30 @@ namespace Symcol.Core.Graphics.Containers
 
         private Vector2 startPosition;
 
-        protected override bool OnMouseDown(InputState state, MouseDownEventArgs args)
+        protected override bool OnMouseDown(MouseDownEvent e)
         {
             startPosition = Position;
 
-            if (args.Button == MouseButton.Left && AllowLeftClickDrag || args.Button == MouseButton.Right)
+            if (e.Button == MouseButton.Left && AllowLeftClickDrag || e.Button == MouseButton.Right)
                 drag = true;
 
-            return base.OnMouseDown(state, args);
+            return base.OnMouseDown(e);
         }
 
-        protected override bool OnDrag(InputState state)
+        protected override bool OnDrag(DragEvent e)
         {
             if (drag)
-                Position = startPosition + state.Mouse.Position - state.Mouse.PositionMouseDown.GetValueOrDefault();
+                Position = startPosition + e.ScreenSpaceMousePosition - e.MouseDownPosition;
 
-            return base.OnDrag(state);
+            return base.OnDrag(e);
         }
 
-        protected override bool OnMouseUp(InputState state, MouseUpEventArgs args)
+        protected override bool OnMouseUp(MouseUpEvent e)
         {
-            if (args.Button == MouseButton.Left && AllowLeftClickDrag || args.Button == MouseButton.Right)
+            if (e.Button == MouseButton.Left && AllowLeftClickDrag || e.Button == MouseButton.Right)
                 drag = false;
 
-            return base.OnMouseUp(state, args);
+            return base.OnMouseUp(e);
         }
     }
 }

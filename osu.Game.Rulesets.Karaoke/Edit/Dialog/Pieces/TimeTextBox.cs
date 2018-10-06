@@ -2,8 +2,7 @@
 // Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
 
 using System;
-using osu.Framework.Input.EventArgs;
-using osu.Framework.Input.States;
+using osu.Framework.Input.Events;
 
 namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
 {
@@ -55,7 +54,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
         }
 
         //start edit
-        protected override void OnFocus(InputState state)
+        protected override void OnFocus(FocusEvent e)
         {
             //disable update new value
             IsSettingLodValue = true;
@@ -63,20 +62,20 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
             //Convert double to text
             Text = HasEdited ? (NewValue / 1000).ToString() : (OldValue / 1000).ToString();
 
-            base.OnFocus(state);
+            base.OnFocus(e);
         }
 
         //EndEdit
-        protected override void OnFocusLost(InputState state)
+        protected override void OnFocusLost(FocusLostEvent e)
         {
-            base.OnFocusLost(state);
+            base.OnFocusLost(e);
             UpdateTextToFormat();
         }
 
-        protected override bool OnKeyDown(InputState state, KeyDownEventArgs args)
+        protected override bool OnKeyDown(KeyDownEvent e)
         {
             IsSettingLodValue = false;
-            return base.OnKeyDown(state, args);
+            return base.OnKeyDown(e);
         }
 
         #region Function

@@ -2,7 +2,7 @@
 // Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
 
 using System.Timers;
-using osu.Framework.Input.EventArgs;
+using osu.Framework.Input.Events;
 using osu.Framework.Input.States;
 using osu.Game.Rulesets.Karaoke.Configuration;
 using osu.Game.Rulesets.Karaoke.UI.Layers.Input.Action;
@@ -38,18 +38,18 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Input
             };
         }
 
-        protected override bool OnMouseDown(InputState state, MouseDownEventArgs args)
+        protected override bool OnMouseDown(MouseDownEvent e)
         {
             _timer.Start();
-            return base.OnMouseDown(state, args);
+            return base.OnMouseDown(e);
         }
 
-        protected override bool OnMouseMove(InputState state)
+        protected override bool OnMouseMove(MouseMoveEvent e)
         {
-            var mouseDownPosition = state.Mouse.PositionMouseDown ?? state.Mouse.Position;
-            var nowPosition = state.Mouse.Position;
+            var mouseDownPosition = e.ScreenSpaceMousePosition;
+            var nowPosition = e.ScreenSpaceMousePosition;
             var movingPosition = nowPosition - mouseDownPosition;
-            var deltaPosition = nowPosition - state.Mouse.LastPosition;
+            var deltaPosition = nowPosition - e.ScreenSpaceMousePosition;//TODO : last position
 
             //if noe scroll mode
             if (_moveDirection == Vector2.Zero)
@@ -73,15 +73,15 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Input
                 }
             }
 
-            return base.OnMouseMove(state);
+            return base.OnMouseMove(e);
         }
 
-        protected override bool OnMouseUp(InputState state, MouseUpEventArgs args)
+        protected override bool OnMouseUp(MouseUpEvent e)
         {
-            var mouseDownPosition = state.Mouse.PositionMouseDown ?? state.Mouse.Position;
-            var nowPosition = state.Mouse.Position;
+            var mouseDownPosition = e.ScreenSpaceMouseDownPosition;
+            var nowPosition = e.ScreenSpaceMousePosition;
             var movingPosition = nowPosition - mouseDownPosition;
-            var deltaPosition = nowPosition - state.Mouse.LastPosition;
+            var deltaPosition = nowPosition - e.ScreenSpaceMousePosition;//TODO : last position
 
 
             if (_moveDirection == Vector2.Zero) //tap mode
@@ -110,17 +110,17 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Input
             _moveDirection = Vector2.Zero;
             _timer.Stop();
 
-            return base.OnMouseUp(state, args);
+            return base.OnMouseUp(e);
         }
 
-        protected override bool OnDoubleClick(InputState state)
+        protected override bool OnDoubleClick(DoubleClickEvent e)
         {
             //trigger double tap
             TapConfig tapConfig;
             if (MobileScrollAnixConfig.Value.TagConfigs.TryGetValue(TouchScreenTapInteractive.DoubleTap, out tapConfig))
                 OnTap(tapConfig);
 
-            return base.OnDoubleClick(state);
+            return base.OnDoubleClick(e);
         }
 
         /// <summary>

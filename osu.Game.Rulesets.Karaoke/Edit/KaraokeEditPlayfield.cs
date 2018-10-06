@@ -1,8 +1,7 @@
 ﻿// Copyright (c) 2007-2018 ppy Pty Ltd <contact@ppy.sh>.
 // Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
 
-using osu.Framework.Input.EventArgs;
-using osu.Framework.Input.States;
+using osu.Framework.Input.Events;
 using osu.Game.Beatmaps;
 using osu.Game.Rulesets.Karaoke.Edit.Drawables.Lyric;
 using osu.Game.Rulesets.Karaoke.UI;
@@ -26,12 +25,11 @@ namespace osu.Game.Rulesets.Karaoke.Edit
         /// <summary>
         ///     using hotkay to open dialog
         /// </summary>
-        /// <param name="state"></param>
-        /// <param name="args"></param>
+        /// <param name="e"></param>
         /// <returns></returns>
-        protected override bool OnKeyDown(InputState state, KeyDownEventArgs args)
+        protected override bool OnKeyDown(KeyDownEvent e)
         {
-            foreach (var single in state.Keyboard.Keys)
+            foreach (var single in e.PressedKeys)
                 if (single == Key.L)
                 {
                     //Open Lyrics dialog
@@ -45,7 +43,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit
                     break;
                 }
 
-            return base.OnKeyDown(state, args);
+            return base.OnKeyDown(e);
         }
     }
 }

@@ -8,8 +8,7 @@ using osu.Framework.Allocation;
 using osu.Framework.Extensions.IEnumerableExtensions;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
-using osu.Framework.Input.States;
-using osu.Framework.Localisation;
+using osu.Framework.Input.Events;
 using osu.Game.Database;
 using osu.Game.Graphics;
 using osu.Game.Graphics.Containers;
@@ -98,25 +97,25 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
                 Items.Remove(itemToRemove);
         }
 
-        protected override bool OnDragStart(InputState state)
+        protected override bool OnDragStart(DragStartEvent e)
         {
-            nativeDragPosition = state.Mouse.NativeState.Position;
+            nativeDragPosition = e.ScreenSpaceMousePosition;
             draggedItem = Items.FirstOrDefault(d => d.IsDraggable);
-            return draggedItem != null || base.OnDragStart(state);
+            return draggedItem != null || base.OnDragStart(e);
         }
 
-        protected override bool OnDrag(InputState state)
+        protected override bool OnDrag(DragEvent e)
         {
-            nativeDragPosition = state.Mouse.NativeState.Position;
+            nativeDragPosition = e.ScreenSpaceMousePosition;
             if (draggedItem == null)
-                return base.OnDrag(state);
+                return base.OnDrag(e);
             return true;
         }
 
-        protected override bool OnDragEnd(InputState state)
+        protected override bool OnDragEnd(DragEndEvent e)
         {
-            nativeDragPosition = state.Mouse.NativeState.Position;
-            var handled = draggedItem != null || base.OnDragEnd(state);
+            nativeDragPosition = e.ScreenSpaceMousePosition;
+            var handled = draggedItem != null || base.OnDragEnd(e);
             draggedItem = null;
 
             return handled;
@@ -294,25 +293,25 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces
             };
         }
 
-        protected override bool OnHover(InputState state)
+        protected override bool OnHover(HoverEvent e)
         {
             handle.FadeIn(fade_duration);
-            return base.OnHover(state);
+            return base.OnHover(e);
         }
 
-        protected override void OnHoverLost(InputState state)
+        protected override void OnHoverLost(HoverLostEvent e)
         {
             handle.FadeOut(fade_duration);
         }
 
-        protected override bool OnClick(InputState state)
+        protected override bool OnClick(ClickEvent e)
         {
             OnSelect?.Invoke(BeatmapSetInfo);
             return true;
         }
 
         [BackgroundDependencyLoader]
-        private void load(OsuColour colours, LocalisationEngine localisation)
+        private void load(OsuColour colours)
         {
             HoverColour = colours.Yellow;
             ArtistColour = colours.Gray9;
