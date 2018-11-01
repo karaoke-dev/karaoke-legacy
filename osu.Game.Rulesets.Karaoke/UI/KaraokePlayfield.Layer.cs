@@ -22,7 +22,7 @@ namespace osu.Game.Rulesets.Karaoke.UI
         public override void InitialFrontendLayer()
         {
             //Input layer
-            Add(_inputLayer = new InputLayer
+            AddInternal(_inputLayer = new InputLayer
             {
                 RelativeSizeAxes = Axes.Both,
                 Depth = -2,
@@ -38,7 +38,7 @@ namespace osu.Game.Rulesets.Karaoke.UI
             base.InitialRulesetLayer();
 
             //layer
-            Add(KaraokeLyricPlayField = new KaraokeLyricPlayField
+            AddInternal(KaraokeLyricPlayField = new KaraokeLyricPlayField
             {
                 KaraokeRulesetContainer = KaraokeRulesetContainer,
                 Margin = new MarginPadding
@@ -51,7 +51,7 @@ namespace osu.Game.Rulesets.Karaoke.UI
             });
 
             //layer
-            Add(KaraokeTonePlayfield = new KaraokeTonePlayfield(new List<KaraokeStageDefinition>
+            AddInternal(KaraokeTonePlayfield = new KaraokeTonePlayfield(new List<KaraokeStageDefinition>
             {
                 new KaraokeStageDefinition
                 {

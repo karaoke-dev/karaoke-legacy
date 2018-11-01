@@ -27,7 +27,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit
         /// </summary>
         public override void InitialRulesetLayer()
         {
-            AddRange(new Drawable[]
+            AddRangeInternal(new Drawable[]
             {
                 //layer
                 KaraokeLyricPlayField = new KaraokeLyricEditPlayField
@@ -36,13 +36,13 @@ namespace osu.Game.Rulesets.Karaoke.Edit
                     Scale = new Vector2(0.8f),
                     Anchor = Anchor.Centre,
                     Origin = Anchor.Centre,
-                    Padding = new MarginPadding
-                    {
-                        Left = 100,
-                        Right = 100,
-                        Top = 100,
-                        Bottom = 40,
-                    }
+                    //Padding = new MarginPadding
+                    //{
+                    //    Left = 100,
+                    //    Right = 100,
+                    //    Top = 100,
+                    //    Bottom = 40,
+                    //}
                 },
                 KaraokeTonePlayfield = new KaraokeToneEditPlayfield(new List<KaraokeStageDefinition>
                 {

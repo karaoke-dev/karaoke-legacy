@@ -38,7 +38,7 @@ namespace osu.Game.Rulesets.Karaoke.UI
         /// </summary>
         public virtual void InitialDialogLayer()
         {
-            Add(DialogLayer = new DialogLayer
+            AddInternal(DialogLayer = new DialogLayer
             {
                 Name = "DialogLayer",
                 Clock = new FramedClock(new StopwatchClock(true)),
@@ -74,16 +74,16 @@ namespace osu.Game.Rulesets.Karaoke.UI
         public virtual void PostProcessLayer(KaraokeConfigManager manager)
         {
             //ProcessInput
-            var inputLayer = Children.OfType<IControlLayer>().FirstOrDefault();
+            var inputLayer = InternalChildren.OfType<IControlLayer>().FirstOrDefault();
             if (inputLayer != null)
             {
-                var acceeptsControlLayers = Children.OfType<IAcceptControlLayer>();
+                var acceeptsControlLayers = InternalChildren.OfType<IAcceptControlLayer>();
                 foreach (var singleLayer in acceeptsControlLayers)
                     singleLayer.InputAction.BindTo(inputLayer.InputAction);
             }
 
             //processPlatform
-            var platformLayers = Children.OfType<IPlatformLayer>();
+            var platformLayers = InternalChildren.OfType<IPlatformLayer>();
             foreach (var singleLayer in platformLayers)
             {
                 var bindable = manager.GetBindable<PlatformType>(KaraokeSetting.Device);

@@ -2,7 +2,9 @@
 // Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
 
 using System.Collections.Generic;
+using System.Linq;
 using osu.Framework.Allocation;
+using osu.Framework.Extensions.IEnumerableExtensions;
 using osu.Framework.Graphics.Containers;
 using osu.Game.Beatmaps;
 using osu.Game.Rulesets.Karaoke.Configuration;
@@ -34,13 +36,14 @@ namespace osu.Game.Rulesets.Karaoke.UI
         public virtual void ApplyLayerMod()
         {
             //remove all Created ModLayer
-            RemoveAll(x => x is IModLayer);
+            InternalChildren.Where(x => x is IModLayer)
+                .ForEach(x => RemoveInternal(x));
 
             //create all layer if contains in mod
             foreach (var singleMod in WorkingBeatmap.Mods.Value)
             {
                 if (singleMod is IApplicableCreatePlayfieldLayer iHasLayer)
-                    Add(iHasLayer.CreateNewLayer(this) as Container);
+                    AddInternal(iHasLayer.CreateNewLayer(this) as Container);
             }
         }
 
