@@ -9,7 +9,8 @@ using osu.Game.Rulesets.Edit;
 using osu.Game.Rulesets.Edit.Tools;
 using osu.Game.Rulesets.Karaoke.Edit.Drawables.Lyric;
 using osu.Game.Rulesets.Karaoke.Edit.Drawables.Note;
-using osu.Game.Rulesets.Karaoke.Edit.Layers.Selection.Overlays;
+using osu.Game.Rulesets.Karaoke.Edit.Masks.LyricMasks;
+using osu.Game.Rulesets.Karaoke.Edit.Masks.NoteMasks;
 using osu.Game.Rulesets.Karaoke.Objects;
 using osu.Game.Rulesets.Karaoke.UI;
 using osu.Game.Rulesets.Objects.Drawables;
@@ -39,9 +40,9 @@ namespace osu.Game.Rulesets.Karaoke.Edit
             switch (hitObject)
             {
                 case DrawableEditableKaraokeObject lyric:
-                    return new LyricMask(lyric);
+                    return new LyricSelectionMask(lyric);
                 case DrawableEditableNotes note:
-                    return new NotesMask(note);
+                    return new NoteSelectionMask(note);
             }
 
             return base.CreateMaskFor(hitObject);
