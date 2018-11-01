@@ -20,7 +20,7 @@ using OpenTK.Graphics;
 
 namespace osu.Game.Rulesets.Karaoke.Edit.Layers.Selection.Overlays
 {
-    public class NotesMask : HitObjectMask
+    public class NotesMask : SelectionMask
     {
         public new DrawableEditableNotes HitObject => (DrawableEditableNotes)base.HitObject;
 

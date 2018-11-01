@@ -18,7 +18,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Layers.Selection.Overlays
     /// <summary>
     ///     Drawable BaseLyric Mask
     /// </summary>
-    public class LyricMask : HitObjectMask
+    public class LyricMask : SelectionMask
     {
         private readonly MaskLyricContainer lyricContainer;
 

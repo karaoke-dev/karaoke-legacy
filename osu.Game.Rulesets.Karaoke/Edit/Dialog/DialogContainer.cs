@@ -220,7 +220,9 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog
 
         protected override bool OnDragStart(DragStartEvent e)
         {
-            return TitleBar.ReceiveMouseInputAt(e.ScreenSpaceMousePosition);
+            //TODO : implement
+            return false;
+            //return TitleBar.ReceiveMouseInputAt(e.ScreenSpaceMousePosition);
         }
 
         protected override bool OnDrag(DragEvent e)

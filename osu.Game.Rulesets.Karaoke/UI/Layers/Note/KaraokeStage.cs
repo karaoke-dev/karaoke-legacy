@@ -80,7 +80,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Note
             }
         }
 
-        protected override Container<Drawable> Content => content;
+        //protected override Container<Drawable> Content => content;
         private readonly FillFlowContainer<Background> columnFlow;
         private readonly Container<Drawable> content;
         private readonly JudgementContainer<DrawableNoteJudgement> judgements;

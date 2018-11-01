@@ -157,7 +157,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Thumbnail
             UpdateView();
         }
 
-        public EditableProgressPoint GetPointedObjectByPosition(KeyboardEvent e)
+        public EditableProgressPoint GetPointedObjectByPosition(MouseEvent e)
         {
             var mousePosition = ToLocalSpace(e.ScreenSpaceMousePosition);
 
@@ -168,10 +168,14 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Thumbnail
             return null;
         }
 
-        protected bool IsSelectKeyPressed(KeyboardEvent e)
+        protected bool IsSelectKeyPressed(UIEvent e)
         {
-            //if press control,return true
-            return e.PressedKeys.Contains(Key.LShift);
+            if (e is KeyboardEvent kayboardEvent)
+            {
+                //if press control,return true
+                return kayboardEvent.PressedKeys.Contains(Key.LShift);
+            }
+            return false;
         }
 
         //add s single point

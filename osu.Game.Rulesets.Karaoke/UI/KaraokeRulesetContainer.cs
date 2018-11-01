@@ -20,7 +20,6 @@ namespace osu.Game.Rulesets.Karaoke.UI
 {
     public class KaraokeRulesetContainer : BaseRulesetContainer<BaseLyric>
     {
-        protected override Vector2 PlayfieldArea => Vector2.One;
         protected KaraokeConfigManager ConfigManager;
 
         public KaraokeRulesetContainer(Ruleset ruleset, WorkingBeatmap beatmap)
@@ -52,7 +51,7 @@ namespace osu.Game.Rulesets.Karaoke.UI
             */
         }
 
-        protected override DrawableHitObject<BaseLyric> GetVisualRepresentation(BaseLyric h)
+        public override DrawableHitObject<BaseLyric> GetVisualRepresentation(BaseLyric h)
         {
             if (h is BaseLyric karaokeObject)
                 return new DrawableLyric(karaokeObject);

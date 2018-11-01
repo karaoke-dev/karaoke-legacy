@@ -2,6 +2,8 @@
 // Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
 
 using System.Collections.Generic;
+using osu.Framework.Graphics;
+using osu.Framework.Graphics.Containers;
 using osu.Game.Beatmaps;
 using osu.Game.Rulesets.Edit;
 using osu.Game.Rulesets.Edit.Tools;
@@ -9,26 +11,30 @@ using osu.Game.Rulesets.Karaoke.Edit.Drawables.Lyric;
 using osu.Game.Rulesets.Karaoke.Edit.Drawables.Note;
 using osu.Game.Rulesets.Karaoke.Edit.Layers.Selection.Overlays;
 using osu.Game.Rulesets.Karaoke.Objects;
+using osu.Game.Rulesets.Karaoke.UI;
 using osu.Game.Rulesets.Objects.Drawables;
 using osu.Game.Rulesets.UI;
 
 namespace osu.Game.Rulesets.Karaoke.Edit
 {
-    public class KaraokeHitObjectComposer : HitObjectComposer
+    public class KaraokeHitObjectComposer : HitObjectComposer<BaseLyric>
     {
-        protected override IReadOnlyList<ICompositionTool> CompositionTools => new ICompositionTool[]
-        {
-            new HitObjectCompositionTool<BaseLyric>("Lyric")
-            //new HitObjectCompositionTool<FormattedText>(),//add subtext to karaoke Object
-            //new HitObjectCompositionTool<LyricTranslate>(),//add translate to BaseLyric
-        };
-
         public KaraokeHitObjectComposer(Ruleset ruleset)
             : base(ruleset)
         {
         }
 
-        public override HitObjectMask CreateMaskFor(DrawableHitObject hitObject)
+        protected override RulesetContainer<BaseLyric> CreateRulesetContainer(Ruleset ruleset, WorkingBeatmap beatmap)
+            => new KaraokeEditRulesetContainer(ruleset, beatmap);
+
+        protected override IReadOnlyList<HitObjectCompositionTool> CompositionTools => new[]
+        {
+            new LyricCompositionTool(),
+        };
+
+        protected override Container CreateLayerContainer() => new PlayfieldAdjustmentContainer { RelativeSizeAxes = Axes.Both };
+
+        public override SelectionMask CreateMaskFor(DrawableHitObject hitObject)
         {
             switch (hitObject)
             {
@@ -39,11 +45,6 @@ namespace osu.Game.Rulesets.Karaoke.Edit
             }
 
             return base.CreateMaskFor(hitObject);
-        }
-
-        protected override RulesetContainer CreateRulesetContainer(Ruleset ruleset, WorkingBeatmap beatmap)
-        {
-            return new KaraokeEditRulesetContainer(ruleset, beatmap);
         }
     }
 }

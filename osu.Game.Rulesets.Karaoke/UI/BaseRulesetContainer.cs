@@ -50,7 +50,7 @@ namespace osu.Game.Rulesets.Karaoke.UI
             throw new NotImplementedException();
         }
 
-        protected override DrawableHitObject<T> GetVisualRepresentation(T h)
+        public override DrawableHitObject<T> GetVisualRepresentation(T h)
         {
             throw new NotImplementedException();
         }
