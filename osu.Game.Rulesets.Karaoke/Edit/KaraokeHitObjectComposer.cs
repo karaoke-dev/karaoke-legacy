@@ -17,14 +17,14 @@ using osu.Game.Rulesets.UI;
 
 namespace osu.Game.Rulesets.Karaoke.Edit
 {
-    public class KaraokeHitObjectComposer : HitObjectComposer<BaseLyric>
+    public class KaraokeHitObjectComposer : HitObjectComposer<Lyric>
     {
         public KaraokeHitObjectComposer(Ruleset ruleset)
             : base(ruleset)
         {
         }
 
-        protected override RulesetContainer<BaseLyric> CreateRulesetContainer(Ruleset ruleset, WorkingBeatmap beatmap)
+        protected override RulesetContainer<Lyric> CreateRulesetContainer(Ruleset ruleset, WorkingBeatmap beatmap)
             => new KaraokeEditRulesetContainer(ruleset, beatmap);
 
         protected override IReadOnlyList<HitObjectCompositionTool> CompositionTools => new[]

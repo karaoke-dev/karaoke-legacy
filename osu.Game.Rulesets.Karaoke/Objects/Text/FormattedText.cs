@@ -3,6 +3,7 @@
 
 using System;
 using Newtonsoft.Json;
+using osu.Game.Rulesets.Karaoke.Objects.Types;
 using osu.Game.Rulesets.Objects.Types;
 using OpenTK;
 
@@ -11,7 +12,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Text
     /// <summary>
     ///     Text objects
     /// </summary>
-    public class FormattedText : TextComponent, IHasPosition, IEquatable<FormattedText>
+    public class FormattedText : IHasText, IHasPosition, IEquatable<FormattedText>, ICloneable
     {
         // <inheritdoc />
         /// <summary>
@@ -25,7 +26,6 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Text
         /// <summary>
         ///     X position
         /// </summary>
-
         public float X
         {
             get => Position.X;
@@ -47,6 +47,11 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Text
         ///     size of the font
         /// </summary>
         public virtual int? FontSize { get; set; }
+
+        /// <summary>
+        /// Text
+        /// </summary>
+        public string Text { get; set; }
 
         /// <summary>
         ///     operator
@@ -79,7 +84,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Text
         /// <param name="object1"></param>
         /// <param name="object2"></param>
         /// <returns></returns>
-        public static FormattedText operator +(TextComponent object1, FormattedText object2)
+        public static FormattedText operator +(IHasText object1, FormattedText object2)
         {
             return object2 + FromText(object1);
         }
@@ -90,7 +95,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Text
         /// <param name="object1"></param>
         /// <param name="object2"></param>
         /// <returns></returns>
-        public static FormattedText operator +(FormattedText object1, TextComponent object2)
+        public static FormattedText operator +(FormattedText object1, IHasText object2)
         {
             return object1 + FromText(object2);
         }
@@ -115,7 +120,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Text
             };
         }
 
-        public static FormattedText FromText(TextComponent textObject)
+        public static FormattedText FromText(IHasText textObject)
         {
             return new FormattedText
             {
@@ -147,6 +152,11 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Text
                 hashCode = (hashCode * 397) ^ FontSize.GetHashCode();
                 return hashCode;
             }
+        }
+
+        public object Clone()
+        {
+            return MemberwiseClone();
         }
     }
 }

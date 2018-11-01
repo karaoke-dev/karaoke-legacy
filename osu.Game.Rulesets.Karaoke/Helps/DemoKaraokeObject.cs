@@ -4,7 +4,7 @@
 using System.Collections.Generic;
 using osu.Game.Rulesets.Karaoke.Configuration;
 using osu.Game.Rulesets.Karaoke.Edit.Tools;
-using osu.Game.Rulesets.Karaoke.Objects.Lyric;
+using osu.Game.Rulesets.Karaoke.Objects.Localization;
 using osu.Game.Rulesets.Karaoke.Objects.Note;
 using osu.Game.Rulesets.Karaoke.Objects.TimeLine;
 using osu.Game.Rulesets.Karaoke.Objects.Translate;
@@ -50,10 +50,10 @@ namespace osu.Game.Rulesets.Karaoke.Helps
             {
                 Text = "お"
             });
-            editor.AddTimeline(new TimeLineIndex(0), new TimeLine(0));
-            editor.AddTimeline(new TimeLineIndex(1), new TimeLine(500));
-            editor.AddTimeline(new TimeLineIndex(5), new TimeLine(1000));
-            editor.AddTimeline(new TimeLineIndex(11), new TimeLine(1500));
+            editor.AddTimeline(0, new TimeLine(0));
+            editor.AddTimeline(1, new TimeLine(500));
+            editor.AddTimeline(5, new TimeLine(1000));
+            editor.AddTimeline(11, new TimeLine(1500));
 
             return karaokeObject;
         }
@@ -78,15 +78,15 @@ namespace osu.Game.Rulesets.Karaoke.Helps
                 Text = "お"
             });
             karaokeObject.StartTime = startTime;
-            editor.AddTimeline(new TimeLineIndex(0), new TimeLine(duration / 5)
+            editor.AddTimeline(0, new TimeLine(duration / 5)
             {
                 Tone = new Tone(3)
             });
-            editor.AddTimeline(new TimeLineIndex(9), new TimeLine(duration / 4)
+            editor.AddTimeline(9, new TimeLine(duration / 4)
             {
                 Tone = new Tone(-3)
             });
-            editor.AddTimeline(new TimeLineIndex(11), new TimeLine(duration)
+            editor.AddTimeline(11, new TimeLine(duration)
             {
                 Tone = new Tone(0, true)
             });
@@ -112,7 +112,7 @@ namespace osu.Game.Rulesets.Karaoke.Helps
             var karaokeObject = creator.Create("カラオケ") as JpLyric;
             return new JpLyric
             {
-                Lyric = karaokeObject.Lyric,
+                TimeLines = karaokeObject.TimeLines,
                 Furigana = new Dictionary<int, FuriganaText>
                 {
                     { 0, new FuriganaText { Text = "か" } },

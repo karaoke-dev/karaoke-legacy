@@ -12,7 +12,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note
 {
     public class DrawableNotes : DrawableNotes<DrawableSingleNote>
     {
-        public DrawableNotes(BaseLyric hitObject)
+        public DrawableNotes(Objects.Lyric hitObject)
             : base(hitObject)
         {
         }
@@ -21,7 +21,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note
     /// <summary>
     ///     list of DrawableLyricNote
     /// </summary>
-    public class DrawableNotes<T> : DrawableHitObject<BaseLyric> where T : DrawableSingleNote, new()
+    public class DrawableNotes<T> : DrawableHitObject<Objects.Lyric> where T : DrawableSingleNote, new()
     {
         public BindableDouble NoteSpeed = new BindableDouble();
 
@@ -40,7 +40,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note
         protected FillFlowContainer<T> ListNote;
         private float _lastWidth;
 
-        public DrawableNotes(BaseLyric hitObject)
+        public DrawableNotes(Objects.Lyric hitObject)
             : base(hitObject)
         {
             Anchor = Anchor.CentreLeft;

@@ -13,9 +13,9 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Dialog
     {
         public override string Title => "TopText";
 
-        protected BaseLyric Lyric { get; set; }
+        protected Lyric Lyric { get; set; }
 
-        public EditKaraokeSubTextDialog(BaseLyric lyric)
+        public EditKaraokeSubTextDialog(Lyric lyric)
         {
             Lyric = lyric;
             Width = 200;

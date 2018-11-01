@@ -33,13 +33,10 @@ namespace osu.Game.Rulesets.Karaoke.Tests
                     var first = listResult.FirstOrDefault();
                     if (first != null)
                     {
-                        api.TrackLyricsGet(new TrackLyricsGet()
+                        api.TrackLyricsGet(new TrackLyricsGet
                         {
                             MusixMatchId = first.Track.TrackId,
-                        }, lyrics =>
-                        {
-                            var lyric = lyrics;
-                        }, falls => { });
+                        }, lyrics => { }, falls => { });
                     }
                 }, s => { });
 

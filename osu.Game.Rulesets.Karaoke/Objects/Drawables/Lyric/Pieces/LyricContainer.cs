@@ -7,7 +7,7 @@ using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Sprites;
 using osu.Game.Rulesets.Karaoke.Configuration;
-using osu.Game.Rulesets.Karaoke.Objects.Lyric.Types;
+using osu.Game.Rulesets.Karaoke.Objects.Localization.Types;
 using OpenTK;
 using OpenTK.Graphics;
 
@@ -34,16 +34,16 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric.Pieces
             }
         }
 
-        private BaseLyric _lyric;
+        private Objects.Lyric _lyric;
 
-        public BaseLyric Lyric
+        public Objects.Lyric Lyric
         {
             get => _lyric;
             set
             {
                 _lyric = value;
                 Clear();
-                foreach (var single in Lyric.Lyric)
+                foreach (var single in Lyric.TimeLines)
                 {
                     var key = single.Key;
                     var lyricValue = single.Value;
@@ -54,7 +54,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric.Pieces
                     Add(new T
                     {
                         TopText = furigana?.Text ?? " ",
-                        MainText = lyricValue.Text,
+                        MainText = lyricValue.LyricText,
                         BottomText = romaji?.Text ?? " ",
                         Origin = Anchor.TopLeft,
                         Anchor = Anchor.TopLeft,
@@ -78,18 +78,18 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric.Pieces
 
                 foreach (var partialLyric in Children)
                 {
-                    if (partialLyric.Index <= startProgressPoint.Key.Index)
+                    if (partialLyric.Index <= startProgressPoint.Key)
                     {
                         partialLyric.Progress = 1;
                     }
-                    else if (partialLyric.Index > endProgressPoint?.Key.Index)
+                    else if (partialLyric.Index > endProgressPoint?.Key)
                     {
                         partialLyric.Progress = 0;
                     }
                     else
                     {
-                        var startPercentage = startProgressPoint.Key.Index != partialLyric.Index ? 0 : startProgressPoint.Key.Percentage;
-                        var endPercentage = endProgressPoint?.Key.Percentage;
+                        var startPercentage = 0;
+                        var endPercentage = 1;
 
                         var startRelativeTime = startProgressPoint.Value.RelativeTime;
                         var endRelativeTime = endProgressPoint?.Value.RelativeTime;
@@ -151,13 +151,12 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric.Pieces
     /// <summary>
     /// Contains
     /// 1. sub text(like Furigana)
-    /// 2. main text(Lyric)
+    /// 2. main text(MainLyric)
     /// 3. romaji
     /// </summary>
     public class PartialLyric : PartialLyric<MaskText>
     {
     }
-
 
     public class PartialLyric<T> : FillFlowContainer, IPartialLyric where T : Drawable, IMaskText, new()
     {

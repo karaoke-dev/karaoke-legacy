@@ -1,7 +1,7 @@
 ﻿// Copyright (c) 2007-2018 ppy Pty Ltd <contact@ppy.sh>.
 // Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
 
-using osu.Game.Rulesets.Karaoke.Objects.Lyric.Types;
+using osu.Game.Rulesets.Karaoke.Objects.Localization.Types;
 using osu.Game.Rulesets.Karaoke.Objects.TimeLine;
 using osu.Game.Rulesets.Karaoke.Objects.Translate;
 
@@ -12,11 +12,6 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Types
     /// </summary>
     public interface ILyric : IHasLangCode, IHasLyricVersion
     {
-        /// <summary>
-        ///     Main Text list
-        /// </summary>
-        MainTextList Lyric { get; set; }
-
         /// <summary>
         ///     list progress point
         /// </summary>

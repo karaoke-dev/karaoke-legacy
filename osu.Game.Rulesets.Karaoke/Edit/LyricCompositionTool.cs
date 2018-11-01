@@ -8,7 +8,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit
     public class LyricCompositionTool : HitObjectCompositionTool
     {
         public LyricCompositionTool()
-            : base(nameof(BaseLyric))
+            : base(nameof(Lyric))
         {
         }
 

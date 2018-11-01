@@ -230,7 +230,7 @@ namespace osu.Game.Rulesets.Karaoke.Develop
             };
         }
 
-        public override void Add(DrawableHitObject h) => getStageByColumn(((BaseLyric)h.HitObject).SingerIndex ?? 0).Add(h);
+        public override void Add(DrawableHitObject h) => getStageByColumn(((Lyric)h.HitObject).SingerIndex ?? 0).Add(h);
 
         public void Add(BarLine barline) => stages.ForEach(s => s.Add(barline));
 

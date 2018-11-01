@@ -12,7 +12,7 @@ namespace osu.Game.Rulesets.Karaoke.Beatmaps
     /// Karaoke beatmap
     /// Will contain the basic karaoke song info
     /// </summary>
-    public class KaraokeBeatmap : Beatmap<BaseLyric>
+    public class KaraokeBeatmap : Beatmap<Lyric>
     {
         #region SongInfo
 

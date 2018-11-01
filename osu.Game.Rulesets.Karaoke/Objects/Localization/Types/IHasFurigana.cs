@@ -3,7 +3,7 @@
 
 using System.Collections.Generic;
 
-namespace osu.Game.Rulesets.Karaoke.Objects.Lyric.Types
+namespace osu.Game.Rulesets.Karaoke.Objects.Localization.Types
 {
     /// <summary>
     ///     In japanese lyric it is common has Furigana

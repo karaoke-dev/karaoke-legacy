@@ -5,12 +5,11 @@ using System;
 using osu.Framework.Input.Events;
 using osu.Framework.Input.States;
 using osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric.Pieces;
-using osu.Game.Rulesets.Karaoke.Objects.TimeLine;
 using OpenTK.Graphics;
 
-namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Pieces
+namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Lyric.Pieces
 {
-    public class EditableLyricText : LyricContainer
+    public class EditableLyricContainer : LyricContainer
     {
         public int? HoverIndex { get; set; }
         public int? StartSelectIndex { get; set; }
@@ -19,12 +18,13 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Pieces
         public Color4 HoverColor { get; set; } = Color4.Red;
         public Color4 SelectColor { get; set; } = Color4.Purple;
 
-        public Action<TimeLineIndex> AddPointAction;
+        public Action<int> AddPointAction;
 
 
         #region Input
 
         protected bool IsDrag;
+
         protected override bool OnMouseDown(MouseDownEvent e)
         {
             IsDrag = true;
@@ -54,7 +54,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Pieces
         protected override bool OnMouseUp(MouseUpEvent e)
         {
             IsDrag = false;
-            var index = new TimeLineIndex(GetPointedText(e));
+            var index = GetPointedText(e);
             AddPointAction.Invoke(index);
             StartSelectIndex = null;
             EndSelectIndex = null;
@@ -131,7 +131,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Pieces
         protected int GetIndexByPosition(float xPosition)
         {
             float sum = 0;
-            for(int i=0;i< Children.Count;i++)
+            for (int i = 0; i < Children.Count; i++)
             {
                 var width = Children[i].Width;
                 if (sum + width > xPosition)

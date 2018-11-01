@@ -12,7 +12,7 @@ using osu.Game.Rulesets.Objects.Types;
 
 namespace osu.Game.Rulesets.Karaoke.Beatmaps
 {
-    internal class KaraokeBeatmapConverter : BeatmapConverter<BaseLyric>
+    internal class KaraokeBeatmapConverter : BeatmapConverter<Lyric>
     {
         public KaraokeBeatmapConverter(IBeatmap beatmap)
             : base(beatmap)
@@ -21,12 +21,12 @@ namespace osu.Game.Rulesets.Karaoke.Beatmaps
 
         protected override IEnumerable<Type> ValidConversionTypes { get; } = new[] { typeof(IHasPosition) };
 
-        protected override IEnumerable<BaseLyric> ConvertHitObject(HitObject original, IBeatmap beatmap)
+        protected override IEnumerable<Lyric> ConvertHitObject(HitObject original, IBeatmap beatmap)
         {
-            yield return (BaseLyric)original;
+            yield return (Lyric)original;
         }
 
-        protected override Beatmap<BaseLyric> CreateBeatmap()
+        protected override Beatmap<Lyric> CreateBeatmap()
         {
             return new KaraokeBeatmap();
         }
@@ -36,9 +36,9 @@ namespace osu.Game.Rulesets.Karaoke.Beatmaps
         /// </summary>
         /// <param name="original">The un-converted Beatmap.</param>
         /// <returns>The converted Beatmap.</returns>
-        protected override Beatmap<BaseLyric> ConvertBeatmap(IBeatmap original)
+        protected override Beatmap<Lyric> ConvertBeatmap(IBeatmap original)
         {
-            var newBratmaps = new Beatmap<BaseLyric>
+            var newBratmaps = new Beatmap<Lyric>
             {
                 BeatmapInfo = original.BeatmapInfo,
                 ControlPointInfo = original.ControlPointInfo,
@@ -51,9 +51,9 @@ namespace osu.Game.Rulesets.Karaoke.Beatmaps
             return newBratmaps;
         }
 
-        protected List<BaseLyric> Convert(List<HitObject> originalHitOjects)
+        protected List<Lyric> Convert(List<HitObject> originalHitOjects)
         {
-            var listRerturn = new List<BaseLyric>();
+            var listRerturn = new List<Lyric>();
 
             for (var i = 0; i < originalHitOjects.Count; i++)
                 if (i % 5 == 4)

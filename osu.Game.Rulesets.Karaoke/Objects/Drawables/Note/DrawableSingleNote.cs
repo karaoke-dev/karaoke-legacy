@@ -12,7 +12,6 @@ using osu.Game.Beatmaps.ControlPoints;
 using osu.Game.Graphics.Containers;
 using osu.Game.Rulesets.Karaoke.Extension;
 using osu.Game.Rulesets.Karaoke.Objects.Note;
-using osu.Game.Rulesets.Karaoke.Objects.TimeLine;
 using osu.Game.Rulesets.Karaoke.UI.Layers.Note;
 using osu.Game.Rulesets.Objects.Drawables;
 using OpenTK.Graphics;
@@ -46,9 +45,9 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note
             }
         }
 
-        private BaseLyric lyric;
+        private Objects.Lyric lyric;
 
-        public virtual BaseLyric HitObject
+        public virtual Objects.Lyric HitObject
         {
             get => lyric;
             set
@@ -58,7 +57,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note
             }
         }
 
-        public virtual KeyValuePair<TimeLineIndex, TimeLine.TimeLine> TimeLine
+        public virtual KeyValuePair<int, TimeLine.TimeLine> TimeLine
         {
             get => _timeLine;
             set
@@ -78,17 +77,17 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note
                 else
                 {
                     var prevTimeLine = HitObject.TimeLines.GetPrevious(TimeLine.Key);
-                    var lyric = HitObject.Lyric.Text;
+                    var lyric = HitObject.Text;
                     var take = 0;
                     var displayText = "";
                     if (prevTimeLine != null)
                     {
-                        take = _timeLine.Key.Index - prevTimeLine.Value.Key.Index;
-                        displayText = lyric.Substring(prevTimeLine.Value.Key.Index + 1, take);
+                        take = _timeLine.Key - prevTimeLine.Value.Key;
+                        displayText = lyric.Substring(prevTimeLine.Value.Key + 1, take);
                     }
                     else
                     {
-                        take = _timeLine.Key.Index;
+                        take = _timeLine.Key;
                         displayText = lyric.Substring(0, take + 1);
                     }
 
@@ -102,7 +101,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note
         private readonly DrawableSingleNoteContainer noteContainer;
         private Color4 accentColour;
 
-        private KeyValuePair<TimeLineIndex, TimeLine.TimeLine> _timeLine;
+        private KeyValuePair<int, TimeLine.TimeLine> _timeLine;
 
         public DrawableSingleNote()
         {

@@ -3,7 +3,6 @@
 
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Shapes;
-using osu.Game.Rulesets.Karaoke.Objects;
 using osu.Game.Rulesets.Karaoke.Objects.Drawables.Note;
 using OpenTK.Graphics;
 
@@ -11,7 +10,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Note
 {
     public class DrawableEditableNotes : DrawableNotes<DrawableEditableSingleNote>
     {
-        public DrawableEditableNotes(BaseLyric hitObject)
+        public DrawableEditableNotes(Objects.Lyric hitObject)
             : base(hitObject)
         {
             //add background

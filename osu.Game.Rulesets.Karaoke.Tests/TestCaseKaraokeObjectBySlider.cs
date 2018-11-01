@@ -10,6 +10,7 @@ using osu.Game.Rulesets.Karaoke.Helps;
 using osu.Game.Rulesets.Karaoke.Objects;
 using osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric;
 using osu.Game.Tests.Visual;
+using OpenTK;
 
 namespace osu.Game.Rulesets.Karaoke.Tests
 {
@@ -23,7 +24,7 @@ namespace osu.Game.Rulesets.Karaoke.Tests
         /// </summary>
         public DrawableLyric DrawableKaraokeObject { get; set; }
 
-        public BaseLyric Lyric { get; set; }
+        public Lyric Lyric { get; set; }
 
         [BackgroundDependencyLoader]
         private void load(RulesetStore rulesets)
@@ -32,7 +33,7 @@ namespace osu.Game.Rulesets.Karaoke.Tests
 
             DrawableKaraokeObject = new DrawableLyric(Lyric)
             {
-                Position = Lyric.Position,
+                Position = new Vector2(),
                 ProgressUpdateByTime = false,
             };
 

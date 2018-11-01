@@ -19,7 +19,6 @@ using osu.Game.Rulesets.Karaoke.Mods;
 using osu.Game.Rulesets.Karaoke.Mods.Mod2017;
 using osu.Game.Rulesets.Karaoke.Mods.Mod2018;
 using osu.Game.Rulesets.Karaoke.Objects.Drawables.Common.Pieces;
-using osu.Game.Rulesets.Karaoke.Textures;
 using osu.Game.Rulesets.Karaoke.UI;
 using osu.Game.Rulesets.Mods;
 using osu.Game.Rulesets.UI;
@@ -51,7 +50,7 @@ namespace osu.Game.Rulesets.Karaoke
         public KaraokeRuleset(RulesetInfo rulesetInfo = null)
             : base(rulesetInfo)
         {
-            var karaokeTextureStore = new KaraokeTextureStore();
+            //var karaokeTextureStore = new KaraokeTextureStore();
         }
 
         public override IEnumerable<KeyBinding> GetDefaultKeyBindings(int variant = 0)
@@ -128,7 +127,6 @@ namespace osu.Game.Rulesets.Karaoke
                         new MultiMod(new KaraokeModOpenTranslate(), new KaraokeModCloseTranslate()),
                         new MultiMod(new KaraokeModCloseVocal(), new KaraokeModOpenVocal())
                     };
-                    break;
                 case ModType.Fun: //only event mod
                     return new Mod[]
                     {

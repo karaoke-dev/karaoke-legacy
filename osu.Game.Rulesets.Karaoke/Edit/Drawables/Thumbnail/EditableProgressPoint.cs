@@ -24,23 +24,23 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Thumbnail
             new OsuMenuItem(@"Delete", MenuItemType.Highlighted)
         };
 
-        public TimeLineIndex IndexOfObject => LyricProgressPoint.Key;
+        public int IndexOfObject => LyricProgressPoint.Key;
 
         //protected culculater value
         public string ProgressText
         {
             get
             {
-                if (IndexOfObject.Index == 0)
-                    return DrawableKaraokeThumbnail.Lyric.Lyric.Text.Substring(0, LyricProgressPoint.Key.Index + 1);
-                var thisCharIndex = LyricProgressPoint.Key.Index;
-                var lastTime = DrawableKaraokeThumbnail.Lyric.TimeLines.FindPrevioud(IndexOfObject).Value.Key.Index;
-                return DrawableKaraokeThumbnail.Lyric.Lyric.Text.Substring(lastTime + 1, thisCharIndex - lastTime);
+                if (IndexOfObject == 0)
+                    return DrawableKaraokeThumbnail.Lyric.Text.Substring(0, LyricProgressPoint.Key + 1);
+                var thisCharIndex = LyricProgressPoint.Key;
+                var lastTime = DrawableKaraokeThumbnail.Lyric.TimeLines.FindPrevioud(IndexOfObject).Value.Key;
+                return DrawableKaraokeThumbnail.Lyric.Text.Substring(lastTime + 1, thisCharIndex - lastTime);
             }
         }
 
         //public 
-        public KeyValuePair<TimeLineIndex, TimeLine> LyricProgressPoint { get; set; }
+        public KeyValuePair<int, TimeLine> LyricProgressPoint { get; set; }
 
         public DrawableKaraokeThumbnail DrawableKaraokeThumbnail { get; set; } //Parent
 
@@ -89,7 +89,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Thumbnail
         protected Color4 BackgroundHoverColor { get; set; } = Color4.Purple;
         protected Color4 BackgroundPressColor { get; set; } = Color4.Blue;
 
-        public EditableProgressPoint(DrawableKaraokeThumbnail drawableKaraokeThumbnail, KeyValuePair<TimeLineIndex, TimeLine> lyricProgressPoin)
+        public EditableProgressPoint(DrawableKaraokeThumbnail drawableKaraokeThumbnail, KeyValuePair<int, TimeLine> lyricProgressPoin)
         {
             DrawableKaraokeThumbnail = drawableKaraokeThumbnail;
             LyricProgressPoint = lyricProgressPoin;

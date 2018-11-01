@@ -253,14 +253,10 @@ namespace osu.Game.Rulesets.Karaoke.UI.Cursor
         [StructLayout(LayoutKind.Sequential)]
         public struct TexturedTrailVertex : IEquatable<TexturedTrailVertex>, IVertex
         {
-            [VertexMember(2, VertexAttribPointerType.Float)]
-            public Vector2 Position;
-            [VertexMember(4, VertexAttribPointerType.Float)]
-            public Color4 Colour;
-            [VertexMember(2, VertexAttribPointerType.Float)]
-            public Vector2 TexturePosition;
-            [VertexMember(1, VertexAttribPointerType.Float)]
-            public float Time;
+            [VertexMember(2, VertexAttribPointerType.Float)] public Vector2 Position;
+            [VertexMember(4, VertexAttribPointerType.Float)] public Color4 Colour;
+            [VertexMember(2, VertexAttribPointerType.Float)] public Vector2 TexturePosition;
+            [VertexMember(1, VertexAttribPointerType.Float)] public float Time;
 
             public bool Equals(TexturedTrailVertex other)
             {

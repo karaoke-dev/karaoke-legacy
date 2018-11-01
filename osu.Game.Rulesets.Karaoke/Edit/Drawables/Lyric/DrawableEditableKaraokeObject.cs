@@ -6,9 +6,8 @@ using osu.Framework.Graphics.Cursor;
 using osu.Framework.Graphics.UserInterface;
 using osu.Game.Graphics.UserInterface;
 using osu.Game.Rulesets.Karaoke.Configuration;
-using osu.Game.Rulesets.Karaoke.Edit.Drawables.Pieces;
+using osu.Game.Rulesets.Karaoke.Edit.Drawables.Lyric.Pieces;
 using osu.Game.Rulesets.Karaoke.Edit.Drawables.Thumbnail;
-using osu.Game.Rulesets.Karaoke.Objects;
 using osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric;
 using osu.Game.Rulesets.Karaoke.Objects.TimeLine;
 using osu.Game.Rulesets.Karaoke.Objects.Translate;
@@ -35,9 +34,9 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Lyric
         };
 
         protected DrawableKaraokeThumbnail DrawableKaraokeThumbnail { get; set; }
-        protected EditableLyricText EditableLyricText { get; set; }
+        protected EditableLyricContainer EditableLyricText { get; set; }
 
-        public DrawableEditableKaraokeObject(BaseLyric hitObject)
+        public DrawableEditableKaraokeObject(Objects.Lyric hitObject)
             : base(hitObject)
         {
             DrawableKaraokeThumbnail = new DrawableKaraokeThumbnail(Lyric)
@@ -47,7 +46,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Lyric
                 Height = 100
             };
 
-            EditableLyricText = new EditableLyricText
+            EditableLyricText = new EditableLyricContainer
             {
                 AutoSizeAxes = Axes.Y,
                 RelativeSizeAxes = Axes.X,
@@ -60,7 +59,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Lyric
             AddInternal(DrawableKaraokeThumbnail);
         }
 
-        public void AddPoint(TimeLineIndex index)
+        public void AddPoint(int index)
         {
             var previousPoint = Lyric.TimeLines.GetFirstProgressPointByIndex(index);
             var nextPoint = Lyric.TimeLines.GetLastProgressPointByIndex(index);

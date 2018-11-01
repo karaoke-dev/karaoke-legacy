@@ -17,12 +17,13 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Common.Pieces
                 _textObject = value;
                 if (_textObject == null)
                     return;
+
                 //set text
-                UpdateText();
+                Text = TextObject.Text;
 
                 //update position and size
-                Position = _textObject.Position;
-                TextSize = _textObject.FontSize ?? 18;
+                Position = TextObject.Position;
+                TextSize = TextObject.FontSize ?? 18;
             }
         }
 
@@ -35,11 +36,6 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Common.Pieces
             Anchor = Anchor.TopLeft;
             Origin = Anchor.BottomLeft;
             Alpha = 1;
-        }
-
-        protected virtual void UpdateText()
-        {
-            Text = TextObject.Text;
         }
     }
 }

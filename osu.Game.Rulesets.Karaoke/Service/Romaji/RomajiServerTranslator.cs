@@ -5,9 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using osu.Game.Rulesets.Karaoke.Configuration;
-using osu.Game.Rulesets.Karaoke.Objects;
-using osu.Game.Rulesets.Karaoke.Objects.Lyric;
-using osu.Game.Rulesets.Karaoke.Objects.Lyric.Types;
+using osu.Game.Rulesets.Karaoke.Objects.Localization;
+using osu.Game.Rulesets.Karaoke.Objects.Localization.Types;
 using osu.Game.Rulesets.Karaoke.Online.API.Romaj.RomajiServer;
 
 namespace osu.Game.Rulesets.Karaoke.Service.Romaji
@@ -22,30 +21,30 @@ namespace osu.Game.Rulesets.Karaoke.Service.Romaji
         /// <summary>
         ///     translte list
         /// </summary>
-        /// <param name="sourceLangeCode"></param>
+        /// <param name="code"></param>
         /// <param name="translateListString"></param>
         /// <returns></returns>
-        public async Task<BaseLyric> Translate(TranslateCode code, BaseLyric translateListString)
+        public async Task<Objects.Lyric> Translate(TranslateCode code, Objects.Lyric translateListString)
         {
-            return (await Translate(code, new List<BaseLyric> { translateListString })).FirstOrDefault();
+            return (await Translate(code, new List<Objects.Lyric> { translateListString })).FirstOrDefault();
         }
 
 
         /// <summary>
         ///     translte list
         /// </summary>
-        /// <param name="sourceLangeCode"></param>
+        /// <param name="code"></param>
         /// <param name="translateListString"></param>
         /// <returns></returns>
-        public async Task<List<BaseLyric>> Translate(TranslateCode code, List<BaseLyric> translateListString)
+        public async Task<List<Objects.Lyric>> Translate(TranslateCode code, List<Objects.Lyric> translateListString)
         {
-            var listTranslate = new List<BaseLyric>();
-            var result = await romajiServerApi.Translate(code, translateListString.Select(x => x.Lyric.Text).ToList());
+            var listTranslate = new List<Objects.Lyric>();
+            var result = await romajiServerApi.Translate(code, translateListString.Select(x => x.Text).ToList());
 
             //convert each sentence
             foreach (var single in result)
             {
-                var singleTranslate = new BaseLyric();
+                var singleTranslate = new Objects.Lyric();
 
                 //convert from Translatersult to lyruc
                 for (var i = 0; i < single.Result.Count; i++)

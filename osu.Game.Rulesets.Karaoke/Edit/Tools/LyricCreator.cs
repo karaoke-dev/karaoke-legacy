@@ -2,13 +2,13 @@
 // Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
 
 using osu.Game.Rulesets.Karaoke.Objects;
-using osu.Game.Rulesets.Karaoke.Objects.Lyric;
+using osu.Game.Rulesets.Karaoke.Objects.Localization;
 using osu.Game.Rulesets.Karaoke.Objects.TimeLine;
 
 namespace osu.Game.Rulesets.Karaoke.Edit.Tools
 {
     /// <summary>
-    /// used to convert <see cref="string"/> to <see cref="BaseLyric"/>
+    /// used to convert <see cref="string"/> to <see cref="Lyric"/>
     /// </summary>
     public class LyricCreator
     {
@@ -20,16 +20,16 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Tools
         /// </summary>
         /// <param name="lyricText"></param>
         /// <returns></returns>
-        public BaseLyric Create(string lyricText)
+        public Lyric Create(string lyricText)
         {
             var lyric = new JpLyric();
-            lyric.Lyric.Clear();
+            lyric.TimeLines.Clear();
             var startCharIndex = 0;
             foreach (var singleCharacter in lyricText)
             {
-                lyric.Lyric.Add(startCharIndex, new MainText
+                lyric.TimeLines.Add(startCharIndex, new TimeLine
                 {
-                    Text = singleCharacter.ToString()
+                    LyricText = singleCharacter.ToString()
                 });
                 startCharIndex++;
             }
@@ -51,13 +51,13 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Tools
 
         #region Utilities
 
-        protected void CreateDefaultTimelines(BaseLyric lyric)
+        protected void CreateDefaultTimelines(Lyric lyric)
         {
             var relativeTime = 0;
-            foreach (var lyricPart in lyric.Lyric)
+            foreach (var lyricPart in lyric.TimeLines)
             {
                 relativeTime = relativeTime + 200;
-                lyric.TimeLines.Add(new TimeLineIndex(lyricPart.Key), new TimeLine()
+                lyric.TimeLines.Add(lyricPart.Key, new TimeLine
                 {
                     RelativeTime = relativeTime
                 });

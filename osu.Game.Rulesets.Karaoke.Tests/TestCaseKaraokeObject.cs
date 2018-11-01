@@ -49,12 +49,12 @@ namespace osu.Game.Rulesets.Karaoke.Tests
             Add(clockAdjustContainer);
         }
 
-        private void loadHitobjects(BaseLyric lyric)
+        private void loadHitobjects(Lyric lyric)
         {
             lyric.StartTime = framedClock.CurrentTime + 160;
             playfieldContainer.Add(new DrawableLyric(lyric)
             {
-                Position = lyric.Position + appearPosition,
+                Position =  appearPosition,
             });
 
             appearPosition = appearPosition + new Vector2(0, 100);

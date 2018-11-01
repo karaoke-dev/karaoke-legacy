@@ -6,7 +6,6 @@ using System.Linq;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Input.Events;
 using osu.Framework.Input.States;
-using osu.Game.Rulesets.Karaoke.Objects;
 using osu.Game.Rulesets.Karaoke.Objects.TimeLine;
 using OpenTK.Input;
 
@@ -22,7 +21,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Thumbnail
         public float Ratio = 0.3f;
 
         public float Zoon = 1;
-        public BaseLyric Lyric { get; set; }
+        public Objects.Lyric Lyric { get; set; }
 
         //Start and end selected point
         public EditableProgressPoint HoverSelectedPoint { get; set; }
@@ -36,7 +35,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Thumbnail
 
         protected FillFlowContainer<EditableProgressPoint> ListEditableProgressPoint { get; set; } = new FillFlowContainer<EditableProgressPoint>();
 
-        public DrawableKaraokeThumbnail(BaseLyric lyric)
+        public DrawableKaraokeThumbnail(Objects.Lyric lyric)
         {
             Lyric = lyric;
             Add(ListEditableProgressPoint);
@@ -149,7 +148,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Thumbnail
         /// <summary>
         ///     Delete single point
         /// </summary>
-        public void DeletePoint(KeyValuePair<TimeLineIndex, TimeLine> point)
+        public void DeletePoint(KeyValuePair<int, TimeLine> point)
         {
             if (Lyric.TimeLines.Count > 1)
                 Lyric.TimeLines.Remove(point.Key);

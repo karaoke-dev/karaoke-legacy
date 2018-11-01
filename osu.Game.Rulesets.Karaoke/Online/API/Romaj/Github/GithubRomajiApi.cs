@@ -35,7 +35,7 @@ namespace osu.Game.Rulesets.Karaoke.Online.API.Romaj.Github
     public class GithubRomajiLyric
     {
         /// <summary>
-        ///     Lyric id
+        ///     MainLyric id
         /// </summary>
         public string LyrucId { get; set; }
 
