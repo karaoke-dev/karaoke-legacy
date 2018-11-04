@@ -7,6 +7,7 @@ using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Sprites;
 using osu.Game.Rulesets.Karaoke.Configuration;
+using osu.Game.Rulesets.Karaoke.Objects.Localization;
 using osu.Game.Rulesets.Karaoke.Objects.Localization.Types;
 using OpenTK;
 using OpenTK.Graphics;
@@ -48,8 +49,10 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric.Pieces
                     var key = single.Key;
                     var lyricValue = single.Value;
 
-                    ((IHasFurigana)Lyric).Furigana.TryGetValue(key, out var furigana);
-                    ((IHasRomaji)Lyric).Romaji.TryGetValue(key, out var romaji);
+                    FuriganaText furigana = null;
+                    RomajiText romaji = null;
+                    (Lyric as IHasFurigana)?.Furigana.TryGetValue(key, out furigana);
+                    (Lyric as IHasRomaji)?.Romaji.TryGetValue(key, out romaji);
 
                     Add(new T
                     {

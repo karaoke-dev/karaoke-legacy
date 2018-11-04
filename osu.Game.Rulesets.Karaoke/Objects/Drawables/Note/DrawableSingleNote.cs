@@ -57,7 +57,7 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note
             }
         }
 
-        public virtual KeyValuePair<int, TimeLine.TimeLine> TimeLine
+        public KeyValuePair<int, TimeLine.TimeLine> TimeLine
         {
             get => _timeLine;
             set
@@ -70,29 +70,8 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Note
                 noteContainer.Y = NoteStageHelper.GetPositionByTone(tone);
 
                 //text
-                if (!string.IsNullOrEmpty(TimeLine.Value.DisplayText))
-                {
-                    text.Text = TimeLine.Value.DisplayText;
-                }
-                else
-                {
-                    var prevTimeLine = HitObject.TimeLines.GetPrevious(TimeLine.Key);
-                    var lyric = HitObject.Text;
-                    var take = 0;
-                    var displayText = "";
-                    if (prevTimeLine != null)
-                    {
-                        take = _timeLine.Key - prevTimeLine.Value.Key;
-                        displayText = lyric.Substring(prevTimeLine.Value.Key + 1, take);
-                    }
-                    else
-                    {
-                        take = _timeLine.Key;
-                        displayText = lyric.Substring(0, take + 1);
-                    }
-
-                    text.Text = displayText;
-                }
+                text.Text = !string.IsNullOrEmpty(TimeLine.Value.DisplayText) ?
+                    TimeLine.Value.DisplayText : TimeLine.Value.LyricText;
             }
         }
 
