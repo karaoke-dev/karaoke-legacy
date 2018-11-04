@@ -43,7 +43,7 @@ namespace osu.Game.Rulesets.Karaoke
         public override string ShortName => "karaoke";
 
         //TODO : give it a id temporatory
-        //public override int? LegacyID => 0;
+        public override int? LegacyID => 0;
 
         public override IRulesetConfigManager CreateConfig(SettingsStore settings) => new KaraokeConfigManager(settings, RulesetInfo);
 

@@ -82,7 +82,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Note
 
         //protected override Container<Drawable> Content => content;
         private readonly FillFlowContainer<Background> columnFlow;
-        private readonly Container<Drawable> content;
+        private readonly Container barLineContainer;
         private readonly JudgementContainer<DrawableNoteJudgement> judgements;
         private readonly Background toneBackground;
 
@@ -164,14 +164,21 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Note
                             Height = 1366, // Bar lines should only be masked on the vertical axis
                             BypassAutoSizeAxes = Axes.Both,
                             Masking = true,
-                            Child = content = new Container
+                            Child = barLineContainer = new Container
                             {
                                 Name = "Bar lines",
                                 Anchor = Anchor.TopCentre,
                                 Origin = Anchor.TopCentre,
                                 RelativeSizeAxes = Axes.X,
-                                Padding = new MarginPadding { Left = HIT_TARGET_POSITION }
                             }
+                        },
+                        new Container
+                        {
+                            Name = "Hit objects",
+                            RelativeSizeAxes = Axes.Both,
+                            Padding = new MarginPadding { Left = HIT_TARGET_POSITION },
+                            Masking = true,
+                            Child = HitObjectContainer
                         },
                         new Box
                         {
@@ -201,6 +208,15 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Note
 
             Tone.ValueChanged += ToneChanged;
             Tone.TriggerChange();
+
+            Direction.BindValueChanged(d =>
+            {
+                barLineContainer.Padding = new MarginPadding
+                {
+                    Top = d == ScrollingDirection.Up ? HIT_TARGET_POSITION : 0,
+                    Bottom = d == ScrollingDirection.Down ? HIT_TARGET_POSITION : 0,
+                };
+            }, true);
         }
 
         public void AddBackground(Background c)
@@ -247,7 +263,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Note
         {
             // Due to masking differences, it is not possible to get the width of the columns container automatically
             // While masking on effectively only the Y-axis, so we need to set the width of the bar line container manually
-            content.Height = columnFlow.Height;
+            barLineContainer.Height = columnFlow.Height;
         }
 
         private void invertedChanged(bool newValue)
