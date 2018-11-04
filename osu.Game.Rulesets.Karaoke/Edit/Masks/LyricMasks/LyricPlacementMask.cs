@@ -1,5 +1,6 @@
 ﻿using osu.Framework.Input.Events;
 using osu.Game.Rulesets.Edit;
+using osu.Game.Rulesets.Karaoke.Edit.Tools;
 using osu.Game.Rulesets.Karaoke.Objects;
 
 namespace osu.Game.Rulesets.Karaoke.Edit.Masks.LyricMasks
@@ -9,7 +10,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Masks.LyricMasks
         public new Lyric HitObject => (Lyric)base.HitObject;
 
         public LyricPlacementMask()
-            : base(new Lyric())
+            : base(new LyricCreator().CreateDefaultLyric())
         {
             //InternalChild = new HitCirclePiece(HitObject);
         }

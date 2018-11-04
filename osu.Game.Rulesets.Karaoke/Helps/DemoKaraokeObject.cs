@@ -19,7 +19,7 @@ namespace osu.Game.Rulesets.Karaoke.Helps
         public static JpLyric WithoutProgressPoint()
         {
             LyricCreator creator = new LyricCreator();
-            var karaokeObject = creator.Create("終わるまでは終わらないよ") as JpLyric;
+            var karaokeObject = creator.Create<JpLyric>("終わるまでは終わらないよ");
             LyricEditor editor = new LyricEditor(karaokeObject);
             editor.AddFurigana(0, new FuriganaText
             {
@@ -40,7 +40,7 @@ namespace osu.Game.Rulesets.Karaoke.Helps
         public static JpLyric GenerateDemo001()
         {
             LyricCreator creator = new LyricCreator();
-            var karaokeObject = creator.Create("終わるまでは終わらないよ") as JpLyric;
+            var karaokeObject = creator.Create<JpLyric>("終わるまでは終わらないよ");
             LyricEditor editor = new LyricEditor(karaokeObject);
             editor.AddFurigana(0, new FuriganaText
             {
@@ -67,7 +67,7 @@ namespace osu.Game.Rulesets.Karaoke.Helps
         public static JpLyric GenerateWithStartAndDuration(double startTime, double duration)
         {
             LyricCreator creator = new LyricCreator();
-            var karaokeObject = creator.Create("終わるまでは終わらないよ") as JpLyric;
+            var karaokeObject = creator.Create<JpLyric>("終わるまでは終わらないよ");
             LyricEditor editor = new LyricEditor(karaokeObject);
             editor.AddFurigana(0, new FuriganaText
             {
@@ -109,7 +109,7 @@ namespace osu.Game.Rulesets.Karaoke.Helps
         public static JpLyric GenerateDeomKaraokeLyric()
         {
             LyricCreator creator = new LyricCreator();
-            var karaokeObject = creator.Create("カラオケ") as JpLyric;
+            var karaokeObject = creator.Create<JpLyric>("カラオケ");
             return new JpLyric
             {
                 TimeLines = karaokeObject.TimeLines,

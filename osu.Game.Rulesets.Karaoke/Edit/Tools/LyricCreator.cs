@@ -2,7 +2,6 @@
 // Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
 
 using osu.Game.Rulesets.Karaoke.Objects;
-using osu.Game.Rulesets.Karaoke.Objects.Localization;
 using osu.Game.Rulesets.Karaoke.Objects.TimeLine;
 
 namespace osu.Game.Rulesets.Karaoke.Edit.Tools
@@ -14,15 +13,21 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Tools
     {
         #region Method
 
+        public Lyric CreateDefaultLyric()
+        {
+            //TODO : 根據不同語系產生對應的歌詞物件
+            return Create<Lyric>("NewLyric");
+        }
+
         /// <summary>
         /// Create
         /// TODO : add another language support
         /// </summary>
         /// <param name="lyricText"></param>
         /// <returns></returns>
-        public Lyric Create(string lyricText)
+        public T Create<T>(string lyricText) where T : Lyric , new()
         {
-            var lyric = new JpLyric();
+            var lyric = new T();
             lyric.TimeLines.Clear();
             var startCharIndex = 0;
             foreach (var singleCharacter in lyricText)
