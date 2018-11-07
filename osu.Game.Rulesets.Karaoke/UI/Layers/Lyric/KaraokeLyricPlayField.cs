@@ -3,6 +3,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using osu.Framework.Caching;
 using osu.Framework.Configuration;
 using osu.Framework.Graphics;
@@ -100,9 +101,10 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Lyric
             /// </summary>
             protected virtual void ComputeLyricLayout()
             {
-                for (int i = 0; i < InternalChildren.Count; i++)
+                var sortedChildren = InternalChildren.Select(x => x as DrawableLyric).OrderBy(x => x.HitObject.StartTime).ToList();
+                for (int i = 0; i < sortedChildren.Count; i++)
                 {
-                    var lyric = InternalChildren[i] as DrawableLyric;
+                    var lyric = sortedChildren[i];
                     var layoutIndex = i % LineSpacing.Count;
 
                     if (lyric != null)

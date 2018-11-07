@@ -17,15 +17,15 @@ using osu.Game.Rulesets.Karaoke.UI.Layers.Note;
 using OpenTK;
 using OpenTK.Graphics;
 
-namespace osu.Game.Rulesets.Karaoke.Edit.Masks.NoteMasks
+namespace osu.Game.Rulesets.Karaoke.Edit.Blueprints.Notes
 {
-    public class NoteSelectionMask : SelectionMask
+    public class NoteSelectionBlueprint : SelectionBlueprint
     {
         public new DrawableEditableNotes HitObject => (DrawableEditableNotes)base.HitObject;
 
         private readonly FillFlowContainer<SingleNoteMask> listNote;
 
-        public NoteSelectionMask(DrawableEditableNotes hitObject)
+        public NoteSelectionBlueprint(DrawableEditableNotes hitObject)
             : base(hitObject)
         {
             Scale = hitObject.Scale;
@@ -97,7 +97,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Masks.NoteMasks
             private KeyValuePair<int, TimeLine> _timeLine;
 
             private readonly Container noteContainer;
-            private readonly NoteSelectionMask fullHeightContainer;
+            private readonly NoteSelectionBlueprint fullHeightContainer;
 
             public virtual double Duration
             {
@@ -141,7 +141,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Masks.NoteMasks
                         RelativeSizeAxes = Axes.X,
                         Children = new Drawable[]
                         {
-                            fullHeightContainer = new NoteSelectionMask
+                            fullHeightContainer = new NoteSelectionBlueprint
                             {
                                 RelativeSizeAxes = Axes.Both,
                             },
@@ -164,7 +164,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Masks.NoteMasks
                 }
             }
 
-            public class NoteSelectionMask : CompositeDrawable, IHasAccentColour
+            public class NoteSelectionBlueprint : CompositeDrawable, IHasAccentColour
             {
                 public Color4 AccentColour
                 {
@@ -181,7 +181,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Masks.NoteMasks
 
                 private Color4 accentColour;
 
-                public NoteSelectionMask()
+                public NoteSelectionBlueprint()
                 {
                     RelativeSizeAxes = Axes.Both;
                     Masking = true;

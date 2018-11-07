@@ -7,10 +7,10 @@ using osu.Framework.Graphics.Containers;
 using osu.Game.Beatmaps;
 using osu.Game.Rulesets.Edit;
 using osu.Game.Rulesets.Edit.Tools;
+using osu.Game.Rulesets.Karaoke.Edit.Blueprints.Lyrics;
+using osu.Game.Rulesets.Karaoke.Edit.Blueprints.Notes;
 using osu.Game.Rulesets.Karaoke.Edit.Drawables.Lyric;
 using osu.Game.Rulesets.Karaoke.Edit.Drawables.Note;
-using osu.Game.Rulesets.Karaoke.Edit.Masks.LyricMasks;
-using osu.Game.Rulesets.Karaoke.Edit.Masks.NoteMasks;
 using osu.Game.Rulesets.Karaoke.Objects;
 using osu.Game.Rulesets.Karaoke.UI;
 using osu.Game.Rulesets.Objects.Drawables;
@@ -35,17 +35,17 @@ namespace osu.Game.Rulesets.Karaoke.Edit
 
         protected override Container CreateLayerContainer() => new PlayfieldAdjustmentContainer { RelativeSizeAxes = Axes.Both };
 
-        public override SelectionMask CreateMaskFor(DrawableHitObject hitObject)
+        public override SelectionBlueprint CreateBlueprintFor(DrawableHitObject hitObject)
         {
             switch (hitObject)
             {
                 case DrawableEditableKaraokeObject lyric:
-                    return new LyricSelectionMask(lyric);
+                    return new LyricSelectionBlueprint(lyric);
                 case DrawableEditableNotes note:
-                    return new NoteSelectionMask(note);
+                    return new NoteSelectionBlueprint(note);
             }
 
-            return base.CreateMaskFor(hitObject);
+            return base.CreateBlueprintFor(hitObject);
         }
     }
 }

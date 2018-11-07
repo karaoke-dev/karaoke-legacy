@@ -13,16 +13,16 @@ using osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric.Pieces;
 using OpenTK;
 using OpenTK.Graphics;
 
-namespace osu.Game.Rulesets.Karaoke.Edit.Masks.LyricMasks
+namespace osu.Game.Rulesets.Karaoke.Edit.Blueprints.Lyrics
 {
     /// <summary>
     ///     Drawable BaseLyric Mask
     /// </summary>
-    public class LyricSelectionMask : SelectionMask
+    public class LyricSelectionBlueprint : SelectionBlueprint
     {
         private readonly MaskLyricContainer lyricContainer;
 
-        public LyricSelectionMask(DrawableEditableKaraokeObject drawableLyric)
+        public LyricSelectionBlueprint(DrawableEditableKaraokeObject drawableLyric)
             : base(drawableLyric)
         {
             Anchor = Anchor.CentreLeft;

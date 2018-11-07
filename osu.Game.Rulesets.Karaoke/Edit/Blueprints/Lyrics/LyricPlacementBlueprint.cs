@@ -3,13 +3,13 @@ using osu.Game.Rulesets.Edit;
 using osu.Game.Rulesets.Karaoke.Edit.Tools;
 using osu.Game.Rulesets.Karaoke.Objects;
 
-namespace osu.Game.Rulesets.Karaoke.Edit.Masks.LyricMasks
+namespace osu.Game.Rulesets.Karaoke.Edit.Blueprints.Lyrics
 {
-    public class LyricPlacementMask : PlacementMask
+    public class LyricPlacementBlueprint : PlacementBlueprint
     {
         public new Lyric HitObject => (Lyric)base.HitObject;
 
-        public LyricPlacementMask()
+        public LyricPlacementBlueprint()
             : base(new LyricCreator().CreateDefaultLyric())
         {
             //InternalChild = new HitCirclePiece(HitObject);
