@@ -14,7 +14,6 @@ using osu.Game.Rulesets.Objects.Drawables;
 using osu.Game.Rulesets.Replays;
 using osu.Game.Rulesets.Scoring;
 using osu.Game.Rulesets.UI;
-using OpenTK;
 
 namespace osu.Game.Rulesets.Karaoke.UI
 {

@@ -7,7 +7,6 @@ using osu.Framework.Allocation;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Lines;
-using osu.Game.Rulesets.Objects;
 using osu.Game.Tests.Visual;
 using OpenTK;
 using OpenTK.Graphics.ES30;

@@ -3,7 +3,6 @@
 
 using System;
 using osu.Framework.Input.Events;
-using osu.Framework.Input.States;
 using osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric.Pieces;
 using OpenTK.Graphics;
 
