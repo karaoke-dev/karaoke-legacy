@@ -18,7 +18,7 @@ namespace osu.Game.Rulesets.Karaoke.Edit.Blueprints.Lyrics
     /// <summary>
     ///     Drawable BaseLyric Mask
     /// </summary>
-    public class LyricSelectionBlueprint : SelectionBlueprint
+    public class LyricSelectionBlueprint : KaraokeSelectionBlueprint
     {
         private readonly MaskLyricContainer lyricContainer;
 

@@ -8,7 +8,6 @@ using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Shapes;
 using osu.Game.Graphics;
-using osu.Game.Rulesets.Edit;
 using osu.Game.Rulesets.Karaoke.Edit.Drawables.Note;
 using osu.Game.Rulesets.Karaoke.Extension;
 using osu.Game.Rulesets.Karaoke.Objects.Note;
@@ -19,7 +18,7 @@ using OpenTK.Graphics;
 
 namespace osu.Game.Rulesets.Karaoke.Edit.Blueprints.Notes
 {
-    public class NoteSelectionBlueprint : SelectionBlueprint
+    public class NoteSelectionBlueprint : KaraokeSelectionBlueprint
     {
         public new DrawableEditableNotes HitObject => (DrawableEditableNotes)base.HitObject;
 
