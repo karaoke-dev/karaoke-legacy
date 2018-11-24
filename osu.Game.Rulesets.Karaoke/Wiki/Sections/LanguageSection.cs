@@ -7,7 +7,7 @@ using osu.Game.Overlays.Settings;
 using osu.Game.Rulesets.Karaoke.Configuration;
 using osu.Game.Rulesets.Karaoke.Service.Romaji;
 using osu.Game.Rulesets.Karaoke.Service.Translate;
-using OpenTK;
+using osuTK;
 using Symcol.Rulesets.Core.Wiki;
 
 namespace osu.Game.Rulesets.Karaoke.Wiki.Sections

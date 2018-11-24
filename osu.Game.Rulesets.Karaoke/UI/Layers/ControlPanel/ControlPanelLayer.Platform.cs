@@ -8,7 +8,7 @@ using osu.Game.Rulesets.Karaoke.Configuration;
 using osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel.Desktop;
 using osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel.Mobile;
 using osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel.Type;
-using OpenTK;
+using osuTK;
 
 namespace osu.Game.Rulesets.Karaoke.UI.Layers.ControlPanel
 {

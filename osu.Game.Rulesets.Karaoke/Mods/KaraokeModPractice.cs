@@ -14,7 +14,7 @@ using osu.Game.Rulesets.Karaoke.UI.Layers.Input;
 using osu.Game.Rulesets.Karaoke.UI.Layers.Type;
 using osu.Game.Rulesets.Mods;
 using osu.Game.Rulesets.UI;
-using OpenTK;
+using osuTK;
 
 namespace osu.Game.Rulesets.Karaoke.Mods
 {

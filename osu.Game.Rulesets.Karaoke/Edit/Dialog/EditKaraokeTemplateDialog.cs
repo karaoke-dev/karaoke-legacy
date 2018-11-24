@@ -5,7 +5,7 @@ using osu.Game.Rulesets.Karaoke.Configuration;
 using osu.Game.Rulesets.Karaoke.Edit.Dialog.Pieces;
 using osu.Game.Rulesets.Karaoke.Helps;
 using osu.Game.Rulesets.Karaoke.Objects;
-using OpenTK;
+using osuTK;
 
 namespace osu.Game.Rulesets.Karaoke.Edit.Dialog
 {

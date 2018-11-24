@@ -6,7 +6,7 @@ using System.Linq;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Input.Events;
 using osu.Game.Rulesets.Karaoke.Objects.TimeLine;
-using OpenTK.Input;
+using osuTK.Input;
 
 namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Thumbnail
 {

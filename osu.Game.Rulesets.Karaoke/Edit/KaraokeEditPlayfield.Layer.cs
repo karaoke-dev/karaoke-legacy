@@ -9,7 +9,7 @@ using osu.Game.Rulesets.Karaoke.Edit.Dialog;
 using osu.Game.Rulesets.Karaoke.Edit.Layers.Lyric;
 using osu.Game.Rulesets.Karaoke.Edit.Layers.Note;
 using osu.Game.Rulesets.Karaoke.Objects.Note;
-using OpenTK;
+using osuTK;
 
 namespace osu.Game.Rulesets.Karaoke.Edit
 {

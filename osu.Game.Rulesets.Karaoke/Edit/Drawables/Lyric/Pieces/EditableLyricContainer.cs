@@ -4,7 +4,7 @@
 using System;
 using osu.Framework.Input.Events;
 using osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric.Pieces;
-using OpenTK.Graphics;
+using osuTK.Graphics;
 
 namespace osu.Game.Rulesets.Karaoke.Edit.Drawables.Lyric.Pieces
 {

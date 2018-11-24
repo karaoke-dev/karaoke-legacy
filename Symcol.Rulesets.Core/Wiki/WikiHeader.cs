@@ -6,9 +6,9 @@ using osu.Game.Users;
 using osu.Framework.Graphics.Cursor;
 using osu.Game.Graphics.Sprites;
 using osu.Game.Graphics.Containers;
-using OpenTK;
+using osuTK;
 using osu.Framework.Graphics.Shapes;
-using OpenTK.Graphics;
+using osuTK.Graphics;
 
 namespace Symcol.Rulesets.Core.Wiki
 {

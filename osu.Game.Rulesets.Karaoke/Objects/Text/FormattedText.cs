@@ -5,7 +5,7 @@ using System;
 using Newtonsoft.Json;
 using osu.Game.Rulesets.Karaoke.Objects.Types;
 using osu.Game.Rulesets.Objects.Types;
-using OpenTK;
+using osuTK;
 
 namespace osu.Game.Rulesets.Karaoke.Objects.Text
 {

@@ -3,7 +3,7 @@
 
 using osu.Game.Rulesets.Judgements;
 using osu.Game.Rulesets.Scoring;
-using OpenTK;
+using osuTK;
 
 namespace osu.Game.Rulesets.Karaoke.Judgements
 {
