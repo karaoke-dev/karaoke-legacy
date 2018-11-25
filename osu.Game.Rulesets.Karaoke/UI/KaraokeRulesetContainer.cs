@@ -1,6 +1,8 @@
 ﻿// Copyright (c) 2007-2018 ppy Pty Ltd <contact@ppy.sh>.
 // Licensed under the MIT Licence - https://raw.githubusercontent.com/ppy/osu/master/LICENCE
 
+using osu.Framework.Allocation;
+using osu.Framework.Configuration;
 using osu.Framework.Input;
 using osu.Game.Beatmaps;
 using osu.Game.Input.Handlers;
@@ -20,7 +22,9 @@ namespace osu.Game.Rulesets.Karaoke.UI
 {
     public class KaraokeRulesetContainer : ScrollingRulesetContainer<KaraokeBasePlayfield, Lyric>
     {
-        protected KaraokeConfigManager ConfigManager;
+        protected new KaraokeConfigManager Config => (KaraokeConfigManager)base.Config;
+
+        private readonly Bindable<KaroakeNoteScrollDirection> configDirection = new Bindable<KaroakeNoteScrollDirection>();
 
         public KaraokeRulesetContainer(Ruleset ruleset, WorkingBeatmap beatmap)
             : base(ruleset, beatmap)
@@ -64,12 +68,15 @@ namespace osu.Game.Rulesets.Karaoke.UI
             return new KaraokeReplayInputHandler(replay);
         }
 
-        /* 
-        protected override IRulesetConfigManager CreateConfig(Ruleset ruleset, SettingsStore settings)
+        [BackgroundDependencyLoader]
+        private void load()
         {
-            ConfigManager = new KaraokeConfigManager(settings, Ruleset.RulesetInfo, Variant);
-            return ConfigManager;
+            //BarLines.ForEach(Playfield.Add);
+
+            Config.BindWith(KaraokeSetting.NoteScrollDirection, configDirection);
+            configDirection.BindValueChanged(v => Direction.Value = (ScrollingDirection)v, true);
+
+            Config.BindWith(KaraokeSetting.NoteTime, TimeRange);
         }
-        */
     }
 }

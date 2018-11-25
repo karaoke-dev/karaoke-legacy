@@ -5,6 +5,7 @@ using osu.Framework.Configuration.Tracking;
 using osu.Game.Configuration;
 using osu.Game.Rulesets.Karaoke.Service.Romaji;
 using osu.Game.Rulesets.Karaoke.Service.Translate;
+using osu.Game.Rulesets.Karaoke.UI;
 
 namespace osu.Game.Rulesets.Karaoke.Configuration
 {
@@ -62,8 +63,8 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
             SetObject(KaraokeSetting.TouchScreen, new MobileScrollAnixConfig());
 
             //Tone
-            Set(KaraokeSetting.NoteSpeed, 6000.0);
-            Set(KaraokeSetting.PlayFieldAdjustPositioByTome, true);
+            Set(KaraokeSetting.NoteTime, 2250.0, 50.0, 10000.0, 50.0);
+            Set(KaraokeSetting.NoteScrollDirection, KaroakeNoteScrollDirection.Left);
         }
     }
 
@@ -104,7 +105,9 @@ namespace osu.Game.Rulesets.Karaoke.Configuration
         TouchScreen = 62, //touch screen action
 
         //Note
-        NoteSpeed = 71, //noteSpeed
-        PlayFieldAdjustPositioByTome = 72 //adjust position while change tone
+        //NoteSpeed = 71, //noteSpeed
+        PlayFieldAdjustPositioByTome = 72, //adjust position while change tone
+        NoteTime = 73, //noteSpeed
+        NoteScrollDirection = 74, //noteSpeed
     }
 }
