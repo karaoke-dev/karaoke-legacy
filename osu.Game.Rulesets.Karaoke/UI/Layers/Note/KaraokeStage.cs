@@ -93,7 +93,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Note
 
         public KaraokeStage(KaraokeStageDefinition definition)
         {
-            Direction.Value = ScrollingDirection.Left;
+            //Direction.Value = ScrollingDirection.Left;
 
             if (definition == null)
                 throw new ArgumentNullException(nameof(definition) + "cannot be null");

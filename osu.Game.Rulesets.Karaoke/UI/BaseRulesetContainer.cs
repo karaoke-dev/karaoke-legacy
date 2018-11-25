@@ -106,7 +106,7 @@ namespace osu.Game.Rulesets.Karaoke.UI
 
         private void applySpeedAdjustment(MultiplierControlPoint controlPoint, ScrollingPlayfield playfield)
         {
-            playfield.HitObjects.AddControlPoint(controlPoint);
+            //playfield.HitObjects.AddControlPoint(controlPoint);
             playfield.NestedPlayfields?.OfType<ScrollingPlayfield>().ForEach(p => applySpeedAdjustment(controlPoint, p));
         }
     }

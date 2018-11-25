@@ -45,7 +45,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Note
 
         public KaraokeTonePlayfield(List<KaraokeStageDefinition> stageDefinitions)
         {
-            Direction.Value = ScrollingDirection.Left;
+            //Direction.Value = ScrollingDirection.Left;
 
             if (stageDefinitions == null)
                 throw new ArgumentNullException(nameof(stageDefinitions));
@@ -65,7 +65,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Note
             for (var i = 0; i < stageDefinitions.Count; i++)
             {
                 var newStage = new KaraokeStage(stageDefinitions[i]);
-                newStage.VisibleTimeRange.BindTo(VisibleTimeRange);
+                //newStage.VisibleTimeRange.BindTo(VisibleTimeRange);
                 newStage.Inverted.BindTo(Inverted);
 
                 playfieldGrid.Content[i] = new Drawable[] { newStage };
@@ -80,7 +80,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Note
             if (h is DrawableNotes note)
             {
                 //regist event
-                note.NoteSpeed.BindTo(VisibleTimeRange);
+                //note.NoteSpeed.BindTo(VisibleTimeRange);
 
                 //然後根據事件去做物件的加減
                 GetStageByColumn(note.HitObject.SingerIndex ?? 0).Add(note);
@@ -111,7 +111,7 @@ namespace osu.Game.Rulesets.Karaoke.UI.Layers.Note
             //initial bar lines
             initialBarLine();
 
-            karaokeConfig.BindWith(KaraokeSetting.NoteSpeed, VisibleTimeRange);
+            //karaokeConfig.BindWith(KaraokeSetting.NoteSpeed, VisibleTimeRange);
         }
 
         private void initialBarLine()

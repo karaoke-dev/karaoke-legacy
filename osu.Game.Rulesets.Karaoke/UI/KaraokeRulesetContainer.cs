@@ -14,10 +14,11 @@ using osu.Game.Rulesets.Objects.Drawables;
 using osu.Game.Rulesets.Replays;
 using osu.Game.Rulesets.Scoring;
 using osu.Game.Rulesets.UI;
+using osu.Game.Rulesets.UI.Scrolling;
 
 namespace osu.Game.Rulesets.Karaoke.UI
 {
-    public class KaraokeRulesetContainer : BaseRulesetContainer<Lyric>
+    public class KaraokeRulesetContainer : ScrollingRulesetContainer<KaraokeBasePlayfield, Lyric>
     {
         protected KaraokeConfigManager ConfigManager;
 

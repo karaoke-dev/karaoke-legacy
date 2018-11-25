@@ -10,7 +10,7 @@ using osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric;
 using osu.Game.Rulesets.Karaoke.Objects.Drawables.Note;
 using osu.Game.Rulesets.Karaoke.UI.Interface;
 using osu.Game.Rulesets.Objects.Drawables;
-using osu.Game.Rulesets.UI;
+using osu.Game.Rulesets.UI.Scrolling;
 using osuTK;
 using osuTK.Graphics;
 
@@ -26,7 +26,7 @@ namespace osu.Game.Rulesets.Karaoke.UI
     ///     |                   |  [editor playField]
     ///     |                   |
     /// </summary>
-    public partial class KaraokeBasePlayfield : Playfield, IAmKaraokeField
+    public partial class KaraokeBasePlayfield : ScrollingPlayfield, IAmKaraokeField
     {
         public static readonly Vector2 BASE_SIZE = new Vector2(512, 384);
 

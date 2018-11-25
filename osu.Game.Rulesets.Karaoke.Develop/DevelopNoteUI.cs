@@ -19,7 +19,7 @@ using osu.Game.Rulesets.Karaoke.UI.Layers.Note;
 using osu.Game.Rulesets.Objects.Drawables;
 using osu.Game.Rulesets.UI.Scrolling;
 using osu.Game.Tests.Visual;
-using OpenTK.Graphics;
+using osuTK.Graphics;
 
 namespace osu.Game.Rulesets.Karaoke.Develop
 {
@@ -194,7 +194,7 @@ namespace osu.Game.Rulesets.Karaoke.Develop
 
         public KaraokePlayfield(List<KaraokeStageDefinition> stageDefinitions)
         {
-            Direction.Value = ScrollingDirection.Left;
+            //Direction.Value = ScrollingDirection.Left;
 
             if (stageDefinitions == null)
                 throw new ArgumentNullException(nameof(stageDefinitions));
@@ -212,7 +212,7 @@ namespace osu.Game.Rulesets.Karaoke.Develop
             for (int i = 0; i < stageDefinitions.Count; i++)
             {
                 var newStage = new KaraokeStage(stageDefinitions[i]);
-                newStage.VisibleTimeRange.BindTo(VisibleTimeRange);
+                //newStage.VisibleTimeRange.BindTo(VisibleTimeRange);
                 newStage.Inverted.BindTo(Inverted);
 
                 content[i] = new[] { newStage };
@@ -250,7 +250,7 @@ namespace osu.Game.Rulesets.Karaoke.Develop
         [BackgroundDependencyLoader]
         private void load(KaraokeConfigManager maniaConfig)
         {
-            maniaConfig.BindWith(KaraokeSetting.NoteSpeed, VisibleTimeRange);
+            //maniaConfig.BindWith(KaraokeSetting.NoteSpeed, VisibleTimeRange);
         }
 
         /*
