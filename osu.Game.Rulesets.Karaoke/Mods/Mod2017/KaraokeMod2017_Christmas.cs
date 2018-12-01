@@ -10,7 +10,7 @@ namespace osu.Game.Rulesets.Karaoke.Mods.Mod2017
     {
         public override string Name => "Happy Christmas!";
 
-        public override string ShortenedName => "HPCris2017";
+        public override string Acronym => "HPCris2017";
 
         public override string Description => "Singing karaoke at home and nobody give you a shit.";
 

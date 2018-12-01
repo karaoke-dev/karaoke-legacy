@@ -25,16 +25,6 @@ namespace osu.Game.Rulesets.Karaoke.Scoring
         {
         }
 
-        public override void PopulateScore(Score score)
-        {
-            base.PopulateScore(score);
-
-            score.Statistics[HitResult.Great] = scoreResultCounts.GetOrDefault(HitResult.Great);
-            score.Statistics[HitResult.Good] = scoreResultCounts.GetOrDefault(HitResult.Good);
-            score.Statistics[HitResult.Meh] = scoreResultCounts.GetOrDefault(HitResult.Meh);
-            score.Statistics[HitResult.Miss] = scoreResultCounts.GetOrDefault(HitResult.Miss);
-        }
-
         protected override void SimulateAutoplay(Beatmap<Lyric> beatmap)
         {
             while (true)

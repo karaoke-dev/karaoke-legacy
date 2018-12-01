@@ -12,7 +12,7 @@ namespace osu.Game.Rulesets.Karaoke.Mods
     public class KaraokeModHidden : ModHidden
     {
         public override string Name => "Hidden";
-        public override string ShortenedName => "HD";
+        public override string Acronym => "HD";
         public override double ScoreMultiplier => 1;
         public override string Description => "Hidden the lyric at the start time.";
         public override FontAwesome Icon => FontAwesome.fa_osu_mod_hidden;

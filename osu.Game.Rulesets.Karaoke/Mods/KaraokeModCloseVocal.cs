@@ -12,7 +12,7 @@ namespace osu.Game.Rulesets.Karaoke.Mods
     public class KaraokeModCloseVocal : Mod
     {
         public override string Name => "CloseVocal";
-        public override string ShortenedName => "CloseVocal";
+        public override string Acronym => "CloseVocal";
         public override double ScoreMultiplier => 1;
         public override string Description => "if sound trach has two parts, close the vocal part.";
         public override FontAwesome Icon => FontAwesome.fa_times;

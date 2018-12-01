@@ -14,7 +14,7 @@ namespace osu.Game.Rulesets.Karaoke.Mods
     public class KaraokeModEasy : ModHalfTime
     {
         public override string Name => "KaraokeEasy";
-        public override string ShortenedName => "EZ";
+        public override string Acronym => "EZ";
         public override double ScoreMultiplier => 1;
         public override string Description => "just make defult song speed slower.";
         public override FontAwesome Icon => FontAwesome.fa_osu_mod_halftime;

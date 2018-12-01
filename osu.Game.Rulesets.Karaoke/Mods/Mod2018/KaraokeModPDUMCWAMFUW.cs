@@ -12,7 +12,7 @@ namespace osu.Game.Rulesets.Karaoke.Mods.Mod2018
     public class KaraokeModPDUMCWAMFUW : Mod, IApplicableMod
     {
         public override string Name => "PDUMCWAMFUW";
-        public override string ShortenedName => "PDUMCWAMFUW";
+        public override string Acronym => "PDUMCWAMFUW";
         public override double ScoreMultiplier => 1;
         public override string Description => "I already pay the money, PLEASE DONT UPGRADE MY COMPUTER WITHOUT ASKING FUXK You Window$.";
         public override FontAwesome Icon => FontAwesome.fa_osu_mod_suddendeath;

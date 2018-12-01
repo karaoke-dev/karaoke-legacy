@@ -3,6 +3,7 @@
 
 using System.Collections.Generic;
 using osu.Framework.Input.StateChanges;
+using osu.Game.Replays;
 using osu.Game.Rulesets.Karaoke.Input;
 using osu.Game.Rulesets.Replays;
 

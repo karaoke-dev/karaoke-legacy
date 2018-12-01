@@ -14,7 +14,7 @@ namespace osu.Game.Rulesets.Karaoke.Mods
     public class KaraokeModDoubleTime : ModDoubleTime
     {
         public override string Name => "KaraokeHard";
-        public override string ShortenedName => "HD";
+        public override string Acronym => "HD";
         public override double ScoreMultiplier => 1;
         public override string Description => "just make defult song speed faster.";
         public override FontAwesome Icon => FontAwesome.fa_osu_mod_doubletime;

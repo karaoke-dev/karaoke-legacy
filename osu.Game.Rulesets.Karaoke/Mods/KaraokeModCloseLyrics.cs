@@ -12,7 +12,7 @@ namespace osu.Game.Rulesets.Karaoke.Mods
     public class KaraokeModCloseLyrics : Mod
     {
         public override string Name => "CloseLyrics";
-        public override string ShortenedName => "Cl";
+        public override string Acronym => "Cl";
         public override double ScoreMultiplier => 1;
         public override string Description => "not even shows any lyrics.";
         public override FontAwesome Icon => FontAwesome.fa_osu_mod_suddendeath;

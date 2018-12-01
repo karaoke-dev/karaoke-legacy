@@ -17,7 +17,7 @@ namespace osu.Game.Rulesets.Karaoke.Mods
     public class KaraokeModSnow : Mod, IApplicableCreatePlayfieldLayer
     {
         public override string Name => "Snow";
-        public override string ShortenedName => "SW";
+        public override string Acronym => "SW";
         public override double ScoreMultiplier => 1.0f;
         public virtual string TextureLayer => @"Play/Karaoke/Layer/Snow/Snow";
         public override FontAwesome Icon => FontAwesome.fa_snowflake_o;

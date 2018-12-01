@@ -14,7 +14,7 @@ namespace osu.Game.Rulesets.Karaoke.Mods
     public class KaraokeModTutorial : ModNoFail
     {
         public override string Name => "Tutorial";
-        public override string ShortenedName => "Tu";
+        public override string Acronym => "Tu";
         public override double ScoreMultiplier => 1;
         public override string Description => "Will introduce how to use karaoke panel and other setting.";
         public override bool Ranked => true;

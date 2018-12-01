@@ -12,7 +12,7 @@ namespace osu.Game.Rulesets.Karaoke.Mods
     public class KaraokeModOpenVocal : Mod
     {
         public override string Name => "OpenVocal";
-        public override string ShortenedName => "OpenVocal";
+        public override string Acronym => "OpenVocal";
         public override double ScoreMultiplier => 1;
         public override string Description => "if sound trach has two parts, open the vocal part.";
         public override FontAwesome Icon => FontAwesome.fa_commenting_o;

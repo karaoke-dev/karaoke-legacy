@@ -21,7 +21,7 @@ namespace osu.Game.Rulesets.Karaoke.Mods
     public class KaraokeModPractice : Mod, IApplicableCreatePlayfieldLayer, IApplicableCreateRightSideButton
     {
         public override string Name => "Practice";
-        public override string ShortenedName => "Practice";
+        public override string Acronym => "Practice";
         public override double ScoreMultiplier => 0.0f;
         public override Type[] IncompatibleMods => new[] { typeof(ModDoubleTime), typeof(ModHalfTime) };
         public override FontAwesome Icon => FontAwesome.fa_play_circle;

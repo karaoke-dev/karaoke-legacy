@@ -13,7 +13,7 @@ namespace osu.Game.Rulesets.Karaoke.Mods
     public class KaraokeModOpenTranslate : Mod
     {
         public override string Name => "Translate";
-        public override string ShortenedName => "Tr";
+        public override string Acronym => "Tr";
         public override double ScoreMultiplier => 1;
         public override string Description => "Will force open the translate for lyrics, even you are not open it in the config.";
         public override FontAwesome Icon => FontAwesome.fa_language;
