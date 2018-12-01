@@ -174,7 +174,6 @@ namespace osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric
         {
             base.Update();
 
-
             if (!ProgressUpdateByTime)
                 return;
 

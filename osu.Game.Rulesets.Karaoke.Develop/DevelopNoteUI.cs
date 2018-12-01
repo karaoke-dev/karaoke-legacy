@@ -205,29 +205,23 @@ namespace osu.Game.Rulesets.Karaoke.Develop
             Inverted.Value = true;
 
             GridContainer playfieldGrid;
+            AddInternal(playfieldGrid = new GridContainer
+            {
+                RelativeSizeAxes = Axes.Both,
+                Content = new Drawable[Math.Max(stageDefinitions.Count, 2)][]
+            });
 
-            int firstColumnIndex = 0;
-
-            var content = new Drawable[stageDefinitions.Count][];
-            for (int i = 0; i < stageDefinitions.Count; i++)
+            for (var i = 0; i < stageDefinitions.Count; i++)
             {
                 var newStage = new KaraokeStage(stageDefinitions[i]);
                 //newStage.VisibleTimeRange.BindTo(VisibleTimeRange);
                 newStage.Inverted.BindTo(Inverted);
 
-                content[i] = new[] { newStage };
+                playfieldGrid.Content[i] = new Drawable[] { newStage };
 
                 stages.Add(newStage);
                 AddNested(newStage);
-
-                firstColumnIndex += newStage.Columns.Count;
             }
-
-            InternalChild = playfieldGrid = new GridContainer
-            {
-                RelativeSizeAxes = Axes.Both,
-                Content = content,
-            };
         }
 
         public override void Add(DrawableHitObject h) => getStageByColumn(((Lyric)h.HitObject).SingerIndex ?? 0).Add(h);
@@ -247,11 +241,13 @@ namespace osu.Game.Rulesets.Karaoke.Develop
             return null;
         }
 
+        /*
         [BackgroundDependencyLoader]
         private void load(KaraokeConfigManager maniaConfig)
         {
             //maniaConfig.BindWith(KaraokeSetting.NoteSpeed, VisibleTimeRange);
         }
+        */
 
         /*
         internal void OnJudgement(DrawableHitObject judgedObject, Judgement judgement)

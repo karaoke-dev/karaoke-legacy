@@ -7,9 +7,9 @@ using osu.Framework.Graphics.Containers;
 using osu.Game.Rulesets.Karaoke.Helps;
 using osu.Game.Rulesets.Karaoke.Objects.Drawables.Lyric;
 using osu.Game.Tests.Visual;
-using OpenTK;
+using osuTK;
 using osu.Framework.Graphics.Shapes;
-using OpenTK.Graphics;
+using osuTK.Graphics;
 using osu.Game.Rulesets.Karaoke.Objects;
 using osu.Game.Rulesets.Karaoke.Extension;
 
