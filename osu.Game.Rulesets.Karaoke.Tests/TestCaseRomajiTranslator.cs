@@ -6,7 +6,7 @@ using osu.Framework.Graphics;
 using osu.Game.Graphics.Sprites;
 using osu.Game.Rulesets.Karaoke.Online.API.Romaj.Google;
 using osu.Game.Tests.Visual;
-using OpenTK;
+using osuTK;
 
 namespace osu.Game.Rulesets.Karaoke.Tests
 {

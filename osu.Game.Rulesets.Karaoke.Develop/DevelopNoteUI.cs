@@ -256,11 +256,4 @@ namespace osu.Game.Rulesets.Karaoke.Develop
         }
         */
     }
-
-    
-
-
-    
-
-   
 }

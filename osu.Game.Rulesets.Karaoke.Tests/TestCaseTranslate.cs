@@ -7,7 +7,7 @@ using osu.Game.Graphics.Sprites;
 using osu.Game.Rulesets.Karaoke.Configuration;
 using osu.Game.Rulesets.Karaoke.Service.Translate;
 using osu.Game.Tests.Visual;
-using OpenTK;
+using osuTK;
 
 namespace osu.Game.Rulesets.Karaoke.Tests
 {

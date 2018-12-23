@@ -6,7 +6,7 @@ using osu.Framework.Allocation;
 using osu.Game.Rulesets.Karaoke.Edit.Drawables.Lyric;
 using osu.Game.Rulesets.Karaoke.Helps;
 using osu.Game.Tests.Visual;
-using OpenTK;
+using osuTK;
 
 namespace osu.Game.Rulesets.Karaoke.Tests
 {
